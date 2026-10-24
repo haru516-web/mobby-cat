@@ -176,3 +176,79 @@ Processing: Trim alpha margin and proportionally fit exact canvas without stretc
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-1a903380-a8c5-422a-8a24-6cd65fda4468.png
 
+
+# Section13 additions
+
+## button/primary-green-pressed.png
+
+Final: 360x132 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Pressed state of reference green filled pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.. Final canvas 360x132, requested aspect 360:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-3cfda0b3-c5e4-41e0-91c6-68eea3e69708.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin
+
+## button/ghost-outline-pressed.png
+
+Final: 360x132 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Pressed state of reference cream orange outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.. Final canvas 360x132, requested aspect 360:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-9c1b52b2-65d7-43a2-a34e-aab1a247e279.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin
+
+## button/ghost-green-pressed.png
+
+Final: 360x132 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Pressed state of reference cream green outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.. Final canvas 360x132, requested aspect 360:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-65404bf3-eff3-4268-a000-6f9f9eda81fc.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin
+
+## button/toggle-on.png
+
+Final: 204x120 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Settings toggle ON. Rounded orange pill track, ivory circular thumb at RIGHT. Thumb included. Soft paperlike puffy style upper-left highlight, no text no symbols. Minimal shadow margin6px.. Final canvas 204x120, requested aspect 204:120. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-b0b9a70b-0c14-440d-88ff-401788ba8b4b.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+## button/toggle-off.png
+
+Final: 204x120 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Settings toggle OFF. Same rounded pill track and ivory thumb proportions as ON, track grey beige and thumb at LEFT. Thumb included. Soft puffy paper style, no text no symbols. Shadow clearance6px.. Final canvas 204x120, requested aspect 204:120. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-9875de75-1a45-4bdb-916b-a2fc2962c8d8.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+## button/close-round.png
+
+Final: 132x132 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Cream circular modal close button with dark brown rounded X centered, simple soft paper texture low contrast shadow. No other marks no letters.6px transparent clearance.. Final canvas 132x132, requested aspect 132:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-6898195c-53f0-45b6-8c83-2446ad7b1471.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
