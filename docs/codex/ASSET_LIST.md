@@ -117,6 +117,45 @@ paw, paw-small（60×60）, coin-paw（肉球コイン・金）, gem（青い宝
 | cat/shadow-oval.png（400×120） | 猫の足元に敷く楕円の柔らかい影（透過） |
 | cat/halo-select.png（600×600） | 選択中の猫の背後に敷く光輪 |
 
+## 11. camera（撮影機能。設計書 8章）
+カメラのライブ映像の上に重ねるUIなので、**半透明・影つきで、明るい映像でも暗い映像でも読める**こと。
+| ファイル | サイズ | 内容 |
+|---|---|---|
+| camera/shutter.png | 270×270 | シャッターボタン（白い二重円、肉球ワンポイント） |
+| camera/shutter-pressed.png | 270×270 | 同・押下状態 |
+| camera/btn-close.png | 132×132 | 閉じる（×）丸ボタン、半透明の暗い地 |
+| camera/btn-flip.png | 132×132 | イン/アウトカメラ切替 |
+| camera/btn-flash-on.png / btn-flash-off.png | 各 132×132 | フラッシュ切替 |
+| camera/btn-save.png | 132×132 | 端末に保存（下向き矢印） |
+| camera/btn-share.png | 132×132 | 共有（上向き矢印） |
+| camera/btn-retake.png | 132×132 | 撮り直し（回転矢印） |
+| camera/btn-cat-picker.png | 132×132 | 写す猫を選ぶ（猫の顔＋小さな＋） |
+| camera/topbar-scrim.png | 1179×300 | 上部の黒→透明グラデ（ボタンの視認性確保） |
+| camera/bottombar-scrim.png | 1179×600 | 下部の透明→黒グラデ |
+| camera/cat-tray.png | 1179×360 | 下部の猫選択トレイ（すりガラス風の角丸、9slice 横方向） |
+| camera/cat-tray-slot.png / cat-tray-slot-on.png | 各 210×210 | トレイ内の猫サムネ枠（通常 / 選択中のオレンジ縁） |
+| camera/gesture-hint.png | 600×300 | 「ドラッグで移動・ピンチで拡大・2本指で回転」の操作ガイド図（手のアイコンのみ、文字なし） |
+| camera/handle-transform.png | 90×90 | 猫を選択中に四隅に出す拡縮ハンドル |
+| camera/shadow-soft.png | 480×150 | 床置き用の簡易影（`cat/shadow-oval.png` より薄く広い） |
+| camera/flash-white.png | 64×64 | 撮影時の白フラッシュ（全面に引き伸ばす単色。9slice 不要） |
+| camera/ar-reticle.png | 480×480 | 将来のAR用の床置き照準リング（初期版では未使用、先行して用意） |
+
+## 12. share（SNS向け出力カード。設計書 8.3。テキストと写真はアプリ側で合成）
+写真・猫名・日付・国名などはすべてアプリ側で差し込む。**画像は枠と装飾だけ**にして、差し込み領域を `manifest.json` に矩形（x, y, w, h）で記録する。
+| ファイル | サイズ | 内容 |
+|---|---|---|
+| share/discovery-card.png | 1080×1350 | 猫の発見カード（4:5）。猫画像領域、猫名、出会い日、出現条件のヒント、レア度バッジの各領域。肉球スタンプ・紙テープ装飾 |
+| share/discovery-card-story.png | 1080×1920 | 同・9:16縦長版（ストーリーズ・縦動画の静止フレーム） |
+| share/travel-card.png | 1080×1350 | 旅猫記念カード。パスポート/航空券風。「前にいた国 → 自分の国」の2枠と矢印、旅行日数・訪問国数・記念写真の領域 |
+| share/travel-card-story.png | 1080×1920 | 同・9:16縦長版 |
+| share/photo-frame-polaroid.png | 1080×1350 | 撮影写真に重ねるポラロイド風フレーム（下部に日付を入れる余白） |
+| share/photo-frame-stamp.png | 1080×1350 | 切手風フレーム（ギザギザ縁＋消印） |
+| share/photo-frame-travel.png | 1080×1350 | 旅猫と撮った写真用のフレーム（地図と飛行機の航跡、国旗を置く小枠） |
+| share/watermark.png | 360×120 | 右下に入れる小さな「ねこモビー」ロゴ（文字入り可・半透明） |
+| share/video-intro.png / video-outro.png | 各 1080×1920 | 9:16動画の冒頭・末尾フレーム（ロゴと肉球の装飾のみ） |
+
+注意: 共有画像に **住所・GPS座標・位置メタデータを埋め込まない**（設計書 8.3）。生成時にEXIFを付けない。
+
 ## 受け入れ条件
 - ファイル名・サイズは上表と一致。透過部分に白フチが残らないこと（ハロー除去）。
 - `app/assets/ui/manifest.json` に 全ファイルの `path / width / height / slice(9slice の場合 top,right,bottom,left) / sha256 / prompt` を記録。
