@@ -128,3 +128,7 @@ Superseded attempt: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953
 
 Prompt: ONE standalone globe latitude longitude symbol warm brown grey same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.
 
+
+## Section13 stretch metadata audit
+
+See stretch-normalization.json for transparentmargin measurements and any geometric9slice resizing. Final cap insets are recorded in manifest.json. No new image-generation prompt needed for resize normalization.
