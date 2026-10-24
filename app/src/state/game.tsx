@@ -19,6 +19,7 @@ export type GameState = {
   installDay: string;
   debugOffsetDays: number;
   notifyEnabled: boolean;
+  favorites: string[];
 };
 
 const KEY = 'mobby-cat/state/v1';
@@ -33,6 +34,7 @@ function initial(now: Date): GameState {
     installDay: encounterDayKey(now),
     debugOffsetDays: 0,
     notifyEnabled: false,
+    favorites: [],
   };
 }
 
@@ -45,10 +47,11 @@ type Ctx = {
   todayKey: string;
   availableDays: string[]; // [今日, (救済期間中の)きのう]
   pickFree: (day: string, id: string) => void;
-  pickExtra: (day: string, id: string) => boolean;
+  pickExtra: (day: string, ids: string | string[]) => boolean;
   useMatatabi: (day: string) => boolean;
   grant: (what: 'ticket' | 'matatabi', n: number) => void;
   setNotify: (v: boolean) => void;
+  toggleFavorite: (id: string) => void;
   shiftDays: (n: number) => void;
   reset: () => void;
 };
@@ -126,14 +129,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const pickExtra = useCallback((day: string, id: string) => {
+  // お迎え券で追加。複数指定時は全員分の券があるときだけまとめて迎える
+  const pickExtra = useCallback((day: string, ids: string | string[]) => {
+    const list = Array.isArray(ids) ? ids : [ids];
     const s = stateRef.current;
     const r = s.days[day];
-    if (!r || !r.freePick || s.tickets < 1) return false;
-    if (r.freePick === id || r.extraPicks.includes(id)) return false;
-    if (!r.candidates.slice(0, visibleCount(r)).includes(id)) return false;
-    const next = addCat({ ...s, tickets: s.tickets - 1 }, id, day, r.reasons[id] ?? '');
-    setState({ ...next, days: { ...next.days, [day]: { ...r, extraPicks: [...r.extraPicks, id] } } });
+    if (!r || !r.freePick || list.length === 0 || s.tickets < list.length) return false;
+    const visible = r.candidates.slice(0, visibleCount(r));
+    if (list.some((id) => r.freePick === id || r.extraPicks.includes(id) || !visible.includes(id))) return false;
+    let next: GameState = { ...s, tickets: s.tickets - list.length };
+    for (const id of list) next = addCat(next, id, day, r.reasons[id] ?? '');
+    next = { ...next, days: { ...next.days, [day]: { ...r, extraPicks: [...r.extraPicks, ...list] } } };
+    stateRef.current = next;
+    setState(next);
     return true;
   }, []);
 
@@ -153,12 +161,20 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setState((s) => (what === 'ticket' ? { ...s, tickets: s.tickets + n } : { ...s, matatabi: s.matatabi + n }));
   }, []);
   const setNotify = useCallback((v: boolean) => setState((s) => ({ ...s, notifyEnabled: v })), []);
+  const toggleFavorite = useCallback(
+    (id: string) =>
+      setState((s) => ({
+        ...s,
+        favorites: s.favorites.includes(id) ? s.favorites.filter((f) => f !== id) : [...s.favorites, id],
+      })),
+    [],
+  );
   const shiftDays = useCallback((n: number) => setState((s) => ({ ...s, debugOffsetDays: s.debugOffsetDays + n })), []);
   const reset = useCallback(() => setState(initial(new Date())), []);
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setNotify, shiftDays, reset,
+    pickFree, pickExtra, useMatatabi, grant, setNotify, toggleFavorite, shiftDays, reset,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
 }

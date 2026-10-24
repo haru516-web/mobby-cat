@@ -70,6 +70,22 @@ export function guaranteedCats(dayKey: string, ownedIds: string[]): Guaranteed[]
   return out.filter((g, i) => out.findIndex((o) => o.id === g.id) === i);
 }
 
+// 図鑑で未所持の条件猫に出すヒント（条件そのものは伏せる）
+export const CONDITION_HINTS: Record<string, string> = {
+  bombay: '不吉といわれる金曜日に現れるらしい',
+  'japanese-bobtail': '猫にとって特別な日があるらしい',
+  toyger: '4年に1度しか来ない日に…',
+  manx: 'うそをついてもいい日に…',
+  'turkish-angora': '星に願いをかける夜に…',
+  persian: '雪のように白い聖夜に…',
+  'turkish-van': '一年のはじまりに…',
+  snowshoe: '毎月、肉球の日に…',
+  ocicat: '週末の手前の夜に…',
+  'maine-coon': 'たくさんの猫と暮らすと…（10種）',
+  siberian: 'もっとたくさんの猫と暮らすと…（20種）',
+  'egyptian-mau': 'さらにたくさんの猫と暮らすと…（30種）',
+};
+
 const WEIGHT: Record<Rarity, number> = { 1: 10, 2: 5, 3: 2, 4: 0.6 };
 
 export type DayCandidates = { candidates: string[]; reasons: Record<string, string>; baseCount: number };
