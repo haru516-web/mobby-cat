@@ -82,3 +82,91 @@ Processing: Trim alpha margin and proportionally fit exact canvas without stretc
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-e07422d4-fe2d-4cec-aaf6-c52e8793a07b.png
 
+
+# Section13 additions
+
+## brand/app-icon.png
+
+Final: 1024x1024 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: iOS app icon. Close-up British Shorthair cat Mobby face matching reference realistic dense grey fur. Exactly one natural amber cat eye viewer-left and one black camera lens viewer-right. Friendly rounded face, ears visible. Cream #FFF8F0 fully opaque background fills ALL four square corners, NO rounded app icon mask, NO border, NO text, no body necessary.. Final canvas 1024x1024, requested aspect 1024:1024. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-63af628b-b6a4-4349-9996-207c7b8305ff.png
+
+Processing: Opaque full-bleed cover resize to exact requested canvas
+
+## brand/splash.png
+
+Final: 1179x2556 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Full bleed opaque warm cream #FFF8F0 splash screen, exact reference ねこモビー logo centered horizontally and vertically, logo occupies about65percent canvas width. Vast clean empty cream space. NO additional text NO subtitles NO objects NO pattern.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-03e8122d-d3ef-4bc7-852d-23b35a39f789.png
+
+Processing: Opaque full-bleed cover resize to exact requested canvas
+
+## brand/title-kyou.png
+
+Final: 560x110 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Exact Japanese lettering only: 「きょうのようす」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 560x110, requested aspect 560:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-a6a19793-8b59-4768-bf96-630d55ff8c9e.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+## brand/title-mukaeru.png
+
+Final: 720x110 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Exact Japanese lettering only: 「この子たちも迎える」. one small paw accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 720x110, requested aspect 720:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-73c5da02-b07c-484d-99ba-6b17d4ef39e4.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+## brand/title-visited.png
+
+Final: 640x110 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Exact Japanese lettering only: 「これまでに訪れた国」. one small flag accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 640x110, requested aspect 640:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-3718db46-5d65-4f20-8ab5-c6fe3b25297c.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+## brand/title-shop.png
+
+Final: 480x150 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Exact Japanese lettering only: 「ショップ」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 480x150, requested aspect 480:150. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-1ab429bd-bea6-4292-a525-91d019eb2e6e.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+## brand/title-settings.png
+
+Final: 320x110 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Exact Japanese lettering only: 「設定」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 320x110, requested aspect 320:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-10dd10bc-3709-413a-b6cc-9d7fb611bcd0.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
