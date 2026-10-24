@@ -156,6 +156,38 @@ paw, paw-small（60×60）, coin-paw（肉球コイン・金）, gem（青い宝
 
 注意: 共有画像に **住所・GPS座標・位置メタデータを埋め込まない**（設計書 8.3）。生成時にEXIFを付けない。
 
+## 13. 追加分
+
+伸縮用画像は透明な外周余白を影の分（約8px以内）に収め、manifest に `slice: {top, right, bottom, left}` を最終PNGのpxで必ず記録する。search-bar 等の既存画像も対象。文字はbrand/のみ。
+アプリアイコンとsplashは不透明。bg/fade-cream-bottom と bg/overlay-dim は用途上、背景の不透明ルールの例外。
+
+| ファイル | サイズ | 内容 |
+|---|---|---|
+| brand/app-icon.png | 1024×1024 | 不透明・角丸なし・文字なし。クリーム地に既存characters/の雰囲気に合わせた猫モビーの顔アップ |
+| brand/splash.png | 1179×2556 | 不透明。クリーム地の中央にロゴ「ねこモビー」 |
+| brand/title-kyou.png | 560×110 | 「きょうのようす」 |
+| brand/title-mukaeru.png | 720×110 | 「この子たちも迎える」、肉球付き |
+| brand/title-visited.png | 640×110 | 「これまでに訪れた国」、旗付き |
+| brand/title-shop.png | 480×150 | 「ショップ」 |
+| brand/title-settings.png | 320×110 | 「設定」 |
+| bg/screen-zukan.png | 1179×2556 | 本棚のある明るい部屋を強くぼかした図鑑全面背景。上部は文字を読める明るさ |
+| bg/screen-world.png | 1179×2556 | 淡い空と地図柄の紙の世界全面背景 |
+| bg/screen-shop.png | 1179×2556 | 生成りの紙とごく淡い肉球柄。ショップ・設定全面背景 |
+| bg/fade-cream-bottom.png | 1179×300 | 上が透明、下が#FFF8F0のグラデーションのみ |
+| bg/overlay-dim.png | 64×64 | #4A3B32、不透明度45%の単色暗幕 |
+| panel/photo-well.png | 192×192 | 9slice、角半径36。淡いベージュと内側の薄い影による写真用くぼみ |
+| panel/info-table.png | 300×150 | 9slice、角半径30。情報表用の細い茶線枠 |
+| panel/divider-h.png | 600×12 | 横に伸ばせる細い点線区切り |
+| panel/divider-v.png | 12×300 | 縦区切り線 |
+| panel/speech-bubble.png | 300×180 | 9slice、角半径48、下中央に小さなしっぽ |
+| button/primary-green-pressed.png | 360×132 | 緑ボタンの押下状態 |
+| button/ghost-outline-pressed.png | 360×132 | オレンジ枠線ボタンの押下状態 |
+| button/ghost-green-pressed.png | 360×132 | 緑枠線ボタンの押下状態 |
+| button/toggle-on.png / toggle-off.png | 各204×120 | つまみ込みの設定スイッチ。on=オレンジ・右、off=灰ベージュ・左 |
+| button/close-round.png | 132×132 | クリーム地に×の丸ボタン |
+| badge/sample.png | 300×72 | 9slice、こげ茶の小ラベル。文字なし |
+| badge/picked-stamp.png | 240×240 | 少し斜めの朱色肉球判子。文字なし |
+
 ## 受け入れ条件
 - ファイル名・サイズは上表と一致。透過部分に白フチが残らないこと（ハロー除去）。
 - `app/assets/ui/manifest.json` に 全ファイルの `path / width / height / slice(9slice の場合 top,right,bottom,left) / sha256 / prompt` を記録。
