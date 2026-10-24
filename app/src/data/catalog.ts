@@ -37,4 +37,6 @@ export const CATS: CatDef[] = [
   { id: 'bombay', name: 'ボンベイ', rarity: 4, image: require('../../assets/cats/bombay.png') },
   { id: 'havana-brown', name: 'ハバナブラウン', rarity: 3, image: require('../../assets/cats/havana-brown.png') },
   { id: 'snowshoe', name: 'スノーシュー', rarity: 2, image: require('../../assets/cats/snowshoe.png') },
+  { id: 'rea-mobby', name: 'れあもびー', rarity: 3, image: require('../../assets/cats/rea-mobby.png') },
+  { id: 'uyu-mobby', name: 'うゆもびー', rarity: 2, image: require('../../assets/cats/uyu-mobby.png') },
 ];

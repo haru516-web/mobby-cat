@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "importedOn": "2026-10-24",
-  "count": 34,
+  "count": 36,
   "sourceProject": "D:\\mobby\\mobidou\\output\\cat-mobby-prototypes",
   "pathsRelativeTo": "assets/cat-mobbies",
   "generationMode": "built-in image_gen",
@@ -515,6 +515,36 @@
       "bytes": 2604000,
       "sha256": "7cb6adbc2455ed6f03c276dbad72378ebf32775b07834fcaa24848641a5a2acc",
       "originalFile": "batch30/30-snowshoe.png"
+    },
+    {
+      "id": "rea-mobby",
+      "name": "れあもびー",
+      "file": "characters/rea-mobby.png",
+      "description": "既存のレアモビー。茶と黒の三毛風（キジ三毛）のふわふわ長毛、黄緑の目、首に茶色の首輪と丸いタグ。",
+      "buttonStyle": "plain-round",
+      "status": "existing",
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "alphaChannel": true,
+      "bytes": 1943207,
+      "sha256": "c8a027581724561c9191b2d10f2599e43a7a42a01d6fb9f8cedb57487dd9be79",
+      "originalFile": "mobidou/assets/mobies/reamobby.webp"
+    },
+    {
+      "id": "uyu-mobby",
+      "name": "うゆもびー",
+      "file": "characters/uyu-mobby.png",
+      "description": "既存のうゆもびー。ベージュにグレーの縞が入ったふわふわの毛、白い生体の目、首に小さな鈴付きの数珠の首輪。",
+      "buttonStyle": "plain-round",
+      "status": "existing",
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "alphaChannel": true,
+      "bytes": 1351063,
+      "sha256": "1edc9f6f5962ca01b44a69f520c097b737bfbf1e06d6043bd4eadc76e8ff4d53",
+      "originalFile": "mobidou/assets/mobies/uyumobby.webp"
     }
   ]
 }
