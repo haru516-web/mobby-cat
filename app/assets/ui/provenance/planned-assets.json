@@ -1,0 +1,614 @@
+[
+  {
+    "path": "brand/title-deai.png",
+    "width": 560,
+    "height": 240,
+    "description": "Exact text 出会い with paw, brown and orange"
+  },
+  {
+    "path": "brand/title-free-pick.png",
+    "width": 1000,
+    "height": 330,
+    "description": "Exact text 3匹の中から1匹を無料でお迎え on soft cloud plaque, no subtitle"
+  },
+  {
+    "path": "brand/title-matatabi.png",
+    "width": 720,
+    "height": 110,
+    "description": "Exact text またたびで もっと出会える！ with leaf"
+  },
+  {
+    "path": "brand/title-travel.png",
+    "width": 900,
+    "height": 240,
+    "description": "Exact text 旅するモビー"
+  },
+  {
+    "path": "brand/title-world-mission.png",
+    "width": 640,
+    "height": 110,
+    "description": "Exact text 世界ミッション with globe"
+  },
+  {
+    "path": "brand/title-news.png",
+    "width": 640,
+    "height": 110,
+    "description": "Exact text 世界のニュース with megaphone"
+  },
+  {
+    "path": "brand/title-collection.png",
+    "width": 560,
+    "height": 110,
+    "description": "Exact text コレクション with book"
+  },
+  {
+    "path": "bg/app-cream.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Cream paper full screen extremely faint paw and stitch pattern"
+  },
+  {
+    "path": "bg/room-home.png",
+    "width": 1179,
+    "height": 1900,
+    "description": "Warm sunlit realistic cozy cat room window houseplants cat tower sofa rug yarn ball. NO CATS"
+  },
+  {
+    "path": "bg/room-deai.png",
+    "width": 1179,
+    "height": 1400,
+    "description": "Warm sunlit cozy room heavily softly defocused, upper portion bright for overlaid headings. NO CATS"
+  },
+  {
+    "path": "bg/world-hero.png",
+    "width": 1179,
+    "height": 900,
+    "description": "Mediterranean seaside town blue sea and rustic directional signpost, blank signs NO LETTERING NO CATS"
+  },
+  {
+    "path": "bg/photo-japan.png",
+    "width": 600,
+    "height": 460,
+    "description": "Cherry blossoms and five storey Japanese pagoda, NO CATS"
+  },
+  {
+    "path": "bg/stamp-photo-kenya.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border savannah acacia landscape"
+  },
+  {
+    "path": "bg/stamp-photo-france.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border Eiffel tower Paris"
+  },
+  {
+    "path": "bg/stamp-photo-japan.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border Japanese red torii"
+  },
+  {
+    "path": "bg/stamp-photo-korea.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border Korean traditional old street"
+  },
+  {
+    "path": "bg/news-thumb-1.png",
+    "width": 330,
+    "height": 330,
+    "description": "Korean traditional town photographic thumbnail NO CATS"
+  },
+  {
+    "path": "bg/news-thumb-2.png",
+    "width": 330,
+    "height": 330,
+    "description": "French charming town photographic thumbnail NO CATS"
+  },
+  {
+    "path": "bg/news-thumb-3.png",
+    "width": 330,
+    "height": 330,
+    "description": "Warm textured beret still life"
+  },
+  {
+    "path": "panel/card-white.png",
+    "width": 192,
+    "height": 192,
+    "description": "Blank white card radius48 9slice"
+  },
+  {
+    "path": "panel/card-selected.png",
+    "width": 192,
+    "height": 192,
+    "description": "Blank cream card orange border radius48 9slice"
+  },
+  {
+    "path": "panel/card-locked.png",
+    "width": 192,
+    "height": 192,
+    "description": "Blank muted beige card radius48 9slice"
+  },
+  {
+    "path": "panel/frame-cat-photo.png",
+    "width": 192,
+    "height": 192,
+    "description": "Hollow cream photo frame radius36 transparent central opening"
+  },
+  {
+    "path": "panel/pill-info.png",
+    "width": 300,
+    "height": 132,
+    "description": "Blank cream information pill radius66 9slice"
+  },
+  {
+    "path": "panel/pill-currency.png",
+    "width": 420,
+    "height": 132,
+    "description": "Blank cream currency pill radius66 9slice"
+  },
+  {
+    "path": "panel/polaroid.png",
+    "width": 360,
+    "height": 420,
+    "description": "Ivory polaroid frame transparent photo opening x24 y24 width312 height312, lower border84"
+  },
+  {
+    "path": "panel/sheet-bottom.png",
+    "width": 1179,
+    "height": 300,
+    "description": "Blank cream bottom sheet top corners radius72 bottom corners square 9slice"
+  },
+  {
+    "path": "button/primary-orange-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Orange pill radius66 slightly darker sunken pressed state"
+  },
+  {
+    "path": "button/primary-green.png",
+    "width": 360,
+    "height": 132,
+    "description": "Green #5E9B3F blank pill radius66"
+  },
+  {
+    "path": "button/ghost-outline.png",
+    "width": 360,
+    "height": 132,
+    "description": "Cream blank pill fine orange outline radius66"
+  },
+  {
+    "path": "button/ghost-green.png",
+    "width": 360,
+    "height": 132,
+    "description": "Cream blank pill fine green outline radius66"
+  },
+  {
+    "path": "button/disabled.png",
+    "width": 360,
+    "height": 132,
+    "description": "Muted grey beige blank pill radius66"
+  },
+  {
+    "path": "button/tab-all-on.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank orange filter pill radius60"
+  },
+  {
+    "path": "button/tab-normal.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank beige filter pill radius60"
+  },
+  {
+    "path": "button/tab-rare.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank sky blue filter pill radius60"
+  },
+  {
+    "path": "button/tab-limited.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank lavender #E1D4FF filter pill radius60"
+  },
+  {
+    "path": "button/camera-round.png",
+    "width": 330,
+    "height": 330,
+    "description": "Circular ivory button thin gold double rim with dark brown simple camera symbol only"
+  },
+  {
+    "path": "button/bell-round.png",
+    "width": 168,
+    "height": 168,
+    "description": "Circular cream button dark brown bell symbol"
+  },
+  {
+    "path": "button/bell-badge.png",
+    "width": 54,
+    "height": 54,
+    "description": "Single coral red notification dot"
+  },
+  {
+    "path": "button/chip-detail.png",
+    "width": 300,
+    "height": 108,
+    "description": "Cream small pill with brown magnifier on LEFT leave center empty"
+  },
+  {
+    "path": "button/chip-favorite-on.png",
+    "width": 330,
+    "height": 132,
+    "description": "Cream pill orange border filled coral heart LEFT, empty center"
+  },
+  {
+    "path": "button/chip-favorite-off.png",
+    "width": 330,
+    "height": 132,
+    "description": "Cream pill pale border outline brown heart LEFT, empty center"
+  },
+  {
+    "path": "button/search-bar.png",
+    "width": 1100,
+    "height": 150,
+    "description": "Blank long cream search pill radius75 with brown magnifier at LEFT"
+  },
+  {
+    "path": "tabbar/bg.png",
+    "width": 1179,
+    "height": 300,
+    "description": "Cream tabbar base top corners72 bottom square soft upward shadow"
+  },
+  {
+    "path": "tabbar/active-glow.png",
+    "width": 300,
+    "height": 300,
+    "description": "Very soft translucent orange radial glow no hard edge"
+  },
+  {
+    "path": "tabbar/underline.png",
+    "width": 210,
+    "height": 30,
+    "description": "Orange slim rounded underline capsule"
+  },
+  {
+    "path": "tabbar/home-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "house symbol warm brown grey same silhouette both states"
+  },
+  {
+    "path": "tabbar/deai-on.png",
+    "width": 150,
+    "height": 150,
+    "description": "cat face silhouette symbol orange same silhouette both states"
+  },
+  {
+    "path": "tabbar/deai-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "cat face silhouette symbol warm brown grey same silhouette both states"
+  },
+  {
+    "path": "tabbar/zukan-on.png",
+    "width": 150,
+    "height": 150,
+    "description": "open book symbol orange same silhouette both states"
+  },
+  {
+    "path": "tabbar/zukan-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "open book symbol warm brown grey same silhouette both states"
+  },
+  {
+    "path": "tabbar/world-on.png",
+    "width": 150,
+    "height": 150,
+    "description": "globe latitude longitude symbol orange same silhouette both states"
+  },
+  {
+    "path": "tabbar/world-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "globe latitude longitude symbol warm brown grey same silhouette both states"
+  },
+  {
+    "path": "icon/paw.png",
+    "width": 150,
+    "height": 150,
+    "description": "Paw print"
+  },
+  {
+    "path": "icon/gem.png",
+    "width": 150,
+    "height": 150,
+    "description": "Blue faceted jewel"
+  },
+  {
+    "path": "icon/ticket-paw.png",
+    "width": 150,
+    "height": 150,
+    "description": "Ivory admission ticket with brown paw"
+  },
+  {
+    "path": "icon/matatabi-leaf.png",
+    "width": 150,
+    "height": 150,
+    "description": "Green catnip leaf"
+  },
+  {
+    "path": "icon/calendar-today.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown calendar with paw no numerals"
+  },
+  {
+    "path": "icon/cat-head.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown cat head silhouette"
+  },
+  {
+    "path": "icon/book.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown open book"
+  },
+  {
+    "path": "icon/search.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown magnifier"
+  },
+  {
+    "path": "icon/heart-on.png",
+    "width": 150,
+    "height": 150,
+    "description": "Coral filled heart"
+  },
+  {
+    "path": "icon/heart-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown outline heart"
+  },
+  {
+    "path": "icon/chevron-right.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown rounded right chevron"
+  },
+  {
+    "path": "icon/flag.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown small flag on pole"
+  },
+  {
+    "path": "icon/pin.png",
+    "width": 150,
+    "height": 150,
+    "description": "Orange map location pin"
+  },
+  {
+    "path": "icon/plane.png",
+    "width": 150,
+    "height": 150,
+    "description": "Soft blue airplane silhouette"
+  },
+  {
+    "path": "icon/globe.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown globe latitude longitude"
+  },
+  {
+    "path": "icon/megaphone.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown megaphone"
+  },
+  {
+    "path": "icon/camera.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown camera"
+  },
+  {
+    "path": "icon/sun.png",
+    "width": 150,
+    "height": 150,
+    "description": "Warm yellow sun"
+  },
+  {
+    "path": "icon/box.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown cardboard box"
+  },
+  {
+    "path": "icon/calendar-small.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown miniature calendar no numerals"
+  },
+  {
+    "path": "icon/question.png",
+    "width": 150,
+    "height": 150,
+    "description": "Abstract rounded curved uncertainty glyph with dot"
+  },
+  {
+    "path": "icon/lock.png",
+    "width": 150,
+    "height": 150,
+    "description": "Brown rounded padlock"
+  },
+  {
+    "path": "icon/paw-small.png",
+    "width": 60,
+    "height": 60,
+    "description": "Small warm brown paw print"
+  },
+  {
+    "path": "icon/matatabi-bag.png",
+    "width": 360,
+    "height": 360,
+    "description": "Burlap sack with paw print and green catnip leaves, cozy realistic illustration"
+  },
+  {
+    "path": "badge/rarity-normal.png",
+    "width": 300,
+    "height": 108,
+    "description": "Blank grey beige rarity pill"
+  },
+  {
+    "path": "badge/rarity-limited.png",
+    "width": 300,
+    "height": 108,
+    "description": "Blank coral red rarity pill"
+  },
+  {
+    "path": "badge/rarity-legend.png",
+    "width": 300,
+    "height": 108,
+    "description": "Blank gold rarity pill tiny restrained sparkles"
+  },
+  {
+    "path": "badge/travel-cat.png",
+    "width": 360,
+    "height": 108,
+    "description": "Blue pill with tiny globe LEFT empty center"
+  },
+  {
+    "path": "badge/new.png",
+    "width": 120,
+    "height": 120,
+    "description": "Gold starburst badge EMPTY no lettering"
+  },
+  {
+    "path": "badge/owned-count.png",
+    "width": 150,
+    "height": 66,
+    "description": "Tiny blank cream pill"
+  },
+  {
+    "path": "gauge/track.png",
+    "width": 900,
+    "height": 60,
+    "description": "Blank beige progress trough horizontal9slice"
+  },
+  {
+    "path": "gauge/fill-orange.png",
+    "width": 900,
+    "height": 60,
+    "description": "Orange progress fill horizontal9slice"
+  },
+  {
+    "path": "gauge/fill-yellow.png",
+    "width": 900,
+    "height": 60,
+    "description": "Yellow orange progress fill horizontal9slice"
+  },
+  {
+    "path": "gauge/cat-dot-on.png",
+    "width": 120,
+    "height": 120,
+    "description": "Brown cat head silhouette indicator"
+  },
+  {
+    "path": "gauge/cat-dot-off.png",
+    "width": 120,
+    "height": 120,
+    "description": "Pale beige same cat head silhouette indicator"
+  },
+  {
+    "path": "illust/world-map.png",
+    "width": 900,
+    "height": 540,
+    "description": "Pastel world map small generic cat icons and airplane dotted trail NO LABELS"
+  },
+  {
+    "path": "illust/stamp-japan.png",
+    "width": 360,
+    "height": 360,
+    "description": "Coral circular postal cancellation with Mount Fuji stars and waves NO TEXT"
+  },
+  {
+    "path": "illust/postmark-lines.png",
+    "width": 300,
+    "height": 120,
+    "description": "Subtle brown parallel postal cancellation wavy lines"
+  },
+  {
+    "path": "illust/ticket-stack.png",
+    "width": 360,
+    "height": 300,
+    "description": "Two overlapping ivory small adoption cards paw and heart motifs NO CATS NO TEXT"
+  },
+  {
+    "path": "illust/paw-trail.png",
+    "width": 480,
+    "height": 240,
+    "description": "Faint warm beige paw stamp trail"
+  },
+  {
+    "path": "illust/sparkle.png",
+    "width": 120,
+    "height": 120,
+    "description": "Single warm gold four point sparkle"
+  },
+  {
+    "path": "illust/dotted-route.png",
+    "width": 900,
+    "height": 120,
+    "description": "Horizontal dotted flight route with small plane arrow tileable"
+  },
+  {
+    "path": "illust/flag-kenya.png",
+    "width": 120,
+    "height": 90,
+    "description": "Kenya flag small rounded postage stamp"
+  },
+  {
+    "path": "illust/flag-france.png",
+    "width": 120,
+    "height": 90,
+    "description": "France tricolor small rounded postage stamp"
+  },
+  {
+    "path": "illust/flag-japan.png",
+    "width": 120,
+    "height": 90,
+    "description": "Japan flag small rounded postage stamp"
+  },
+  {
+    "path": "illust/flag-korea.png",
+    "width": 120,
+    "height": 90,
+    "description": "South Korea flag small rounded postage stamp"
+  },
+  {
+    "path": "cat/silhouette-locked.png",
+    "width": 512,
+    "height": 512,
+    "description": "Muted brown fluffy round cat silhouette ears stubby paws NO facial features NO QUESTION MARK NO text"
+  },
+  {
+    "path": "cat/shadow-oval.png",
+    "width": 400,
+    "height": 120,
+    "description": "Soft low contrast translucent warm grey oval ground shadow"
+  },
+  {
+    "path": "cat/halo-select.png",
+    "width": 600,
+    "height": 600,
+    "description": "Soft translucent pale golden circular selection halo empty center"
+  }
+]

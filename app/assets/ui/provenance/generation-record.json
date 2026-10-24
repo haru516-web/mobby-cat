@@ -1,0 +1,896 @@
+[
+  {
+    "path": "button/primary-orange.png",
+    "width": 360,
+    "height": 132,
+    "prompt": "Use case: stylized-concept. Create ONE production UI asset for Japanese iOS cat collection game Nekomobby: primary-orange button, empty with absolutely no text or icons. Target final aspect 360:132. Warm orange #F08A5D to #F28B20, pill silhouette radius66 target pixels, delicate warm paper texture, subtly puffy rounded bevel, thin ivory highlight along upper left edge, low contrast soft downward shadow. Match supplied home/deai UI reference aesthetic: restrained premium cozy cream stationery, not plastic or heavily 3D. Straight-on orthographic, symmetric, no perspective. Fill canvas with the wide pill plus only tiny transparent shadow clearance. Truly transparent background and clean alpha edges, no white matte, no checkerboard. Stretch-safe plain central bands at least24 final pixels. Single button only.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-c82a0a7b-7b34-45b7-ab84-25f2ac742390.png"
+  },
+  {
+    "path": "panel/card-cream.png",
+    "width": 192,
+    "height": 192,
+    "prompt": "Create one empty cream square UI card asset, final192x192, rounded radius48 corners, target iOS cozy cat collection UI. Warm #FFF8F0 lightly textured paper, very subtle puffy edge upper-left ivory highlight, soft low contrast downward shadow. Straight-on, no perspective, no text, no icons, no decoration. Plain stretch-safe center and edge middle bands24px minimum for9slice. Card fills canvas except tiny shadow clearance. Real transparent background clean alpha no matte. Match reference app cream cards.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-843ea2d4-22b9-4ae5-97b1-143df2ce0b25.png"
+  },
+  {
+    "path": "tabbar/home-on.png",
+    "width": 150,
+    "height": 150,
+    "prompt": "One home tab ON icon for cozy Japanese cat collection iOS UI, final150x150 square. Single rounded orange #F28B20 house silhouette with tiny ivory rounded doorway and tiny circular window. Restrained thick rounded shape, subtle warm paper texture and lightly puffy edge, upper-left illumination, very soft downward shadow. Straight-on orthographic, centered generous8percent clearance. No text, no label, no background plate, no cats. Genuine transparent background, clean smooth alpha silhouette, no fringe, no stray flecks. Match supplied app reference home tab.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-4b80fbc9-9013-4605-8d8e-4d874630a20d.png"
+  },
+  {
+    "path": "icon/coin-paw.png",
+    "width": 150,
+    "height": 150,
+    "prompt": "Single gold paw coin UI currency icon for cozy Japanese Nekomobby iOS game. Front facing circular coin, embossed cat paw one large pad four toe pads, soft gold #E5A23B and warm yellow highlights, subtle dimensional rounded rim. Clean simple readable silhouette at150x150 final, minimal paperlike microtexture, upper-left lighting soft low contrast shadow below. Centered 8percent margin. No letters numbers or text, no extra objects. Genuine transparent background clean alpha no white matte or stray specks. Match currency coin in supplied home UI reference.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-64f44d74-5c5e-4f1c-8a9b-e8324856d225.png"
+  },
+  {
+    "path": "badge/rarity-rare.png",
+    "width": 300,
+    "height": 108,
+    "prompt": "ONE blank rare rarity badge for cozy Japanese iOS cat collection game, aspect300:108, soft pill shape pale sky blue #BFD8FF, tiny upper-left ivory highlight subtle rounded puffy edge, delicate paper texture, low contrast soft downward shadow. Empty interior NO text NO symbols NO icons NO ornaments. Orthographic straight-on symmetrical pill filling canvas with minimal transparent clearance. True transparent background clean smooth alpha edges no matte no flecks. Match provided deai reference blue rarity pill.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-5f3d7a64-253a-414a-8f29-31195f8aa5dc.png"
+  },
+  {
+    "path": "brand/logo-nekomobby.png",
+    "width": 760,
+    "height": 240,
+    "prompt": "Create brand/logo-nekomobby.png for cozy Japanese iOS cat collection game. Exact Japanese text only: 「ねこモビー」. Wide760x240 aspect logo, one line, thick friendly rounded hand-lettered Japanese lettering. ねこ dark brown #4A3B32, モビー vivid warm orange #F28B20. Small orange paw accent above, subtle cat ear cue on first letter. Match provided home screenshot title aesthetic. Flat readable chunky letter shapes with understated warm paper texture, barely puffy, upper-left light. Transparent background, clean edges, no white plaque or outline or extra text, no subtitle. All letters fully visible with modest clearance.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-8de3bddd-5ee4-4fcd-b35b-cb3b15003fe1.png"
+  },
+  {
+    "path": "brand/title-deai.png",
+    "width": 560,
+    "height": 240,
+    "description": "Exact text 出会い with paw, brown and orange",
+    "prompt": "Create ONE production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text 出会い with paw, brown and orange. Target aspect 560:240, final exact 560x240px. Style matches the six approved internal style studies: warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20, restrained soft paper texture, friendly thick rounded shapes, subtle upper-left highlight and very low contrast downward shadow. Reduce glossy plastic thickness. Brand lettering chunky friendly rounded Japanese, brown and orange, no extra subtitle. Orthographic straight-on. All artwork fits canvas. True transparent background, smooth clean alpha edge no white fringe no scattered flecks. This is a standalone asset not a screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-28b3bd09-ec07-4072-b02e-f59e752c4617.png"
+  },
+  {
+    "path": "brand/title-free-pick.png",
+    "width": 1000,
+    "height": 330,
+    "description": "Exact text 3匹の中から1匹を無料でお迎え on soft cloud plaque, no subtitle",
+    "prompt": "Create ONE production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text 3匹の中から1匹を無料でお迎え on soft cloud plaque, no subtitle. Target aspect 1000:330, final exact 1000x330px. Style matches the six approved internal style studies: warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20, restrained soft paper texture, friendly thick rounded shapes, subtle upper-left highlight and very low contrast downward shadow. Reduce glossy plastic thickness. Brand lettering chunky friendly rounded Japanese, brown and orange, no extra subtitle. Orthographic straight-on. All artwork fits canvas. True transparent background, smooth clean alpha edge no white fringe no scattered flecks. This is a standalone asset not a screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d9bf6552-9c57-4a48-8b2b-889d4e91e5a0.png"
+  },
+  {
+    "path": "brand/title-matatabi.png",
+    "width": 720,
+    "height": 110,
+    "description": "Exact text またたびで もっと出会える！ with leaf",
+    "prompt": "Create ONE production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text またたびで もっと出会える！ with leaf. Target aspect 720:110, final exact 720x110px. Style matches the six approved internal style studies: warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20, restrained soft paper texture, friendly thick rounded shapes, subtle upper-left highlight and very low contrast downward shadow. Reduce glossy plastic thickness. Brand lettering chunky friendly rounded Japanese, brown and orange, no extra subtitle. Orthographic straight-on. All artwork fits canvas. True transparent background, smooth clean alpha edge no white fringe no scattered flecks. This is a standalone asset not a screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-67fd3338-172d-47e4-ba67-7add4ba099d6.png"
+  },
+  {
+    "path": "brand/title-travel.png",
+    "width": 900,
+    "height": 240,
+    "description": "Exact text 旅するモビー",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text 旅するモビー. File brand/title-travel.png. Target aspect 900:240, final exact 900x240px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Exact requested Japanese lettering only, chunky friendly rounded brown/orange typography. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-70b25a87-d0cb-47a7-9427-25485c3b167e.png"
+  },
+  {
+    "path": "brand/title-world-mission.png",
+    "width": 640,
+    "height": 110,
+    "description": "Exact text 世界ミッション with globe",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text 世界ミッション with globe. File brand/title-world-mission.png. Target aspect 640:110, final exact 640x110px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Exact requested Japanese lettering only, chunky friendly rounded brown/orange typography. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-a8d22853-edf7-42f6-b273-e91a14a0483b.png"
+  },
+  {
+    "path": "brand/title-news.png",
+    "width": 640,
+    "height": 110,
+    "description": "Exact text 世界のニュース with megaphone",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text 世界のニュース with megaphone. File brand/title-news.png. Target aspect 640:110, final exact 640x110px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Exact requested Japanese lettering only, chunky friendly rounded brown/orange typography. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-4aabd915-59d0-40df-a49b-09643ffa9f03.png"
+  },
+  {
+    "path": "brand/title-collection.png",
+    "width": 560,
+    "height": 110,
+    "description": "Exact text コレクション with book",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text コレクション with book. File brand/title-collection.png. Target aspect 560:110, final exact 560x110px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Exact requested Japanese lettering only, chunky friendly rounded brown/orange typography. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-e07422d4-fe2d-4cec-aaf6-c52e8793a07b.png"
+  },
+  {
+    "path": "bg/app-cream.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Cream paper full screen extremely faint paw and stitch pattern",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Cream paper full screen extremely faint paw and stitch pattern. File bg/app-cream.png. Target aspect 1179:2556, final exact 1179x2556px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-30e841f5-4bfa-4063-9011-4b487369ab50.png"
+  },
+  {
+    "path": "bg/room-home.png",
+    "width": 1179,
+    "height": 1900,
+    "description": "Warm sunlit realistic cozy cat room window houseplants cat tower sofa rug yarn ball. NO CATS",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Warm sunlit realistic cozy cat room window houseplants cat tower sofa rug yarn ball. NO CATS. File bg/room-home.png. Target aspect 1179:1900, final exact 1179x1900px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-33f83d57-a401-4a22-80c4-51ddd56eb132.png"
+  },
+  {
+    "path": "bg/room-deai.png",
+    "width": 1179,
+    "height": 1400,
+    "description": "Warm sunlit cozy room heavily softly defocused, upper portion bright for overlaid headings. NO CATS",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Warm sunlit cozy room heavily softly defocused, upper portion bright for overlaid headings. NO CATS. File bg/room-deai.png. Target aspect 1179:1400, final exact 1179x1400px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-1a7d4661-8a13-402f-b184-b313739d5ac2.png"
+  },
+  {
+    "path": "bg/world-hero.png",
+    "width": 1179,
+    "height": 900,
+    "description": "Mediterranean seaside town blue sea and rustic directional signpost, blank signs NO LETTERING NO CATS",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Mediterranean seaside town blue sea and rustic directional signpost, blank signs NO LETTERING NO CATS. File bg/world-hero.png. Target aspect 1179:900, final exact 1179x900px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-2dc341b4-5d9e-4e13-8db7-dd360fa0054d.png"
+  },
+  {
+    "path": "bg/photo-japan.png",
+    "width": 600,
+    "height": 460,
+    "description": "Cherry blossoms and five storey Japanese pagoda, NO CATS",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Cherry blossoms and five storey Japanese pagoda, NO CATS. File bg/photo-japan.png. Target aspect 600:460, final exact 600x460px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-09c76193-8212-4a94-8683-7d0c144bdd99.png"
+  },
+  {
+    "path": "bg/stamp-photo-kenya.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border savannah acacia landscape",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Postage stamp scalloped border savannah acacia landscape. File bg/stamp-photo-kenya.png. Target aspect 360:280, final exact 360x280px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-0e1723bb-2c3f-48fe-91a5-1b49dc582c51.png"
+  },
+  {
+    "path": "bg/stamp-photo-france.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border Eiffel tower Paris",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Postage stamp scalloped border Eiffel tower Paris. File bg/stamp-photo-france.png. Target aspect 360:280, final exact 360x280px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-2b019a32-353d-49a1-aa95-d24b9e5a6853.png"
+  },
+  {
+    "path": "bg/stamp-photo-japan.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border Japanese red torii",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Postage stamp scalloped border Japanese red torii. File bg/stamp-photo-japan.png. Target aspect 360:280, final exact 360x280px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-bd608737-6e24-45dd-ab69-efc2b6c380f3.png"
+  },
+  {
+    "path": "bg/stamp-photo-korea.png",
+    "width": 360,
+    "height": 280,
+    "description": "Postage stamp scalloped border Korean traditional old street",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Postage stamp scalloped border Korean traditional old street. File bg/stamp-photo-korea.png. Target aspect 360:280, final exact 360x280px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-32bd9876-cf2e-47ba-9602-6485a33557b7.png"
+  },
+  {
+    "path": "bg/news-thumb-1.png",
+    "width": 330,
+    "height": 330,
+    "description": "Korean traditional town photographic thumbnail NO CATS",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Korean traditional town photographic thumbnail NO CATS. File bg/news-thumb-1.png. Target aspect 330:330, final exact 330x330px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-c5e4ff3d-a5c4-4e19-8fe9-669872aef119.png"
+  },
+  {
+    "path": "bg/news-thumb-2.png",
+    "width": 330,
+    "height": 330,
+    "description": "French charming town photographic thumbnail NO CATS",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: French charming town photographic thumbnail NO CATS. File bg/news-thumb-2.png. Target aspect 330:330, final exact 330x330px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-4ae4bc6a-6968-475b-807e-b167f26c309d.png"
+  },
+  {
+    "path": "bg/news-thumb-3.png",
+    "width": 330,
+    "height": 330,
+    "description": "Warm textured beret still life",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Warm textured beret still life. File bg/news-thumb-3.png. Target aspect 330:330, final exact 330x330px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Beautiful softly photographic illustrative environment, full composition inside canvas with very narrow transparent edge. No cats except explicitly mentioned. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-e7534b63-b543-40ad-9400-1f38ced99f28.png"
+  },
+  {
+    "path": "panel/card-white.png",
+    "width": 192,
+    "height": 192,
+    "description": "Blank white card radius48 9slice",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank white card radius48 9slice. File panel/card-white.png. Target aspect 192:192, final exact 192x192px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-62e847bc-9f92-4706-a8eb-20f6c5219e03.png"
+  },
+  {
+    "path": "panel/card-selected.png",
+    "width": 192,
+    "height": 192,
+    "description": "Blank cream card orange border radius48 9slice",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank cream card orange border radius48 9slice. File panel/card-selected.png. Target aspect 192:192, final exact 192x192px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-7bdedffe-f7af-4e46-8259-6b338d7d9b64.png"
+  },
+  {
+    "path": "panel/card-locked.png",
+    "width": 192,
+    "height": 192,
+    "description": "Blank muted beige card radius48 9slice",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank muted beige card radius48 9slice. File panel/card-locked.png. Target aspect 192:192, final exact 192x192px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-e8cac899-c8ce-4486-9dfb-badf08e8c3fb.png"
+  },
+  {
+    "path": "panel/frame-cat-photo.png",
+    "width": 192,
+    "height": 192,
+    "description": "Hollow cream photo frame radius36 transparent central opening",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Hollow cream photo frame radius36 transparent central opening. File panel/frame-cat-photo.png. Target aspect 192:192, final exact 192x192px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d475896e-df8b-4457-ac88-efb6302b020a.png"
+  },
+  {
+    "path": "panel/pill-info.png",
+    "width": 300,
+    "height": 132,
+    "description": "Blank cream information pill radius66 9slice",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank cream information pill radius66 9slice. File panel/pill-info.png. Target aspect 300:132, final exact 300x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-03cec8cb-2d57-4ea7-be81-8741a279552d.png"
+  },
+  {
+    "path": "panel/pill-currency.png",
+    "width": 420,
+    "height": 132,
+    "description": "Blank cream currency pill radius66 9slice",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank cream currency pill radius66 9slice. File panel/pill-currency.png. Target aspect 420:132, final exact 420x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-06e79285-b9e3-4a2d-89a4-33866d0b7892.png"
+  },
+  {
+    "path": "panel/polaroid.png",
+    "width": 360,
+    "height": 420,
+    "description": "Ivory polaroid frame transparent photo opening x24 y24 width312 height312, lower border84",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Ivory polaroid frame transparent photo opening x24 y24 width312 height312, lower border84. File panel/polaroid.png. Target aspect 360:420, final exact 360x420px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-b9067f11-7bf4-4e24-a2b2-82317dca56df.png"
+  },
+  {
+    "path": "panel/sheet-bottom.png",
+    "width": 1179,
+    "height": 300,
+    "description": "Blank cream bottom sheet top corners radius72 bottom corners square 9slice",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank cream bottom sheet top corners radius72 bottom corners square 9slice. File panel/sheet-bottom.png. Target aspect 1179:300, final exact 1179x300px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-9bd264ef-7d7b-4c7c-a502-e9506e7fc0ec.png"
+  },
+  {
+    "path": "button/primary-orange-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Orange pill radius66 slightly darker sunken pressed state",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Orange pill radius66 slightly darker sunken pressed state. File button/primary-orange-pressed.png. Target aspect 360:132, final exact 360x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-f0635e00-5c35-4c04-bd9d-27e1ecf014f4.png"
+  },
+  {
+    "path": "button/primary-green.png",
+    "width": 360,
+    "height": 132,
+    "description": "Green #5E9B3F blank pill radius66",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Green #5E9B3F blank pill radius66. File button/primary-green.png. Target aspect 360:132, final exact 360x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d0c3ae03-1ead-406d-8053-d3b3169ee81a.png"
+  },
+  {
+    "path": "button/ghost-outline.png",
+    "width": 360,
+    "height": 132,
+    "description": "Cream blank pill fine orange outline radius66",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Cream blank pill fine orange outline radius66. File button/ghost-outline.png. Target aspect 360:132, final exact 360x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d4a844ba-6f5a-4add-aa22-69d7029c919e.png"
+  },
+  {
+    "path": "button/ghost-green.png",
+    "width": 360,
+    "height": 132,
+    "description": "Cream blank pill fine green outline radius66",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Cream blank pill fine green outline radius66. File button/ghost-green.png. Target aspect 360:132, final exact 360x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-a158dcc6-af7b-44a4-866d-2edb9b1180df.png"
+  },
+  {
+    "path": "button/disabled.png",
+    "width": 360,
+    "height": 132,
+    "description": "Muted grey beige blank pill radius66",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Muted grey beige blank pill radius66. File button/disabled.png. Target aspect 360:132, final exact 360x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-b005e1ed-6d1b-4c09-81e0-cc1d0fa0b760.png"
+  },
+  {
+    "path": "button/tab-all-on.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank orange filter pill radius60",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank orange filter pill radius60. File button/tab-all-on.png. Target aspect 270:120, final exact 270x120px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-c2b6c75a-fc43-4f04-b6e9-5aa6122726a5.png"
+  },
+  {
+    "path": "button/tab-normal.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank beige filter pill radius60",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank beige filter pill radius60. File button/tab-normal.png. Target aspect 270:120, final exact 270x120px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-7cb62b7a-6d13-4354-9e16-6b426c182b98.png"
+  },
+  {
+    "path": "button/tab-rare.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank sky blue filter pill radius60",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank sky blue filter pill radius60. File button/tab-rare.png. Target aspect 270:120, final exact 270x120px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-674d29ac-4817-4064-8a0a-bc67ab9ec1ad.png"
+  },
+  {
+    "path": "button/tab-limited.png",
+    "width": 270,
+    "height": 120,
+    "description": "Blank lavender #E1D4FF filter pill radius60",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank lavender #E1D4FF filter pill radius60. File button/tab-limited.png. Target aspect 270:120, final exact 270x120px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d9139d6f-4f57-4669-8e0a-d53d879184fe.png"
+  },
+  {
+    "path": "button/camera-round.png",
+    "width": 330,
+    "height": 330,
+    "description": "Circular ivory button thin gold double rim with dark brown simple camera symbol only",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Circular ivory button thin gold double rim with dark brown simple camera symbol only. File button/camera-round.png. Target aspect 330:330, final exact 330x330px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-0db80eaf-abca-49a7-a9fd-6f9921b42e7c.png"
+  },
+  {
+    "path": "button/bell-round.png",
+    "width": 168,
+    "height": 168,
+    "description": "Circular cream button dark brown bell symbol",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Circular cream button dark brown bell symbol. File button/bell-round.png. Target aspect 168:168, final exact 168x168px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-229ec73b-93a4-45cc-9346-b1e9a8c6ea41.png"
+  },
+  {
+    "path": "button/bell-badge.png",
+    "width": 54,
+    "height": 54,
+    "description": "Single coral red notification dot",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Single coral red notification dot. File button/bell-badge.png. Target aspect 54:54, final exact 54x54px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-033a5cee-cd34-41c0-acc7-182ec4563aec.png"
+  },
+  {
+    "path": "button/chip-detail.png",
+    "width": 300,
+    "height": 108,
+    "description": "Cream small pill with brown magnifier on LEFT leave center empty",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Cream small pill with brown magnifier on LEFT leave center empty. File button/chip-detail.png. Target aspect 300:108, final exact 300x108px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-040836b7-e45c-4b27-ad1c-d0368df80fdc.png"
+  },
+  {
+    "path": "button/chip-favorite-on.png",
+    "width": 330,
+    "height": 132,
+    "description": "Cream pill orange border filled coral heart LEFT, empty center",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Cream pill orange border filled coral heart LEFT, empty center. File button/chip-favorite-on.png. Target aspect 330:132, final exact 330x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-133b926c-f36f-4999-b70a-12f0a0b4b79f.png"
+  },
+  {
+    "path": "button/chip-favorite-off.png",
+    "width": 330,
+    "height": 132,
+    "description": "Cream pill pale border outline brown heart LEFT, empty center",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Cream pill pale border outline brown heart LEFT, empty center. File button/chip-favorite-off.png. Target aspect 330:132, final exact 330x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-a2e2d4cc-4a10-4d22-9f6c-93fc867cf36d.png"
+  },
+  {
+    "path": "button/search-bar.png",
+    "width": 1100,
+    "height": 150,
+    "description": "Blank long cream search pill radius75 with brown magnifier at LEFT",
+    "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank long cream search pill radius75 with brown magnifier at LEFT. File button/search-bar.png. Target aspect 1100:150, final exact 1100x150px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-1a903380-a8c5-422a-8a24-6cd65fda4468.png"
+  },
+  {
+    "path": "camera/shutter.png",
+    "width": 270,
+    "height": 270,
+    "description": "White double circular shutter button with small paw, translucent dark center for contrast",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White double circular shutter button with small paw, translucent dark center for contrast. Target 270x270 aspect 270:270. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-15ca493a-1ccc-4d33-bef8-4e42139439c0.png"
+  },
+  {
+    "path": "camera/shutter-pressed.png",
+    "width": 270,
+    "height": 270,
+    "description": "Same white double circular shutter depressed darker state",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Same white double circular shutter depressed darker state. Target 270x270 aspect 270:270. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-db3e35f9-0ef8-4d0b-8933-9c155cf09de9.png"
+  },
+  {
+    "path": "camera/btn-close.png",
+    "width": 132,
+    "height": 132,
+    "description": "White X icon on translucent charcoal circular plate",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White X icon on translucent charcoal circular plate. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-e1b5d3c4-1d39-4e1a-93de-3d8058a5e4f4.png"
+  },
+  {
+    "path": "camera/btn-flip.png",
+    "width": 132,
+    "height": 132,
+    "description": "White camera rotate arrows on translucent charcoal circle",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White camera rotate arrows on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-c0125e54-69e9-411a-bc02-42e49eacee58.png"
+  },
+  {
+    "path": "camera/btn-flash-on.png",
+    "width": 132,
+    "height": 132,
+    "description": "White lightning bolt on translucent charcoal circle",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White lightning bolt on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d8a52fe3-e99a-414d-ab87-8faaff8942d1.png"
+  },
+  {
+    "path": "camera/btn-flash-off.png",
+    "width": 132,
+    "height": 132,
+    "description": "Same lightning bolt with diagonal slash on translucent charcoal circle",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Same lightning bolt with diagonal slash on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-9e303000-42a7-474c-ab14-bc13fd3eaaaf.png"
+  },
+  {
+    "path": "camera/btn-save.png",
+    "width": 132,
+    "height": 132,
+    "description": "White downward arrow into tray on translucent charcoal circle",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White downward arrow into tray on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-2796d086-0d1c-4e9a-8aa4-3720358b7429.png"
+  },
+  {
+    "path": "camera/btn-share.png",
+    "width": 132,
+    "height": 132,
+    "description": "White upward arrow from square on translucent charcoal circle",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White upward arrow from square on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-eb54addb-f65c-45ff-852b-0b8fce0054d7.png"
+  },
+  {
+    "path": "camera/btn-retake.png",
+    "width": 132,
+    "height": 132,
+    "description": "White circular arrow on translucent charcoal circle",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White circular arrow on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-ad541a50-1dfb-4e8c-81cf-afff96048108.png"
+  },
+  {
+    "path": "camera/btn-cat-picker.png",
+    "width": 132,
+    "height": 132,
+    "description": "White cat head silhouette with small plus on translucent charcoal circle",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White cat head silhouette with small plus on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-15c60ac4-44bd-4f64-a845-995c1241e14e.png"
+  },
+  {
+    "path": "camera/topbar-scrim.png",
+    "width": 1179,
+    "height": 300,
+    "description": "Black at top fading smoothly to transparent at bottom, entire rectangular canvas",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Black at top fading smoothly to transparent at bottom, entire rectangular canvas. Target 1179x300 aspect 1179:300. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-4d640704-ba3f-4fd0-bb60-fc9d41d3a70d.png"
+  },
+  {
+    "path": "camera/bottombar-scrim.png",
+    "width": 1179,
+    "height": 600,
+    "description": "Transparent at top fading smoothly to black at bottom entire rectangular canvas",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Transparent at top fading smoothly to black at bottom entire rectangular canvas. Target 1179x600 aspect 1179:600. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-e0936788-2640-490e-b520-dea2ca6622c7.png"
+  },
+  {
+    "path": "camera/cat-tray.png",
+    "width": 1179,
+    "height": 360,
+    "description": "Empty translucent frosted glass cream rounded rectangle horizontal9slice",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Empty translucent frosted glass cream rounded rectangle horizontal9slice. Target 1179x360 aspect 1179:360. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-c5d924c8-ab5c-48c2-b487-94331de62cb1.png"
+  },
+  {
+    "path": "camera/cat-tray-slot.png",
+    "width": 210,
+    "height": 210,
+    "description": "Empty hollow rounded square thumbnail frame clear center",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Empty hollow rounded square thumbnail frame clear center. Target 210x210 aspect 210:210. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-dcce16f8-3bbf-4102-b2a3-41cf3fa16409.png"
+  },
+  {
+    "path": "camera/cat-tray-slot-on.png",
+    "width": 210,
+    "height": 210,
+    "description": "Same hollow rounded square thumbnail frame orange selected border clear center",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Same hollow rounded square thumbnail frame orange selected border clear center. Target 210x210 aspect 210:210. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-15022770-b434-43ae-a1fd-e5679e40ca4a.png"
+  },
+  {
+    "path": "camera/gesture-hint.png",
+    "width": 600,
+    "height": 300,
+    "description": "Three simple white hand gesture diagrams: drag pinch rotate, no words, transparent",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Three simple white hand gesture diagrams: drag pinch rotate, no words, transparent. Target 600x300 aspect 600:300. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-b1cc1ca7-60c8-46d3-a73b-b4c65cdb3baf.png"
+  },
+  {
+    "path": "camera/handle-transform.png",
+    "width": 90,
+    "height": 90,
+    "description": "Small white rounded corner resize handle with charcoal outline",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Small white rounded corner resize handle with charcoal outline. Target 90x90 aspect 90:90. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-13f6f38d-fae0-40bb-b0b7-58d0d4afa403.png"
+  },
+  {
+    "path": "camera/shadow-soft.png",
+    "width": 480,
+    "height": 150,
+    "description": "Very faint broad oval warm grey ground shadow",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Very faint broad oval warm grey ground shadow. Target 480x150 aspect 480:150. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-3e49b6f7-b355-4ee2-a27a-900babefd8bb.png"
+  },
+  {
+    "path": "camera/flash-white.png",
+    "width": 64,
+    "height": 64,
+    "description": "Pure solid white square fully opaque, no border shadow texture or transparency",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Pure solid white square fully opaque, no border shadow texture or transparency. Target 64x64 aspect 64:64. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-6c6ad61e-51ac-4ee5-ad7b-f0084403044c.png"
+  },
+  {
+    "path": "camera/ar-reticle.png",
+    "width": 480,
+    "height": 480,
+    "description": "White perspective floor placement target ring transparent center",
+    "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White perspective floor placement target ring transparent center. Target 480x480 aspect 480:480. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-20f867e8-e952-46b3-9964-0cd0345211c4.png"
+  },
+  {
+    "path": "share/discovery-card.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty cream paper discovery frame with paw stamp and paper tape, central transparent photo aperture, empty name date hint rarity areas. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":720},\"catName\":{\"x\":90,\"y\":930,\"w\":660,\"h\":100},\"encounterDate\":{\"x\":90,\"y\":1050,\"w\":900,\"h\":70},\"conditionHint\":{\"x\":90,\"y\":1150,\"w\":900,\"h\":90},\"rarity\":{\"x\":780,\"y\":930,\"w\":210,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 720
+      },
+      "catName": {
+        "x": 90,
+        "y": 930,
+        "w": 660,
+        "h": 100
+      },
+      "encounterDate": {
+        "x": 90,
+        "y": 1050,
+        "w": 900,
+        "h": 70
+      },
+      "conditionHint": {
+        "x": 90,
+        "y": 1150,
+        "w": 900,
+        "h": 90
+      },
+      "rarity": {
+        "x": 780,
+        "y": 930,
+        "w": 210,
+        "h": 90
+      }
+    },
+    "prompt": "Generate ONE EMPTY share/discovery-card.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty cream paper discovery frame with paw stamp and paper tape, central transparent photo aperture, empty name date hint rarity areas. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":720},\"catName\":{\"x\":90,\"y\":930,\"w\":660,\"h\":100},\"encounterDate\":{\"x\":90,\"y\":1050,\"w\":900,\"h\":70},\"conditionHint\":{\"x\":90,\"y\":1150,\"w\":900,\"h\":90},\"rarity\":{\"x\":780,\"y\":930,\"w\":210,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-47f6b6d2-6019-4440-bea3-dd440aaf83ab.png"
+  },
+  {
+    "path": "share/travel-card.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty passport boarding pass travel frame, transparent photo aperture, two empty country boxes with arrow between, blank travel days and visited count areas. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":650},\"previousCountry\":{\"x\":90,\"y\":890,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":890,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1040,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1040,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1180,\"w\":900,\"h\":70}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 650
+      },
+      "previousCountry": {
+        "x": 90,
+        "y": 890,
+        "w": 360,
+        "h": 90
+      },
+      "currentCountry": {
+        "x": 630,
+        "y": 890,
+        "w": 360,
+        "h": 90
+      },
+      "travelDays": {
+        "x": 90,
+        "y": 1040,
+        "w": 400,
+        "h": 80
+      },
+      "visitedCountries": {
+        "x": 590,
+        "y": 1040,
+        "w": 400,
+        "h": 80
+      },
+      "date": {
+        "x": 90,
+        "y": 1180,
+        "w": 900,
+        "h": 70
+      }
+    },
+    "prompt": "Generate ONE EMPTY share/travel-card.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty passport boarding pass travel frame, transparent photo aperture, two empty country boxes with arrow between, blank travel days and visited count areas. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":650},\"previousCountry\":{\"x\":90,\"y\":890,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":890,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1040,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1040,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1180,\"w\":900,\"h\":70}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-709f5cb6-6f47-4549-92f5-206a6319096b.png"
+  },
+  {
+    "path": "share/photo-frame-polaroid.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty ivory polaroid photo overlay with large transparent photo aperture, wide blank lower date border. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 90,
+        "w": 900,
+        "h": 1020
+      },
+      "date": {
+        "x": 120,
+        "y": 1160,
+        "w": 840,
+        "h": 90
+      }
+    },
+    "prompt": "Generate ONE EMPTY share/photo-frame-polaroid.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty ivory polaroid photo overlay with large transparent photo aperture, wide blank lower date border. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-8e17ef5f-0e0b-4b1c-b36a-92933f645f6a.png"
+  },
+  {
+    "path": "share/photo-frame-stamp.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty scalloped postage stamp frame with wavy postmark, transparent photo aperture. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 90,
+        "w": 900,
+        "h": 1020
+      },
+      "date": {
+        "x": 120,
+        "y": 1160,
+        "w": 840,
+        "h": 90
+      }
+    },
+    "prompt": "Generate ONE EMPTY share/photo-frame-stamp.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty scalloped postage stamp frame with wavy postmark, transparent photo aperture. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-9f2b9550-b5d4-4edc-abbf-176842ece8c0.png"
+  },
+  {
+    "path": "share/photo-frame-travel.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty travel photo frame transparent photo aperture pastel map and plane route border small empty flag box. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90},\"flag\":{\"x\":840,\"y\":1160,\"w\":120,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 90,
+        "w": 900,
+        "h": 1020
+      },
+      "date": {
+        "x": 120,
+        "y": 1160,
+        "w": 840,
+        "h": 90
+      },
+      "flag": {
+        "x": 840,
+        "y": 1160,
+        "w": 120,
+        "h": 90
+      }
+    },
+    "prompt": "Generate ONE EMPTY share/photo-frame-travel.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty travel photo frame transparent photo aperture pastel map and plane route border small empty flag box. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90},\"flag\":{\"x\":840,\"y\":1160,\"w\":120,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-8714d613-7acb-444f-a009-4d8555a15bd8.png"
+  },
+  {
+    "path": "share/discovery-card-story.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall story cream paper discovery frame transparent photo aperture, empty name date hint rarity fields paw and paper tape decorations. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1080},\"catName\":{\"x\":90,\"y\":1290,\"w\":660,\"h\":100},\"encounterDate\":{\"x\":90,\"y\":1430,\"w\":900,\"h\":70},\"conditionHint\":{\"x\":90,\"y\":1540,\"w\":900,\"h\":90},\"rarity\":{\"x\":780,\"y\":1290,\"w\":210,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 1080
+      },
+      "catName": {
+        "x": 90,
+        "y": 1290,
+        "w": 660,
+        "h": 100
+      },
+      "encounterDate": {
+        "x": 90,
+        "y": 1430,
+        "w": 900,
+        "h": 70
+      },
+      "conditionHint": {
+        "x": 90,
+        "y": 1540,
+        "w": 900,
+        "h": 90
+      },
+      "rarity": {
+        "x": 780,
+        "y": 1290,
+        "w": 210,
+        "h": 90
+      }
+    },
+    "prompt": "Generate ONE EMPTY share/discovery-card-story.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall story cream paper discovery frame transparent photo aperture, empty name date hint rarity fields paw and paper tape decorations. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1080},\"catName\":{\"x\":90,\"y\":1290,\"w\":660,\"h\":100},\"encounterDate\":{\"x\":90,\"y\":1430,\"w\":900,\"h\":70},\"conditionHint\":{\"x\":90,\"y\":1540,\"w\":900,\"h\":90},\"rarity\":{\"x\":780,\"y\":1290,\"w\":210,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d96bb1df-e97e-4cd7-b996-48c956c917a6.png"
+  },
+  {
+    "path": "share/travel-card-story.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall story empty passport travel frame transparent photo aperture two empty country boxes arrow travel days visited count fields. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1000},\"previousCountry\":{\"x\":90,\"y\":1240,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":1240,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1400,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1400,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1560,\"w\":900,\"h\":70}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 1000
+      },
+      "previousCountry": {
+        "x": 90,
+        "y": 1240,
+        "w": 360,
+        "h": 90
+      },
+      "currentCountry": {
+        "x": 630,
+        "y": 1240,
+        "w": 360,
+        "h": 90
+      },
+      "travelDays": {
+        "x": 90,
+        "y": 1400,
+        "w": 400,
+        "h": 80
+      },
+      "visitedCountries": {
+        "x": 590,
+        "y": 1400,
+        "w": 400,
+        "h": 80
+      },
+      "date": {
+        "x": 90,
+        "y": 1560,
+        "w": 900,
+        "h": 70
+      }
+    },
+    "prompt": "Generate ONE EMPTY share/travel-card-story.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall story empty passport travel frame transparent photo aperture two empty country boxes arrow travel days visited count fields. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1000},\"previousCountry\":{\"x\":90,\"y\":1240,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":1240,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1400,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1400,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1560,\"w\":900,\"h\":70}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-be5566cf-a2a3-4580-8d91-d446a4cf6aac.png"
+  },
+  {
+    "path": "share/video-intro.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall transparent video opening overlay paw and small generic cat ear motif only, no logo lettering",
+    "prompt": "Generate ONE EMPTY share/video-intro.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall transparent video opening overlay paw and small generic cat ear motif only, no logo lettering. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-ab49f7e4-16e7-44c9-8e44-da4326f4cfb8.png"
+  },
+  {
+    "path": "share/video-outro.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall transparent video ending overlay paw and small generic cat ear motif only, no logo lettering",
+    "prompt": "Generate ONE EMPTY share/video-outro.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall transparent video ending overlay paw and small generic cat ear motif only, no logo lettering. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-e0361735-ca2f-40de-b6be-842dfc055d78.png"
+  },
+  {
+    "path": "share/watermark.png",
+    "width": 360,
+    "height": 120,
+    "description": "Small translucent paw and cat ear emblem watermark without lettering",
+    "prompt": "Generate ONE EMPTY share/watermark.png transparent image frame overlay. Exact final canvas 360x120 aspect360:120. Small translucent paw and cat ear emblem watermark without lettering. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-44a7bc7f-139a-4635-8599-d404865e0392.png"
+  },
+  {
+    "path": "tabbar/bg.png",
+    "width": 1179,
+    "height": 300,
+    "description": "Cream tabbar base top corners72 bottom square soft upward shadow",
+    "prompt": "ONE standalone Cream tabbar base top corners72 bottom square soft upward shadow. UI raster asset exact target 1179x300, aspect1179:300. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-e77b3c68-46af-4753-a0b1-98fc529f5d6c.png"
+  },
+  {
+    "path": "tabbar/active-glow.png",
+    "width": 300,
+    "height": 300,
+    "description": "Very soft translucent orange radial glow no hard edge",
+    "prompt": "ONE standalone Very soft translucent orange radial glow no hard edge. UI raster asset exact target 300x300, aspect300:300. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-623f2abe-08e3-412d-b4e3-30bfe21ebced.png"
+  },
+  {
+    "path": "tabbar/underline.png",
+    "width": 210,
+    "height": 30,
+    "description": "Orange slim rounded underline capsule",
+    "prompt": "ONE standalone Orange slim rounded underline capsule. UI raster asset exact target 210x30, aspect210:30. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-ce72b28a-2710-4bb6-9406-639e16e3f525.png"
+  },
+  {
+    "path": "tabbar/home-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "house symbol warm brown grey same silhouette both states",
+    "prompt": "ONE standalone house symbol warm brown grey same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d20077e1-54c1-4b99-9e69-9d2bf6fa4051.png"
+  },
+  {
+    "path": "tabbar/deai-on.png",
+    "width": 150,
+    "height": 150,
+    "description": "cat face silhouette symbol orange same silhouette both states",
+    "prompt": "ONE standalone cat face silhouette symbol orange same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-b821d177-8441-48c5-8a0c-6e70a85e96d1.png"
+  },
+  {
+    "path": "tabbar/deai-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "cat face silhouette symbol warm brown grey same silhouette both states",
+    "prompt": "ONE standalone cat face silhouette symbol warm brown grey same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-c6ea68ab-43cc-4ece-a849-211b54a70ba6.png"
+  },
+  {
+    "path": "tabbar/zukan-on.png",
+    "width": 150,
+    "height": 150,
+    "description": "open book symbol orange same silhouette both states",
+    "prompt": "ONE standalone open book symbol orange same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-d6d78972-6a99-46e5-9cf6-181e486dc998.png"
+  },
+  {
+    "path": "tabbar/zukan-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "open book symbol warm brown grey same silhouette both states",
+    "prompt": "ONE standalone open book symbol warm brown grey same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-8a666a7f-91f7-4bc7-b0b5-16aa36d3edef.png"
+  },
+  {
+    "path": "tabbar/world-on.png",
+    "width": 150,
+    "height": 150,
+    "description": "globe latitude longitude symbol orange same silhouette both states",
+    "prompt": "ONE standalone globe latitude longitude symbol orange same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-293ecc49-ff93-4ca7-8686-d95d8be41fe5.png"
+  },
+  {
+    "path": "tabbar/world-off.png",
+    "width": 150,
+    "height": 150,
+    "description": "globe latitude longitude symbol warm brown grey same silhouette both states",
+    "prompt": "ONE standalone globe latitude longitude symbol warm brown grey same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-b50105bb-eda3-4cb5-b6ae-aee654ff5a6b.png"
+  }
+]

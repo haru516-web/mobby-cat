@@ -1,0 +1,370 @@
+[
+  {
+    "path": "camera/shutter.png",
+    "width": 270,
+    "height": 270,
+    "description": "White double circular shutter button with small paw, translucent dark center for contrast"
+  },
+  {
+    "path": "camera/shutter-pressed.png",
+    "width": 270,
+    "height": 270,
+    "description": "Same white double circular shutter depressed darker state"
+  },
+  {
+    "path": "camera/btn-close.png",
+    "width": 132,
+    "height": 132,
+    "description": "White X icon on translucent charcoal circular plate"
+  },
+  {
+    "path": "camera/btn-flip.png",
+    "width": 132,
+    "height": 132,
+    "description": "White camera rotate arrows on translucent charcoal circle"
+  },
+  {
+    "path": "camera/btn-flash-on.png",
+    "width": 132,
+    "height": 132,
+    "description": "White lightning bolt on translucent charcoal circle"
+  },
+  {
+    "path": "camera/btn-flash-off.png",
+    "width": 132,
+    "height": 132,
+    "description": "Same lightning bolt with diagonal slash on translucent charcoal circle"
+  },
+  {
+    "path": "camera/btn-save.png",
+    "width": 132,
+    "height": 132,
+    "description": "White downward arrow into tray on translucent charcoal circle"
+  },
+  {
+    "path": "camera/btn-share.png",
+    "width": 132,
+    "height": 132,
+    "description": "White upward arrow from square on translucent charcoal circle"
+  },
+  {
+    "path": "camera/btn-retake.png",
+    "width": 132,
+    "height": 132,
+    "description": "White circular arrow on translucent charcoal circle"
+  },
+  {
+    "path": "camera/btn-cat-picker.png",
+    "width": 132,
+    "height": 132,
+    "description": "White cat head silhouette with small plus on translucent charcoal circle"
+  },
+  {
+    "path": "camera/topbar-scrim.png",
+    "width": 1179,
+    "height": 300,
+    "description": "Black at top fading smoothly to transparent at bottom, entire rectangular canvas"
+  },
+  {
+    "path": "camera/bottombar-scrim.png",
+    "width": 1179,
+    "height": 600,
+    "description": "Transparent at top fading smoothly to black at bottom entire rectangular canvas"
+  },
+  {
+    "path": "camera/cat-tray.png",
+    "width": 1179,
+    "height": 360,
+    "description": "Empty translucent frosted glass cream rounded rectangle horizontal9slice"
+  },
+  {
+    "path": "camera/cat-tray-slot.png",
+    "width": 210,
+    "height": 210,
+    "description": "Empty hollow rounded square thumbnail frame clear center"
+  },
+  {
+    "path": "camera/cat-tray-slot-on.png",
+    "width": 210,
+    "height": 210,
+    "description": "Same hollow rounded square thumbnail frame orange selected border clear center"
+  },
+  {
+    "path": "camera/gesture-hint.png",
+    "width": 600,
+    "height": 300,
+    "description": "Three simple white hand gesture diagrams: drag pinch rotate, no words, transparent"
+  },
+  {
+    "path": "camera/handle-transform.png",
+    "width": 90,
+    "height": 90,
+    "description": "Small white rounded corner resize handle with charcoal outline"
+  },
+  {
+    "path": "camera/shadow-soft.png",
+    "width": 480,
+    "height": 150,
+    "description": "Very faint broad oval warm grey ground shadow"
+  },
+  {
+    "path": "camera/flash-white.png",
+    "width": 64,
+    "height": 64,
+    "description": "Pure solid white square fully opaque, no border shadow texture or transparency"
+  },
+  {
+    "path": "camera/ar-reticle.png",
+    "width": 480,
+    "height": 480,
+    "description": "White perspective floor placement target ring transparent center"
+  },
+  {
+    "path": "share/discovery-card.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty cream paper discovery frame with paw stamp and paper tape, central transparent photo aperture, empty name date hint rarity areas. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":720},\"catName\":{\"x\":90,\"y\":930,\"w\":660,\"h\":100},\"encounterDate\":{\"x\":90,\"y\":1050,\"w\":900,\"h\":70},\"conditionHint\":{\"x\":90,\"y\":1150,\"w\":900,\"h\":90},\"rarity\":{\"x\":780,\"y\":930,\"w\":210,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 720
+      },
+      "catName": {
+        "x": 90,
+        "y": 930,
+        "w": 660,
+        "h": 100
+      },
+      "encounterDate": {
+        "x": 90,
+        "y": 1050,
+        "w": 900,
+        "h": 70
+      },
+      "conditionHint": {
+        "x": 90,
+        "y": 1150,
+        "w": 900,
+        "h": 90
+      },
+      "rarity": {
+        "x": 780,
+        "y": 930,
+        "w": 210,
+        "h": 90
+      }
+    }
+  },
+  {
+    "path": "share/travel-card.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty passport boarding pass travel frame, transparent photo aperture, two empty country boxes with arrow between, blank travel days and visited count areas. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":650},\"previousCountry\":{\"x\":90,\"y\":890,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":890,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1040,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1040,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1180,\"w\":900,\"h\":70}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 650
+      },
+      "previousCountry": {
+        "x": 90,
+        "y": 890,
+        "w": 360,
+        "h": 90
+      },
+      "currentCountry": {
+        "x": 630,
+        "y": 890,
+        "w": 360,
+        "h": 90
+      },
+      "travelDays": {
+        "x": 90,
+        "y": 1040,
+        "w": 400,
+        "h": 80
+      },
+      "visitedCountries": {
+        "x": 590,
+        "y": 1040,
+        "w": 400,
+        "h": 80
+      },
+      "date": {
+        "x": 90,
+        "y": 1180,
+        "w": 900,
+        "h": 70
+      }
+    }
+  },
+  {
+    "path": "share/photo-frame-polaroid.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty ivory polaroid photo overlay with large transparent photo aperture, wide blank lower date border. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 90,
+        "w": 900,
+        "h": 1020
+      },
+      "date": {
+        "x": 120,
+        "y": 1160,
+        "w": 840,
+        "h": 90
+      }
+    }
+  },
+  {
+    "path": "share/photo-frame-stamp.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty scalloped postage stamp frame with wavy postmark, transparent photo aperture. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 90,
+        "w": 900,
+        "h": 1020
+      },
+      "date": {
+        "x": 120,
+        "y": 1160,
+        "w": 840,
+        "h": 90
+      }
+    }
+  },
+  {
+    "path": "share/photo-frame-travel.png",
+    "width": 1080,
+    "height": 1350,
+    "description": "Empty travel photo frame transparent photo aperture pastel map and plane route border small empty flag box. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90},\"flag\":{\"x\":840,\"y\":1160,\"w\":120,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 90,
+        "w": 900,
+        "h": 1020
+      },
+      "date": {
+        "x": 120,
+        "y": 1160,
+        "w": 840,
+        "h": 90
+      },
+      "flag": {
+        "x": 840,
+        "y": 1160,
+        "w": 120,
+        "h": 90
+      }
+    }
+  },
+  {
+    "path": "share/discovery-card-story.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall story cream paper discovery frame transparent photo aperture, empty name date hint rarity fields paw and paper tape decorations. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1080},\"catName\":{\"x\":90,\"y\":1290,\"w\":660,\"h\":100},\"encounterDate\":{\"x\":90,\"y\":1430,\"w\":900,\"h\":70},\"conditionHint\":{\"x\":90,\"y\":1540,\"w\":900,\"h\":90},\"rarity\":{\"x\":780,\"y\":1290,\"w\":210,\"h\":90}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 1080
+      },
+      "catName": {
+        "x": 90,
+        "y": 1290,
+        "w": 660,
+        "h": 100
+      },
+      "encounterDate": {
+        "x": 90,
+        "y": 1430,
+        "w": 900,
+        "h": 70
+      },
+      "conditionHint": {
+        "x": 90,
+        "y": 1540,
+        "w": 900,
+        "h": 90
+      },
+      "rarity": {
+        "x": 780,
+        "y": 1290,
+        "w": 210,
+        "h": 90
+      }
+    }
+  },
+  {
+    "path": "share/travel-card-story.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall story empty passport travel frame transparent photo aperture two empty country boxes arrow travel days visited count fields. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1000},\"previousCountry\":{\"x\":90,\"y\":1240,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":1240,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1400,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1400,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1560,\"w\":900,\"h\":70}}",
+    "regions": {
+      "photo": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 1000
+      },
+      "previousCountry": {
+        "x": 90,
+        "y": 1240,
+        "w": 360,
+        "h": 90
+      },
+      "currentCountry": {
+        "x": 630,
+        "y": 1240,
+        "w": 360,
+        "h": 90
+      },
+      "travelDays": {
+        "x": 90,
+        "y": 1400,
+        "w": 400,
+        "h": 80
+      },
+      "visitedCountries": {
+        "x": 590,
+        "y": 1400,
+        "w": 400,
+        "h": 80
+      },
+      "date": {
+        "x": 90,
+        "y": 1560,
+        "w": 900,
+        "h": 70
+      }
+    }
+  },
+  {
+    "path": "share/video-intro.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall transparent video opening overlay paw and small generic cat ear motif only, no logo lettering"
+  },
+  {
+    "path": "share/video-outro.png",
+    "width": 1080,
+    "height": 1920,
+    "description": "Tall transparent video ending overlay paw and small generic cat ear motif only, no logo lettering"
+  },
+  {
+    "path": "share/watermark.png",
+    "width": 360,
+    "height": 120,
+    "description": "Small translucent paw and cat ear emblem watermark without lettering"
+  }
+]
