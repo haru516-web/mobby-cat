@@ -271,7 +271,7 @@
     "file": "assets/cat-mobbies/new/b/uruu.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "754b3b3e49b1a894833c372efbd99c346224863605f33c99f78df44d9eac1eaa",
+    "sha256": "dc81107b0c61cb828294826af7a9d26031fec47d979db033a381dd2aa230ec54",
     "status": "concept",
     "prompt": "Use case: stylized-concept. Regenerate ID uruu, うるうモビー, with strict canonical design based on reference Image 1 rea-mobby and Image 2 uyu-mobby. Character stands upright, directly facing camera, full body, in exact compact rounded-square single-head-body silhouette. Preserve exactly one natural biological eye viewer-left (yellow-green iris, black pupil, white highlight), exactly one camera lens viewer-right (dark concentric rim, green reflective glass), one lower-left matte charcoal cross D-pad with inset slots, exactly two plain round buttons diagonal lower-right, same proportions and positions as references. No other eyes anywhere, including costume or patterns. Soft gray-green fur (frog-like coloring only), slightly pink-gray ears, realistic directional fur. Calm playful expression. Small 29 calendar tag near one foot. No frog costume, no frog head, no raised extra eye shapes. Controls clear. Soft studio light, true transparent alpha background, no grid, no checkerboard, no floor, no text except numeral 29 on a small tag, square 1254x1254 target."
   },
@@ -391,7 +391,7 @@
     "file": "assets/cat-mobbies/new/b/sakasama.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "5d3f2df1df7893542c70b3302e1595080fdae03bc33203d5c59aa13ac320cf27",
+    "sha256": "7e225a03fb11ebf4256d56b0e61868a2eb50a463d6a8e77687fbcf6d11d3191a",
     "status": "concept",
     "prompt": "Use case: stylized-concept. Regenerate ID sakasama, さかさまモビー. The user's shared composition rule is strict: upright, standing on two feet, facing directly forward, full body, never upside down. Use visual idea only for symmetrical black-and-white coat markings, not the upside-down pose. Image 1 rea-mobby and Image 2 uyu-mobby are primary exact design references: squat rounded-square single head-body, no neck, tiny side arms, two short feet. Preserve exactly one biological eye viewer-left with green iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric rim and green reflective glass. Keep the standard upright face. Preserve one lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round dark diagonal buttons lower-right, same proportions and spacing as references. Fur: symmetric black-and-white mirrored markings on body and face, while eye/lens arrangement remains standard. Subtle tiny chest ornament shaped like a mirrored numeral 8, only if clear. Realistic directional fur, soft studio light. True transparent alpha PNG; no grid, checkerboard, floor, text or watermark."
   },
@@ -571,7 +571,7 @@
     "file": "assets/cat-mobbies/new/c/yami.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "8309bcc1b8407b769bb97e4ee639aff32c9d1b6db584496f54da1588eaecb5be",
+    "sha256": "e1b506407f99cecf3f30b5b0ab9c8e5842526affe2beb51b92411c90e696aaa3",
     "status": "concept",
     "prompt": "Use case: stylized-concept. Regenerate yami, やみモビー. Primary exact design references are Image 1 rea-mobby and Image 2 uyu-mobby. Front-facing upright full-body standing cat robot with compact rounded-square single head/body, no separate head/neck, short arms, two short feet. Exactly ONE biological eye viewer-left with purple iris, round black pupil and white highlight. Exactly ONE dark-rimmed camera lens viewer-right with green reflective glass. Small nose, subtle W mouth, whiskers. Exactly one charcoal cross D-pad with four inset slots lower-left chest and exactly two plain dark round buttons diagonal lower-right, same sizes/placement as references. Dark black realistic directional fur, softly lit so all controls remain readable. At feet show three small completely featureless black cat-shaped shadows, silhouettes with absolutely no eyes, no faces, no glowing dots. Main cat only has its one biological eye plus camera lens. A few dim violet sparks may outline the silhouettes. True transparent alpha, no grid/checkerboard/floor, no words/watermark, square 1254x1254 target."
   },
@@ -619,7 +619,7 @@
     "file": "assets/cat-mobbies/new/d/bunshin.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "aa5d3b9927e2236871b45c7e2e1807ce82d52243186d89730ed8484ead8173c3",
+    "sha256": "8ffc6e0b7ba324e5a62b695cccf21047c80e7f0cedf6b2fc887291a547298a67",
     "status": "concept",
     "prompt": "Regenerate bunshin, ぶんしんモビー. Front-facing upright full-body standing main Mobby. References 1 rea-mobby and 2 uyu-mobby define exact rounded-square single-body, single biological eye viewer-left (green iris, black pupil, white highlight), single dark green-glass camera lens viewer-right, one lower-left dark cross D-pad with four slots, exactly two plain diagonal round buttons lower-right, same placement and scale. Main Mobby fully sharp and readable, realistic fur. Show duplication only as two very faint translucent contour afterimages directly behind the single main body, with NO faces, NO eyes, NO lenses, NO buttons on afterimages; they are soft outlines only. Nothing else shaped like a cat. Transparent background, no grid/checkerboard/text/floor/watermark."
   },
@@ -643,7 +643,7 @@
     "file": "assets/cat-mobbies/new/d/himitsu.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "7d9c9af3eded4671c0622f4e8c1dff3524bf8a3290290738641608d6d3691bdd",
+    "sha256": "53406fdc6f90c788c8441faa706a66ebea963b1861b92b4950a3f5f127e4fb1f",
     "status": "concept",
     "prompt": "Regenerate himitsu, ひみつモビー. One cat Mobby only, standing upright, directly facing forward, full body. References 1 rea-mobby, 2 uyu-mobby exact design. Compact rounded-square single head-body, one biological violet eye viewer-left with black pupil and highlight, exactly one dark-rimmed green-reflective camera lens viewer-right, small nose, W mouth and whiskers. Exactly one lower-left charcoal cross D-pad with four inset slots and exactly two plain round dark buttons diagonal lower-right, all exposed. Purplish gray fur. Secrecy theme: one tiny purple secret box beside the feet and the Mobby gently holds a paw near its mouth. No second cat, no extra creature, no extra eyes. Keep upright front view. Realistic directional fur, soft studio light, true transparent alpha, no grid, checkerboard, floor, text or watermark."
   },
@@ -703,7 +703,7 @@
     "file": "assets/cat-mobbies/new/d/tomodachizure.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "651b649ce2a31ad2b092fb6b5ebb20e711d5071e3dfb4b17374dee38dcbbb030",
+    "sha256": "ed599aa84c23a8701376902f55094b655f40803e6c7ef904c326d60192e65b03",
     "status": "concept",
     "prompt": "Regenerate tomodachizure, ともだちづれモビー. One main cat Mobby only with a tiny featureless plush cat-shaped charm perched on its shoulder as the carried-friend cue; charm is a simple stitched silhouette with NO eyes, NO face, NO lens and no controls, clearly a toy accessory. Main Mobby stands upright facing front, full body, exact design from refs 1 rea-mobby and 2 uyu-mobby: compact rounded-square single body, one viewer-left biological eye with green iris, one viewer-right dark concentric green-glass camera lens, small nose, W mouth, whiskers, one lower-left dark cross D-pad with inset slots and exactly two plain round buttons diagonal lower-right. Warm brown fur, controls unobstructed. Only main Mobby has eyes. Realistic directional fur, soft studio light, transparent alpha PNG, no grid/checkerboard/floor/text/watermark."
   },
@@ -871,7 +871,7 @@
     "file": "assets/cat-mobbies/new/f/world-marathon.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "336a17009b43adad5048b91d8bc3c4f3d331f94a158697e7a3ff06cebc8b2760",
+    "sha256": "4d11db367c63543b189b5d1f9fe19b6843f0eb02483203589c4348729a04904b",
     "status": "concept",
     "prompt": "Regenerate world-marathon, マラソンモビー. STRICT upright standing front-facing, both short feet planted firmly and fully visible, arms relaxed slightly outward, no running or jumping. Exact Mobby from refs rea-mobby and uyu-mobby: rounded-square single head-body, one viewer-left biological green eye with black pupil and white catchlight, one viewer-right dark-ringed green-glass camera lens, one lower-left cross D-pad with inset slots, two plain dark circular buttons diagonal lower-right, same placement and scale. White fur with red athletic stripe accents and a small plain red-and-white ribbon behind the body, away from chest. Keep all controls clear. No text or numerals needed. Realistic fur, transparent alpha, no floor/checkerboard/grid."
   },
@@ -883,7 +883,7 @@
     "file": "assets/cat-mobbies/new/f/pyonpyon.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "49aa6df4f77661573bf53b244e7550a3a924df054776e02c719c04936d062d9d",
+    "sha256": "086cea19ce9b42088a24b6351a6b9d5260cecb40c463fdbc5ebbe69e160ded10",
     "status": "concept",
     "prompt": "Regenerate pyonpyon, ぴょんぴょんモビー. STRICT standing upright on two feet planted on the same baseline; arms rest beside body. Not jumping, no floating, no seated pose. Exact Mobby refs rea-mobby and uyu-mobby: compact rounded-square single body; one natural green eye viewer-left, one dark concentric green-glass lens viewer-right; one lower-left cross D-pad with slots, two plain round buttons diagonal lower-right, same proportions and positions. Bright yellow fur, spring-shaped curls in the fur along the sides and a few small motion arcs around the body to suggest energetic bouncing while the feet remain planted. Eye and controls unobstructed. True transparent alpha, realistic individual fur strands, no floor/checkerboard/grid/text."
   },
@@ -907,7 +907,7 @@
     "file": "assets/cat-mobbies/new/f/cameraman.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "2decfa51cf6e180dcf4f8a3c9091a77157926567ee0b0f98ef7130471836b7c8",
+    "sha256": "7a22df4a5613c3d12df7f27d447025e1af98cb07153970a99e018f4811c3e827",
     "status": "concept",
     "prompt": "Regenerate cameraman, カメラマンモビー. STRICT upright front-facing standing full body with two feet planted. Use exact refs rea-mobby and uyu-mobby for single rounded-square body, exactly one viewer-left biological green eye, exactly one viewer-right dark camera lens with green reflective glass, lower-left cross D-pad with four slots, exactly two plain dark circular diagonal buttons lower-right. Gray-brown fur. Wear a small utility vest with pockets, but NO chest camera and NO strap across controls. Hold one small compact photographic camera in the OUTER viewer-right paw, away from body silhouette and below the face lens, visibly separate and not overlapping any controls. Face lens stays the only lens attached to the Mobby body. No other camera gear. True transparent alpha, realistic fine fur, soft studio lighting, no checkerboard/grid/floor/text/watermark."
   },
@@ -931,7 +931,7 @@
     "file": "assets/cat-mobbies/new/f/nemurio.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "cb5707e79a923bed57e7f877902f79b25eed7dbf5378b9f8e9b053d443a55cff",
+    "sha256": "c9b479ba7a9776d3c5bd64499b34bcc424155af403d2e611db6469807b0c9843",
     "status": "concept",
     "prompt": "Regenerate nemurio, ねむりおうモビー, strictly standing upright and facing forward on two feet. Use exact body/layout refs rea-mobby and uyu-mobby: compact rounded-square single head-body, short arms, one biological eye viewer-left MUST be clearly visible half-open with golden amber iris, round black pupil and white catchlight; one camera lens viewer-right with dark concentric housing and green reflective glass. Never close or hide the biological eye. Exactly one lower-left dark cross D-pad with four inset slots and two plain round buttons diagonal lower-right, unobstructed, same sizes and positions as references. Navy fur with subtle tiny moon-star pattern, a small nightcap with moon motif only. Sleepy expression shown by slightly drooping eyelid, not closed eyes. No bed or pillow, both feet planted. Premium directional fur, soft light, transparent alpha PNG, no grid/checkerboard/floor/text/watermark."
   },
