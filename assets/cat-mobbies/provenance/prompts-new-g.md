@@ -1,0 +1,12 @@
+# New Mobby prompts — batch g
+
+Shared references: Image 1 rea-mobby and Image 2 uyu-mobby for exact character anatomy and controls. Traveling mascot also references docs/ui-reference/04-world.webp. All primary characters stand upright and face forward, transparent PNG, realistic fur.
+
+## traveling-mobby: 旅するモビー
+
+Use case: stylized-concept. One special traveling cat Mobby, ID traveling-mobby. Image 1 rea-mobby and Image 2 uyu-mobby define exact cat Mobby anatomy, face and hardware. Image 3 docs/ui-reference/04-world.webp is a style cue for the striped world traveler only. Preserve compact rounded-square single head-and-body, no neck, two short feet, tiny side arms, upright full-body standing facing directly forward. Exactly one natural green cat eye on viewer-left with black pupil and white highlight, exactly one camera lens viewer-right with dark concentric rings and green glass, tiny nose, subtle W mouth, whiskers. Exactly one lower-left matte dark cross D-pad with four inset slots and exactly two plain dark circular buttons diagonal lower-right; preserve size, spacing and leave them completely uncovered. Realistic brown/orange tabby fur with individual directional strands. One compact travel backpack visible behind the shoulders; its straps run only along outer sides of the body, never across belly controls. One tiny camera prop hangs at the outer viewer-left hip, clearly below the biological eye and outside the belly hardware; face lens is the only camera lens attached to the body. No suitcase or stamp. Friendly iconic look. Soft studio light, transparent alpha, no floor/grid/checkerboard/text/watermark, centered square target 1254x1254.
+
+## shinirimobby: しんいりモビー
+
+Use case: stylized-concept. Create shinirimobby, しんいりモビー. Images 1 rea-mobby and 2 uyu-mobby are exact character references. Compact rounded-square single body, no neck, short arms and two feet, upright standing forward full body. Exactly one natural green eye viewer-left and one dark concentric green-reflective camera lens viewer-right. Exactly one lower-left charcoal cross D-pad with four inset slots and exactly two plain round buttons diagonal lower-right, all unobstructed and at reference proportions. Pale yellow detailed fur, shy but friendly expression, one paw gently raised in greeting while body stays standing. Add one small plain new-arrival ribbon, no letters, no English text. Soft premium fur render, transparent alpha background, no checkerboard/grid/floor/watermark, square 1254x1254 target.
+

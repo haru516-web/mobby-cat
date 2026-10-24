@@ -982,5 +982,29 @@
     "sha256": "5982e9c0e51895a4ffbd17c6d5c2859958a68820ef15acf841a34851ca00237e",
     "status": "concept",
     "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 灰茶。学芸員の眼鏡と標本の札、虫眼鏡。目: 緑 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: はくぶつかんモビー, condition: 世界で特定の猫種が一定数発見."
+  },
+  {
+    "id": "traveling-mobby",
+    "name": "旅するモビー",
+    "batch": "g",
+    "condition": "世界に1匹の旅猫（所有ではなく訪問）。**看板キャラ**",
+    "file": "assets/cat-mobbies/new/g/traveling-mobby.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "21376861afaaa59dc57de7f979f75944d5e3e9450027b975f1a6c3032095ba46",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. One special traveling cat Mobby, ID traveling-mobby. Image 1 rea-mobby and Image 2 uyu-mobby define exact cat Mobby anatomy, face and hardware. Image 3 docs/ui-reference/04-world.webp is a style cue for the striped world traveler only. Preserve compact rounded-square single head-and-body, no neck, two short feet, tiny side arms, upright full-body standing facing directly forward. Exactly one natural green cat eye on viewer-left with black pupil and white highlight, exactly one camera lens viewer-right with dark concentric rings and green glass, tiny nose, subtle W mouth, whiskers. Exactly one lower-left matte dark cross D-pad with four inset slots and exactly two plain dark circular buttons diagonal lower-right; preserve size, spacing and leave them completely uncovered. Realistic brown/orange tabby fur with individual directional strands. One compact travel backpack visible behind the shoulders; its straps run only along outer sides of the body, never across belly controls. One tiny camera prop hangs at the outer viewer-left hip, clearly below the biological eye and outside the belly hardware; face lens is the only camera lens attached to the body. No suitcase or stamp. Friendly iconic look. Soft studio light, transparent alpha, no floor/grid/checkerboard/text/watermark, centered square target 1254x1254."
+  },
+  {
+    "id": "shinirimobby",
+    "name": "しんいりモビー",
+    "batch": "g",
+    "condition": "アップデートで新しい猫が来た日",
+    "file": "assets/cat-mobbies/new/g/shinirimobby.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "9c097778cc1d3eb033f956f28e6bfd64b3095b71054d8ee2ae7fcf539e03d9a2",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Create shinirimobby, しんいりモビー. Images 1 rea-mobby and 2 uyu-mobby are exact character references. Compact rounded-square single body, no neck, short arms and two feet, upright standing forward full body. Exactly one natural green eye viewer-left and one dark concentric green-reflective camera lens viewer-right. Exactly one lower-left charcoal cross D-pad with four inset slots and exactly two plain round buttons diagonal lower-right, all unobstructed and at reference proportions. Pale yellow detailed fur, shy but friendly expression, one paw gently raised in greeting while body stays standing. Add one small plain new-arrival ribbon, no letters, no English text. Soft premium fur render, transparent alpha background, no checkerboard/grid/floor/watermark, square 1254x1254 target."
   }
 ]
