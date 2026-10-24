@@ -100,3 +100,67 @@ Processing: Trim alpha margin and proportionally fit exact canvas without stretc
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-9bd264ef-7d7b-4c7c-a502-e9506e7fc0ec.png
 
+
+# Section13 additions
+
+## panel/photo-well.png
+
+Final: 192x192 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Empty pale beige inset photo well, rounded-square radius36 target pixels, very subtle INNER shadow only, completely plain center. No border decoration no icons. 9slice stretch-safe middle. Object nearly fills square with about6pixels clear surrounding margin.. Final canvas 192x192, requested aspect 192:192. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-4e694c6c-13d0-460d-b084-e8bd2aeb0026.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin
+
+## panel/info-table.png
+
+Final: 300x150 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Empty warm cream rounded rectangular information table frame, radius30 target pixels, fine dark warm brown hairline border. NO rows NO text NO icons. Flat undecorated middle and edge bands for9slice. About6px transparent outer shadow clearance.. Final canvas 300x150, requested aspect 300:150. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-33078882-d130-4541-8c00-d88a71294ea5.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin
+
+## panel/speech-bubble.png
+
+Final: 300x180 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Empty warm cream speech bubble rounded radius48 target pixels with ONE small tail at bottom center, subtle paper texture and low contrast downward shadow. No other objects or icons. About6px transparent margin. Vertical9slice plain central band; preserve full bottom tail.. Final canvas 300x180, requested aspect 300:180. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-06235bc3-f95c-4533-925d-364ced5d3b91.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin
+
+## panel/divider-h.png
+
+Final: 600x12 PNG.
+
+Method: procedural raster
+
+Prompt: Fine warm brown dotted horizontal line,3px dots at12px pitch, alpha90, center y6; transparent outside.
+
+Source: new technical raster
+
+Processing: Exact numeric RGBA bitmap, no app code changes
+
+## panel/divider-v.png
+
+Final: 12x300 PNG.
+
+Method: procedural raster
+
+Prompt: Fine vertical warm brown line x5..6, y6..293, alpha90; transparent outside.
+
+Source: new technical raster
+
+Processing: Exact numeric RGBA bitmap, no app code changes
+
+9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
