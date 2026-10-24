@@ -142,3 +142,67 @@ Processing: Generated stamp or thumbnail proportionally fitted on opaque cream c
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-e7534b63-b543-40ad-9400-1f38ced99f28.png
 
+
+# Section13 additions
+
+## bg/screen-zukan.png
+
+Final: 1179x2556 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Full bleed bright cozy room with bookshelf, very heavily defocused bokeh. Warm cream bright upper half for dark headings. Realistic photographic room ambience, NO cats NO characters NO readable book titles NO lettering.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-3b228015-73d1-4d5d-8373-5f0159562ab1.png
+
+Processing: Opaque full-bleed cover resize to exact requested canvas
+
+## bg/screen-world.png
+
+Final: 1179x2556 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Full bleed pale sky blending into cream map-pattern paper, very low contrast pastel world map texture, delicate warm paper. Quiet background for World UI, no labels no icons no words.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-0c3c762b-4d6d-4ba4-81e8-be55372439d1.png
+
+Processing: Opaque full-bleed cover resize to exact requested canvas
+
+## bg/screen-shop.png
+
+Final: 1179x2556 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Full bleed #FFF8F0 warm ivory handmade paper with extremely faint tiny paw print pattern. No border no frame no vignette no objects no text.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-43f29e73-4d12-4c47-8641-82b38650afdc.png
+
+Processing: Opaque full-bleed cover resize to exact requested canvas
+
+## bg/fade-cream-bottom.png
+
+Final: 1179x300 PNG.
+
+Method: procedural raster
+
+Prompt: Only vertical cream #FFF8F0 alpha gradient, top0 bottom255, linear; no icons.
+
+Source: new technical raster
+
+Processing: Exact numeric RGBA bitmap, no app code changes
+
+## bg/overlay-dim.png
+
+Final: 64x64 PNG.
+
+Method: procedural raster
+
+Prompt: Uniform #4A3B32 RGBA(74,59,50,115);45percent alpha rounded to nearest8bit.
+
+Source: new technical raster
+
+Processing: Exact numeric RGBA bitmap, no app code changes
+
+9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
