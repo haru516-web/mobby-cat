@@ -1006,5 +1006,77 @@
     "sha256": "9c097778cc1d3eb033f956f28e6bfd64b3095b71054d8ee2ae7fcf539e03d9a2",
     "status": "concept",
     "prompt": "Use case: stylized-concept. Create shinirimobby, しんいりモビー. Images 1 rea-mobby and 2 uyu-mobby are exact character references. Compact rounded-square single body, no neck, short arms and two feet, upright standing forward full body. Exactly one natural green eye viewer-left and one dark concentric green-reflective camera lens viewer-right. Exactly one lower-left charcoal cross D-pad with four inset slots and exactly two plain round buttons diagonal lower-right, all unobstructed and at reference proportions. Pale yellow detailed fur, shy but friendly expression, one paw gently raised in greeting while body stays standing. Add one small plain new-arrival ribbon, no letters, no English text. Soft premium fur render, transparent alpha background, no checkerboard/grid/floor/watermark, square 1254x1254 target."
+  },
+  {
+    "id": "ouji",
+    "name": "王子モビー",
+    "batch": "h",
+    "condition": "",
+    "file": "assets/cat-mobbies/new/h/ouji.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "d60c68d92b9ab2fe141f30b78b305117c8da3374dd3150459c3307254aa0eb3d",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: null Match listed fur and eye colors. Use at most two small accessories and keep face hardware and belly controls visible. Character 王子モビー (ouji)."
+  },
+  {
+    "id": "uchuu",
+    "name": "宇宙モビー",
+    "batch": "h",
+    "condition": "",
+    "file": "assets/cat-mobbies/new/h/uchuu.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "191a87c42526000f244120fe610d4ad18562694ec402d3ea602ffb11c30c0b29",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: Deep navy fur with small star and planet pattern. A clear glass astronaut helmet sits loosely around ears, fully transparent over face and controls; no opaque visor. One tiny floating planet motif only. Character 宇宙モビー (uchuu)."
+  },
+  {
+    "id": "toumei",
+    "name": "透明モビー",
+    "batch": "h",
+    "condition": "",
+    "file": "assets/cat-mobbies/new/h/toumei.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "9bcc867be4d4a407f9289f628ce00c9276e5470a65c718b5c4ea76124386b457",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: Translucent Mobby: pale icy aqua glass-like fur and softly visible inner color, but retain the opaque rounded-square outline, exact single eye and camera lens, and opaque charcoal D-pad and two buttons so all details read clearly. No refraction that distorts their shape. Character 透明モビー (toumei)."
+  },
+  {
+    "id": "shikaku",
+    "name": "四角モビー",
+    "batch": "h",
+    "condition": "",
+    "file": "assets/cat-mobbies/new/h/shikaku.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "53dbef55ba2999ae5ed5499501377a69b60b72bc31b42b766cc28cc87e7b0f39",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: null Match listed fur and eye colors. Use at most two small accessories and keep face hardware and belly controls visible. Character 四角モビー (shikaku)."
+  },
+  {
+    "id": "shachou",
+    "name": "社長モビー",
+    "batch": "h",
+    "condition": "",
+    "file": "assets/cat-mobbies/new/h/shachou.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "63599dc5b6e5c5ab13d65f3ec87e4a38cc7c47b07fa05df4404ca0726d44b916",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: null Match listed fur and eye colors. Use at most two small accessories and keep face hardware and belly controls visible. Character 社長モビー (shachou)."
+  },
+  {
+    "id": "mushoku",
+    "name": "無職モビー",
+    "batch": "h",
+    "condition": "",
+    "file": "assets/cat-mobbies/new/h/mushoku.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "d5bdd36f0c6b8e2c025efa7dc8c96b2c791d69cd16ed33c35a939e2a5c091eef",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: Messy dark brown fur, soft simple pajama top with the chest open so the cross D-pad and two round buttons remain fully clear; small flattened cushion beside one foot. No extra game controller. Character 無職モビー (mushoku)."
   }
 ]
