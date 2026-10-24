@@ -64,3 +64,7 @@ Superseded attempt: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953
 
 Prompt: Create ONE isolated production UI graphic: Pale beige same cat head silhouette indicator. Final target 120x120 aspect120:120. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.
 
+
+## Section13 stretch metadata audit
+
+See stretch-normalization.json for transparentmargin measurements and any geometric9slice resizing. Final cap insets are recorded in manifest.json. No new image-generation prompt needed for resize normalization.

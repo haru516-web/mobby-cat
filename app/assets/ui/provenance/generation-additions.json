@@ -1,0 +1,266 @@
+[
+  {
+    "path": "brand/app-icon.png",
+    "width": 1024,
+    "height": 1024,
+    "description": "iOS app icon. Close-up British Shorthair cat Mobby face matching reference realistic dense grey fur. Exactly one natural amber cat eye viewer-left and one black camera lens viewer-right. Friendly rounded face, ears visible. Cream #FFF8F0 fully opaque background fills ALL four square corners, NO rounded app icon mask, NO border, NO text, no body necessary.",
+    "opaque": true,
+    "ref": "assets/cat-mobbies/characters/british-shorthair.png",
+    "prompt": "Create ONE production UI bitmap asset: iOS app icon. Close-up British Shorthair cat Mobby face matching reference realistic dense grey fur. Exactly one natural amber cat eye viewer-left and one black camera lens viewer-right. Friendly rounded face, ears visible. Cream #FFF8F0 fully opaque background fills ALL four square corners, NO rounded app icon mask, NO border, NO text, no body necessary.. Final canvas 1024x1024, requested aspect 1024:1024. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-63af628b-b6a4-4349-9996-207c7b8305ff.png",
+    "finalProcessing": "Opaque full-bleed cover resize to exact requested canvas"
+  },
+  {
+    "path": "brand/splash.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed opaque warm cream #FFF8F0 splash screen, exact reference ねこモビー logo centered horizontally and vertically, logo occupies about65percent canvas width. Vast clean empty cream space. NO additional text NO subtitles NO objects NO pattern.",
+    "opaque": true,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png",
+    "prompt": "Create ONE production UI bitmap asset: Full bleed opaque warm cream #FFF8F0 splash screen, exact reference ねこモビー logo centered horizontally and vertically, logo occupies about65percent canvas width. Vast clean empty cream space. NO additional text NO subtitles NO objects NO pattern.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-03e8122d-d3ef-4bc7-852d-23b35a39f789.png",
+    "finalProcessing": "Opaque full-bleed cover resize to exact requested canvas"
+  },
+  {
+    "path": "brand/title-kyou.png",
+    "width": 560,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「きょうのようす」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png",
+    "prompt": "Create ONE production UI bitmap asset: Exact Japanese lettering only: 「きょうのようす」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 560x110, requested aspect 560:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-a6a19793-8b59-4768-bf96-630d55ff8c9e.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "brand/title-mukaeru.png",
+    "width": 720,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「この子たちも迎える」. one small paw accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png",
+    "prompt": "Create ONE production UI bitmap asset: Exact Japanese lettering only: 「この子たちも迎える」. one small paw accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 720x110, requested aspect 720:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-73c5da02-b07c-484d-99ba-6b17d4ef39e4.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "brand/title-visited.png",
+    "width": 640,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「これまでに訪れた国」. one small flag accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png",
+    "prompt": "Create ONE production UI bitmap asset: Exact Japanese lettering only: 「これまでに訪れた国」. one small flag accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 640x110, requested aspect 640:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-3718db46-5d65-4f20-8ab5-c6fe3b25297c.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "brand/title-shop.png",
+    "width": 480,
+    "height": 150,
+    "description": "Exact Japanese lettering only: 「ショップ」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png",
+    "prompt": "Create ONE production UI bitmap asset: Exact Japanese lettering only: 「ショップ」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 480x150, requested aspect 480:150. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-1ab429bd-bea6-4292-a525-91d019eb2e6e.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "brand/title-settings.png",
+    "width": 320,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「設定」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png",
+    "prompt": "Create ONE production UI bitmap asset: Exact Japanese lettering only: 「設定」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 320x110, requested aspect 320:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-10dd10bc-3709-413a-b6cc-9d7fb611bcd0.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "bg/screen-zukan.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed bright cozy room with bookshelf, very heavily defocused bokeh. Warm cream bright upper half for dark headings. Realistic photographic room ambience, NO cats NO characters NO readable book titles NO lettering.",
+    "opaque": true,
+    "prompt": "Create ONE production UI bitmap asset: Full bleed bright cozy room with bookshelf, very heavily defocused bokeh. Warm cream bright upper half for dark headings. Realistic photographic room ambience, NO cats NO characters NO readable book titles NO lettering.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-3b228015-73d1-4d5d-8373-5f0159562ab1.png",
+    "finalProcessing": "Opaque full-bleed cover resize to exact requested canvas"
+  },
+  {
+    "path": "bg/screen-world.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed pale sky blending into cream map-pattern paper, very low contrast pastel world map texture, delicate warm paper. Quiet background for World UI, no labels no icons no words.",
+    "opaque": true,
+    "prompt": "Create ONE production UI bitmap asset: Full bleed pale sky blending into cream map-pattern paper, very low contrast pastel world map texture, delicate warm paper. Quiet background for World UI, no labels no icons no words.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-0c3c762b-4d6d-4ba4-81e8-be55372439d1.png",
+    "finalProcessing": "Opaque full-bleed cover resize to exact requested canvas"
+  },
+  {
+    "path": "bg/screen-shop.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed #FFF8F0 warm ivory handmade paper with extremely faint tiny paw print pattern. No border no frame no vignette no objects no text.",
+    "opaque": true,
+    "prompt": "Create ONE production UI bitmap asset: Full bleed #FFF8F0 warm ivory handmade paper with extremely faint tiny paw print pattern. No border no frame no vignette no objects no text.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-43f29e73-4d12-4c47-8641-82b38650afdc.png",
+    "finalProcessing": "Opaque full-bleed cover resize to exact requested canvas"
+  },
+  {
+    "path": "panel/photo-well.png",
+    "width": 192,
+    "height": 192,
+    "description": "Empty pale beige inset photo well, rounded-square radius36 target pixels, very subtle INNER shadow only, completely plain center. No border decoration no icons. 9slice stretch-safe middle. Object nearly fills square with about6pixels clear surrounding margin.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Empty pale beige inset photo well, rounded-square radius36 target pixels, very subtle INNER shadow only, completely plain center. No border decoration no icons. 9slice stretch-safe middle. Object nearly fills square with about6pixels clear surrounding margin.. Final canvas 192x192, requested aspect 192:192. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-4e694c6c-13d0-460d-b084-e8bd2aeb0026.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin"
+  },
+  {
+    "path": "panel/info-table.png",
+    "width": 300,
+    "height": 150,
+    "description": "Empty warm cream rounded rectangular information table frame, radius30 target pixels, fine dark warm brown hairline border. NO rows NO text NO icons. Flat undecorated middle and edge bands for9slice. About6px transparent outer shadow clearance.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Empty warm cream rounded rectangular information table frame, radius30 target pixels, fine dark warm brown hairline border. NO rows NO text NO icons. Flat undecorated middle and edge bands for9slice. About6px transparent outer shadow clearance.. Final canvas 300x150, requested aspect 300:150. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-33078882-d130-4541-8c00-d88a71294ea5.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin"
+  },
+  {
+    "path": "panel/speech-bubble.png",
+    "width": 300,
+    "height": 180,
+    "description": "Empty warm cream speech bubble rounded radius48 target pixels with ONE small tail at bottom center, subtle paper texture and low contrast downward shadow. No other objects or icons. About6px transparent margin. Vertical9slice plain central band; preserve full bottom tail.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Empty warm cream speech bubble rounded radius48 target pixels with ONE small tail at bottom center, subtle paper texture and low contrast downward shadow. No other objects or icons. About6px transparent margin. Vertical9slice plain central band; preserve full bottom tail.. Final canvas 300x180, requested aspect 300:180. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-06235bc3-f95c-4533-925d-364ced5d3b91.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin"
+  },
+  {
+    "path": "button/primary-green-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Pressed state of reference green filled pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.",
+    "opaque": false,
+    "ref": "app/assets/ui/button/primary-green.png",
+    "prompt": "Create ONE production UI bitmap asset: Pressed state of reference green filled pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.. Final canvas 360x132, requested aspect 360:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-3cfda0b3-c5e4-41e0-91c6-68eea3e69708.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin"
+  },
+  {
+    "path": "button/ghost-outline-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Pressed state of reference cream orange outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.",
+    "opaque": false,
+    "ref": "app/assets/ui/button/ghost-outline.png",
+    "prompt": "Create ONE production UI bitmap asset: Pressed state of reference cream orange outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.. Final canvas 360x132, requested aspect 360:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-9c1b52b2-65d7-43a2-a34e-aab1a247e279.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin"
+  },
+  {
+    "path": "button/ghost-green-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Pressed state of reference cream green outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.",
+    "opaque": false,
+    "ref": "app/assets/ui/button/ghost-green.png",
+    "prompt": "Create ONE production UI bitmap asset: Pressed state of reference cream green outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.. Final canvas 360x132, requested aspect 360:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-65404bf3-eff3-4268-a000-6f9f9eda81fc.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin"
+  },
+  {
+    "path": "button/toggle-on.png",
+    "width": 204,
+    "height": 120,
+    "description": "Settings toggle ON. Rounded orange pill track, ivory circular thumb at RIGHT. Thumb included. Soft paperlike puffy style upper-left highlight, no text no symbols. Minimal shadow margin6px.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Settings toggle ON. Rounded orange pill track, ivory circular thumb at RIGHT. Thumb included. Soft paperlike puffy style upper-left highlight, no text no symbols. Minimal shadow margin6px.. Final canvas 204x120, requested aspect 204:120. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-b0b9a70b-0c14-440d-88ff-401788ba8b4b.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "button/toggle-off.png",
+    "width": 204,
+    "height": 120,
+    "description": "Settings toggle OFF. Same rounded pill track and ivory thumb proportions as ON, track grey beige and thumb at LEFT. Thumb included. Soft puffy paper style, no text no symbols. Shadow clearance6px.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Settings toggle OFF. Same rounded pill track and ivory thumb proportions as ON, track grey beige and thumb at LEFT. Thumb included. Soft puffy paper style, no text no symbols. Shadow clearance6px.. Final canvas 204x120, requested aspect 204:120. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-9875de75-1a45-4bdb-916b-a2fc2962c8d8.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "button/close-round.png",
+    "width": 132,
+    "height": 132,
+    "description": "Cream circular modal close button with dark brown rounded X centered, simple soft paper texture low contrast shadow. No other marks no letters.6px transparent clearance.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Cream circular modal close button with dark brown rounded X centered, simple soft paper texture low contrast shadow. No other marks no letters.6px transparent clearance.. Final canvas 132x132, requested aspect 132:132. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-6898195c-53f0-45b6-8c83-2446ad7b1471.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "badge/sample.png",
+    "width": 300,
+    "height": 72,
+    "description": "Blank dark brown #4A3B32 rounded small label, empty center for app-drawn text. 9slice horizontal stretch-safe plain middle, subtle paper texture soft upper-left edge highlight.6px transparent clearance.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Blank dark brown #4A3B32 rounded small label, empty center for app-drawn text. 9slice horizontal stretch-safe plain middle, subtle paper texture soft upper-left edge highlight.6px transparent clearance.. Final canvas 300x72, requested aspect 300:72. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-aae7e95f-1132-4674-a5c8-c9c3b8122c35.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin"
+  },
+  {
+    "path": "badge/picked-stamp.png",
+    "width": 240,
+    "height": 240,
+    "description": "Single vermilion red paw-print rubber stamp slightly rotated about12degrees, lightly distressed ink on transparent background. No text no circle border no words no extra symbols. One large pad and four small toe pads. Soft warm stationery style.",
+    "opaque": false,
+    "prompt": "Create ONE production UI bitmap asset: Single vermilion red paw-print rubber stamp slightly rotated about12degrees, lightly distressed ink on transparent background. No text no circle border no words no extra symbols. One large pad and four small toe pads. Soft warm stationery style.. Final canvas 240x240, requested aspect 240:240. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a16dc8-84e9-7e73-953c-375657e785a2\\exec-854454bf-6db2-4ea3-b9ae-78949ad66c92.png",
+    "finalProcessing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance"
+  },
+  {
+    "path": "bg/fade-cream-bottom.png",
+    "width": 1179,
+    "height": 300,
+    "prompt": "Only vertical cream #FFF8F0 alpha gradient, top0 bottom255, linear; no icons.",
+    "description": "Only vertical cream #FFF8F0 alpha gradient, top0 bottom255, linear; no icons.",
+    "method": "procedural raster",
+    "finalProcessing": "Exact numeric RGBA bitmap, no app code changes",
+    "source": "new technical raster",
+    "opaque": false
+  },
+  {
+    "path": "bg/overlay-dim.png",
+    "width": 64,
+    "height": 64,
+    "prompt": "Uniform #4A3B32 RGBA(74,59,50,115);45percent alpha rounded to nearest8bit.",
+    "description": "Uniform #4A3B32 RGBA(74,59,50,115);45percent alpha rounded to nearest8bit.",
+    "method": "procedural raster",
+    "finalProcessing": "Exact numeric RGBA bitmap, no app code changes",
+    "source": "new technical raster",
+    "opaque": false
+  },
+  {
+    "path": "panel/divider-h.png",
+    "width": 600,
+    "height": 12,
+    "prompt": "Fine warm brown dotted horizontal line,3px dots at12px pitch, alpha90, center y6; transparent outside.",
+    "description": "Fine warm brown dotted horizontal line,3px dots at12px pitch, alpha90, center y6; transparent outside.",
+    "method": "procedural raster",
+    "finalProcessing": "Exact numeric RGBA bitmap, no app code changes",
+    "source": "new technical raster",
+    "opaque": false
+  },
+  {
+    "path": "panel/divider-v.png",
+    "width": 12,
+    "height": 300,
+    "prompt": "Fine vertical warm brown line x5..6, y6..293, alpha90; transparent outside.",
+    "description": "Fine vertical warm brown line x5..6, y6..293, alpha90; transparent outside.",
+    "method": "procedural raster",
+    "finalProcessing": "Exact numeric RGBA bitmap, no app code changes",
+    "source": "new technical raster",
+    "opaque": false
+  }
+]
