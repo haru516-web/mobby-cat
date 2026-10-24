@@ -72,3 +72,31 @@ Processing: Trim alpha margin and proportionally fit exact canvas without stretc
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-a54579f7-386d-4c75-93da-90ac323841d8.png
 
+
+# Section13 additions
+
+## badge/sample.png
+
+Final: 300x72 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Blank dark brown #4A3B32 rounded small label, empty center for app-drawn text. 9slice horizontal stretch-safe plain middle, subtle paper texture soft upper-left edge highlight.6px transparent clearance.. Final canvas 300x72, requested aspect 300:72. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-aae7e95f-1132-4674-a5c8-c9c3b8122c35.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin
+
+## badge/picked-stamp.png
+
+Final: 240x240 PNG.
+
+Method: built-in image_gen
+
+Prompt: Create ONE production UI bitmap asset: Single vermilion red paw-print rubber stamp slightly rotated about12degrees, lightly distressed ink on transparent background. No text no circle border no words no extra symbols. One large pad and four small toe pads. Soft warm stationery style.. Final canvas 240x240, requested aspect 240:240. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.
+
+Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-854454bf-6db2-4ea3-b9ae-78949ad66c92.png
+
+Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
+
+9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
