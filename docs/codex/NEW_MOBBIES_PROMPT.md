@@ -10,7 +10,7 @@
 
 ## 読むもの
 1. `docs/appearance-catalog.md`（名前・出現条件・由来の企画台帳）
-2. `docs/codex/NEW_MOBBIES_LIST.md`（今回作る猫の一覧。バッチ A〜H、各猫のID・名前・ビジュアル案）
+2. `docs/codex/NEW_MOBBIES_LIST.md`（今回作る猫の一覧。バッチ A〜I の100匹、各猫のID・名前・ビジュアル案。バッチ I の名前は仮）
 3. `assets/cat-mobbies/README.md`、`assets/cat-mobbies/provenance/prompts-batch30.md`（既存34体の生成方法。**同じ built-in image_gen を使い、同じ共通プロンプトの考え方で作る**）
 4. 参照画像: `assets/cat-mobbies/characters/bengal.png` と `ragdoll.png`（必ず参照1・2として使う。毛の質感・目・ボタンの基準）
 5. `docs/ui-reference/` の4枚（アプリ内での見え方の目安。旅猫の見た目は `04-world.webp`）
@@ -28,7 +28,7 @@
 - **サイズ**: 1254×1254（既存と同じ）。アルファ付きPNG。
 
 ## 出力
-- 画像: `assets/cat-mobbies/new/<バッチ>/<ID>.png`（例: `assets/cat-mobbies/new/a/genkai.png`）。バッチは小文字の a〜h。
+- 画像: `assets/cat-mobbies/new/<バッチ>/<ID>.png`（例: `assets/cat-mobbies/new/a/genkai.png`）。バッチは小文字の a〜i。
 - 管理用: `assets/cat-mobbies/new/manifest.json`（**既存の `assets/cat-mobbies/manifest.json` は触らない**）。各猫について `id / name / batch / condition(台帳の出現条件) / file / width / height / sha256 / status("concept") / prompt` を記録。
 - プロンプト記録: `assets/cat-mobbies/provenance/prompts-new-<バッチ>.md`（既存の prompts-batch30.md と同形式）。
 - 一覧画像: `assets/cat-mobbies/new/previews/batch-<バッチ>.png`（バッチごとの全員の並び。確認用。生成による再描画でよい）。
@@ -36,9 +36,12 @@
 ## 手順
 1. `D:\mobby-cat\.worktrees\new-mobbies` に移動し、ブランチが `codex/new-mobbies` であることを確認する。
 2. **最初に3匹を試作して質感を確定**する: `genkai`（げんかい）、`santa`（さんた）、`traveling-mobby`（旅するモビー）。既存34体と並べて、モビーの識別要素・毛の質感・目が一致しているか確認する。ずれたらプロンプトを直して作り直し、確定後に残りへ進む。
-3. バッチ A → B → C → D → E → F → G → H の順に生成する。**1バッチ終えるごとに**、画像・manifest・プロンプト記録・一覧画像をコミットする（例: `Add new mobbies: batch a`）。
+3. バッチ A → B → C → D → E → F → G → H → I の順に生成する。**1バッチ終えるごとに**、画像・manifest・プロンプト記録・一覧画像をコミットする（例: `Add new mobbies: batch a`）。
 4. 各画像を確認する。モビーの識別要素が欠けているもの、レンズ以外に目が2つ以上あるもの、ボタンの数が違うもの、背景が透過でないもの、不要な文字が入ったものは **作り直す**。
 5. 全バッチが終わったら `assets/cat-mobbies/new/README.md`（枚数、作り直した枚数、気になった点）を作り、`git push origin codex/new-mobbies` まで行う。
+
+## 補足：れあもびー・うゆもびー
+別の旧プロジェクト由来の `rea-mobby` と `uyu-mobby` は、アプリ側の別ブランチ（`feature/image-ui`）に取り込み済み。目の質感が既存34体と少し違う旧系統なので、**今回の生成の基準にはしない**（基準は上の34体、特に bengal と ragdoll）。このブランチには存在しないので、重複して作らない。
 
 ## 特に注意する猫
 - **traveling-mobby（旅するモビー）**: アプリの看板。ここは丁寧に作る。参照 `docs/ui-reference/04-world.webp` の縞トラの旅猫を基にする。
@@ -56,6 +59,6 @@
 ## 簡易版（Codexに貼る用）
 ```
 リポジトリ haru516-web/mobby-cat の codex/new-mobbies ブランチで、フォルダ D:\mobby-cat\.worktrees\new-mobbies を使って作業してください（main や codex/ui-assets には触れない）。
-目的: 新しい猫モビーのキャラクター画像（約90匹）を built-in image_gen で生成する。
-docs/codex/NEW_MOBBIES_PROMPT.md と docs/codex/NEW_MOBBIES_LIST.md の指示に従う。まず genkai・santa・traveling-mobby の3匹を試作して既存34体と並べて質感を確定し、その後バッチ A〜H を順に生成。1バッチごとにコミットし、最後に git push origin codex/new-mobbies まで行う。画像は assets/cat-mobbies/new/<バッチ>/<ID>.png、管理は assets/cat-mobbies/new/manifest.json（既存 manifest.json は触らない）。
+目的: 新しい猫モビーのキャラクター画像（100匹）を built-in image_gen で生成する。
+docs/codex/NEW_MOBBIES_PROMPT.md と docs/codex/NEW_MOBBIES_LIST.md の指示に従う。まず genkai・santa・traveling-mobby の3匹を試作して既存34体と並べて質感を確定し、その後バッチ A〜I を順に生成。1バッチごとにコミットし、最後に git push origin codex/new-mobbies まで行う。画像は assets/cat-mobbies/new/<バッチ>/<ID>.png、管理は assets/cat-mobbies/new/manifest.json（既存 manifest.json は触らない）。
 ```
