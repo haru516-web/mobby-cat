@@ -210,3 +210,7 @@ Processing: Trim alpha margin and proportionally fit exact canvas without stretc
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-20f867e8-e952-46b3-9964-0cd0345211c4.png
 
+
+## Section13 stretch metadata audit
+
+See stretch-normalization.json for transparentmargin measurements and any geometric9slice resizing. Final cap insets are recorded in manifest.json. No new image-generation prompt needed for resize normalization.
