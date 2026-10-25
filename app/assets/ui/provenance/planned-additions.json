@@ -1,0 +1,187 @@
+[
+  {
+    "path": "brand/app-icon.png",
+    "width": 1024,
+    "height": 1024,
+    "description": "iOS app icon. Close-up British Shorthair cat Mobby face matching reference realistic dense grey fur. Exactly one natural amber cat eye viewer-left and one black camera lens viewer-right. Friendly rounded face, ears visible. Cream #FFF8F0 fully opaque background fills ALL four square corners, NO rounded app icon mask, NO border, NO text, no body necessary.",
+    "opaque": true,
+    "ref": "assets/cat-mobbies/characters/british-shorthair.png"
+  },
+  {
+    "path": "brand/splash.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed opaque warm cream #FFF8F0 splash screen, exact reference ねこモビー logo centered horizontally and vertically, logo occupies about65percent canvas width. Vast clean empty cream space. NO additional text NO subtitles NO objects NO pattern.",
+    "opaque": true,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png"
+  },
+  {
+    "path": "brand/title-kyou.png",
+    "width": 560,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「きょうのようす」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png"
+  },
+  {
+    "path": "brand/title-mukaeru.png",
+    "width": 720,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「この子たちも迎える」. one small paw accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png"
+  },
+  {
+    "path": "brand/title-visited.png",
+    "width": 640,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「これまでに訪れた国」. one small flag accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png"
+  },
+  {
+    "path": "brand/title-shop.png",
+    "width": 480,
+    "height": 150,
+    "description": "Exact Japanese lettering only: 「ショップ」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png"
+  },
+  {
+    "path": "brand/title-settings.png",
+    "width": 320,
+    "height": 110,
+    "description": "Exact Japanese lettering only: 「設定」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.",
+    "opaque": false,
+    "ref": "app/assets/ui/brand/logo-nekomobby.png"
+  },
+  {
+    "path": "bg/screen-zukan.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed bright cozy room with bookshelf, very heavily defocused bokeh. Warm cream bright upper half for dark headings. Realistic photographic room ambience, NO cats NO characters NO readable book titles NO lettering.",
+    "opaque": true
+  },
+  {
+    "path": "bg/screen-world.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed pale sky blending into cream map-pattern paper, very low contrast pastel world map texture, delicate warm paper. Quiet background for World UI, no labels no icons no words.",
+    "opaque": true
+  },
+  {
+    "path": "bg/screen-shop.png",
+    "width": 1179,
+    "height": 2556,
+    "description": "Full bleed #FFF8F0 warm ivory handmade paper with extremely faint tiny paw print pattern. No border no frame no vignette no objects no text.",
+    "opaque": true
+  },
+  {
+    "path": "panel/photo-well.png",
+    "width": 192,
+    "height": 192,
+    "description": "Empty pale beige inset photo well, rounded-square radius36 target pixels, very subtle INNER shadow only, completely plain center. No border decoration no icons. 9slice stretch-safe middle. Object nearly fills square with about6pixels clear surrounding margin.",
+    "opaque": false
+  },
+  {
+    "path": "panel/info-table.png",
+    "width": 300,
+    "height": 150,
+    "description": "Empty warm cream rounded rectangular information table frame, radius30 target pixels, fine dark warm brown hairline border. NO rows NO text NO icons. Flat undecorated middle and edge bands for9slice. About6px transparent outer shadow clearance.",
+    "opaque": false
+  },
+  {
+    "path": "panel/speech-bubble.png",
+    "width": 300,
+    "height": 180,
+    "description": "Empty warm cream speech bubble rounded radius48 target pixels with ONE small tail at bottom center, subtle paper texture and low contrast downward shadow. No other objects or icons. About6px transparent margin. Vertical9slice plain central band; preserve full bottom tail.",
+    "opaque": false
+  },
+  {
+    "path": "button/primary-green-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Pressed state of reference green filled pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.",
+    "opaque": false,
+    "ref": "app/assets/ui/button/primary-green.png"
+  },
+  {
+    "path": "button/ghost-outline-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Pressed state of reference cream orange outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.",
+    "opaque": false,
+    "ref": "app/assets/ui/button/ghost-outline.png"
+  },
+  {
+    "path": "button/ghost-green-pressed.png",
+    "width": 360,
+    "height": 132,
+    "description": "Pressed state of reference cream green outlined pill button. Keep identical silhouette border shape colors and empty center. Slightly darker sunken surface, reduced shadow. NO text NO icons NO ornaments.",
+    "opaque": false,
+    "ref": "app/assets/ui/button/ghost-green.png"
+  },
+  {
+    "path": "button/toggle-on.png",
+    "width": 204,
+    "height": 120,
+    "description": "Settings toggle ON. Rounded orange pill track, ivory circular thumb at RIGHT. Thumb included. Soft paperlike puffy style upper-left highlight, no text no symbols. Minimal shadow margin6px.",
+    "opaque": false
+  },
+  {
+    "path": "button/toggle-off.png",
+    "width": 204,
+    "height": 120,
+    "description": "Settings toggle OFF. Same rounded pill track and ivory thumb proportions as ON, track grey beige and thumb at LEFT. Thumb included. Soft puffy paper style, no text no symbols. Shadow clearance6px.",
+    "opaque": false
+  },
+  {
+    "path": "button/close-round.png",
+    "width": 132,
+    "height": 132,
+    "description": "Cream circular modal close button with dark brown rounded X centered, simple soft paper texture low contrast shadow. No other marks no letters.6px transparent clearance.",
+    "opaque": false
+  },
+  {
+    "path": "badge/sample.png",
+    "width": 300,
+    "height": 72,
+    "description": "Blank dark brown #4A3B32 rounded small label, empty center for app-drawn text. 9slice horizontal stretch-safe plain middle, subtle paper texture soft upper-left edge highlight.6px transparent clearance.",
+    "opaque": false
+  },
+  {
+    "path": "badge/picked-stamp.png",
+    "width": 240,
+    "height": 240,
+    "description": "Single vermilion red paw-print rubber stamp slightly rotated about12degrees, lightly distressed ink on transparent background. No text no circle border no words no extra symbols. One large pad and four small toe pads. Soft warm stationery style.",
+    "opaque": false
+  },
+  {
+    "path": "bg/fade-cream-bottom.png",
+    "width": 1179,
+    "height": 300,
+    "description": "Only vertical cream #FFF8F0 alpha gradient, top0 bottom255, linear; no icons.",
+    "opaque": false
+  },
+  {
+    "path": "bg/overlay-dim.png",
+    "width": 64,
+    "height": 64,
+    "description": "Uniform #4A3B32 RGBA(74,59,50,115);45percent alpha rounded to nearest8bit.",
+    "opaque": false
+  },
+  {
+    "path": "panel/divider-h.png",
+    "width": 600,
+    "height": 12,
+    "description": "Fine warm brown dotted horizontal line,3px dots at12px pitch, alpha90, center y6; transparent outside.",
+    "opaque": false
+  },
+  {
+    "path": "panel/divider-v.png",
+    "width": 12,
+    "height": 300,
+    "description": "Fine vertical warm brown line x5..6, y6..293, alpha90; transparent outside.",
+    "opaque": false
+  }
+]

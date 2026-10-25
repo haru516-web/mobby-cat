@@ -1,0 +1,1034 @@
+[
+  {
+    "path": "camera/cat-tray.png",
+    "before": {
+      "left": 2,
+      "top": 36,
+      "right": 2,
+      "bottom": 36
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 120,
+      "bottom": 0,
+      "left": 120
+    },
+    "changed": true,
+    "sha256Before": "6d0f6502ed32fff49b185aecefbb3eb729ca2bb76523847454036f86a46768de",
+    "sha256After": "c4232f85da772f4e2820cfa42991bcfebb5b1cf48d99da75c793e5912daf824e"
+  },
+  {
+    "path": "gauge/fill-orange.png",
+    "before": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "after": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "slice": {
+      "top": 0,
+      "right": 40,
+      "bottom": 0,
+      "left": 40
+    },
+    "changed": false,
+    "sha256Before": "fa76e0228eb86dc482e35bef9376f1edd182aeef6a8d426282ca1d75f9f586c9",
+    "sha256After": "fa76e0228eb86dc482e35bef9376f1edd182aeef6a8d426282ca1d75f9f586c9"
+  },
+  {
+    "path": "gauge/fill-yellow.png",
+    "before": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "after": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "slice": {
+      "top": 0,
+      "right": 40,
+      "bottom": 0,
+      "left": 40
+    },
+    "changed": false,
+    "sha256Before": "75ae4dae38781dd319f3c266e3cfa8fce8f59fe4832857e33ccc518d99bbb288",
+    "sha256After": "75ae4dae38781dd319f3c266e3cfa8fce8f59fe4832857e33ccc518d99bbb288"
+  },
+  {
+    "path": "gauge/track.png",
+    "before": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "after": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "slice": {
+      "top": 0,
+      "right": 40,
+      "bottom": 0,
+      "left": 40
+    },
+    "changed": false,
+    "sha256Before": "1856a93551704d273945b352fbfe1e751bcaaecf1eab5203c564f090ed6c1a46",
+    "sha256After": "1856a93551704d273945b352fbfe1e751bcaaecf1eab5203c564f090ed6c1a46"
+  },
+  {
+    "path": "panel/card-cream.png",
+    "before": {
+      "left": 2,
+      "top": 3,
+      "right": 2,
+      "bottom": 4
+    },
+    "after": {
+      "left": 2,
+      "top": 3,
+      "right": 2,
+      "bottom": 4
+    },
+    "slice": {
+      "top": 64,
+      "right": 64,
+      "bottom": 64,
+      "left": 64
+    },
+    "changed": false,
+    "sha256Before": "f81371f084d1d03a7646656fd7d1322cbf4c80e9d55bf30cee0c481231813d27",
+    "sha256After": "f81371f084d1d03a7646656fd7d1322cbf4c80e9d55bf30cee0c481231813d27"
+  },
+  {
+    "path": "panel/card-locked.png",
+    "before": {
+      "left": 2,
+      "top": 4,
+      "right": 2,
+      "bottom": 4
+    },
+    "after": {
+      "left": 2,
+      "top": 4,
+      "right": 2,
+      "bottom": 4
+    },
+    "slice": {
+      "top": 64,
+      "right": 64,
+      "bottom": 64,
+      "left": 64
+    },
+    "changed": false,
+    "sha256Before": "ec34dc2584285ec535956029b4a3c4b973e3c4797e737ad4ca34e350d059ed1b",
+    "sha256After": "ec34dc2584285ec535956029b4a3c4b973e3c4797e737ad4ca34e350d059ed1b"
+  },
+  {
+    "path": "panel/card-selected.png",
+    "before": {
+      "left": 2,
+      "top": 3,
+      "right": 2,
+      "bottom": 3
+    },
+    "after": {
+      "left": 2,
+      "top": 3,
+      "right": 2,
+      "bottom": 3
+    },
+    "slice": {
+      "top": 64,
+      "right": 64,
+      "bottom": 64,
+      "left": 64
+    },
+    "changed": false,
+    "sha256Before": "f5f580396faf4698000751dfda8c4dcd1c780c37ce4f80ccdeb72be9d41cf805",
+    "sha256After": "f5f580396faf4698000751dfda8c4dcd1c780c37ce4f80ccdeb72be9d41cf805"
+  },
+  {
+    "path": "panel/card-white.png",
+    "before": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 3
+    },
+    "after": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 3
+    },
+    "slice": {
+      "top": 64,
+      "right": 64,
+      "bottom": 64,
+      "left": 64
+    },
+    "changed": false,
+    "sha256Before": "49d346b36bcb74ae013bf06bf2c3ec6ca06f7dd5213f647282a8980504594b5b",
+    "sha256After": "49d346b36bcb74ae013bf06bf2c3ec6ca06f7dd5213f647282a8980504594b5b"
+  },
+  {
+    "path": "panel/frame-cat-photo.png",
+    "before": {
+      "left": 2,
+      "top": 3,
+      "right": 2,
+      "bottom": 4
+    },
+    "after": {
+      "left": 2,
+      "top": 3,
+      "right": 2,
+      "bottom": 4
+    },
+    "slice": {
+      "top": 48,
+      "right": 48,
+      "bottom": 48,
+      "left": 48
+    },
+    "changed": false,
+    "sha256Before": "80a2e221a0d7ecc5296498b0e20b0358cd87ce7986480058dc0a3781c66e174d",
+    "sha256After": "80a2e221a0d7ecc5296498b0e20b0358cd87ce7986480058dc0a3781c66e174d"
+  },
+  {
+    "path": "panel/pill-currency.png",
+    "before": {
+      "left": 2,
+      "top": 15,
+      "right": 2,
+      "bottom": 15
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "10d9af98c9c7c60ce065a707905bb9c919c5e2c4c7e78cd79d7d5d334e1096a9",
+    "sha256After": "7cdc85ffabbd204677bb909841610379445c44e13d6957581659e2d3b5b9ffb2"
+  },
+  {
+    "path": "panel/pill-info.png",
+    "before": {
+      "left": 2,
+      "top": 14,
+      "right": 2,
+      "bottom": 14
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "f1b8db5e86f584890b491d329fc0b344a7009897300a42f7e8f8add1f83fd3cb",
+    "sha256After": "a0816b2e51a523595406bc42bac8d71f49d31a28de38efde19062db9924393cc"
+  },
+  {
+    "path": "panel/sheet-bottom.png",
+    "before": {
+      "left": 2,
+      "top": 7,
+      "right": 2,
+      "bottom": 8
+    },
+    "after": {
+      "left": 2,
+      "top": 7,
+      "right": 2,
+      "bottom": 8
+    },
+    "slice": {
+      "top": 90,
+      "right": 90,
+      "bottom": 24,
+      "left": 90
+    },
+    "changed": false,
+    "sha256Before": "2632a46af53c68623ed588753157c4828d4b5dad828c6888913bbb962207d722",
+    "sha256After": "2632a46af53c68623ed588753157c4828d4b5dad828c6888913bbb962207d722"
+  },
+  {
+    "path": "badge/owned-count.png",
+    "before": {
+      "left": 2,
+      "top": 7,
+      "right": 2,
+      "bottom": 7
+    },
+    "after": {
+      "left": 2,
+      "top": 7,
+      "right": 2,
+      "bottom": 7
+    },
+    "slice": {
+      "top": 0,
+      "right": 40,
+      "bottom": 0,
+      "left": 40
+    },
+    "changed": false,
+    "sha256Before": "6459cd95b600aacf963df27229f714ad6fcb570e78c1325cc108bd18e9a4daeb",
+    "sha256After": "6459cd95b600aacf963df27229f714ad6fcb570e78c1325cc108bd18e9a4daeb"
+  },
+  {
+    "path": "badge/rarity-legend.png",
+    "before": {
+      "left": 2,
+      "top": 15,
+      "right": 2,
+      "bottom": 16
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 60,
+      "bottom": 0,
+      "left": 60
+    },
+    "changed": true,
+    "sha256Before": "081fce6ae917cfd5bec8ea16dbb2c2c939631d55d0cda47940ec2e9b1b5caa05",
+    "sha256After": "54212059f44f12712aaf472a0bce4c7b1acd20e76a1a71b54db7a29952ba551d"
+  },
+  {
+    "path": "badge/rarity-limited.png",
+    "before": {
+      "left": 2,
+      "top": 15,
+      "right": 2,
+      "bottom": 16
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 60,
+      "bottom": 0,
+      "left": 60
+    },
+    "changed": true,
+    "sha256Before": "bc15d0d5693116ce3e7beb3f7c57fbea275899a756bc263860e87ce34d75ed65",
+    "sha256After": "88d68e914e81f6b38f9f1ae9856bbca13d01c403c3cc582b4436eaf83beaa73e"
+  },
+  {
+    "path": "badge/rarity-normal.png",
+    "before": {
+      "left": 2,
+      "top": 9,
+      "right": 2,
+      "bottom": 10
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 60,
+      "bottom": 0,
+      "left": 60
+    },
+    "changed": true,
+    "sha256Before": "553a9e1c7b1606e505cdc3f363d1eea95d9e9c261db32d2f54b25c267e107518",
+    "sha256After": "e82a748bee5ef33d824c3ba4f4972e7222ad8523ce74785fde7b34534c109cbf"
+  },
+  {
+    "path": "badge/rarity-rare.png",
+    "before": {
+      "left": 2,
+      "top": 6,
+      "right": 2,
+      "bottom": 7
+    },
+    "after": {
+      "left": 2,
+      "top": 6,
+      "right": 2,
+      "bottom": 7
+    },
+    "slice": {
+      "top": 0,
+      "right": 60,
+      "bottom": 0,
+      "left": 60
+    },
+    "changed": false,
+    "sha256Before": "2dd3a7631ab3c24067a31ebba1d9e53d07ac966b2aca31ccf39b80755253743b",
+    "sha256After": "2dd3a7631ab3c24067a31ebba1d9e53d07ac966b2aca31ccf39b80755253743b"
+  },
+  {
+    "path": "badge/travel-cat.png",
+    "before": {
+      "left": 2,
+      "top": 17,
+      "right": 2,
+      "bottom": 17
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 66,
+      "bottom": 0,
+      "left": 132
+    },
+    "changed": true,
+    "sha256Before": "2e7e4e8604118b8438c6caa0206c33f6e7d667c87901ce30ccf64054444d11a1",
+    "sha256After": "d312b28461beb68b0e2a828786dbea8154dfb24aa5fe20e75889e3bbcf96a47c"
+  },
+  {
+    "path": "button/chip-detail.png",
+    "before": {
+      "left": 2,
+      "top": 16,
+      "right": 2,
+      "bottom": 16
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 66,
+      "bottom": 0,
+      "left": 120
+    },
+    "changed": true,
+    "sha256Before": "b69339c3fe7b82ed98e7cc655468ad4b418f6535f9588b585ec6bbab5a808934",
+    "sha256After": "80c7c2bd719fe9808dd05fc50a8ba255952b60c9a8ff1ea5313d91beb9d933dc"
+  },
+  {
+    "path": "button/chip-favorite-off.png",
+    "before": {
+      "left": 2,
+      "top": 11,
+      "right": 2,
+      "bottom": 12
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 66,
+      "bottom": 0,
+      "left": 132
+    },
+    "changed": true,
+    "sha256Before": "a4ec0e6009869f92e365c7207dac2e9df37139b656d92bbee7a032e3f53d7800",
+    "sha256After": "dc7052b12af1399be4f9a25822bd4b7c1db2f5d62505ad1b4b7e413a41e43ef4"
+  },
+  {
+    "path": "button/chip-favorite-on.png",
+    "before": {
+      "left": 2,
+      "top": 7,
+      "right": 2,
+      "bottom": 8
+    },
+    "after": {
+      "left": 2,
+      "top": 7,
+      "right": 2,
+      "bottom": 8
+    },
+    "slice": {
+      "top": 0,
+      "right": 66,
+      "bottom": 0,
+      "left": 132
+    },
+    "changed": false,
+    "sha256Before": "d113d0782666f0306bfc4f1b168bb21270f70aeee5de9184186bb926d7afc62e",
+    "sha256After": "d113d0782666f0306bfc4f1b168bb21270f70aeee5de9184186bb926d7afc62e"
+  },
+  {
+    "path": "button/disabled.png",
+    "before": {
+      "left": 2,
+      "top": 12,
+      "right": 2,
+      "bottom": 13
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "eed0955c8ae81dd4663b98a192ffe406685bdd043635e33b92c42c33f06f192e",
+    "sha256After": "c9bf980ee42a4698e7faa477f00449fe09091f93539ba6b8d09bee3b469f67a6"
+  },
+  {
+    "path": "button/ghost-green.png",
+    "before": {
+      "left": 2,
+      "top": 9,
+      "right": 2,
+      "bottom": 10
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "d55e89670ef271b5496861d651cd2d9f968a3eb76f99d25a121d244d19cf5a8e",
+    "sha256After": "1a15d5ceed549cf99704d317b78d72d9e1730420fa3c92a634f34678957cdf1f"
+  },
+  {
+    "path": "button/ghost-outline.png",
+    "before": {
+      "left": 2,
+      "top": 14,
+      "right": 2,
+      "bottom": 14
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "ddd162e915f49ee81f7a11dba4eeaba9bee72deea3370ee478d539a64daf762e",
+    "sha256After": "93db02d75176e486fec0208ae260aed2b13332e6efac111b09ac34bb1ecdceb9"
+  },
+  {
+    "path": "button/primary-green.png",
+    "before": {
+      "left": 2,
+      "top": 10,
+      "right": 2,
+      "bottom": 10
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "a8624d499fa3e72dd9622e94309de555a1a94c9e0fb83759ca9b2706948d47ef",
+    "sha256After": "e7a4d0d7010bf57649f265b698b5407fbf834e8f8702c886630f65376229b9ed"
+  },
+  {
+    "path": "button/primary-orange-pressed.png",
+    "before": {
+      "left": 2,
+      "top": 12,
+      "right": 2,
+      "bottom": 13
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "a63f468643c45782778e6f81a30ab0dba0fdd6a70b8a43333cb1b472f2a5de60",
+    "sha256After": "411769cf16ba829cc8bf5fe10b7fe1b9a9e648856186cfa64d92565f8f776e1e"
+  },
+  {
+    "path": "button/primary-orange.png",
+    "before": {
+      "left": 2,
+      "top": 14,
+      "right": 2,
+      "bottom": 14
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "6e2de3066872c1ad6b9d277247b2d92ea7c15192f7aebb6e0933698d4e49bfd3",
+    "sha256After": "bda148596b516e73627b4d9e7c1ab7c06f124c68bf0e03d3a7c5466d70a0c5cc"
+  },
+  {
+    "path": "button/search-bar.png",
+    "before": {
+      "left": 105,
+      "top": 2,
+      "right": 105,
+      "bottom": 2
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 84,
+      "bottom": 0,
+      "left": 180
+    },
+    "changed": true,
+    "sha256Before": "edcb4b23104b9d18c6152546963d97e40861c4cfe03b248b4d0c97b4761a6763",
+    "sha256After": "32aa68fa1aca7bf908c3bc0eeb3a0016813fa064af9408783b6e53ef0b0444e4"
+  },
+  {
+    "path": "button/tab-all-on.png",
+    "before": {
+      "left": 2,
+      "top": 15,
+      "right": 2,
+      "bottom": 15
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 72,
+      "bottom": 0,
+      "left": 72
+    },
+    "changed": true,
+    "sha256Before": "711cd3b56ad2b6a4c58bda320be199eec84a6a107112268061befaf9a410a9c2",
+    "sha256After": "2063ef8447ec7489d6ddcdbc170fd4437c3d0e9911082ba3cf8c43170478d88b"
+  },
+  {
+    "path": "button/tab-limited.png",
+    "before": {
+      "left": 2,
+      "top": 11,
+      "right": 2,
+      "bottom": 11
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 72,
+      "bottom": 0,
+      "left": 72
+    },
+    "changed": true,
+    "sha256Before": "cad20f3d72d01d46e683c0f09c4e95d0b6788c768a1a68e71cd18db3f5e14c9e",
+    "sha256After": "16362803e547f1ec0f01006a64faf7d91d1b84d5550967f6ba6c6f5e33334d39"
+  },
+  {
+    "path": "button/tab-normal.png",
+    "before": {
+      "left": 2,
+      "top": 14,
+      "right": 2,
+      "bottom": 14
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 72,
+      "bottom": 0,
+      "left": 72
+    },
+    "changed": true,
+    "sha256Before": "af080266767d24a4d89a5498c4b9f8c394bcfcb6a7c1d564fd852690996cc23e",
+    "sha256After": "997c3364f3ac561d3e3e80237353676662c552833ad2cf0ad45f27c32764d646"
+  },
+  {
+    "path": "button/tab-rare.png",
+    "before": {
+      "left": 2,
+      "top": 13,
+      "right": 2,
+      "bottom": 14
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 72,
+      "bottom": 0,
+      "left": 72
+    },
+    "changed": true,
+    "sha256Before": "6d5cf8a5ec57a7db60b3709f41bfaef5830e536bd10579a55e8017e3d2aab822",
+    "sha256After": "e3648db19fdc6a0ce4da99fe2bba6aace6bea0fa2178842d0da5adee0a549e11"
+  },
+  {
+    "path": "button/primary-green-pressed.png",
+    "before": {
+      "left": 6,
+      "top": 12,
+      "right": 6,
+      "bottom": 13
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "aaa3e7e47f5ff4027d67f7291a6de183e346165630a594a66fb287a6c903d9c6",
+    "sha256After": "6ccca8cc490686b86e00a6f6b4060adc40ececb37eb0496d1e0daa7c8ef0ca4d"
+  },
+  {
+    "path": "button/ghost-outline-pressed.png",
+    "before": {
+      "left": 6,
+      "top": 17,
+      "right": 6,
+      "bottom": 17
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "79cc4ecc156a456e2cfe00f85a3f19997db55594808919399fa25ce4fd801a85",
+    "sha256After": "47449f0d4360fe7d9cbb08868284f7a00d450a720f2813c017314c6dd50f4abd"
+  },
+  {
+    "path": "button/ghost-green-pressed.png",
+    "before": {
+      "left": 6,
+      "top": 11,
+      "right": 6,
+      "bottom": 11
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 78,
+      "bottom": 0,
+      "left": 78
+    },
+    "changed": true,
+    "sha256Before": "7cc20e7302e31c6b2b2f4bae65381ac37bfce9ac08a4c0caa7d9b0bdf1efa2e1",
+    "sha256After": "2fdcfa2e165d10a8718b72f9bcd4c2d7d823688eecb52882b93a13450d0af984"
+  },
+  {
+    "path": "badge/sample.png",
+    "before": {
+      "left": 24,
+      "top": 6,
+      "right": 24,
+      "bottom": 6
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 0,
+      "right": 48,
+      "bottom": 0,
+      "left": 48
+    },
+    "changed": true,
+    "sha256Before": "fb29b03e6c83b1afbb96650bc6a1910b90429db586c756cb0ce95482010032c0",
+    "sha256After": "7c5e7c7a597e1bb43d05b5743863464c287a5c566f89383396b8f52368f4537d"
+  },
+  {
+    "path": "panel/photo-well.png",
+    "before": {
+      "left": 6,
+      "top": 8,
+      "right": 6,
+      "bottom": 8
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 48,
+      "right": 48,
+      "bottom": 48,
+      "left": 48
+    },
+    "changed": true,
+    "sha256Before": "58a3c2b52e13a07446a0a477eab06d39416540b7da93c4429dee6f4cd678641b",
+    "sha256After": "081b9698371b337f9f102286c265167c407a1b9ab6013be88e0cd7b0eeb5b550"
+  },
+  {
+    "path": "panel/info-table.png",
+    "before": {
+      "left": 6,
+      "top": 13,
+      "right": 7,
+      "bottom": 14
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 42,
+      "right": 42,
+      "bottom": 42,
+      "left": 42
+    },
+    "changed": true,
+    "sha256Before": "29cda753f13172660e256da82728e67940cc948997e6ff1af9468e7e75721211",
+    "sha256After": "0a509f17400d2f589359108412415bb26d5adc65decb06df71adb78efba62e5e"
+  },
+  {
+    "path": "panel/speech-bubble.png",
+    "before": {
+      "left": 7,
+      "top": 14,
+      "right": 7,
+      "bottom": 16
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 64,
+      "right": 0,
+      "bottom": 72,
+      "left": 0
+    },
+    "changed": true,
+    "sha256Before": "c95c8ea5243a4d026546fdec2a29685152499534e9d0ee4819a88fcf6680e428",
+    "sha256After": "f32a49ef4656a819d9c097de53c051a31fc0ddc659137befc5bdea88d7dd274c"
+  },
+  {
+    "path": "panel/divider-h.png",
+    "before": {
+      "left": 6,
+      "top": 5,
+      "right": 3,
+      "bottom": 4
+    },
+    "after": {
+      "left": 6,
+      "top": 5,
+      "right": 3,
+      "bottom": 4
+    },
+    "slice": {
+      "top": 0,
+      "right": 12,
+      "bottom": 0,
+      "left": 12
+    },
+    "changed": false,
+    "sha256Before": "d9f10990f318d2b0557bdfe7c00cf611472b0ba877a70fea31778b5b9feed888",
+    "sha256After": "d9f10990f318d2b0557bdfe7c00cf611472b0ba877a70fea31778b5b9feed888"
+  },
+  {
+    "path": "panel/divider-v.png",
+    "before": {
+      "left": 5,
+      "top": 6,
+      "right": 5,
+      "bottom": 6
+    },
+    "after": {
+      "left": 5,
+      "top": 6,
+      "right": 5,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 12,
+      "right": 0,
+      "bottom": 12,
+      "left": 0
+    },
+    "changed": false,
+    "sha256Before": "c5a24b82c3f323da7cc42a309d05c4b414acef39a7f00fd16787339fbe7a1e91",
+    "sha256After": "c5a24b82c3f323da7cc42a309d05c4b414acef39a7f00fd16787339fbe7a1e91"
+  },
+  {
+    "path": "tabbar/bg.png",
+    "before": {
+      "left": 2,
+      "top": 38,
+      "right": 2,
+      "bottom": 38
+    },
+    "after": {
+      "left": 6,
+      "top": 6,
+      "right": 6,
+      "bottom": 6
+    },
+    "slice": {
+      "top": 90,
+      "right": 90,
+      "bottom": 24,
+      "left": 90
+    },
+    "changed": true,
+    "sha256Before": "f4b4ad6a1bc2338660c5d509d786f2ede163f792226e8118f2c6d7f7da666866",
+    "sha256After": "f34e35617cc32364a1ce2878b46ac4b15368b0534e169c0255473ea7ca638dba"
+  },
+  {
+    "path": "tabbar/underline.png",
+    "before": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "after": {
+      "left": 2,
+      "top": 2,
+      "right": 2,
+      "bottom": 2
+    },
+    "slice": {
+      "top": 0,
+      "right": 18,
+      "bottom": 0,
+      "left": 18
+    },
+    "changed": false,
+    "sha256Before": "e72faaeeffedc394f8d9ee1eb4f21d80cdba2ab22dd8527439b25825c598cb59",
+    "sha256After": "e72faaeeffedc394f8d9ee1eb4f21d80cdba2ab22dd8527439b25825c598cb59"
+  }
+]

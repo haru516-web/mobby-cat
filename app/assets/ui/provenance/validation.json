@@ -1,0 +1,2525 @@
+{
+  "assetCount": 163,
+  "counts": {
+    "badge": 9,
+    "bg": 17,
+    "brand": 15,
+    "button": 23,
+    "camera": 20,
+    "cat": 3,
+    "gauge": 5,
+    "icon": 25,
+    "illust": 11,
+    "panel": 14,
+    "share": 10,
+    "tabbar": 11
+  },
+  "missing": [],
+  "unexpected": [],
+  "errors": [],
+  "reworkedAssetCount": 25,
+  "imagegenRegenerationCalls": 22,
+  "assets": [
+    {
+      "path": "badge/new.png",
+      "width": 120,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "d7b2aaf7876cee30552677db8a585bd7891f224ac0c9b099a6d64aa63de79fd9",
+      "slice": null
+    },
+    {
+      "path": "badge/owned-count.png",
+      "width": 150,
+      "height": 66,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "6459cd95b600aacf963df27229f714ad6fcb570e78c1325cc108bd18e9a4daeb",
+      "slice": {
+        "top": 0,
+        "right": 40,
+        "bottom": 0,
+        "left": 40
+      }
+    },
+    {
+      "path": "badge/picked-stamp.png",
+      "width": 240,
+      "height": 240,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "19580f9a35cf01bd7870aec6ac22d17ad188f5314055e5e7c23937d62238a7a5",
+      "slice": null
+    },
+    {
+      "path": "badge/rarity-legend.png",
+      "width": 300,
+      "height": 108,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "54212059f44f12712aaf472a0bce4c7b1acd20e76a1a71b54db7a29952ba551d",
+      "slice": {
+        "top": 0,
+        "right": 60,
+        "bottom": 0,
+        "left": 60
+      }
+    },
+    {
+      "path": "badge/rarity-limited.png",
+      "width": 300,
+      "height": 108,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "88d68e914e81f6b38f9f1ae9856bbca13d01c403c3cc582b4436eaf83beaa73e",
+      "slice": {
+        "top": 0,
+        "right": 60,
+        "bottom": 0,
+        "left": 60
+      }
+    },
+    {
+      "path": "badge/rarity-normal.png",
+      "width": 300,
+      "height": 108,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e82a748bee5ef33d824c3ba4f4972e7222ad8523ce74785fde7b34534c109cbf",
+      "slice": {
+        "top": 0,
+        "right": 60,
+        "bottom": 0,
+        "left": 60
+      }
+    },
+    {
+      "path": "badge/rarity-rare.png",
+      "width": 300,
+      "height": 108,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "2dd3a7631ab3c24067a31ebba1d9e53d07ac966b2aca31ccf39b80755253743b",
+      "slice": {
+        "top": 0,
+        "right": 60,
+        "bottom": 0,
+        "left": 60
+      }
+    },
+    {
+      "path": "badge/sample.png",
+      "width": 300,
+      "height": 72,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "7c5e7c7a597e1bb43d05b5743863464c287a5c566f89383396b8f52368f4537d",
+      "slice": {
+        "top": 0,
+        "right": 48,
+        "bottom": 0,
+        "left": 48
+      }
+    },
+    {
+      "path": "badge/travel-cat.png",
+      "width": 360,
+      "height": 108,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "d312b28461beb68b0e2a828786dbea8154dfb24aa5fe20e75889e3bbcf96a47c",
+      "slice": {
+        "top": 0,
+        "right": 66,
+        "bottom": 0,
+        "left": 132
+      }
+    },
+    {
+      "path": "bg/app-cream.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "f925d3ae3ddfb6b63cd38eeef9490906a3ff58a5776e3b659300f75dfb7e32a2",
+      "slice": null
+    },
+    {
+      "path": "bg/fade-cream-bottom.png",
+      "width": 1179,
+      "height": 300,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "70cd03cc690baed99837c26152a3cb553de9fbd6b507db19a71904744dda8102",
+      "slice": null
+    },
+    {
+      "path": "bg/news-thumb-1.png",
+      "width": 330,
+      "height": 330,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "c1228c7d04086dfac484cae404f6bf77991836749443e3275f6b0afb2ef725b8",
+      "slice": null
+    },
+    {
+      "path": "bg/news-thumb-2.png",
+      "width": 330,
+      "height": 330,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "e676fc706e3a8cead4551f8b550bfdffe7b5e2430e7969e8e39e6bd0951ef05b",
+      "slice": null
+    },
+    {
+      "path": "bg/news-thumb-3.png",
+      "width": 330,
+      "height": 330,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "12a1a5d91fc159753738136ec8c15cb5e587b44e3821d91f12d215077b49313b",
+      "slice": null
+    },
+    {
+      "path": "bg/overlay-dim.png",
+      "width": 64,
+      "height": 64,
+      "alphaRange": [
+        115,
+        115
+      ],
+      "sha256": "9bec44dfbffae7466773599cd36c406666e361a97e9274a96d0c0e6e5a1fecc6",
+      "slice": null
+    },
+    {
+      "path": "bg/photo-japan.png",
+      "width": 600,
+      "height": 460,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "f8fbe1360a54f333cd561ac82fc5a93aabaf1c70e0d00bd2f0136d31eae2bd7b",
+      "slice": null
+    },
+    {
+      "path": "bg/room-deai.png",
+      "width": 1179,
+      "height": 1400,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "c6a6ade630bf24af644c44c44907129d66b172eb12acb53441f0d64dba7f4e3c",
+      "slice": null
+    },
+    {
+      "path": "bg/room-home.png",
+      "width": 1179,
+      "height": 1900,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "86d136a402952226a86d265a830c886811a52f60b90dc9f462e39151e1c0fbbb",
+      "slice": null
+    },
+    {
+      "path": "bg/screen-shop.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "43d1121b128cb5c9f0d658043a3731e7e6c804f473d17985140cbe3857b81780",
+      "slice": null
+    },
+    {
+      "path": "bg/screen-world.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "08ed7b0ce1e62a3d8ab6eed51a9bb8b421d2476baebdf2e0ad664ea31802bdf4",
+      "slice": null
+    },
+    {
+      "path": "bg/screen-zukan.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "6c1c7a1e6742e19ecf4de6f62bda814da44edc96bb3e80b26c1b555027e50655",
+      "slice": null
+    },
+    {
+      "path": "bg/stamp-photo-france.png",
+      "width": 360,
+      "height": 280,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "67f400aa4e492ca354920d4485ebfbe4fffed429025e714eb9fe1ea164646097",
+      "slice": null
+    },
+    {
+      "path": "bg/stamp-photo-japan.png",
+      "width": 360,
+      "height": 280,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "97e269d1591de7e839460095266ab660c54fb2d5a38595e55a47f48ba409402f",
+      "slice": null
+    },
+    {
+      "path": "bg/stamp-photo-kenya.png",
+      "width": 360,
+      "height": 280,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "894f47a4358b29f9fbc8cfe04334200f44dd57bf1343a54aeffe93bc0f6af119",
+      "slice": null
+    },
+    {
+      "path": "bg/stamp-photo-korea.png",
+      "width": 360,
+      "height": 280,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "6d0494ded6b1a09b495eff87f95bcdc0ef5e72f74c4080b3662159852a1bdb92",
+      "slice": null
+    },
+    {
+      "path": "bg/world-hero.png",
+      "width": 1179,
+      "height": 900,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "6f7c6ebecbe5bcff30f6ecded96f534bd9cf023a755c063f871a703c23f4e0b2",
+      "slice": null
+    },
+    {
+      "path": "brand/app-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "5051e2ecb17c70685e006fedacf86a89212633b6f305c030b9009b0bf184c79e",
+      "slice": null
+    },
+    {
+      "path": "brand/logo-nekomobby.png",
+      "width": 760,
+      "height": 240,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "81984c626395a34a56d8519ef48ec8af96fdb13925e1b05880ba8434129e9f9b",
+      "slice": null
+    },
+    {
+      "path": "brand/splash.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "b17a9976d48613aea0e8fb18468cbebe77ee1abf92825d8cad6cd661988ea879",
+      "slice": null
+    },
+    {
+      "path": "brand/title-collection.png",
+      "width": 560,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "98d4b03e936d7416ee055dbb77c489969b2016a34bd97fd128ba1aeaf58b49ae",
+      "slice": null
+    },
+    {
+      "path": "brand/title-deai.png",
+      "width": 560,
+      "height": 240,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "3e62b841e69bfc6d7181b4892306915c513141e571403222e6f838035b5cfed3",
+      "slice": null
+    },
+    {
+      "path": "brand/title-free-pick.png",
+      "width": 1000,
+      "height": 330,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "b58b7388ab16c08539668edc7e319710154e7071966a4f34d04bffb06db52966",
+      "slice": null
+    },
+    {
+      "path": "brand/title-kyou.png",
+      "width": 560,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "c88b829dc7741068c9ad2f79f10dc6618680b8ca73c033b0fbbf9b91c7f9cc5c",
+      "slice": null
+    },
+    {
+      "path": "brand/title-matatabi.png",
+      "width": 720,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "55752dc7bafb2d5ed8a15d50c6d6b3b85a281c3fc5f156fdd94bb68ce9267db6",
+      "slice": null
+    },
+    {
+      "path": "brand/title-mukaeru.png",
+      "width": 720,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "7757c922d4d145b4d35e7562e3b30cb99dd40f5ad96a8cc9290f4512ae0a3438",
+      "slice": null
+    },
+    {
+      "path": "brand/title-news.png",
+      "width": 640,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "c395ac52d25cc3cc262675d97cddfdbfabeeb001c038fbd405ebff7fa7e2c9b6",
+      "slice": null
+    },
+    {
+      "path": "brand/title-settings.png",
+      "width": 320,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "be4b9684c860d6b25e6f3f5576a29d7210b00a7d4ff93bb1605ff29062c2783a",
+      "slice": null
+    },
+    {
+      "path": "brand/title-shop.png",
+      "width": 480,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5851814d0f4e58fd8d46f93970ffae43d654f1cc69e4e8dab4838db5ce2f226b",
+      "slice": null
+    },
+    {
+      "path": "brand/title-travel.png",
+      "width": 900,
+      "height": 240,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "8b0a388efb2d2a3729389cdfb498b95b0e917431fbc89de53c8400833bc6bc46",
+      "slice": null
+    },
+    {
+      "path": "brand/title-visited.png",
+      "width": 640,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "b0e5ed17fb735f395ce74c5ef99daef6e884ac05dd29590813f6015865428005",
+      "slice": null
+    },
+    {
+      "path": "brand/title-world-mission.png",
+      "width": 640,
+      "height": 110,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "a107e4fd770e6607a4d893d7540e2f5df787ec083fe7a73ecbf81ecb81bfc0ca",
+      "slice": null
+    },
+    {
+      "path": "button/bell-badge.png",
+      "width": 54,
+      "height": 54,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "48311d8239625251c74c3e7aaf58a8c0b08faab05c9b780ebad524f38a2260e9",
+      "slice": null
+    },
+    {
+      "path": "button/bell-round.png",
+      "width": 168,
+      "height": 168,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f7e102924c1174cc9eba701f4ee96bb5f1380721f517ce81cf3ec8d774596c69",
+      "slice": null
+    },
+    {
+      "path": "button/camera-round.png",
+      "width": 330,
+      "height": 330,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e56a6f2188815bc27372d58269d9e59fe600bc73572d4b3a3923342c00835e41",
+      "slice": null
+    },
+    {
+      "path": "button/chip-detail.png",
+      "width": 300,
+      "height": 108,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "80c7c2bd719fe9808dd05fc50a8ba255952b60c9a8ff1ea5313d91beb9d933dc",
+      "slice": {
+        "top": 0,
+        "right": 66,
+        "bottom": 0,
+        "left": 120
+      }
+    },
+    {
+      "path": "button/chip-favorite-off.png",
+      "width": 330,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "dc7052b12af1399be4f9a25822bd4b7c1db2f5d62505ad1b4b7e413a41e43ef4",
+      "slice": {
+        "top": 0,
+        "right": 66,
+        "bottom": 0,
+        "left": 132
+      }
+    },
+    {
+      "path": "button/chip-favorite-on.png",
+      "width": 330,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "d113d0782666f0306bfc4f1b168bb21270f70aeee5de9184186bb926d7afc62e",
+      "slice": {
+        "top": 0,
+        "right": 66,
+        "bottom": 0,
+        "left": 132
+      }
+    },
+    {
+      "path": "button/close-round.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "ccaf4b23d5455fbd126d1432c1c115d4f6cb8278f4e0b046c87d4d040281a2ce",
+      "slice": null
+    },
+    {
+      "path": "button/disabled.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "c9bf980ee42a4698e7faa477f00449fe09091f93539ba6b8d09bee3b469f67a6",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/ghost-green-pressed.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "2fdcfa2e165d10a8718b72f9bcd4c2d7d823688eecb52882b93a13450d0af984",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/ghost-green.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "1a15d5ceed549cf99704d317b78d72d9e1730420fa3c92a634f34678957cdf1f",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/ghost-outline-pressed.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "47449f0d4360fe7d9cbb08868284f7a00d450a720f2813c017314c6dd50f4abd",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/ghost-outline.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "93db02d75176e486fec0208ae260aed2b13332e6efac111b09ac34bb1ecdceb9",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/primary-green-pressed.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "6ccca8cc490686b86e00a6f6b4060adc40ececb37eb0496d1e0daa7c8ef0ca4d",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/primary-green.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e7a4d0d7010bf57649f265b698b5407fbf834e8f8702c886630f65376229b9ed",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/primary-orange-pressed.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "411769cf16ba829cc8bf5fe10b7fe1b9a9e648856186cfa64d92565f8f776e1e",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/primary-orange.png",
+      "width": 360,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "bda148596b516e73627b4d9e7c1ab7c06f124c68bf0e03d3a7c5466d70a0c5cc",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "button/search-bar.png",
+      "width": 1100,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "32aa68fa1aca7bf908c3bc0eeb3a0016813fa064af9408783b6e53ef0b0444e4",
+      "slice": {
+        "top": 0,
+        "right": 84,
+        "bottom": 0,
+        "left": 180
+      }
+    },
+    {
+      "path": "button/tab-all-on.png",
+      "width": 270,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "2063ef8447ec7489d6ddcdbc170fd4437c3d0e9911082ba3cf8c43170478d88b",
+      "slice": {
+        "top": 0,
+        "right": 72,
+        "bottom": 0,
+        "left": 72
+      }
+    },
+    {
+      "path": "button/tab-limited.png",
+      "width": 270,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "16362803e547f1ec0f01006a64faf7d91d1b84d5550967f6ba6c6f5e33334d39",
+      "slice": {
+        "top": 0,
+        "right": 72,
+        "bottom": 0,
+        "left": 72
+      }
+    },
+    {
+      "path": "button/tab-normal.png",
+      "width": 270,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "997c3364f3ac561d3e3e80237353676662c552833ad2cf0ad45f27c32764d646",
+      "slice": {
+        "top": 0,
+        "right": 72,
+        "bottom": 0,
+        "left": 72
+      }
+    },
+    {
+      "path": "button/tab-rare.png",
+      "width": 270,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e3648db19fdc6a0ce4da99fe2bba6aace6bea0fa2178842d0da5adee0a549e11",
+      "slice": {
+        "top": 0,
+        "right": 72,
+        "bottom": 0,
+        "left": 72
+      }
+    },
+    {
+      "path": "button/toggle-off.png",
+      "width": 204,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e50723f524b6a7479eec6270826af6602d98d50e7fbfa85bcd495b65c731faf9",
+      "slice": null
+    },
+    {
+      "path": "button/toggle-on.png",
+      "width": 204,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e00eb522be0070821cb094ec6a164d74aaa61f80d8b07d866b72891e0d1d1e25",
+      "slice": null
+    },
+    {
+      "path": "camera/ar-reticle.png",
+      "width": 480,
+      "height": 480,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "606d7abf98486b99fa87c41b5167830b91f310bc0adbb150443b2f3739f6a645",
+      "slice": null
+    },
+    {
+      "path": "camera/bottombar-scrim.png",
+      "width": 1179,
+      "height": 600,
+      "alphaRange": [
+        0,
+        170
+      ],
+      "sha256": "e1a8ad82527793fc544805c7801e7bcb0844b45dd2fc8641c58159bcf457b273",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-cat-picker.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "a71df264c92dfaea4cb9454931998754c28861389433db0fe41a85e86a43eb62",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-close.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e860e2ff5dfb2b27aeb7582c8cf63281239f4d7ff1f3486d876bed226d6d3c33",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-flash-off.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "1deeb4a806f2409f4e071ef71d577d15da1a0f0d95019c88f52e959c28ad0c69",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-flash-on.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "44d03d87aee5258cd0249abfdef026961003e220d6fac6114860881a3f5c9f00",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-flip.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "8f3b9582ece765f7312ac7b07371d91ef4582a4a5b71076a9e1dedae66c82cbb",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-retake.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "2a10de7d995dbc744b148db229496720cf0ed5181164f30f3c0db5bf546f0a85",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-save.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "3d7a9ab14ddc9926e5df88fa02249d047b9e8a8a6095f8af2b7a0552f7775418",
+      "slice": null
+    },
+    {
+      "path": "camera/btn-share.png",
+      "width": 132,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e656d748b46b57241a3eead69749d09b26c2a27236323caedbdb776e711db89c",
+      "slice": null
+    },
+    {
+      "path": "camera/cat-tray-slot-on.png",
+      "width": 210,
+      "height": 210,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "4489eab66e813829d88c6c9fe73b6d753124b7a65554961e2d6d0459a2c71c32",
+      "slice": null
+    },
+    {
+      "path": "camera/cat-tray-slot.png",
+      "width": 210,
+      "height": 210,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5ef74e2345445415f1123572ce0579c502905f8bbb5325f77318ee421d532c62",
+      "slice": null
+    },
+    {
+      "path": "camera/cat-tray.png",
+      "width": 1179,
+      "height": 360,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "c4232f85da772f4e2820cfa42991bcfebb5b1cf48d99da75c793e5912daf824e",
+      "slice": {
+        "top": 0,
+        "right": 120,
+        "bottom": 0,
+        "left": 120
+      }
+    },
+    {
+      "path": "camera/flash-white.png",
+      "width": 64,
+      "height": 64,
+      "alphaRange": [
+        255,
+        255
+      ],
+      "sha256": "df43710cdc7477a2e85a02cbdb383e85fbaf56e036e6fdd0f2c449be0fd00662",
+      "slice": null
+    },
+    {
+      "path": "camera/gesture-hint.png",
+      "width": 600,
+      "height": 300,
+      "alphaRange": [
+        0,
+        254
+      ],
+      "sha256": "f32b5074007f28d9b4bc595ece297c46faab23ddd7940f364e6403c702b50029",
+      "slice": null
+    },
+    {
+      "path": "camera/handle-transform.png",
+      "width": 90,
+      "height": 90,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "6b34a9ea2b2599dd869737d488643b281fbf4eed0c6ed07f929bedfe197ea46c",
+      "slice": null
+    },
+    {
+      "path": "camera/shadow-soft.png",
+      "width": 480,
+      "height": 150,
+      "alphaRange": [
+        0,
+        119
+      ],
+      "sha256": "3318ee34930b0e88a6428c84f12a826e116549e6410b1f59addac1f336edb5ed",
+      "slice": null
+    },
+    {
+      "path": "camera/shutter-pressed.png",
+      "width": 270,
+      "height": 270,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "965d6a1d9810745bc9938aca0620792edf2cac70338728e6329f716848fa1559",
+      "slice": null
+    },
+    {
+      "path": "camera/shutter.png",
+      "width": 270,
+      "height": 270,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "1320ccc21ce3510d8a3bda92fc5043ec9461e5a099c02c3ce16faf91e008c3c0",
+      "slice": null
+    },
+    {
+      "path": "camera/topbar-scrim.png",
+      "width": 1179,
+      "height": 300,
+      "alphaRange": [
+        0,
+        150
+      ],
+      "sha256": "21d582293fdcce4a6c53747c52bda2f394bc19f9c85987243b006b79bde00dc1",
+      "slice": null
+    },
+    {
+      "path": "cat/halo-select.png",
+      "width": 600,
+      "height": 600,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "06d9fee75c16d26c1a6cb2ec6782917928c1f2677ecad551b545906df3d688c0",
+      "slice": null
+    },
+    {
+      "path": "cat/shadow-oval.png",
+      "width": 400,
+      "height": 120,
+      "alphaRange": [
+        0,
+        181
+      ],
+      "sha256": "07ebcfccc2c254624c31c448529fd2849dfb1e50d32729ad51b99a8e7ebae3e9",
+      "slice": null
+    },
+    {
+      "path": "cat/silhouette-locked.png",
+      "width": 512,
+      "height": 512,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "93b7d2172ad61fb0f3f02a057d07892de6c1dc33840c0d5f0902d620d92ca110",
+      "slice": null
+    },
+    {
+      "path": "gauge/cat-dot-off.png",
+      "width": 120,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "4fc5c17b45a70db4b74710af8b64a4b84d4b36e64fc1049fe37c32832efd74a6",
+      "slice": null
+    },
+    {
+      "path": "gauge/cat-dot-on.png",
+      "width": 120,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5f8be28f7aed58ff60609194c4e0ad3bd7b1750b891bed8c6d1278e434b5acdb",
+      "slice": null
+    },
+    {
+      "path": "gauge/fill-orange.png",
+      "width": 900,
+      "height": 60,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "fa76e0228eb86dc482e35bef9376f1edd182aeef6a8d426282ca1d75f9f586c9",
+      "slice": {
+        "top": 0,
+        "right": 40,
+        "bottom": 0,
+        "left": 40
+      }
+    },
+    {
+      "path": "gauge/fill-yellow.png",
+      "width": 900,
+      "height": 60,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "75ae4dae38781dd319f3c266e3cfa8fce8f59fe4832857e33ccc518d99bbb288",
+      "slice": {
+        "top": 0,
+        "right": 40,
+        "bottom": 0,
+        "left": 40
+      }
+    },
+    {
+      "path": "gauge/track.png",
+      "width": 900,
+      "height": 60,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "1856a93551704d273945b352fbfe1e751bcaaecf1eab5203c564f090ed6c1a46",
+      "slice": {
+        "top": 0,
+        "right": 40,
+        "bottom": 0,
+        "left": 40
+      }
+    },
+    {
+      "path": "icon/book.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "47ce4e8d73f7672c36ac848c1205524b6d6bc6092fe68c340a1b33508d9048a0",
+      "slice": null
+    },
+    {
+      "path": "icon/box.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "13d8909997843181660f578a291ba3e7f6f5c66f9e703708b25afae0f48caa41",
+      "slice": null
+    },
+    {
+      "path": "icon/calendar-small.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "6504ce7bab35e8f385b2ca4cae98c2122ed67e34406ad82d1bf061c4e9e97020",
+      "slice": null
+    },
+    {
+      "path": "icon/calendar-today.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "48114101e0184abe861f4aaca860a622af005df202d10132e3261accc8ab364a",
+      "slice": null
+    },
+    {
+      "path": "icon/camera.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "958be4d3c2cf6c56fc3118d10e0e633b748e9a2216125c81e0930c5b77b821df",
+      "slice": null
+    },
+    {
+      "path": "icon/cat-head.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "bf42f7e9754fd1786c13cc3a7f95e3585151f57302c6f0eb4319ef28e723d7a2",
+      "slice": null
+    },
+    {
+      "path": "icon/chevron-right.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "936a24230e7e465d3092302629fb15919a3621a8e8bef734632e59a2fd5e2046",
+      "slice": null
+    },
+    {
+      "path": "icon/coin-paw.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "4fdf0c67af3ee2995f69b089b9addbe39d1114f89340d51961f020156c2e201b",
+      "slice": null
+    },
+    {
+      "path": "icon/flag.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "93799ea956854ac5dd96c5ab6b8db6fe62a6ffa40f2512f2efc47a10c5e3a8ec",
+      "slice": null
+    },
+    {
+      "path": "icon/gem.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "3f8410cd6a4ce9fcb3a8428e5160811c2391777133789175028e941057652f96",
+      "slice": null
+    },
+    {
+      "path": "icon/globe.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "9a64099f29a5280bdb5f23238d8cf8941d97ed73fb933e30d18777183b7cdf20",
+      "slice": null
+    },
+    {
+      "path": "icon/heart-off.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "7682e9dcfb61ca5d22f6507a8a5f1c2ba7ac65a5e36c742f10e833e4a60bf583",
+      "slice": null
+    },
+    {
+      "path": "icon/heart-on.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "9280553d2919c40cc7a798f3c6c7d6c87c4dd4905b2ea8f9cf0f724b0b523925",
+      "slice": null
+    },
+    {
+      "path": "icon/lock.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5db8a5dcc55f2c189684bd38367a167bdf6e6d96e9194db0e636636e65707165",
+      "slice": null
+    },
+    {
+      "path": "icon/matatabi-bag.png",
+      "width": 360,
+      "height": 360,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "540bcfb39de91f3e579d81b3feadec34e418988cfa9297118ce744ffb15211af",
+      "slice": null
+    },
+    {
+      "path": "icon/matatabi-leaf.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5455b59c541f6239042a01fd253867c9e11a433764e82b767ca4706ce8c907a9",
+      "slice": null
+    },
+    {
+      "path": "icon/megaphone.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "38f6e7b614da98e73886f960c816e693be1c52bde07d718f9c951059cbf0566a",
+      "slice": null
+    },
+    {
+      "path": "icon/paw-small.png",
+      "width": 60,
+      "height": 60,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5ad9dcaf774316e3960e958f4e5b90a9e73f1d4fe5109b0fd8908fc40091eda5",
+      "slice": null
+    },
+    {
+      "path": "icon/paw.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "756949c3ddf10bebca9438277befb88afca3e6090256cc58223a10bf8829b6f4",
+      "slice": null
+    },
+    {
+      "path": "icon/pin.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5befb696d3ea748948f2e08caad9da96f1c532369434804a16e751ab9eaf7ac0",
+      "slice": null
+    },
+    {
+      "path": "icon/plane.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e4ee9e8ff2b1500d9d7d18d06b40e56ef1f73143a444ab1a00d298daaa2c744a",
+      "slice": null
+    },
+    {
+      "path": "icon/question.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e521bded15d9dc8c18bf34cdbfc7af4039be07e195e947926f49acf75ee85d5a",
+      "slice": null
+    },
+    {
+      "path": "icon/search.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "c5d1058557919a0dd6bd61d841e3b1159ce6903f7149cfb603b4e6dfdd8bec88",
+      "slice": null
+    },
+    {
+      "path": "icon/sun.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "b3a264774b9ab055a535fb0dd5445a02c4362473e808531263cdf8daa497d94c",
+      "slice": null
+    },
+    {
+      "path": "icon/ticket-paw.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5e1808e30e976710636fb85eea234fb258dbbcd9ab0025ee5c84f215ed5e4338",
+      "slice": null
+    },
+    {
+      "path": "illust/dotted-route.png",
+      "width": 900,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "45fcc29eca0d125d8e77e03f33ef424ed1a2d46c45bb9c6d33f62319a66e1905",
+      "slice": null
+    },
+    {
+      "path": "illust/flag-france.png",
+      "width": 120,
+      "height": 90,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "82876ed2863355190c4e8ff4564339823c47d5d53e46eab63f40a3877f258c8b",
+      "slice": null
+    },
+    {
+      "path": "illust/flag-japan.png",
+      "width": 120,
+      "height": 90,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "be8abaf673a0a11d56e6cb18287bfee6dd28381ca65bde88e8626950de980b32",
+      "slice": null
+    },
+    {
+      "path": "illust/flag-kenya.png",
+      "width": 120,
+      "height": 90,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "69103292552fb86973b98b9b65b5ec0062597ff60090fd5107f32728d8d3fc6b",
+      "slice": null
+    },
+    {
+      "path": "illust/flag-korea.png",
+      "width": 120,
+      "height": 90,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "d49d2e38da9eb195fcefde065989c1cbb85f7789bf8fdf333deb4bb1bf64bafd",
+      "slice": null
+    },
+    {
+      "path": "illust/paw-trail.png",
+      "width": 480,
+      "height": 240,
+      "alphaRange": [
+        0,
+        140
+      ],
+      "sha256": "a295e4cbc4c09f2e6c1cce8c2220361684dc4df0923fac34c7587b5781ecfa1b",
+      "slice": null
+    },
+    {
+      "path": "illust/postmark-lines.png",
+      "width": 300,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "676815ee405c624ab0f3c60f15473ad9a995c380848c06006f6c024b9b45a805",
+      "slice": null
+    },
+    {
+      "path": "illust/sparkle.png",
+      "width": 120,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "50cf3baa4bf4c9c87f56e84c7071edd97c1c0af660f45bbc78521db2f7cf303f",
+      "slice": null
+    },
+    {
+      "path": "illust/stamp-japan.png",
+      "width": 360,
+      "height": 360,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f6114a23609b4800c41dab5ce61ccda6a49a2d5fe708ab786eab9c86081e632f",
+      "slice": null
+    },
+    {
+      "path": "illust/ticket-stack.png",
+      "width": 360,
+      "height": 300,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "290cb394e39402a0305ffc7766e2012e498eae1302948030de100dd89d78eefa",
+      "slice": null
+    },
+    {
+      "path": "illust/world-map.png",
+      "width": 900,
+      "height": 540,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "95c5c3a1dfee1639160bbbb2ef4400ebcf08aef66075b38814b62a8b49df5978",
+      "slice": null
+    },
+    {
+      "path": "panel/card-cream.png",
+      "width": 192,
+      "height": 192,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f81371f084d1d03a7646656fd7d1322cbf4c80e9d55bf30cee0c481231813d27",
+      "slice": {
+        "top": 64,
+        "right": 64,
+        "bottom": 64,
+        "left": 64
+      }
+    },
+    {
+      "path": "panel/card-locked.png",
+      "width": 192,
+      "height": 192,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "ec34dc2584285ec535956029b4a3c4b973e3c4797e737ad4ca34e350d059ed1b",
+      "slice": {
+        "top": 64,
+        "right": 64,
+        "bottom": 64,
+        "left": 64
+      }
+    },
+    {
+      "path": "panel/card-selected.png",
+      "width": 192,
+      "height": 192,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f5f580396faf4698000751dfda8c4dcd1c780c37ce4f80ccdeb72be9d41cf805",
+      "slice": {
+        "top": 64,
+        "right": 64,
+        "bottom": 64,
+        "left": 64
+      }
+    },
+    {
+      "path": "panel/card-white.png",
+      "width": 192,
+      "height": 192,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "49d346b36bcb74ae013bf06bf2c3ec6ca06f7dd5213f647282a8980504594b5b",
+      "slice": {
+        "top": 64,
+        "right": 64,
+        "bottom": 64,
+        "left": 64
+      }
+    },
+    {
+      "path": "panel/divider-h.png",
+      "width": 600,
+      "height": 12,
+      "alphaRange": [
+        0,
+        90
+      ],
+      "sha256": "d9f10990f318d2b0557bdfe7c00cf611472b0ba877a70fea31778b5b9feed888",
+      "slice": {
+        "top": 0,
+        "right": 12,
+        "bottom": 0,
+        "left": 12
+      }
+    },
+    {
+      "path": "panel/divider-v.png",
+      "width": 12,
+      "height": 300,
+      "alphaRange": [
+        0,
+        90
+      ],
+      "sha256": "c5a24b82c3f323da7cc42a309d05c4b414acef39a7f00fd16787339fbe7a1e91",
+      "slice": {
+        "top": 12,
+        "right": 0,
+        "bottom": 12,
+        "left": 0
+      }
+    },
+    {
+      "path": "panel/frame-cat-photo.png",
+      "width": 192,
+      "height": 192,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "80a2e221a0d7ecc5296498b0e20b0358cd87ce7986480058dc0a3781c66e174d",
+      "slice": {
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48
+      }
+    },
+    {
+      "path": "panel/info-table.png",
+      "width": 300,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "0a509f17400d2f589359108412415bb26d5adc65decb06df71adb78efba62e5e",
+      "slice": {
+        "top": 42,
+        "right": 42,
+        "bottom": 42,
+        "left": 42
+      }
+    },
+    {
+      "path": "panel/photo-well.png",
+      "width": 192,
+      "height": 192,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "081b9698371b337f9f102286c265167c407a1b9ab6013be88e0cd7b0eeb5b550",
+      "slice": {
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48
+      }
+    },
+    {
+      "path": "panel/pill-currency.png",
+      "width": 420,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "7cdc85ffabbd204677bb909841610379445c44e13d6957581659e2d3b5b9ffb2",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "panel/pill-info.png",
+      "width": 300,
+      "height": 132,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "a0816b2e51a523595406bc42bac8d71f49d31a28de38efde19062db9924393cc",
+      "slice": {
+        "top": 0,
+        "right": 78,
+        "bottom": 0,
+        "left": 78
+      }
+    },
+    {
+      "path": "panel/polaroid.png",
+      "width": 360,
+      "height": 420,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "3d848c31b656edf257d33ddddb46cc8d121b69a823075bfd00b552c1e6798d6e",
+      "slice": null
+    },
+    {
+      "path": "panel/sheet-bottom.png",
+      "width": 1179,
+      "height": 300,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "2632a46af53c68623ed588753157c4828d4b5dad828c6888913bbb962207d722",
+      "slice": {
+        "top": 90,
+        "right": 90,
+        "bottom": 24,
+        "left": 90
+      }
+    },
+    {
+      "path": "panel/speech-bubble.png",
+      "width": 300,
+      "height": 180,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f32a49ef4656a819d9c097de53c051a31fc0ddc659137befc5bdea88d7dd274c",
+      "slice": {
+        "top": 64,
+        "right": 0,
+        "bottom": 72,
+        "left": 0
+      }
+    },
+    {
+      "path": "share/discovery-card-story.png",
+      "width": 1080,
+      "height": 1920,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "403bb0f9bfd9a3ae6edeb76a2812c8e6ec9ab629999c54d3f1e4dfc7a3238186",
+      "slice": null
+    },
+    {
+      "path": "share/discovery-card.png",
+      "width": 1080,
+      "height": 1350,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "868baa7cde5187208e03a0c1ef25bbeb3260f52938c07821725ad07b4a647f97",
+      "slice": null
+    },
+    {
+      "path": "share/photo-frame-polaroid.png",
+      "width": 1080,
+      "height": 1350,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "1031b35e30768527cb53e8ab0446405aa2de8296929e25cba1e42328e69dcc3e",
+      "slice": null
+    },
+    {
+      "path": "share/photo-frame-stamp.png",
+      "width": 1080,
+      "height": 1350,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "2c0846077449acb63f7ad87cbdd78e7c7513002c61482cc470035918f88f6bab",
+      "slice": null
+    },
+    {
+      "path": "share/photo-frame-travel.png",
+      "width": 1080,
+      "height": 1350,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f63c01d186c7edf4f5c81b62c628cce605b11e05865a2b111cef20c08ec48e4c",
+      "slice": null
+    },
+    {
+      "path": "share/travel-card-story.png",
+      "width": 1080,
+      "height": 1920,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f2c60b1912135a281a41079615cb4430d8609eb668e4d358b39bdccef52694bb",
+      "slice": null
+    },
+    {
+      "path": "share/travel-card.png",
+      "width": 1080,
+      "height": 1350,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "a2826298a8367b8855e0fe08c37f1b6f459116db01edc36dc03dfe2beff86694",
+      "slice": null
+    },
+    {
+      "path": "share/video-intro.png",
+      "width": 1080,
+      "height": 1920,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "a9672f8b5a035b8c538ab09ce769f762c1c5273e29d929b9af56bbc8e816b0bd",
+      "slice": null
+    },
+    {
+      "path": "share/video-outro.png",
+      "width": 1080,
+      "height": 1920,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "a648b45d8c199f7cb0aaa21dc4b73b14516fcd79a773948835a94521332f8341",
+      "slice": null
+    },
+    {
+      "path": "share/watermark.png",
+      "width": 360,
+      "height": 120,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "6c2fb0e28675076187919fe8d63a4cb258a00a9641a118a14d358b7467829f7b",
+      "slice": null
+    },
+    {
+      "path": "tabbar/active-glow.png",
+      "width": 300,
+      "height": 300,
+      "alphaRange": [
+        0,
+        253
+      ],
+      "sha256": "b6ec110d9f0ff7940e032eacf754629f17ad4d7d7b8982b6206f3a1060b7e0a4",
+      "slice": null
+    },
+    {
+      "path": "tabbar/bg.png",
+      "width": 1179,
+      "height": 300,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "f34e35617cc32364a1ce2878b46ac4b15368b0534e169c0255473ea7ca638dba",
+      "slice": {
+        "top": 90,
+        "right": 90,
+        "bottom": 24,
+        "left": 90
+      }
+    },
+    {
+      "path": "tabbar/deai-off.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "5fa9f179a750ca7b640975fc6241fa1df91f763f205d9e0023946f7e9c2e8496",
+      "slice": null
+    },
+    {
+      "path": "tabbar/deai-on.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "15a381eaea0ea8fee03a363b2510c049b43774dfdba419622c293bcfcede84c2",
+      "slice": null
+    },
+    {
+      "path": "tabbar/home-off.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "440d3b7ff85486c55baedf5229e3b490447f4185035028284ab6334ee91e61bc",
+      "slice": null
+    },
+    {
+      "path": "tabbar/home-on.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "17ec388ed78ab2a6eb3c6c04e0adfcdae809f159114597110753c8f06f2ff974",
+      "slice": null
+    },
+    {
+      "path": "tabbar/underline.png",
+      "width": 210,
+      "height": 30,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "e72faaeeffedc394f8d9ee1eb4f21d80cdba2ab22dd8527439b25825c598cb59",
+      "slice": {
+        "top": 0,
+        "right": 18,
+        "bottom": 0,
+        "left": 18
+      }
+    },
+    {
+      "path": "tabbar/world-off.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "b7e438c2f93ac908a539e54b85caaa608ad94b8a7d7db199e3a206a2c750108b",
+      "slice": null
+    },
+    {
+      "path": "tabbar/world-on.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "af8aa6cbb1c69de1a03f398ef62d85a13eba384a283842073c4888aa3ef36acd",
+      "slice": null
+    },
+    {
+      "path": "tabbar/zukan-off.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "1f6ab4fc781107d848f91cb405f2082e2feab92f9f1b275fbe4026d14d4d16ba",
+      "slice": null
+    },
+    {
+      "path": "tabbar/zukan-on.png",
+      "width": 150,
+      "height": 150,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sha256": "2f3edfcdc7fd72f414fea5712724540cc6d120bab0df2d09a206758fb9afef60",
+      "slice": null
+    }
+  ],
+  "additionalAssets": 25,
+  "stretchAssetCount": 43,
+  "marginNormalizedCount": 28,
+  "marginThresholdAlpha": 8,
+  "maxAllowedMarginPx": 8,
+  "stretchProof": {
+    "tested": 43,
+    "errors": [],
+    "cases": [
+      {
+        "path": "badge/owned-count.png",
+        "target": [
+          300,
+          66
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "badge/rarity-legend.png",
+        "target": [
+          600,
+          108
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "badge/rarity-limited.png",
+        "target": [
+          600,
+          108
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "badge/rarity-normal.png",
+        "target": [
+          600,
+          108
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "badge/rarity-rare.png",
+        "target": [
+          600,
+          108
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "badge/sample.png",
+        "target": [
+          600,
+          72
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "badge/travel-cat.png",
+        "target": [
+          720,
+          108
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/chip-detail.png",
+        "target": [
+          600,
+          108
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/chip-favorite-off.png",
+        "target": [
+          660,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/chip-favorite-on.png",
+        "target": [
+          660,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/disabled.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/ghost-green-pressed.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/ghost-green.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/ghost-outline-pressed.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/ghost-outline.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/primary-green-pressed.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/primary-green.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/primary-orange-pressed.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/primary-orange.png",
+        "target": [
+          720,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/search-bar.png",
+        "target": [
+          2200,
+          150
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/tab-all-on.png",
+        "target": [
+          540,
+          120
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/tab-limited.png",
+        "target": [
+          540,
+          120
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/tab-normal.png",
+        "target": [
+          540,
+          120
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "button/tab-rare.png",
+        "target": [
+          540,
+          120
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "camera/cat-tray.png",
+        "target": [
+          2358,
+          360
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "gauge/fill-orange.png",
+        "target": [
+          1800,
+          60
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "gauge/fill-yellow.png",
+        "target": [
+          1800,
+          60
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "gauge/track.png",
+        "target": [
+          1800,
+          60
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "panel/card-cream.png",
+        "target": [
+          384,
+          384
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/card-locked.png",
+        "target": [
+          384,
+          384
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/card-selected.png",
+        "target": [
+          384,
+          384
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/card-white.png",
+        "target": [
+          384,
+          384
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/divider-h.png",
+        "target": [
+          1200,
+          12
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "panel/divider-v.png",
+        "target": [
+          12,
+          600
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "y"
+        ]
+      },
+      {
+        "path": "panel/frame-cat-photo.png",
+        "target": [
+          384,
+          384
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/info-table.png",
+        "target": [
+          600,
+          300
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/photo-well.png",
+        "target": [
+          384,
+          384
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/pill-currency.png",
+        "target": [
+          840,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "panel/pill-info.png",
+        "target": [
+          600,
+          132
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      },
+      {
+        "path": "panel/sheet-bottom.png",
+        "target": [
+          2358,
+          600
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "panel/speech-bubble.png",
+        "target": [
+          300,
+          360
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "y"
+        ]
+      },
+      {
+        "path": "tabbar/bg.png",
+        "target": [
+          2358,
+          600
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "path": "tabbar/underline.png",
+        "target": [
+          420,
+          30
+        ],
+        "capsUnchanged": true,
+        "axes": [
+          "x"
+        ]
+      }
+    ]
+  }
+}
