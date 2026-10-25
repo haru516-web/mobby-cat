@@ -2,6 +2,14 @@
 
 Built-in image_gen. Reference1: characters/bengal.png; reference2: characters/ragdoll.png; reference3: original target.
 
+## country-01
+
+Use case: precise-object-edit. Reference1 bengal and2 ragdoll are eye/hardware style references. Reference3 is the EDIT TARGET country-01 torch Mobby. Change ONLY the biological eye viewer LEFT: replace the narrow slit pupil with a LARGE PERFECTLY ROUND BLACK PUPIL centered inside a glossy icy blue iris, white round catchlight, same natural detailed iris style as image1/2. Keep the ivory short satin fur, enormous upright ears, lean squared unified head/body with no neck, red-white ribbon, torch, one right camera lens and one D-pad plus two plain buttons EXACTLY. Transparent RGBA PNG1254x1254. No background/grid/floor/text/watermark. The biological pupil must be circular, not vertical.
+
+Reason: 白長毛の類似組からアイボリー極短毛・大耳・細い四角胴へ変更。聖火とリボンを保持。初稿の縦長瞳孔を丸い黒目に修正。
+
+QA: accepted: one living left eye with round pupil, right lens, one D-pad and two plain buttons; differentiated texture/ears/body; original concept retained
+
 ## country-07
 
 Use case: stylized-concept. MAIN CAT redesign country-07. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: WHITE coarse SHORT WIRY fur with distinct spiky individual guard hairs, VERY LARGE sideways rounded ears, low wide squared torso, tiny blunt muzzle, rainbow iris. Keep bright rainbow-colored tail and colored bead collar. No soft long white fluff. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.

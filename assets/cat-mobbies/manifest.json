@@ -11,30 +11,36 @@
       "name": "ブリティッシュショートヘア",
       "file": "characters/british-shorthair.png",
       "description": "青灰色の毛、銅色の目。レアモビー参照の修正版。",
-      "buttonStyle": "round-with-paw-marks",
+      "buttonStyle": "plain-round",
       "status": "concept",
       "width": 1254,
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 3061291,
-      "sha256": "75e66d4bbff1984b915f22ddacfae6990c11f065eb14177d54b20a1bca64bc7b",
-      "originalFile": "british-shorthair-v2.png"
+      "bytes": 3028160,
+      "sha256": "8a0375ecf71358b15c44463fcbf45df99a30752dbc98fd68a183497219226d0b",
+      "originalFile": "british-shorthair-v2.png",
+      "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby british-shorthair. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: BRITISH SHORTHAIR solid BLUE GREY ultra-dense very SHORT velvet plush coat, TINY low ROUND ears, exceptionally BROAD plump cheeks and low wide squared body, small blunt muzzle, COPPER iris ROUND black pupil. No markings/accessories. Replace paw-print belly buttons with PLAIN BLACK round buttons. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+      "regen": true,
+      "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。BRITISH SHORTHAIR solid BLUE GREY ultra-dense very SHORT velvet plush coat, TINY low ROUND ears, exceptionally BROAD plump cheeks and low wide squared body, small blunt muzzle, COPPER iris ROUND black pupil. No markings/accessories. Replace paw-print belly buttons with PLAIN BLACK round buttons."
     },
     {
       "id": "siamese-seal-point",
       "name": "シャム（シールポイント）",
       "file": "characters/siamese-seal-point.png",
       "description": "クリーム色と濃茶のポイント、青い目。レアモビー参照の修正版。",
-      "buttonStyle": "round-with-paw-marks",
+      "buttonStyle": "plain-round",
       "status": "concept",
       "width": 1254,
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2703620,
-      "sha256": "cd6e979e64861242e853446ac446acafa3a4676f89e1973011dec9dec03fa620",
-      "originalFile": "siamese-seal-point-v2.png"
+      "bytes": 2564997,
+      "sha256": "9ecabfcf01fc3d47d8b9be031d1768394b8480cfeb5ff7bfabba68dfd257db72",
+      "originalFile": "siamese-seal-point-v2.png",
+      "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby siamese-seal-point. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: SIAMESE SEAL POINT: ivory CREAM body, DARK SEAL BROWN mask/ears/legs/thin tail, VERY SHORT sleek glossy fur. HUGE wide-set pointed ears, narrow WEDGE face and lean tall square torso, sapphire BLUE iris ROUND pupil. No white inverted-V, no long fluffy fur, no accessories. Replace paw buttons with TWO PLAIN round black buttons. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+      "regen": true,
+      "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。SIAMESE SEAL POINT: ivory CREAM body, DARK SEAL BROWN mask/ears/legs/thin tail, VERY SHORT sleek glossy fur. HUGE wide-set pointed ears, narrow WEDGE face and lean tall square torso, sapphire BLUE iris ROUND pupil. No white inverted-V, no long fluffy fur, no accessories. Replace paw buttons with TWO PLAIN round black buttons."
     },
     {
       "id": "bengal",
@@ -161,9 +167,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2621327,
-      "sha256": "75555ef620520ac6fb43efcb17eb8bdb54be1d7a858f5c4c805da249fbeab025",
-      "originalFile": "batch30/06-balinese.png"
+      "bytes": 2942890,
+      "sha256": "8537d512e8288ec559ffb91983d13821f63e4311142bb6cb79825a958e6b052e",
+      "originalFile": "batch30/06-balinese.png",
+      "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby balinese. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: BALINESE SEAL POINT: IVORY body with very DARK SEAL BROWN points and whole face mask, LONG fine lightweight SILKY hair and feathery thin plume tail. VERY LARGE wide-set pointed ears, narrow angular wedge face, slim tall squared torso, sapphire BLUE iris ROUND pupil. No white mittens, no inverted-V or white face blaze, no accessories. Not a round broad Birman. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+      "regen": true,
+      "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。BALINESE SEAL POINT: IVORY body with very DARK SEAL BROWN points and whole face mask, LONG fine lightweight SILKY hair and feathery thin plume tail. VERY LARGE wide-set pointed ears, narrow angular wedge face, slim tall squared torso, sapphire BLUE iris ROUND pupil. No white mittens, no inverted-V or white face blaze, no accessories. Not a round broad Birman."
     },
     {
       "id": "russian-blue",
@@ -176,9 +185,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2982999,
-      "sha256": "220daa9c8c7e4076c0ca471fb6437d69d4704f469dcb111b791634bb63da01d5",
-      "originalFile": "batch30/07-russian-blue.png"
+      "bytes": 2987021,
+      "sha256": "a6ea4aae07606c1849b6b37d1908c1feb28588406fb5c2093e966185f6a5aee6",
+      "originalFile": "batch30/07-russian-blue.png",
+      "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby russian-blue. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: RUSSIAN BLUE solid cool BLUE GREY dense SHORT coat with clear shimmering SILVER tips, HUGE upright pointed ears, angular narrow wedge face, slim tall squared body, emerald GREEN iris ROUND pupil. No markings, no accessories. Avoid British round cheeks and low tiny ears. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+      "regen": true,
+      "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。RUSSIAN BLUE solid cool BLUE GREY dense SHORT coat with clear shimmering SILVER tips, HUGE upright pointed ears, angular narrow wedge face, slim tall squared body, emerald GREEN iris ROUND pupil. No markings, no accessories. Avoid British round cheeks and low tiny ears."
     },
     {
       "id": "abyssinian",
@@ -275,9 +287,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2649537,
-      "sha256": "bb507f908fbe843d9c3b7ec80f9d2261fd6855bf3a90e23a369da48652f6dd12",
-      "originalFile": "batch30/13-tonkinese.png"
+      "bytes": 2602123,
+      "sha256": "40d0827a3cbc53650d1d2f8a086a1a9e23e9025b94aa72412a2a6c12dd187034",
+      "originalFile": "batch30/13-tonkinese.png",
+      "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby tonkinese. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: TONKINESE SABLE MINK: even warm taupe-brown SHORT satin fur with gently darker brown points, NO stark white belly or white face blaze. Medium ROUND ears, broad rounded cheeks, compact low squared body, AQUAMARINE living iris ROUND pupil. No accessories. Different from large-eared narrow Siamese. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+      "regen": true,
+      "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。TONKINESE SABLE MINK: even warm taupe-brown SHORT satin fur with gently darker brown points, NO stark white belly or white face blaze. Medium ROUND ears, broad rounded cheeks, compact low squared body, AQUAMARINE living iris ROUND pupil. No accessories. Different from large-eared narrow Siamese."
     },
     {
       "id": "exotic-shorthair",
@@ -305,9 +320,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2641861,
-      "sha256": "28ec966b33ae882838c633c85b29c7b50f92aeafec6cfa91d308fcb74c03a007",
-      "originalFile": "batch30/15-birman.png"
+      "bytes": 2620504,
+      "sha256": "5eb737dd1ab071ab546041bcffad6af3771e26ce468dfc0e908dc3eca957a4b7",
+      "originalFile": "batch30/15-birman.png",
+      "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby birman. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: BIRMAN SEAL POINT: CREAM body, DARK SEAL BROWN full face mask and medium rounded ears, WHITE gloves on all paws, SILKY SEMI-LONG coat. No white facial blaze/inverted-V. Very broad rounded cheekbones and sturdy wide square torso, sapphire BLUE iris ROUND pupil. No accessories. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+      "regen": true,
+      "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。BIRMAN SEAL POINT: CREAM body, DARK SEAL BROWN full face mask and medium rounded ears, WHITE gloves on all paws, SILKY SEMI-LONG coat. No white facial blaze/inverted-V. Very broad rounded cheekbones and sturdy wide square torso, sapphire BLUE iris ROUND pupil. No accessories."
     },
     {
       "id": "ragamuffin",

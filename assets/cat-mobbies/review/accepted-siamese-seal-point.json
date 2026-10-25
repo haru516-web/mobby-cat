@@ -1,0 +1,19 @@
+{
+  "id": "siamese-seal-point",
+  "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby siamese-seal-point. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: SIAMESE SEAL POINT: ivory CREAM body, DARK SEAL BROWN mask/ears/legs/thin tail, VERY SHORT sleek glossy fur. HUGE wide-set pointed ears, narrow WEDGE face and lean tall square torso, sapphire BLUE iris ROUND pupil. No white inverted-V, no long fluffy fur, no accessories. Replace paw buttons with TWO PLAIN round black buttons. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-55c8a65c-8469-4658-ace0-7b97e56b19be.png",
+  "target": "assets/cat-mobbies/characters/siamese-seal-point.png",
+  "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。SIAMESE SEAL POINT: ivory CREAM body, DARK SEAL BROWN mask/ears/legs/thin tail, VERY SHORT sleek glossy fur. HUGE wide-set pointed ears, narrow WEDGE face and lean tall square torso, sapphire BLUE iris ROUND pupil. No white inverted-V, no long fluffy fur, no accessories. Replace paw buttons with TWO PLAIN round black buttons.",
+  "qa": "accepted: one living left eye with round pupil, right lens, one D-pad and two plain buttons; differentiated texture/ears/body; original concept retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2564997,
+    "sha256": "9ecabfcf01fc3d47d8b9be031d1768394b8480cfeb5ff7bfabba68dfd257db72"
+  }
+}
