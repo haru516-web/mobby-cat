@@ -1,6 +1,7 @@
 # Codex 依頼プロンプト（UI画像の差し替え・追加）
 
-作業ブランチ: `codex/ui-assets` から分岐した新しいブランチ（例: `codex/ui-fixes`）。**コード（`app/src`, `App.tsx`）は変更しない。** 画像と `app/assets/ui/manifest.json`・`provenance` の更新だけを行う。
+作業フォルダ: **`D:\mobby-cat\.worktrees\ui-fixes`**（git worktree。ブランチは `codex/ui-fixes`、`feature/brushup` から分岐）。このフォルダの中だけで作業し、`D:\mobby-cat` 本体や他のブランチは触らず、ブランチも切り替えない。終わったら `git push origin codex/ui-fixes` まで行う。
+**コード（`app/src`, `App.tsx`）は変更しない。** 画像と `app/assets/ui/manifest.json`、`assets/ui-records/provenance/` の更新だけを行う。
 既存素材と同じ built-in image_gen、同じビジュアルルール（`docs/codex/CODEX_PROMPT.md` の「ビジュアルルール」）を守る。文字は焼き込まない。
 
 ---
@@ -40,6 +41,6 @@
 ## 完了条件
 
 - 追加・差し替えした画像の寸法、透過、白フチなしを確認する。
-- `manifest.json`（寸法・SHA-256・slice）と `provenance/prompts-<カテゴリ>.md` を更新する。
-- 変更した画像の一覧と、作り直しの回数を `app/assets/ui/README.md` に追記する。
-- 画像を差し替えたら、コード側の読み込み（`app/src/ui/uiAssets.ts`）は別途こちらで更新するので、新規ファイル名は上の表のとおりにする。
+- `manifest.json`（寸法・SHA-256・slice）と `assets/ui-records/provenance/prompts-<カテゴリ>.md` を更新する。
+- 変更した画像の一覧と、作り直しの回数を `assets/ui-records/README.md` に追記する。
+- 画像を差し替えたら、コード側の読み込み（`app/src/ui/uiAssets.ts`。`tools/build-ui-registry.ps1` で自動生成）は別途こちらで更新するので、新規ファイル名は上の表のとおりにする。
