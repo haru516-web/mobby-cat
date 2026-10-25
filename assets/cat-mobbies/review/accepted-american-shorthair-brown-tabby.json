@@ -1,0 +1,21 @@
+{
+  "id": "american-shorthair-brown-tabby",
+  "name": "アメリカンショートヘア（ブラウンタビー）",
+  "batch": "g",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/g/american-shorthair-brown-tabby.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-76c97439-808e-43c2-8389-b7a5d085f89c.png",
+  "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: american-shorthair-brown-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: American Shorthair brown tabby: brown coat with black classic swirls, forehead \"M\", green-gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2257377,
+    "sha256": "6feb7b4c23bb9381c29707ef370c46eb7479056b4384180028d0cd4d0ae49f27"
+  }
+}
