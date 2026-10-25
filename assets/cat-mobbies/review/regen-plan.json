@@ -1,0 +1,189 @@
+[
+  {
+    "group": "長毛キジ三毛の反復",
+    "ids": [
+      "rea-mobby",
+      "shikaku",
+      "tomodachizure",
+      "bunshin",
+      "traveling-mobby",
+      "country-30",
+      "shachou",
+      "kikan",
+      "collector"
+    ],
+    "observations": "黒茶オレンジ、放射状の長毛、立ち耳と丸い目、同じ正方形の比率",
+    "plan": "rea-mobbyを保持。他は再描画。shikakuは銀白黒の短毛で横広、tomodachizureは白ライラックの大耳短毛。bunshinは青灰の短い巻き毛、travelingは短毛の赤茶トラに白い口元、country-30はアイボリーのワイヤー毛、shachouは銀の短毛、kikanは黒白の粗毛、collectorは青クリームの折れ耳。元の小物コンセプトを保持"
+  },
+  {
+    "group": "茶色単色の丸顔",
+    "ids": [
+      "havana-brown",
+      "burmese",
+      "halloween",
+      "mushoku",
+      "bouken-ou"
+    ],
+    "observations": "茶の単色、丸顔・小耳、幅高さと口元が近い",
+    "plan": "havana-brownは大耳と長いマズル、burmeseは幅広の頬、halloweenは黒煙の短毛、mushokuは白茶の波毛、bouken-ouは淡い砂色の粗毛に変える"
+  },
+  {
+    "group": "茶長毛猫種",
+    "ids": [
+      "siberian",
+      "maine-coon",
+      "somali",
+      "norwegian-forest"
+    ],
+    "observations": "茶の長毛、白い顎、同程度の耳と頬と体幅",
+    "plan": "全4匹の猫種差を強める。siberianは冷たい銀タビーの密な三重毛で樽型、maine-coonは大きな房耳と四角いマズル、somaliは均一なソレルの軽い毛と大耳、norwegianは三角の顔と長いガードヘア"
+  },
+  {
+    "group": "茶白の汎用顔",
+    "ids": [
+      "world-traveler",
+      "nyanpo",
+      "hisashiburi",
+      "hyakunin",
+      "ouji",
+      "shitsukoi",
+      "nyannyan",
+      "turkish-van",
+      "chokotto",
+      "hodohodo",
+      "nekonohi"
+    ],
+    "observations": "薄茶白、似た長さの毛、丸眼と頬、同じ胴比率",
+    "plan": "turkish-vanは頭尾だけ赤いバン模様を強化して保持。ほかは毛色・毛丈・耳・体幅の複数を変更。各条件の小物は保持。world-traveler=黒白短毛大耳、nyanpo=麦色の粗毛、hisashiburi=白にチョコ小斑の短毛、hyakunin=ライラック巻き毛、ouji=青灰の短毛丸頬、shitsukoi=銀白の折れ耳、nyannyan=クリーム短毛横広、chokotto=淡いピンク灰の短毛小柄、hodohodo=青クリーム短毛、nekonohi=白い長毛で小耳"
+  },
+  {
+    "group": "橙の長毛",
+    "ids": [
+      "osanpo",
+      "tekuteku",
+      "mainichi",
+      "lucky",
+      "mantan",
+      "hinata",
+      "country-50"
+    ],
+    "observations": "橙とクリーム、ふわふわ毛、顔と体比率",
+    "plan": "全員を個別化。osanpo=砂色短毛大耳、tekuteku=濃赤の細い縞で引き締める、mainichi=橙白の短い波毛、lucky=金の短毛で幅広頬、mantan=明橙の短毛大丸耳、hinata=淡杏の長毛折れ耳、country-50=金色の長い巻き毛"
+  },
+  {
+    "group": "黒白の長毛",
+    "ids": [
+      "sakasama",
+      "country-08",
+      "juunyan",
+      "usotsuki"
+    ],
+    "observations": "ハチワレ、長毛、丸い目と同じ胴比率",
+    "plan": "sakasamaは黒白の片側配色を保持。country-08=黒白大斑の短毛と丸耳、juunyan=白地に黒点の巻き毛、usotsuki=黒い短毛に細い白線で大耳"
+  },
+  {
+    "group": "灰茶の疲れ顔",
+    "ids": [
+      "genkai",
+      "denchigire",
+      "toshikoshi",
+      "issei-nenne",
+      "samishigari",
+      "nebosuke"
+    ],
+    "observations": "淡灰茶の毛、半眼・低い耳、幅広胴",
+    "plan": "genkai/denchigireは疲れ表現を保ち短毛銀縞/青灰の波毛に分化。toshikoshi=白黒短毛丸頬、issei-nenne=淡青長毛小耳、samishigari=ミルク茶の短毛大耳、nebosuke=クリームの長い巻き毛"
+  },
+  {
+    "group": "ピンク白",
+    "ids": [
+      "tanjoubi",
+      "sakura",
+      "country-20",
+      "asa"
+    ],
+    "observations": "ピンク白、同じ毛丈と頬と体比率",
+    "plan": "tanjoubi=短毛ピンク白大斑で丸耳、sakura=濃い桜の先端色と白胸の絹毛で大耳、country-20=淡桃の短い巻き毛、asa=桃と白の短毛で横広"
+  },
+  {
+    "group": "白の長毛",
+    "ids": [
+      "persian",
+      "turkish-angora",
+      "santa",
+      "yukidaruma",
+      "country-01",
+      "country-07",
+      "oiwai"
+    ],
+    "observations": "白長毛、同じ目と頬と体幅",
+    "plan": "persianは平たい顔と非常に小さい耳、turkish-angoraは大耳と軽い絹毛。santa=白い短毛丸頬、yukidaruma=白い巻き毛で極端に横広、country-01=アイボリー短毛大耳、country-07=虹の尾を保ち白いワイヤー毛、oiwai=白い短毛に桃色の小斑"
+  },
+  {
+    "group": "氷青白",
+    "ids": [
+      "country-06",
+      "hatsuyuki",
+      "country-75",
+      "aotsuki",
+      "tsuyu"
+    ],
+    "observations": "青白の長毛、丸い目、同じ胴体",
+    "plan": "country-06=氷青の短い縮れ毛、hatsuyuki=白に淡青の先端色と小丸耳、country-75=銀白の絹長毛と大耳、aotsuki=青銀の短毛と大丸耳、tsuyu=淡青白の短い波毛"
+  },
+  {
+    "group": "虹白",
+    "ids": [
+      "kiseki",
+      "pittari"
+    ],
+    "observations": "虹色白、毛丈・顔・胴比率すべて近い",
+    "plan": "2匹だが見分けにくいためpittariを短い波毛・広い丸耳・横長の体に変更。数字札は保持"
+  },
+  {
+    "group": "夜空",
+    "ids": [
+      "hoshizora",
+      "tanabata",
+      "uchuu",
+      "nemurio",
+      "yofukashi",
+      "mayonaka",
+      "shingetsu"
+    ],
+    "observations": "紺灰の長毛、丸い目・頬と同程度の胴比率。hoshizora/tanabata/uchuuは星柄も重複",
+    "plan": "hoshizora保持。tanabata=濃紺の短い波毛と大耳、uchuu=銀黒の短い毛と幅広体、nemurio=紺の巻き毛小耳、yofukashi=青灰の短毛大丸耳、mayonaka=青黒の滑らかな短毛、shingetsu=チャコールの粗い長毛と低い耳"
+  },
+  {
+    "group": "紫黒",
+    "ids": [
+      "yami",
+      "noroware",
+      "himitsu"
+    ],
+    "observations": "暗紫長毛、同じ輪郭と目位置",
+    "plan": "yamiを保持、noroware=紫黒短いワイヤー毛で大耳、himitsu=銀紫の短い巻き毛と小丸耳"
+  },
+  {
+    "group": "青灰猫種",
+    "ids": [
+      "british-shorthair",
+      "russian-blue"
+    ],
+    "observations": "青灰単色、同程度の毛丈、丸顔と胴比率",
+    "plan": "britishは密な毛と丸頬を強化、russianは大耳と細い顔、銀の毛先で差を強化。britishの肉球入りボタンも無地へ"
+  },
+  {
+    "group": "ポイント猫種",
+    "ids": [
+      "siamese-seal-point",
+      "tonkinese",
+      "birman",
+      "balinese",
+      "ragdoll",
+      "snowshoe"
+    ],
+    "observations": "ポイント/白い胴、似た猫目と丸頬と胴比率",
+    "plan": "ragdollとsnowshoeは白模様が異なるため保持。siamese=滑らかな極短毛と大耳、tonkinese=均一なミンクの短毛と中耳、birman=白手袋を強調し幅広頬、balinese=細い絹毛・大耳・細い顔。siameseの肉球入りボタンも無地へ"
+  }
+]

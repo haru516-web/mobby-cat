@@ -703,9 +703,12 @@
     "file": "assets/cat-mobbies/new/d/tomodachizure.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "ed599aa84c23a8701376902f55094b655f40803e6c7ef904c326d60192e65b03",
+    "sha256": "c66f9fb294f9377925fc2e8a65a05f2c4b63f53914077e90b4a94f6fca7234fe",
     "status": "concept",
-    "prompt": "Regenerate tomodachizure, ともだちづれモビー. One main cat Mobby only with a tiny featureless plush cat-shaped charm perched on its shoulder as the carried-friend cue; charm is a simple stitched silhouette with NO eyes, NO face, NO lens and no controls, clearly a toy accessory. Main Mobby stands upright facing front, full body, exact design from refs 1 rea-mobby and 2 uyu-mobby: compact rounded-square single body, one viewer-left biological eye with green iris, one viewer-right dark concentric green-glass camera lens, small nose, W mouth, whiskers, one lower-left dark cross D-pad with inset slots and exactly two plain round buttons diagonal lower-right. Warm brown fur, controls unobstructed. Only main Mobby has eyes. Realistic directional fur, soft studio light, transparent alpha PNG, no grid/checkerboard/floor/text/watermark."
+    "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. Replacement TOMODACHIZURE. Image 3 is edit target: retain ONLY its tiny featureless beige plush cat friend perched on viewer-left shoulder and plain tan collar; toy has no eyes face or hardware. Change main cat fur completely to sleek extremely SHORT WHITE fur with subtle solid pale LILAC patches on crown and tail, no orange/brown/black tabby, no long fur. Make very LARGE wide-set batlike ears, narrower square torso, angular cheekbones, tiny smiling muzzle, peridot green living iris. Keep Mobby unified head/body anatomy. Controls unobscured. Match realistic fur/hardware style references 1/2; maintain shoulder friend concept from image 3.",
+    "bytes": 2374848,
+    "regen": true,
+    "regenReason": "rea-mobby / shikaku / bunshin と同じ長毛キジ三毛だったため、白ライラックの短毛・大耳・細い角形胴に変更。肩の顔なし猫ぬいぐるみと首輪を保持。"
   },
   {
     "id": "nebosuke",
@@ -1051,9 +1054,12 @@
     "file": "assets/cat-mobbies/new/h/shikaku.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "53dbef55ba2999ae5ed5499501377a69b60b72bc31b42b766cc28cc87e7b0f39",
+    "sha256": "751ba55fec15c4d41cbc415f9adcb23cf8442b4433853e0d2d48c4ffad27cb73",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: null Match listed fur and eye colors. Use at most two small accessories and keep face hardware and belly controls visible. Character 四角モビー (shikaku)."
+    "prompt": "Create one short-furred pale caramel Mobby cat, very wide low rounded-square bread-loaf unified head/body, no neck. Tiny low round ears, amber living eye viewer left, black green-glass camera lens viewer right. One black D-pad lower left, exactly two plain black round buttons diagonally lower right. Realistic directional short fur, short arms, two short feet. Front full body, transparent background 1254x1254 with padding. Reference 1 bengal and 2 ragdoll define hardware and fur quality. No tabby, white patches, accessories, clothes, text.",
+    "bytes": 2410279,
+    "regen": true,
+    "regenReason": "rea-mobby等と同じ長毛キジ三毛から、淡いキャラメル単色の短毛・低い丸耳・横広の食パン型・琥珀目へ変更。"
   },
   {
     "id": "shachou",

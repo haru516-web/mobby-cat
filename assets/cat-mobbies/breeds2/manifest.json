@@ -1,0 +1,41 @@
+[
+  {
+    "id": "savannah",
+    "name": "サバンナ",
+    "batch": "d",
+    "kind": "breed",
+    "file": "assets/cat-mobbies/breeds2/d/savannah.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2581777,
+    "sha256": "50c4fe7abc39c8ddd9c2a322788af7ebc07fcccaec0d8a28735a44c24e110c51",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. SAVANNAH: tall very LARGE upright ears, golden tan very SHORT sleek fur, bold black solid spots NOT rosettes, black tear-line marks, long angular muzzle, amber living iris. Athletic slightly taller rounded-square body with no separate head or neck. Tail slender with black rings. No accessories or clothes."
+  },
+  {
+    "id": "ragdoll-seal-mitted",
+    "name": "ラグドール（シールミテッド）",
+    "batch": "f",
+    "kind": "breed",
+    "file": "assets/cat-mobbies/breeds2/f/ragdoll-seal-mitted.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2648709,
+    "sha256": "618579800262eb29eae6a64d845e8fe27d90d9ad20dc2a08f2aa9750160e62eb",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. RAGDOLL SEAL MITTED: silky long ivory cream body, dark seal brown mask covering both eye positions with NO inverted white V, seal ears and long plume tail, a white chin and small white mittens on all paws. Sapphire blue living iris. Broad cheekbones with gentle smile, medium ears. No accessories or clothes."
+  },
+  {
+    "id": "mike-neko",
+    "name": "三毛猫",
+    "batch": "j",
+    "kind": "breed",
+    "file": "assets/cat-mobbies/breeds2/j/mike-neko.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2548328,
+    "sha256": "8a9ff9b8a7729377c1673f0552883bd235d7e6e9a5f3d8a0d54d2d4d950ec74b",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. MIKE-NEKO Japanese calico: WHITE dominant base with clearly separated large solid ORANGE and JET BLACK patches on crown, flanks and back. Very SHORT smooth fur, no tabby stripes, no mottled tortie, NO fluffy brown fur. Amber living iris. Medium triangular ears, softly broad cheeks, low compact rounded-square body. Plain white chest and front mitts, orange-black-white short-haired tail. No accessories or clothes."
+  }
+]
