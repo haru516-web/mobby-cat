@@ -60,3 +60,6 @@ Branch: codex/ui-fixes. Replaced bg/room-home.png only (1179x1900, opaque RGB PN
 ### room-home draft 02
 
 User requested more detail. Added painted leaf, textile, basket, rug and wood details while preserving soft rounded illustration and empty central space. Replaced room-home only; 2 generations overall. Exact1179x1900 opaque RGB PNG validated. Style approval pending; no other assets or application code changed. Comparison: previews/room-home-detail-compare.png.
+
+## UI fixes: priority 1 complete (2026-10-25)
+Approved room-home draft02 retained. Redrawn room-deai (1179x1400) and world-hero (1179x900), one generation each, opaque RGB. Sign words JAPAN / FRANCE / KENYA / KOREA checked. Empty character/text overlay areas checked. Comparison: previews/regen-compare.png. No application code changes.

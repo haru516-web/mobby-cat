@@ -261,11 +261,11 @@
       "path": "bg/room-deai.png",
       "width": 1179,
       "height": 1400,
-      "prompt": "Create a FULL BLEED OPAQUE RECTANGULAR background image, every single pixel including all four corners filled, NO transparency NO white border NO vignette NO cutout NO isolated diorama. Target aspect 1179:1400, 1179x1400 final. Subject: Warm sunlit cozy room heavily softly defocused, upper portion bright for overlaid headings. NO CATS. Cozy realistic beautifully detailed warm sunlit interior or landscape, photographic depth with tasteful soft storybook warmth consistent with docs/ui-reference. Defocused warm room, bright upper area readable for dark headings.Absolutely NO cats NO characters NO text NO UI NO icons NO lettering. Fill entire rectangle edge to edge with subject background, horizon or room walls continue beyond edges.",
-      "sha256": "c6a6ade630bf24af644c44c44907129d66b172eb12acb53441f0d64dba7f4e3c",
-      "bytes": 1698610,
+      "prompt": "Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Portrait1179x1400. Cozy living room corner with a softly rounded window and curtains on left, bookshelf and leafy plant at far right. Composition optimized for upper62% crop: top0–30% very pale almost plain wall and window light,30–62% quiet simple wall/floor empty for THREE character overlays. Keep tiny furniture details at far edges, no large sofa or table across central zone. Bottom62–100% calm simple pale floor. All essential room cues visible within upper62%. NO text.",
+      "sha256": "9159c0aaffd6e07248536f28084523e055466398454a06c1f6278ba826ea6099",
+      "bytes": 1812790,
       "method": "built-in image_gen",
-      "processing": "Opaque full-bleed cover resize",
+      "processing": "Lanczos resize to exact canvas; opaque RGB full bleed",
       "alphaMode": "opaque"
     },
     {
@@ -278,7 +278,7 @@
       "method": "built-in image_gen",
       "processing": "RGB opaque; Lanczos resize to exact original dimensions",
       "alphaMode": "opaque",
-      "reviewStatus": "style approval pending"
+      "reviewStatus": "style approved 2026-10-25"
     },
     {
       "path": "bg/screen-shop.png",
@@ -361,11 +361,11 @@
       "path": "bg/world-hero.png",
       "width": 1179,
       "height": 900,
-      "prompt": "Create a FULL BLEED OPAQUE RECTANGULAR background image, every single pixel including all four corners filled, NO transparency NO white border NO vignette NO cutout NO isolated diorama. Target aspect 1179:900, 1179x900 final. Subject: Mediterranean seaside town blue sea and rustic directional signpost, blank signs NO LETTERING NO CATS. Cozy realistic beautifully detailed warm sunlit interior or landscape, photographic depth with tasteful soft storybook warmth consistent with docs/ui-reference. Absolutely NO cats NO characters NO text NO UI NO icons NO lettering. Fill entire rectangle edge to edge with subject background, horizon or room walls continue beyond edges.",
-      "sha256": "6f7c6ebecbe5bcff30f6ecded96f534bd9cf023a755c063f871a703c23f4e0b2",
-      "bytes": 2146785,
+      "prompt": "Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Landscape1179x900. Mediterranean travel scenery: white and pale peach rounded hillside coastal town on right, turquoise sea with small white sailboat center, warm stone-paved terrace lower right35% empty and flat for traveler overlay, a few potted flowers at far edges. Left upper and middle half calm pale blue sky/sea for title overlay. A rounded wood direction sign on far right upper quadrant with FOUR clean readable boards labeled EXACTLY JAPAN, FRANCE, KENYA, KOREA, one word per board. No other text. Soft sunny picturebook atmosphere. Do NOT copy image2 photographic texture or its sign on left; use image2 subject only.",
+      "sha256": "1a0726fb6b2bbb2b8f319ae50937a488d507dbb35b1d275fec7b833264ac4af0",
+      "bytes": 1684497,
       "method": "built-in image_gen",
-      "processing": "Opaque full-bleed cover resize",
+      "processing": "Lanczos resize to exact canvas; opaque RGB full bleed",
       "alphaMode": "opaque"
     },
     {
