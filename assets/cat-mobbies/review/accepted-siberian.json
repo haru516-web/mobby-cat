@@ -1,0 +1,19 @@
+{
+  "id": "siberian",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-6be2f2ed-01c8-4eaf-b428-b9ac33ef3fec.png",
+  "target": "assets/cat-mobbies/characters/siberian.png",
+  "prompt": "Use case: stylized-concept. Regenerate ONE siberian cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: SIBERIAN: dense SILVER BLACK mackerel TABBY triple coat with heavy plush ruff, stout barrel-like squared torso, rounded small tufted ears, broad blunt muzzle, yellow-green iris. No brown orange or tortie. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+  "regenReason": "茶長毛グループから銀黒縞の密な三重毛、小さい房耳、樽型体へ変更。",
+  "qa": "accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 3172687,
+    "sha256": "fb471aee113d1332ea51f75712cd77570846a32bad90cf7dc9582a1207041394"
+  }
+}

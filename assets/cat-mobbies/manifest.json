@@ -107,9 +107,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 3106417,
-      "sha256": "3c41a688444e4ef32d88726d644e7515ac4cee07726e9a8d0c3494488cfd0a3c",
-      "originalFile": "batch30/03-maine-coon.png"
+      "bytes": 2807280,
+      "sha256": "c8cdfd945c2ab1984903fbefb0c4cac93016b3a9805282b6ebe505d461107132",
+      "originalFile": "batch30/03-maine-coon.png",
+      "prompt": "Use case: stylized-concept. Regenerate ONE maine-coon cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: MAINE COON: pale SILVER SHADED with cream undercoat, NO tabby stripes/brown/orange. Exceptionally LARGE tall LYNX-TUFTED ears, LONG shaggy guard hairs and majestic ruff, very SQUARE muzzle and heavy brow, long slim squared torso, green-gold iris, huge plume tail. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+      "regen": true,
+      "regenReason": "茶長毛グループから銀の長いガードヘア、大きな房耳、角形マズルへ変更。生成では淡い額縞が残るがsiberianより房耳・長い毛・体比率を強調。"
     },
     {
       "id": "norwegian-forest",
@@ -122,9 +125,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2858177,
-      "sha256": "10f3848f5e6f1bef468cdc03f5e93a9ddefab48e346c208eaeb74ec074838117",
-      "originalFile": "batch30/04-norwegian-forest.png"
+      "bytes": 2893663,
+      "sha256": "c9d46fa5c82b183b34c958bf1111ee8da3e8ff8b8c7434d050a158a69ee68eaf",
+      "originalFile": "batch30/04-norwegian-forest.png",
+      "prompt": "Use case: stylized-concept. Regenerate ONE norwegian-forest cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: NORWEGIAN FOREST: RED and WHITE distinct bicolor with white triangular chest, very long straight flowing guard hairs, angular TRIANGULAR face, HIGH cheekbones, LARGE tall pointed ears with fine tufts, taller square torso, green iris. No brown black tortie/tabby. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+      "regen": true,
+      "regenReason": "茶長毛グループから赤白の明確な配色、三角形の顔、大きい房耳、長い直毛へ変更。"
     },
     {
       "id": "persian",
@@ -197,9 +203,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2920360,
-      "sha256": "5771c560371611f1e281c99b26747ddffa8ad02280dd4472c79e8bdaf6efc425",
-      "originalFile": "batch30/09-somali.png"
+      "bytes": 2946546,
+      "sha256": "4d1b5eb0fa24258dbd49cdd842fb89fcc163e443554ddab09198051f63088dce",
+      "originalFile": "batch30/09-somali.png",
+      "prompt": "Use case: stylized-concept. Regenerate ONE somali cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: SOMALI: uniform warm SORREL cinnamon-red TICKED semi-long fine airy fur, no dark tabby stripes, no white bib or dark tortie patches. HUGE pointed ears, fine narrow foxlike face, light feathery tail, lean square torso and green iris. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+      "regen": true,
+      "regenReason": "茶長毛グループから均一なソレルのティック毛、非常に大きい耳、細い頬へ変更。"
     },
     {
       "id": "turkish-angora",
@@ -242,9 +251,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 3103761,
-      "sha256": "0151048d81ab258ca422292bb0be2575ce3fac97a481b8355c6159101d0fd2f0",
-      "originalFile": "batch30/12-siberian.png"
+      "bytes": 3172687,
+      "sha256": "fb471aee113d1332ea51f75712cd77570846a32bad90cf7dc9582a1207041394",
+      "originalFile": "batch30/12-siberian.png",
+      "prompt": "Use case: stylized-concept. Regenerate ONE siberian cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: SIBERIAN: dense SILVER BLACK mackerel TABBY triple coat with heavy plush ruff, stout barrel-like squared torso, rounded small tufted ears, broad blunt muzzle, yellow-green iris. No brown orange or tortie. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+      "regen": true,
+      "regenReason": "茶長毛グループから銀黒縞の密な三重毛、小さい房耳、樽型体へ変更。"
     },
     {
       "id": "tonkinese",
@@ -467,9 +479,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2621964,
-      "sha256": "1351c2385847c7f70f8b69a807ae93eee7fd3843138b427072357020445c017b",
-      "originalFile": "batch30/27-burmese.png"
+      "bytes": 2615561,
+      "sha256": "557eee15d1b1bc13ce7c2a20e86931293daf32c727461a1a010791aab2ee1432",
+      "originalFile": "batch30/27-burmese.png",
+      "prompt": "Use case: stylized-concept. Regenerate ONE burmese cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: BURMESE: solid rich SABLE brown close-lying very short glossy fur, slightly darker mask, golden iris. Very small round ears, extremely broad round cheeks and blunt muzzle, LOW WIDE compact square torso. No white bib/tabby. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+      "regen": true,
+      "regenReason": "セーブル単色の極短毛、小丸耳、幅広の頬と低い胴へ変更。"
     },
     {
       "id": "bombay",
@@ -497,9 +512,12 @@
       "height": 1254,
       "format": "png",
       "alphaChannel": true,
-      "bytes": 2725568,
-      "sha256": "8d8055d9fe8329a6aeefc6d01a6e491df8cfd45eb6cecf62cb474cb71e63b05c",
-      "originalFile": "batch30/29-havana-brown.png"
+      "bytes": 2471882,
+      "sha256": "91cc4e839ad80023715a9013a4188015d216a76faa00cfa2ab058164fff7de08",
+      "originalFile": "batch30/29-havana-brown.png",
+      "prompt": "Use case: stylized-concept. Regenerate ONE havana-brown cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: HAVANA BROWN: solid deep warm chocolate brown extremely short glossy satin coat with no white or tabby. VERY LARGE upright ears, long squared protruding muzzle, angular cheeks, taller slim squared torso, clear green iris. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+      "regen": true,
+      "regenReason": "チョコ単色の極短毛、大耳、細い顔と長めのマズルへ変更。"
     },
     {
       "id": "snowshoe",
