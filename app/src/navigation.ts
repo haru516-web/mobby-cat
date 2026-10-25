@@ -1,4 +1,4 @@
-import { TabKey } from '../ui/kit';
+import { TabKey } from './ui/kit';
 
 export type NoticeTab = 'notice' | 'history' | 'upcoming';
 

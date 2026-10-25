@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CATS } from '../data/catalog';
-import { Signals } from '../lib/conditions';
-import { daysBetween } from '../lib/dates';
-import { buildDay, encounterDayKey, fmtDay, prevDayKey } from '../lib/encounter';
-import { readBattery, readSteps } from '../lib/signals';
+import { Signals } from './conditions';
+import { daysBetween } from './dates';
+import { buildDay, encounterDayKey, fmtDay, prevDayKey } from './encounter';
+import { readBattery, readSteps } from '../services/signals';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
 const CATALOG_VERSION = String(CATS.length);

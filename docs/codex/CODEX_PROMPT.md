@@ -32,8 +32,8 @@
 2. `ASSET_LIST.md` の カテゴリ順 に、まず **スタイル確定用の6枚**（`button/primary-orange.png`, `panel/card-cream.png`, `tabbar/home-on.png`, `icon/coin-paw.png`, `badge/rarity-rare.png`, `brand/logo-nekomobby.png`）を作り、参照画像と見比べて質感を決める。以降はその6枚を基準に全アセットを統一する。
 3. カテゴリごとに生成し、`app/assets/ui/<カテゴリ>/` に保存。1カテゴリ終えるごとにコミット（例: `Add ui assets: button`）。
 4. 生成後、サイズがリストと一致するか、透過になっているか、白フチがないかを確認。外れたものは作り直す。
-5. `app/assets/ui/manifest.json` と `app/assets/ui/provenance/prompts-<カテゴリ>.md` を作る（形式は `ASSET_LIST.md` 末尾）。
-6. 仕上げに、`docs/ui-reference` の4画面を意識した確認用の合成プレビュー `app/assets/ui/previews/contact-sheet.png` を1枚作る（全アセットの一覧画像）。
+5. `app/assets/ui/manifest.json` と `assets/ui-records/provenance/prompts-<カテゴリ>.md` を作る（形式は `ASSET_LIST.md` 末尾）。
+6. 仕上げに、`docs/ui-reference` の4画面を意識した確認用の合成プレビュー `assets/ui-records/previews/contact-sheet.png` を1枚作る（全アセットの一覧画像）。
 
 ## やらないこと
 - `app/src`, `App.tsx`, `package.json` などコードの変更。
@@ -42,4 +42,4 @@
 - `main` への直接コミット。
 
 ## 完了報告
-作成枚数、リストに対する不足、作り直した枚数、気になった点を `app/assets/ui/README.md` にまとめる。
+作成枚数、リストに対する不足、作り直した枚数、気になった点を `assets/ui-records/README.md` にまとめる。

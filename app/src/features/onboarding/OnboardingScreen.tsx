@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { REVEAL_HOUR } from '../lib/encounter';
-import { STARTERS, useGame } from '../state/game';
-import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../ui/base';
-import { Card, ImgButton } from '../ui/kit';
-import { Backdrop, Pic } from '../ui/Slice';
+import { REVEAL_HOUR } from '../../core/encounter';
+import { STARTERS, useGame } from '../../core/game';
+import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
+import { Card, ImgButton } from '../../ui/kit';
+import { Backdrop, Pic } from '../../ui/Slice';
 
 // 初回起動：相棒を1匹選んでもらい、毎日の出会いのしくみを体験で伝える
 export default function OnboardingScreen({ width }: { width: number }) {

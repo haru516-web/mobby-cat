@@ -1,10 +1,10 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { View } from 'react-native';
-import type { ViewRef } from '../lib/share';
-import { CAT_BY_ID, CatImage, T } from './base';
-import { RarityBadge } from './kit';
-import { Backdrop, Pic } from './Slice';
-import { UI, UIRect } from './uiAssets';
+import type { ViewRef } from '../../services/share';
+import { CAT_BY_ID, CatImage, T } from '../../ui/base';
+import { RarityBadge } from '../../ui/kit';
+import { Backdrop, Pic } from '../../ui/Slice';
+import { UI, UIRect } from '../../ui/uiAssets';
 
 // SNS 向けの発見カード（share/discovery-card、4:5）。写真・文字は素材の差し込み領域に置く
 export const DiscoveryCard = forwardRef<ViewRef, { id: string; day: string; reason?: string; width: number }>(function DiscoveryCard(

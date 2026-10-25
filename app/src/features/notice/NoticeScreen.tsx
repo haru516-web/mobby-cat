@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { HINTS, upcoming } from '../lib/conditions';
-import { useGame, visibleCount } from '../state/game';
-import { C, CAT_BY_ID, CatImage, T } from '../ui/base';
-import { Card, Well } from '../ui/kit';
-import { Backdrop, Pic, Slice } from '../ui/Slice';
+import { HINTS, upcoming } from '../../core/conditions';
+import { useGame, visibleCount } from '../../core/game';
+import { C, CAT_BY_ID, CatImage, T } from '../../ui/base';
+import { Card, Well } from '../../ui/kit';
+import { Backdrop, Pic, Slice } from '../../ui/Slice';
 
 type Tab = 'notice' | 'history' | 'upcoming';
 const TABS: { key: Tab; label: string }[] = [

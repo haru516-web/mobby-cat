@@ -191,4 +191,4 @@ paw, paw-small（60×60）, coin-paw（肉球コイン・金）, gem（青い宝
 ## 受け入れ条件
 - ファイル名・サイズは上表と一致。透過部分に白フチが残らないこと（ハロー除去）。
 - `app/assets/ui/manifest.json` に 全ファイルの `path / width / height / slice(9slice の場合 top,right,bottom,left) / sha256 / prompt` を記録。
-- プロンプトは `assets/cat-mobbies/provenance/` と同形式で `app/assets/ui/provenance/prompts-<カテゴリ>.md` に保存。
+- プロンプトは `assets/cat-mobbies/provenance/` と同形式で `assets/ui-records/provenance/prompts-<カテゴリ>.md` に保存。

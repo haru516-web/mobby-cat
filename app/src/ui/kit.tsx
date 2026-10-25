@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import { CatDef } from '../data/catalog';
-import { useGame } from '../state/game';
+import { useGame } from '../core/game';
 import { C, T } from './base';
 import { Pic, Slice } from './Slice';
 

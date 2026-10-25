@@ -3,7 +3,7 @@ import { Image, LayoutChangeEvent, StyleProp, View, ViewStyle } from 'react-nati
 import { UI, UIAsset } from './uiAssets';
 
 // UI素材は @3x で作られているので、1pt = 3px として扱う
-export const PX = 3;
+const PX = 3;
 
 const warned = new Set<string>();
 function asset(name: string): UIAsset | undefined {
