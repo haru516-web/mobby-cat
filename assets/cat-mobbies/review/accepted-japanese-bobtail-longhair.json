@@ -1,0 +1,21 @@
+{
+  "id": "japanese-bobtail-longhair",
+  "name": "ジャパニーズボブテイル（ロングヘア）",
+  "batch": "d",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/d/japanese-bobtail-longhair.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-6fdb704e-d543-42ef-af9e-c1d08bfdc094.png",
+  "prompt": "Use case: precise-object-edit. Ref1 bengal and ref2 ragdoll are materials/Mobby hardware references; ref3 is the EDIT TARGET japanese-bobtail-longhair. Keep the same character face, coat detail and Mobby anatomy. Critical correction: replace the big curled tail with a TINY bobtail at the lower hip: only a compact round rabbit-like pom-pom, diameter at most 10% of body height, no curved stalk, no tail reaching the arm/face. Also correct VAN-pattern: the entire torso and all four limbs must be pure white long fur, black limited to ears/top head and tiny pompom tail. Preserve ONE round-pupilled living eye left, green camera lens right, black D-pad lower left and exactly TWO plain black round buttons lower right. Unified rounded square no neck, short arms/two feet, front full body, detailed real fur. No props/text. Transparent RGBA1254x1254, centered with generous empty margins.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "bytes": 2207913,
+    "sha256": "3c3ce114c33a425f2926cb9f437b63384e478a70552b9ed257e17107444f0924"
+  }
+}
