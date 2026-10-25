@@ -23,7 +23,7 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/ui/brand/app-icon.png"
     },
     "plugins": [
       "expo-image",
@@ -35,6 +35,23 @@
           "imageWidth": 240,
           "resizeMode": "contain",
           "backgroundColor": "#FFF8F0"
+        }
+      ],
+      "expo-sharing",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "猫モビーと一緒に写真を撮るためにカメラを使います。",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "猫モビーと撮った写真を保存するために使います。",
+          "savePhotosPermission": "猫モビーと撮った写真を写真アプリに保存します。",
+          "isAccessMediaLocationEnabled": false
         }
       ]
     ]

@@ -171,6 +171,23 @@ export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx): Guaranteed
   return out;
 }
 
+// 暦・月・季節など「日付だけで決まる」条件猫の予告。今日から days 日分
+export function upcoming(fromKey: string, days: number, birthday: Signals['birthday']): { day: string; cats: Guaranteed[] }[] {
+  const neutral: Signals = { battery: [], charging: false, steps: null, gapDays: 0, streak: 0, openHours: [], catalogUpdated: false, birthday };
+  const [y, m, d] = fromKey.split('-').map(Number);
+  const out: { day: string; cats: Guaranteed[] }[] = [];
+  let prev = new Set(guaranteedCats(fromKey, neutral, { owned: {}, appearCounts: {} }).map((c) => c.id));
+  for (let i = 1; i <= days; i++) {
+    const key = fmtDay(new Date(y, m - 1, d + i));
+    const all = guaranteedCats(key, neutral, { owned: {}, appearCounts: {} });
+    // 季節イベントのように何日も続く条件は、始まった日だけ載せる
+    const cats = all.filter((c) => !prev.has(c.id));
+    prev = new Set(all.map((c) => c.id));
+    if (cats.length) out.push({ day: key, cats });
+  }
+  return out;
+}
+
 // 図鑑で未所持の条件猫に出すヒント（条件そのものは伏せる）。
 // PENDING の猫は判定の仕組みがまだなく、いまは出会えない。
 export const PENDING: Record<string, string> = {

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Alert, ScrollView, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { C, CatImage, T } from '../ui/base';
 import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well } from '../ui/kit';
 import { Backdrop, Pic, Slice } from '../ui/Slice';
@@ -22,16 +22,24 @@ const SAMPLE = {
   ],
 };
 
-const soon = () => Alert.alert('旅するモビー', '旅猫の機能はサーバー接続後に公開予定です');
+// 旅の記録（サンプル）。訪問者が残した定型スタンプと、滞在日数
+const JOURNEY = [
+  { key: 'kenya', name: 'ケニア', days: 6, stamp: 'あついね！', date: '9/18' },
+  { key: 'france', name: 'フランス', days: 9, stamp: 'またきてね', date: '9/24' },
+  { key: 'korea', name: '韓国', days: 5, stamp: 'ありがとう', date: '10/3' },
+  { key: 'japan', name: '日本', days: 3, stamp: 'いらっしゃい', date: '10/8' },
+];
 
-export default function WorldScreen({ openShop, width }: ScreenProps) {
+export default function WorldScreen({ openShop, openNotice, width }: ScreenProps) {
   const inner = width - 32;
   const stampW = (inner - 28 - 3 * 8) / 4;
+  const [sheet, setSheet] = useState<'travel' | 'news' | null>(null);
+  const soon = () => setSheet('travel');
   return (
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-world" />
       <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
-        <Header onShop={openShop} onBell={openShop} />
+        <Header onShop={openShop} onBell={() => openNotice()} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Slice name="badge/sample" style={s.sample}><T w="b" size={10} color="#fff">サンプル表示（サーバー未接続）</T></Slice>
 
@@ -100,20 +108,88 @@ export default function WorldScreen({ openShop, width }: ScreenProps) {
 
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <Pic name="brand/title-news" height={30} />
-            <T w="b" size={12} color={C.sub} onPress={soon}>すべて見る</T>
+            <T w="b" size={12} color={C.sub} onPress={() => setSheet('news')}>すべて見る</T>
           </View>
-          {SAMPLE.news.map((n) => (
-            <Card key={n.title} skin="white" style={{ flexDirection: 'row', gap: 10, padding: 10 }}>
-              <Well style={{ width: 76, height: 76 }}><Pic name={n.thumb} height={72} /></Well>
-              <View style={{ flex: 1 }}>
-                <T w="x" size={13} numberOfLines={1}>{n.title}</T>
-                <T w="m" size={11} color={C.sub} style={{ marginTop: 3 }} numberOfLines={2}>{n.body}</T>
-                <T w="m" size={10} color={C.sub} style={{ marginTop: 'auto', textAlign: 'right' }}>{n.date}</T>
-              </View>
-            </Card>
+          {SAMPLE.news.slice(0, 2).map((n) => (
+            <NewsCard key={n.title} n={n} onPress={() => setSheet('news')} />
           ))}
         </View>
       </ScrollView>
+
+      <Modal visible={!!sheet} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setSheet(null)}>
+        <View style={{ flex: 1, alignItems: 'center' }}>
+          <Backdrop name="bg/screen-world" />
+          <View style={{ flex: 1, width }}>
+            <View style={s.sheetHead}>
+              <Pic name={sheet === 'news' ? 'brand/title-news' : 'brand/title-travel'} height={34} />
+              <View style={{ flex: 1 }} />
+              <Pressable onPress={() => setSheet(null)} accessibilityLabel="閉じる"><Pic name="button/close-round" height={40} /></Pressable>
+            </View>
+            <ScrollView contentContainerStyle={{ padding: 16, gap: 10, paddingBottom: 40 }}>
+              <Slice name="badge/sample" style={s.sample}><T w="b" size={10} color="#fff">サンプル表示（サーバー未接続）</T></Slice>
+              {sheet === 'news' ? (
+                SAMPLE.news.map((n) => <NewsCard key={n.title} n={n} full />)
+              ) : (
+                <>
+                  <Card style={{ alignItems: 'center' }}>
+                    <CatImage id="traveling-mobby" size={140} />
+                    <T w="x" size={16}>旅するモビー</T>
+                    <T w="m" size={12} color={C.sub} style={{ textAlign: 'center', marginTop: 4 }}>
+                      世界に1匹だけの旅猫。訪れた人が残したスタンプが、旅の記録になっていきます
+                    </T>
+                    <View style={{ flexDirection: 'row', gap: 18, marginTop: 10 }}>
+                      <Stat label="訪れた国" value={`${JOURNEY.length}か国`} />
+                      <Stat label="旅した日数" value={`${JOURNEY.reduce((a, j) => a + j.days, 0)}日`} />
+                    </View>
+                  </Card>
+                  {JOURNEY.map((j, i) => (
+                    <Card key={j.key} skin="white" style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 10 }}>
+                      <Pic name={`bg/stamp-photo-${j.key}`} width={84} />
+                      <View style={{ flex: 1 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                          <Pic name={`illust/flag-${j.key}`} height={14} />
+                          <T w="x" size={14}>{j.name}</T>
+                          <T w="m" size={11} color={C.sub}>{j.date}〜 {j.days}日間</T>
+                        </View>
+                        <Slice name="panel/speech-bubble" style={s.stamp}><T w="b" size={12}>「{j.stamp}」</T></Slice>
+                      </View>
+                      {i === JOURNEY.length - 1 && <Pic name="icon/pin" height={26} />}
+                    </Card>
+                  ))}
+                  <T w="m" size={11} color={C.sub}>
+                    本番では、訪問者が定型のスタンプを1つだけ残せます。住所や細かな位置は公開しません（企画書 6.3）
+                  </T>
+                </>
+              )}
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+}
+
+type News = (typeof SAMPLE.news)[number];
+function NewsCard({ n, full, onPress }: { n: News; full?: boolean; onPress?: () => void }) {
+  return (
+    <Pressable onPress={onPress} disabled={!onPress}>
+      <Card skin="white" style={{ flexDirection: 'row', gap: 10, padding: 10 }}>
+        <Well style={{ width: 76, height: 76 }}><Pic name={n.thumb} height={72} /></Well>
+        <View style={{ flex: 1 }}>
+          <T w="x" size={13} numberOfLines={full ? undefined : 1}>{n.title}</T>
+          <T w="m" size={11} color={C.sub} style={{ marginTop: 3 }} numberOfLines={full ? undefined : 2}>{n.body}</T>
+          <T w="m" size={10} color={C.sub} style={{ marginTop: 'auto', textAlign: 'right' }}>{n.date}</T>
+        </View>
+      </Card>
+    </Pressable>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={{ alignItems: 'center' }}>
+      <T w="m" size={11} color={C.sub}>{label}</T>
+      <T w="x" size={18} color={C.accent}>{value}</T>
     </View>
   );
 }
@@ -123,4 +199,6 @@ const s = StyleSheet.create({
   heroText: { position: 'absolute', left: 12, top: 12, right: 12 },
   heroCopy: { marginTop: 6, alignSelf: 'flex-start', paddingVertical: 8, paddingHorizontal: 12 },
   heroCat: { position: 'absolute', right: -6, bottom: -10 },
+  sheetHead: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 16 },
+  stamp: { alignSelf: 'flex-start', marginTop: 4, paddingHorizontal: 12, paddingTop: 6, paddingBottom: 12 },
 });

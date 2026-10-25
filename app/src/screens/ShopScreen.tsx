@@ -1,5 +1,7 @@
-import React from 'react';
+import Constants from 'expo-constants';
+import React, { useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { rarityOdds } from '../lib/encounter';
 import { disableDailyNotification, enableDailyNotification } from '../lib/notify';
 import { useGame } from '../state/game';
 import { C, T } from '../ui/base';
@@ -14,12 +16,16 @@ const ITEMS = [
   { key: 'matatabi', n: 1, icon: 'icon/matatabi-leaf', name: 'またたび 1個', price: '¥120', desc: '今日の出会いの候補が1匹増えます（最大6匹）' },
 ] as const;
 
-const DAYS_IN = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const PASS_BONUS_LABEL = 3;
+const RARITY_NAME: Record<number, string> = { 1: 'ノーマル', 2: 'ノーマル+', 3: 'レア', 4: 'でんせつ' };
+const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
+const DAYS_IN =[31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 export default function ShopScreen({ onClose }: { onClose: () => void }) {
   const g = useGame();
   const { state } = g;
   const bd = state.birthday;
+  const [odds, setOdds] = useState(false);
 
   const toggleNotify = async (v: boolean) => {
     if (v) {
@@ -64,7 +70,50 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             <ImgButton label={it.price} height={40} onPress={() => g.grant(it.key, it.n)} style={{ width: 100 }} />
           </Card>
         ))}
-        <T w="m" size={11} color={C.sub}>※ テスト版：実際の課金は未接続です。価格のボタンを押すと開発用に無料で付与します。</T>
+        <Card style={[s.item, { alignItems: 'flex-start' }]}>
+          <Icon name="icon/matatabi-bag" size={44} />
+          <View style={{ flex: 1 }}>
+            <T w="x" size={14}>またたびパス（月額 ¥480）</T>
+            <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>
+              加入中は毎日の出会いが{PASS_BONUS_LABEL}匹ふえて、毎月お迎え券が3枚届きます。いつでも解約でき、解約後も迎えた猫はそのまま残ります
+            </T>
+          </View>
+          <ImgButton
+            skin={state.pass.active ? 'ghost-outline' : 'primary-green'}
+            label={state.pass.active ? '加入中' : '加入'}
+            height={40}
+            onPress={() => g.setPass(!state.pass.active)}
+            style={{ width: 84 }}
+          />
+        </Card>
+
+        <View style={{ flexDirection: 'row', gap: 8 }}>
+          <ImgButton skin="ghost-outline" label="出現確率" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
+          <ImgButton
+            skin="ghost-outline"
+            label="購入を復元"
+            height={40}
+            fontSize={13}
+            onPress={() => Alert.alert('購入の復元', 'テスト版では実際の購入がないため、復元するものはありません')}
+            style={{ flex: 1 }}
+          />
+        </View>
+        {odds && (
+          <Card skin="white" style={{ marginTop: 8, gap: 6 }}>
+            <T w="x" size={13}>毎日の出会い・またたびで増える候補の出現確率</T>
+            {rarityOdds().map((o) => (
+              <View key={o.rarity} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <T w="b" size={12}>{RARITY_NAME[o.rarity]}（{o.count}種）</T>
+                <T w="x" size={12}>{o.pct.toFixed(1)}%</T>
+              </View>
+            ))}
+            <T w="m" size={10} color={C.sub}>
+              同じレア度の中ではどの子も同じ確率です。まだ持っていない子は1.5倍出やすくなります。条件で出会う「限定」の猫は抽選ではなく、条件を満たした日に必ず候補に入ります。
+            </T>
+            <T w="b" size={11} color={C.accent} onPress={() => setOdds(false)}>閉じる</T>
+          </Card>
+        )}
+        <T w="m" size={11} color={C.sub} style={{ marginTop: 8 }}>※ テスト版：実際の課金は未接続です。価格のボタンを押すと無料で付与します。</T>
 
         <Pic name="brand/title-settings" height={32} style={s.h2} />
         <Card style={s.item}>
@@ -90,8 +139,16 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
           )}
         </Card>
 
-        <T w="x" size={16} style={s.h2}>開発用</T>
-        <View style={{ gap: 8 }}>
+        <Card skin="white" style={{ marginTop: 8, gap: 4 }}>
+          <T w="x" size={13}>データとプライバシー</T>
+          <T w="m" size={11} color={C.sub}>
+            歩数・電池の状態・誕生日・撮った写真は、猫との出会いの判定にだけ使い、この端末の中に保存します。外部に送信しません。
+          </T>
+          <T w="m" size={10} color={C.sub} style={{ marginTop: 4 }}>バージョン {APP_VERSION}</T>
+        </Card>
+
+        {__DEV__ && <T w="x" size={16} style={s.h2}>開発用</T>}
+        {__DEV__ && <View style={{ gap: 8 }}>
           <ImgButton skin="ghost-outline" label={`日付を1日進める（+${state.debugOffsetDays}日）`} height={44} onPress={() => g.shiftDays(1)} />
           <ImgButton skin="ghost-outline" label="日付をリセット" height={44} onPress={() => g.shiftDays(-state.debugOffsetDays)} />
           <ImgButton
@@ -100,7 +157,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             height={44}
             onPress={() => Alert.alert('初期化', 'すべての猫と所持品が消えます', [{ text: 'キャンセル', style: 'cancel' }, { text: '初期化', style: 'destructive', onPress: g.reset }])}
           />
-        </View>
+        </View>}
       </ScrollView>
     </View>
   );

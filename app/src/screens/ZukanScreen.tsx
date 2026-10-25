@@ -28,7 +28,7 @@ function hint(c: CatDef) {
   return HINTS[c.id] ?? 'まだ出会っていません。いつかの出会いを待とう';
 }
 
-export default function ZukanScreen({ openShop, width }: ScreenProps) {
+export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps) {
   const { state, toggleFavorite } = useGame();
   const [filter, setFilter] = useState<Filter>('all');
   const [q, setQ] = useState('');
@@ -49,12 +49,12 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-zukan" />
       <ScrollView contentContainerStyle={{ paddingBottom: cat ? 300 : 24 }}>
-        <Header onShop={openShop} onBell={openShop} />
+        <Header onShop={openShop} onBell={() => openNotice()} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Card style={s.collection}>
             <View style={{ flex: 1 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Pic name="brand/title-collection" height={30} />
+                <Pic name="brand/title-collection" height={width < 360 ? 24 : 30} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginLeft: 8 }}>
                   <T w="x" size={26}>{have}</T>
                   <T w="b" size={14} color={C.sub} style={{ marginBottom: 3 }}>/{CATS.length}</T>
@@ -63,7 +63,7 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
               <View style={{ marginTop: 8 }}><Gauge value={have} max={CATS.length} /></View>
               <T w="m" size={11} color={C.sub} style={{ marginTop: 6 }}>たくさんのねこモビーに出会いましょう！</T>
             </View>
-            {mascot && <CatImage id={mascot.id} size={72} />}
+            {mascot && <CatImage id={mascot.id} size={width < 360 ? 52 : 72} />}
           </Card>
 
           <Slice name="button/search-bar" style={s.search}>

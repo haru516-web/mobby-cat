@@ -29,6 +29,17 @@ const WEIGHT: Record<Rarity, number> = { 1: 10, 2: 5, 3: 2, 4: 0.6 };
 // 毎日の抽選に入るのは猫種と個性シリーズだけ。条件猫・世界の猫・旅猫は抽選に入らない
 const POOL = CATS.filter((c) => c.kind === 'breed' || c.kind === 'series');
 
+// 毎日の抽選・またたびで増える候補の、レア度ごとの出現確率（%）。ショップで購入前に表示する
+export function rarityOdds(): { rarity: Rarity; count: number; pct: number }[] {
+  const total = POOL.reduce((a, c) => a + WEIGHT[c.rarity], 0);
+  return ([1, 2, 3, 4] as Rarity[])
+    .map((r) => {
+      const cats = POOL.filter((c) => c.rarity === r);
+      return { rarity: r, count: cats.length, pct: (cats.reduce((a, c) => a + WEIGHT[c.rarity], 0) / total) * 100 };
+    })
+    .filter((o) => o.count > 0);
+}
+
 export type DayCandidates = { candidates: string[]; reasons: Record<string, string>; baseCount: number };
 
 // 先頭 baseCount 匹が最初から見える候補。以降は「またたび」で順に増える。

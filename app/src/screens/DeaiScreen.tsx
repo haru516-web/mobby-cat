@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../lib/encounter';
+import { HASHTAG, shareView, ViewRef } from '../lib/share';
+import { DiscoveryCard } from '../ui/DiscoveryCard';
 import { useGame, visibleCount } from '../state/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../ui/base';
 import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge } from '../ui/kit';
 import { Pic, Slice, Stretch } from '../ui/Slice';
 import { ScreenProps } from './types';
 
-export default function DeaiScreen({ openShop, width }: ScreenProps) {
+export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps) {
   const g = useGame();
   const { state, availableDays, todayKey, now } = g;
   const [day, setDay] = useState(todayKey);
   const [sel, setSel] = useState<string | null>(null);
   const [detail, setDetail] = useState<string | null>(null);
+  const [welcome, setWelcome] = useState<string | null>(null); // 迎えた直後に出す発見カード
+  const card = useRef<ViewRef>(null);
 
   useEffect(() => {
     setDay(todayKey);
@@ -36,15 +40,23 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
   const pickSelected = () => {
     if (!sel) return;
     if (!hasFree) g.pickFree(day, sel);
-    else g.pickExtra(day, sel);
+    else if (!g.pickExtra(day, sel)) return;
+    setWelcome(sel);
     setSel(null);
+  };
+  const shareCard = (id: string) => {
+    const reason = rec.reasons[id];
+    const msg = reason
+      ? `「${reason}」の日に${CAT_BY_ID[id].name}に出会えた！ ${HASHTAG}`
+      : `今日は${CAT_BY_ID[id].name}がおうちに来てくれました ${HASHTAG}`;
+    shareView(card, msg);
   };
 
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
-      <Header title="brand/title-deai" onShop={openShop} onBell={openShop} />
+      <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} />
       <View style={s.pills}>
-        <InfoPill style={{ flex: 1.5 }} icon="icon/calendar-today" label="" value={`${m}/${d} ${REVEAL_HOUR}:00更新`} />
+        <InfoPill style={{ flex: 1.5 }} icon="icon/calendar-today" label="" value={`${m}/${d} ${REVEAL_HOUR}:00更新`} onPress={() => openNotice('upcoming')} />
         <InfoPill style={{ flex: 1 }} icon="icon/ticket-paw" label="お迎え券" value={`${state.tickets}枚`} onPress={openShop} />
       </View>
 
@@ -60,12 +72,19 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
           ) : (
             <T w="x" size={20}>無料のお迎えが完了しました</T>
           )}
-          <T w="b" size={12} color={C.sub} style={{ marginTop: 4 }}>
-            {hasFree ? '気になる子はお迎え券で追加できます' : '気になる子を選んで、家族に迎えましょう'}
-          </T>
-          <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>
-            次の出会いまで あと{Math.floor(mins / 60)}時間{mins % 60}分
-          </T>
+          {/* 部屋の背景の上でも読めるよう、説明は白いカードに載せる */}
+          <Card skin="white" style={s.heroNote}>
+            <T w="b" size={12} style={{ textAlign: 'center' }}>
+              {hasFree ? '気になる子はお迎え券で追加できます' : '気になる子を選んで、家族に迎えましょう'}
+            </T>
+            <T w="m" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 2 }}>
+              次の出会いまで あと{Math.floor(mins / 60)}時間{mins % 60}分
+            </T>
+            <Pressable onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 4 }}>
+              <T w="b" size={12} color={C.accent}>これから会えるかもしれない猫</T>
+              <Pic name="icon/chevron-right" height={12} style={{ marginLeft: 4 }} />
+            </Pressable>
+          </Card>
         </View>
 
         {availableDays.length > 1 && (
@@ -105,7 +124,7 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
                   </T>
                   <Pressable onPress={() => setDetail(id)} style={{ alignSelf: 'stretch', marginTop: 6 }}>
                     <Slice name="button/chip-detail" style={s.chip}>
-                      <T w="b" size={11} style={{ marginLeft: 24 }}>くわしく見る</T>
+                      <T w="b" size={11} style={{ marginLeft: 24 }} numberOfLines={1}>{colW < 110 ? 'くわしく' : 'くわしく見る'}</T>
                     </Slice>
                   </Pressable>
                 </Card>
@@ -187,7 +206,7 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
                   height={44}
                   fontSize={13}
                   disabled={state.tickets < rest.length}
-                  onPress={() => { g.pickExtra(day, rest); setSel(null); }}
+                  onPress={() => { if (g.pickExtra(day, rest)) setWelcome(rest[0]); setSel(null); }}
                 />
               </View>
             </View>
@@ -199,6 +218,22 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
           </Card>
         )}
       </View>
+
+      <Modal visible={!!welcome} transparent animationType="fade" onRequestClose={() => setWelcome(null)}>
+        <View style={s.overlay}>
+          <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
+          {welcome && (
+            <View style={{ alignItems: 'center', gap: 12 }}>
+              <T w="x" size={20} color="#fff">{CAT_BY_ID[welcome].name}をお迎えしました！</T>
+              <DiscoveryCard ref={card} id={welcome} day={day} reason={rec.reasons[welcome]} width={Math.min(width - 48, 340)} />
+              <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
+                <ImgButton skin="ghost-outline" label="閉じる" height={46} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
+                <ImgButton label="共有する" icon="icon/camera" height={46} onPress={() => shareCard(welcome)} style={{ flex: 1.4 }} />
+              </View>
+            </View>
+          )}
+        </View>
+      </Modal>
 
       <Modal visible={!!detail} transparent animationType="fade" onRequestClose={() => setDetail(null)}>
         <Pressable style={s.overlay} onPress={() => setDetail(null)}>
@@ -227,6 +262,7 @@ const s = StyleSheet.create({
   heroBg: { position: 'absolute', left: 0, right: 0, top: 0, overflow: 'hidden' },
   fade: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 100 },
   hero: { alignItems: 'center', paddingTop: 14, paddingHorizontal: 16 },
+  heroNote: { marginTop: 6, paddingVertical: 8, paddingHorizontal: 14 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },
   dayTab: { height: 36, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, paddingHorizontal: 16, marginTop: 4 },

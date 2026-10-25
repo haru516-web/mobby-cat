@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import { CatDef } from '../data/catalog';
 import { useGame } from '../state/game';
 import { C, T } from './base';
@@ -46,11 +46,13 @@ export function ImgButton({
 
 // 上部のピル型の情報表示（所持数・今日の出会い・お迎え券）
 export function InfoPill({ icon, label, value, onPress, style }: { icon: string; label: string; value: string; onPress?: () => void; style?: StyleProp<ViewStyle> }) {
+  // 幅の狭い端末（iPhone SE など）ではラベルを省いて値だけ見せる
+  const narrow = useWindowDimensions().width < 390;
   return (
-    <Pressable onPress={onPress} style={style}>
+    <Pressable onPress={onPress} style={style} accessibilityLabel={`${label} ${value}`}>
       <Slice name="panel/pill-info" style={k.pill}>
         <Icon name={icon} size={24} />
-        {!!label && <T w="m" size={11} color={C.sub} style={{ marginLeft: 6, marginRight: 6, flexShrink: 1 }} numberOfLines={1}>{label}</T>}
+        {!!label && !narrow && <T w="m" size={11} color={C.sub} style={{ marginLeft: 6, marginRight: 6, flexShrink: 1 }} numberOfLines={1}>{label}</T>}
         <T w="x" size={16} style={{ marginLeft: 'auto', flexShrink: 0 }} numberOfLines={1}>{value}</T>
         {onPress && <Icon name="icon/chevron-right" size={14} style={{ marginLeft: 4 }} />}
       </Slice>
@@ -61,9 +63,11 @@ export function InfoPill({ icon, label, value, onPress, style }: { icon: string;
 // ロゴ / タイトル画像＋所持品＋ベル
 export function Header({ title = 'brand/logo-nekomobby', onShop, onBell }: { title?: string; onShop: () => void; onBell: () => void }) {
   const { state } = useGame();
+  const narrow = useWindowDimensions().width < 360;
+  const logoH = (title === 'brand/logo-nekomobby' ? 44 : 52) * (narrow ? 0.8 : 1);
   return (
     <View style={k.header}>
-      <Pic name={title} height={title === 'brand/logo-nekomobby' ? 44 : 52} />
+      <Pic name={title} height={logoH} />
       <View style={{ flex: 1 }} />
       <Pressable onPress={onShop}>
         <Slice name="panel/pill-currency" style={k.currency}>
@@ -73,8 +77,9 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell }: { tit
           <T w="x" size={14} style={{ marginLeft: 3 }}>{state.matatabi}</T>
         </Slice>
       </Pressable>
-      <Pressable onPress={onBell} style={{ marginLeft: 6 }}>
+      <Pressable onPress={onBell} style={{ marginLeft: 6 }} accessibilityLabel="お知らせ">
         <Pic name="button/bell-round" height={44} />
+        {state.inbox.length > state.inboxRead && <Pic name="button/bell-badge" height={14} style={k.bellBadge} />}
       </Pressable>
     </View>
   );
@@ -171,4 +176,5 @@ const k = StyleSheet.create({
   tabbar: { flexDirection: 'row', paddingTop: 14 },
   tab: { flex: 1, alignItems: 'center' },
   glow: { position: 'absolute', top: -18 },
+  bellBadge: { position: 'absolute', right: 2, top: 2 },
 });
