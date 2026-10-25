@@ -74,3 +74,6 @@ Built-in image_gen returned HTTP429 usage_limit_reached; generation stopped. Res
 Validation: provenance/ui-fixes-validation.json. All5 completed files pass exact dimensions, PNG, opacity, SHA256, bytes and EXIF checks. Application code and cat character source assets unchanged. Images visually inspected; no app/device rendering verification.
 Existing stamp/news files are RGB opaque with cream exterior; keep original cutout/scallop silhouettes when resuming. Empty-state illustrations are explicit cat exceptions to background no-cat rule.
 Lint attempted: unavailable (no lint script). Typecheck attempted with npx --no-install tsc --noEmit; local dependencies absent, npm registry resolution failed (ENOTFOUND registry.npmjs.org); no pass claimed.
+
+## UI fixes resumed: priority3 complete
+Replaced photo-japan (600x460), stamp-photo-kenya/france/japan/korea (360x280), news-thumb-1/2/3 (330x330). Opaque RGB PNG. Stamps preserve original frame/exterior pixels outside recorded interior polygons. Approved rounded detailed illustration style, no cats/people/text. Photo-japan required2 generations to correct five pagoda roof tiers; other7 assets one generation each. Comparison: previews/regen-travel-thumbnails.png. Prompts and exact finishing polygons: provenance/regen-resume.json and prompts-bg.md. Built-in image_gen only for illustration creation.

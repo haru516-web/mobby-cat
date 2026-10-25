@@ -260,3 +260,83 @@ Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b
 Prompt: Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Very tall portrait1179x2556 world screen background. Pale pastel sky and rounded cream clouds at top, gradually blending into old ivory world-map paper in middle and lower areas. A faint simplified world map, a tiny warm orange airplane and a delicate dotted curved flight route near upper right. Central and bottom card areas are very pale low contrast cream, calm. Gentle painted paper textures and rounded forms, not realistic clouds. NO labels, place names or any text.
 
 Final: (1179, 2556), opaque. SHA256: 8deaf1b4b3dd772813edb53cd342d7e9570046a1b04e3a7906db76f19a5200ce
+
+## UI fixes resumed: bg/photo-japan.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-1a93a713-5199-49cf-b881-3be3020a70bd.png
+
+Prompt: Edit this illustration ONLY to correct the red pagoda: it currently has FOUR roof tiers but must be a FIVE-STORY Japanese pagoda. Draw EXACTLY FIVE clearly separated large tiled roof tiers stacked vertically, not counting the small golden finial. Keep the entire pagoda visible. Keep cherry blossoms, Fuji, lake, colors, soft detailed painted storybook style, composition otherwise unchanged. No people, cats, animals or text. Opaque full landscape rectangle600x460.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque
+
+SHA256: 7566179dcc0b70864474289f8c8e1727442bc1bbaa181b03feb1172cdb8fabb5
+
+## UI fixes resumed: bg/stamp-photo-kenya.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-56fb62a6-3c42-4286-abce-3a589b22684c.png
+
+Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Kenya savanna sunset, acacia tree left, distant hills and golden grass. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque; preserve original exterior/frame pixels outside recorded interior polygon
+
+SHA256: 9fd67a859c90cccb1e85325e90c31cc3cfae8ba541f76b641fbde070e87f630c
+
+## UI fixes resumed: bg/stamp-photo-france.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-0b3deecc-df43-47c2-9f24-50274a2d259d.png
+
+Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Paris Eiffel Tower with street lamp at left, riverside and flowers. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque; preserve original exterior/frame pixels outside recorded interior polygon
+
+SHA256: 1f9c1fc9656059c5029c584ae117e8cee0a9d8b70041030d2b9e7d71b0b2f598
+
+## UI fixes resumed: bg/stamp-photo-japan.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-f179a266-1aee-4b62-a74e-65203260ced1.png
+
+Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Large red torii gate in foreground, snowcapped Mount Fuji, pink cherry blossoms, lake. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque; preserve original exterior/frame pixels outside recorded interior polygon
+
+SHA256: 15436960f4c176c9e172298e9d172aa0cecdfbb04e9043e66db0c76aefa2c94d
+
+## UI fixes resumed: bg/stamp-photo-korea.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-5a2f30dd-1fb0-47be-a9c4-c6320cc759cb.png
+
+Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Traditional Korean hanok alley, tiled curved roofs, plants, warm stone path. Remove every existing sign or writing. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque; preserve original exterior/frame pixels outside recorded interior polygon
+
+SHA256: 5f3cf65404f9a5244ef215b4016385d33e2f9f222923206b05ccab640c5ac9ec
+
+## UI fixes resumed: bg/news-thumb-1.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-0216d95d-0fef-4fc7-8595-11e0aedd17aa.png
+
+Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is edit target. Repaint with approved painted illustration style, preserving same subject, exact overall silhouette/cutout shape and composition: Traditional Korean hanok roofs, warm stone steps and small garden alley. Canvas330x330 square opaque warm cream #FFF8F0 outside illustration. No hard rectangular scene background. Keep silhouette and margins, not a full landscape. No text.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque
+
+SHA256: f56de869253cef8b0be5d94f5f7e689054d3d7670d202827853ded8f4874b5c9
+
+## UI fixes resumed: bg/news-thumb-2.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-d247052e-b6c2-47a5-a61b-b4b3f3d059fc.png
+
+Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is edit target. Repaint with approved painted illustration style, preserving same subject, exact overall silhouette/cutout shape and composition: French cafe street with orange awning, empty chairs, street lamps and flower pots. Canvas330x330 square opaque warm cream #FFF8F0 outside illustration. No hard rectangular scene background. Keep silhouette and margins, not a full landscape. No text.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque
+
+SHA256: de7b9d33cabd24cfdbacfc2efff0f4d678d2ba1122696784ef11e6d7300a7f35
+
+## UI fixes resumed: bg/news-thumb-3.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-16bcf6df-d355-47da-8d91-fdd488bc5d57.png
+
+Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is edit target. Repaint with approved painted illustration style, preserving same subject, exact overall silhouette/cutout shape and composition: Orange beret with small white flowers and green leaves resting on ivory lace doily on a small round wooden base. Canvas330x330 square opaque warm cream #FFF8F0 outside illustration. No hard rectangular scene background. Keep silhouette and margins, not a full landscape. No text.
+
+Processing: Lanczos resize to exact dimensions; RGB opaque
+
+SHA256: 6bbbab99348fa2cebe759ede264ff99783e6c7146150592851edb8df63ed8cb7
