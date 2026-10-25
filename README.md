@@ -1,11 +1,51 @@
-# Mobby Cat
+# ねこモビー
 
-猫モビーの画像アセット管理プロジェクト。
+毎日の暮らし（歩数・スマホの電池・暦・月）が、そのまま猫モビーとの出会いになるコレクションゲーム（iOS / Expo）。
 
-- [猫種一覧と画像](assets/cat-mobbies/README.md)
-- [管理用マニフェスト](assets/cat-mobbies/manifest.json)
-- [34体の集合画像](assets/cat-mobbies/previews/all-34-group.png)
+## まず見る場所
 
-個別PNGは `assets/cat-mobbies/characters/` に配置。初期案、プレビュー、生成プロンプトは同じアセットフォルダー内で分けて保存しています。
+| 知りたいこと | 見る場所 |
+|---|---|
+| 企画・仕様 | [docs/game-design.md](docs/game-design.md)（企画書）、[docs/appearance-catalog.md](docs/appearance-catalog.md)（猫の名前・出現条件） |
+| 公開に向けた考え方と残りのタスク | [docs/growth-plan.md](docs/growth-plan.md) |
+| 「この機能のコードはどこ？」 | [app/src/README.md](app/src/README.md) |
+| 画像はどこにある？どう作る？ | [assets/README.md](assets/README.md) |
+| スクリプトの使い方 | [tools/README.md](tools/README.md) |
+| Codex への依頼書 | [docs/codex/](docs/codex) |
+| 目標とするUIの参考画像 | [docs/ui-reference/](docs/ui-reference) |
 
-取り込み時に全ファイルのSHA-256を元データと照合しています。元データは旧プロジェクトにも保持しています。
+## フォルダの地図
+
+```
+mobby-cat/
+├─ app/                  Expo アプリ本体（これだけがアプリになる）
+│  ├─ App.tsx            起動と画面の切り替え
+│  ├─ app.json           アプリの設定（名前・アイコン・権限の説明文）
+│  ├─ src/               コード（機能ごとに分けてある）
+│  └─ assets/            アプリに入る画像
+│     ├─ ui/             UI画像163枚（ボタン・カード・背景など）と manifest.json
+│     ├─ cats/           猫モビー136匹の画像（自動生成。手で編集しない）
+│     └─ system/         OS用のアイコン（Android）
+├─ assets/               アプリに入らない素材と記録
+│  ├─ cat-mobbies/       猫モビーの元画像（1254px）。new/ は新規100匹
+│  └─ ui-records/        UI画像の確認用プレビューと生成記録（Codexの納品記録）
+├─ docs/                 企画書・計画・Codex依頼書
+└─ tools/                画像の変換・一覧生成のスクリプト
+```
+
+## 動かす
+
+```bash
+cd app
+npm install
+npm run web      # ブラウザで確認（http://localhost:8081）
+npx tsc --noEmit # 型チェック（未使用コードもエラーになる設定）
+```
+
+iPhone実機は Expo Go で確認する。ビルド（EAS / Xcode）は、必要なときに依頼してから行う。
+
+## ブランチと作業フォルダ
+
+- 作業は `git worktree` で、ブランチごとに別フォルダを使う（`.worktrees/<名前>`）。
+- Codex に頼む作業は、必ず専用のブランチ `codex/<名前>` と専用の worktree を用意し、`D:\mobby-cat` 本体のフォルダは使わせない。
+- 画像を作る流れ：Codex が `codex/*` ブランチで画像を納品 → `tools/` のスクリプトでアプリ用に変換 → アプリのブランチへ取り込む。

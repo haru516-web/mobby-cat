@@ -3,7 +3,7 @@
 Add-Type -AssemblyName System.Drawing
 $root = Split-Path $PSScriptRoot -Parent
 $base = "$root\app\assets\ui"
-$skip = @('previews', 'provenance', 'guides')
+$skip = @()  # app/assets/ui に置くのは画像のカテゴリだけ。記録は assets/ui-records へ
 $slices = @{}
 $regions = @{}
 $manifest = Get-Content "$base\manifest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -40,4 +40,4 @@ Get-ChildItem $base -Recurse -Filter *.png | Sort-Object FullName | ForEach-Obje
 $lines += "};"
 New-Item -ItemType Directory -Force "$root\app\src\ui" | Out-Null
 [System.IO.File]::WriteAllText("$root\app\src\ui\uiAssets.ts", ($lines -join "`n") + "`n", (New-Object System.Text.UTF8Encoding($false)))
-"entries: $($lines.Count - 6), sliced: $($slices.Count)"
+"entries: $($lines.Count - 7), sliced: $($slices.Count)"

@@ -1,13 +1,13 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import React, { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { GestureResponderEvent, Image, PanResponder, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATS } from '../data/catalog';
-import { HASHTAG, saveView, shareView, ViewRef } from '../lib/share';
-import { useGame } from '../state/game';
-import { CAT_BY_ID, CatImage, T } from '../ui/base';
-import { ImgButton } from '../ui/kit';
-import { Backdrop, Pic, Slice, Stretch } from '../ui/Slice';
+import { CATS } from '../../data/catalog';
+import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
+import { useGame } from '../../core/game';
+import { CAT_BY_ID, CatImage, T } from '../../ui/base';
+import { ImgButton } from '../../ui/kit';
+import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 
 type Pose = { x: number; y: number; scale: number; rot: number };
 const touchInfo = (e: GestureResponderEvent) => {

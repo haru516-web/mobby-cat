@@ -1,5 +1,5 @@
 import * as Notifications from 'expo-notifications';
-import { REVEAL_HOUR } from './encounter';
+import { REVEAL_HOUR } from '../core/encounter';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

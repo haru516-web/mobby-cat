@@ -1,12 +1,12 @@
 import Constants from 'expo-constants';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { rarityOdds } from '../lib/encounter';
-import { disableDailyNotification, enableDailyNotification } from '../lib/notify';
-import { useGame } from '../state/game';
-import { C, T } from '../ui/base';
-import { Card, Icon, ImgButton, Toggle } from '../ui/kit';
-import { Backdrop, Pic, Slice } from '../ui/Slice';
+import { rarityOdds } from '../../core/encounter';
+import { disableDailyNotification, enableDailyNotification } from '../../services/notify';
+import { useGame } from '../../core/game';
+import { C, T } from '../../ui/base';
+import { Card, Icon, ImgButton, Toggle } from '../../ui/kit';
+import { Backdrop, Pic, Slice } from '../../ui/Slice';
 
 // 価格は設計書の仮値。実課金（StoreKit 等）は未接続で、購入ボタンは開発用の無料付与。
 const ITEMS = [

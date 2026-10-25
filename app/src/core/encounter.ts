@@ -3,7 +3,7 @@ import { Ctx, Guaranteed, Signals, guaranteedCats } from './conditions';
 
 export { REVEAL_HOUR, encounterDayKey, fmtDay, msUntilNextReveal, prevDayKey } from './dates';
 
-export const BASE_CANDIDATES = 3;
+const BASE_CANDIDATES = 3;
 export const MAX_CANDIDATES = 6;
 
 function hash(str: string): number {

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { C, CatImage, T } from '../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well, useTabPad } from '../ui/kit';
-import { Backdrop, Pic, Slice } from '../ui/Slice';
-import { ScreenProps } from './types';
+import { C, CatImage, T } from '../../ui/base';
+import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well, useTabPad } from '../../ui/kit';
+import { Backdrop, Pic, Slice } from '../../ui/Slice';
+import { ScreenProps } from '../../navigation';
 
 // 旅猫・世界ミッションはバックエンド未接続のため、表示はすべてサンプル
 const SAMPLE = {

@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
-import { CATS, CatDef } from '../data/catalog';
-import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../lib/conditions';
-import { useGame } from '../state/game';
-import { C, CatImage, FONT, T, catNo } from '../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad } from '../ui/kit';
-import { Backdrop, Pic, Slice, Stretch } from '../ui/Slice';
-import { ScreenProps } from './types';
+import { CATS, CatDef } from '../../data/catalog';
+import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
+import { useGame } from '../../core/game';
+import { C, CatImage, FONT, T, catNo } from '../../ui/base';
+import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad } from '../../ui/kit';
+import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
+import { ScreenProps } from '../../navigation';
 
 type Filter = 'all' | 'normal' | 'rare' | 'limited';
 const FILTERS: { key: Filter; label: string; skin: string; color: string }[] = [

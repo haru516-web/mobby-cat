@@ -1,7 +1,7 @@
 // 出現条件の材料になる端末の情報（電池・歩数）。取れない環境では null を返す。
 import * as Battery from 'expo-battery';
 import { Pedometer } from 'expo-sensors';
-import { parseDay, REVEAL_HOUR } from './dates';
+import { parseDay, REVEAL_HOUR } from '../core/dates';
 
 export async function readBattery(): Promise<{ level: number; charging: boolean } | null> {
   try {

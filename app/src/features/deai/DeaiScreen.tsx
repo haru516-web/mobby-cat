@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../lib/encounter';
-import { HASHTAG, saveView, shareView, ViewRef } from '../lib/share';
-import { DiscoveryCard } from '../ui/DiscoveryCard';
-import { useGame, visibleCount } from '../state/game';
-import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad } from '../ui/kit';
-import { Pic, Slice, Stretch } from '../ui/Slice';
-import { ScreenProps } from './types';
+import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../../core/encounter';
+import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
+import { DiscoveryCard } from './DiscoveryCard';
+import { useGame, visibleCount } from '../../core/game';
+import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
+import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad } from '../../ui/kit';
+import { Pic, Slice, Stretch } from '../../ui/Slice';
+import { ScreenProps } from '../../navigation';
 
 export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps) {
   const g = useGame();

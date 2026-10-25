@@ -1,12 +1,12 @@
-import React, { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Animated, Easing, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { CATS } from '../data/catalog';
-import { msUntilNextReveal } from '../lib/encounter';
-import { useGame } from '../state/game';
-import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid, useTabPad } from '../ui/kit';
-import { Backdrop, Pic, Slice } from '../ui/Slice';
-import { ScreenProps } from './types';
+import { CATS } from '../../data/catalog';
+import { msUntilNextReveal } from '../../core/encounter';
+import { useGame } from '../../core/game';
+import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
+import { Card, Header, ImgButton, InfoPill, Polaroid, useTabPad } from '../../ui/kit';
+import { Backdrop, Pic, Slice } from '../../ui/Slice';
+import { ScreenProps } from '../../navigation';
 
 // 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい
 const SLOTS = [
