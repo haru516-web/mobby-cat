@@ -1,0 +1,21 @@
+{
+  "id": "suphalak",
+  "name": "スパラック",
+  "batch": "e",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/e/suphalak.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-f0aeb831-4620-4cad-af76-b6790143f218.png",
+  "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: suphalak. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Suphalak: solid deep copper-red-brown glossy short coat, copper iris, slim build. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2420870,
+    "sha256": "1ae1f96270c9d85b379e97ec4ba287d674cbcf5717eaee6cb97eb93a9725cb0c"
+  }
+}

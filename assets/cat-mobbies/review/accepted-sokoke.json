@@ -1,0 +1,21 @@
+{
+  "id": "sokoke",
+  "name": "ソコケ",
+  "batch": "e",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/e/sokoke.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-57cfbe16-4570-45d3-abe7-391ac3f1cfcd.png",
+  "prompt": "Use case: precise-object-edit. Ref1 bengal/ref2 ragdoll define materials and hardware; ref3 is EDIT TARGET sokoke. Make a distinctly narrow tall rounded-square body, slim angular face with high cheekbones, very large widely flared ears, amber iris. Change pattern to high-contrast broad interlocking black TREE-BARK marble patches over cooler medium-brown ticked short fur; show broad irregular whorls on the torso and limbs, NOT fine mackerel stripes. No white bib, no orange. Keep detailed real animal fur, one unified square head/body no neck, short arms/two feet, front full body. ONE living eye left with round black pupil, ONE green camera lens right, ONE black D-pad lower left and exactly TWO unmarked black round buttons diagonal lower right. No props/clothes/text. Transparent RGBA1254x1254 centered with ample clear margins.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2768937,
+    "sha256": "18f8dc75791408ee31a3d6741fb3bfc64ca8ff0267815cba27872fd1255a2bdb"
+  }
+}
