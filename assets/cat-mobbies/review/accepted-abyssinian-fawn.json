@@ -1,0 +1,21 @@
+{
+  "id": "abyssinian-fawn",
+  "name": "アビシニアン（フォーン）",
+  "batch": "h",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/h/abyssinian-fawn.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-cce9234f-0618-438c-91ae-3acd70c44bc9.png",
+  "prompt": "Use case: precise-object-edit. Ref1 bengal/ref2 ragdoll are materials/hardware references. Ref3 is EDIT TARGET abyssinian-fawn. Critical coat correction: FAWN is very PALE PINKISH BEIGE (like light oat milk), fine subtle light taupe ticking. Remove ALL warm rust/red/brown colouring and dark tail. Large flared ears, wedge-shaped slim face, golden iris. Make slender taller rounded-square body. Preserve detailed real strands, unified rounded-square head/body NO neck, short arms/two short feet. ONE biological eye viewer LEFT and ONE green-glass camera lens RIGHT, black D-pad lower LEFT and exactly TWO plain black round buttons lower RIGHT diagonal. Full body front, no props/text. True transparent RGBA1254x1254, character occupies75% canvas with wide clear margins.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2454662,
+    "sha256": "e41be576cadeb3a6f553058791166873ceece5ebf5426bb2879efb1003953a22"
+  }
+}

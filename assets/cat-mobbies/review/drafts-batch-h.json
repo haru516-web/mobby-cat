@@ -1,0 +1,106 @@
+{
+  "batch": "h",
+  "records": [
+    {
+      "id": "maine-coon-silver-tabby",
+      "name": "メインクーン（シルバータビー）",
+      "batch": "h",
+      "spec": "Maine Coon silver tabby: shaggy silver coat with black tabby stripes, lynx-tip ear tufts, big ruff, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: maine-coon-silver-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Maine Coon silver tabby: shaggy silver coat with black tabby stripes, lynx-tip ear tufts, big ruff, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-e47d8765-fae7-4a49-95fa-40dddd4f88db.png",
+      "target": "assets/cat-mobbies/breeds2/h/maine-coon-silver-tabby.png",
+      "kind": "breed"
+    },
+    {
+      "id": "maine-coon-black",
+      "name": "メインクーン（ブラック）",
+      "batch": "h",
+      "spec": "Maine Coon black: shaggy solid black coat, lynx-tip ear tufts, big ruff and plume tail, gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: maine-coon-black. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Maine Coon black: shaggy solid black coat, lynx-tip ear tufts, big ruff and plume tail, gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-150aa5cf-28b9-40d8-b8db-fe445daeea3e.png",
+      "target": "assets/cat-mobbies/breeds2/h/maine-coon-black.png",
+      "kind": "breed"
+    },
+    {
+      "id": "maine-coon-red-tabby",
+      "name": "メインクーン（レッドタビー）",
+      "batch": "h",
+      "spec": "Maine Coon red tabby: shaggy bright orange coat with darker stripes, lynx-tip tufts, big ruff, gold-green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: maine-coon-red-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Maine Coon red tabby: shaggy bright orange coat with darker stripes, lynx-tip tufts, big ruff, gold-green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-140ea9bd-a00a-448e-9122-8929562a34de.png",
+      "target": "assets/cat-mobbies/breeds2/h/maine-coon-red-tabby.png",
+      "kind": "breed"
+    },
+    {
+      "id": "norwegian-forest-black-white",
+      "name": "ノルウェージャンフォレスト（ブラック＆ホワイト）",
+      "batch": "h",
+      "spec": "Norwegian Forest black-and-white: long flowing coat, white chest ruff and paws, tufted ears, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: norwegian-forest-black-white. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Norwegian Forest black-and-white: long flowing coat, white chest ruff and paws, tufted ears, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-db4af656-0097-4215-85fb-a885d9942e8e.png",
+      "target": "assets/cat-mobbies/breeds2/h/norwegian-forest-black-white.png",
+      "kind": "breed"
+    },
+    {
+      "id": "norwegian-forest-silver-tabby",
+      "name": "ノルウェージャンフォレスト（シルバータビー）",
+      "batch": "h",
+      "spec": "Norwegian Forest silver tabby: long coat, silver with black stripes, thick ruff, bushy tail, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: norwegian-forest-silver-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Norwegian Forest silver tabby: long coat, silver with black stripes, thick ruff, bushy tail, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-71536004-109c-4a6b-bf12-c9bbd41e1fab.png",
+      "target": "assets/cat-mobbies/breeds2/h/norwegian-forest-silver-tabby.png",
+      "kind": "breed"
+    },
+    {
+      "id": "siberian-blue",
+      "name": "サイベリアン（ブルー）",
+      "batch": "h",
+      "spec": "Siberian blue: thick plush triple-coat in solid blue-grey, rounded tufted ears, broad muzzle, green-yellow iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: siberian-blue. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Siberian blue: thick plush triple-coat in solid blue-grey, rounded tufted ears, broad muzzle, green-yellow iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-98b74108-b2bb-40e3-9b49-e7a360be1c8c.png",
+      "target": "assets/cat-mobbies/breeds2/h/siberian-blue.png",
+      "kind": "breed"
+    },
+    {
+      "id": "birman-blue-point",
+      "name": "バーマン（ブルーポイント）",
+      "batch": "h",
+      "spec": "Birman blue point: pale cream-white body, slate-blue points, white gloves on all feet, long silky coat, blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: birman-blue-point. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Birman blue point: pale cream-white body, slate-blue points, white gloves on all feet, long silky coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-e363d15e-5d41-4041-9843-48360bf682ed.png",
+      "target": "assets/cat-mobbies/breeds2/h/birman-blue-point.png",
+      "kind": "breed"
+    },
+    {
+      "id": "birman-chocolate-point",
+      "name": "バーマン（チョコレートポイント）",
+      "batch": "h",
+      "spec": "Birman chocolate point: ivory body, warm chocolate points, white gloves, long silky coat, blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: birman-chocolate-point. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Birman chocolate point: ivory body, warm chocolate points, white gloves, long silky coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-cc74dfc1-9a56-4301-880e-32ffc8ec17a7.png",
+      "target": "assets/cat-mobbies/breeds2/h/birman-chocolate-point.png",
+      "kind": "breed"
+    },
+    {
+      "id": "abyssinian-blue",
+      "name": "アビシニアン（ブルー）",
+      "batch": "h",
+      "spec": "Abyssinian blue: slate-blue ticked short coat with warm beige undertone, large ears, gold-green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: abyssinian-blue. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Abyssinian blue: slate-blue ticked short coat with warm beige undertone, large ears, gold-green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-dafae8cb-2a2a-4c23-a5e1-7a2075711a0a.png",
+      "target": "assets/cat-mobbies/breeds2/h/abyssinian-blue.png",
+      "kind": "breed"
+    },
+    {
+      "id": "abyssinian-fawn",
+      "name": "アビシニアン（フォーン）",
+      "batch": "h",
+      "spec": "Abyssinian fawn: soft pinkish-beige ticked short coat, large ears, gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: abyssinian-fawn. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Abyssinian fawn: soft pinkish-beige ticked short coat, large ears, gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-d6133aa3-8074-4c56-a386-51b170210524.png",
+      "target": "assets/cat-mobbies/breeds2/h/abyssinian-fawn.png",
+      "kind": "breed"
+    }
+  ],
+  "failures": []
+}
