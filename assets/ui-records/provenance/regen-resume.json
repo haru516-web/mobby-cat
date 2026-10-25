@@ -293,5 +293,36 @@
       ]
     ],
     "processed": true
+  },
+  "panel/sheet-detail.png": {
+    "prompt": "Create ONE production blank bottom detail sheet UI panel, landscape1179x600. Reference image is style/color only: warm cream ivory paper, puffy soft shape, thin warm taupe brown outer stroke and very subtle top highlight. Top corners large rounded (fit90px horizontal,120px vertical caps). Small short rounded muted warm taupe grab HANDLE centered near top within first80px. Rest completely blank. Panel extends all the way through bottom canvas, SQUARE BOTTOM CORNERS, NO horizontal bottom border, NO bottom shadow, NO bottom highlight. Vertical side borders end cut at canvas bottom. True transparent outside top rounded corners and faint low-contrast upward shadow. Main cream panel opaque. NO white rectangular backdrop, NO checkerboard, NO labels, text, cats or icons. Front-on flat UI component, not a perspective mockup. Keep top decoration within top120px.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-652a4a86-82fb-43ab-82b3-3612ade26a27.png",
+    "size": [
+      1179,
+      600
+    ],
+    "transparent": true,
+    "crop": [
+      2,
+      36,
+      1757,
+      894
+    ],
+    "topCap": [
+      200,
+      120
+    ],
+    "sideCap": [
+      120,
+      90
+    ],
+    "openBottom": 400,
+    "slice": {
+      "top": 120,
+      "right": 90,
+      "bottom": 0,
+      "left": 90
+    },
+    "processed": true
   }
 }

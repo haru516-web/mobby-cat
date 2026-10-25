@@ -83,3 +83,6 @@ Replaced tabbar/bg.png1179x300 RGBA. Top corners retained, square bottom corners
 
 ## UI fixes: empty states complete
 Added illust/empty-notice.png and empty-history.png, each600x450 RGBA, one generation each. Bengal character source referenced only; source unchanged. Camera lens eye, chest directional pad and two buttons visually checked. Transparent surroundings, small contact shadow; polaroid opening residual alpha cleared. Comparison: previews/regen-empty-states.png.
+
+## UI fixes: detail sheet complete
+Added panel/sheet-detail.png1179x600 RGBA with centered handle, rounded top corners, open square bottom edge and no bottom border/shadow. Slice top120/right90/bottom0/left90. One built-in generation, technical cap normalization for specified slice bounds. Comparison: previews/regen-sheet-detail.png.

@@ -2,7 +2,7 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 165,
+  "assetCount": 166,
   "counts": {
     "badge": 9,
     "bg": 17,
@@ -13,7 +13,7 @@
     "gauge": 5,
     "icon": 25,
     "illust": 13,
-    "panel": 14,
+    "panel": 15,
     "share": 10,
     "tabbar": 11
   },
@@ -2478,6 +2478,23 @@
       "method": "built-in image_gen",
       "alphaMode": "transparent",
       "processing": "Lanczos resize to exact dimensions; preserve generated alpha; clear residual alpha inside empty photo opening; proportionate fit with12px transparent clearance"
+    },
+    {
+      "path": "panel/sheet-detail.png",
+      "width": 1179,
+      "height": 600,
+      "sha256": "c37b618edce5943e5552bceb67c4d66ecea5b3595d348b11737fcc7b0850e4d2",
+      "bytes": 459462,
+      "prompt": "Create ONE production blank bottom detail sheet UI panel, landscape1179x600. Reference image is style/color only: warm cream ivory paper, puffy soft shape, thin warm taupe brown outer stroke and very subtle top highlight. Top corners large rounded (fit90px horizontal,120px vertical caps). Small short rounded muted warm taupe grab HANDLE centered near top within first80px. Rest completely blank. Panel extends all the way through bottom canvas, SQUARE BOTTOM CORNERS, NO horizontal bottom border, NO bottom shadow, NO bottom highlight. Vertical side borders end cut at canvas bottom. True transparent outside top rounded corners and faint low-contrast upward shadow. Main cream panel opaque. NO white rectangular backdrop, NO checkerboard, NO labels, text, cats or icons. Front-on flat UI component, not a perspective mockup. Keep top decoration within top120px.",
+      "method": "built-in image_gen",
+      "alphaMode": "transparent",
+      "processing": "Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge; normalize corner geometry into required slice caps",
+      "slice": {
+        "top": 120,
+        "right": 90,
+        "bottom": 0,
+        "left": 90
+      }
     }
   ],
   "marginPolicy": "For9slice visible alpha>8 content bounds are within8px of every canvas edge. Slice values are finalPNG pixels."
