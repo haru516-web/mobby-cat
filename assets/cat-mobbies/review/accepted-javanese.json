@@ -1,0 +1,21 @@
+{
+  "id": "javanese",
+  "name": "ジャバニーズ",
+  "batch": "a",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/a/javanese.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-cd2898ff-d736-4273-9759-baed0c4d9419.png",
+  "prompt": "Use case: stylized-concept. Generate ONE new real breed Mobby: javanese. Reference image1 bengal and2 ragdoll define realistic individually visible animal fur, glossy eye, black lens and controls only. NEW BREED APPEARANCE EXACTLY: Javanese: semi-long silky coat, cream-white body with red-orange points (ears, mask, legs, plume tail), sapphire-blue iris. Make breed-specific ears, muzzle and body proportions clearly visible. Preserve Mobby unified rounded-square head/body NO neck or separate head, short arms/two short feet and side tail. Exactly ONE living cat eye viewer LEFT with large ROUND black pupil and white catchlight; exactly ONE large black concentric camera lens viewer RIGHT, green reflective glass. One black cross D-pad lower LEFT belly and exactly TWO PLAIN unmarked black round buttons diagonally lower RIGHT. No paw marks on buttons. Front view full body, detailed realistic directional strand fur (never felt or toy plush). Soft studio light. NO accessories, collars, clothes, props, text or watermark. True transparent alpha PNG exact1254x1254. Whole character occupies only80% of canvas with at least100px empty transparent border on all sides. Do not copy Bengal brown stripes or Ragdoll bicolor unless specified by this breed.",
+  "qa": "accepted: specified breed coat/ears/face reflected, left biological eye/right lens/D-pad/two plain round buttons, no accessories/text; common padding finish pending",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "bytes": 2421028,
+    "sha256": "30fb5c38bcbae3730d36e4d9e39930940fe7f32d74224c5a37ae4bb5844086e9"
+  }
+}

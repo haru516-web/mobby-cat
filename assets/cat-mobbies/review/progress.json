@@ -77,14 +77,24 @@
     "yofukashi",
     "yukidaruma"
   ],
-  "bAccepted": 3,
-  "bRemaining": 97,
+  "bAccepted": 13,
+  "bRemaining": 87,
   "bIds": [
+    "burmilla",
+    "chartreux",
+    "colorpoint-shorthair",
+    "himalayan",
+    "javanese",
+    "korat",
     "mike-neko",
+    "nebelung",
+    "oriental-longhair",
+    "oriental-shorthair",
     "ragdoll-seal-mitted",
-    "savannah"
+    "savannah",
+    "thai"
   ],
   "scopeCheck": "passed: only cat assets and records",
   "hashDimensionAlphaIdentityChecks": "passed",
-  "visualQA": "per accepted record; final similarity re-audit still pending"
+  "visualQA": "per accepted record; A similarity re-audit passed 2026-10-26; common padding finish pending"
 }
