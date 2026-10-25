@@ -5,6 +5,8 @@ root=Path('assets/cat-mobbies');review=root/'review'
 records=[json.loads(p.read_text(encoding='utf-8')) for p in review.glob('accepted-*.json')]
 plan=json.loads((review/'regen-plan.json').read_text(encoding='utf-8'));hold={'rea-mobby','turkish-van','sakasama','kiseki','hoshizora','yami','ragdoll','snowshoe'}
 a=[r for r in records if r.get('kind')!='breed'];b=[r for r in records if r.get('kind')=='breed'];done={r['id'] for r in a}
+rejected_breed_ids={r['id'] for p in review.glob('rejected-breed-*.json') for r in json.loads(p.read_text(encoding='utf-8'))}
+regenerated_breeds=len(rejected_breed_ids & {r['id'] for r in b})
 pending=[id for g in plan for id in g['ids'] if id not in done|hold]
 for i,g in enumerate(plan,1):
  parts=['# '+g['group']+' — regeneration prompts','Built-in image_gen. Reference1: characters/bengal.png; reference2: characters/ragdoll.png; reference3: original target.']
@@ -39,7 +41,7 @@ B本番a〜j → 100件照合と全236匹の比較 → 余白仕上げ → 最�
 
 - 採用ID: {', '.join(sorted(r['id'] for r in b))}
 - 形式: 1254×1254 RGBA透過PNG。生成アルファを加工せず保存（最大値254〜255）。
-- Bの再生成採用: 0匹。
+- Bの再生成採用: {regenerated_breeds}匹（不採用理由はreview/rejected-breed-*.json）。
 - manifest.jsonには実際に生成・検品できた画像のみ登録。
 - previews/batch-*.pngは現在の採用分だけを合成した途中の一覧。
 - プロンプト: ../provenance/prompts-breeds2-*.md
