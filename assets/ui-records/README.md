@@ -86,3 +86,10 @@ Added illust/empty-notice.png and empty-history.png, each600x450 RGBA, one gener
 
 ## UI fixes: detail sheet complete
 Added panel/sheet-detail.png1179x600 RGBA with centered handle, rounded top corners, open square bottom edge and no bottom border/shadow. Slice top120/right90/bottom0/left90. One built-in generation, technical cap normalization for specified slice bounds. Comparison: previews/regen-sheet-detail.png.
+
+## UI fixes FINAL: complete
+All17 requested assets delivered:13 background replacements,1 tabbar replacement,2 new empty-state illustrations and1 new detail sheet. Missing0; extra delivery images0. Total19 successful image_gen generations,2 redo generations (room-home and photo-japan). Previously quota-blocked12 assets are now complete.
+All17 passed exact dimensions, PNG, required opacity/transparency, bytes, SHA256 and EXIF checks. Both slice definitions passed; square open bottom corners verified. All4 stamp frame/exterior pixel regions preserved exactly. All166 manifest asset hashes checked. Approved5 backgrounds were preserved byte-for-byte during resume.
+Only app/assets/ui/** and assets/ui-records/** changed. No app/src, App.tsx, package.json, cat source assets, active-glow or underline changes. Registry integration remains with the requester as instructed; no app/device rendering verification performed.
+Final overview: previews/ui-fixes-final.png. Audit: provenance/ui-fixes-validation.json. Full prompts: manifest.json and provenance/prompts-bg.md, prompts-tabbar.md, prompts-illust.md, prompts-panel.md. Exact generation sources and finishing parameters: provenance/regen-resume.json. Photo-japan rejected/final prompts: provenance/photo-japan-regeneration.json.
+Lint reattempt: Missing script lint. Typecheck reattempt in offline mode: ENOTCACHED, local dependencies unavailable. Neither app check is claimed to pass. Asset audit errors0.

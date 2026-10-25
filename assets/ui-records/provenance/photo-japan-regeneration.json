@@ -1,0 +1,17 @@
+{
+  "path": "bg/photo-japan.png",
+  "attempts": [
+    {
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-6c5c99c6-0559-4672-8781-c68f315500a8.png",
+      "prompt": "Create a full bleed opaque landscape600x460 Japanese scenery illustration for the approved cozy mobile game UI. Image1 approved STYLE reference: soft rounded detailed hand-painted storybook forms, gentle gradients, warm cream, muted green and pale orange. Image2 composition subject reference only: cherry blossoms, five-story red pagoda on right, snowcapped Mount Fuji behind lake. Repaint as clearly illustrated game scenery with medium-scale painted roof and blossom details, warm gentle daylight. No photographic texture, camera blur, lens flare, harsh dark shadows or realistic fibers. No cats, animals, people, text, labels, watermark or border. Entire rectangle opaque.",
+      "status": "superseded",
+      "reason": "Four roof tiers; brief requires five-story pagoda"
+    },
+    {
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-1a93a713-5199-49cf-b881-3be3020a70bd.png",
+      "prompt": "Edit this illustration ONLY to correct the red pagoda: it currently has FOUR roof tiers but must be a FIVE-STORY Japanese pagoda. Draw EXACTLY FIVE clearly separated large tiled roof tiers stacked vertically, not counting the small golden finial. Keep the entire pagoda visible. Keep cherry blossoms, Fuji, lake, colors, soft detailed painted storybook style, composition otherwise unchanged. No people, cats, animals or text. Opaque full landscape rectangle600x460.",
+      "status": "accepted",
+      "review": "Exactly five roof tiers visually checked"
+    }
+  ]
+}
