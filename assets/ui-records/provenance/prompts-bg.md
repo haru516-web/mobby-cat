@@ -218,3 +218,13 @@ Prompt: Create ONE full-bleed opaque portrait mobile game background illustratio
 Processing: RGB opaque; Lanczos resize to 1179x1900.
 
 Comparison: previews/regen-compare.png (reference / before / draft).
+
+## 2026-10-25 room-home draft 02: more detail
+
+Built-in image_gen, second generation overall. Style approval pending.
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-042b0394-5e0f-4e11-b07d-539b82067cef.png
+
+Prompt: Edit the referenced room-home game background. User request: a little more fine detail than this first draft. Preserve the EXACT overall composition, framing, rounded soft storybook illustration style, warm cream/beige/soft orange/muted green palette, all existing object positions, and empty generous central rug/floor. Enrich the existing objects with tasteful hand-painted medium-scale detail: more articulated plant leaf edges and layered small leaves with restrained painted veins, rounded window joinery and curtain folds, gentle upholstery seam lines and a small embroidered pattern on cushion, clearer woven shapes on existing baskets, softly drawn braided edge around rug and subtle sparse weave marks, gentle carved wood accents on shelves and floor, a few painted rope winding lines on cat tower and knitted stitches on existing green throw. Slightly richer color separation and soft ambient shading for furniture depth. Keep detail restrained and illustrative, not photo-texture. Do not add new furniture or clutter. Rug center at vertical 50–75% remains plain, empty, flat and low contrast for character overlays. Bottom15% and lower right remain calm. Top12% calm for header. Clearly a beautiful detailed painted cozy mobile game background with rounded forms; NOT photographic, NOT realistic CGI, no sharp high contrast, no lens effects, no reflective floor, no individual fabric fibers or highly realistic wood grain. NO cats, NO people, NO animals, NO text or letters, NO UI or border. One opaque edge-to-edge portrait image, aspect1179:1900.
+
+Processing: RGB opaque; Lanczos resize to 1179x1900. Comparison: previews/room-home-detail-compare.png (reference / draft01 / draft02).
