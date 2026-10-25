@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../lib/encounter';
-import { HASHTAG, shareView, ViewRef } from '../lib/share';
+import { HASHTAG, saveView, shareView, ViewRef } from '../lib/share';
 import { DiscoveryCard } from '../ui/DiscoveryCard';
 import { useGame, visibleCount } from '../state/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../ui/base';
@@ -227,8 +227,9 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
               <T w="x" size={20} color="#fff">{CAT_BY_ID[welcome].name}をお迎えしました！</T>
               <DiscoveryCard ref={card} id={welcome} day={day} reason={rec.reasons[welcome]} width={Math.min(width - 48, 340)} />
               <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
-                <ImgButton skin="ghost-outline" label="閉じる" height={46} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
-                <ImgButton label="共有する" icon="icon/camera" height={46} onPress={() => shareCard(welcome)} style={{ flex: 1.4 }} />
+                <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
+                <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1.2 }} />
+                <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1.2 }} />
               </View>
             </View>
           )}
