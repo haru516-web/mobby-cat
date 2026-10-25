@@ -1,0 +1,19 @@
+{
+  "id": "bunshin",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-016a357c-c8dd-4cf1-8540-919ba55d08a7.png",
+  "target": "assets/cat-mobbies/new/d/bunshin.png",
+  "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. REGENERATE bunshin. Reference image 3 is the original edit target; retain its concept and the specified props while replacing the MAIN CAT's appearance. References 1/2 define hardware/fur quality only. Dark cool BLUE GREY short tight curly fur, NO brown orange or tortie. Very small rounded ears, a low wide square body, silver-green living iris. Keep two pale faceless translucent afterimage silhouettes behind the main cat, without extra visible eyes/lenses/controls. Keep tan collar. All props must leave eye lens and controls visible. Keep original filename/identity; no new text.",
+  "regenReason": "rea-mobbyを含む長毛キジ三毛グループとの重複を解消。青灰の短い巻き毛、低い丸耳、銀緑目へ変更。残像と首輪を保持。",
+  "qa": "accepted: one biological eye, right green-glass lens, D-pad and two plain buttons visible; original concept props retained, distinct coat and texture",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2683825,
+    "sha256": "af3367649e5790c5363c2822c18ec120b4bfb8e42d69d96584299acecfae3f08"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "halloween",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-dc16bf13-fc58-4dd2-9efa-bcf1c0c04c5b.png",
+  "target": "assets/cat-mobbies/new/i/halloween.png",
+  "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. REGENERATE halloween. Reference 3 original target defines props/concept only; reference 1 bengal and 2 ragdoll define Mobby anatomy, hardware and realistic directional fur. BLACK SMOKE short sleek fur with pale SILVER undercoat at cheeks and flanks, NO brown/orange fur. LARGE wide-set ears, narrow square body, angular cheeks, amber eye. Keep little witch hat with pumpkin and broom, bell collar. Preserve unified rounded-square body no neck, short limbs. One living eye viewer left and one black green glass lens viewer right; one D-pad lower left and exactly two plain black diagonal round buttons lower right. Props must not hide controls. Front full body, real animal fur not felt. Exact1254x1254 transparent PNG with margin, no floor/grid/text/watermark.",
+  "regenReason": "茶色単色の丸顔グループから、黒煙と銀下毛の短毛・大耳・角張った顔へ変更。魔女帽子・かぼちゃ・ほうき・鈴を保持。",
+  "qa": "accepted: correct one eye/right lens/D-pad/two plain buttons, concept props retained, distinct main coat",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2898008,
+    "sha256": "bba7a72a2306549d4c6714872a626ae2a6a3b39355efc40eb5d3464e90396f8d"
+  }
+}

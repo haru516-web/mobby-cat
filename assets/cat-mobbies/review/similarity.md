@@ -1,7 +1,7 @@
 # 既存136匹の類似監査
 
 監査日: 2026-10-25。対象ブランチ: codex/new-mobbies-2。
-状態: 初回監査完了、試作生成中。Aの再描画と最終再監査、Bの100匹は未完了。
+状態: 初回監査と指定5匹の試作比較を完了。A本番の再描画中。A最終再監査とB本番は未完了。
 
 ## 方法
 
@@ -48,3 +48,7 @@ bengal, toyger, ocicat, abyssinian, singapura, exotic-shorthair, scottish-fold, 
 - 未完了: Aの残りの再描画と最終再監査、Bの残り99匹。「同じ見た目は最大2匹」の達成はまだ検証していない。
 
 初回保持判定の補足: hakubutsukan, hatsuhinode, ichiichi, ijike, omatsuri, ousama, sanbiki, shoku, zorome, uyu-mobby は初回では保持。最終再監査の対象には含める。
+
+## 再開後の試作確定
+
+指定5匹が揃い、既存36匹と並べて質感・型を目視確認した。shikaku再試作を採用し、元のキャラ案に合わせたキャラメル単色短毛・低い丸耳・四角い体に変更。savannah（d）は大きな耳と黒い斑点、mike-neko（j）は短毛の白黒橙と長い尾で採用。全5匹1254×1254 RGBA透過。mike-nekoのアルファ最大値は254（ほぼ不透明）であり、生成アルファを変更せず保存した。A採用2匹、B試作3匹。ここからA本番へ進む。

@@ -1,0 +1,25 @@
+{
+  "aAccepted": 10,
+  "aIds": [
+    "bunshin",
+    "collector",
+    "country-30",
+    "halloween",
+    "kikan",
+    "mushoku",
+    "shachou",
+    "shikaku",
+    "tomodachizure",
+    "traveling-mobby"
+  ],
+  "bAccepted": 3,
+  "bRemaining": 97,
+  "bIds": [
+    "mike-neko",
+    "ragdoll-seal-mitted",
+    "savannah"
+  ],
+  "scopeCheck": "passed: only cat assets and records",
+  "hashDimensionAlphaIdentityChecks": "passed",
+  "visualQA": "per accepted record; final similarity re-audit still pending"
+}
