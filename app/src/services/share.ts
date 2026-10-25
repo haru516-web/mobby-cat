@@ -3,23 +3,15 @@
 // Web: 画像（PNG）にして、共有メニューに対応していれば共有、なければダウンロード。
 import * as MediaLibrary from 'expo-media-library/legacy';
 import * as Sharing from 'expo-sharing';
-import { Alert, Platform, Share, View } from 'react-native';
+import { Platform, Share, View } from 'react-native';
 import { captureRef } from 'react-native-view-shot';
+import { notice } from './dialog';
 
 export type ViewRef = React.ComponentRef<typeof View>;
 
 export const HASHTAG = '#ねこモビー';
 
 const isWeb = Platform.OS === 'web';
-
-// Web の Alert は何も出ないので、ブラウザの標準ダイアログを使う
-export function notice(title: string, message?: string) {
-  if (isWeb) {
-    (globalThis as { alert?: (m: string) => void }).alert?.(message ? `${title}\n${message}` : title);
-  } else {
-    Alert.alert(title, message);
-  }
-}
 
 async function capture(ref: React.RefObject<ViewRef | null>): Promise<string | null> {
   if (!ref.current) return null;

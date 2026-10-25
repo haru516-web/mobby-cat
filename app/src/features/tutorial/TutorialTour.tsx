@@ -1,12 +1,14 @@
 import { ComponentRef, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { C, T } from '../../ui/base';
-import { Card, ImgButton, TabKey } from '../../ui/kit';
+import { Card, ImgButton, TabKey, Tap } from '../../ui/kit';
+import { Slice, Stretch } from '../../ui/Slice';
 import { Rect, measureAnchor } from '../../ui/TourAnchor';
 import { TOUR_STEPS } from './steps';
 
 const NAV_ORDER: TabKey[] = ['home', 'deai', 'zukan', 'world'];
-const DIM = '#2B241A99';
+// 暗幕は他のモーダルと同じ素材（bg/overlay-dim）を、明るく残す場所の上下左右に4枚敷いて作る
+const DIM = 'bg/overlay-dim';
 
 // 画面を暗くして、説明する場所だけ明るく残す。タップで次へ進む。説明するだけで、下の画面は操作できない。
 export default function TutorialTour({ bottomInset, onNavigate, onClose }: { bottomInset: number; onNavigate: (t: TabKey) => void; onClose: () => void }) {
@@ -78,28 +80,27 @@ export default function TutorialTour({ bottomInset, onNavigate, onClose }: { bot
       style={s.overlay}
     >
       {/* 下の画面が反応しないよう、全面でタップを受ける。タップで次へ */}
-      <Pressable style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel="つぎへ" onPress={() => (last ? onClose() : setPos(pos + 1))} />
+      <Tap style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel="つぎへ" onPress={() => (last ? onClose() : setPos(pos + 1))} />
       {hole ? (
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-          <View style={[s.dim, { left: 0, top: 0, width, height: hole.y }]} />
-          <View style={[s.dim, { left: 0, top: hole.y + hole.h, width, height: Math.max(0, height - hole.y - hole.h) }]} />
-          <View style={[s.dim, { left: 0, top: hole.y, width: hole.x, height: hole.h }]} />
-          <View style={[s.dim, { left: hole.x + hole.w, top: hole.y, width: Math.max(0, width - hole.x - hole.w), height: hole.h }]} />
-          <View style={[s.ring, { left: hole.x, top: hole.y, width: hole.w, height: hole.h }]} />
+          <Stretch name={DIM} style={[s.dim, { left: 0, top: 0, width, height: hole.y }]} />
+          <Stretch name={DIM} style={[s.dim, { left: 0, top: hole.y + hole.h, width, height: Math.max(0, height - hole.y - hole.h) }]} />
+          <Stretch name={DIM} style={[s.dim, { left: 0, top: hole.y, width: hole.x, height: hole.h }]} />
+          <Stretch name={DIM} style={[s.dim, { left: hole.x + hole.w, top: hole.y, width: Math.max(0, width - hole.x - hole.w), height: hole.h }]} />
         </View>
       ) : (
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#2B241A59' }]} />
+        <Stretch name={DIM} style={[StyleSheet.absoluteFill, { opacity: 0.6 }]} />
       )}
       <View style={{ position: 'absolute', left, top, width: cardW }} onLayout={(e) => setCardH(Math.round(e.nativeEvent.layout.height))}>
         <Card skin="white" style={{ gap: 6 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <View style={s.badge}>
+            <Slice name="button/tab-all-on" style={s.badge}>
               <T w="x" size={11} color="#fff">{pos + 1} / {TOUR_STEPS.length}</T>
-            </View>
+            </Slice>
             <View style={{ flex: 1 }} />
-            <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="チュートリアルをとじる">
+            <Tap onPress={onClose} hitSlop={10} accessibilityLabel="チュートリアルをとじる">
               <T w="b" size={12} color={C.sub} style={{ textDecorationLine: 'underline' }}>スキップ</T>
-            </Pressable>
+            </Tap>
           </View>
           <T w="x" size={17}>{step.title}</T>
           <T w="b" size={12.5} style={{ lineHeight: 19 }}>{step.detail}</T>
@@ -115,7 +116,6 @@ export default function TutorialTour({ bottomInset, onNavigate, onClose }: { bot
 
 const s = StyleSheet.create({
   overlay: { ...StyleSheet.absoluteFill, zIndex: 300, elevation: 300 },
-  dim: { position: 'absolute', backgroundColor: DIM },
-  ring: { position: 'absolute', borderWidth: 3, borderColor: C.accent, borderRadius: 16 },
-  badge: { minWidth: 52, height: 24, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center', borderRadius: 12, backgroundColor: C.accent },
+  dim: { position: 'absolute' },
+  badge: { minWidth: 60, height: 28, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' },
 });

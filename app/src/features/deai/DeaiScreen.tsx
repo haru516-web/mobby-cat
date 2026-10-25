@@ -1,16 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, View } from 'react-native';
+import { cardReason } from '../../core/conditions';
 import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
 import { useGame, visibleCount } from '../../core/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad } from '../../ui/kit';
+import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad, Tap } from '../../ui/kit';
 import { Pic, Slice, Stretch } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
+import { playSfx } from '../../services/audio';
+import { hapticSuccess } from '../../services/haptics';
 
-export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps) {
+export default function DeaiScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const g = useGame();
   const pad = useTabPad();
   const { state, availableDays, todayKey, now } = g;
@@ -26,7 +29,18 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
   }, [todayKey]);
 
   const rec = state.days[day];
-  if (!rec) return null;
+  // 20時の切り替わり直後などで、その日の候補をまだ作っている間
+  if (!rec) {
+    return (
+      <View style={{ flex: 1 }}>
+        <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+        <View style={s.preparing}>
+          <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
+          <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+        </View>
+      </View>
+    );
+  }
 
   const visible = rec.candidates.slice(0, visibleCount(rec));
   const isPicked = (id: string) => rec.freePick === id || rec.extraPicks.includes(id);
@@ -43,20 +57,22 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
     if (!sel) return;
     if (!hasFree) g.pickFree(day, sel);
     else if (!g.pickExtra(day, sel)) return;
+    playSfx(rec.reasons[sel] ? 'sfx_pick_special' : hasFree ? 'sfx_pick_extra' : 'sfx_pick_free');
+    hapticSuccess();
     setWelcome(sel);
     setSel(null);
   };
   const shareCard = (id: string) => {
     const reason = rec.reasons[id];
     const msg = reason
-      ? `「${reason}」の日に${CAT_BY_ID[id].name}に出会えた！ ${HASHTAG}`
+      ? `「${cardReason(id, reason)}」に${CAT_BY_ID[id].name}に出会えた！ ${HASHTAG}`
       : `今日は${CAT_BY_ID[id].name}がおうちに来てくれました ${HASHTAG}`;
     shareView(card, msg);
   };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
-      <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} />
+      <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       <View style={s.pills}>
         <InfoPill style={{ flex: 1.5 }} icon="icon/calendar-today" label="" value={`${m}/${d} ${REVEAL_HOUR}:00更新`} onPress={() => openNotice('upcoming')} />
         <InfoPill style={{ flex: 1 }} icon="icon/ticket-paw" label="お迎え券" value={`${state.tickets}枚`} onPress={openShop} />
@@ -82,23 +98,23 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
             <T w="m" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 2 }}>
               次の出会いまで あと{Math.floor(mins / 60)}時間{mins % 60}分
             </T>
-            <Pressable onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 4 }}>
+            <Tap onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 4 }}>
               <T w="b" size={12} color={C.accent}>これから会えるかもしれない猫</T>
               <Pic name="icon/chevron-right" height={12} style={{ marginLeft: 4 }} />
-            </Pressable>
+            </Tap>
           </Card>
         </TourAnchor>
 
         {availableDays.length > 1 && (
           <View style={s.dayTabs}>
             {availableDays.map((k) => (
-              <Pressable key={k} onPress={() => { setDay(k); setSel(null); }}>
+              <Tap key={k} onPress={() => { setDay(k); setSel(null); }}>
                 <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
                   <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
-                    {k === todayKey ? '今日' : 'きのう（受け取り期限まもなく）'}
+                    {k === todayKey ? '今日' : state.days[k]?.freePick ? 'きのう' : 'きのう（受け取りは今日の20時まで）'}
                   </T>
                 </Slice>
-              </Pressable>
+              </Tap>
             ))}
           </View>
         )}
@@ -110,7 +126,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
             const reason = rec.reasons[id];
             const owned = state.owned[id];
             return (
-              <Pressable key={id} style={{ width: colW }} disabled={picked} onPress={() => setSel(sel === id ? null : id)}>
+              <Tap key={id} style={{ width: colW }} disabled={picked} onPress={() => setSel(sel === id ? null : id)}>
                 <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
                   {sel === id && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', bottom: -colW * 0.08 }} />}
                   <Bobbing delay={i * 180}>
@@ -120,17 +136,18 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
                 </View>
                 <View style={s.badgeRow}><RarityBadge cat={cat} limited={!!reason} /></View>
                 <Card skin={sel === id ? 'selected' : 'white'} style={s.candCard}>
-                  <T w="x" size={13} numberOfLines={1}>{cat.name}</T>
+                  {/* 長い名前（「〜モビー」など）は、3列のときに末尾が切れないよう少し小さくする */}
+                  <T w="x" size={cols < 3 || cat.name.length <= 6 ? 13 : cat.name.length <= 8 ? 11 : 10} numberOfLines={1}>{cat.name}</T>
                   <T w="m" size={10} color={reason ? '#C9822B' : C.sub} style={{ textAlign: 'center', marginTop: 2, minHeight: 28 }} numberOfLines={2}>
                     {picked ? 'お迎え済み' : reason ? `「${reason}」で出会えた` : owned ? `おうちに ${owned.count}匹いる子` : 'はじめて会う子'}
                   </T>
-                  <Pressable onPress={() => setDetail(id)} style={{ alignSelf: 'stretch', marginTop: 6 }}>
+                  <Tap onPress={() => setDetail(id)} style={{ alignSelf: 'stretch', marginTop: 6 }}>
                     <Slice name="button/chip-detail" style={s.chip}>
                       <T w="b" size={11} style={{ marginLeft: 24 }} numberOfLines={1}>{colW < 110 ? 'くわしく' : 'くわしく見る'}</T>
                     </Slice>
-                  </Pressable>
+                  </Tap>
                 </Card>
-              </Pressable>
+              </Tap>
             );
           })}
         </TourAnchor>
@@ -150,18 +167,23 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
         {!hasFree && (
           <Card>
             <Pic name="brand/title-matatabi" height={26} />
-            <View style={{ flexDirection: 'row', marginTop: 8 }}>
+            {/* 説明は全幅で読ませ、その下に「いま何匹か」と使うボタンを並べる */}
+            <T w="m" size={12} color={C.sub} style={{ marginTop: 8 }}>
+              {rec.passBonus
+                ? `またたびパス加入中なので、はじめから最大の${MAX_CANDIDATES}匹に出会えています`
+                : `またたび1個で、今日の候補が1匹ふえます（最大${MAX_CANDIDATES}匹）。無料で迎えられるのは1匹のままです`}
+            </T>
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginTop: 8 }}>
               <View style={{ flex: 1 }}>
-                <T w="m" size={12} color={C.sub}>またたびを使うと、今日の候補が追加されます。最大{MAX_CANDIDATES}匹まで表示されます</T>
-                <T w="b" size={12} style={{ marginTop: 8 }}>現在 {visible.length}匹 / 最大 {Math.max(MAX_CANDIDATES, rec.candidates.length)}匹</T>
-                <View style={{ flexDirection: 'row', gap: 4, marginTop: 6 }}>
-                  {Array.from({ length: Math.max(MAX_CANDIDATES, rec.candidates.length) }, (_, i) => (
+                <T w="b" size={12}>現在 {visible.length}匹 / 最大 {MAX_CANDIDATES}匹</T>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4, marginTop: 6 }}>
+                  {Array.from({ length: MAX_CANDIDATES }, (_, i) => (
                     <Pic key={i} name={i < visible.length ? 'gauge/cat-dot-on' : 'gauge/cat-dot-off'} height={20} />
                   ))}
                 </View>
               </View>
-              <View style={{ width: 156, alignItems: 'center', justifyContent: 'flex-end' }}>
-                <Pic name="icon/matatabi-bag" height={56} />
+              <View style={{ width: 164, alignItems: 'center', justifyContent: 'flex-end' }}>
+                <Pic name="icon/matatabi-bag" height={48} />
                 <ImgButton
                   skin="primary-green"
                   label="またたびを使う"
@@ -169,7 +191,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
                   height={42}
                   fontSize={13}
                   disabled={state.matatabi < 1 || visible.length >= rec.candidates.length}
-                  onPress={() => g.useMatatabi(day)}
+                  onPress={() => { if (g.useMatatabi(day)) playSfx('sfx_matatabi'); }}
                   style={{ alignSelf: 'stretch', marginTop: 4 }}
                 />
                 <T w="b" size={11} color={C.sub} style={{ marginTop: 4 }}>所持 {state.matatabi}個</T>
@@ -208,14 +230,21 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
                   height={44}
                   fontSize={13}
                   disabled={state.tickets < rest.length}
-                  onPress={() => { if (g.pickExtra(day, rest)) setWelcome(rest[0]); setSel(null); }}
+                  onPress={() => {
+                    if (g.pickExtra(day, rest)) {
+                      setWelcome(rest[0]);
+                      playSfx('sfx_pick_extra');
+                      hapticSuccess();
+                    }
+                    setSel(null);
+                  }}
                 />
               </View>
             </View>
             {state.tickets < 1 && (
-              <Pressable onPress={openShop}>
+              <Tap onPress={openShop}>
                 <T w="b" size={12} color={C.accent} style={{ marginTop: 8, textAlign: 'right' }}>お迎え券を手に入れる</T>
-              </Pressable>
+              </Tap>
             )}
           </Card>
         )}
@@ -239,7 +268,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
       </Modal>
 
       <Modal visible={!!detail} transparent animationType="fade" onRequestClose={() => setDetail(null)}>
-        <Pressable style={s.overlay} onPress={() => setDetail(null)}>
+        <Tap style={s.overlay} onPress={() => setDetail(null)}>
           <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
           {detail && (
             <Card style={{ alignItems: 'center', padding: 20 }}>
@@ -254,7 +283,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
               <ImgButton skin="ghost-outline" label="閉じる" height={44} onPress={() => setDetail(null)} style={{ alignSelf: 'stretch', marginTop: 16 }} />
             </Card>
           )}
-        </Pressable>
+        </Tap>
       </Modal>
     </ScrollView>
   );
@@ -273,4 +302,5 @@ const s = StyleSheet.create({
   candCard: { alignItems: 'center', paddingHorizontal: 8, paddingTop: 16, paddingBottom: 10 },
   chip: { height: 30, alignItems: 'center', justifyContent: 'center' },
   overlay: { flex: 1, justifyContent: 'center', padding: 24 },
+  preparing: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12, paddingBottom: 120 },
 });

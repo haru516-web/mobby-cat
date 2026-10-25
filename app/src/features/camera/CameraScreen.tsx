@@ -1,12 +1,14 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useMemo, useRef, useState } from 'react';
-import { GestureResponderEvent, Image, PanResponder, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { GestureResponderEvent, Image, PanResponder, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATS } from '../../data/catalog';
+import { SfxId } from '../../data/audioAssets';
+import { playSfx } from '../../services/audio';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { useGame } from '../../core/game';
 import { CAT_BY_ID, CatImage, T } from '../../ui/base';
-import { ImgButton } from '../../ui/kit';
+import { ImgButton, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 
 type Pose = { x: number; y: number; scale: number; rot: number };
@@ -79,7 +81,10 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
   const takePhoto = async () => {
     try {
       const pic = await cam.current?.takePictureAsync({ quality: 0.9, exif: false });
-      if (pic?.uri) setPhoto(pic.uri);
+      if (pic?.uri) {
+        playSfx('sfx_shutter');
+        setPhoto(pic.uri);
+      }
     } catch {}
   };
 
@@ -111,14 +116,14 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
 
       <Stretch name="camera/topbar-scrim" style={[s.top, { height: 100 + insets.top }]} />
       <View style={[s.topBar, { top: insets.top + 8 }]}>
-        <Pressable onPress={onClose} accessibilityLabel="閉じる"><Pic name="camera/btn-close" height={44} /></Pressable>
+        <Tap onPress={onClose} accessibilityLabel="閉じる"><Pic name="camera/btn-close" height={44} /></Tap>
         <View style={{ flex: 1 }} />
         {!photo && (
           <>
-            <Pressable onPress={() => setFlash(!flash)} accessibilityLabel="フラッシュ"><Pic name={flash ? 'camera/btn-flash-on' : 'camera/btn-flash-off'} height={44} /></Pressable>
-            <Pressable onPress={() => setFacing(facing === 'back' ? 'front' : 'back')} accessibilityLabel="カメラ切り替え" style={{ marginLeft: 10 }}>
+            <Tap onPress={() => setFlash(!flash)} accessibilityLabel="フラッシュ"><Pic name={flash ? 'camera/btn-flash-on' : 'camera/btn-flash-off'} height={44} /></Tap>
+            <Tap onPress={() => setFacing(facing === 'back' ? 'front' : 'back')} accessibilityLabel="カメラ切り替え" style={{ marginLeft: 10 }}>
               <Pic name="camera/btn-flip" height={44} />
-            </Pressable>
+            </Tap>
           </>
         )}
       </View>
@@ -133,7 +138,7 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
         {photo ? (
           <View style={s.actions}>
             <Action icon="camera/btn-retake" label="撮り直す" onPress={() => setPhoto(null)} />
-            <Action icon="camera/btn-save" label="保存" onPress={() => saveView(shot)} />
+            <Action icon="camera/btn-save" label="保存" sfx="sfx_saved" onPress={() => saveView(shot)} />
             <Action
               icon="camera/btn-share"
               label="共有"
@@ -146,19 +151,19 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
               <Slice name="camera/cat-tray" style={s.tray}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: 12, alignItems: 'center' }}>
                   {owned.map((c) => (
-                    <Pressable key={c.id} onPress={() => setCatId(c.id)} accessibilityLabel={c.name}>
+                    <Tap key={c.id} onPress={() => setCatId(c.id)} accessibilityLabel={c.name}>
                       <Pic name={catId === c.id ? 'camera/cat-tray-slot-on' : 'camera/cat-tray-slot'} height={60} />
                       <View style={StyleSheet.absoluteFill}><View style={s.slotCat}><CatImage id={c.id} size={50} /></View></View>
-                    </Pressable>
+                    </Tap>
                   ))}
                 </ScrollView>
               </Slice>
             ) : (
               <T w="b" size={13} color="#fff" style={{ textAlign: 'center' }}>猫を迎えると、一緒に写真を撮れます</T>
             )}
-            <Pressable onPress={takePhoto} accessibilityLabel="撮影" style={{ alignSelf: 'center', marginTop: 12 }}>
+            <Tap sfx={null} onPress={takePhoto} accessibilityLabel="撮影" style={{ alignSelf: 'center', marginTop: 12 }}>
               {({ pressed }) => <Pic name={pressed ? 'camera/shutter-pressed' : 'camera/shutter'} height={80} />}
-            </Pressable>
+            </Tap>
           </>
         )}
       </View>
@@ -166,12 +171,12 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
   );
 }
 
-function Action({ icon, label, onPress }: { icon: string; label: string; onPress: () => void }) {
+function Action({ icon, label, onPress, sfx }: { icon: string; label: string; onPress: () => void; sfx?: SfxId }) {
   return (
-    <Pressable onPress={onPress} style={{ alignItems: 'center', gap: 4 }} accessibilityLabel={label}>
+    <Tap sfx={sfx} onPress={onPress} style={{ alignItems: 'center', gap: 4 }} accessibilityLabel={label}>
       <Pic name={icon} height={56} />
       <T w="x" size={12} color="#fff">{label}</T>
-    </Pressable>
+    </Tap>
   );
 }
 

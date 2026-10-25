@@ -132,3 +132,23 @@ Prompt: ONE standalone globe latitude longitude symbol warm brown grey same silh
 ## Section13 stretch metadata audit
 
 See stretch-normalization.json for transparentmargin measurements and any geometric9slice resizing. Final cap insets are recorded in manifest.json. No new image-generation prompt needed for resize normalization.
+
+## UI fixes resumed: tabbar/bg.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-b76ce067-20a4-4c04-a4d3-39631a4e7164.png
+
+Prompt: Edit the referenced navigation bar background into one production game UI asset. Keep same warm ivory paper color, soft puffy cream surface, thin warm brown outline, top edge white highlight, TOP left and right large round corners. Canvas1179x300 aspect3.93:1. Critical shape: BOTTOM corners SQUARE, vertical side edges go straight all the way to canvas bottom, cream panel extends beyond bottom crop. Absolutely NO bottom horizontal brown outline, NO bottom shadow, NO bottom highlight, NO rounded bottom corners. Bottom row is cream fill across width except thin side borders. Only top corner exteriors and subtle upward shadow transparent; main surface opaque. Top corners fit90x90 slice caps. Blank no icons, text, symbols or extra decoration. True transparent background, not checkerboard.
+
+Processing: Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge
+
+SHA256: 6d940326bb1d85f32f82e270fd3259ff8461b1935e0e3a4394d6bb81a311af19
+
+## UI fixes resumed: tabbar/bg.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-b76ce067-20a4-4c04-a4d3-39631a4e7164.png
+
+Prompt: Edit the referenced navigation bar background into one production game UI asset. Keep same warm ivory paper color, soft puffy cream surface, thin warm brown outline, top edge white highlight, TOP left and right large round corners. Canvas1179x300 aspect3.93:1. Critical shape: BOTTOM corners SQUARE, vertical side edges go straight all the way to canvas bottom, cream panel extends beyond bottom crop. Absolutely NO bottom horizontal brown outline, NO bottom shadow, NO bottom highlight, NO rounded bottom corners. Bottom row is cream fill across width except thin side borders. Only top corner exteriors and subtle upward shadow transparent; main surface opaque. Top corners fit90x90 slice caps. Blank no icons, text, symbols or extra decoration. True transparent background, not checkerboard.
+
+Processing: Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge; normalize corner geometry into required slice caps
+
+SHA256: 44951f399f9a384693ec723f891aee5aef4a44c4faa7ea82ef7451af09bb9dac

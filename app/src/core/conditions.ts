@@ -177,12 +177,15 @@ export function upcoming(fromKey: string, days: number, birthday: Signals['birth
   const [y, m, d] = fromKey.split('-').map(Number);
   const out: { day: string; cats: Guaranteed[] }[] = [];
   let prev = new Set(guaranteedCats(fromKey, neutral, { owned: {}, appearCounts: {} }).map((c) => c.id));
+  const listed = new Set<string>();
   for (let i = 1; i <= days; i++) {
     const key = fmtDay(new Date(y, m - 1, d + i));
     const all = guaranteedCats(key, neutral, { owned: {}, appearCounts: {} });
-    // 季節イベントのように何日も続く条件は、始まった日だけ載せる
-    const cats = all.filter((c) => !prev.has(c.id));
+    // 季節イベントのように何日も続く条件は、始まった日だけ載せる。
+    // 毎週の金曜日のようにくり返す条件は、いちばん近い日だけ載せる（一覧が同じ子で埋まらないように）
+    const cats = all.filter((c) => !prev.has(c.id) && !listed.has(c.id));
     prev = new Set(all.map((c) => c.id));
+    cats.forEach((c) => listed.add(c.id));
     if (cats.length) out.push({ day: key, cats });
   }
   return out;
@@ -270,6 +273,16 @@ export const HINTS: Record<string, string> = {
   amayadori: '雨の日、知り合いの猫がいると…',
   himitsu: '特定の猫たちを同じ部屋に置くと…',
 };
+
+// 発見カード・共有文に載せる条件。単純な条件はそのまま載せ、複合条件は片方だけ見せて
+// 残りを SNS で考察してもらう（game-design.md 16.）
+const CARD_REASON: Record<string, string> = {
+  kiseki: 'スマホと歩数の数字がそろった日',
+  'maboroshi-kuroneko': '13日の金曜日に、もうひとつ何かが重なった日',
+  yami: '新月の夜に、ある猫たちがそろった日',
+  ousama: '満月の夜に、ある条件がそろった日',
+};
+export const cardReason = (id: string, reason: string) => CARD_REASON[id] ?? reason;
 
 // 世界共通の報酬・旅猫（サーバー接続後に配布）
 export const WORLD_HINT = '世界のみんなで目標を達成すると届く猫です（サーバー接続後に配布）';

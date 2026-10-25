@@ -18,7 +18,8 @@ export async function enableDailyNotification(): Promise<boolean> {
     if (!granted) return false;
     await Notifications.cancelAllScheduledNotificationsAsync();
     await Notifications.scheduleNotificationAsync({
-      content: { title: '猫モビー', body: '今日のあなたは3匹の猫モビーと出会いました 🐾' },
+      // 候補の数はまたたびパスで変わるので、数は書かない
+      content: { title: '猫モビー', body: '今日の出会いが届きました。どの子を迎えますか？ 🐾' },
       trigger: { type: Notifications.SchedulableTriggerInputTypes.DAILY, hour: REVEAL_HOUR, minute: 0 },
     });
     return true;

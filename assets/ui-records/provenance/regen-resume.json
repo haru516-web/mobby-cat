@@ -1,0 +1,328 @@
+{
+  "bg/photo-japan.png": {
+    "prompt": "Edit this illustration ONLY to correct the red pagoda: it currently has FOUR roof tiers but must be a FIVE-STORY Japanese pagoda. Draw EXACTLY FIVE clearly separated large tiled roof tiers stacked vertically, not counting the small golden finial. Keep the entire pagoda visible. Keep cherry blossoms, Fuji, lake, colors, soft detailed painted storybook style, composition otherwise unchanged. No people, cats, animals or text. Opaque full landscape rectangle600x460.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-1a93a713-5199-49cf-b881-3be3020a70bd.png",
+    "size": [
+      600,
+      460
+    ],
+    "processed": true
+  },
+  "bg/stamp-photo-kenya.png": {
+    "prompt": "Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Kenya savanna sunset, acacia tree left, distant hills and golden grass. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-56fb62a6-3c42-4286-abce-3a589b22684c.png",
+    "size": [
+      360,
+      280
+    ],
+    "interior": [
+      [
+        23,
+        30
+      ],
+      [
+        334,
+        30
+      ],
+      [
+        341,
+        43
+      ],
+      [
+        339,
+        245
+      ],
+      [
+        330,
+        253
+      ],
+      [
+        25,
+        253
+      ],
+      [
+        18,
+        243
+      ],
+      [
+        18,
+        45
+      ]
+    ],
+    "processed": true
+  },
+  "bg/stamp-photo-france.png": {
+    "prompt": "Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Paris Eiffel Tower with street lamp at left, riverside and flowers. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-0b3deecc-df43-47c2-9f24-50274a2d259d.png",
+    "size": [
+      360,
+      280
+    ],
+    "interior": [
+      [
+        33,
+        32
+      ],
+      [
+        326,
+        32
+      ],
+      [
+        332,
+        43
+      ],
+      [
+        332,
+        240
+      ],
+      [
+        322,
+        248
+      ],
+      [
+        33,
+        248
+      ],
+      [
+        25,
+        239
+      ],
+      [
+        25,
+        44
+      ]
+    ],
+    "processed": true
+  },
+  "bg/stamp-photo-japan.png": {
+    "prompt": "Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Large red torii gate in foreground, snowcapped Mount Fuji, pink cherry blossoms, lake. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-f179a266-1aee-4b62-a74e-65203260ced1.png",
+    "size": [
+      360,
+      280
+    ],
+    "interior": [
+      [
+        64,
+        19
+      ],
+      [
+        341,
+        32
+      ],
+      [
+        346,
+        45
+      ],
+      [
+        335,
+        56
+      ],
+      [
+        335,
+        249
+      ],
+      [
+        30,
+        255
+      ],
+      [
+        28,
+        64
+      ],
+      [
+        56,
+        44
+      ]
+    ],
+    "processed": true
+  },
+  "bg/stamp-photo-korea.png": {
+    "prompt": "Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is EDIT TARGET. Repaint ONLY the scenery inside this postage stamp as a detailed soft illustration: Traditional Korean hanok alley, tiled curved roofs, plants, warm stone path. Remove every existing sign or writing. Preserve the original EXACT scalloped outer silhouette, thin brown outline and ivory paper border including every corner and its position. Preserve cream outside the stamp. Do not redesign stamp, do not add marks or perforations. Same composition as target but illustrated. Landscape360x280, full opaque canvas.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-5a2f30dd-1fb0-47be-a9c4-c6320cc759cb.png",
+    "size": [
+      360,
+      280
+    ],
+    "interior": [
+      [
+        19,
+        40
+      ],
+      [
+        51,
+        21
+      ],
+      [
+        115,
+        51
+      ],
+      [
+        334,
+        53
+      ],
+      [
+        340,
+        62
+      ],
+      [
+        338,
+        249
+      ],
+      [
+        23,
+        249
+      ],
+      [
+        18,
+        236
+      ]
+    ],
+    "processed": true
+  },
+  "bg/news-thumb-1.png": {
+    "prompt": "Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is edit target. Repaint with approved painted illustration style, preserving same subject, exact overall silhouette/cutout shape and composition: Traditional Korean hanok roofs, warm stone steps and small garden alley. Canvas330x330 square opaque warm cream #FFF8F0 outside illustration. No hard rectangular scene background. Keep silhouette and margins, not a full landscape. No text.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-0216d95d-0fef-4fc7-8595-11e0aedd17aa.png",
+    "size": [
+      330,
+      330
+    ],
+    "processed": true
+  },
+  "bg/news-thumb-2.png": {
+    "prompt": "Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is edit target. Repaint with approved painted illustration style, preserving same subject, exact overall silhouette/cutout shape and composition: French cafe street with orange awning, empty chairs, street lamps and flower pots. Canvas330x330 square opaque warm cream #FFF8F0 outside illustration. No hard rectangular scene background. Keep silhouette and margins, not a full landscape. No text.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-d247052e-b6c2-47a5-a61b-b4b3f3d059fc.png",
+    "size": [
+      330,
+      330
+    ],
+    "processed": true
+  },
+  "bg/news-thumb-3.png": {
+    "prompt": "Image1 is approved STYLE ONLY: soft rounded detailed painted storybook game illustration, warm cream/beige, muted green and pale orange, medium-scale delicate painted details. NOT photographic, no realistic grain or fibers, no camera bokeh, lens flare or harsh dark shadows. No cats, people, animals, letters, labels or logos. Image2 is edit target. Repaint with approved painted illustration style, preserving same subject, exact overall silhouette/cutout shape and composition: Orange beret with small white flowers and green leaves resting on ivory lace doily on a small round wooden base. Canvas330x330 square opaque warm cream #FFF8F0 outside illustration. No hard rectangular scene background. Keep silhouette and margins, not a full landscape. No text.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-16bcf6df-d355-47da-8d91-fdd488bc5d57.png",
+    "size": [
+      330,
+      330
+    ],
+    "processed": true
+  },
+  "tabbar/bg.png": {
+    "prompt": "Edit the referenced navigation bar background into one production game UI asset. Keep same warm ivory paper color, soft puffy cream surface, thin warm brown outline, top edge white highlight, TOP left and right large round corners. Canvas1179x300 aspect3.93:1. Critical shape: BOTTOM corners SQUARE, vertical side edges go straight all the way to canvas bottom, cream panel extends beyond bottom crop. Absolutely NO bottom horizontal brown outline, NO bottom shadow, NO bottom highlight, NO rounded bottom corners. Bottom row is cream fill across width except thin side borders. Only top corner exteriors and subtle upward shadow transparent; main surface opaque. Top corners fit90x90 slice caps. Blank no icons, text, symbols or extra decoration. True transparent background, not checkerboard.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-b76ce067-20a4-4c04-a4d3-39631a4e7164.png",
+    "size": [
+      1179,
+      300
+    ],
+    "transparent": true,
+    "crop": [
+      14,
+      54,
+      2135,
+      732
+    ],
+    "topCap": [
+      210,
+      90
+    ],
+    "openBottom": 200,
+    "slice": {
+      "top": 90,
+      "right": 90,
+      "bottom": 0,
+      "left": 90
+    },
+    "processed": true,
+    "sideCap": [
+      130,
+      90
+    ]
+  },
+  "illust/empty-notice.png": {
+    "prompt": "One isolated empty-state UI illustration, landscape600x450. Image1 is exact CHARACTER identity reference, image2 is painted UI style reference. A curled up peacefully sleeping Bengal cat Mobby beside a small sealed blank cream envelope at its pillow. Curl body side-on while keeping face and chest visible: viewer-left biological eye gently closed, viewer-right CAMERA LENS remains unmistakably a black circular optical lens, not a normal eye. Chest black cross-shaped directional pad on viewer-left and exactly TWO round black buttons viewer-right clearly visible. Tail curls around body. Quiet warm pose. Preserve Bengal tawny black rosette fur pattern, rounded ears, cream muzzle, pink nose, single camera-lens eye and chest controls. Soft detailed painted storybook finish, warm restrained colors, rounded forms, gentle highlights, not photographic fur. TRUE TRANSPARENT background, no room, no solid backdrop, no checkerboard, a tiny low-opacity soft contact shadow below only. Entire cat, ears and tail fit with narrow clear margin. No text, letters, symbols other than physical chest controls; no extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-68acbdd3-5373-4703-af5a-1f50acabcad2.png",
+    "size": [
+      600,
+      450
+    ],
+    "transparent": true,
+    "fitMargin": 12,
+    "processed": true
+  },
+  "illust/empty-history.png": {
+    "prompt": "One isolated empty-state UI illustration, landscape600x450. Image1 is exact CHARACTER identity reference, image2 is painted UI style reference. A seated Bengal cat Mobby gently holding an EMPTY blank polaroid photo frame with one front paw. Frame opening is truly transparent, no picture, no gray fill. Viewer-left eye is normal green eye, viewer-right eye is unmistakably black camera lens. Chest black cross-shaped directional pad on viewer-left and exactly TWO round black buttons viewer-right, visible above/alongside frame. Cute calm pose. Preserve Bengal tawny black rosette fur pattern, rounded ears, cream muzzle, pink nose, single camera-lens eye and chest controls. Soft detailed painted storybook finish, warm restrained colors, rounded forms, gentle highlights, not photographic fur. TRUE TRANSPARENT background, no room, no solid backdrop, no checkerboard, a tiny low-opacity soft contact shadow below only. Entire cat, ears and tail fit with narrow clear margin. No text, letters, symbols other than physical chest controls; no extra objects.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-01fdc364-3db0-4169-88f9-7f76ef61d54f.png",
+    "size": [
+      600,
+      450
+    ],
+    "transparent": true,
+    "fitMargin": 12,
+    "clearPolygon": [
+      [
+        221,
+        264
+      ],
+      [
+        358,
+        276
+      ],
+      [
+        354,
+        303
+      ],
+      [
+        350,
+        312
+      ],
+      [
+        351,
+        342
+      ],
+      [
+        354,
+        347
+      ],
+      [
+        349,
+        383
+      ],
+      [
+        207,
+        369
+      ]
+    ],
+    "processed": true
+  },
+  "panel/sheet-detail.png": {
+    "prompt": "Create ONE production blank bottom detail sheet UI panel, landscape1179x600. Reference image is style/color only: warm cream ivory paper, puffy soft shape, thin warm taupe brown outer stroke and very subtle top highlight. Top corners large rounded (fit90px horizontal,120px vertical caps). Small short rounded muted warm taupe grab HANDLE centered near top within first80px. Rest completely blank. Panel extends all the way through bottom canvas, SQUARE BOTTOM CORNERS, NO horizontal bottom border, NO bottom shadow, NO bottom highlight. Vertical side borders end cut at canvas bottom. True transparent outside top rounded corners and faint low-contrast upward shadow. Main cream panel opaque. NO white rectangular backdrop, NO checkerboard, NO labels, text, cats or icons. Front-on flat UI component, not a perspective mockup. Keep top decoration within top120px.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-652a4a86-82fb-43ab-82b3-3612ade26a27.png",
+    "size": [
+      1179,
+      600
+    ],
+    "transparent": true,
+    "crop": [
+      2,
+      36,
+      1757,
+      894
+    ],
+    "topCap": [
+      200,
+      120
+    ],
+    "sideCap": [
+      120,
+      90
+    ],
+    "openBottom": 400,
+    "slice": {
+      "top": 120,
+      "right": 90,
+      "bottom": 0,
+      "left": 90
+    },
+    "processed": true
+  }
+}

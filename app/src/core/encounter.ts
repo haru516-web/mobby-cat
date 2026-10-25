@@ -42,20 +42,25 @@ export function rarityOdds(): { rarity: Rarity; count: number; pct: number }[] {
 
 export type DayCandidates = { candidates: string[]; reasons: Record<string, string>; baseCount: number };
 
-// 先頭 baseCount 匹が最初から見える候補。以降は「またたび」で順に増える。
-// 条件を満たした猫は候補枠を超えても全員確定で出す（企画書 3.2 の推奨案）
+// 先頭 baseCount 匹が最初から見える候補。以降は「またたび」で順に増える（最大 MAX_CANDIDATES 匹）。
+// 条件を満たした猫は先頭に置く。多すぎる日は均等にシャッフルして先頭から MAX_CANDIDATES 匹だけ残し、
+// 残らなかった子はその日は出ない（game-design.md 16.）。足りない分は毎日の抽選で埋める
 export function buildDay(dayKey: string, signals: Signals, ctx: Ctx): DayCandidates {
   const ownedIds = Object.keys(ctx.owned);
   const rng = mulberry32(hash('mobby:' + dayKey + ':' + ownedIds.length));
   const g: Guaranteed[] = guaranteedCats(dayKey, signals, ctx);
+  for (let i = g.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [g[i], g[j]] = [g[j], g[i]];
+  }
   const reasons: Record<string, string> = {};
   const picked: string[] = [];
-  for (const x of g) {
+  for (const x of g.slice(0, MAX_CANDIDATES)) {
     picked.push(x.id);
     reasons[x.id] = x.reason;
   }
-  const baseCount = Math.max(BASE_CANDIDATES, picked.length);
-  const total = Math.max(MAX_CANDIDATES, picked.length);
+  const baseCount = BASE_CANDIDATES;
+  const total = MAX_CANDIDATES;
   const pool = POOL.filter((c) => !picked.includes(c.id));
   while (picked.length < total && pool.length) {
     const w = pool.map((c) => WEIGHT[c.rarity] * (ownedIds.includes(c.id) ? 1 : 1.5));

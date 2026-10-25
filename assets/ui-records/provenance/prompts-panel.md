@@ -164,3 +164,13 @@ Source: new technical raster
 Processing: Exact numeric RGBA bitmap, no app code changes
 
 9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
+
+## UI fixes resumed: panel/sheet-detail.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-652a4a86-82fb-43ab-82b3-3612ade26a27.png
+
+Prompt: Create ONE production blank bottom detail sheet UI panel, landscape1179x600. Reference image is style/color only: warm cream ivory paper, puffy soft shape, thin warm taupe brown outer stroke and very subtle top highlight. Top corners large rounded (fit90px horizontal,120px vertical caps). Small short rounded muted warm taupe grab HANDLE centered near top within first80px. Rest completely blank. Panel extends all the way through bottom canvas, SQUARE BOTTOM CORNERS, NO horizontal bottom border, NO bottom shadow, NO bottom highlight. Vertical side borders end cut at canvas bottom. True transparent outside top rounded corners and faint low-contrast upward shadow. Main cream panel opaque. NO white rectangular backdrop, NO checkerboard, NO labels, text, cats or icons. Front-on flat UI component, not a perspective mockup. Keep top decoration within top120px.
+
+Processing: Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge; normalize corner geometry into required slice caps
+
+SHA256: c37b618edce5943e5552bceb67c4d66ecea5b3595d348b11737fcc7b0850e4d2

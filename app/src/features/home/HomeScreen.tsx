@@ -1,10 +1,12 @@
 import { useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, Easing, ScrollView, StyleSheet, View } from 'react-native';
 import { CATS } from '../../data/catalog';
 import { msUntilNextReveal } from '../../core/encounter';
 import { useGame } from '../../core/game';
+import { playSfx } from '../../services/audio';
+import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid, useTabPad } from '../../ui/kit';
+import { Card, Header, ImgButton, InfoPill, Polaroid, useTabPad, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
@@ -36,6 +38,8 @@ function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: 
   const [line, setLine] = useState<string | null>(null);
   const tap = () => {
     onPet();
+    playSfx('sfx_pet');
+    hapticLight();
     setLine(MEOW[Math.floor(Math.random() * MEOW.length)]);
     hop.setValue(0);
     heart.setValue(0);
@@ -48,7 +52,7 @@ function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: 
     ]).start(() => setLine(null));
   };
   return (
-    <Pressable onPress={tap} accessibilityLabel={`${CAT_BY_ID[id].name}をなでる`}>
+    <Tap sfx={null} onPress={tap} accessibilityLabel={`${CAT_BY_ID[id].name}をなでる`}>
       <Pic name="camera/shadow-soft" width={size * 0.9} style={{ position: 'absolute', left: size * 0.05, top: size * 0.82 }} />
       <Animated.View style={{ transform: [{ translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.18] }) }] }}>
         <Bobbing delay={delay}>
@@ -66,11 +70,11 @@ function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: 
           <T w="x" size={12} numberOfLines={1}>{line}</T>
         </Slice>
       )}
-    </Pressable>
+    </Tap>
   );
 }
 
-export default function HomeScreen({ go, openShop, openNotice, openCamera, width }: ScreenProps) {
+export default function HomeScreen({ go, openShop, openSettings, openNotice, openCamera, width }: ScreenProps) {
   const { state, now, todayKey, pet } = useGame();
   const pad = useTabPad();
 
@@ -89,7 +93,7 @@ export default function HomeScreen({ go, openShop, openNotice, openCamera, width
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
-      <Header onShop={openShop} onBell={() => openNotice()} />
+      <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       <View style={s.pills}>
         <InfoPill style={{ flex: 1 }} icon="icon/cat-head" label="所持" value={`${ownedIds.length}/${CATS.length}`} onPress={() => go('zukan')} />
         <TourAnchor id="home-deai" style={{ flex: 1.25 }}>
@@ -117,10 +121,10 @@ export default function HomeScreen({ go, openShop, openNotice, openCamera, width
             </View>
           );
         })}
-        <Pressable style={s.camera} onPress={openCamera} accessibilityLabel="さつえい">
+        <Tap style={s.camera} onPress={openCamera} accessibilityLabel="さつえい">
           <Pic name="button/camera-round" height={84} />
           <T w="x" size={12} style={s.cameraLabel}>さつえい</T>
-        </Pressable>
+        </Tap>
       </TourAnchor>
 
       <View style={s.cards}>
