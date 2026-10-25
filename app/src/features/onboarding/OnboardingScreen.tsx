@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { REVEAL_HOUR } from '../../core/encounter';
 import { STARTERS, useGame } from '../../core/game';
+import { requestStepAccess } from '../../services/signals';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, ImgButton } from '../../ui/kit';
 import { Backdrop, Pic } from '../../ui/Slice';
@@ -11,6 +12,7 @@ export default function OnboardingScreen({ width }: { width: number }) {
   const { chooseStarter } = useGame();
   const [sel, setSel] = useState<string | null>(null);
   const [step, setStep] = useState<'pick' | 'how'>('pick');
+  const [starting, setStarting] = useState(false);
   const colW = (width - 32 - 16) / 3;
 
   return (
@@ -28,7 +30,8 @@ export default function OnboardingScreen({ width }: { width: number }) {
                   {sel === id && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', top: colW * 0.05 }} />}
                   <Bobbing delay={i * 200}><CatImage id={id} size={colW} /></Bobbing>
                   <Card skin={sel === id ? 'selected' : 'white'} style={s.nameCard}>
-                    <T w="x" size={12} numberOfLines={1}>{CAT_BY_ID[id].name}</T>
+                    {/* 「ブリティッシュショートヘア」のような長い名前も切れずに読めるよう2行まで */}
+                    <T w="x" size={11} numberOfLines={2} style={{ textAlign: 'center' }}>{CAT_BY_ID[id].name}</T>
                   </Card>
                 </Pressable>
               ))}
@@ -53,7 +56,19 @@ export default function OnboardingScreen({ width }: { width: number }) {
               <How icon="icon/sun" text="歩いた日、満月の夜、スマホの電池が1%の日…あなたの毎日によって、会える猫が変わります" />
               <How icon="icon/book" text="条件は世界中のみんなと共通。図鑑のヒントを手がかりに、秘密の条件を見つけよう" />
             </Card>
-            <ImgButton label="はじめる" icon="icon/paw" height={54} onPress={() => chooseStarter(sel!)} style={{ marginTop: 24 }} />
+            <ImgButton
+              label="はじめる"
+              icon="icon/paw"
+              height={54}
+              disabled={starting}
+              onPress={async () => {
+                // 歩数の条件を説明したあとで許可を求める。断られても遊べる
+                setStarting(true);
+                await requestStepAccess();
+                chooseStarter(sel!);
+              }}
+              style={{ marginTop: 24 }}
+            />
             <T w="b" size={12} color={C.sub} style={{ textAlign: 'center', marginTop: 12 }} onPress={() => setStep('pick')}>選び直す</T>
           </>
         )}

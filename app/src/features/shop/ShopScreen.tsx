@@ -1,7 +1,8 @@
 import Constants from 'expo-constants';
 import { useState } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { rarityOdds } from '../../core/encounter';
+import { confirmAction, notice } from '../../services/dialog';
 import { disableDailyNotification, enableDailyNotification } from '../../services/notify';
 import { useGame } from '../../core/game';
 import { C, T } from '../../ui/base';
@@ -13,7 +14,7 @@ const ITEMS = [
   { key: 'ticket', n: 1, icon: 'icon/ticket-paw', name: 'お迎え券 1枚', price: '¥160', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
   { key: 'ticket', n: 3, icon: 'icon/ticket-paw', name: 'お迎え券 3枚', price: '¥320', desc: 'まとめ買い' },
   { key: 'ticket', n: 10, icon: 'icon/ticket-paw', name: 'お迎え券 10枚', price: '¥800', desc: 'お得なまとめ買い' },
-  { key: 'matatabi', n: 1, icon: 'icon/matatabi-leaf', name: 'またたび 1個', price: '¥120', desc: '今日の出会いの候補が1匹増えます（最大6匹）' },
+  { key: 'matatabi', n: 1, icon: 'icon/matatabi-leaf', name: 'またたび 1個', price: '¥120', desc: '今日の候補が1匹ふえます（最大6匹）。またたびパス加入中は、はじめから6匹です' },
 ] as const;
 
 const PASS_BONUS_LABEL = 3;
@@ -30,7 +31,7 @@ export default function ShopScreen({ onClose, onTutorial }: { onClose: () => voi
   const toggleNotify = async (v: boolean) => {
     if (v) {
       const ok = await enableDailyNotification();
-      if (!ok) return Alert.alert('通知が許可されていません', '通知なしでもアプリ内から出会えます');
+      if (!ok) return notice('通知が許可されていません', '通知なしでもアプリ内から出会えます');
       g.setNotify(true);
     } else {
       await disableDailyNotification();
@@ -75,7 +76,7 @@ export default function ShopScreen({ onClose, onTutorial }: { onClose: () => voi
           <View style={{ flex: 1 }}>
             <T w="x" size={14}>またたびパス（月額 ¥480）</T>
             <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>
-              加入中は毎日の出会いが{PASS_BONUS_LABEL}匹ふえて、毎月お迎え券が3枚届きます。いつでも解約でき、解約後も迎えた猫はそのまま残ります
+              加入中は毎日の候補が3匹から{3 + PASS_BONUS_LABEL}匹にふえて、毎月お迎え券が3枚届きます。いつでも解約でき、解約後も迎えた猫はそのまま残ります
             </T>
           </View>
           <ImgButton
@@ -94,7 +95,7 @@ export default function ShopScreen({ onClose, onTutorial }: { onClose: () => voi
             label="購入を復元"
             height={40}
             fontSize={13}
-            onPress={() => Alert.alert('購入の復元', 'テスト版では実際の購入がないため、復元するものはありません')}
+            onPress={() => notice('購入の復元', 'テスト版では実際の購入がないため、復元するものはありません')}
             style={{ flex: 1 }}
           />
         </View>
@@ -108,7 +109,7 @@ export default function ShopScreen({ onClose, onTutorial }: { onClose: () => voi
               </View>
             ))}
             <T w="m" size={10} color={C.sub}>
-              同じレア度の中ではどの子も同じ確率です。まだ持っていない子は1.5倍出やすくなります。条件で出会う「限定」の猫は抽選ではなく、条件を満たした日に必ず候補に入ります。
+              同じレア度の中ではどの子も同じ確率です。まだ持っていない子は1.5倍出やすくなります。条件で出会う「限定」の猫は抽選ではなく、条件を満たした日に候補の先頭に入ります。7匹以上そろった日は、その中からどの子も同じ確率で6匹が選ばれます。
             </T>
             <T w="b" size={11} color={C.accent} onPress={() => setOdds(false)}>閉じる</T>
           </Card>
@@ -163,7 +164,7 @@ export default function ShopScreen({ onClose, onTutorial }: { onClose: () => voi
             skin="ghost-outline"
             label="全データを初期化"
             height={44}
-            onPress={() => Alert.alert('初期化', 'すべての猫と所持品が消えます', [{ text: 'キャンセル', style: 'cancel' }, { text: '初期化', style: 'destructive', onPress: g.reset }])}
+            onPress={() => confirmAction('初期化', 'すべての猫と所持品が消えます', '初期化', g.reset)}
           />
         </View>}
       </ScrollView>

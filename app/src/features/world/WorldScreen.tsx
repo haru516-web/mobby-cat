@@ -71,7 +71,7 @@ export default function WorldScreen({ openShop, openNotice, width }: ScreenProps
                 </View>
               </View>
               <T w="m" size={12} color={C.sub} style={{ marginTop: 6 }}>
-                ねこモビーたちが{SAMPLE.now.name}を旅しています{'\n'}すてきな出会いを探し中…！
+                ねこモビーたちが{SAMPLE.now.name}を旅しています。すてきな出会いを探し中…！
               </T>
             </View>
             <Polaroid width={104} style={{ marginLeft: 8, transform: [{ rotate: '4deg' }] }}>
@@ -101,8 +101,9 @@ export default function WorldScreen({ openShop, openNotice, width }: ScreenProps
             <T w="m" size={12} color={C.sub} style={{ marginTop: 4 }}>みんなの力で、ねこモビーを{'\n'}世界のすべての国に連れていこう！</T>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 }}>
               <View style={{ flex: 1 }}><Gauge value={SAMPLE.mission.value} max={SAMPLE.mission.max} color="yellow" height={18} /></View>
-              <T w="x" size={20} color={C.accent}>{SAMPLE.mission.value}/{SAMPLE.mission.max}</T>
-              <T w="b" size={12}>か国</T>
+              {/* 数字と単位は縮めない（狭い幅で「か国」が2行に割れないように）。縮むのはゲージだけ */}
+              <T w="x" size={20} color={C.accent} style={{ flexShrink: 0 }}>{SAMPLE.mission.value}/{SAMPLE.mission.max}</T>
+              <T w="b" size={12} style={{ flexShrink: 0, marginLeft: -6 }}>か国</T>
             </View>
             <Pic name="illust/world-map" width={inner * 0.42} style={{ position: 'absolute', right: 8, top: 8, opacity: 0.9 }} />
           </Card>

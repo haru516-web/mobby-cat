@@ -177,9 +177,10 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
 const k = StyleSheet.create({
   btn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
   btnBadge: { marginLeft: 8, height: 20, minWidth: 40, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
-  pill: { height: 44, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14 },
+  // 左右の端（9スライスの 26pt）には花の飾りがあるので、中身はその内側に置く
+  pill: { height: 44, flexDirection: 'row', alignItems: 'center', paddingLeft: 14, paddingRight: 20 },
   header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingTop: 6, paddingBottom: 6 },
-  currency: { height: 40, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16 },
+  currency: { height: 40, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 22 },
   badge: { alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
   card: { padding: 14 },
   tabbar: { flexDirection: 'row', paddingTop: 14 },

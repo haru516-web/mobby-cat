@@ -226,8 +226,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   // その日の候補を（未生成なら）確定させる。歩数・電池は非同期で読むので、生成中の日は記録しておく
   const building = useRef(new Set<string>());
+  // 相棒を選ぶまでは作らない（所持猫の数で抽選が変わるのと、お知らせの順番を「ようこそ」が先になるようにするため）
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || !state.starterChosen) return;
     for (const k of availableDays) {
       if (stateRef.current.days[k] || building.current.has(k)) continue;
       building.current.add(k);
@@ -259,13 +260,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], passBonus: s.pass.active ? PASS_BONUS : 0 } },
           };
           const special = [...new Set(Object.values(d.reasons))];
-          if (special.length) next = notify(next, k, `今日は「${special.join('」「')}」。特別な猫が来ています`);
+          if (special.length) next = notify(next, k, `「${special.join('」「')}」の条件がそろって、特別な猫が来ています`);
           return next;
         });
         building.current.delete(k);
       })();
     }
-  }, [ready, availableDays, now, todayKey, hour]);
+  }, [ready, state.starterChosen, availableDays, now, todayKey, hour]);
 
   const pickFree = useCallback((day: string, id: string) => {
     setState((s) => {

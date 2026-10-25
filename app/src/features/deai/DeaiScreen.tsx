@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { cardReason } from '../../core/conditions';
 import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
@@ -26,7 +27,18 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
   }, [todayKey]);
 
   const rec = state.days[day];
-  if (!rec) return null;
+  // 20時の切り替わり直後などで、その日の候補をまだ作っている間
+  if (!rec) {
+    return (
+      <View style={{ flex: 1 }}>
+        <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} />
+        <View style={s.preparing}>
+          <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
+          <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+        </View>
+      </View>
+    );
+  }
 
   const visible = rec.candidates.slice(0, visibleCount(rec));
   const isPicked = (id: string) => rec.freePick === id || rec.extraPicks.includes(id);
@@ -49,7 +61,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
   const shareCard = (id: string) => {
     const reason = rec.reasons[id];
     const msg = reason
-      ? `「${reason}」の日に${CAT_BY_ID[id].name}に出会えた！ ${HASHTAG}`
+      ? `「${cardReason(id, reason)}」に${CAT_BY_ID[id].name}に出会えた！ ${HASHTAG}`
       : `今日は${CAT_BY_ID[id].name}がおうちに来てくれました ${HASHTAG}`;
     shareView(card, msg);
   };
@@ -95,7 +107,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
               <Pressable key={k} onPress={() => { setDay(k); setSel(null); }}>
                 <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
                   <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
-                    {k === todayKey ? '今日' : 'きのう（受け取り期限まもなく）'}
+                    {k === todayKey ? '今日' : state.days[k]?.freePick ? 'きのう' : 'きのう（受け取りは今日の20時まで）'}
                   </T>
                 </Slice>
               </Pressable>
@@ -120,7 +132,8 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
                 </View>
                 <View style={s.badgeRow}><RarityBadge cat={cat} limited={!!reason} /></View>
                 <Card skin={sel === id ? 'selected' : 'white'} style={s.candCard}>
-                  <T w="x" size={13} numberOfLines={1}>{cat.name}</T>
+                  {/* 長い名前（「〜モビー」など）は、3列のときに末尾が切れないよう少し小さくする */}
+                  <T w="x" size={cols < 3 || cat.name.length <= 6 ? 13 : cat.name.length <= 8 ? 11 : 10} numberOfLines={1}>{cat.name}</T>
                   <T w="m" size={10} color={reason ? '#C9822B' : C.sub} style={{ textAlign: 'center', marginTop: 2, minHeight: 28 }} numberOfLines={2}>
                     {picked ? 'お迎え済み' : reason ? `「${reason}」で出会えた` : owned ? `おうちに ${owned.count}匹いる子` : 'はじめて会う子'}
                   </T>
@@ -150,18 +163,23 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
         {!hasFree && (
           <Card>
             <Pic name="brand/title-matatabi" height={26} />
-            <View style={{ flexDirection: 'row', marginTop: 8 }}>
+            {/* 説明は全幅で読ませ、その下に「いま何匹か」と使うボタンを並べる */}
+            <T w="m" size={12} color={C.sub} style={{ marginTop: 8 }}>
+              {rec.passBonus
+                ? `またたびパス加入中なので、はじめから最大の${MAX_CANDIDATES}匹に出会えています`
+                : `またたび1個で、今日の候補が1匹ふえます（最大${MAX_CANDIDATES}匹）。無料で迎えられるのは1匹のままです`}
+            </T>
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginTop: 8 }}>
               <View style={{ flex: 1 }}>
-                <T w="m" size={12} color={C.sub}>またたびを使うと、今日の候補が追加されます。最大{MAX_CANDIDATES}匹まで表示されます</T>
-                <T w="b" size={12} style={{ marginTop: 8 }}>現在 {visible.length}匹 / 最大 {Math.max(MAX_CANDIDATES, rec.candidates.length)}匹</T>
-                <View style={{ flexDirection: 'row', gap: 4, marginTop: 6 }}>
-                  {Array.from({ length: Math.max(MAX_CANDIDATES, rec.candidates.length) }, (_, i) => (
+                <T w="b" size={12}>現在 {visible.length}匹 / 最大 {MAX_CANDIDATES}匹</T>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4, marginTop: 6 }}>
+                  {Array.from({ length: MAX_CANDIDATES }, (_, i) => (
                     <Pic key={i} name={i < visible.length ? 'gauge/cat-dot-on' : 'gauge/cat-dot-off'} height={20} />
                   ))}
                 </View>
               </View>
-              <View style={{ width: 156, alignItems: 'center', justifyContent: 'flex-end' }}>
-                <Pic name="icon/matatabi-bag" height={56} />
+              <View style={{ width: 164, alignItems: 'center', justifyContent: 'flex-end' }}>
+                <Pic name="icon/matatabi-bag" height={48} />
                 <ImgButton
                   skin="primary-green"
                   label="またたびを使う"
@@ -273,4 +291,5 @@ const s = StyleSheet.create({
   candCard: { alignItems: 'center', paddingHorizontal: 8, paddingTop: 16, paddingBottom: 10 },
   chip: { height: 30, alignItems: 'center', justifyContent: 'center' },
   overlay: { flex: 1, justifyContent: 'center', padding: 24 },
+  preparing: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12, paddingBottom: 120 },
 });
