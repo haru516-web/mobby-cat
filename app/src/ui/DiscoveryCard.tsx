@@ -20,9 +20,12 @@ export const DiscoveryCard = forwardRef<ViewRef, { id: string; day: string; reas
   const [y, m, d] = day.split('-').map(Number);
   return (
     <View ref={ref} collapsable={false} style={{ width, height: a.h * k }}>
-      {/* 写真の窓は素材では透明なので、猫部屋を敷いて写真のように見せる */}
-      <View style={[box(photo), { overflow: 'hidden', alignItems: 'center', justifyContent: 'flex-end' }]}>
-        <Backdrop name="bg/room-home" />
+      {/* 写真の窓は素材では透明で、差し込み領域よりひとまわり大きい。
+          足跡柄の背景を窓より広く敷き、上に重ねるカード枠で縁を隠して、後ろの画面が透けないようにする */}
+      <View style={{ position: 'absolute', left: (photo.x - 40) * k, top: (photo.y - 50) * k, width: (photo.w + 80) * k, height: (photo.h + 90) * k, overflow: 'hidden' }}>
+        <Backdrop name="bg/app-cream" />
+      </View>
+      <View style={[box(photo), { alignItems: 'center', justifyContent: 'center' }]}>
         <CatImage id={id} size={photo.h * k * 0.92} />
       </View>
       <Pic name="share/discovery-card" width={width} style={{ position: 'absolute', left: 0, top: 0 }} />
