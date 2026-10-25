@@ -1,0 +1,21 @@
+{
+  "id": "minskin",
+  "name": "ミンスキン",
+  "batch": "b",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/b/minskin.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-c567faed-9a71-4dd9-bad2-816ff07acb55.png",
+  "prompt": "Use case: stylized-concept. Generate ONE new real breed Mobby. Reference1 bengal and2 ragdoll define hardware, glossy eye and realistic material rendering only. Exact NEW BREED: minskin: Minskin: short legs, velvety lilac-point coat (pale body, soft grey-lilac points), fine fuzzy coat, rounded head, blue iris. Emphasize the specified ears, face shape, coat texture and body/leg proportions so breed reads distinctly at thumbnail size. Preserve ONE unified rounded-square head/body, NO neck/separate head, short arms/two short feet with breed-specific leg length. Exactly ONE biological cat eye viewer LEFT with large ROUND black pupil/white catchlight, ONE black concentric camera lens viewer RIGHT with green reflective glass. ONE black cross D-pad lower LEFT and exactly TWO plain black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional strand fur or bare wrinkled skin when the breed is hairless, never felt/toy plush. NO collar/props/clothes/text/watermark. Soft studio light. True RGBA transparent PNG1254x1254, subject only80% canvas and at least100px empty transparency all sides. Do not copy reference coat patterns.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2522416,
+    "sha256": "409eaa830a2305c77925d3026b6ca86811b0ffae8d8d0aba7a876dd5a8df7745"
+  }
+}
