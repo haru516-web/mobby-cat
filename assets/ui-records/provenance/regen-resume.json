@@ -206,5 +206,36 @@
       330
     ],
     "processed": true
+  },
+  "tabbar/bg.png": {
+    "prompt": "Edit the referenced navigation bar background into one production game UI asset. Keep same warm ivory paper color, soft puffy cream surface, thin warm brown outline, top edge white highlight, TOP left and right large round corners. Canvas1179x300 aspect3.93:1. Critical shape: BOTTOM corners SQUARE, vertical side edges go straight all the way to canvas bottom, cream panel extends beyond bottom crop. Absolutely NO bottom horizontal brown outline, NO bottom shadow, NO bottom highlight, NO rounded bottom corners. Bottom row is cream fill across width except thin side borders. Only top corner exteriors and subtle upward shadow transparent; main surface opaque. Top corners fit90x90 slice caps. Blank no icons, text, symbols or extra decoration. True transparent background, not checkerboard.",
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\\exec-b76ce067-20a4-4c04-a4d3-39631a4e7164.png",
+    "size": [
+      1179,
+      300
+    ],
+    "transparent": true,
+    "crop": [
+      14,
+      54,
+      2135,
+      732
+    ],
+    "topCap": [
+      210,
+      90
+    ],
+    "openBottom": 200,
+    "slice": {
+      "top": 90,
+      "right": 90,
+      "bottom": 0,
+      "left": 90
+    },
+    "processed": true,
+    "sideCap": [
+      130,
+      90
+    ]
   }
 }

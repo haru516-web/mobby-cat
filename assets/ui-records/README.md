@@ -77,3 +77,6 @@ Lint attempted: unavailable (no lint script). Typecheck attempted with npx --no-
 
 ## UI fixes resumed: priority3 complete
 Replaced photo-japan (600x460), stamp-photo-kenya/france/japan/korea (360x280), news-thumb-1/2/3 (330x330). Opaque RGB PNG. Stamps preserve original frame/exterior pixels outside recorded interior polygons. Approved rounded detailed illustration style, no cats/people/text. Photo-japan required2 generations to correct five pagoda roof tiers; other7 assets one generation each. Comparison: previews/regen-travel-thumbnails.png. Prompts and exact finishing polygons: provenance/regen-resume.json and prompts-bg.md. Built-in image_gen only for illustration creation.
+
+## UI fixes: tabbar complete
+Replaced tabbar/bg.png1179x300 RGBA. Top corners retained, square bottom corners and no bottom border/shadow. Slice top90/right90/bottom0/left90. One built-in generation; crop/cap normalization and clean bottom-row extension for exact component geometry. active-glow and underline unchanged. Comparison: previews/regen-tabbar.png.

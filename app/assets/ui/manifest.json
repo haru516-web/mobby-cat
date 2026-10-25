@@ -2332,15 +2332,15 @@
       "path": "tabbar/bg.png",
       "width": 1179,
       "height": 300,
-      "prompt": "ONE standalone Cream tabbar base top corners72 bottom square soft upward shadow. UI raster asset exact target 1179x300, aspect1179:300. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
-      "sha256": "f34e35617cc32364a1ce2878b46ac4b15368b0534e169c0255473ea7ca638dba",
-      "bytes": 310386,
+      "prompt": "Edit the referenced navigation bar background into one production game UI asset. Keep same warm ivory paper color, soft puffy cream surface, thin warm brown outline, top edge white highlight, TOP left and right large round corners. Canvas1179x300 aspect3.93:1. Critical shape: BOTTOM corners SQUARE, vertical side edges go straight all the way to canvas bottom, cream panel extends beyond bottom crop. Absolutely NO bottom horizontal brown outline, NO bottom shadow, NO bottom highlight, NO rounded bottom corners. Bottom row is cream fill across width except thin side borders. Only top corner exteriors and subtle upward shadow transparent; main surface opaque. Top corners fit90x90 slice caps. Blank no icons, text, symbols or extra decoration. True transparent background, not checkerboard.",
+      "sha256": "44951f399f9a384693ec723f891aee5aef4a44c4faa7ea82ef7451af09bb9dac",
+      "bytes": 214053,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin",
+      "processing": "Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge; normalize corner geometry into required slice caps",
       "slice": {
         "top": 90,
         "right": 90,
-        "bottom": 24,
+        "bottom": 0,
         "left": 90
       },
       "stretchAxes": [
