@@ -52,3 +52,7 @@
 - app/srcなどのコードは変更していない。
 
 今回の追加分の再生成は0枚。伸縮43枚は2倍サイズで固定キャップの画素不変を検査し、すべて成功。比較画像はpreviews/stretch-check.png。
+
+## 2026-10-25 UI fixes: room-home style checkpoint
+
+Branch: codex/ui-fixes. Replaced bg/room-home.png only (1179x1900, opaque RGB PNG), built-in image_gen 1 generation. Style approval pending; other assets remain pending. Comparison: previews/regen-compare.png, reference / before / draft. No application code changed.

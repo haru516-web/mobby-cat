@@ -206,3 +206,15 @@ Source: new technical raster
 Processing: Exact numeric RGBA bitmap, no app code changes
 
 9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
+
+## 2026-10-25 room-home illustration draft 01
+
+Status: style approval pending. Built-in image_gen, 1 generation.
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-6a24f36d-a683-4b63-9e79-5e6201dceba3.png
+
+Prompt: Create ONE full-bleed opaque portrait mobile game background illustration, aspect 1179:1900. Redraw the room in input image 1 as a clearly hand-illustrated cute rounded soft storybook game environment. Input 1 is composition/theme reference ONLY; do NOT retain its photographic rendering. Input 2 is UI-family style reference: puffy cream paper forms, simple softly shaded shapes. Cozy warm cream beige room, gentle muted green plants and pale orange cushions. Slightly elevated frontal view. Large rounded window upper left, plain cream curtains, a small rounded sofa at left/back center, simple rounded cat tower at right back, a few broad simple leaves in pots near back edges. Large flat oval cream rug in foreground center. One small simplified yarn ball near left edge, outside central standing area. Keep furniture entirely in back upper half, floor starts at y=48%. Central floor/rug y=50–75% MUST be empty flat and generous for overlay characters. Top 0–12% is plain calm cream wall for UI header; bottom 85–100% plain warm floor for UI overlays; lower right near85% empty. Render as simplified 2D painted paper-cut illustration with rounded silhouettes, flat pastel color plus gentle gradients and faint highlights, soft low contrast shadows. Minimal texture. NO detailed wood grain, NO textile fibers, NO detailed leaves, NO reflections, NO photorealism, NO camera bokeh, NO lens flare, NO strong shadows. NO cats, NO people, NO animals, NO text, NO letters, NO logos, NO UI components, NO frame. Fill rectangle edge to edge, no transparent margins. Warm and polished, unmistakably an illustration.
+
+Processing: RGB opaque; Lanczos resize to 1179x1900.
+
+Comparison: previews/regen-compare.png (reference / before / draft).

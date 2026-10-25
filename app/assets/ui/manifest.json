@@ -272,12 +272,13 @@
       "path": "bg/room-home.png",
       "width": 1179,
       "height": 1900,
-      "prompt": "Create a FULL BLEED OPAQUE RECTANGULAR background image, every single pixel including all four corners filled, NO transparency NO white border NO vignette NO cutout NO isolated diorama. Target aspect 1179:1900, 1179x1900 final. Subject: Warm sunlit realistic cozy cat room window houseplants cat tower sofa rug yarn ball. NO CATS. Cozy realistic beautifully detailed warm sunlit interior or landscape, photographic depth with tasteful soft storybook warmth consistent with docs/ui-reference. Wide floor foreground open for overlaid cats, view from room eye level, window left, cat tower right, sofa middle.Absolutely NO cats NO characters NO text NO UI NO icons NO lettering. Fill entire rectangle edge to edge with subject background, horizon or room walls continue beyond edges.",
-      "sha256": "86d136a402952226a86d265a830c886811a52f60b90dc9f462e39151e1c0fbbb",
-      "bytes": 3431049,
+      "prompt": "Create ONE full-bleed opaque portrait mobile game background illustration, aspect 1179:1900. Redraw the room in input image 1 as a clearly hand-illustrated cute rounded soft storybook game environment. Input 1 is composition/theme reference ONLY; do NOT retain its photographic rendering. Input 2 is UI-family style reference: puffy cream paper forms, simple softly shaded shapes. Cozy warm cream beige room, gentle muted green plants and pale orange cushions. Slightly elevated frontal view. Large rounded window upper left, plain cream curtains, a small rounded sofa at left/back center, simple rounded cat tower at right back, a few broad simple leaves in pots near back edges. Large flat oval cream rug in foreground center. One small simplified yarn ball near left edge, outside central standing area. Keep furniture entirely in back upper half, floor starts at y=48%. Central floor/rug y=50–75% MUST be empty flat and generous for overlay characters. Top 0–12% is plain calm cream wall for UI header; bottom 85–100% plain warm floor for UI overlays; lower right near85% empty. Render as simplified 2D painted paper-cut illustration with rounded silhouettes, flat pastel color plus gentle gradients and faint highlights, soft low contrast shadows. Minimal texture. NO detailed wood grain, NO textile fibers, NO detailed leaves, NO reflections, NO photorealism, NO camera bokeh, NO lens flare, NO strong shadows. NO cats, NO people, NO animals, NO text, NO letters, NO logos, NO UI components, NO frame. Fill rectangle edge to edge, no transparent margins. Warm and polished, unmistakably an illustration.",
+      "sha256": "4b18848c0dd84f0cfa105838eddd86e009dd4488c1098c1c518a49a81f19bf6a",
+      "bytes": 2365727,
       "method": "built-in image_gen",
-      "processing": "Opaque full-bleed cover resize",
-      "alphaMode": "opaque"
+      "processing": "RGB opaque; Lanczos resize to exact original dimensions",
+      "alphaMode": "opaque",
+      "reviewStatus": "style approval pending"
     },
     {
       "path": "bg/screen-shop.png",
