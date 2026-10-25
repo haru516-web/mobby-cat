@@ -1,0 +1,602 @@
+[
+  {
+    "id": "chartreux",
+    "name": "シャルトリュー",
+    "batch": "a",
+    "spec": "Chartreux: dense woolly slate blue-grey short coat, solid with no markings, sturdy round head with a smiling muzzle, plump cheeks, copper-orange iris"
+  },
+  {
+    "id": "korat",
+    "name": "コラット",
+    "batch": "a",
+    "spec": "Korat: sleek short silver-tipped blue-grey coat with a shimmering sheen, heart-shaped face, large luminous peridot-green iris, no tabby marks"
+  },
+  {
+    "id": "nebelung",
+    "name": "ネベルング",
+    "batch": "a",
+    "spec": "Nebelung: long silky silver-tipped blue-grey coat, feathered ears and plume tail, graceful face, vivid green iris"
+  },
+  {
+    "id": "oriental-shorthair",
+    "name": "オリエンタルショートヘア",
+    "batch": "a",
+    "spec": "Oriental Shorthair: lilac (soft pinkish-grey) solid sleek short coat, very large wide-set ears, wedge-shaped head, emerald-green iris"
+  },
+  {
+    "id": "oriental-longhair",
+    "name": "オリエンタルロングヘア",
+    "batch": "a",
+    "spec": "Oriental Longhair: pale cream solid silky semi-long coat, very large ears, plumed tail, wedge head, emerald-green iris"
+  },
+  {
+    "id": "javanese",
+    "name": "ジャバニーズ",
+    "batch": "a",
+    "spec": "Javanese: semi-long silky coat, cream-white body with red-orange points (ears, mask, legs, plume tail), sapphire-blue iris"
+  },
+  {
+    "id": "colorpoint-shorthair",
+    "name": "カラーポイントショートヘア",
+    "batch": "a",
+    "spec": "Colorpoint Shorthair: sleek short coat, white-cream body with tortie points (red and cream patches on face, ears, tail), vivid blue iris, wedge face"
+  },
+  {
+    "id": "himalayan",
+    "name": "ヒマラヤン",
+    "batch": "a",
+    "spec": "Himalayan: long dense coat, pale blue-white body with slate-blue points, flat Persian-type face, deep blue iris"
+  },
+  {
+    "id": "thai",
+    "name": "タイ",
+    "batch": "a",
+    "spec": "Thai (traditional Siamese type): apple-round head, medium rounded ears, short coat, cream body with brown tabby-striped lynx points, sapphire-blue iris"
+  },
+  {
+    "id": "burmilla",
+    "name": "バーミラ",
+    "batch": "a",
+    "spec": "Burmilla: short silky pale silver coat with fine black shaded tipping, dark eyeliner rim and rosy nose outline, green iris"
+  },
+  {
+    "id": "european-shorthair",
+    "name": "ヨーロピアンショートヘア",
+    "batch": "b",
+    "spec": "European Shorthair: blue-cream tortoiseshell short coat (soft grey and cream patches), natural medium build, golden iris"
+  },
+  {
+    "id": "european-burmese",
+    "name": "ヨーロピアンバーミーズ",
+    "batch": "b",
+    "spec": "European Burmese: solid apricot-red short satin coat, rounded head, golden-yellow iris"
+  },
+  {
+    "id": "british-longhair",
+    "name": "ブリティッシュロングヘア",
+    "batch": "b",
+    "spec": "British Longhair: plush dense semi-long silver shaded coat, very round face and cheeks, green iris"
+  },
+  {
+    "id": "scottish-straight",
+    "name": "スコティッシュストレート",
+    "batch": "b",
+    "spec": "Scottish Straight: small straight rounded ears (not folded), round face, dense short silver patched-tabby (torbie) coat, amber iris"
+  },
+  {
+    "id": "highland-fold",
+    "name": "ハイランドフォールド",
+    "batch": "b",
+    "spec": "Highland Fold: semi-long coat, white with blue-grey patches on head and tail, small folded ears, round face, golden iris"
+  },
+  {
+    "id": "highland-straight",
+    "name": "ハイランドストレート",
+    "batch": "b",
+    "spec": "Highland Straight: plush semi-long black smoke coat (dark with silver undercoat), straight small ears, round face, copper iris"
+  },
+  {
+    "id": "munchkin",
+    "name": "マンチカン",
+    "batch": "b",
+    "spec": "Munchkin: noticeably short stubby legs, buff-cream coat with white mitts and chest, walnut-shaped eyes, medium ears"
+  },
+  {
+    "id": "napoleon",
+    "name": "ナポレオン",
+    "batch": "b",
+    "spec": "Napoleon (Minuet): plush semi-long brown-tabby-and-white coat, round Persian-like face with short nose, short legs"
+  },
+  {
+    "id": "bambino",
+    "name": "バンビーノ",
+    "batch": "b",
+    "spec": "Bambino: hairless velvety black skin with white mitts, short legs, large ears, slightly wrinkled face, golden iris"
+  },
+  {
+    "id": "minskin",
+    "name": "ミンスキン",
+    "batch": "b",
+    "spec": "Minskin: short legs, velvety lilac-point coat (pale body, soft grey-lilac points), fine fuzzy coat, rounded head, blue iris"
+  },
+  {
+    "id": "sphynx",
+    "name": "スフィンクス",
+    "batch": "c",
+    "spec": "Sphynx: hairless wrinkled pale beige-pink skin with fine peach fuzz, very large ears, lemon-yellow iris, prominent cheekbones"
+  },
+  {
+    "id": "peterbald",
+    "name": "ピーターボールド",
+    "batch": "c",
+    "spec": "Peterbald: slender, nearly hairless blue-grey flocked velvet skin, long almond face, very large ears, green iris"
+  },
+  {
+    "id": "donskoy",
+    "name": "ドンスコイ",
+    "batch": "c",
+    "spec": "Donskoy: hairless warm tan-brown rubbery wrinkled skin, wrinkled forehead, large ears, amber iris"
+  },
+  {
+    "id": "lykoi",
+    "name": "ライコイ",
+    "batch": "c",
+    "spec": "Lykoi (werewolf cat): sparse black-and-white roan coat with bare patches around eyes, nose and muzzle, amber-gold iris"
+  },
+  {
+    "id": "american-wirehair",
+    "name": "アメリカンワイヤーヘア",
+    "batch": "c",
+    "spec": "American Wirehair: crimped wiry springy coat, red-orange and white, rounded head, green-gold iris"
+  },
+  {
+    "id": "laperm",
+    "name": "ラパーム",
+    "batch": "c",
+    "spec": "LaPerm: loose soft curly ringlets, cream tabby coat, curly whiskers, flared ears, gold iris"
+  },
+  {
+    "id": "ural-rex",
+    "name": "ウラルレックス",
+    "batch": "c",
+    "spec": "Ural Rex: short dense wavy plush coat, chocolate and white, wavy whiskers, large ears, green iris"
+  },
+  {
+    "id": "german-rex",
+    "name": "ジャーマンレックス",
+    "batch": "c",
+    "spec": "German Rex: short plush wavy blue-grey coat, rounded head, medium ears, green iris"
+  },
+  {
+    "id": "selkirk-rex-longhair",
+    "name": "セルカークレックス（ロングヘア）",
+    "batch": "c",
+    "spec": "Selkirk Rex Longhair: long curly woolly coat, black and white tuxedo, curly whiskers, round face, gold iris"
+  },
+  {
+    "id": "skookum",
+    "name": "スクーカム",
+    "batch": "c",
+    "spec": "Skookum: short legs with curly coat, silver-tabby-and-white curls, small round head, green iris"
+  },
+  {
+    "id": "savannah",
+    "name": "サバンナ",
+    "batch": "d",
+    "spec": "Savannah: golden-tan coat with bold black solid spots, tall large ears with pale \"ocelli\" spots on the back, dark tear-line marks, amber iris"
+  },
+  {
+    "id": "chausie",
+    "name": "チャウシー",
+    "batch": "d",
+    "spec": "Chausie: grizzled sandy grey-brown ticked coat, black-tipped ears, long face, athletic look, yellow-gold iris"
+  },
+  {
+    "id": "serengeti",
+    "name": "セレンゲティ",
+    "batch": "d",
+    "spec": "Serengeti: pale silver coat with large dark spots, very large rounded ears, golden iris"
+  },
+  {
+    "id": "pixie-bob",
+    "name": "ピクシーボブ",
+    "batch": "d",
+    "spec": "Pixie-bob: shaggy brown spotted-tabby coat, heavy brow, lynx-like ear tufts, short stubby tail, green-gold iris"
+  },
+  {
+    "id": "american-bobtail",
+    "name": "アメリカンボブテイル",
+    "batch": "d",
+    "spec": "American Bobtail: brown mackerel-tabby-and-white coat, short bobbed tail, wild-looking broad face, gold iris"
+  },
+  {
+    "id": "cymric",
+    "name": "シンリック",
+    "batch": "d",
+    "spec": "Cymric: tailless fluffy semi-long red-tabby-and-white coat, very round body and rump, round head, copper iris"
+  },
+  {
+    "id": "kurilian-bobtail",
+    "name": "クリリアンボブテイル",
+    "batch": "d",
+    "spec": "Kurilian Bobtail: dense semi-long silver-black tabby and white coat, pom-pom tail, wild-looking, green iris"
+  },
+  {
+    "id": "karelian-bobtail",
+    "name": "カレリアンボブテイル",
+    "batch": "d",
+    "spec": "Karelian Bobtail: short fluffy bobtail, red-and-white bicolor coat, sturdy build, amber iris"
+  },
+  {
+    "id": "mekong-bobtail",
+    "name": "メコンボブテイル",
+    "batch": "d",
+    "spec": "Mekong Bobtail: short coat, blue-lynx-point (pale body, blue-grey tabby-striped points), short kinked tail, sapphire-blue iris"
+  },
+  {
+    "id": "japanese-bobtail-longhair",
+    "name": "ジャパニーズボブテイル（ロングヘア）",
+    "batch": "d",
+    "spec": "Japanese Bobtail Longhair: black-and-white van-pattern long coat, bunny pom-pom tail, high cheekbones, gold iris"
+  },
+  {
+    "id": "sokoke",
+    "name": "ソコケ",
+    "batch": "e",
+    "spec": "Sokoke: slim, brown blotched-tabby with ticking (\"tree-bark\" pattern), amber iris, large ears"
+  },
+  {
+    "id": "aegean",
+    "name": "エーゲ",
+    "batch": "e",
+    "spec": "Aegean: semi-long white coat with large dark tabby patches on head and back, green iris"
+  },
+  {
+    "id": "arabian-mau",
+    "name": "アラビアンマウ",
+    "batch": "e",
+    "spec": "Arabian Mau: sleek short sandy-cream coat, large ears, golden iris, desert-hardy look"
+  },
+  {
+    "id": "australian-mist",
+    "name": "オーストラリアンミスト",
+    "batch": "e",
+    "spec": "Australian Mist: soft spotted-and-marbled warm brown pattern with a misty veil over the base, green-gold iris"
+  },
+  {
+    "id": "ukrainian-levkoy",
+    "name": "ウクライナ・レフコイ",
+    "batch": "e",
+    "spec": "Ukrainian Levkoy: hairless, folded ears, elongated dog-like head, wrinkled pink-grey bare skin, yellow iris"
+  },
+  {
+    "id": "toybob",
+    "name": "トイボブ",
+    "batch": "e",
+    "spec": "Toybob: tiny cream-colored short coat, round head, short kinked tail, blue-green iris"
+  },
+  {
+    "id": "neva-masquerade",
+    "name": "ネヴァマスカレード",
+    "batch": "e",
+    "spec": "Neva Masquerade: long fluffy Siberian-type coat, cream body with tabby (lynx) points and neck ruff, blue iris"
+  },
+  {
+    "id": "dragon-li",
+    "name": "ドラゴンリー",
+    "batch": "e",
+    "spec": "Dragon Li (China Li Hua): brown mackerel tabby with clear \"M\" on forehead, large ears, golden-amber iris"
+  },
+  {
+    "id": "khao-manee",
+    "name": "カオマニー",
+    "batch": "e",
+    "spec": "Khao Manee: pure white short coat, sleek muscular body, striking gold iris"
+  },
+  {
+    "id": "suphalak",
+    "name": "スパラック",
+    "batch": "e",
+    "spec": "Suphalak: solid deep copper-red-brown glossy short coat, copper iris, slim build"
+  },
+  {
+    "id": "ragdoll-seal-mitted",
+    "name": "ラグドール（シールミテッド）",
+    "batch": "f",
+    "spec": "Ragdoll seal mitted: seal-brown points with white mitts and chin, cream body, long silky coat, sapphire-blue iris"
+  },
+  {
+    "id": "ragdoll-blue-colorpoint",
+    "name": "ラグドール（ブルーカラーポイント）",
+    "batch": "f",
+    "spec": "Ragdoll blue colorpoint: pale blue-white body, slate-blue points, long silky coat, blue iris"
+  },
+  {
+    "id": "ragdoll-lilac-bicolor",
+    "name": "ラグドール（リラックスバイカラー）",
+    "batch": "f",
+    "spec": "Ragdoll lilac bicolor: lilac-grey points with white inverted-V face and white belly, long coat, blue iris"
+  },
+  {
+    "id": "persian-chinchilla-silver",
+    "name": "ペルシャ（チンチラシルバー）",
+    "batch": "f",
+    "spec": "Persian chinchilla silver: long white coat tipped with black shimmer, flat face, sea-green iris with dark eyeliner"
+  },
+  {
+    "id": "persian-black-smoke",
+    "name": "ペルシャ（ブラックスモーク）",
+    "batch": "f",
+    "spec": "Persian black smoke: long black coat with silver-white undercoat showing, flat face, copper iris"
+  },
+  {
+    "id": "persian-red-tabby",
+    "name": "ペルシャ（レッドタビー）",
+    "batch": "f",
+    "spec": "Persian red tabby: long deep-orange coat with darker red tabby striping, flat face, copper iris"
+  },
+  {
+    "id": "persian-blue-cream",
+    "name": "ペルシャ（ブルークリーム）",
+    "batch": "f",
+    "spec": "Persian blue-cream: long coat in soft blue-grey and cream patched pattern, flat face, copper iris"
+  },
+  {
+    "id": "siamese-blue-point",
+    "name": "シャム（ブルーポイント）",
+    "batch": "f",
+    "spec": "Siamese blue point: pale blue-white body, slate-blue points, short sleek coat, wedge face, vivid blue iris"
+  },
+  {
+    "id": "siamese-chocolate-point",
+    "name": "シャム（チョコレートポイント）",
+    "batch": "f",
+    "spec": "Siamese chocolate point: ivory body with warm milk-chocolate points, short sleek coat, blue iris"
+  },
+  {
+    "id": "siamese-flame-point",
+    "name": "シャム（フレームポイント）",
+    "batch": "f",
+    "spec": "Siamese flame point: white-cream body with orange-red points, short sleek coat, blue iris"
+  },
+  {
+    "id": "british-golden-shaded",
+    "name": "ブリティッシュ（ゴールデンシェーデッド）",
+    "batch": "g",
+    "spec": "British Shorthair golden shaded: warm apricot-gold coat with dark tipping, plush round face, emerald-green iris with dark rim"
+  },
+  {
+    "id": "british-silver-tabby",
+    "name": "ブリティッシュ（シルバータビー）",
+    "batch": "g",
+    "spec": "British Shorthair silver tabby: silver coat with bold black classic tabby swirls, round face, green iris"
+  },
+  {
+    "id": "british-black",
+    "name": "ブリティッシュ（ブラック）",
+    "batch": "g",
+    "spec": "British Shorthair black: solid dense jet-black plush coat, round face, copper iris"
+  },
+  {
+    "id": "british-lilac",
+    "name": "ブリティッシュ（ライラック）",
+    "batch": "g",
+    "spec": "British Shorthair lilac: solid pinkish-grey plush coat, round face, copper iris"
+  },
+  {
+    "id": "british-bicolor",
+    "name": "ブリティッシュ（バイカラー）",
+    "batch": "g",
+    "spec": "British Shorthair blue-and-white bicolor: blue-grey patches with white face blaze, chest and paws, round face, orange iris"
+  },
+  {
+    "id": "american-shorthair-brown-tabby",
+    "name": "アメリカンショートヘア（ブラウンタビー）",
+    "batch": "g",
+    "spec": "American Shorthair brown tabby: brown coat with black classic swirls, forehead \"M\", green-gold iris"
+  },
+  {
+    "id": "american-shorthair-calico",
+    "name": "アメリカンショートヘア（キャリコ）",
+    "batch": "g",
+    "spec": "American Shorthair calico: white coat with bold orange and black patches, short dense coat, green iris"
+  },
+  {
+    "id": "scottish-fold-silver-tabby",
+    "name": "スコティッシュフォールド（シルバータビー）",
+    "batch": "g",
+    "spec": "Scottish Fold silver tabby: silver coat with black tabby markings, small folded ears, round face, green iris"
+  },
+  {
+    "id": "scottish-fold-bicolor",
+    "name": "スコティッシュフォールド（バイカラー）",
+    "batch": "g",
+    "spec": "Scottish Fold black-and-white bicolor: small folded ears, round face, white blaze, gold iris"
+  },
+  {
+    "id": "scottish-fold-white",
+    "name": "スコティッシュフォールド（ホワイト）",
+    "batch": "g",
+    "spec": "Scottish Fold white: pure white coat, small folded ears, round face, gold iris"
+  },
+  {
+    "id": "maine-coon-silver-tabby",
+    "name": "メインクーン（シルバータビー）",
+    "batch": "h",
+    "spec": "Maine Coon silver tabby: shaggy silver coat with black tabby stripes, lynx-tip ear tufts, big ruff, green iris"
+  },
+  {
+    "id": "maine-coon-black",
+    "name": "メインクーン（ブラック）",
+    "batch": "h",
+    "spec": "Maine Coon black: shaggy solid black coat, lynx-tip ear tufts, big ruff and plume tail, gold iris"
+  },
+  {
+    "id": "maine-coon-red-tabby",
+    "name": "メインクーン（レッドタビー）",
+    "batch": "h",
+    "spec": "Maine Coon red tabby: shaggy bright orange coat with darker stripes, lynx-tip tufts, big ruff, gold-green iris"
+  },
+  {
+    "id": "norwegian-forest-black-white",
+    "name": "ノルウェージャンフォレスト（ブラック＆ホワイト）",
+    "batch": "h",
+    "spec": "Norwegian Forest black-and-white: long flowing coat, white chest ruff and paws, tufted ears, green iris"
+  },
+  {
+    "id": "norwegian-forest-silver-tabby",
+    "name": "ノルウェージャンフォレスト（シルバータビー）",
+    "batch": "h",
+    "spec": "Norwegian Forest silver tabby: long coat, silver with black stripes, thick ruff, bushy tail, green iris"
+  },
+  {
+    "id": "siberian-blue",
+    "name": "サイベリアン（ブルー）",
+    "batch": "h",
+    "spec": "Siberian blue: thick plush triple-coat in solid blue-grey, rounded tufted ears, broad muzzle, green-yellow iris"
+  },
+  {
+    "id": "birman-blue-point",
+    "name": "バーマン（ブルーポイント）",
+    "batch": "h",
+    "spec": "Birman blue point: pale cream-white body, slate-blue points, white gloves on all feet, long silky coat, blue iris"
+  },
+  {
+    "id": "birman-chocolate-point",
+    "name": "バーマン（チョコレートポイント）",
+    "batch": "h",
+    "spec": "Birman chocolate point: ivory body, warm chocolate points, white gloves, long silky coat, blue iris"
+  },
+  {
+    "id": "abyssinian-blue",
+    "name": "アビシニアン（ブルー）",
+    "batch": "h",
+    "spec": "Abyssinian blue: slate-blue ticked short coat with warm beige undertone, large ears, gold-green iris"
+  },
+  {
+    "id": "abyssinian-fawn",
+    "name": "アビシニアン（フォーン）",
+    "batch": "h",
+    "spec": "Abyssinian fawn: soft pinkish-beige ticked short coat, large ears, gold iris"
+  },
+  {
+    "id": "bengal-snow-lynx",
+    "name": "ベンガル（スノーリンクス）",
+    "batch": "i",
+    "spec": "Bengal snow lynx: cream-white coat with faint pale-brown rosettes, seal lynx points, blue iris"
+  },
+  {
+    "id": "bengal-silver",
+    "name": "ベンガル（シルバー）",
+    "batch": "i",
+    "spec": "Bengal silver: bright silver-white coat with black rosettes and spots, green iris"
+  },
+  {
+    "id": "bengal-marble",
+    "name": "ベンガル（マーブル）",
+    "batch": "i",
+    "spec": "Bengal marble: warm golden coat with flowing horizontal marbled swirls, gold-green iris"
+  },
+  {
+    "id": "egyptian-mau-bronze",
+    "name": "エジプシャンマウ（ブロンズ）",
+    "batch": "i",
+    "spec": "Egyptian Mau bronze: warm bronze-brown coat with dark spots, forehead scarab \"M\", green-gooseberry iris"
+  },
+  {
+    "id": "egyptian-mau-smoke",
+    "name": "エジプシャンマウ（スモーク）",
+    "batch": "i",
+    "spec": "Egyptian Mau smoke: black coat with silver undercoat and faint ghost spots, green iris"
+  },
+  {
+    "id": "ocicat-silver",
+    "name": "オシキャット（シルバー）",
+    "batch": "i",
+    "spec": "Ocicat silver: silver coat with dark grey thumbprint spots, striped legs and tail, copper iris"
+  },
+  {
+    "id": "burmese-blue",
+    "name": "バーミーズ（ブルー）",
+    "batch": "i",
+    "spec": "Burmese blue: glossy solid blue-grey short coat with warm silver sheen, rounded head, golden iris"
+  },
+  {
+    "id": "burmese-champagne",
+    "name": "バーミーズ（シャンパン）",
+    "batch": "i",
+    "spec": "Burmese champagne: glossy solid warm champagne-beige short coat, rounded head, golden iris"
+  },
+  {
+    "id": "russian-white",
+    "name": "ロシアンホワイト",
+    "batch": "i",
+    "spec": "Russian White: dense plush solid white double coat, large upright ears, almond face, green iris"
+  },
+  {
+    "id": "russian-black",
+    "name": "ロシアンブラック",
+    "batch": "i",
+    "spec": "Russian Black: dense plush solid jet-black double coat with silvery gloss, large upright ears, green iris"
+  },
+  {
+    "id": "kijitora",
+    "name": "キジトラ",
+    "batch": "j",
+    "spec": "Kijitora: Japanese brown mackerel tabby, black-and-brown stripes, short coat, \"M\" on forehead, amber-green iris"
+  },
+  {
+    "id": "saba-tora",
+    "name": "サバトラ",
+    "batch": "j",
+    "spec": "Saba-tora: silver-grey mackerel tabby with black stripes and white chest, short coat, green iris"
+  },
+  {
+    "id": "chatora",
+    "name": "茶トラ",
+    "batch": "j",
+    "spec": "Chatora: orange tabby with white-cream belly, soft stripes, short coat, golden iris"
+  },
+  {
+    "id": "mike-neko",
+    "name": "三毛猫",
+    "batch": "j",
+    "spec": "Mike-neko: calico, white base with distinct orange and black patches on head and back, short coat, amber iris"
+  },
+  {
+    "id": "sabi-neko",
+    "name": "サビ猫",
+    "batch": "j",
+    "spec": "Sabi-neko: tortoiseshell, black and orange mottled coat (no white), short coat, amber iris"
+  },
+  {
+    "id": "kuro-neko",
+    "name": "黒猫",
+    "batch": "j",
+    "spec": "Kuro-neko: solid jet-black short coat with a slight brown sun-bleach tinge, round face, golden iris"
+  },
+  {
+    "id": "shiro-neko",
+    "name": "白猫",
+    "batch": "j",
+    "spec": "Shiro-neko: pure white short coat, pink nose, blue iris"
+  },
+  {
+    "id": "hachiware",
+    "name": "ハチワレ",
+    "batch": "j",
+    "spec": "Hachiware: black-and-white \"split face\" cat, black cap with white split down the face, white chest and paws, short coat, green iris"
+  },
+  {
+    "id": "haiiro-neko",
+    "name": "グレーの猫",
+    "batch": "j",
+    "spec": "Haiiro-neko: solid warm grey short coat, round face, yellow-green iris"
+  },
+  {
+    "id": "kijishiro",
+    "name": "キジシロ",
+    "batch": "j",
+    "spec": "Kijishiro: brown mackerel tabby and white, white chest, paws and muzzle, short coat, amber iris"
+  }
+]

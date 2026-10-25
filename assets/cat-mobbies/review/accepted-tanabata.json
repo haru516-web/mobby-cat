@@ -1,0 +1,19 @@
+{
+  "id": "tanabata",
+  "prompt": "Use case: stylized-concept. Redesign MAIN CAT tanabata. Ref1 bengal/ref2 ragdoll define real directional fur and hardware; ref3 only identity and conceptual props. REQUIRED NEW APPEARANCE: DEEP NAVY very SHORT WAVY rex fur with just a few pale star-shaped coat markings, HUGE pointed ears, slim tall square torso, angular wedge cheeks, BLUE iris. Keep bamboo and two star ornaments plus 7/7 wish slip. Exactly ONE unified rounded-square head/body NO neck, short arms/two short feet. ONE living eye viewer LEFT with LARGE ROUND black pupil and highlight, ONE black green-reflective camera lens RIGHT; ONE black D-pad lower LEFT and exactly TWO plain black round buttons diagonally lower RIGHT. Front full body, controls unobscured. Soft studio light, true RGBA1254x1254 transparent PNG with margin. No background/grid/floor/new text/watermark. Follow new fur ears face and body, no extra props.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-d763e44a-0cbd-4f1b-975b-6ac099e6bc98.png",
+  "target": "assets/cat-mobbies/new/b/tanabata.png",
+  "regenReason": "夜空/紫黒の類似グループを分化。小物コンセプト保持。新しい外見: DEEP NAVY very SHORT WAVY rex fur with just a few pale star-shaped coat markings, HUGE pointed ears, slim tall square torso, angular wedge cheeks, BLUE iris. Keep bamboo and two star ornaments plus 7/7 wish slip.",
+  "qa": "accepted: individual coat/ear/face/body differences, one left biological eye/right lens/D-pad/two plain buttons; original concept retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2776034,
+    "sha256": "c73f93673159da799c3986f45dd970d95fda5e1bc28f7b4c0c7b632de2c50564"
+  }
+}

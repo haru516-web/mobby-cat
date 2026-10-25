@@ -52,3 +52,11 @@ bengal, toyger, ocicat, abyssinian, singapura, exotic-shorthair, scottish-fold, 
 ## 再開後の試作確定
 
 指定5匹が揃い、既存36匹と並べて質感・型を目視確認した。shikaku再試作を採用し、元のキャラ案に合わせたキャラメル単色短毛・低い丸耳・四角い体に変更。savannah（d）は大きな耳と黒い斑点、mike-neko（j）は短毛の白黒橙と長い尾で採用。全5匹1254×1254 RGBA透過。mike-nekoのアルファ最大値は254（ほぼ不透明）であり、生成アルファを変更せず保存した。A採用2匹、B試作3匹。ここからA本番へ進む。
+
+## 全136匹の再監査（2026-10-26）
+
+初回計画74匹の再描画後、after/groups-*.png 全13枚（512px、3列）を目視。rea-mobby と同じ黒茶橙の長毛キジ三毛の反復は解消。近い組として hakubutsukan/cameraman、bishonure/amayadori、siberian/maine-coon、sakasama/manx、hoshizora/tanabata、british-shorthair/ouji を確認し、各組2匹まで。毛色が近くても、巻き毛/直毛、折れ耳/大耳、斑の配置、マズルと胴比率で差を確認した。
+
+追加検出: juuden / shinirimobby / mangetsu の黄色い長毛・立ち耳・丸顔が3匹に残っていた。shinirimobby を淡いレモンの短い粗毛・小さい折れ耳・低い横広胴へ追加再描画する。Aはこの追加1匹の採用と再確認まで未完了。
+
+余白: 一部生成は毛先や耳が端に寄るため、透明余白の機械的な統一についてユーザーへ確認中。承認前のPNG加工はしていない。
