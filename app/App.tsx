@@ -16,10 +16,12 @@ import OnboardingScreen from './src/features/onboarding/OnboardingScreen';
 import ShopScreen from './src/features/shop/ShopScreen';
 import { NoticeTab } from './src/navigation';
 import WorldScreen from './src/features/world/WorldScreen';
+import TutorialTour from './src/features/tutorial/TutorialTour';
 import ZukanScreen from './src/features/zukan/ZukanScreen';
 import { GameProvider, useGame } from './src/core/game';
 import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
 import { Backdrop } from './src/ui/Slice';
+import { TourAnchor } from './src/ui/TourAnchor';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
 const MAX_W = 430; // iPad や Web の広い画面でもスマホ幅で中央に表示する
@@ -37,12 +39,13 @@ function Sheet({ visible, onClose, width, children }: { visible: boolean; onClos
 }
 
 function Root() {
-  const { ready, state } = useGame();
+  const { ready, state, finishTutorial } = useGame();
   const [fontsLoaded] = useFonts({ MPLUSRounded1c_500Medium, MPLUSRounded1c_700Bold, MPLUSRounded1c_800ExtraBold });
   const [tab, setTab] = useState<TabKey>('home');
   const [shop, setShop] = useState(false);
   const [notice, setNotice] = useState<NoticeTab | null>(null);
   const [camera, setCamera] = useState(false);
+  const [replay, setReplay] = useState(false); // 設定から見返すチュートリアル
   const [tabH, setTabH] = useState(0);
   const insets = useSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
@@ -65,6 +68,7 @@ function Root() {
     );
   }
   const Active = SCREENS[tab];
+  const tour = replay || !state.tutorialDone;
   return (
     <View style={[s.fill, { alignItems: 'center' }]}>
       <Backdrop name="bg/app-cream" />
@@ -80,12 +84,30 @@ function Root() {
             />
           </TabPadCtx.Provider>
         </SafeAreaView>
-        <View style={s.tabbar} onLayout={(e) => setTabH(e.nativeEvent.layout.height)}>
+        <TourAnchor id="tabbar" style={s.tabbar} onLayout={(e) => setTabH(e.nativeEvent.layout.height)}>
           <TabBar tab={tab} onChange={setTab} bottomInset={insets.bottom} />
-        </View>
+        </TourAnchor>
+        {tour && (
+          <TutorialTour
+            bottomInset={insets.bottom}
+            onNavigate={setTab}
+            onClose={() => {
+              setReplay(false);
+              finishTutorial();
+              setTab('home');
+            }}
+          />
+        )}
       </View>
       <Sheet visible={shop} onClose={() => setShop(false)} width={width}>
-        <ShopScreen onClose={() => setShop(false)} />
+        <ShopScreen
+          onClose={() => setShop(false)}
+          onTutorial={() => {
+            setShop(false);
+            setTab('home');
+            setReplay(true);
+          }}
+        />
       </Sheet>
       <Sheet visible={!!notice} onClose={() => setNotice(null)} width={width}>
         {notice && <NoticeScreen initialTab={notice} onClose={() => setNotice(null)} />}

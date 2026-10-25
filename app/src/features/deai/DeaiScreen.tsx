@@ -7,6 +7,7 @@ import { useGame, visibleCount } from '../../core/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
 import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad } from '../../ui/kit';
 import { Pic, Slice, Stretch } from '../../ui/Slice';
+import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
 
 export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps) {
@@ -67,7 +68,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
           <Pic name="bg/room-deai" width={width} />
           <Stretch name="bg/fade-cream-bottom" style={s.fade} />
         </View>
-        <View style={s.hero}>
+        <TourAnchor id="deai-hero" style={s.hero}>
           {!hasFree ? (
             <Pic name="brand/title-free-pick" width={Math.min(width - 32, 360)} />
           ) : (
@@ -86,7 +87,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
               <Pic name="icon/chevron-right" height={12} style={{ marginLeft: 4 }} />
             </Pressable>
           </Card>
-        </View>
+        </TourAnchor>
 
         {availableDays.length > 1 && (
           <View style={s.dayTabs}>
@@ -102,7 +103,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
           </View>
         )}
 
-        <View style={s.grid}>
+        <TourAnchor id="deai-grid" style={s.grid}>
           {visible.map((id, i) => {
             const cat = CAT_BY_ID[id];
             const picked = isPicked(id);
@@ -132,7 +133,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
               </Pressable>
             );
           })}
-        </View>
+        </TourAnchor>
       </View>
 
       <View style={{ paddingHorizontal: 16, marginTop: 14, gap: 12 }}>

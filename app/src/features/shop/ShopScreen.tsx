@@ -21,7 +21,7 @@ const RARITY_NAME: Record<number, string> = { 1: 'ノーマル', 2: 'ノーマ�
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const DAYS_IN =[31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-export default function ShopScreen({ onClose }: { onClose: () => void }) {
+export default function ShopScreen({ onClose, onTutorial }: { onClose: () => void; onTutorial: () => void }) {
   const g = useGame();
   const { state } = g;
   const bd = state.birthday;
@@ -122,6 +122,13 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>通知なしでもアプリ内から受け取れます</T>
           </View>
           <Toggle value={state.notifyEnabled} onChange={toggleNotify} />
+        </Card>
+        <Card style={s.item}>
+          <View style={{ flex: 1 }}>
+            <T w="x" size={14}>使い方</T>
+            <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>はじめに見たチュートリアルを、もう一度見られます</T>
+          </View>
+          <ImgButton skin="ghost-outline" label="見る" height={36} fontSize={12} onPress={onTutorial} style={{ width: 100 }} />
         </Card>
         <Card style={s.item}>
           <View style={{ flex: 1 }}>

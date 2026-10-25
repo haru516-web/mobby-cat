@@ -6,6 +6,7 @@ import { useGame } from '../../core/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Header, ImgButton, InfoPill, Polaroid, useTabPad } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
+import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
 
 // 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい
@@ -91,16 +92,17 @@ export default function HomeScreen({ go, openShop, openNotice, openCamera, width
       <Header onShop={openShop} onBell={() => openNotice()} />
       <View style={s.pills}>
         <InfoPill style={{ flex: 1 }} icon="icon/cat-head" label="所持" value={`${ownedIds.length}/${CATS.length}`} onPress={() => go('zukan')} />
-        <InfoPill
-          style={{ flex: 1.25 }}
-          icon="icon/calendar-today"
-          label="今日の出会い"
-          value={waiting ? '受け取れます' : `あと${Math.floor(mins / 60)}時間`}
-          onPress={() => go('deai')}
-        />
+        <TourAnchor id="home-deai" style={{ flex: 1.25 }}>
+          <InfoPill
+            icon="icon/calendar-today"
+            label="今日の出会い"
+            value={waiting ? '受け取れます' : `あと${Math.floor(mins / 60)}時間`}
+            onPress={() => go('deai')}
+          />
+        </TourAnchor>
       </View>
 
-      <View style={{ width, height: roomH, marginTop: -20, overflow: 'hidden' }}>
+      <TourAnchor id="home-room" style={{ width, height: roomH, marginTop: -20, overflow: 'hidden' }}>
         <Backdrop name="bg/room-home" />
         {roomCats.length === 0 && (
           <View style={s.empty}>
@@ -119,7 +121,7 @@ export default function HomeScreen({ go, openShop, openNotice, openCamera, width
           <Pic name="button/camera-round" height={84} />
           <T w="x" size={12} style={s.cameraLabel}>さつえい</T>
         </Pressable>
-      </View>
+      </TourAnchor>
 
       <View style={s.cards}>
         <Card style={{ width: half, minHeight: 190 }}>

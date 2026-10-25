@@ -4,6 +4,7 @@ import { CatDef } from '../data/catalog';
 import { useGame } from '../core/game';
 import { C, T } from './base';
 import { Pic, Slice } from './Slice';
+import { TourAnchor } from './TourAnchor';
 
 export function Icon({ name, size = 22, style }: { name: string; size?: number; style?: StyleProp<ViewStyle> }) {
   return <Pic name={name} height={size} style={style} />;
@@ -69,18 +70,22 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell }: { tit
     <View style={k.header}>
       <Pic name={title} height={logoH} />
       <View style={{ flex: 1 }} />
-      <Pressable onPress={onShop}>
-        <Slice name="panel/pill-currency" style={k.currency}>
-          <Icon name="icon/ticket-paw" size={20} />
-          <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{state.tickets}</T>
-          <Icon name="icon/matatabi-leaf" size={20} />
-          <T w="x" size={14} style={{ marginLeft: 3 }}>{state.matatabi}</T>
-        </Slice>
-      </Pressable>
-      <Pressable onPress={onBell} style={{ marginLeft: 6 }} accessibilityLabel="お知らせ">
-        <Pic name="button/bell-round" height={44} />
-        {state.inbox.length > state.inboxRead && <Pic name="button/bell-badge" height={14} style={k.bellBadge} />}
-      </Pressable>
+      <TourAnchor id="header-items">
+        <Pressable onPress={onShop}>
+          <Slice name="panel/pill-currency" style={k.currency}>
+            <Icon name="icon/ticket-paw" size={20} />
+            <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{state.tickets}</T>
+            <Icon name="icon/matatabi-leaf" size={20} />
+            <T w="x" size={14} style={{ marginLeft: 3 }}>{state.matatabi}</T>
+          </Slice>
+        </Pressable>
+      </TourAnchor>
+      <TourAnchor id="header-bell" style={{ marginLeft: 6 }}>
+        <Pressable onPress={onBell} accessibilityLabel="お知らせ">
+          <Pic name="button/bell-round" height={44} />
+          {state.inbox.length > state.inboxRead && <Pic name="button/bell-badge" height={14} style={k.bellBadge} />}
+        </Pressable>
+      </TourAnchor>
     </View>
   );
 }

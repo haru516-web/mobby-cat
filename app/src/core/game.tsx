@@ -40,6 +40,7 @@ export type GameState = {
   catalogVersion: string;
   birthday: { m: number; d: number } | null;
   starterChosen: boolean; // 初回の相棒選びを終えたか
+  tutorialDone: boolean; // 相棒選びのあとのチュートリアルを見終えた（スキップした）か
   petCount: number; // 猫をなでた回数
   inbox: Notice[]; // お知らせ（新しい順）
   inboxRead: number; // 既読にした時点のお知らせ件数
@@ -73,6 +74,7 @@ function initial(now: Date): GameState {
     catalogVersion: CATALOG_VERSION,
     birthday: null,
     starterChosen: false,
+    tutorialDone: false,
     petCount: 0,
     inbox: [],
     inboxRead: 0,
@@ -123,6 +125,7 @@ type Ctx = {
   setBirthday: (b: { m: number; d: number } | null) => void;
   toggleFavorite: (id: string) => void;
   chooseStarter: (id: string) => void;
+  finishTutorial: () => void;
   pet: () => void;
   markInboxRead: () => void;
   setPass: (v: boolean) => void;
@@ -158,7 +161,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           const saved = JSON.parse(raw) as Partial<GameState>;
           // 相棒選びの導入前から遊んでいた人には、選び直しを出さない
           const starterChosen = saved.starterChosen ?? Object.keys(saved.owned ?? {}).length > 0;
-          setState({ ...initial(new Date()), ...saved, starterChosen });
+          // チュートリアルの導入前から遊んでいた人には出さない
+          const tutorialDone = saved.tutorialDone ?? starterChosen;
+          setState({ ...initial(new Date()), ...saved, starterChosen, tutorialDone });
         }
       } catch {}
       setReady(true);
@@ -321,6 +326,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       }),
     [],
   );
+  const finishTutorial = useCallback(() => setState((s) => (s.tutorialDone ? s : { ...s, tutorialDone: true })), []);
   const markInboxRead = useCallback(() => setState((s) => (s.inboxRead === s.inbox.length ? s : { ...s, inboxRead: s.inbox.length })), []);
   const pet = useCallback(() => setState((s) => ({ ...s, petCount: s.petCount + 1 })), []);
   const setPass = useCallback((v: boolean) => setState((s) => ({ ...s, pass: { ...s.pass, active: v } })), []);
@@ -340,7 +346,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, pet, markInboxRead, setPass, shiftDays, unlockAll, reset,
+    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, finishTutorial, pet, markInboxRead, setPass, shiftDays, unlockAll, reset,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
 }
