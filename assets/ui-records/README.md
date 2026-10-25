@@ -52,3 +52,44 @@
 - app/srcなどのコードは変更していない。
 
 今回の追加分の再生成は0枚。伸縮43枚は2倍サイズで固定キャップの画素不変を検査し、すべて成功。比較画像はpreviews/stretch-check.png。
+
+## 2026-10-25 UI fixes: room-home style checkpoint
+
+Branch: codex/ui-fixes. Replaced bg/room-home.png only (1179x1900, opaque RGB PNG), built-in image_gen 1 generation. Style approval pending; other assets remain pending. Comparison: previews/regen-compare.png, reference / before / draft. No application code changed.
+
+### room-home draft 02
+
+User requested more detail. Added painted leaf, textile, basket, rug and wood details while preserving soft rounded illustration and empty central space. Replaced room-home only; 2 generations overall. Exact1179x1900 opaque RGB PNG validated. Style approval pending; no other assets or application code changed. Comparison: previews/room-home-detail-compare.png.
+
+## UI fixes: priority 1 complete (2026-10-25)
+Approved room-home draft02 retained. Redrawn room-deai (1179x1400) and world-hero (1179x900), one generation each, opaque RGB. Sign words JAPAN / FRANCE / KENYA / KOREA checked. Empty character/text overlay areas checked. Comparison: previews/regen-compare.png. No application code changes.
+
+## UI fixes: priority 2 complete
+Redrawn screen-zukan and screen-world, each1179x2556 opaque PNG, one generation each. Painted shelves and sky/map/airplane, pale central and lower overlay areas. Comparison: previews/regen-screens.png.
+
+## UI fixes: generation limit checkpoint (2026-10-25)
+Completed and pushed: 5 backgrounds including approved room-home. Generation counts: room-home2; room-deai1; world-hero1; screen-zukan1; screen-world1 (6 successful generations overall).
+Pending: photo-japan; stamp-photo-kenya/france/japan/korea; news-thumb-1/2/3; tabbar/bg; illust/empty-notice; illust/empty-history; panel/sheet-detail (12 assets). Existing pending files unchanged. New pending files not created.
+Built-in image_gen returned HTTP429 usage_limit_reached; generation stopped. Reset reported: 2026-10-25 21:30:37 JST. Resume ONLY pending assets after recovery; preserve approved style.
+Validation: provenance/ui-fixes-validation.json. All5 completed files pass exact dimensions, PNG, opacity, SHA256, bytes and EXIF checks. Application code and cat character source assets unchanged. Images visually inspected; no app/device rendering verification.
+Existing stamp/news files are RGB opaque with cream exterior; keep original cutout/scallop silhouettes when resuming. Empty-state illustrations are explicit cat exceptions to background no-cat rule.
+Lint attempted: unavailable (no lint script). Typecheck attempted with npx --no-install tsc --noEmit; local dependencies absent, npm registry resolution failed (ENOTFOUND registry.npmjs.org); no pass claimed.
+
+## UI fixes resumed: priority3 complete
+Replaced photo-japan (600x460), stamp-photo-kenya/france/japan/korea (360x280), news-thumb-1/2/3 (330x330). Opaque RGB PNG. Stamps preserve original frame/exterior pixels outside recorded interior polygons. Approved rounded detailed illustration style, no cats/people/text. Photo-japan required2 generations to correct five pagoda roof tiers; other7 assets one generation each. Comparison: previews/regen-travel-thumbnails.png. Prompts and exact finishing polygons: provenance/regen-resume.json and prompts-bg.md. Built-in image_gen only for illustration creation.
+
+## UI fixes: tabbar complete
+Replaced tabbar/bg.png1179x300 RGBA. Top corners retained, square bottom corners and no bottom border/shadow. Slice top90/right90/bottom0/left90. One built-in generation; crop/cap normalization and clean bottom-row extension for exact component geometry. active-glow and underline unchanged. Comparison: previews/regen-tabbar.png.
+
+## UI fixes: empty states complete
+Added illust/empty-notice.png and empty-history.png, each600x450 RGBA, one generation each. Bengal character source referenced only; source unchanged. Camera lens eye, chest directional pad and two buttons visually checked. Transparent surroundings, small contact shadow; polaroid opening residual alpha cleared. Comparison: previews/regen-empty-states.png.
+
+## UI fixes: detail sheet complete
+Added panel/sheet-detail.png1179x600 RGBA with centered handle, rounded top corners, open square bottom edge and no bottom border/shadow. Slice top120/right90/bottom0/left90. One built-in generation, technical cap normalization for specified slice bounds. Comparison: previews/regen-sheet-detail.png.
+
+## UI fixes FINAL: complete
+All17 requested assets delivered:13 background replacements,1 tabbar replacement,2 new empty-state illustrations and1 new detail sheet. Missing0; extra delivery images0. Total19 successful image_gen generations,2 redo generations (room-home and photo-japan). Previously quota-blocked12 assets are now complete.
+All17 passed exact dimensions, PNG, required opacity/transparency, bytes, SHA256 and EXIF checks. Both slice definitions passed; square open bottom corners verified. All4 stamp frame/exterior pixel regions preserved exactly. All166 manifest asset hashes checked. Approved5 backgrounds were preserved byte-for-byte during resume.
+Only app/assets/ui/** and assets/ui-records/** changed. No app/src, App.tsx, package.json, cat source assets, active-glow or underline changes. Registry integration remains with the requester as instructed; no app/device rendering verification performed.
+Final overview: previews/ui-fixes-final.png. Audit: provenance/ui-fixes-validation.json. Full prompts: manifest.json and provenance/prompts-bg.md, prompts-tabbar.md, prompts-illust.md, prompts-panel.md. Exact generation sources and finishing parameters: provenance/regen-resume.json. Photo-japan rejected/final prompts: provenance/photo-japan-regeneration.json.
+Lint reattempt: Missing script lint. Typecheck reattempt in offline mode: ENOTCACHED, local dependencies unavailable. Neither app check is claimed to pass. Asset audit errors0.

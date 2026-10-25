@@ -1,0 +1,362 @@
+{
+  "status": "complete",
+  "expectedAssets": 17,
+  "checkedAssets": [
+    {
+      "path": "bg/room-home.png",
+      "size": [
+        1179,
+        1900
+      ],
+      "mode": "RGB",
+      "sha256": "1998ab6e89bff2b799046a7381c4853fbc5f3025d2edb3bab95ceb677a63e0bb",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "approvedBackgroundUnchangedSinceResume": true
+      }
+    },
+    {
+      "path": "bg/room-deai.png",
+      "size": [
+        1179,
+        1400
+      ],
+      "mode": "RGB",
+      "sha256": "9159c0aaffd6e07248536f28084523e055466398454a06c1f6278ba826ea6099",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "approvedBackgroundUnchangedSinceResume": true
+      }
+    },
+    {
+      "path": "bg/world-hero.png",
+      "size": [
+        1179,
+        900
+      ],
+      "mode": "RGB",
+      "sha256": "1a0726fb6b2bbb2b8f319ae50937a488d507dbb35b1d275fec7b833264ac4af0",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "approvedBackgroundUnchangedSinceResume": true
+      }
+    },
+    {
+      "path": "bg/screen-zukan.png",
+      "size": [
+        1179,
+        2556
+      ],
+      "mode": "RGB",
+      "sha256": "0f37022bec492003d8db3582acd312634cff4d826c57d86ad1e8a1bb31aab50b",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "approvedBackgroundUnchangedSinceResume": true
+      }
+    },
+    {
+      "path": "bg/screen-world.png",
+      "size": [
+        1179,
+        2556
+      ],
+      "mode": "RGB",
+      "sha256": "8deaf1b4b3dd772813edb53cd342d7e9570046a1b04e3a7906db76f19a5200ce",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "approvedBackgroundUnchangedSinceResume": true
+      }
+    },
+    {
+      "path": "bg/photo-japan.png",
+      "size": [
+        600,
+        460
+      ],
+      "mode": "RGB",
+      "sha256": "7566179dcc0b70864474289f8c8e1727442bc1bbaa181b03feb1172cdb8fabb5",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true
+      }
+    },
+    {
+      "path": "bg/stamp-photo-kenya.png",
+      "size": [
+        360,
+        280
+      ],
+      "mode": "RGB",
+      "sha256": "9fd67a859c90cccb1e85325e90c31cc3cfae8ba541f76b641fbde070e87f630c",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "originalFrameExteriorExact": true
+      }
+    },
+    {
+      "path": "bg/stamp-photo-france.png",
+      "size": [
+        360,
+        280
+      ],
+      "mode": "RGB",
+      "sha256": "1f9c1fc9656059c5029c584ae117e8cee0a9d8b70041030d2b9e7d71b0b2f598",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "originalFrameExteriorExact": true
+      }
+    },
+    {
+      "path": "bg/stamp-photo-japan.png",
+      "size": [
+        360,
+        280
+      ],
+      "mode": "RGB",
+      "sha256": "15436960f4c176c9e172298e9d172aa0cecdfbb04e9043e66db0c76aefa2c94d",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "originalFrameExteriorExact": true
+      }
+    },
+    {
+      "path": "bg/stamp-photo-korea.png",
+      "size": [
+        360,
+        280
+      ],
+      "mode": "RGB",
+      "sha256": "5f3cf65404f9a5244ef215b4016385d33e2f9f222923206b05ccab640c5ac9ec",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true,
+        "originalFrameExteriorExact": true
+      }
+    },
+    {
+      "path": "bg/news-thumb-1.png",
+      "size": [
+        330,
+        330
+      ],
+      "mode": "RGB",
+      "sha256": "f56de869253cef8b0be5d94f5f7e689054d3d7670d202827853ded8f4874b5c9",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true
+      }
+    },
+    {
+      "path": "bg/news-thumb-2.png",
+      "size": [
+        330,
+        330
+      ],
+      "mode": "RGB",
+      "sha256": "de7b9d33cabd24cfdbacfc2efff0f4d678d2ba1122696784ef11e6d7300a7f35",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true
+      }
+    },
+    {
+      "path": "bg/news-thumb-3.png",
+      "size": [
+        330,
+        330
+      ],
+      "mode": "RGB",
+      "sha256": "6bbbab99348fa2cebe759ede264ff99783e6c7146150592851edb8df63ed8cb7",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "opaque": true
+      }
+    },
+    {
+      "path": "tabbar/bg.png",
+      "size": [
+        1179,
+        300
+      ],
+      "mode": "RGBA",
+      "sha256": "44951f399f9a384693ec723f891aee5aef4a44c4faa7ea82ef7451af09bb9dac",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "transparent": true,
+        "slice": true,
+        "squareBottomCorners": true,
+        "noBottomBorderOrShadow": true,
+        "topCornersTransparent": true
+      }
+    },
+    {
+      "path": "illust/empty-notice.png",
+      "size": [
+        600,
+        450
+      ],
+      "mode": "RGBA",
+      "sha256": "cbb6e74e882eb25e77425dc61c7c20bbfbc8b4931107d85868f2b3def2a41406",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "transparent": true
+      }
+    },
+    {
+      "path": "illust/empty-history.png",
+      "size": [
+        600,
+        450
+      ],
+      "mode": "RGBA",
+      "sha256": "0b42fe450155ad91b88570322f7a7d155f6fe4e2d8407dcc49273fc5696b3545",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "transparent": true,
+        "photoOpeningTransparent": true
+      }
+    },
+    {
+      "path": "panel/sheet-detail.png",
+      "size": [
+        1179,
+        600
+      ],
+      "mode": "RGBA",
+      "sha256": "c37b618edce5943e5552bceb67c4d66ecea5b3595d348b11737fcc7b0850e4d2",
+      "checks": {
+        "exactSize": true,
+        "PNG": true,
+        "sha256": true,
+        "bytes": true,
+        "noEXIF": true,
+        "transparent": true,
+        "slice": true,
+        "squareBottomCorners": true,
+        "noBottomBorderOrShadow": true,
+        "topCornersTransparent": true
+      }
+    }
+  ],
+  "errors": [],
+  "remaining": [],
+  "generationCount": 19,
+  "regenerationCount": 2,
+  "applicationChecks": {
+    "lint": "Attempted: Missing script: lint",
+    "typecheck": "Attempted offline: local TypeScript/dependencies unavailable, ENOTCACHED. Not verified."
+  },
+  "changedPaths": [
+    "app/assets/ui/bg/news-thumb-1.png",
+    "app/assets/ui/bg/news-thumb-2.png",
+    "app/assets/ui/bg/news-thumb-3.png",
+    "app/assets/ui/bg/photo-japan.png",
+    "app/assets/ui/bg/room-deai.png",
+    "app/assets/ui/bg/room-home.png",
+    "app/assets/ui/bg/screen-world.png",
+    "app/assets/ui/bg/screen-zukan.png",
+    "app/assets/ui/bg/stamp-photo-france.png",
+    "app/assets/ui/bg/stamp-photo-japan.png",
+    "app/assets/ui/bg/stamp-photo-kenya.png",
+    "app/assets/ui/bg/stamp-photo-korea.png",
+    "app/assets/ui/bg/world-hero.png",
+    "app/assets/ui/illust/empty-history.png",
+    "app/assets/ui/illust/empty-notice.png",
+    "app/assets/ui/manifest.json",
+    "app/assets/ui/panel/sheet-detail.png",
+    "app/assets/ui/tabbar/bg.png",
+    "assets/ui-records/README.md",
+    "assets/ui-records/previews/regen-compare.png",
+    "assets/ui-records/previews/regen-empty-states.png",
+    "assets/ui-records/previews/regen-screens.png",
+    "assets/ui-records/previews/regen-sheet-detail.png",
+    "assets/ui-records/previews/regen-tabbar.png",
+    "assets/ui-records/previews/regen-travel-thumbnails.png",
+    "assets/ui-records/previews/room-home-detail-compare.png",
+    "assets/ui-records/provenance/prompts-bg.md",
+    "assets/ui-records/provenance/prompts-illust.md",
+    "assets/ui-records/provenance/prompts-panel.md",
+    "assets/ui-records/provenance/prompts-tabbar.md",
+    "assets/ui-records/provenance/regen-jobs.json",
+    "assets/ui-records/provenance/regen-resume.json",
+    "assets/ui-records/provenance/ui-fixes-validation.json"
+  ],
+  "allowedScopeOnly": true,
+  "exactRequestedImageSet": true,
+  "manifestCountCorrect": true,
+  "manifestAllHashesValid": true,
+  "protectedSourcesUnchanged": true,
+  "visualReview": "All generated sources and final grouped previews visually inspected. Medium painted detail approved by user. Five pagoda roofs checked. Cat lens, directional pad and exactly two buttons checked. Alpha reviewed on cream/taupe backgrounds. No app or device rendering verification."
+}
