@@ -60,3 +60,7 @@ bengal, toyger, ocicat, abyssinian, singapura, exotic-shorthair, scottish-fold, 
 追加検出: juuden / shinirimobby / mangetsu の黄色い長毛・立ち耳・丸顔が3匹に残っていた。shinirimobby を淡いレモンの短い粗毛・小さい折れ耳・低い横広胴へ追加再描画する。Aはこの追加1匹の採用と再確認まで未完了。
 
 余白: 一部生成は毛先や耳が端に寄るため、透明余白の機械的な統一についてユーザーへ確認中。承認前のPNG加工はしていない。
+
+## A 描き分け完了（2026-10-26）
+
+追加shinirimobbyを採用。黄色長毛のjuuden/mangetsuに対し、淡いレモン短毛・小折れ耳・ミント目・低い横広体で分離した。初回74匹＋再監査追加1匹＝75匹を元ファイル名のまま再描画。全136匹の目視再監査で、同じ見た目の組は最大2匹までと判定した。after/は追加前の全件比較、追加後のshinirimobbyはregenerated一覧とaccepted記録で確認できる。Aの識別性の作業を終え、B本番へ移る。全画像共通の余白仕上げは別途確認待ち。

@@ -450,6 +450,14 @@ Reason: 夜空/紫黒の類似グループを分化。小物コンセプト保�
 
 QA: accepted: individual coat/ear/face/body differences, one left biological eye/right lens/D-pad/two plain buttons; original concept retained
 
+## shinirimobby
+
+Use case: stylized-concept. Redesign shinirimobby after final similarity audit. References1 bengal and2 ragdoll define fur/hardware style. Reference3 original defines gold bow and welcoming raised paw only. REQUIRED new main cat: very PALE LEMON CREAM solid SHORT COARSE WIRY coat, NO golden long fluffy fur, no tabby/white bib. TINY FOLDED ears, exceptionally WIDE LOW rounded-square bread-loaf unified body with no neck, very broad flat cheekbones and tiny friendly muzzle. MINT GREEN iris with large ROUND black pupil and white highlight. Exactly one living eye LEFT and one black green-glass concentric camera lens RIGHT. One black D-pad lower LEFT and exactly TWO plain black round buttons diagonal lower RIGHT. Short arms and two short feet. Preserve gold bow collar and welcoming raised paw, no other accessories. Front full body. Entire character and all extremities occupy only 80 percent of canvas, at least100px transparent margin on ALL sides. True RGBA1254x1254 PNG, soft studio light, real strand fur, no floor/grid/text/watermark.
+
+Reason: 全136匹再監査でjuuden / shinirimobby / mangetsuが黄色長毛・立ち耳・丸顔の3匹組に残っていたため、淡いレモン短毛・小さい折れ耳・横広体型・ミント目へ変更。金色の蝶ネクタイと歓迎する手を保持。
+
+QA: accepted: pale short coat and folded ears distinguish from juuden/mangetsu; correct one eye/right lens and belly controls
+
 ## shitsukoi
 
 Use case: stylized-concept. REPLACE MAIN CAT for shitsukoi. References1 bengal and2 ragdoll define realistic fur/hardware, image3 ONLY conceptual accessories. DO NOT copy image3 orange-white coat. REQUIRED NEW DESIGN: SILVER WHITE coat with pale grey shaded tips, VERY SHORT close-lying fur, small FOLDED ears, extremely round puffy cheeks, broad low square torso, green iris. NO orange/brown/red patches. Keep original plain tan bell collar, no extra props. One unified rounded-square head/body no neck; short arms/two short feet. Exactly ONE living eye viewer LEFT, ONE black green reflective camera lens viewer RIGHT. Exactly ONE D-pad lower LEFT, TWO plain round black buttons diagonal lower RIGHT. Front full body, unobscured controls, soft studio light. Exact1254x1254 RGBA PNG transparent background, ample margin. No floor/grid/watermark or extra text. The new coat and ear shape are mandatory.

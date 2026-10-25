@@ -14,7 +14,7 @@ for i,g in enumerate(plan,1):
 summary=f'''# 制作の現在地
 
 - ブランチ: codex/new-mobbies-2
-- A: 初回136匹監査、再描画採用 {len(a)}匹。初回計画の未生成 {len(pending)}匹。最終類似再監査は未完了。
+- A: 初回136匹監査、再描画採用 {len(a)}匹。初回計画の未生成 {len(pending)}匹。識別性の最終再監査は完了、全画像の余白仕上げは確認待ち。
 - B: 指定試作3匹を含め採用 {len(b)}/100匹。残り {100-len(b)}匹。B本番はA完了後。
 - 生成: built-in image_gen。採用画像すべて1254×1254 RGBA、元の生成アルファを維持。
 - QA: 各accepted JSONの目視記録とvalidation、progress.jsonの機械検品結果を参照。
@@ -30,7 +30,7 @@ summary=f'''# 制作の現在地
 
 ## 次の手順
 
-Aの残りを生成 → 全136匹を再比較し同じ見た目を最大2匹に → B本番a〜j → 100件照合と最終検品。
+B本番a〜j → 100件照合と全236匹の比較 → 余白仕上げ → 最終検品。
 '''
 (review/'STATUS.md').write_text(summary,encoding='utf-8')
 (root/'breeds2/README.md').write_text(f'''# breeds2 — 制作途中
