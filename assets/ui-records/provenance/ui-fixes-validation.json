@@ -1,0 +1,164 @@
+{
+  "branch": "codex/ui-fixes",
+  "completed": [
+    {
+      "path": "bg/room-home.png",
+      "size": [
+        1179,
+        1900
+      ],
+      "mode": "RGB",
+      "checks": {
+        "dimensions": true,
+        "PNG": true,
+        "opaque": true,
+        "sha256": true,
+        "bytes": true,
+        "noExif": true
+      }
+    },
+    {
+      "path": "bg/room-deai.png",
+      "size": [
+        1179,
+        1400
+      ],
+      "mode": "RGB",
+      "checks": {
+        "dimensions": true,
+        "PNG": true,
+        "opaque": true,
+        "sha256": true,
+        "bytes": true,
+        "noExif": true
+      }
+    },
+    {
+      "path": "bg/world-hero.png",
+      "size": [
+        1179,
+        900
+      ],
+      "mode": "RGB",
+      "checks": {
+        "dimensions": true,
+        "PNG": true,
+        "opaque": true,
+        "sha256": true,
+        "bytes": true,
+        "noExif": true
+      }
+    },
+    {
+      "path": "bg/screen-zukan.png",
+      "size": [
+        1179,
+        2556
+      ],
+      "mode": "RGB",
+      "checks": {
+        "dimensions": true,
+        "PNG": true,
+        "opaque": true,
+        "sha256": true,
+        "bytes": true,
+        "noExif": true
+      }
+    },
+    {
+      "path": "bg/screen-world.png",
+      "size": [
+        1179,
+        2556
+      ],
+      "mode": "RGB",
+      "checks": {
+        "dimensions": true,
+        "PNG": true,
+        "opaque": true,
+        "sha256": true,
+        "bytes": true,
+        "noExif": true
+      }
+    }
+  ],
+  "errors": [],
+  "changedPaths": [
+    "app/assets/ui/bg/room-deai.png",
+    "app/assets/ui/bg/room-home.png",
+    "app/assets/ui/bg/screen-world.png",
+    "app/assets/ui/bg/screen-zukan.png",
+    "app/assets/ui/bg/world-hero.png",
+    "app/assets/ui/manifest.json",
+    "assets/ui-records/README.md",
+    "assets/ui-records/previews/regen-compare.png",
+    "assets/ui-records/previews/regen-screens.png",
+    "assets/ui-records/previews/room-home-detail-compare.png",
+    "assets/ui-records/provenance/prompts-bg.md",
+    "assets/ui-records/provenance/regen-jobs.json"
+  ],
+  "scopeValid": true,
+  "unchangedRequestedAssets": [
+    {
+      "path": "bg/photo-japan.png",
+      "unchanged": true
+    },
+    {
+      "path": "bg/stamp-photo-kenya.png",
+      "unchanged": true
+    },
+    {
+      "path": "bg/stamp-photo-france.png",
+      "unchanged": true
+    },
+    {
+      "path": "bg/stamp-photo-japan.png",
+      "unchanged": true
+    },
+    {
+      "path": "bg/stamp-photo-korea.png",
+      "unchanged": true
+    },
+    {
+      "path": "bg/news-thumb-1.png",
+      "unchanged": true
+    },
+    {
+      "path": "bg/news-thumb-2.png",
+      "unchanged": true
+    },
+    {
+      "path": "bg/news-thumb-3.png",
+      "unchanged": true
+    },
+    {
+      "path": "tabbar/bg.png",
+      "unchanged": true
+    }
+  ],
+  "visualReview": "Viewed every completed generated source and comparisons. Approved room-home detailed illustration reference. No cats/people in backgrounds; world-hero sign spelling checked. No app rendering performed.",
+  "blocked": {
+    "type": "usage_limit_reached",
+    "http": 429,
+    "resetsAtJST": "2026-10-25T21:30:37+09:00",
+    "remaining": [
+      "bg/photo-japan.png",
+      "bg/stamp-photo-kenya.png",
+      "bg/stamp-photo-france.png",
+      "bg/stamp-photo-japan.png",
+      "bg/stamp-photo-korea.png",
+      "bg/news-thumb-1.png",
+      "bg/news-thumb-2.png",
+      "bg/news-thumb-3.png",
+      "tabbar/bg.png",
+      "illust/empty-notice.png",
+      "illust/empty-history.png",
+      "panel/sheet-detail.png"
+    ],
+    "resumeRule": "Generate only remaining assets after quota recovery. Do not regenerate approved/completed backgrounds."
+  },
+  "applicationChecks": {
+    "lint": "Missing script: lint",
+    "typecheck": "npx --no-install tsc --noEmit failed: ENOTFOUND registry.npmjs.org; dependencies absent; not verified"
+  }
+}

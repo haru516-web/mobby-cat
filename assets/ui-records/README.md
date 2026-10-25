@@ -66,3 +66,11 @@ Approved room-home draft02 retained. Redrawn room-deai (1179x1400) and world-her
 
 ## UI fixes: priority 2 complete
 Redrawn screen-zukan and screen-world, each1179x2556 opaque PNG, one generation each. Painted shelves and sky/map/airplane, pale central and lower overlay areas. Comparison: previews/regen-screens.png.
+
+## UI fixes: generation limit checkpoint (2026-10-25)
+Completed and pushed: 5 backgrounds including approved room-home. Generation counts: room-home2; room-deai1; world-hero1; screen-zukan1; screen-world1 (6 successful generations overall).
+Pending: photo-japan; stamp-photo-kenya/france/japan/korea; news-thumb-1/2/3; tabbar/bg; illust/empty-notice; illust/empty-history; panel/sheet-detail (12 assets). Existing pending files unchanged. New pending files not created.
+Built-in image_gen returned HTTP429 usage_limit_reached; generation stopped. Reset reported: 2026-10-25 21:30:37 JST. Resume ONLY pending assets after recovery; preserve approved style.
+Validation: provenance/ui-fixes-validation.json. All5 completed files pass exact dimensions, PNG, opacity, SHA256, bytes and EXIF checks. Application code and cat character source assets unchanged. Images visually inspected; no app/device rendering verification.
+Existing stamp/news files are RGB opaque with cream exterior; keep original cutout/scallop silhouettes when resuming. Empty-state illustrations are explicit cat exceptions to background no-cat rule.
+Lint attempted: unavailable (no lint script). Typecheck attempted with npx --no-install tsc --noEmit; local dependencies absent, npm registry resolution failed (ENOTFOUND registry.npmjs.org); no pass claimed.
