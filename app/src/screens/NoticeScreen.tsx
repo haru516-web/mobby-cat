@@ -45,7 +45,7 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
           </Pressable>
         ))}
       </View>
-      <ScrollView contentContainerStyle={s.list}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.list}>
         {tab === 'notice' &&
           (state.inbox.length ? (
             state.inbox.map((n, i) => (

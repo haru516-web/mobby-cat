@@ -18,7 +18,7 @@ import { NoticeTab } from './src/screens/types';
 import WorldScreen from './src/screens/WorldScreen';
 import ZukanScreen from './src/screens/ZukanScreen';
 import { GameProvider, useGame } from './src/state/game';
-import { TabBar, TabKey } from './src/ui/kit';
+import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
 import { Backdrop } from './src/ui/Slice';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
@@ -43,6 +43,7 @@ function Root() {
   const [shop, setShop] = useState(false);
   const [notice, setNotice] = useState<NoticeTab | null>(null);
   const [camera, setCamera] = useState(false);
+  const [tabH, setTabH] = useState(0);
   const insets = useSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
   const width = Math.min(winW, MAX_W);
@@ -69,15 +70,19 @@ function Root() {
       <Backdrop name="bg/app-cream" />
       <View style={[s.fill, { width }]}>
         <SafeAreaView edges={['top']} style={s.fill}>
-          <Active
-            go={setTab}
-            openShop={() => setShop(true)}
-            openNotice={(t = 'notice') => setNotice(t)}
-            openCamera={() => setCamera(true)}
-            width={width}
-          />
+          <TabPadCtx.Provider value={tabH}>
+            <Active
+              go={setTab}
+              openShop={() => setShop(true)}
+              openNotice={(t = 'notice') => setNotice(t)}
+              openCamera={() => setCamera(true)}
+              width={width}
+            />
+          </TabPadCtx.Provider>
         </SafeAreaView>
-        <TabBar tab={tab} onChange={setTab} bottomInset={insets.bottom} />
+        <View style={s.tabbar} onLayout={(e) => setTabH(e.nativeEvent.layout.height)}>
+          <TabBar tab={tab} onChange={setTab} bottomInset={insets.bottom} />
+        </View>
       </View>
       <Sheet visible={shop} onClose={() => setShop(false)} width={width}>
         <ShopScreen onClose={() => setShop(false)} />
@@ -110,4 +115,5 @@ export default function App() {
 
 const s = StyleSheet.create({
   fill: { flex: 1 },
+  tabbar: { position: 'absolute', left: 0, right: 0, bottom: 0 },
 });

@@ -4,7 +4,7 @@ import { CATS, CatDef } from '../data/catalog';
 import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../lib/conditions';
 import { useGame } from '../state/game';
 import { C, CatImage, FONT, T, catNo } from '../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well } from '../ui/kit';
+import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad } from '../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../ui/Slice';
 import { ScreenProps } from './types';
 
@@ -30,6 +30,7 @@ function hint(c: CatDef) {
 
 export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps) {
   const { state, toggleFavorite } = useGame();
+  const pad = useTabPad();
   const [filter, setFilter] = useState<Filter>('all');
   const [q, setQ] = useState('');
   const [sel, setSel] = useState<string | null>(null);
@@ -48,7 +49,7 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
   return (
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-zukan" />
-      <ScrollView contentContainerStyle={{ paddingBottom: cat ? 300 : 24 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: (cat ? 300 : 24) + pad }}>
         <Header onShop={openShop} onBell={() => openNotice()} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Card style={s.collection}>
@@ -124,7 +125,7 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
       </ScrollView>
 
       {cat && (
-        <Card style={s.sheet}>
+        <Card style={[s.sheet, { bottom: 8 + pad }]}>
           <View style={{ flexDirection: 'row', gap: 12 }}>
             <Well style={s.bigPhoto}>
               {o ? <CatImage id={cat.id} size={124} /> : <Pic name="cat/silhouette-locked" width={124} />}

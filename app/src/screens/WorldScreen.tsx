@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { C, CatImage, T } from '../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well } from '../ui/kit';
+import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well, useTabPad } from '../ui/kit';
 import { Backdrop, Pic, Slice } from '../ui/Slice';
 import { ScreenProps } from './types';
 
@@ -32,13 +32,14 @@ const JOURNEY = [
 
 export default function WorldScreen({ openShop, openNotice, width }: ScreenProps) {
   const inner = width - 32;
+  const pad = useTabPad();
   const stampW = (inner - 28 - 3 * 8) / 4;
   const [sheet, setSheet] = useState<'travel' | 'news' | null>(null);
   const soon = () => setSheet('travel');
   return (
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-world" />
-      <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
         <Header onShop={openShop} onBell={() => openNotice()} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Slice name="badge/sample" style={s.sample}><T w="b" size={10} color="#fff">サンプル表示（サーバー未接続）</T></Slice>
@@ -125,7 +126,7 @@ export default function WorldScreen({ openShop, openNotice, width }: ScreenProps
               <View style={{ flex: 1 }} />
               <Pressable onPress={() => setSheet(null)} accessibilityLabel="閉じる"><Pic name="button/close-round" height={40} /></Pressable>
             </View>
-            <ScrollView contentContainerStyle={{ padding: 16, gap: 10, paddingBottom: 40 }}>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ padding: 16, gap: 10, paddingBottom: 40 }}>
               <Slice name="badge/sample" style={s.sample}><T w="b" size={10} color="#fff">サンプル表示（サーバー未接続）</T></Slice>
               {sheet === 'news' ? (
                 SAMPLE.news.map((n) => <NewsCard key={n.title} n={n} full />)

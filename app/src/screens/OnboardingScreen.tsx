@@ -16,7 +16,7 @@ export default function OnboardingScreen({ width }: { width: number }) {
   return (
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/app-cream" />
-      <ScrollView contentContainerStyle={s.wrap}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap}>
         <Pic name="brand/logo-nekomobby" height={56} style={{ alignSelf: 'center' }} />
         {step === 'pick' ? (
           <>

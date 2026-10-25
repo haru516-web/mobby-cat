@@ -50,7 +50,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
   return (
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-shop" />
-      <ScrollView contentContainerStyle={s.wrap}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Pic name="brand/title-shop" height={40} />
           <View style={{ flex: 1 }} />
@@ -151,6 +151,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         {__DEV__ && <View style={{ gap: 8 }}>
           <ImgButton skin="ghost-outline" label={`日付を1日進める（+${state.debugOffsetDays}日）`} height={44} onPress={() => g.shiftDays(1)} />
           <ImgButton skin="ghost-outline" label="日付をリセット" height={44} onPress={() => g.shiftDays(-state.debugOffsetDays)} />
+          <ImgButton skin="ghost-outline" label="全キャラを開放" height={44} onPress={g.unlockAll} />
           <ImgButton
             skin="ghost-outline"
             label="全データを初期化"

@@ -147,6 +147,10 @@ const TABS: { key: TabKey; label: string }[] = [
   { key: 'home', label: 'ホーム' }, { key: 'deai', label: '出会い' }, { key: 'zukan', label: '図鑑' }, { key: 'world', label: '世界' },
 ];
 
+// ナビバーは画面下に重ねて置く。各画面はこの高さぶんだけ下に余白を取る
+export const TabPadCtx = React.createContext(0);
+export const useTabPad = () => React.useContext(TabPadCtx);
+
 export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: (t: TabKey) => void; bottomInset: number }) {
   return (
     <Slice name="tabbar/bg" style={[k.tabbar, { paddingBottom: Math.max(bottomInset, 8) }]}>

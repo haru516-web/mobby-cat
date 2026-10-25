@@ -5,12 +5,13 @@ import { HASHTAG, saveView, shareView, ViewRef } from '../lib/share';
 import { DiscoveryCard } from '../ui/DiscoveryCard';
 import { useGame, visibleCount } from '../state/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge } from '../ui/kit';
+import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad } from '../ui/kit';
 import { Pic, Slice, Stretch } from '../ui/Slice';
 import { ScreenProps } from './types';
 
 export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps) {
   const g = useGame();
+  const pad = useTabPad();
   const { state, availableDays, todayKey, now } = g;
   const [day, setDay] = useState(todayKey);
   const [sel, setSel] = useState<string | null>(null);
@@ -53,7 +54,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
   };
 
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
+    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
       <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} />
       <View style={s.pills}>
         <InfoPill style={{ flex: 1.5 }} icon="icon/calendar-today" label="" value={`${m}/${d} ${REVEAL_HOUR}:00更新`} onPress={() => openNotice('upcoming')} />

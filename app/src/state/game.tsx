@@ -127,6 +127,7 @@ type Ctx = {
   markInboxRead: () => void;
   setPass: (v: boolean) => void;
   shiftDays: (n: number) => void;
+  unlockAll: () => void;
   reset: () => void;
 };
 
@@ -324,11 +325,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const pet = useCallback(() => setState((s) => ({ ...s, petCount: s.petCount + 1 })), []);
   const setPass = useCallback((v: boolean) => setState((s) => ({ ...s, pass: { ...s.pass, active: v } })), []);
   const shiftDays = useCallback((n: number) => setState((s) => ({ ...s, debugOffsetDays: s.debugOffsetDays + n })), []);
+  // 開発用: 全猫を図鑑に開放する
+  const unlockAll = useCallback(
+    () =>
+      setState((s) => {
+        const day = encounterDayKey(new Date(Date.now() + s.debugOffsetDays * DAY_MS));
+        const owned = { ...s.owned };
+        for (const c of CATS) if (!owned[c.id]) owned[c.id] = { count: 1, firstDay: day, firstReason: '開発用に開放' };
+        return { ...s, starterChosen: true, owned };
+      }),
+    [],
+  );
   const reset = useCallback(() => setState(initial(new Date())), []);
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, pet, markInboxRead, setPass, shiftDays, reset,
+    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, pet, markInboxRead, setPass, shiftDays, unlockAll, reset,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
 }

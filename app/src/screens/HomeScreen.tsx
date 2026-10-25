@@ -4,7 +4,7 @@ import { CATS } from '../data/catalog';
 import { msUntilNextReveal } from '../lib/encounter';
 import { useGame } from '../state/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid } from '../ui/kit';
+import { Card, Header, ImgButton, InfoPill, Polaroid, useTabPad } from '../ui/kit';
 import { Backdrop, Pic, Slice } from '../ui/Slice';
 import { ScreenProps } from './types';
 
@@ -71,6 +71,7 @@ function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: 
 
 export default function HomeScreen({ go, openShop, openNotice, openCamera, width }: ScreenProps) {
   const { state, now, todayKey, pet } = useGame();
+  const pad = useTabPad();
 
   const ownedIds = useMemo(() => CATS.map((c) => c.id).filter((id) => state.owned[id]), [state.owned]);
   // お気に入り → 最近迎えた順に部屋へ
@@ -86,7 +87,7 @@ export default function HomeScreen({ go, openShop, openNotice, openCamera, width
   const mins = Math.ceil(msUntilNextReveal(now) / 60000);
 
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
+    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
       <Header onShop={openShop} onBell={() => openNotice()} />
       <View style={s.pills}>
         <InfoPill style={{ flex: 1 }} icon="icon/cat-head" label="所持" value={`${ownedIds.length}/${CATS.length}`} onPress={() => go('zukan')} />
