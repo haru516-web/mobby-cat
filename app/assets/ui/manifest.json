@@ -2,7 +2,7 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 163,
+  "assetCount": 165,
   "counts": {
     "badge": 9,
     "bg": 17,
@@ -12,7 +12,7 @@
     "cat": 3,
     "gauge": 5,
     "icon": 25,
-    "illust": 11,
+    "illust": 13,
     "panel": 14,
     "share": 10,
     "tabbar": 11
@@ -2456,6 +2456,28 @@
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
+    },
+    {
+      "path": "illust/empty-notice.png",
+      "width": 600,
+      "height": 450,
+      "sha256": "cbb6e74e882eb25e77425dc61c7c20bbfbc8b4931107d85868f2b3def2a41406",
+      "bytes": 385917,
+      "prompt": "One isolated empty-state UI illustration, landscape600x450. Image1 is exact CHARACTER identity reference, image2 is painted UI style reference. A curled up peacefully sleeping Bengal cat Mobby beside a small sealed blank cream envelope at its pillow. Curl body side-on while keeping face and chest visible: viewer-left biological eye gently closed, viewer-right CAMERA LENS remains unmistakably a black circular optical lens, not a normal eye. Chest black cross-shaped directional pad on viewer-left and exactly TWO round black buttons viewer-right clearly visible. Tail curls around body. Quiet warm pose. Preserve Bengal tawny black rosette fur pattern, rounded ears, cream muzzle, pink nose, single camera-lens eye and chest controls. Soft detailed painted storybook finish, warm restrained colors, rounded forms, gentle highlights, not photographic fur. TRUE TRANSPARENT background, no room, no solid backdrop, no checkerboard, a tiny low-opacity soft contact shadow below only. Entire cat, ears and tail fit with narrow clear margin. No text, letters, symbols other than physical chest controls; no extra objects.",
+      "method": "built-in image_gen",
+      "alphaMode": "transparent",
+      "processing": "Lanczos resize to exact dimensions; preserve generated alpha; proportionate fit with12px transparent clearance"
+    },
+    {
+      "path": "illust/empty-history.png",
+      "width": 600,
+      "height": 450,
+      "sha256": "0b42fe450155ad91b88570322f7a7d155f6fe4e2d8407dcc49273fc5696b3545",
+      "bytes": 307869,
+      "prompt": "One isolated empty-state UI illustration, landscape600x450. Image1 is exact CHARACTER identity reference, image2 is painted UI style reference. A seated Bengal cat Mobby gently holding an EMPTY blank polaroid photo frame with one front paw. Frame opening is truly transparent, no picture, no gray fill. Viewer-left eye is normal green eye, viewer-right eye is unmistakably black camera lens. Chest black cross-shaped directional pad on viewer-left and exactly TWO round black buttons viewer-right, visible above/alongside frame. Cute calm pose. Preserve Bengal tawny black rosette fur pattern, rounded ears, cream muzzle, pink nose, single camera-lens eye and chest controls. Soft detailed painted storybook finish, warm restrained colors, rounded forms, gentle highlights, not photographic fur. TRUE TRANSPARENT background, no room, no solid backdrop, no checkerboard, a tiny low-opacity soft contact shadow below only. Entire cat, ears and tail fit with narrow clear margin. No text, letters, symbols other than physical chest controls; no extra objects.",
+      "method": "built-in image_gen",
+      "alphaMode": "transparent",
+      "processing": "Lanczos resize to exact dimensions; preserve generated alpha; clear residual alpha inside empty photo opening; proportionate fit with12px transparent clearance"
     }
   ],
   "marginPolicy": "For9slice visible alpha>8 content bounds are within8px of every canvas edge. Slice values are finalPNG pixels."

@@ -80,3 +80,6 @@ Replaced photo-japan (600x460), stamp-photo-kenya/france/japan/korea (360x280), 
 
 ## UI fixes: tabbar complete
 Replaced tabbar/bg.png1179x300 RGBA. Top corners retained, square bottom corners and no bottom border/shadow. Slice top90/right90/bottom0/left90. One built-in generation; crop/cap normalization and clean bottom-row extension for exact component geometry. active-glow and underline unchanged. Comparison: previews/regen-tabbar.png.
+
+## UI fixes: empty states complete
+Added illust/empty-notice.png and empty-history.png, each600x450 RGBA, one generation each. Bengal character source referenced only; source unchanged. Camera lens eye, chest directional pad and two buttons visually checked. Transparent surroundings, small contact shadow; polaroid opening residual alpha cleared. Comparison: previews/regen-empty-states.png.

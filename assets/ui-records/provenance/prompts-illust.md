@@ -116,3 +116,23 @@ Processing: Trim alpha margin and proportionally fit exact canvas without stretc
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-ed06c2ff-d735-405a-95f4-ae3f4d1edcde.png
 
+
+## UI fixes resumed: illust/empty-notice.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-68acbdd3-5373-4703-af5a-1f50acabcad2.png
+
+Prompt: One isolated empty-state UI illustration, landscape600x450. Image1 is exact CHARACTER identity reference, image2 is painted UI style reference. A curled up peacefully sleeping Bengal cat Mobby beside a small sealed blank cream envelope at its pillow. Curl body side-on while keeping face and chest visible: viewer-left biological eye gently closed, viewer-right CAMERA LENS remains unmistakably a black circular optical lens, not a normal eye. Chest black cross-shaped directional pad on viewer-left and exactly TWO round black buttons viewer-right clearly visible. Tail curls around body. Quiet warm pose. Preserve Bengal tawny black rosette fur pattern, rounded ears, cream muzzle, pink nose, single camera-lens eye and chest controls. Soft detailed painted storybook finish, warm restrained colors, rounded forms, gentle highlights, not photographic fur. TRUE TRANSPARENT background, no room, no solid backdrop, no checkerboard, a tiny low-opacity soft contact shadow below only. Entire cat, ears and tail fit with narrow clear margin. No text, letters, symbols other than physical chest controls; no extra objects.
+
+Processing: Lanczos resize to exact dimensions; preserve generated alpha; proportionate fit with12px transparent clearance
+
+SHA256: cbb6e74e882eb25e77425dc61c7c20bbfbc8b4931107d85868f2b3def2a41406
+
+## UI fixes resumed: illust/empty-history.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-01fdc364-3db0-4169-88f9-7f76ef61d54f.png
+
+Prompt: One isolated empty-state UI illustration, landscape600x450. Image1 is exact CHARACTER identity reference, image2 is painted UI style reference. A seated Bengal cat Mobby gently holding an EMPTY blank polaroid photo frame with one front paw. Frame opening is truly transparent, no picture, no gray fill. Viewer-left eye is normal green eye, viewer-right eye is unmistakably black camera lens. Chest black cross-shaped directional pad on viewer-left and exactly TWO round black buttons viewer-right, visible above/alongside frame. Cute calm pose. Preserve Bengal tawny black rosette fur pattern, rounded ears, cream muzzle, pink nose, single camera-lens eye and chest controls. Soft detailed painted storybook finish, warm restrained colors, rounded forms, gentle highlights, not photographic fur. TRUE TRANSPARENT background, no room, no solid backdrop, no checkerboard, a tiny low-opacity soft contact shadow below only. Entire cat, ears and tail fit with narrow clear margin. No text, letters, symbols other than physical chest controls; no extra objects.
+
+Processing: Lanczos resize to exact dimensions; preserve generated alpha; clear residual alpha inside empty photo opening; proportionate fit with12px transparent clearance
+
+SHA256: 0b42fe450155ad91b88570322f7a7d155f6fe4e2d8407dcc49273fc5696b3545
