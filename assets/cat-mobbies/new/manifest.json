@@ -235,9 +235,12 @@
     "file": "assets/cat-mobbies/new/a/asa.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "c2d28776a42e95cb205f9cd6303dd3e0a97109dae93f3c8b2697a8e4f429294e",
+    "sha256": "633f0aa84f8a9a5c4c5b464d2f79457f669a23200b6a838c5efbb26c358efb94",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白とピンクの朝焼けグラデ。頭上に小さな朝日、片手でコーヒーカップ。伸びをする。目: 琥珀 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: あさモビー, condition: 朝の時間帯に起動."
+    "prompt": "Use case: stylized-concept. Redesign MAIN CAT asa. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: WHITE and soft CORAL PINK large block patches, VERY SHORT smooth fur, NO fluffy fur or gradient. TINY round upright ears, exceptionally LOW WIDE rectangular body, broad flat cheeks, amber eye. Preserve little rising sun icon above head and held steaming sunrise coffee mug. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.",
+    "bytes": 2074837,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象asaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: WHITE and soft CORAL PINK large block patches, VERY SHORT smooth fur, NO fluffy fur or gradient. TINY round upright ears, exceptionally LOW WIDE rectangular body, broad flat cheeks, amber eye. Preserve little rising sun icon above head and held steaming sunrise coffee mug."
   },
   {
     "id": "yofukashi",
@@ -361,9 +364,12 @@
     "file": "assets/cat-mobbies/new/b/santa.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "d36e1ea06e41743cc9af3fa01f0c0d83466ef2a9af7aadf35a6c8cbf177d8cdb",
+    "sha256": "28255a9082b442fca2e93df70893f9d055e78611a53ed63d2b60869b5b5e0e28",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Create one cat Mobby, ID santa, さんたモビー. Attached Image 1 and Image 2 (rea-mobby, uyu-mobby) are the exact primary design references: preserve their standing front-facing full-body rounded-square single head/body, short arms at sides, two short feet, fur style, eye/lens arrangement, camera lens and controls. One left biological eye with glossy green iris, large black pupil and white highlight; one right camera lens in dark concentric rings with green glass. Small nose, subtle W mouth, whiskers. Exactly one lower-left matte charcoal cross D-pad with four inset slots and two plain charcoal round buttons diagonally on lower-right, same scale and spacing as references. No extra eye or buttons. White cat fur with realistic directional strands and a soft fluffy white chest ruff. Red Santa cap with a small white trim and pompom, and one tiny white gift sack held beside the body, positioned so face and controls stay entirely visible. Friendly calm expression. Upright, facing directly forward. Premium realistic fur render, soft studio light. True transparent PNG, no checkerboard/grid/floor, centered square with generous margin, 1254x1254 target. No lettering or watermark, no other cats."
+    "prompt": "Use case: stylized-concept. MAIN CAT redesign santa. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE very SHORT dense plush coat, SMALL round upright ears, very ROUND puffy cheeks, LOW WIDE square torso, green iris. No long hair. Keep original red Santa hat and small white present sack with red bow. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.",
+    "bytes": 2213543,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象santaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE very SHORT dense plush coat, SMALL round upright ears, very ROUND puffy cheeks, LOW WIDE square torso, green iris. No long hair. Keep original red Santa hat and small white present sack with red bow."
   },
   {
     "id": "toshikoshi",
@@ -460,9 +466,12 @@
     "file": "assets/cat-mobbies/new/b/tanjoubi.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "8f1fa152ff770201ba13e4f9ce3bedf7829326568f5109b508164469d86af806",
+    "sha256": "e179c995e7ed361663c041d4a61c30b384d4fbf0261f1ab3ad69afb4a9ea22d6",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白とピンク。パーティ帽、小さなケーキ、ろうそくの火。目: ピンク茶 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: たんじょうびモビー, condition: 誕生日."
+    "prompt": "Use case: stylized-concept. Redesign MAIN CAT tanjoubi. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: WHITE and PINK broad sharply separate large patches, SHORT smooth coat, no uniform fluffy pink-white gradient. VERY LARGE ROUND ears, low wide squared torso, blunt happy cheeks, rose iris. Keep party cone hat and birthday cake with single candle. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.",
+    "bytes": 2235141,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象tanjoubiの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: WHITE and PINK broad sharply separate large patches, SHORT smooth coat, no uniform fluffy pink-white gradient. VERY LARGE ROUND ears, low wide squared torso, blunt happy cheeks, rose iris. Keep party cone hat and birthday cake with single candle."
   },
   {
     "id": "mangetsu",
@@ -544,9 +553,12 @@
     "file": "assets/cat-mobbies/new/c/yukidaruma.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "817b1ac522440e8d4d09e8665c9706a96843d88f73a231a9d73c7e505325ba93",
+    "sha256": "d2aec489a762c3d1fb841c27a4f61ea0b88bf5cbe5f1ad1e77110c51b9292762",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 雪まみれで丸く真っ白。頭にバケツ帽、鼻先に小さな雪。目: 水色 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: ゆきだるまモビー, condition: 雪の日."
+    "prompt": "Use case: stylized-concept. MAIN CAT redesign yukidaruma. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE tightly CURLY woolly fur, HUGE ROUND upright ears, exceptionally WIDE LOW rectangular body with blunt round cheeks, icy blue iris. No long straight fur. Keep snow-dusted red bucket hat and red scarf with snowman motif. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.",
+    "bytes": 2402442,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象yukidarumaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE tightly CURLY woolly fur, HUGE ROUND upright ears, exceptionally WIDE LOW rectangular body with blunt round cheeks, icy blue iris. No long straight fur. Keep snow-dusted red bucket hat and red scarf with snowman motif."
   },
   {
     "id": "hatsuyuki",
@@ -865,9 +877,12 @@
     "file": "assets/cat-mobbies/new/e/country-07.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "66807d23942b9adddcab1221a1e35f534a95e39344a3bf954fdcd4e9fb233300",
+    "sha256": "efcc04f20982af35bf25e1ed7ccf9fd2c68dfaf2ae1200abba9f9ab4fd5c5707",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白地に虹の7色のしっぽと耳。尻尾が虹になる。目: 虹彩 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: なないろモビー, condition: 7か国."
+    "prompt": "Use case: stylized-concept. MAIN CAT redesign country-07. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: WHITE coarse SHORT WIRY fur with distinct spiky individual guard hairs, VERY LARGE sideways rounded ears, low wide squared torso, tiny blunt muzzle, rainbow iris. Keep bright rainbow-colored tail and colored bead collar. No soft long white fluff. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.",
+    "bytes": 2915820,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象country-07の毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: WHITE coarse SHORT WIRY fur with distinct spiky individual guard hairs, VERY LARGE sideways rounded ears, low wide squared torso, tiny blunt muzzle, rainbow iris. Keep bright rainbow-colored tail and colored bead collar. No soft long white fluff."
   },
   {
     "id": "country-08",
@@ -1045,9 +1060,12 @@
     "file": "assets/cat-mobbies/new/f/oiwai.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "4afc1bfee177053cb5d3694d075de6f0b1ccfc9a9271685fafadb5040676e4e5",
+    "sha256": "b7bc153cb62056e8df8494967ea9e451b0f1f1dc24cae2ccaf8d5bd7c367f5bc",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白。クラッカーとパーティ帽、紙吹雪。目: ピンク Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: おいわいモビー, condition: 新規ユーザーの節目."
+    "prompt": "Use case: stylized-concept. MAIN CAT redesign oiwai. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE SHORT smooth coat with a FEW small ROSE PINK spots on crown and side, no large bicolor/long fluffy coat. TINY FOLDED ears, compact round cheeks and tall square body, vivid PINK iris. Keep original colorful party cone hat, party popper and confetti. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.",
+    "bytes": 1980299,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象oiwaiの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE SHORT smooth coat with a FEW small ROSE PINK spots on crown and side, no large bicolor/long fluffy coat. TINY FOLDED ears, compact round cheeks and tall square body, vivid PINK iris. Keep original colorful party cone hat, party popper and confetti."
   },
   {
     "id": "hakubutsukan",
@@ -1210,9 +1228,12 @@
     "file": "assets/cat-mobbies/new/i/country-20.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "6a77afb8126065b7cef3231ade1f318c7859a1e4b6976639cb283c7dad88e643",
+    "sha256": "abec6e860ba07076b24c700c319552d7814fb4e76c6293e7fb13276def7887b0",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Primary exact character references Image 1 rea-mobby and Image 2 uyu-mobby. Preserve their compact rounded-square SINGLE head/body, no neck, short arms, two short feet, upright front-facing full-body standing composition. Exactly one biological cat eye viewer-left with specified iris, black round pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Small nose, subtle W mouth and whiskers. Exactly one lower-left matte charcoal cross D-pad with inset slots and exactly two plain dark round buttons diagonally lower-right, same proportions/positions as references, unobstructed. No other eyes anywhere, no other animals or faces. Realistic directional fur strands, soft studio light, transparent alpha PNG, centered square 1254x1254 target, no checkerboard/grid/floor/watermark. Keep standing forward. Character-specific visual: 毛: 白と薄桃。晴れ着風の小さな帯と花飾り、大人になった誇らしい表情。目: 桃茶 Follow listed fur and iris colors. At most two small accessories away from controls. No lettering; digits only if allowed on a small prop. Character はたちモビー (country-20), condition 20か国（「二十歳」の語呂）."
+    "prompt": "Use case: stylized-concept. Redesign MAIN CAT country-20. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: Very pale PEACH PINK SHORT tightly CURLY fur, no fluffy straight pink-white coat. Small FOLDED ears, very wide square torso and round cheekbones, dark pink eye. Preserve original floral kimono, obi and flower hairpin, controls on kimono unobscured. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.",
+    "bytes": 2435206,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象country-20の毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: Very pale PEACH PINK SHORT tightly CURLY fur, no fluffy straight pink-white coat. Small FOLDED ears, very wide square torso and round cheekbones, dark pink eye. Preserve original floral kimono, obi and flower hairpin, controls on kimono unobscured."
   },
   {
     "id": "country-50",
@@ -1279,9 +1300,12 @@
     "file": "assets/cat-mobbies/new/i/sakura.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "5ed7a9ca25386c8d8ea676fbf07dd8094444d25cf43f2480b09a145b4db9cbcc",
+    "sha256": "1d2e60df6a29f973528f5211cf0c083dc065d1d4e7c2d68a26cb900f335fde00",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Primary exact character references Image 1 rea-mobby and Image 2 uyu-mobby. Preserve their compact rounded-square SINGLE head/body, no neck, short arms, two short feet, upright front-facing full-body standing composition. Exactly one biological cat eye viewer-left with specified iris, black round pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Small nose, subtle W mouth and whiskers. Exactly one lower-left matte charcoal cross D-pad with inset slots and exactly two plain dark round buttons diagonally lower-right, same proportions/positions as references, unobstructed. No other eyes anywhere, no other animals or faces. Realistic directional fur strands, soft studio light, transparent alpha PNG, centered square 1254x1254 target, no checkerboard/grid/floor/watermark. Keep standing forward. Character-specific visual: 毛: 桜色のふんわり長毛。頭に桜の花、花びらが舞う。目: 桃 Follow listed fur and iris colors. At most two small accessories away from controls. No lettering; digits only if allowed on a small prop. Character さくらモビー (sakura), condition 桜の季節イベント."
+    "prompt": "Use case: stylized-concept. Redesign MAIN CAT sakura. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: Deep CHERRY PINK TIPPED LONG SILKY coat over white undercoat, white triangular chest, HUGE pointed ears, angular long face, slim squared torso, vivid pink iris. Keep cherry blossom hair ornament and floating petals. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.",
+    "bytes": 2651825,
+    "regen": true,
+    "regenReason": "桃白/白長毛の類似組を分化。対象sakuraの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: Deep CHERRY PINK TIPPED LONG SILKY coat over white undercoat, white triangular chest, HUGE pointed ears, angular long face, slim squared torso, vivid pink iris. Keep cherry blossom hair ornament and floating petals."
   },
   {
     "id": "tsuyu",

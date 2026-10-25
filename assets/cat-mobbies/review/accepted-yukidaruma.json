@@ -1,0 +1,19 @@
+{
+  "id": "yukidaruma",
+  "prompt": "Use case: stylized-concept. MAIN CAT redesign yukidaruma. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE tightly CURLY woolly fur, HUGE ROUND upright ears, exceptionally WIDE LOW rectangular body with blunt round cheeks, icy blue iris. No long straight fur. Keep snow-dusted red bucket hat and red scarf with snowman motif. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-799fc7e5-5bfc-4269-8ec0-bf088ebb7b28.png",
+  "target": "assets/cat-mobbies/new/c/yukidaruma.png",
+  "regenReason": "桃白/白長毛の類似組を分化。対象yukidarumaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE tightly CURLY woolly fur, HUGE ROUND upright ears, exceptionally WIDE LOW rectangular body with blunt round cheeks, icy blue iris. No long straight fur. Keep snow-dusted red bucket hat and red scarf with snowman motif.",
+  "qa": "accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2402442,
+    "sha256": "d2aec489a762c3d1fb841c27a4f61ea0b88bf5cbe5f1ad1e77110c51b9292762"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "persian",
+  "prompt": "Use case: stylized-concept. Redesign MAIN CAT persian. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: PERSIAN PURE WHITE extremely LONG dense fine fur, tiny low ROUND ears nearly buried, FLAT broad face with VERY SHORT nose and very round puffy cheeks, copper eye, very broad low squared body. No accessories. No tall pointed ears. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-2c8c661f-741c-452a-ad17-b51bf8b0abbf.png",
+  "target": "assets/cat-mobbies/characters/persian.png",
+  "regenReason": "桃白/白長毛の類似組を分化。対象persianの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PERSIAN PURE WHITE extremely LONG dense fine fur, tiny low ROUND ears nearly buried, FLAT broad face with VERY SHORT nose and very round puffy cheeks, copper eye, very broad low squared body. No accessories. No tall pointed ears.",
+  "qa": "accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "bytes": 2234671,
+    "sha256": "7ae19616280f717859459f23fef298f5c30613d9a3860099c15be88fc53e6191"
+  }
+}

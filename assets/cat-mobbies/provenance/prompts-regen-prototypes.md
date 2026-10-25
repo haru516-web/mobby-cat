@@ -2,6 +2,14 @@
 
 Built-in image_gen. Reference 1: characters/bengal.png; reference 2: characters/ragdoll.png. A edits also use original target as reference 3.
 
+## asa
+
+Use case: stylized-concept. Redesign MAIN CAT asa. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: WHITE and soft CORAL PINK large block patches, VERY SHORT smooth fur, NO fluffy fur or gradient. TINY round upright ears, exceptionally LOW WIDE rectangular body, broad flat cheeks, amber eye. Preserve little rising sun icon above head and held steaming sunrise coffee mug. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.
+
+Reason: 桃白/白長毛の類似組を分化。対象asaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: WHITE and soft CORAL PINK large block patches, VERY SHORT smooth fur, NO fluffy fur or gradient. TINY round upright ears, exceptionally LOW WIDE rectangular body, broad flat cheeks, amber eye. Preserve little rising sun icon above head and held steaming sunrise coffee mug.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
+
 ## bouken-ou
 
 Use case: stylized-concept. Regenerate ONE bouken-ou cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: Adventure king: PALE SAND BEIGE uniform SHORT coarse wiry coat, no brown/orange tabby/tortie. Tall rounded ears, angular blunt muzzle, lean sturdy square torso, amber iris. Keep original explorer hat, feather, map banner and burgundy cape from reference3, no new accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.
@@ -42,6 +50,14 @@ Reason: rea-mobby等との長毛キジ三毛の重複を解消。青クリーム
 
 QA: accepted: correct eye/lens/controls, original concept props retained; coat, ears and face differentiated
 
+## country-07
+
+Use case: stylized-concept. MAIN CAT redesign country-07. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: WHITE coarse SHORT WIRY fur with distinct spiky individual guard hairs, VERY LARGE sideways rounded ears, low wide squared torso, tiny blunt muzzle, rainbow iris. Keep bright rainbow-colored tail and colored bead collar. No soft long white fluff. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.
+
+Reason: 桃白/白長毛の類似組を分化。対象country-07の毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: WHITE coarse SHORT WIRY fur with distinct spiky individual guard hairs, VERY LARGE sideways rounded ears, low wide squared torso, tiny blunt muzzle, rainbow iris. Keep bright rainbow-colored tail and colored bead collar. No soft long white fluff.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
+
 ## country-08
 
 Use case: stylized-concept. MAIN CAT REDESIGN country-08. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: WHITE base with THREE very LARGE solid BLACK patches: viewer-left cheek, viewer-right flank, tail. SHORT glossy coat, NO white V tuxedo cap or long fur. TINY rounded ears, very broad low squared body and blunt cheeks, green eye. Keep collar with 8 pendant. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.
@@ -49,6 +65,14 @@ Use case: stylized-concept. MAIN CAT REDESIGN country-08. Ref1 bengal/ref2 ragdo
 Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: WHITE base with THREE very LARGE solid BLACK patches: viewer-left cheek, viewer-right flank, tail. SHORT glossy coat, NO white V tuxedo cap or long fur. TINY rounded ears, very broad low squared body and blunt cheeks, green eye. Keep collar with 8 pendant.
 
 QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
+
+## country-20
+
+Use case: stylized-concept. Redesign MAIN CAT country-20. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: Very pale PEACH PINK SHORT tightly CURLY fur, no fluffy straight pink-white coat. Small FOLDED ears, very wide square torso and round cheekbones, dark pink eye. Preserve original floral kimono, obi and flower hairpin, controls on kimono unobscured. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.
+
+Reason: 桃白/白長毛の類似組を分化。対象country-20の毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: Very pale PEACH PINK SHORT tightly CURLY fur, no fluffy straight pink-white coat. Small FOLDED ears, very wide square torso and round cheekbones, dark pink eye. Preserve original floral kimono, obi and flower hairpin, controls on kimono unobscured.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
 
 ## country-30
 
@@ -234,6 +258,14 @@ Reason: 茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hy
 
 QA: accepted second draft: new coat/ears visibly distinct, original concept props retained, exactly one eye/right lens and correct three belly controls
 
+## oiwai
+
+Use case: stylized-concept. MAIN CAT redesign oiwai. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE SHORT smooth coat with a FEW small ROSE PINK spots on crown and side, no large bicolor/long fluffy coat. TINY FOLDED ears, compact round cheeks and tall square body, vivid PINK iris. Keep original colorful party cone hat, party popper and confetti. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.
+
+Reason: 桃白/白長毛の類似組を分化。対象oiwaiの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE SHORT smooth coat with a FEW small ROSE PINK spots on crown and side, no large bicolor/long fluffy coat. TINY FOLDED ears, compact round cheeks and tall square body, vivid PINK iris. Keep original colorful party cone hat, party popper and confetti.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
+
 ## osanpo
 
 Use case: stylized-concept. MAIN CAT REDESIGN for osanpo. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: SAND BEIGE solid SHORT coarse fur, NO orange/red/white bicolor or long fluff. HUGE pointed ears, lean taller square torso, angular muzzle, amber eye. Keep straw hat, little backpack, held autumn maple leaf. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.
@@ -250,6 +282,22 @@ Reason: 茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hy
 
 QA: accepted second draft: new coat/ears visibly distinct, original concept props retained, exactly one eye/right lens and correct three belly controls
 
+## persian
+
+Use case: stylized-concept. Redesign MAIN CAT persian. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: PERSIAN PURE WHITE extremely LONG dense fine fur, tiny low ROUND ears nearly buried, FLAT broad face with VERY SHORT nose and very round puffy cheeks, copper eye, very broad low squared body. No accessories. No tall pointed ears. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.
+
+Reason: 桃白/白長毛の類似組を分化。対象persianの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PERSIAN PURE WHITE extremely LONG dense fine fur, tiny low ROUND ears nearly buried, FLAT broad face with VERY SHORT nose and very round puffy cheeks, copper eye, very broad low squared body. No accessories. No tall pointed ears.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
+
+## sakura
+
+Use case: stylized-concept. Redesign MAIN CAT sakura. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: Deep CHERRY PINK TIPPED LONG SILKY coat over white undercoat, white triangular chest, HUGE pointed ears, angular long face, slim squared torso, vivid pink iris. Keep cherry blossom hair ornament and floating petals. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.
+
+Reason: 桃白/白長毛の類似組を分化。対象sakuraの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: Deep CHERRY PINK TIPPED LONG SILKY coat over white undercoat, white triangular chest, HUGE pointed ears, angular long face, slim squared torso, vivid pink iris. Keep cherry blossom hair ornament and floating petals.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
+
 ## samishigari
 
 Use case: stylized-concept. Regenerate ONE samishigari cat Mobby. Reference1 bengal and reference2 ragdoll define realistic animal strand fur and hardware; reference3 original target defines props and concept. CHANGE MAIN CAT: Solid milk-tea beige VERY SHORT SATIN fur, no white bib, stripes or long fur. HUGE wide-set pointed ears lowered sadly outward, tall slim square torso, small pointed muzzle, misty blue-grey eye. Keep teddy bear toy without extra hardware, keep lonely expression. Preserve ONE unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye viewer LEFT with round black pupil and catchlight, exactly ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain unmarked round black buttons diagonally lower RIGHT. Controls unobscured. Front-facing full body, soft studio light. Exact1254x1254 RGBA PNG with real transparent background and generous margin, no floor/grid/text/watermark. No new props.
@@ -257,6 +305,14 @@ Use case: stylized-concept. Regenerate ONE samishigari cat Mobby. Reference1 ben
 Reason: genkai/denchigire/toshikoshi/issei-nenne/samishigari/nebosukeの灰茶長毛・疲れ顔グループを分化。ミルクティー単色短毛、非常に大きく横へ下がる耳、細い四角胴へ変更。青灰目とテディベアを保持。
 
 QA: accepted: one eye/lens and correct controls; fatigue concept retained, coat and ears visibly different
+
+## santa
+
+Use case: stylized-concept. MAIN CAT redesign santa. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE very SHORT dense plush coat, SMALL round upright ears, very ROUND puffy cheeks, LOW WIDE square torso, green iris. No long hair. Keep original red Santa hat and small white present sack with red bow. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.
+
+Reason: 桃白/白長毛の類似組を分化。対象santaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE very SHORT dense plush coat, SMALL round upright ears, very ROUND puffy cheeks, LOW WIDE square torso, green iris. No long hair. Keep original red Santa hat and small white present sack with red bow.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
 
 ## shachou
 
@@ -298,6 +354,14 @@ Reason: 茶長毛グループから均一なソレルのティック毛、非常
 
 QA: accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible
 
+## tanjoubi
+
+Use case: stylized-concept. Redesign MAIN CAT tanjoubi. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: WHITE and PINK broad sharply separate large patches, SHORT smooth coat, no uniform fluffy pink-white gradient. VERY LARGE ROUND ears, low wide squared torso, blunt happy cheeks, rose iris. Keep party cone hat and birthday cake with single candle. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.
+
+Reason: 桃白/白長毛の類似組を分化。対象tanjoubiの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: WHITE and PINK broad sharply separate large patches, SHORT smooth coat, no uniform fluffy pink-white gradient. VERY LARGE ROUND ears, low wide squared torso, blunt happy cheeks, rose iris. Keep party cone hat and birthday cake with single candle.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
+
 ## tekuteku
 
 Use case: stylized-concept. MAIN CAT REDESIGN for tekuteku. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: DEEP RED SHORT very sleek fur with NARROW DARK RED mackerel stripes, NO pale white bib or fluffy coat. Large pointed ears, narrow athletic squared torso and firm muzzle, yellow-green eye. Keep sweatband and little sneakers. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.
@@ -330,6 +394,14 @@ Reason: rea-mobbyを含む長毛キジ三毛グループとの重複を解消。
 
 QA: accepted: one biological eye, right green-glass lens, D-pad and two plain buttons visible; original concept props retained, distinct coat and texture
 
+## turkish-angora
+
+Use case: stylized-concept. Redesign MAIN CAT turkish-angora. Ref1 bengal/ref2 ragdoll define animal strand fur and Mobby hardware. Ref3 original defines props/concept only. REQUIRED NEW CAT: TURKISH ANGORA pure WHITE fine lightweight SILKY semi-long coat, VERY LARGE upright pointed ears, narrow wedge-shaped face and slender squared torso, bright BLUE eye. Long fine plume tail. No accessories. Avoid thick round Persian cheeks. ONE unified rounded-square head/body NO neck, short arms and two short feet. One biological eye LEFT with round pupil/catchlight, one black green-glass camera lens RIGHT. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. All hardware visible. Front full body, soft studio light. True transparent RGBA PNG1254x1254 with clear margin; no floor/grid/watermark/new text. Follow stated fur ears face and body.
+
+Reason: 桃白/白長毛の類似組を分化。対象turkish-angoraの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: TURKISH ANGORA pure WHITE fine lightweight SILKY semi-long coat, VERY LARGE upright pointed ears, narrow wedge-shaped face and slender squared torso, bright BLUE eye. Long fine plume tail. No accessories. Avoid thick round Persian cheeks.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
+
 ## usotsuki
 
 Use case: stylized-concept. MAIN CAT REDESIGN usotsuki. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: Predominantly solid JET BLACK extremely SHORT fur, only THIN WHITE vertical face stripe and tiny white chin, NO broad white bib or orange/brown. HUGE pointed ears, low compact square torso, angular cheeks, blue eye, tongue out playful. Preserve original little spring jack-in-box behind shoulder and a few confetti pieces. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.
@@ -345,3 +417,11 @@ Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for world-traveler. Imag
 Reason: 茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。VERY SHORT glossy BLACK and WHITE coat. Predominantly WHITE face and belly, single SOLID BLACK saddle on back and viewer-right flank, BLACK ears and long tail. NO orange/brown/red anywhere on cat. VERY LARGE wide-set upright ears, slender square torso, pointed muzzle, emerald eye. Retain map scarf, hand map and travel suitcase with flags.
 
 QA: accepted second draft: new coat/ears visibly distinct, original concept props retained, exactly one eye/right lens and correct three belly controls
+
+## yukidaruma
+
+Use case: stylized-concept. MAIN CAT redesign yukidaruma. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE tightly CURLY woolly fur, HUGE ROUND upright ears, exceptionally WIDE LOW rectangular body with blunt round cheeks, icy blue iris. No long straight fur. Keep snow-dusted red bucket hat and red scarf with snowman motif. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.
+
+Reason: 桃白/白長毛の類似組を分化。対象yukidarumaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE tightly CURLY woolly fur, HUGE ROUND upright ears, exceptionally WIDE LOW rectangular body with blunt round cheeks, icy blue iris. No long straight fur. Keep snow-dusted red bucket hat and red scarf with snowman motif.
+
+QA: accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved
