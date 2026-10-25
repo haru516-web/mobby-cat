@@ -1,0 +1,19 @@
+{
+  "id": "nyanpo",
+  "prompt": "Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for nyanpo. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: STRAW BEIGE and DARK BROWN TICKED rough SHORT WIRY fur, uniform NO white patches, NO orange-white coat, NO long fluffy fur. Tiny low round ears, wide flat square torso, blunt cheeks, green iris. Keep green paw-print bandana, a raised stepping foot and three pawprint marks at ground. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-4df2589a-4cfd-4d02-854d-649bbdc8002a.png",
+  "target": "assets/cat-mobbies/new/a/nyanpo.png",
+  "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。STRAW BEIGE and DARK BROWN TICKED rough SHORT WIRY fur, uniform NO white patches, NO orange-white coat, NO long fluffy fur. Tiny low round ears, wide flat square torso, blunt cheeks, green iris. Keep green paw-print bandana, a raised stepping foot and three pawprint marks at ground.",
+  "qa": "accepted second draft: new coat/ears visibly distinct, original concept props retained, exactly one eye/right lens and correct three belly controls",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2804247,
+    "sha256": "1eec44f4b8b2b54c04660d6746a03cedc7d86017c8e19ac71b0cc550ea5c03b1"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "hisashiburi",
+  "prompt": "Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for hisashiburi. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: PURE WHITE SHORT fur with TINY isolated CHOCOLATE freckles on ears and forehead, brown tail tip only. NO orange/tan/red big patches. Small FOLDED ears, round plump cheeks, low wide squared torso, blue iris with joyful tear. Retain worn travel suitcase and outstretched welcoming arms. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-02820b35-9438-48ea-ab4d-0f8846d7f1d1.png",
+  "target": "assets/cat-mobbies/new/a/hisashiburi.png",
+  "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。PURE WHITE SHORT fur with TINY isolated CHOCOLATE freckles on ears and forehead, brown tail tip only. NO orange/tan/red big patches. Small FOLDED ears, round plump cheeks, low wide squared torso, blue iris with joyful tear. Retain worn travel suitcase and outstretched welcoming arms.",
+  "qa": "accepted second draft: new coat/ears visibly distinct, original concept props retained, exactly one eye/right lens and correct three belly controls",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2217041,
+    "sha256": "e9838d43143308578644381bc9fbce4a3fb9c3f1e4b880afe26655241545823c"
+  }
+}

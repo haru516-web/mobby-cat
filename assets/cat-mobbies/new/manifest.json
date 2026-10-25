@@ -37,9 +37,12 @@
     "file": "assets/cat-mobbies/new/a/nyannyan.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "e52c8ca891907356c50b34e5f5e4ad83dcf1e39f5968f00ce6b8c40cbf3dce30",
+    "sha256": "e885e7a1d3d19882fd83cd0d29fc89a1dba10da04c035a42691924067fec79da",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白とクリームのバイカラー。両手を招き猫のように2つ挙げる。胸に「22」と読める小さな丸い飾り（文字は数字のみ可）。目: 金 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: にゃんにゃんモビー, condition: バッテリー22%."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT for nyannyan. References1 bengal and2 ragdoll define realistic fur/hardware, image3 ONLY conceptual accessories. DO NOT copy image3 orange-white coat. REQUIRED NEW DESIGN: SOLID pale CREAM very SHORT coat, NO white bib or orange/brown/red patches. TINY low ROUND upright ears, extremely wide loaf squared torso, small blunt muzzle, blue iris. Retain raised welcoming paws and red collar with gold 22 pendant. One unified rounded-square head/body no neck; short arms/two short feet. Exactly ONE living eye viewer LEFT, ONE black green reflective camera lens viewer RIGHT. Exactly ONE D-pad lower LEFT, TWO plain round black buttons diagonal lower RIGHT. Front full body, unobscured controls, soft studio light. Exact1254x1254 RGBA PNG transparent background, ample margin. No floor/grid/watermark or extra text. The new coat and ear shape are mandatory.",
+    "bytes": 2105723,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。SOLID pale CREAM very SHORT coat, NO white bib or orange/brown/red patches. TINY low ROUND upright ears, extremely wide loaf squared torso, small blunt muzzle, blue iris. Retain raised welcoming paws and red collar with gold 22 pendant."
   },
   {
     "id": "hanbun",
@@ -85,9 +88,12 @@
     "file": "assets/cat-mobbies/new/a/nyanpo.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "c486cedc03875cc9523926ab8aa912d74e9b38db1cc1b9cb527088702654b9de",
+    "sha256": "1eec44f4b8b2b54c04660d6746a03cedc7d86017c8e19ac71b0cc550ea5c03b1",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 茶白。散歩の一歩を踏み出すポーズ。足元に肉球スタンプ3つ並ぶ（222の連想）。目: 緑 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: にゃんぽモビー, condition: 222歩."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for nyanpo. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: STRAW BEIGE and DARK BROWN TICKED rough SHORT WIRY fur, uniform NO white patches, NO orange-white coat, NO long fluffy fur. Tiny low round ears, wide flat square torso, blunt cheeks, green iris. Keep green paw-print bandana, a raised stepping foot and three pawprint marks at ground. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.",
+    "bytes": 2804247,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。STRAW BEIGE and DARK BROWN TICKED rough SHORT WIRY fur, uniform NO white patches, NO orange-white coat, NO long fluffy fur. Tiny low round ears, wide flat square torso, blunt cheeks, green iris. Keep green paw-print bandana, a raised stepping foot and three pawprint marks at ground."
   },
   {
     "id": "lucky",
@@ -157,9 +163,12 @@
     "file": "assets/cat-mobbies/new/a/hisashiburi.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "d6d39e20ae6d56088d702a9d1127b89258a4fa403913e9b1ac736213437d5420",
+    "sha256": "e9838d43143308578644381bc9fbce4a3fb9c3f1e4b880afe26655241545823c",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白と薄茶。ちょっと埃をかぶった旅行鞄を持ち、涙ぐんで両手を広げて駆け寄る。目: 水色 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: ひさしぶりモビー, condition: 30日ぶりに起動."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for hisashiburi. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: PURE WHITE SHORT fur with TINY isolated CHOCOLATE freckles on ears and forehead, brown tail tip only. NO orange/tan/red big patches. Small FOLDED ears, round plump cheeks, low wide squared torso, blue iris with joyful tear. Retain worn travel suitcase and outstretched welcoming arms. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.",
+    "bytes": 2217041,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。PURE WHITE SHORT fur with TINY isolated CHOCOLATE freckles on ears and forehead, brown tail tip only. NO orange/tan/red big patches. Small FOLDED ears, round plump cheeks, low wide squared torso, blue iris with joyful tear. Retain worn travel suitcase and outstretched welcoming arms."
   },
   {
     "id": "samishigari",
@@ -271,9 +280,12 @@
     "file": "assets/cat-mobbies/new/b/nekonohi.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "735ea2a7a60b9834c18ac1468691d07ec3577902667187ad0b27e1d9e288fad5",
+    "sha256": "98eac687e3e40218d9303ebefcd32867badc989a1b497c079014506333ddef6c",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: クリームの王様猫。小さな王冠とマント、胸に「2/22」の数字飾り。誇らしげに腕組み。目: 金 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: ねこのひモビー, condition: 2月22日."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT for nekonohi. References1 bengal and2 ragdoll define realistic fur/hardware, image3 ONLY conceptual accessories. DO NOT copy image3 orange-white coat. REQUIRED NEW DESIGN: PURE WHITE LONG silky fur, NO orange/brown/red/cream patches. TINY low rounded ears barely visible in fur, very plump low squared torso, broad happy face with amber eye. Preserve gold red jeweled crown, red ermine cape and 2/22 medallion. One unified rounded-square head/body no neck; short arms/two short feet. Exactly ONE living eye viewer LEFT, ONE black green reflective camera lens viewer RIGHT. Exactly ONE D-pad lower LEFT, TWO plain round black buttons diagonal lower RIGHT. Front full body, unobscured controls, soft studio light. Exact1254x1254 RGBA PNG transparent background, ample margin. No floor/grid/watermark or extra text. The new coat and ear shape are mandatory.",
+    "bytes": 2104850,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。PURE WHITE LONG silky fur, NO orange/brown/red/cream patches. TINY low rounded ears barely visible in fur, very plump low squared torso, broad happy face with amber eye. Preserve gold red jeweled crown, red ermine cape and 2/22 medallion."
   },
   {
     "id": "uruu",
@@ -676,9 +688,12 @@
     "file": "assets/cat-mobbies/new/d/shitsukoi.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "f3f2db85c56b7ff4e5ca86d8a0fcd44d296aead67315d2f3f3205850fe0ddfbb",
+    "sha256": "a8f56ffad3e4084f5c1c805799e9fa407c3b332e303c97f7abb112dde8e3afb9",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白と薄茶。ドアの隙間から何度も顔を出し、ぐいぐい近づく。目: 緑 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: しつこいモビー, condition: 同じ猫が3回訪問."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT for shitsukoi. References1 bengal and2 ragdoll define realistic fur/hardware, image3 ONLY conceptual accessories. DO NOT copy image3 orange-white coat. REQUIRED NEW DESIGN: SILVER WHITE coat with pale grey shaded tips, VERY SHORT close-lying fur, small FOLDED ears, extremely round puffy cheeks, broad low square torso, green iris. NO orange/brown/red patches. Keep original plain tan bell collar, no extra props. One unified rounded-square head/body no neck; short arms/two short feet. Exactly ONE living eye viewer LEFT, ONE black green reflective camera lens viewer RIGHT. Exactly ONE D-pad lower LEFT, TWO plain round black buttons diagonal lower RIGHT. Front full body, unobscured controls, soft studio light. Exact1254x1254 RGBA PNG transparent background, ample margin. No floor/grid/watermark or extra text. The new coat and ear shape are mandatory.",
+    "bytes": 2397052,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。SILVER WHITE coat with pale grey shaded tips, VERY SHORT close-lying fur, small FOLDED ears, extremely round puffy cheeks, broad low square torso, green iris. NO orange/brown/red patches. Keep original plain tan bell collar, no extra props."
   },
   {
     "id": "kiseki",
@@ -988,9 +1003,12 @@
     "file": "assets/cat-mobbies/new/f/hyakunin.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "1f7167011103fe88087a52b33525210a4aeca826fadca83dc20b58b8ecef7de6",
+    "sha256": "408d0a079bee07d4c84ed36cc427876bb1d24ef07a80be55686429463313a47a",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Image 1 (rea-mobby) and Image 2 (uyu-mobby) are the primary design references. Preserve the exact compact rounded-square single head-and-body, no neck, short arms, two short feet, front-facing upright standing full body. Exactly one biological cat eye viewer-left with the specified iris, black pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Tiny nose, subtle W mouth, whiskers. Preserve exactly one matte dark cross D-pad with four inset slots at lower-left belly and two plain dark circular buttons diagonally at lower-right, same proportions and spacing as references. Keep lens and controls unobstructed. Realistic directional fur strands, soft studio light, centered square, transparent alpha, no checkerboard/grid/floor, no watermark. Keep every character standing forward even if its visual idea describes another pose. Character idea: 毛: 白と薄茶。100という数字のバッジ、100人分の小さな足跡スタンプ。目: 緑 Fur and biological iris colors follow the visual idea. Use at most two small accessories and keep controls uncovered. No extra text; digits may appear only on a prop. Character: ひゃくにんモビー, condition: 旅猫が100人訪問."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for hyakunin. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: SOLID LILAC pinkish-grey SHORT tightly CURLY fur all over, NO orange/brown/red/white patches. VERY LARGE rounded ears, narrow tall square torso, small smiling muzzle, vivid green iris. Preserve white paw-pattern garment and round wooden 100 pendant. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.",
+    "bytes": 2879489,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。SOLID LILAC pinkish-grey SHORT tightly CURLY fur all over, NO orange/brown/red/white patches. VERY LARGE rounded ears, narrow tall square torso, small smiling muzzle, vivid green iris. Preserve white paw-pattern garment and round wooden 100 pendant."
   },
   {
     "id": "oiwai",
@@ -1051,9 +1069,12 @@
     "file": "assets/cat-mobbies/new/h/ouji.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "d60c68d92b9ab2fe141f30b78b305117c8da3374dd3150459c3307254aa0eb3d",
+    "sha256": "a06326513a520b26e5c2a796949bd5635c2494ff63aba788b5df0665be032879",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Exact design references: Image 1 rea-mobby and Image 2 uyu-mobby. Preserve compact rounded-square single head/body, no neck, short arms and two short feet, standing upright facing directly forward full-body. Exactly one biological cat eye viewer-left with specified iris, round black pupil and white highlight; exactly one camera lens viewer-right with dark concentric ring and green reflective glass. Small nose, subtle W mouth and whiskers. One lower-left matte charcoal cross D-pad with four inset slots and exactly two plain round charcoal buttons in diagonal lower-right, same size and placement as refs, unobstructed. Detailed realistic directional fur, soft studio light, genuine transparent alpha, centered square target 1254x1254, no checkerboard/grid/floor/watermark, extra eyes or controls. Keep the standing front composition. Character design: null Match listed fur and eye colors. Use at most two small accessories and keep face hardware and belly controls visible. Character 王子モビー (ouji)."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for ouji. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: SOLID BLUE GREY very SHORT PLUSH fur, NO orange/brown/red/white patches. TINY rounded ears and very broad round cheeks, low wide square torso, gold iris, tiny smile. Preserve little jeweled crown and red ermine cape with gold bell. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.",
+    "bytes": 2576303,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。SOLID BLUE GREY very SHORT PLUSH fur, NO orange/brown/red/white patches. TINY rounded ears and very broad round cheeks, low wide square torso, gold iris, tiny smile. Preserve little jeweled crown and red ermine cape with gold bell."
   },
   {
     "id": "uchuu",
@@ -1132,9 +1153,12 @@
     "file": "assets/cat-mobbies/new/i/chokotto.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "249960508ae537d9fa41738c131d38e14d69d112cc02986ad2ef0505cea2b587",
+    "sha256": "92b7c29256b0c63c902119879663df8ee802d8b310dfa2b175f61f96e285cb29",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Primary exact character references Image 1 rea-mobby and Image 2 uyu-mobby. Preserve their compact rounded-square SINGLE head/body, no neck, short arms, two short feet, upright front-facing full-body standing composition. Exactly one biological cat eye viewer-left with specified iris, black round pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Small nose, subtle W mouth and whiskers. Exactly one lower-left matte charcoal cross D-pad with inset slots and exactly two plain dark round buttons diagonally lower-right, same proportions/positions as references, unobstructed. No other eyes anywhere, no other animals or faces. Realistic directional fur strands, soft studio light, transparent alpha PNG, centered square 1254x1254 target, no checkerboard/grid/floor/watermark. Keep standing forward. Character-specific visual: 毛: 淡いクリーム。小さな一歩だけ踏み出した、ちょっと照れた様子。足元に小さな肉球が1つ。目: 緑 Follow listed fur and iris colors. At most two small accessories away from controls. No lettering; digits only if allowed on a small prop. Character ちょこっとモビー (chokotto), condition 500歩."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT for chokotto. References1 bengal and2 ragdoll define realistic fur/hardware, image3 ONLY conceptual accessories. DO NOT copy image3 orange-white coat. REQUIRED NEW DESIGN: SOLID pale ROSE GREY SHORT smooth fur, NO orange/brown/white patches. VERY LARGE rounded ears, small lean square torso, tiny pointed muzzle, green iris. One small stepping foot raised, original tan bell collar only. One unified rounded-square head/body no neck; short arms/two short feet. Exactly ONE living eye viewer LEFT, ONE black green reflective camera lens viewer RIGHT. Exactly ONE D-pad lower LEFT, TWO plain round black buttons diagonal lower RIGHT. Front full body, unobscured controls, soft studio light. Exact1254x1254 RGBA PNG transparent background, ample margin. No floor/grid/watermark or extra text. The new coat and ear shape are mandatory.",
+    "bytes": 2584097,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。SOLID pale ROSE GREY SHORT smooth fur, NO orange/brown/white patches. VERY LARGE rounded ears, small lean square torso, tiny pointed muzzle, green iris. One small stepping foot raised, original tan bell collar only."
   },
   {
     "id": "hodohodo",
@@ -1144,9 +1168,12 @@
     "file": "assets/cat-mobbies/new/i/hodohodo.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "2130afe56f4f565a907cc0b4214a33f50ec630704d3d4e0ff86142c9627167a3",
+    "sha256": "84ff22dd41265af0f5409e4587f436b1ddb400cc14843686f1f550441f81bccd",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Primary exact character references Image 1 rea-mobby and Image 2 uyu-mobby. Preserve their compact rounded-square SINGLE head/body, no neck, short arms, two short feet, upright front-facing full-body standing composition. Exactly one biological cat eye viewer-left with specified iris, black round pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Small nose, subtle W mouth and whiskers. Exactly one lower-left matte charcoal cross D-pad with inset slots and exactly two plain dark round buttons diagonally lower-right, same proportions/positions as references, unobstructed. No other eyes anywhere, no other animals or faces. Realistic directional fur strands, soft studio light, transparent alpha PNG, centered square 1254x1254 target, no checkerboard/grid/floor/watermark. Keep standing forward. Character-specific visual: 毛: 麦色。軽く汗をぬぐって満足そうに笑い、足元に肉球が並ぶ。目: 琥珀 Follow listed fur and iris colors. At most two small accessories away from controls. No lettering; digits only if allowed on a small prop. Character ほどほどモビー (hodohodo), condition 1,000歩."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT for hodohodo. References1 bengal and2 ragdoll define realistic fur/hardware, image3 ONLY conceptual accessories. DO NOT copy image3 orange-white coat. REQUIRED NEW DESIGN: BLUE and CREAM large patches of SHORT dense fur, NO red/orange/brown. Large upright rounded ears, sturdy narrow square torso, broad muzzle, amber iris. Preserve sweat, white face towel and digital 1000 step-counter pendant. One unified rounded-square head/body no neck; short arms/two short feet. Exactly ONE living eye viewer LEFT, ONE black green reflective camera lens viewer RIGHT. Exactly ONE D-pad lower LEFT, TWO plain round black buttons diagonal lower RIGHT. Front full body, unobscured controls, soft studio light. Exact1254x1254 RGBA PNG transparent background, ample margin. No floor/grid/watermark or extra text. The new coat and ear shape are mandatory.",
+    "bytes": 2646999,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。BLUE and CREAM large patches of SHORT dense fur, NO red/orange/brown. Large upright rounded ears, sturdy narrow square torso, broad muzzle, amber iris. Preserve sweat, white face towel and digital 1000 step-counter pendant."
   },
   {
     "id": "country-20",
@@ -1192,9 +1219,12 @@
     "file": "assets/cat-mobbies/new/i/world-traveler.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "e936436bf1b8de281381949fe5c2989db1d3187337bee1496e954d83875c649f",
+    "sha256": "ccedc1154cb8e4e5f7f0d75aa14e696fc64bb595a5cc14ef3f81514a9ec3d776",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. Primary exact character references Image 1 rea-mobby and Image 2 uyu-mobby. Preserve their compact rounded-square SINGLE head/body, no neck, short arms, two short feet, upright front-facing full-body standing composition. Exactly one biological cat eye viewer-left with specified iris, black round pupil and white highlight; exactly one dark concentric camera lens viewer-right with green reflective glass. Small nose, subtle W mouth and whiskers. Exactly one lower-left matte charcoal cross D-pad with inset slots and exactly two plain dark round buttons diagonally lower-right, same proportions/positions as references, unobstructed. No other eyes anywhere, no other animals or faces. Realistic directional fur strands, soft studio light, transparent alpha PNG, centered square 1254x1254 target, no checkerboard/grid/floor/watermark. Keep standing forward. Character-specific visual: Sun-browned dark brown and white fur, green iris. Small worn travel map hanging beside the body and a little suitcase covered in several simple national-flag patches, no words. Ensure suitcase sits next to feet and does not block controls. Character せかいいっしゅうモビー (world-traveler)."
+    "prompt": "Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for world-traveler. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: VERY SHORT glossy BLACK and WHITE coat. Predominantly WHITE face and belly, single SOLID BLACK saddle on back and viewer-right flank, BLACK ears and long tail. NO orange/brown/red anywhere on cat. VERY LARGE wide-set upright ears, slender square torso, pointed muzzle, emerald eye. Retain map scarf, hand map and travel suitcase with flags. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.",
+    "bytes": 2709133,
+    "regen": true,
+    "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。VERY SHORT glossy BLACK and WHITE coat. Predominantly WHITE face and belly, single SOLID BLACK saddle on back and viewer-right flank, BLACK ears and long tail. NO orange/brown/red anywhere on cat. VERY LARGE wide-set upright ears, slender square torso, pointed muzzle, emerald eye. Retain map scarf, hand map and travel suitcase with flags."
   },
   {
     "id": "issei-nenne",
