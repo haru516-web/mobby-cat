@@ -244,3 +244,19 @@ Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b
 Prompt: Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Landscape1179x900. Mediterranean travel scenery: white and pale peach rounded hillside coastal town on right, turquoise sea with small white sailboat center, warm stone-paved terrace lower right35% empty and flat for traveler overlay, a few potted flowers at far edges. Left upper and middle half calm pale blue sky/sea for title overlay. A rounded wood direction sign on far right upper quadrant with FOUR clean readable boards labeled EXACTLY JAPAN, FRANCE, KENYA, KOREA, one word per board. No other text. Soft sunny picturebook atmosphere. Do NOT copy image2 photographic texture or its sign on left; use image2 subject only.
 
 Final: (1179, 900), opaque. SHA256: 1a0726fb6b2bbb2b8f319ae50937a488d507dbb35b1d275fec7b833264ac4af0
+
+## 2026-10-25 UI fixes: bg/screen-zukan.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-f5de7a8b-6dbf-456e-a625-a8b7399280b8.png
+
+Prompt: Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Very tall portrait1179x2556 full-screen background for collection gallery. Pastel cozy study/bookshelves at upper and far side edges only. Rounded cream bookshelves, muted pastel blank books, a few plants. Center and bottom 70% almost plain ivory softly shaded, extremely low contrast for readable overlay cards. All shapes gently painted and legible rather than camera-blurred. Match approved home moderate painted details ONLY at peripheral shelves. No text.
+
+Final: (1179, 2556), opaque. SHA256: 0f37022bec492003d8db3582acd312634cff4d826c57d86ad1e8a1bb31aab50b
+
+## 2026-10-25 UI fixes: bg/screen-world.png
+
+Source: C:\Users\User\.codex\generated_images\01a172b4-5ecf-71e2-be1c-70fd45f12b5e\exec-1a5a0700-eb31-4cd9-bdfb-af227facd27c.png
+
+Prompt: Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Very tall portrait1179x2556 world screen background. Pale pastel sky and rounded cream clouds at top, gradually blending into old ivory world-map paper in middle and lower areas. A faint simplified world map, a tiny warm orange airplane and a delicate dotted curved flight route near upper right. Central and bottom card areas are very pale low contrast cream, calm. Gentle painted paper textures and rounded forms, not realistic clouds. NO labels, place names or any text.
+
+Final: (1179, 2556), opaque. SHA256: 8deaf1b4b3dd772813edb53cd342d7e9570046a1b04e3a7906db76f19a5200ce

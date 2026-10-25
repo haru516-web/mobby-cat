@@ -63,3 +63,6 @@ User requested more detail. Added painted leaf, textile, basket, rug and wood de
 
 ## UI fixes: priority 1 complete (2026-10-25)
 Approved room-home draft02 retained. Redrawn room-deai (1179x1400) and world-hero (1179x900), one generation each, opaque RGB. Sign words JAPAN / FRANCE / KENYA / KOREA checked. Empty character/text overlay areas checked. Comparison: previews/regen-compare.png. No application code changes.
+
+## UI fixes: priority 2 complete
+Redrawn screen-zukan and screen-world, each1179x2556 opaque PNG, one generation each. Painted shelves and sky/map/airplane, pale central and lower overlay areas. Comparison: previews/regen-screens.png.
