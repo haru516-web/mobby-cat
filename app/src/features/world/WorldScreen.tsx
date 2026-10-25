@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, View } from 'react-native';
 import { C, CatImage, T } from '../../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well, useTabPad } from '../../ui/kit';
+import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well, useTabPad, Tap, withSfx } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { ScreenProps } from '../../navigation';
 
@@ -30,7 +30,7 @@ const JOURNEY = [
   { key: 'japan', name: '日本', days: 3, stamp: 'いらっしゃい', date: '10/8' },
 ];
 
-export default function WorldScreen({ openShop, openNotice, width }: ScreenProps) {
+export default function WorldScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const inner = width - 32;
   const pad = useTabPad();
   const stampW = (inner - 28 - 3 * 8) / 4;
@@ -40,7 +40,7 @@ export default function WorldScreen({ openShop, openNotice, width }: ScreenProps
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-world" />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
-        <Header onShop={openShop} onBell={() => openNotice()} />
+        <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Slice name="badge/sample" style={s.sample}><T w="b" size={10} color="#fff">サンプル表示（サーバー未接続）</T></Slice>
 
@@ -110,7 +110,7 @@ export default function WorldScreen({ openShop, openNotice, width }: ScreenProps
 
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <Pic name="brand/title-news" height={30} />
-            <T w="b" size={12} color={C.sub} onPress={() => setSheet('news')}>すべて見る</T>
+            <T w="b" size={12} color={C.sub} onPress={withSfx(() => setSheet('news'))}>すべて見る</T>
           </View>
           {SAMPLE.news.slice(0, 2).map((n) => (
             <NewsCard key={n.title} n={n} onPress={() => setSheet('news')} />
@@ -125,7 +125,7 @@ export default function WorldScreen({ openShop, openNotice, width }: ScreenProps
             <View style={s.sheetHead}>
               <Pic name={sheet === 'news' ? 'brand/title-news' : 'brand/title-travel'} height={34} />
               <View style={{ flex: 1 }} />
-              <Pressable onPress={() => setSheet(null)} accessibilityLabel="閉じる"><Pic name="button/close-round" height={40} /></Pressable>
+              <Tap onPress={() => setSheet(null)} accessibilityLabel="閉じる"><Pic name="button/close-round" height={40} /></Tap>
             </View>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ padding: 16, gap: 10, paddingBottom: 40 }}>
               <Slice name="badge/sample" style={s.sample}><T w="b" size={10} color="#fff">サンプル表示（サーバー未接続）</T></Slice>
@@ -174,7 +174,7 @@ export default function WorldScreen({ openShop, openNotice, width }: ScreenProps
 type News = (typeof SAMPLE.news)[number];
 function NewsCard({ n, full, onPress }: { n: News; full?: boolean; onPress?: () => void }) {
   return (
-    <Pressable onPress={onPress} disabled={!onPress}>
+    <Tap onPress={onPress} disabled={!onPress}>
       <Card skin="white" style={{ flexDirection: 'row', gap: 10, padding: 10 }}>
         <Well style={{ width: 76, height: 76 }}><Pic name={n.thumb} height={72} /></Well>
         <View style={{ flex: 1 }}>
@@ -183,7 +183,7 @@ function NewsCard({ n, full, onPress }: { n: News; full?: boolean; onPress?: () 
           <T w="m" size={10} color={C.sub} style={{ marginTop: 'auto', textAlign: 'right' }}>{n.date}</T>
         </View>
       </Card>
-    </Pressable>
+    </Tap>
   );
 }
 

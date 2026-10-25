@@ -9,6 +9,8 @@
 | `ui-reference/` | 目標とするUIの参考画像4枚（ホーム・図鑑・出会い・世界） |
 | `codex/ASSET_LIST.md` | UI画像の完全リスト（ファイル名・サイズ・伸縮の指定） |
 | `codex/CODEX_PROMPT.md` | UI画像を Codex に作らせる指示書 |
+| `codex/UI_SETTINGS_PROMPT.md` | 設定画面の画像（歯車ボタン）を Codex に作らせる指示書 |
+| `codex/AUDIO_PROMPT.md` | BGM（3曲）と効果音（12個）を Codex に作らせる指示書。場面・長さ・形式・ファイル名 |
 | `codex/NEW_MOBBIES_LIST.md` | 新しい猫モビー100匹の一覧（ID・名前・ビジュアル案） |
 | `codex/NEW_MOBBIES_PROMPT.md` | 新しい猫モビーを Codex に作らせる指示書 |
 

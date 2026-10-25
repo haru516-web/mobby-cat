@@ -1,7 +1,7 @@
 import { AnchorId } from '../../ui/TourAnchor';
 import { TabKey } from '../../ui/kit';
 
-// 初回起動後（相棒を選んだあと）に流れるチュートリアル。設定（ショップ画面）からいつでも見返せる。
+// 初回起動後（相棒を選んだあと）に流れるチュートリアル。設定（右上の「設定」）からいつでも見返せる。
 // 画面の該当箇所を明るく残して短い説明を出すだけで、下の画面は操作できない。
 export type TourStep = {
   tab: TabKey; // この段で開いておくタブ
@@ -14,7 +14,7 @@ export type TourStep = {
 export const TOUR_STEPS: readonly TourStep[] = [
   {
     tab: 'home', anchor: 'header-items', title: 'お迎え券とまたたび',
-    detail: 'お迎え券は、気になる子を追加で迎えるチケット。またたびは、今日の出会いの候補を増やします。タップするとショップが開き、設定やこの説明の見返しもそこからできます。',
+    detail: 'お迎え券は、気になる子を追加で迎えるチケット。またたびは、今日の出会いの候補を増やします。タップするとショップが開きます。この説明は、右上の「設定」からいつでも見返せます。',
   },
   {
     tab: 'home', anchor: 'header-bell', title: 'ベル',

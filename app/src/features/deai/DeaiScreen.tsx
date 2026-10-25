@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, View } from 'react-native';
 import { cardReason } from '../../core/conditions';
 import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
 import { useGame, visibleCount } from '../../core/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad } from '../../ui/kit';
+import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge, useTabPad, Tap } from '../../ui/kit';
 import { Pic, Slice, Stretch } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
+import { playSfx } from '../../services/audio';
+import { hapticSuccess } from '../../services/haptics';
 
-export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps) {
+export default function DeaiScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const g = useGame();
   const pad = useTabPad();
   const { state, availableDays, todayKey, now } = g;
@@ -31,7 +33,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
   if (!rec) {
     return (
       <View style={{ flex: 1 }}>
-        <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} />
+        <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={s.preparing}>
           <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
           <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
@@ -55,6 +57,8 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
     if (!sel) return;
     if (!hasFree) g.pickFree(day, sel);
     else if (!g.pickExtra(day, sel)) return;
+    playSfx(rec.reasons[sel] ? 'sfx_pick_special' : hasFree ? 'sfx_pick_extra' : 'sfx_pick_free');
+    hapticSuccess();
     setWelcome(sel);
     setSel(null);
   };
@@ -68,7 +72,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
-      <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} />
+      <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       <View style={s.pills}>
         <InfoPill style={{ flex: 1.5 }} icon="icon/calendar-today" label="" value={`${m}/${d} ${REVEAL_HOUR}:00更新`} onPress={() => openNotice('upcoming')} />
         <InfoPill style={{ flex: 1 }} icon="icon/ticket-paw" label="お迎え券" value={`${state.tickets}枚`} onPress={openShop} />
@@ -94,23 +98,23 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
             <T w="m" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 2 }}>
               次の出会いまで あと{Math.floor(mins / 60)}時間{mins % 60}分
             </T>
-            <Pressable onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 4 }}>
+            <Tap onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 4 }}>
               <T w="b" size={12} color={C.accent}>これから会えるかもしれない猫</T>
               <Pic name="icon/chevron-right" height={12} style={{ marginLeft: 4 }} />
-            </Pressable>
+            </Tap>
           </Card>
         </TourAnchor>
 
         {availableDays.length > 1 && (
           <View style={s.dayTabs}>
             {availableDays.map((k) => (
-              <Pressable key={k} onPress={() => { setDay(k); setSel(null); }}>
+              <Tap key={k} onPress={() => { setDay(k); setSel(null); }}>
                 <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
                   <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
                     {k === todayKey ? '今日' : state.days[k]?.freePick ? 'きのう' : 'きのう（受け取りは今日の20時まで）'}
                   </T>
                 </Slice>
-              </Pressable>
+              </Tap>
             ))}
           </View>
         )}
@@ -122,7 +126,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
             const reason = rec.reasons[id];
             const owned = state.owned[id];
             return (
-              <Pressable key={id} style={{ width: colW }} disabled={picked} onPress={() => setSel(sel === id ? null : id)}>
+              <Tap key={id} style={{ width: colW }} disabled={picked} onPress={() => setSel(sel === id ? null : id)}>
                 <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
                   {sel === id && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', bottom: -colW * 0.08 }} />}
                   <Bobbing delay={i * 180}>
@@ -137,13 +141,13 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
                   <T w="m" size={10} color={reason ? '#C9822B' : C.sub} style={{ textAlign: 'center', marginTop: 2, minHeight: 28 }} numberOfLines={2}>
                     {picked ? 'お迎え済み' : reason ? `「${reason}」で出会えた` : owned ? `おうちに ${owned.count}匹いる子` : 'はじめて会う子'}
                   </T>
-                  <Pressable onPress={() => setDetail(id)} style={{ alignSelf: 'stretch', marginTop: 6 }}>
+                  <Tap onPress={() => setDetail(id)} style={{ alignSelf: 'stretch', marginTop: 6 }}>
                     <Slice name="button/chip-detail" style={s.chip}>
                       <T w="b" size={11} style={{ marginLeft: 24 }} numberOfLines={1}>{colW < 110 ? 'くわしく' : 'くわしく見る'}</T>
                     </Slice>
-                  </Pressable>
+                  </Tap>
                 </Card>
-              </Pressable>
+              </Tap>
             );
           })}
         </TourAnchor>
@@ -187,7 +191,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
                   height={42}
                   fontSize={13}
                   disabled={state.matatabi < 1 || visible.length >= rec.candidates.length}
-                  onPress={() => g.useMatatabi(day)}
+                  onPress={() => { if (g.useMatatabi(day)) playSfx('sfx_matatabi'); }}
                   style={{ alignSelf: 'stretch', marginTop: 4 }}
                 />
                 <T w="b" size={11} color={C.sub} style={{ marginTop: 4 }}>所持 {state.matatabi}個</T>
@@ -226,14 +230,21 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
                   height={44}
                   fontSize={13}
                   disabled={state.tickets < rest.length}
-                  onPress={() => { if (g.pickExtra(day, rest)) setWelcome(rest[0]); setSel(null); }}
+                  onPress={() => {
+                    if (g.pickExtra(day, rest)) {
+                      setWelcome(rest[0]);
+                      playSfx('sfx_pick_extra');
+                      hapticSuccess();
+                    }
+                    setSel(null);
+                  }}
                 />
               </View>
             </View>
             {state.tickets < 1 && (
-              <Pressable onPress={openShop}>
+              <Tap onPress={openShop}>
                 <T w="b" size={12} color={C.accent} style={{ marginTop: 8, textAlign: 'right' }}>お迎え券を手に入れる</T>
-              </Pressable>
+              </Tap>
             )}
           </Card>
         )}
@@ -257,7 +268,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
       </Modal>
 
       <Modal visible={!!detail} transparent animationType="fade" onRequestClose={() => setDetail(null)}>
-        <Pressable style={s.overlay} onPress={() => setDetail(null)}>
+        <Tap style={s.overlay} onPress={() => setDetail(null)}>
           <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
           {detail && (
             <Card style={{ alignItems: 'center', padding: 20 }}>
@@ -272,7 +283,7 @@ export default function DeaiScreen({ openShop, openNotice, width }: ScreenProps)
               <ImgButton skin="ghost-outline" label="閉じる" height={44} onPress={() => setDetail(null)} style={{ alignSelf: 'stretch', marginTop: 16 }} />
             </Card>
           )}
-        </Pressable>
+        </Tap>
       </Modal>
     </ScrollView>
   );

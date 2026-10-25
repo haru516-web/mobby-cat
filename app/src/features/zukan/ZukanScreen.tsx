@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { CATS, CatDef } from '../../data/catalog';
 import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
 import { useGame } from '../../core/game';
 import { C, CatImage, FONT, T, catNo } from '../../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad } from '../../ui/kit';
+import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 import { ScreenProps } from '../../navigation';
 
@@ -28,7 +28,7 @@ function hint(c: CatDef) {
   return HINTS[c.id] ?? 'まだ出会っていません。いつかの出会いを待とう';
 }
 
-export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps) {
+export default function ZukanScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const { state, toggleFavorite } = useGame();
   const pad = useTabPad();
   const [filter, setFilter] = useState<Filter>('all');
@@ -50,7 +50,7 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-zukan" />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: (cat ? 300 : 24) + pad }}>
-        <Header onShop={openShop} onBell={() => openNotice()} />
+        <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Card style={s.collection}>
             <View style={{ flex: 1 }}>
@@ -84,11 +84,11 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
               const on = filter === f.key;
               const skin = f.key === 'all' && !on ? 'button/tab-normal' : f.skin;
               return (
-                <Pressable key={f.key} style={{ flex: 1, opacity: on || f.key === 'all' ? 1 : 0.72, transform: [{ scale: on ? 1.04 : 1 }] }} onPress={() => setFilter(f.key)}>
+                <Tap key={f.key} style={{ flex: 1, opacity: on || f.key === 'all' ? 1 : 0.72, transform: [{ scale: on ? 1.04 : 1 }] }} onPress={() => setFilter(f.key)}>
                   <Slice name={skin} style={s.filter}>
                     <T w="x" size={13} color={f.key === 'all' && !on ? C.ink : f.color}>{f.label}</T>
                   </Slice>
-                </Pressable>
+                </Tap>
               );
             })}
           </View>
@@ -99,7 +99,7 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
               const own = state.owned[c.id];
               const on = sel === c.id;
               return (
-                <Pressable key={c.id} style={{ width: cellW }} onPress={() => setSel(on ? null : c.id)}>
+                <Tap key={c.id} style={{ width: cellW }} onPress={() => setSel(on ? null : c.id)}>
                   <View style={{ width: cellW, height: cellW }}>
                     <Pic
                       name={on ? 'panel/card-selected' : own ? 'panel/photo-well' : 'panel/card-locked'}
@@ -116,7 +116,7 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
                   </View>
                   <T w="m" size={9} color={C.sub} style={{ marginTop: 3 }}>No.{catNo(c.id)}</T>
                   <T w="x" size={10} numberOfLines={1}>{own ? c.name : '???'}</T>
-                </Pressable>
+                </Tap>
               );
             })}
           </Card>
@@ -125,7 +125,8 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
       </ScrollView>
 
       {cat && (
-        <Card style={[s.sheet, { bottom: 8 + pad }]}>
+        // 下端が開いたシートを画面の下端まで伸ばし、ナビバーの後ろから出てくるように見せる
+        <Slice name="panel/sheet-detail" style={[s.sheet, { paddingBottom: pad + 14 }]}>
           <View style={{ flexDirection: 'row', gap: 12 }}>
             <Well style={s.bigPhoto}>
               {o ? <CatImage id={cat.id} size={124} /> : <Pic name="cat/silhouette-locked" width={124} />}
@@ -150,15 +151,15 @@ export default function ZukanScreen({ openShop, openNotice, width }: ScreenProps
           </View>
           <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
             {o && (
-              <Pressable style={{ flex: 1 }} onPress={() => toggleFavorite(cat.id)}>
+              <Tap style={{ flex: 1 }} onPress={() => toggleFavorite(cat.id)}>
                 <Slice name={fav ? 'button/chip-favorite-on' : 'button/chip-favorite-off'} style={s.favBtn}>
                   <T w="x" size={13} style={{ marginLeft: 26 }}>{fav ? 'お気に入り中' : 'お気に入り'}</T>
                 </Slice>
-              </Pressable>
+              </Tap>
             )}
             <ImgButton label="閉じる" height={44} onPress={() => setSel(null)} style={{ flex: 1 }} />
           </View>
-        </Card>
+        </Slice>
       )}
     </View>
   );
@@ -183,7 +184,8 @@ const s = StyleSheet.create({
   cellCat: { position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' },
   count: { position: 'absolute', top: 2, right: 2, height: 18, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center' },
   favMark: { position: 'absolute', top: 2, left: 2 },
-  sheet: { position: 'absolute', left: 10, right: 10, bottom: 8 },
+  // 上の 40pt は角丸とつまみ、左右の 30pt は縁取り（9スライスの端）
+  sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingTop: 34, paddingHorizontal: 24 },
   bigPhoto: { width: 130, height: 130 },
   table: { marginTop: 6, paddingHorizontal: 10, paddingVertical: 4 },
   row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 4 },

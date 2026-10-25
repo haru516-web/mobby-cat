@@ -54,6 +54,7 @@ const PASS_TICKETS = 3;
 const STREAK_GIFT_DAYS = 7;
 
 const KEY = 'mobby-cat/state/v1';
+const BACKUP_KEY = 'mobby-cat/state/v1.corrupt'; // 読み込めなかった記録の退避先
 const DAY_MS = 86400000;
 
 function initial(now: Date): GameState {
@@ -132,6 +133,9 @@ type Ctx = {
   shiftDays: (n: number) => void;
   unlockAll: () => void;
   reset: () => void;
+  corruptBackup: string | null; // 読み込めずに退避した記録（無ければ null）
+  discardBackup: () => void;
+  saveBlocked: boolean; // 保存領域を読めず、記録を守るために保存を止めている
 };
 
 const GameCtx = createContext<Ctx>(null as unknown as Ctx);
@@ -150,22 +154,45 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState>(() => initial(new Date()));
   const [ready, setReady] = useState(false);
   const [tick, setTick] = useState(0);
+  const [corruptBackup, setCorruptBackup] = useState<string | null>(null);
+  const [saveBlocked, setSaveBlocked] = useState(false);
   const stateRef = useRef(state);
   stateRef.current = state;
 
+  // 読み込みに失敗したときは、初期状態で上書き保存しない（全データが消えるため）。
+  // 壊れた記録は別のキーに退避してから始め直す。保存領域そのものが読めないときは保存を止める。
   useEffect(() => {
     (async () => {
+      let raw: string | null = null;
       try {
-        const raw = await AsyncStorage.getItem(KEY);
-        if (raw) {
+        raw = await AsyncStorage.getItem(KEY);
+      } catch {
+        setSaveBlocked(true);
+        setReady(true);
+        return;
+      }
+      if (raw) {
+        try {
           const saved = JSON.parse(raw) as Partial<GameState>;
+          if (!saved || typeof saved !== 'object' || !saved.owned || typeof saved.owned !== 'object') throw new Error('shape');
           // 相棒選びの導入前から遊んでいた人には、選び直しを出さない
-          const starterChosen = saved.starterChosen ?? Object.keys(saved.owned ?? {}).length > 0;
+          const starterChosen = saved.starterChosen ?? Object.keys(saved.owned).length > 0;
           // チュートリアルの導入前から遊んでいた人には出さない
           const tutorialDone = saved.tutorialDone ?? starterChosen;
           setState({ ...initial(new Date()), ...saved, starterChosen, tutorialDone });
+        } catch {
+          try {
+            await AsyncStorage.setItem(BACKUP_KEY, raw);
+            setCorruptBackup(raw);
+          } catch {
+            setSaveBlocked(true); // 退避できないなら、壊れた記録を残すため保存しない
+          }
         }
-      } catch {}
+      } else {
+        try {
+          setCorruptBackup(await AsyncStorage.getItem(BACKUP_KEY));
+        } catch {}
+      }
       setReady(true);
     })();
   }, []);
@@ -176,9 +203,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || saveBlocked) return;
     AsyncStorage.setItem(KEY, JSON.stringify(state)).catch(() => {});
-  }, [state, ready]);
+  }, [state, ready, saveBlocked]);
 
   const now = useMemo(
     () => new Date(Date.now() + state.debugOffsetDays * DAY_MS),
@@ -344,10 +371,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     [],
   );
   const reset = useCallback(() => setState(initial(new Date())), []);
+  const discardBackup = useCallback(() => {
+    AsyncStorage.removeItem(BACKUP_KEY).catch(() => {});
+    setCorruptBackup(null);
+  }, []);
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
     pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, finishTutorial, pet, markInboxRead, setPass, shiftDays, unlockAll, reset,
+    corruptBackup, discardBackup, saveBlocked,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
 }

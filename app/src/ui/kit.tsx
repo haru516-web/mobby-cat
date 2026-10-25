@@ -1,14 +1,31 @@
 import React, { useState } from 'react';
-import { Pressable, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
+import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import { CatDef } from '../data/catalog';
 import { useGame } from '../core/game';
+import { SfxId } from '../data/audioAssets';
+import { playSfx } from '../services/audio';
+import { hapticTap } from '../services/haptics';
 import { C, T } from './base';
 import { Pic, Slice } from './Slice';
 import { TourAnchor } from './TourAnchor';
+import { UI } from './uiAssets';
 
 export function Icon({ name, size = 22, style }: { name: string; size?: number; style?: StyleProp<ViewStyle> }) {
   return <Pic name={name} height={size} style={style} />;
 }
+
+// 音の鳴る押せる場所。画像だけのボタン（×・ベルなど）や一覧のマスはこれで包む。
+// 操作音はどのボタンも同じ sfx_tap。専用の音（シャッターなど）を鳴らすときは sfx で変えるか null
+type TapProps = Omit<PressableProps, 'onPress'> & { sfx?: SfxId | null; onPress?: () => void };
+export function Tap({ sfx = 'sfx_tap', onPress, ...rest }: TapProps) {
+  return <Pressable {...rest} onPress={onPress && withSfx(onPress, sfx)} />;
+}
+// 文字のリンク（T の onPress）にも同じ音と触覚をつける
+export const withSfx = (f: () => void, sfx: SfxId | null = 'sfx_tap') => () => {
+  if (sfx) playSfx(sfx);
+  hapticTap();
+  f();
+};
 
 type Skin = 'primary-orange' | 'primary-green' | 'ghost-outline' | 'ghost-green' | 'disabled';
 const SKIN_TEXT: Record<Skin, string> = {
@@ -26,7 +43,11 @@ export function ImgButton({
   const name = down && s !== 'disabled' ? `button/${s}-pressed` : `button/${s}`;
   return (
     <Pressable
-      onPress={onPress}
+      onPress={() => {
+        playSfx('sfx_tap');
+        hapticTap();
+        onPress();
+      }}
       disabled={disabled}
       onPressIn={() => setDown(true)}
       onPressOut={() => setDown(false)}
@@ -50,42 +71,53 @@ export function InfoPill({ icon, label, value, onPress, style }: { icon: string;
   // 幅の狭い端末（iPhone SE など）ではラベルを省いて値だけ見せる
   const narrow = useWindowDimensions().width < 390;
   return (
-    <Pressable onPress={onPress} style={style} accessibilityLabel={`${label} ${value}`}>
+    <Tap onPress={onPress} style={style} accessibilityLabel={`${label} ${value}`}>
       <Slice name="panel/pill-info" style={k.pill}>
         <Icon name={icon} size={24} />
         {!!label && !narrow && <T w="m" size={11} color={C.sub} style={{ marginLeft: 6, marginRight: 6, flexShrink: 1 }} numberOfLines={1}>{label}</T>}
         <T w="x" size={16} style={{ marginLeft: 'auto', flexShrink: 0 }} numberOfLines={1}>{value}</T>
         {onPress && <Icon name="icon/chevron-right" size={14} style={{ marginLeft: 4 }} />}
       </Slice>
-    </Pressable>
+    </Tap>
   );
 }
 
 // ロゴ / タイトル画像＋所持品＋ベル
-export function Header({ title = 'brand/logo-nekomobby', onShop, onBell }: { title?: string; onShop: () => void; onBell: () => void }) {
+export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSettings }: { title?: string; onShop: () => void; onBell: () => void; onSettings: () => void }) {
   const { state } = useGame();
-  const narrow = useWindowDimensions().width < 360;
-  const logoH = (title === 'brand/logo-nekomobby' ? 44 : 52) * (narrow ? 0.8 : 1);
+  const width = useWindowDimensions().width;
+  const logoH = (title === 'brand/logo-nekomobby' ? 44 : 52) * (width < 390 ? 0.8 : 1);
+  const tight = width < 390; // 設定ボタンが増えたぶん、ロゴを少し小さくする
   return (
     <View style={k.header}>
       <Pic name={title} height={logoH} />
       <View style={{ flex: 1 }} />
       <TourAnchor id="header-items">
-        <Pressable onPress={onShop}>
+        <Tap onPress={onShop}>
           <Slice name="panel/pill-currency" style={k.currency}>
             <Icon name="icon/ticket-paw" size={20} />
             <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{state.tickets}</T>
             <Icon name="icon/matatabi-leaf" size={20} />
             <T w="x" size={14} style={{ marginLeft: 3 }}>{state.matatabi}</T>
           </Slice>
-        </Pressable>
+        </Tap>
       </TourAnchor>
       <TourAnchor id="header-bell" style={{ marginLeft: 6 }}>
-        <Pressable onPress={onBell} accessibilityLabel="お知らせ">
+        <Tap onPress={onBell} accessibilityLabel="お知らせ">
           <Pic name="button/bell-round" height={44} />
           {state.inbox.length > state.inboxRead && <Pic name="button/bell-badge" height={14} style={k.bellBadge} />}
-        </Pressable>
+        </Tap>
       </TourAnchor>
+      <Tap onPress={onSettings} accessibilityLabel="設定" style={{ marginLeft: 6 }}>
+        {UI['button/settings-round'] ? (
+          <Pic name="button/settings-round" height={tight ? 38 : 44} />
+        ) : (
+          // 歯車の画像（button/settings-round）が届くまでの代わり。docs/codex/UI_SETTINGS_PROMPT.md
+          <Slice name="button/ghost-outline" style={k.gearFallback}>
+            <T w="x" size={11} color={C.accent}>設定</T>
+          </Slice>
+        )}
+      </Tap>
     </View>
   );
 }
@@ -141,7 +173,13 @@ export function Polaroid({ width, children, style }: { width: number; children: 
 // 設定のスイッチ
 export function Toggle({ value, onChange }: { value: boolean; onChange: (v: boolean) => void }) {
   return (
-    <Pressable onPress={() => onChange(!value)} accessibilityRole="switch" accessibilityState={{ checked: value }}>
+    <Pressable
+      onPress={() => {
+        playSfx('sfx_tap');
+        hapticTap();
+        onChange(!value);
+      }}
+      accessibilityRole="switch" accessibilityState={{ checked: value }}>
       <Pic name={value ? 'button/toggle-on' : 'button/toggle-off'} height={36} />
     </Pressable>
   );
@@ -162,7 +200,10 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
       {TABS.map((t) => {
         const on = t.key === tab;
         return (
-          <Pressable key={t.key} style={k.tab} onPress={() => onChange(t.key)}>
+          <Pressable key={t.key} style={k.tab} onPress={() => {
+              if (!on) playSfx('sfx_tap');
+              onChange(t.key);
+            }}>
             {on && <Pic name="tabbar/active-glow" height={72} style={k.glow} />}
             <Icon name={`tabbar/${t.key}-${on ? 'on' : 'off'}`} size={34} />
             <T w="x" size={12} color={on ? C.accent : C.sub} style={{ marginTop: 2 }}>{t.label}</T>
@@ -186,5 +227,6 @@ const k = StyleSheet.create({
   tabbar: { flexDirection: 'row', paddingTop: 14 },
   tab: { flex: 1, alignItems: 'center' },
   glow: { position: 'absolute', top: -18 },
+  gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   bellBadge: { position: 'absolute', right: 2, top: 2 },
 });

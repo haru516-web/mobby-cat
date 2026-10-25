@@ -13,7 +13,9 @@
 | 発見カード（共有・保存） | `features/deai/DiscoveryCard.tsx` | `services/share.ts` |
 | 図鑑 | `features/zukan/ZukanScreen.tsx` | 猫の一覧 `data/catalog.ts`、ヒント `core/conditions.ts`（`HINTS`） |
 | 世界・旅猫（今はサンプル表示） | `features/world/WorldScreen.tsx` | — （サーバー接続後に実装） |
-| ショップ・設定 | `features/shop/ShopScreen.tsx` | 出現確率 `core/encounter.ts`（`rarityOdds`）、通知 `services/notify.ts` |
+| ショップ（購入だけ） | `features/shop/ShopScreen.tsx` | 出現確率 `core/encounter.ts`（`rarityOdds`） |
+| 設定（通知・誕生日・音とバイブ・使い方・お問い合わせ・規約・クレジット・開発用）。ヘッダーの歯車から開く | `features/settings/SettingsScreen.tsx` | 文面と連絡先 `data/appInfo.ts`、通知 `services/notify.ts`、音と触覚の設定 `services/audio.ts` |
+| 音（BGM・効果音）と触覚 | — （ボタン・タブ・スイッチは `ui/kit.tsx` で自動。場面ごとの音は各画面から `playSfx`、BGM は `App.tsx`） | `services/audio.ts`、`services/haptics.ts`、音源の一覧 `data/audioAssets.ts` |
 | お知らせ・出会い履歴・これから会える猫 | `features/notice/NoticeScreen.tsx` | 予告の計算 `core/conditions.ts`（`upcoming`） |
 | 撮影（カメラ合成） | `features/camera/CameraScreen.tsx` | `services/share.ts` |
 | 電池・歩数の取得 | — | `services/signals.ts` |
@@ -25,11 +27,11 @@
 src/
 ├─ features/   機能ごとの画面。1つの機能に必要なものはここにまとめる
 ├─ core/       ゲームのルールと状態（画面を持たない）
-│  ├─ game.tsx         所持猫・券・お知らせなどの状態と、その操作
+│  ├─ game.tsx         所持猫・券・お知らせなどの状態と、その操作。読み込めなかった記録は退避する（上書きしない）
 │  ├─ encounter.ts     毎日の候補の抽選
 │  ├─ conditions.ts    「いつ・どの猫が確定で出るか」の条件（暦・月・電池・歩数・コレクション）
 │  └─ dates.ts         20時で日が切り替わる「出会いの日」の計算
-├─ services/   端末の機能への橋渡し（電池・歩数・通知・共有と保存）
+├─ services/   端末の機能への橋渡し（電池・歩数・通知・共有と保存・音・触覚）
 ├─ ui/         共通の部品
 │  ├─ base.tsx         文字・色・猫の画像・ふわふわ動く表示
 │  ├─ kit.tsx          ボタン・ピル・バッジ・ゲージ・カード・タブバー。ナビバーは画面の上に重なるので、各画面は `useTabPad()` の高さぶん下に余白を取る
@@ -46,4 +48,5 @@ src/
 - `core/` は画面を持たない。端末の機能が必要なら `services/` を通す。
 - **色・角丸・影をコードで描かない。** 見た目は `app/assets/ui` の画像で作る（`ui/kit.tsx` の部品を使う）。足りない画像は Codex に依頼する。
 - `data/catalog.ts` と `ui/uiAssets.ts` は自動生成。直接編集せず、`tools/` のスクリプトを実行し直す。
+- **音は鳴らす場所から `playSfx(id)` を呼ぶだけ。** 音源が無い・`expo-audio` が無い環境でも落ちない。新しい音は `data/audioAssets.ts` の型に ID を足し、`docs/codex/AUDIO_PROMPT.md` にも書く。
 - 猫を増やす・条件を足すときは、`core/conditions.ts` に条件を、`HINTS`（図鑑のヒント）を同時に足す。

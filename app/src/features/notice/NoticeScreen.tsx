@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { HINTS, upcoming } from '../../core/conditions';
 import { useGame, visibleCount } from '../../core/game';
 import { C, CAT_BY_ID, CatImage, T } from '../../ui/base';
-import { Card, Well } from '../../ui/kit';
+import { Card, Well, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 
 type Tab = 'notice' | 'history' | 'upcoming';
@@ -34,15 +34,15 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
       <View style={s.head}>
         <Pic name="button/bell-round" height={40} />
         <T w="x" size={22} style={{ marginLeft: 8, flex: 1 }}>お知らせ</T>
-        <Pressable onPress={onClose} accessibilityLabel="閉じる"><Pic name="button/close-round" height={40} /></Pressable>
+        <Tap onPress={onClose} accessibilityLabel="閉じる"><Pic name="button/close-round" height={40} /></Tap>
       </View>
       <View style={s.tabs}>
         {TABS.map((t) => (
-          <Pressable key={t.key} style={{ flex: 1 }} onPress={() => setTab(t.key)}>
+          <Tap key={t.key} style={{ flex: 1 }} onPress={() => setTab(t.key)}>
             <Slice name={tab === t.key ? 'button/tab-all-on' : 'button/tab-normal'} style={s.tab}>
               <T w="x" size={13} color={tab === t.key ? '#fff' : C.ink}>{t.label}</T>
             </Slice>
-          </Pressable>
+          </Tap>
         ))}
       </View>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.list}>
@@ -58,7 +58,7 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
               </Card>
             ))
           ) : (
-            <Empty text="まだお知らせはありません" />
+            <Empty art="illust/empty-notice" text="まだお知らせはありません" />
           ))}
 
         {tab === 'history' &&
@@ -84,12 +84,13 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
               );
             })
           ) : (
-            <Empty text="まだ出会いの記録はありません" />
+            <Empty art="illust/empty-history" text="まだ出会いの記録はありません" />
           ))}
 
         {tab === 'upcoming' && (
           <>
             <T w="m" size={12} color={C.sub}>暦や月で決まる特別な猫の予告です（30日先まで）。天気・歩数・電池などで来る猫は、その日になってのお楽しみ。</T>
+            {!next.length && <Empty art="illust/empty-notice" text="30日先までは、特別な猫の予告はありません" />}
             {next.map(({ day, cats }) => (
               <Card key={day} skin="white" style={{ gap: 6 }}>
                 <T w="x" size={13}>{fmt(day)}</T>
@@ -116,10 +117,10 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
   );
 }
 
-function Empty({ text }: { text: string }) {
+function Empty({ art, text }: { art: string; text: string }) {
   return (
-    <View style={{ alignItems: 'center', marginTop: 40, gap: 8 }}>
-      <Pic name="icon/paw" height={40} />
+    <View style={{ alignItems: 'center', marginTop: 24, gap: 8 }}>
+      <Pic name={art} width={220} />
       <T w="b" size={13} color={C.sub}>{text}</T>
     </View>
   );

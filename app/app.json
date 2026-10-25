@@ -53,7 +53,8 @@
           "savePhotosPermission": "猫モビーと撮った写真を写真アプリに保存します。",
           "isAccessMediaLocationEnabled": false
         }
-      ]
+      ],
+      "expo-audio"
     ]
   }
 }

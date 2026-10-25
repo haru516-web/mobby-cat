@@ -5,7 +5,7 @@ import {
   useFonts,
 } from '@expo-google-fonts/m-plus-rounded-1c';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import CameraScreen from './src/features/camera/CameraScreen';
@@ -13,12 +13,14 @@ import DeaiScreen from './src/features/deai/DeaiScreen';
 import HomeScreen from './src/features/home/HomeScreen';
 import NoticeScreen from './src/features/notice/NoticeScreen';
 import OnboardingScreen from './src/features/onboarding/OnboardingScreen';
+import SettingsScreen from './src/features/settings/SettingsScreen';
 import ShopScreen from './src/features/shop/ShopScreen';
 import { NoticeTab } from './src/navigation';
 import WorldScreen from './src/features/world/WorldScreen';
 import TutorialTour from './src/features/tutorial/TutorialTour';
 import ZukanScreen from './src/features/zukan/ZukanScreen';
 import { GameProvider, useGame } from './src/core/game';
+import { initAudio, setBgmScene } from './src/services/audio';
 import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
 import { Backdrop } from './src/ui/Slice';
 import { TourAnchor } from './src/ui/TourAnchor';
@@ -43,6 +45,7 @@ function Root() {
   const [fontsLoaded] = useFonts({ MPLUSRounded1c_500Medium, MPLUSRounded1c_700Bold, MPLUSRounded1c_800ExtraBold });
   const [tab, setTab] = useState<TabKey>('home');
   const [shop, setShop] = useState(false);
+  const [settings, setSettings] = useState(false);
   const [notice, setNotice] = useState<NoticeTab | null>(null);
   const [camera, setCamera] = useState(false);
   const [replay, setReplay] = useState(false); // 設定から見返すチュートリアル
@@ -50,6 +53,17 @@ function Root() {
   const insets = useSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
   const width = Math.min(winW, MAX_W);
+  const tour = replay || !state.tutorialDone;
+
+  useEffect(() => {
+    initAudio();
+  }, []);
+  // 場面に合う BGM を伝える（音源が無いあいだは何も起きない）
+  const welcome = ready && (!state.starterChosen || tour);
+  useEffect(() => {
+    if (!ready) return setBgmScene(null);
+    setBgmScene(welcome ? 'bgm_welcome' : tab === 'deai' ? 'bgm_deai' : 'bgm_home');
+  }, [ready, welcome, tab]);
   if (!ready || !fontsLoaded) {
     return (
       <View style={s.fill}>
@@ -68,7 +82,6 @@ function Root() {
     );
   }
   const Active = SCREENS[tab];
-  const tour = replay || !state.tutorialDone;
   return (
     <View style={[s.fill, { alignItems: 'center' }]}>
       <Backdrop name="bg/app-cream" />
@@ -78,6 +91,7 @@ function Root() {
             <Active
               go={setTab}
               openShop={() => setShop(true)}
+              openSettings={() => setSettings(true)}
               openNotice={(t = 'notice') => setNotice(t)}
               openCamera={() => setCamera(true)}
               width={width}
@@ -100,10 +114,13 @@ function Root() {
         )}
       </View>
       <Sheet visible={shop} onClose={() => setShop(false)} width={width}>
-        <ShopScreen
-          onClose={() => setShop(false)}
+        <ShopScreen onClose={() => setShop(false)} />
+      </Sheet>
+      <Sheet visible={settings} onClose={() => setSettings(false)} width={width}>
+        <SettingsScreen
+          onClose={() => setSettings(false)}
           onTutorial={() => {
-            setShop(false);
+            setSettings(false);
             setTab('home');
             setReplay(true);
           }}

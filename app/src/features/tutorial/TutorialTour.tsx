@@ -1,7 +1,7 @@
 import { ComponentRef, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { C, T } from '../../ui/base';
-import { Card, ImgButton, TabKey } from '../../ui/kit';
+import { Card, ImgButton, TabKey, Tap } from '../../ui/kit';
 import { Slice, Stretch } from '../../ui/Slice';
 import { Rect, measureAnchor } from '../../ui/TourAnchor';
 import { TOUR_STEPS } from './steps';
@@ -80,7 +80,7 @@ export default function TutorialTour({ bottomInset, onNavigate, onClose }: { bot
       style={s.overlay}
     >
       {/* 下の画面が反応しないよう、全面でタップを受ける。タップで次へ */}
-      <Pressable style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel="つぎへ" onPress={() => (last ? onClose() : setPos(pos + 1))} />
+      <Tap style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel="つぎへ" onPress={() => (last ? onClose() : setPos(pos + 1))} />
       {hole ? (
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
           <Stretch name={DIM} style={[s.dim, { left: 0, top: 0, width, height: hole.y }]} />
@@ -98,9 +98,9 @@ export default function TutorialTour({ bottomInset, onNavigate, onClose }: { bot
               <T w="x" size={11} color="#fff">{pos + 1} / {TOUR_STEPS.length}</T>
             </Slice>
             <View style={{ flex: 1 }} />
-            <Pressable onPress={onClose} hitSlop={10} accessibilityLabel="チュートリアルをとじる">
+            <Tap onPress={onClose} hitSlop={10} accessibilityLabel="チュートリアルをとじる">
               <T w="b" size={12} color={C.sub} style={{ textDecorationLine: 'underline' }}>スキップ</T>
-            </Pressable>
+            </Tap>
           </View>
           <T w="x" size={17}>{step.title}</T>
           <T w="b" size={12.5} style={{ lineHeight: 19 }}>{step.detail}</T>
