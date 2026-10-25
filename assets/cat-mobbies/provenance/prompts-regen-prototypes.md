@@ -42,6 +42,14 @@ Reason: rea-mobby等との長毛キジ三毛の重複を解消。青クリーム
 
 QA: accepted: correct eye/lens/controls, original concept props retained; coat, ears and face differentiated
 
+## country-08
+
+Use case: stylized-concept. MAIN CAT REDESIGN country-08. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: WHITE base with THREE very LARGE solid BLACK patches: viewer-left cheek, viewer-right flank, tail. SHORT glossy coat, NO white V tuxedo cap or long fur. TINY rounded ears, very broad low squared body and blunt cheeks, green eye. Keep collar with 8 pendant. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: WHITE base with THREE very LARGE solid BLACK patches: viewer-left cheek, viewer-right flank, tail. SHORT glossy coat, NO white V tuxedo cap or long fur. TINY rounded ears, very broad low squared body and blunt cheeks, green eye. Keep collar with 8 pendant.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
+
 ## country-30
 
 Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. REGENERATE country-30. Reference image 3 is the original edit target; retain its concept and the specified props while replacing the MAIN CAT's appearance. References 1/2 define hardware/fur quality only. IVORY CREAM coarse SHORT WIRY fur, solid pale body with subtle grey ear tips, NO orange brown tabby/tortie. Broad low sturdy squared torso, medium rounded ears and broad smiling muzzle, warm gold iris. Preserve explorer hat, backpack and rolled map from image 3 without extra props. All props must leave eye lens and controls visible. Keep original filename/identity; no new text.
@@ -49,6 +57,14 @@ Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG
 Reason: rea-mobbyを含む長毛キジ三毛グループとの重複を解消。アイボリーの短い粗毛、灰色の耳先、幅広体型へ変更。探検帽・リュック・地図を保持。
 
 QA: accepted: one biological eye, right green-glass lens, D-pad and two plain buttons visible; original concept props retained, distinct coat and texture
+
+## country-50
+
+Use case: stylized-concept. MAIN CAT REDESIGN country-50. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: SOLID GOLD LONG CURLY RINGLETS, NO straight orange fluffy fur or white bib. Very LARGE rounded upright ears, tall compact square torso, long narrow muzzle, gold eye. Keep original 50 gold medal on red collar and gold confetti. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: SOLID GOLD LONG CURLY RINGLETS, NO straight orange fluffy fur or white bib. Very LARGE rounded upright ears, tall compact square torso, long narrow muzzle, gold eye. Keep original 50 gold medal on red collar and gold confetti.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
 
 ## denchigire
 
@@ -82,6 +98,14 @@ Reason: チョコ単色の極短毛、大耳、細い顔と長めのマズルへ
 
 QA: accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible
 
+## hinata
+
+Use case: stylized-concept. MAIN CAT REDESIGN hinata. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: Very PALE APRICOT solid LONG SILKY fur, no bright orange tabby/white bib. TINY FOLDED ears, low extra-wide square body with round cheeks, half-lidded amber eye. Keep yellow gingham neck scarf and sleepy sunbathing expression. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: Very PALE APRICOT solid LONG SILKY fur, no bright orange tabby/white bib. TINY FOLDED ears, low extra-wide square body with round cheeks, half-lidded amber eye. Keep yellow gingham neck scarf and sleepy sunbathing expression.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
+
 ## hisashiburi
 
 Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for hisashiburi. Image1 bengal and image2 ragdoll define real animal fur and Mobby hardware style. Image3 is ONLY ACCESSORY/CONCEPT reference, DO NOT copy its orange-white cat. REQUIRED NEW MAIN CAT: PURE WHITE SHORT fur with TINY isolated CHOCOLATE freckles on ears and forehead, brown tail tip only. NO orange/tan/red big patches. Small FOLDED ears, round plump cheeks, low wide squared torso, blue iris with joyful tear. Retain worn travel suitcase and outstretched welcoming arms. Single rounded-square unified head/body NO neck, short arms/two short feet. Exactly one living eye viewer LEFT with round pupil/highlight, one black green-glass camera lens viewer RIGHT. One black D-pad lower LEFT, exactly two PLAIN black round buttons diagonal lower RIGHT. Front full body with realistic directional fur, soft studio light, transparent alpha PNG1254x1254. Clear margin, no floor/checkerboard/text/watermark. This is a color and anatomical redesign: following the stated NEW COAT is mandatory.
@@ -114,6 +138,14 @@ Reason: 灰茶長毛・疲れ顔グループから分化。淡い青単色の絹
 
 QA: accepted: fatigue expression and original props retained, correct eye/lens/D-pad/two buttons
 
+## juunyan
+
+Use case: stylized-concept. MAIN CAT REDESIGN juunyan. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: PURE WHITE base with clear separated round BLACK POLKA DOTS, short tight CURLY fur, NO tuxedo or orange/brown. Small FOLDED ears, tall narrow square torso, pointed muzzle, green eye. Keep 10 gold medal and surrounding small dark cat silhouettes (faceless, no eyes/lenses/controls). One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: PURE WHITE base with clear separated round BLACK POLKA DOTS, short tight CURLY fur, NO tuxedo or orange/brown. Small FOLDED ears, tall narrow square torso, pointed muzzle, green eye. Keep 10 gold medal and surrounding small dark cat silhouettes (faceless, no eyes/lenses/controls).
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
+
 ## kikan
 
 Use case: stylized-concept. Regenerate ONE kikan cat Mobby. Reference 1 bengal and 2 ragdoll define realistic directional fur, living eye/hardware quality. Reference 3 original target defines concept and props only. JET BLACK and WHITE asymmetric broad patches, coarse SHORT guard hairs, NO brown orange/tortie. White crown, black viewer-left cheek, broad white belly, black feet. Tall triangular tufted ears, rugged angular muzzle, lean squared torso, amber eye. Preserve worn travel hat and burgundy ragged cape and compass clasp. Keep unified rounded-square head/body NO neck, two short feet and short arms. Exactly ONE living eye viewer LEFT with round pupil and white highlight, exactly ONE green-glass black camera lens viewer RIGHT. One black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. No paw marks on controls. Front full body. Soft studio light. True transparent alpha PNG exact1254x1254, generous margin; no floor/checkerboard/text/watermark. Change main cat ears face fur and body proportions substantially from image3.
@@ -122,6 +154,14 @@ Reason: rea-mobby等との長毛キジ三毛の重複を解消。黒白の非対
 
 QA: accepted: correct eye/lens/controls, original concept props retained; coat, ears and face differentiated
 
+## lucky
+
+Use case: stylized-concept. MAIN CAT REDESIGN for lucky. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: SOLID metallic warm GOLD very SHORT SATIN animal fur, NO white bib or orange tabby. TINY small FOLDED ears, very wide round cheeks and low square body, emerald eye. Keep four leaf clover and red 777 ornament. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: SOLID metallic warm GOLD very SHORT SATIN animal fur, NO white bib or orange tabby. TINY small FOLDED ears, very wide round cheeks and low square body, emerald eye. Keep four leaf clover and red 777 ornament.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
+
 ## maine-coon
 
 Use case: stylized-concept. Regenerate ONE maine-coon cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: MAINE COON: pale SILVER SHADED with cream undercoat, NO tabby stripes/brown/orange. Exceptionally LARGE tall LYNX-TUFTED ears, LONG shaggy guard hairs and majestic ruff, very SQUARE muzzle and heavy brow, long slim squared torso, green-gold iris, huge plume tail. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.
@@ -129,6 +169,22 @@ Use case: stylized-concept. Regenerate ONE maine-coon cat Mobby. References1 ben
 Reason: 茶長毛グループから銀の長いガードヘア、大きな房耳、角形マズルへ変更。生成では淡い額縞が残るがsiberianより房耳・長い毛・体比率を強調。
 
 QA: accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible
+
+## mainichi
+
+Use case: stylized-concept. MAIN CAT REDESIGN for mainichi. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: ORANGE and WHITE broad patches of VERY SHORT WAVY rex coat, NO straight fluffy fur. HUGE rounded upright ears, squat wide square torso and tiny muzzle, green eye. Preserve calendar with digits 1 through 7 held just under mouth with controls unobscured. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: ORANGE and WHITE broad patches of VERY SHORT WAVY rex coat, NO straight fluffy fur. HUGE rounded upright ears, squat wide square torso and tiny muzzle, green eye. Preserve calendar with digits 1 through 7 held just under mouth with controls unobscured.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
+
+## mantan
+
+Use case: stylized-concept. MAIN CAT REDESIGN for mantan. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: SOLID vivid ORANGE extremely SHORT fur, NO white bib or tabby stripes or long shaggy fur. VERY LARGE ROUND upright ears, athletic tall squared torso, angular happy smiling muzzle, yellow eye. Preserve full green battery on backpack with straps, energetic open arms. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: SOLID vivid ORANGE extremely SHORT fur, NO white bib or tabby stripes or long shaggy fur. VERY LARGE ROUND upright ears, athletic tall squared torso, angular happy smiling muzzle, yellow eye. Preserve full green battery on backpack with straps, energetic open arms.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
 
 ## mushoku
 
@@ -177,6 +233,14 @@ Use case: stylized-concept. REPLACE MAIN CAT COMPLETELY for nyanpo. Image1 benga
 Reason: 茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。STRAW BEIGE and DARK BROWN TICKED rough SHORT WIRY fur, uniform NO white patches, NO orange-white coat, NO long fluffy fur. Tiny low round ears, wide flat square torso, blunt cheeks, green iris. Keep green paw-print bandana, a raised stepping foot and three pawprint marks at ground.
 
 QA: accepted second draft: new coat/ears visibly distinct, original concept props retained, exactly one eye/right lens and correct three belly controls
+
+## osanpo
+
+Use case: stylized-concept. MAIN CAT REDESIGN for osanpo. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: SAND BEIGE solid SHORT coarse fur, NO orange/red/white bicolor or long fluff. HUGE pointed ears, lean taller square torso, angular muzzle, amber eye. Keep straw hat, little backpack, held autumn maple leaf. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: SAND BEIGE solid SHORT coarse fur, NO orange/red/white bicolor or long fluff. HUGE pointed ears, lean taller square torso, angular muzzle, amber eye. Keep straw hat, little backpack, held autumn maple leaf.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
 
 ## ouji
 
@@ -234,6 +298,14 @@ Reason: 茶長毛グループから均一なソレルのティック毛、非常
 
 QA: accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible
 
+## tekuteku
+
+Use case: stylized-concept. MAIN CAT REDESIGN for tekuteku. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: DEEP RED SHORT very sleek fur with NARROW DARK RED mackerel stripes, NO pale white bib or fluffy coat. Large pointed ears, narrow athletic squared torso and firm muzzle, yellow-green eye. Keep sweatband and little sneakers. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: DEEP RED SHORT very sleek fur with NARROW DARK RED mackerel stripes, NO pale white bib or fluffy coat. Large pointed ears, narrow athletic squared torso and firm muzzle, yellow-green eye. Keep sweatband and little sneakers.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
+
 ## tomodachizure
 
 Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. Replacement TOMODACHIZURE. Image 3 is edit target: retain ONLY its tiny featureless beige plush cat friend perched on viewer-left shoulder and plain tan collar; toy has no eyes face or hardware. Change main cat fur completely to sleek extremely SHORT WHITE fur with subtle solid pale LILAC patches on crown and tail, no orange/brown/black tabby, no long fur. Make very LARGE wide-set batlike ears, narrower square torso, angular cheekbones, tiny smiling muzzle, peridot green living iris. Keep Mobby unified head/body anatomy. Controls unobscured. Match realistic fur/hardware style references 1/2; maintain shoulder friend concept from image 3.
@@ -257,6 +329,14 @@ Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG
 Reason: rea-mobbyを含む長毛キジ三毛グループとの重複を解消。赤茶の短毛マッカレル縞、大きな耳、角張った頬と琥珀目へ変更。リュック・カメラ・コンパスを保持。
 
 QA: accepted: one biological eye, right green-glass lens, D-pad and two plain buttons visible; original concept props retained, distinct coat and texture
+
+## usotsuki
+
+Use case: stylized-concept. MAIN CAT REDESIGN usotsuki. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: Predominantly solid JET BLACK extremely SHORT fur, only THIN WHITE vertical face stripe and tiny white chin, NO broad white bib or orange/brown. HUGE pointed ears, low compact square torso, angular cheeks, blue eye, tongue out playful. Preserve original little spring jack-in-box behind shoulder and a few confetti pieces. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.
+
+Reason: 橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: Predominantly solid JET BLACK extremely SHORT fur, only THIN WHITE vertical face stripe and tiny white chin, NO broad white bib or orange/brown. HUGE pointed ears, low compact square torso, angular cheeks, blue eye, tongue out playful. Preserve original little spring jack-in-box behind shoulder and a few confetti pieces.
+
+QA: accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained
 
 ## world-traveler
 

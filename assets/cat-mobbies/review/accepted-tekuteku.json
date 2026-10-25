@@ -1,0 +1,19 @@
+{
+  "id": "tekuteku",
+  "prompt": "Use case: stylized-concept. MAIN CAT REDESIGN for tekuteku. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: DEEP RED SHORT very sleek fur with NARROW DARK RED mackerel stripes, NO pale white bib or fluffy coat. Large pointed ears, narrow athletic squared torso and firm muzzle, yellow-green eye. Keep sweatband and little sneakers. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-613a8337-084d-453b-ba10-9e6f345bbe04.png",
+  "target": "assets/cat-mobbies/new/a/tekuteku.png",
+  "regenReason": "橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: DEEP RED SHORT very sleek fur with NARROW DARK RED mackerel stripes, NO pale white bib or fluffy coat. Large pointed ears, narrow athletic squared torso and firm muzzle, yellow-green eye. Keep sweatband and little sneakers.",
+  "qa": "accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 2628841,
+    "sha256": "0a215da21d984b36ff0a3d3c79091ffb57117af7b6f0bfa6cb4c5d3ccb213be6"
+  }
+}

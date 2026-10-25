@@ -1,7 +1,7 @@
 # 制作の現在地
 
 - ブランチ: codex/new-mobbies-2
-- A: 初回136匹監査、再描画採用 33匹。初回計画の未生成 41匹。最終類似再監査は未完了。
+- A: 初回136匹監査、再描画採用 43匹。初回計画の未生成 31匹。最終類似再監査は未完了。
 - B: 指定試作3匹を含め採用 3/100匹。残り 97匹。B本番はA完了後。
 - 生成: built-in image_gen。採用画像すべて1254×1254 RGBA、元の生成アルファを維持。
 - QA: 各accepted JSONの目視記録とvalidation、progress.jsonの機械検品結果を参照。
@@ -9,11 +9,11 @@
 
 ## A 採用済み
 
-bouken-ou, bunshin, burmese, chokotto, collector, country-30, denchigire, genkai, halloween, havana-brown, hisashiburi, hodohodo, hyakunin, issei-nenne, kikan, maine-coon, mushoku, nebosuke, nekonohi, norwegian-forest, nyannyan, nyanpo, ouji, samishigari, shachou, shikaku, shitsukoi, siberian, somali, tomodachizure, toshikoshi, traveling-mobby, world-traveler
+bouken-ou, bunshin, burmese, chokotto, collector, country-08, country-30, country-50, denchigire, genkai, halloween, havana-brown, hinata, hisashiburi, hodohodo, hyakunin, issei-nenne, juunyan, kikan, lucky, maine-coon, mainichi, mantan, mushoku, nebosuke, nekonohi, norwegian-forest, nyannyan, nyanpo, osanpo, ouji, samishigari, shachou, shikaku, shitsukoi, siberian, somali, tekuteku, tomodachizure, toshikoshi, traveling-mobby, usotsuki, world-traveler
 
 ## A 初回計画の未完了
 
-osanpo, tekuteku, mainichi, lucky, mantan, hinata, country-50, country-08, juunyan, usotsuki, tanjoubi, sakura, country-20, asa, persian, turkish-angora, santa, yukidaruma, country-01, country-07, oiwai, country-06, hatsuyuki, country-75, aotsuki, tsuyu, pittari, tanabata, uchuu, nemurio, yofukashi, mayonaka, shingetsu, noroware, himitsu, british-shorthair, russian-blue, siamese-seal-point, tonkinese, birman, balinese
+tanjoubi, sakura, country-20, asa, persian, turkish-angora, santa, yukidaruma, country-01, country-07, oiwai, country-06, hatsuyuki, country-75, aotsuki, tsuyu, pittari, tanabata, uchuu, nemurio, yofukashi, mayonaka, shingetsu, noroware, himitsu, british-shorthair, russian-blue, siamese-seal-point, tonkinese, birman, balinese
 
 ## 次の手順
 
