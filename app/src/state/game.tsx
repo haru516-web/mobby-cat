@@ -1,6 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { buildDay, encounterDayKey, prevDayKey } from '../lib/encounter';
+import { CATS } from '../data/catalog';
+import { Signals } from '../lib/conditions';
+import { daysBetween } from '../lib/dates';
+import { buildDay, encounterDayKey, fmtDay, prevDayKey } from '../lib/encounter';
+import { readBattery, readSteps } from '../lib/signals';
+
+// アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
+const CATALOG_VERSION = String(CATS.length);
+
+// 出会いの日（encounterDayKey）ごとに、起動時に観測した端末の様子
+type Obs = { battery: number[]; charging: boolean; hours: number[] };
 
 export type Owned = { count: number; firstDay: string; firstReason: string };
 export type DayRecord = {
@@ -20,6 +30,13 @@ export type GameState = {
   debugOffsetDays: number;
   notifyEnabled: boolean;
   favorites: string[];
+  obs: Record<string, Obs>;
+  lastOpenDay: string; // 最後に起動した暦日
+  lastGap: number; // その起動が前回から何日空いていたか
+  streak: number; // 連続起動日数
+  appearCounts: Record<string, number>; // 候補に現れた回数
+  catalogVersion: string;
+  birthday: { m: number; d: number } | null;
 };
 
 const KEY = 'mobby-cat/state/v1';
@@ -35,7 +52,33 @@ function initial(now: Date): GameState {
     debugOffsetDays: 0,
     notifyEnabled: false,
     favorites: [],
+    obs: {},
+    lastOpenDay: '',
+    lastGap: 0,
+    streak: 0,
+    appearCounts: {},
+    catalogVersion: CATALOG_VERSION,
+    birthday: null,
   };
+}
+
+const merge = (a?: Obs, b?: Obs): Obs => ({
+  battery: [...(a?.battery ?? []), ...(b?.battery ?? [])],
+  charging: !!(a?.charging || b?.charging),
+  hours: [...(a?.hours ?? []), ...(b?.hours ?? [])],
+});
+
+function observe(s: GameState, key: string, hour: number, battery: { level: number; charging: boolean } | null): GameState {
+  const o = s.obs[key] ?? { battery: [], charging: false, hours: [] };
+  const next: Obs = {
+    battery: battery && !o.battery.includes(battery.level) ? [...o.battery, battery.level] : o.battery,
+    charging: o.charging || !!battery?.charging,
+    hours: o.hours.includes(hour) ? o.hours : [...o.hours, hour],
+  };
+  // 3日より前の記録は捨てる
+  const keep = prevDayKey(prevDayKey(key));
+  const obs = Object.fromEntries(Object.entries({ ...s.obs, [key]: next }).filter(([k]) => k >= keep));
+  return { ...s, obs };
 }
 
 export const visibleCount = (r: DayRecord) => Math.min(r.candidates.length, r.baseCount + r.matatabiUsed);
@@ -51,6 +94,7 @@ type Ctx = {
   useMatatabi: (day: string) => boolean;
   grant: (what: 'ticket' | 'matatabi', n: number) => void;
   setNotify: (v: boolean) => void;
+  setBirthday: (b: { m: number; d: number } | null) => void;
   toggleFavorite: (id: string) => void;
   shiftDays: (n: number) => void;
   reset: () => void;
@@ -106,19 +150,62 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     [todayKey, yKey, state.installDay],
   );
 
-  // その日の候補を（未生成なら）確定させる
+  // 起動の記録（連続日数・空いた日数）と、起動時刻・電池の観測
+  const calendarDay = fmtDay(now);
+  const hour = now.getHours();
   useEffect(() => {
     if (!ready) return;
     setState((s) => {
-      let next = s;
-      for (const k of availableDays) {
-        if (next.days[k]) continue;
-        const d = buildDay(k, Object.keys(next.owned));
-        next = { ...next, days: { ...next.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [] } } };
-      }
-      return next;
+      if (s.lastOpenDay === calendarDay) return s;
+      const gap = s.lastOpenDay ? daysBetween(s.lastOpenDay, calendarDay) : 0;
+      return { ...s, lastOpenDay: calendarDay, lastGap: gap, streak: gap === 1 ? s.streak + 1 : 1 };
     });
-  }, [ready, availableDays]);
+    let alive = true;
+    readBattery().then((b) => alive && setState((s) => observe(s, todayKey, hour, b)));
+    return () => {
+      alive = false;
+    };
+  }, [ready, calendarDay, todayKey, hour]);
+
+  // その日の候補を（未生成なら）確定させる。歩数・電池は非同期で読むので、生成中の日は記録しておく
+  const building = useRef(new Set<string>());
+  useEffect(() => {
+    if (!ready) return;
+    for (const k of availableDays) {
+      if (stateRef.current.days[k] || building.current.has(k)) continue;
+      building.current.add(k);
+      (async () => {
+        const [steps, battery] = await Promise.all([readSteps(k, now), readBattery()]);
+        setState((s) => {
+          if (s.days[k]) return s;
+          // 観測の記録が候補の生成より遅れることがあるので、いまの電池と時刻もここで足す
+          const o = merge(s.obs[prevDayKey(k)], s.obs[k]);
+          if (battery && !o.battery.includes(battery.level)) o.battery.push(battery.level);
+          if (k === todayKey && !o.hours.includes(hour)) o.hours.push(hour);
+          const signals: Signals = {
+            battery: o.battery,
+            charging: o.charging || !!battery?.charging,
+            steps,
+            gapDays: s.lastGap,
+            streak: s.streak,
+            openHours: o.hours,
+            catalogUpdated: s.catalogVersion !== CATALOG_VERSION,
+            birthday: s.birthday,
+          };
+          const d = buildDay(k, signals, { owned: s.owned, appearCounts: s.appearCounts });
+          const appearCounts = { ...s.appearCounts };
+          for (const id of d.candidates.slice(0, d.baseCount)) appearCounts[id] = (appearCounts[id] ?? 0) + 1;
+          return {
+            ...s,
+            appearCounts,
+            catalogVersion: CATALOG_VERSION,
+            days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [] } },
+          };
+        });
+        building.current.delete(k);
+      })();
+    }
+  }, [ready, availableDays, now, todayKey, hour]);
 
   const pickFree = useCallback((day: string, id: string) => {
     setState((s) => {
@@ -161,6 +248,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setState((s) => (what === 'ticket' ? { ...s, tickets: s.tickets + n } : { ...s, matatabi: s.matatabi + n }));
   }, []);
   const setNotify = useCallback((v: boolean) => setState((s) => ({ ...s, notifyEnabled: v })), []);
+  const setBirthday = useCallback((b: { m: number; d: number } | null) => setState((s) => ({ ...s, birthday: b })), []);
   const toggleFavorite = useCallback(
     (id: string) =>
       setState((s) => ({
@@ -174,7 +262,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setNotify, toggleFavorite, shiftDays, reset,
+    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, shiftDays, reset,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
 }

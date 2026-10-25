@@ -3,8 +3,8 @@ import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MAX_CANDIDATES, REVEAL_HOUR, msUntilNextReveal } from '../lib/encounter';
 import { useGame, visibleCount } from '../state/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../ui/base';
-import { Card, Header, Icon, ImgButton, InfoPill, Polaroid, RarityBadge } from '../ui/kit';
-import { Pic, Slice } from '../ui/Slice';
+import { Card, Header, ImgButton, InfoPill, Polaroid, RarityBadge } from '../ui/kit';
+import { Pic, Slice, Stretch } from '../ui/Slice';
 import { ScreenProps } from './types';
 
 export default function DeaiScreen({ openShop, width }: ScreenProps) {
@@ -31,6 +31,7 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
   const cols = visible.length <= 3 ? visible.length : 3;
   const colW = (width - 32 - (cols - 1) * 8) / cols;
   const selCat = sel ? CAT_BY_ID[sel] : null;
+  const heroH = width * (1400 / 1179) * 0.62;
 
   const pickSelected = () => {
     if (!sel) return;
@@ -47,11 +48,15 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
         <InfoPill style={{ flex: 1 }} icon="icon/ticket-paw" label="お迎え券" value={`${state.tickets}枚`} onPress={openShop} />
       </View>
 
-      <View style={{ marginTop: 6, overflow: 'hidden', paddingBottom: 4 }}>
-        <Pic name="bg/room-deai" width={width} style={[StyleSheet.absoluteFill, { opacity: 0.55 }]} />
+      <View style={{ marginTop: 6 }}>
+        {/* 部屋の背景。下端はクリームのグラデーションでページになじませる */}
+        <View style={[s.heroBg, { height: heroH }]}>
+          <Pic name="bg/room-deai" width={width} />
+          <Stretch name="bg/fade-cream-bottom" style={s.fade} />
+        </View>
         <View style={s.hero}>
           {!hasFree ? (
-            <Pic name="brand/title-free-pick" width={Math.min(width - 32, 360)} fallback={<T w="x" size={22}>3匹の中から1匹を無料でお迎え</T>} />
+            <Pic name="brand/title-free-pick" width={Math.min(width - 32, 360)} />
           ) : (
             <T w="x" size={20}>無料のお迎えが完了しました</T>
           )}
@@ -67,9 +72,9 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
           <View style={s.dayTabs}>
             {availableDays.map((k) => (
               <Pressable key={k} onPress={() => { setDay(k); setSel(null); }}>
-                <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab} fallback={{ borderRadius: 18, backgroundColor: day === k ? C.accent : C.card }}>
+                <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
                   <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
-                    {k === todayKey ? '今日' : 'きのう（受け取り期限まもなく）'}{state.days[k] && !state.days[k].freePick ? ' ●' : ''}
+                    {k === todayKey ? '今日' : 'きのう（受け取り期限まもなく）'}
                   </T>
                 </Slice>
               </Pressable>
@@ -84,22 +89,23 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
             const reason = rec.reasons[id];
             const owned = state.owned[id];
             return (
-              <Pressable key={id} style={{ width: colW, opacity: picked ? 0.6 : 1 }} disabled={picked} onPress={() => setSel(sel === id ? null : id)}>
+              <Pressable key={id} style={{ width: colW }} disabled={picked} onPress={() => setSel(sel === id ? null : id)}>
                 <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
                   {sel === id && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', bottom: -colW * 0.08 }} />}
                   <Bobbing delay={i * 180}>
                     <CatImage id={id} size={colW * 1.02} />
                   </Bobbing>
+                  {picked && <Pic name="badge/picked-stamp" width={colW * 0.36} style={{ position: 'absolute', right: -2, top: 2, opacity: 0.9 }} />}
                 </View>
                 <View style={s.badgeRow}><RarityBadge cat={cat} limited={!!reason} /></View>
                 <Card skin={sel === id ? 'selected' : 'white'} style={s.candCard}>
                   <T w="x" size={13} numberOfLines={1}>{cat.name}</T>
                   <T w="m" size={10} color={reason ? '#C9822B' : C.sub} style={{ textAlign: 'center', marginTop: 2, minHeight: 28 }} numberOfLines={2}>
-                    {picked ? 'お迎え済み' : reason ? `✨ ${reason}に出会えた子` : owned ? `おうちに ${owned.count}匹いる子` : 'はじめて会う子'}
+                    {picked ? 'お迎え済み' : reason ? `「${reason}」で出会えた` : owned ? `おうちに ${owned.count}匹いる子` : 'はじめて会う子'}
                   </T>
                   <Pressable onPress={() => setDetail(id)} style={{ alignSelf: 'stretch', marginTop: 6 }}>
-                    <Slice name="button/chip-detail" style={s.chip} fallback={{ borderRadius: 16 }}>
-                      <T w="b" size={11} style={{ marginLeft: 14 }}>くわしく見る ›</T>
+                    <Slice name="button/chip-detail" style={s.chip}>
+                      <T w="b" size={11} style={{ marginLeft: 24 }}>くわしく見る</T>
                     </Slice>
                   </Pressable>
                 </Card>
@@ -122,19 +128,14 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
 
         {!hasFree && (
           <Card>
-            <Pic name="brand/title-matatabi" height={26} fallback={<T w="x" size={17}>またたびで もっと出会える！</T>} />
+            <Pic name="brand/title-matatabi" height={26} />
             <View style={{ flexDirection: 'row', marginTop: 8 }}>
               <View style={{ flex: 1 }}>
-                <T w="m" size={12} color={C.sub}>またたびを使うと、今日の候補が追加されます{'\n'}最大{MAX_CANDIDATES}匹まで表示されます</T>
-                <T w="b" size={12} style={{ marginTop: 8 }}>現在 {visible.length}匹 / 最大 {MAX_CANDIDATES}匹</T>
+                <T w="m" size={12} color={C.sub}>またたびを使うと、今日の候補が追加されます。最大{MAX_CANDIDATES}匹まで表示されます</T>
+                <T w="b" size={12} style={{ marginTop: 8 }}>現在 {visible.length}匹 / 最大 {Math.max(MAX_CANDIDATES, rec.candidates.length)}匹</T>
                 <View style={{ flexDirection: 'row', gap: 4, marginTop: 6 }}>
-                  {Array.from({ length: MAX_CANDIDATES }, (_, i) => (
-                    <Pic
-                      key={i}
-                      name={i < visible.length ? 'gauge/cat-dot-on' : 'gauge/cat-dot-off'}
-                      height={20}
-                      fallback={<View style={[s.dot, { backgroundColor: i < visible.length ? '#B27A4F' : '#EADBC8' }]} />}
-                    />
+                  {Array.from({ length: Math.max(MAX_CANDIDATES, rec.candidates.length) }, (_, i) => (
+                    <Pic key={i} name={i < visible.length ? 'gauge/cat-dot-on' : 'gauge/cat-dot-off'} height={20} />
                   ))}
                 </View>
               </View>
@@ -158,10 +159,7 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
 
         {hasFree && rest.length > 0 && (
           <Card>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Icon name="icon/paw" size={22} />
-              <T w="x" size={17} style={{ marginLeft: 6 }}>この子たちも迎える</T>
-            </View>
+            <Pic name="brand/title-mukaeru" height={26} />
             <View style={{ flexDirection: 'row', marginTop: 8 }}>
               <View style={{ flex: 1 }}>
                 <T w="m" size={12} color={C.sub}>残りの{rest.length}匹もお迎え券を使って家族に迎えることができます</T>
@@ -195,7 +193,7 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
             </View>
             {state.tickets < 1 && (
               <Pressable onPress={openShop}>
-                <T w="b" size={12} color={C.accent} style={{ marginTop: 8, textAlign: 'right' }}>お迎え券を手に入れる ›</T>
+                <T w="b" size={12} color={C.accent} style={{ marginTop: 8, textAlign: 'right' }}>お迎え券を手に入れる</T>
               </Pressable>
             )}
           </Card>
@@ -204,6 +202,7 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
 
       <Modal visible={!!detail} transparent animationType="fade" onRequestClose={() => setDetail(null)}>
         <Pressable style={s.overlay} onPress={() => setDetail(null)}>
+          <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
           {detail && (
             <Card style={{ alignItems: 'center', padding: 20 }}>
               <Bobbing><CatImage id={detail} size={200} /></Bobbing>
@@ -225,6 +224,8 @@ export default function DeaiScreen({ openShop, width }: ScreenProps) {
 
 const s = StyleSheet.create({
   pills: { flexDirection: 'row', gap: 10, paddingHorizontal: 14 },
+  heroBg: { position: 'absolute', left: 0, right: 0, top: 0, overflow: 'hidden' },
+  fade: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 100 },
   hero: { alignItems: 'center', paddingTop: 14, paddingHorizontal: 16 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },
   dayTab: { height: 36, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
@@ -232,6 +233,5 @@ const s = StyleSheet.create({
   badgeRow: { alignItems: 'center', marginTop: -14, marginBottom: -11, zIndex: 3 },
   candCard: { alignItems: 'center', paddingHorizontal: 8, paddingTop: 16, paddingBottom: 10 },
   chip: { height: 30, alignItems: 'center', justifyContent: 'center' },
-  dot: { width: 20, height: 20, borderRadius: 10 },
-  overlay: { flex: 1, backgroundColor: '#0007', justifyContent: 'center', padding: 24 },
+  overlay: { flex: 1, justifyContent: 'center', padding: 24 },
 });

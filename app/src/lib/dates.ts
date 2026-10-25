@@ -1,0 +1,32 @@
+export const REVEAL_HOUR = 20;
+
+const pad = (n: number) => String(n).padStart(2, '0');
+export const fmtDay = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+
+export const parseDay = (key: string) => {
+  const [y, m, d] = key.split('-').map(Number);
+  return new Date(y, m - 1, d);
+};
+
+// 20:00 (local) に切り替わる「出会いの日」のキー。20:00前は前日分。
+export function encounterDayKey(now: Date): string {
+  return fmtDay(new Date(now.getTime() - REVEAL_HOUR * 3600 * 1000));
+}
+
+export function prevDayKey(key: string): string {
+  const d = parseDay(key);
+  d.setDate(d.getDate() - 1);
+  return fmtDay(d);
+}
+
+// 2つの日付キーの間の日数（b - a）
+export function daysBetween(a: string, b: string): number {
+  return Math.round((parseDay(b).getTime() - parseDay(a).getTime()) / 86400000);
+}
+
+export function msUntilNextReveal(now: Date): number {
+  const next = new Date(now);
+  next.setHours(REVEAL_HOUR, 0, 0, 0);
+  if (next <= now) next.setDate(next.getDate() + 1);
+  return next.getTime() - now.getTime();
+}

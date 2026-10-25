@@ -1,70 +1,35 @@
 import React, { useState } from 'react';
 import { Image, LayoutChangeEvent, StyleProp, View, ViewStyle } from 'react-native';
-import { UI } from './uiAssets';
+import { UI, UIAsset } from './uiAssets';
 
 // UI素材は @3x で作られているので、1pt = 3px として扱う
 export const PX = 3;
 
-export type Insets = { t: number; r: number; b: number; l: number };
-const ins = (l: number, t = 0, r = l, b = t): Insets => ({ l, t, r, b });
-
-// 素材ごとの伸縮しない端の幅（元画像のpx）。ここにない素材は Slice では使わない。
-const INSETS: Record<string, Insets> = {
-  'panel/card-cream': ins(64, 64),
-  'panel/card-white': ins(64, 64),
-  'panel/card-selected': ins(64, 64),
-  'panel/pill-info': ins(72),
-  'panel/pill-currency': ins(96),
-  'panel/sheet-bottom': ins(90, 90, 90, 10),
-  'button/primary-orange': ins(72),
-  'button/primary-orange-pressed': ins(72),
-  'button/primary-green': ins(72),
-  'button/ghost-outline': ins(72),
-  'button/ghost-green': ins(72),
-  'button/disabled': ins(72),
-  'button/tab-all-on': ins(64),
-  'button/tab-normal': ins(64),
-  'button/tab-rare': ins(64),
-  'button/tab-limited': ins(64),
-  'button/chip-detail': ins(110, 0, 60),
-  'button/chip-favorite-on': ins(130, 0, 70),
-  'button/chip-favorite-off': ins(130, 0, 70),
-  'button/search-bar': ins(270, 0, 130), // 素材の左右に約105pxの透明余白あり
-  'badge/rarity-normal': ins(56),
-  'badge/rarity-rare': ins(56),
-  'badge/rarity-limited': ins(56),
-  'badge/rarity-legend': ins(56),
-  'badge/travel-cat': ins(80),
-  'camera/cat-tray': ins(90, 90),
-  'gauge/track': ins(30),
-  'gauge/fill-orange': ins(30),
-  'gauge/fill-yellow': ins(30),
-};
-
-export const hasUI = (name: string) => !!UI[name];
-
-type SliceProps = {
-  name: string;
-  style?: StyleProp<ViewStyle>;
-  children?: React.ReactNode;
-  fallback?: ViewStyle; // 素材がまだ無いときの見た目
-};
-
-// 9スライス描画。四隅は等倍、辺は一方向、中央は両方向に伸ばす。
-export function Slice({ name, style, children, fallback }: SliceProps) {
+const warned = new Set<string>();
+function asset(name: string): UIAsset | undefined {
   const a = UI[name];
+  if (!a && !warned.has(name)) {
+    warned.add(name);
+    console.warn(`[ui] 画像素材がありません: ${name}`);
+  }
+  return a;
+}
+
+type SliceProps = { name: string; style?: StyleProp<ViewStyle>; children?: React.ReactNode };
+
+// 9スライス描画。伸縮位置は app/assets/ui/manifest.json の slice（素材のpx）。
+// 四隅は等倍、辺は一方向、中央は両方向に伸ばす。色や角丸はコードで描かない。
+export function Slice({ name, style, children }: SliceProps) {
+  const a = asset(name);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const onLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
     if (width !== size.w || height !== size.h) setSize({ w: width, h: height });
   };
-  if (!a) {
-    return <View style={[{ backgroundColor: '#FFF6EA', borderRadius: 16, borderWidth: 1.5, borderColor: '#E5D3BF' }, fallback, style]}>{children}</View>;
-  }
-  const i = INSETS[name] ?? ins(0);
-  const { w, h } = size;
   const cells: React.ReactNode[] = [];
-  if (w > 0 && h > 0) {
+  const { w, h } = size;
+  if (a && w > 0 && h > 0) {
+    const i = a.slice ?? { t: 0, r: 0, b: 0, l: 0 };
     // 表示先の端の太さ（pt）。表示サイズが小さすぎるときは縮める
     const kx = Math.min(1, w / ((i.l + i.r) / PX || 1));
     const ky = Math.min(1, h / ((i.t + i.b) / PX || 1));
@@ -91,17 +56,39 @@ export function Slice({ name, style, children, fallback }: SliceProps) {
   );
 }
 
-type PicProps = { name: string; height?: number; width?: number; style?: StyleProp<ViewStyle>; fallback?: React.ReactNode };
+type PicProps = { name: string; height?: number; width?: number; style?: StyleProp<ViewStyle> };
 
 // 縦横比を保ったまま表示する画像素材。height か width のどちらかを指定（両方なければ @3x 実寸）。
-export function Pic({ name, height, width, style, fallback }: PicProps) {
-  const a = UI[name];
-  if (!a) return fallback ? <View style={style}>{fallback}</View> : null;
+export function Pic({ name, height, width, style }: PicProps) {
+  const a = asset(name);
+  if (!a) return null;
   const w = width ?? (height ? (a.w / a.h) * height : a.w / PX);
   const h = height ?? (width ? (a.h / a.w) * width : a.h / PX);
   return (
     <View style={style} pointerEvents="none">
       <Image source={a.src} style={{ width: w, height: h }} resizeMode="contain" />
+    </View>
+  );
+}
+
+// 画面全体を覆う背景（不透明の bg/ 素材）。縦横比を保って全面を埋める
+export function Backdrop({ name, style }: { name: string; style?: StyleProp<ViewStyle> }) {
+  const a = asset(name);
+  if (!a) return null;
+  return (
+    <View pointerEvents="none" style={[{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, overflow: 'hidden' }, style]}>
+      <Image source={a.src} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
+    </View>
+  );
+}
+
+// 素材を指定の大きさに引き伸ばして敷く（暗幕・グラデーションなど単色に近いもの）
+export function Stretch({ name, style }: { name: string; style?: StyleProp<ViewStyle> }) {
+  const a = asset(name);
+  if (!a) return null;
+  return (
+    <View pointerEvents="none" style={[{ overflow: 'hidden' }, style]}>
+      <Image source={a.src} resizeMode="stretch" style={{ width: '100%', height: '100%' }} />
     </View>
   );
 }

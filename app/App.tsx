@@ -14,8 +14,8 @@ import ShopScreen from './src/screens/ShopScreen';
 import WorldScreen from './src/screens/WorldScreen';
 import ZukanScreen from './src/screens/ZukanScreen';
 import { GameProvider, useGame } from './src/state/game';
-import { C } from './src/ui/base';
 import { TabBar, TabKey } from './src/ui/kit';
+import { Backdrop } from './src/ui/Slice';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
 const MAX_W = 430; // Webで広い画面でもスマホ幅で表示する
@@ -28,10 +28,17 @@ function Root() {
   const insets = useSafeAreaInsets();
   const { width: winW } = useWindowDimensions();
   const width = Math.min(winW, MAX_W);
-  if (!ready || !fontsLoaded) return <View style={s.fill} />;
+  if (!ready || !fontsLoaded) {
+    return (
+      <View style={s.fill}>
+        <Backdrop name="brand/splash" />
+      </View>
+    );
+  }
   const Active = SCREENS[tab];
   return (
     <View style={[s.fill, { alignItems: 'center' }]}>
+      <Backdrop name="bg/app-cream" />
       <View style={[s.fill, { width }]}>
         <SafeAreaView edges={['top']} style={s.fill}>
           <Active go={setTab} openShop={() => setShop(true)} width={width} />
@@ -40,6 +47,7 @@ function Root() {
       </View>
       <Modal visible={shop} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setShop(false)}>
         <View style={[s.fill, { alignItems: 'center' }]}>
+          <Backdrop name="bg/app-cream" />
           <SafeAreaView style={[s.fill, { width }]}>
             <ShopScreen onClose={() => setShop(false)} />
           </SafeAreaView>
@@ -61,5 +69,5 @@ export default function App() {
 }
 
 const s = StyleSheet.create({
-  fill: { flex: 1, backgroundColor: C.bg },
+  fill: { flex: 1 },
 });

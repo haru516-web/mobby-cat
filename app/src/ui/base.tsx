@@ -30,14 +30,13 @@ export function T({ w = 'b', size = 14, color = C.ink, style, ...rest }: TProps)
   return <Text {...rest} style={[{ fontFamily: FONT[w], fontSize: size, color }, style]} />;
 }
 
-export function CatImage({ id, size, silhouette }: { id: string; size: number; silhouette?: boolean }) {
+export function CatImage({ id, size }: { id: string; size: number }) {
   const cat = CAT_BY_ID[id];
   return (
     <Image
       source={cat.image}
       style={{ width: size, height: size }}
       contentFit="contain"
-      tintColor={silhouette ? '#7A6253' : undefined}
     />
   );
 }

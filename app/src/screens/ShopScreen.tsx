@@ -1,9 +1,10 @@
 import React from 'react';
-import { Alert, ScrollView, StyleSheet, Switch, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { disableDailyNotification, enableDailyNotification } from '../lib/notify';
 import { useGame } from '../state/game';
 import { C, T } from '../ui/base';
-import { Card, Icon, ImgButton } from '../ui/kit';
+import { Card, Icon, ImgButton, Toggle } from '../ui/kit';
+import { Backdrop, Pic, Slice } from '../ui/Slice';
 
 // 価格は設計書の仮値。実課金（StoreKit 等）は未接続で、購入ボタンは開発用の無料付与。
 const ITEMS = [
@@ -13,9 +14,12 @@ const ITEMS = [
   { key: 'matatabi', n: 1, icon: 'icon/matatabi-leaf', name: 'またたび 1個', price: '¥120', desc: '今日の出会いの候補が1匹増えます（最大6匹）' },
 ] as const;
 
+const DAYS_IN = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
 export default function ShopScreen({ onClose }: { onClose: () => void }) {
   const g = useGame();
   const { state } = g;
+  const bd = state.birthday;
 
   const toggleNotify = async (v: boolean) => {
     if (v) {
@@ -28,47 +32,87 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
     }
   };
 
+  // 誕生日は月・日だけを端末内に保存する（年は持たない）
+  const stepBirthday = (part: 'm' | 'd', delta: number) => {
+    const cur = bd ?? { m: 1, d: 1 };
+    let m = cur.m, d = cur.d;
+    if (part === 'm') m = ((m - 1 + delta + 12) % 12) + 1;
+    else d = ((d - 1 + delta + DAYS_IN[m - 1]) % DAYS_IN[m - 1]) + 1;
+    g.setBirthday({ m, d: Math.min(d, DAYS_IN[m - 1]) });
+  };
+
   return (
-    <ScrollView contentContainerStyle={s.wrap}>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <T w="x" size={26} style={{ flex: 1 }}>ショップ</T>
-        <ImgButton skin="ghost-outline" label="閉じる" height={38} onPress={onClose} style={{ width: 100 }} />
-      </View>
-      <T w="b" size={13} color={C.sub} style={{ marginTop: 4, marginBottom: 12 }}>お迎え券 {state.tickets}枚 ／ またたび {state.matatabi}個</T>
-
-      {ITEMS.map((it) => (
-        <Card key={it.name} style={s.item}>
-          <Icon name={it.icon} size={40} />
-          <View style={{ flex: 1 }}>
-            <T w="x" size={14}>{it.name}</T>
-            <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>{it.desc}</T>
-          </View>
-          <ImgButton label={it.price} height={40} onPress={() => g.grant(it.key, it.n)} style={{ width: 100 }} />
-        </Card>
-      ))}
-      <T w="m" size={11} color={C.sub}>※ テスト版：実際の課金は未接続です。価格のボタンを押すと開発用に無料で付与します。</T>
-
-      <T w="x" size={18} style={s.h2}>設定</T>
-      <Card style={s.item}>
-        <View style={{ flex: 1 }}>
-          <T w="x" size={14}>毎日20:00に通知</T>
-          <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>通知なしでもアプリ内から受け取れます</T>
+    <View style={{ flex: 1 }}>
+      <Backdrop name="bg/screen-shop" />
+      <ScrollView contentContainerStyle={s.wrap}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Pic name="brand/title-shop" height={40} />
+          <View style={{ flex: 1 }} />
+          <Pressable onPress={onClose} accessibilityLabel="閉じる">
+            <Pic name="button/close-round" height={40} />
+          </Pressable>
         </View>
-        <Switch value={state.notifyEnabled} onValueChange={toggleNotify} />
-      </Card>
+        <T w="b" size={13} color={C.sub} style={{ marginTop: 4, marginBottom: 12 }}>お迎え券 {state.tickets}枚 ／ またたび {state.matatabi}個</T>
 
-      <T w="x" size={18} style={s.h2}>開発用</T>
-      <View style={{ gap: 8 }}>
-        <ImgButton skin="ghost-outline" label={`日付を1日進める（+${state.debugOffsetDays}日）`} height={44} onPress={() => g.shiftDays(1)} />
-        <ImgButton skin="ghost-outline" label="日付をリセット" height={44} onPress={() => g.shiftDays(-state.debugOffsetDays)} />
-        <ImgButton
-          skin="ghost-outline"
-          label="全データを初期化"
-          height={44}
-          onPress={() => Alert.alert('初期化', 'すべての猫と所持品が消えます', [{ text: 'キャンセル', style: 'cancel' }, { text: '初期化', style: 'destructive', onPress: g.reset }])}
-        />
-      </View>
-    </ScrollView>
+        {ITEMS.map((it) => (
+          <Card key={it.name} style={s.item}>
+            <Icon name={it.icon} size={40} />
+            <View style={{ flex: 1 }}>
+              <T w="x" size={14}>{it.name}</T>
+              <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>{it.desc}</T>
+            </View>
+            <ImgButton label={it.price} height={40} onPress={() => g.grant(it.key, it.n)} style={{ width: 100 }} />
+          </Card>
+        ))}
+        <T w="m" size={11} color={C.sub}>※ テスト版：実際の課金は未接続です。価格のボタンを押すと開発用に無料で付与します。</T>
+
+        <Pic name="brand/title-settings" height={32} style={s.h2} />
+        <Card style={s.item}>
+          <View style={{ flex: 1 }}>
+            <T w="x" size={14}>毎日20:00に通知</T>
+            <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>通知なしでもアプリ内から受け取れます</T>
+          </View>
+          <Toggle value={state.notifyEnabled} onChange={toggleNotify} />
+        </Card>
+        <Card style={s.item}>
+          <View style={{ flex: 1 }}>
+            <T w="x" size={14}>誕生日</T>
+            <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>その日に特別な猫が来ます。端末の中だけに保存します</T>
+          </View>
+          {bd ? (
+            <View style={{ alignItems: 'flex-end', gap: 4 }}>
+              <Stepper label={`${bd.m}月`} onMinus={() => stepBirthday('m', -1)} onPlus={() => stepBirthday('m', 1)} />
+              <Stepper label={`${bd.d}日`} onMinus={() => stepBirthday('d', -1)} onPlus={() => stepBirthday('d', 1)} />
+              <T w="b" size={11} color={C.sub} onPress={() => g.setBirthday(null)}>登録をやめる</T>
+            </View>
+          ) : (
+            <ImgButton skin="ghost-outline" label="登録する" height={36} fontSize={12} onPress={() => g.setBirthday({ m: 1, d: 1 })} style={{ width: 100 }} />
+          )}
+        </Card>
+
+        <T w="x" size={16} style={s.h2}>開発用</T>
+        <View style={{ gap: 8 }}>
+          <ImgButton skin="ghost-outline" label={`日付を1日進める（+${state.debugOffsetDays}日）`} height={44} onPress={() => g.shiftDays(1)} />
+          <ImgButton skin="ghost-outline" label="日付をリセット" height={44} onPress={() => g.shiftDays(-state.debugOffsetDays)} />
+          <ImgButton
+            skin="ghost-outline"
+            label="全データを初期化"
+            height={44}
+            onPress={() => Alert.alert('初期化', 'すべての猫と所持品が消えます', [{ text: 'キャンセル', style: 'cancel' }, { text: '初期化', style: 'destructive', onPress: g.reset }])}
+          />
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+function Stepper({ label, onMinus, onPlus }: { label: string; onMinus: () => void; onPlus: () => void }) {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+      <ImgButton skin="ghost-outline" label="−" height={28} fontSize={14} onPress={onMinus} style={{ width: 36 }} />
+      <Slice name="button/tab-normal" style={s.stepValue}><T w="x" size={13}>{label}</T></Slice>
+      <ImgButton skin="ghost-outline" label="＋" height={28} fontSize={14} onPress={onPlus} style={{ width: 36 }} />
+    </View>
   );
 }
 
@@ -76,4 +120,5 @@ const s = StyleSheet.create({
   wrap: { padding: 16, paddingBottom: 40 },
   h2: { marginTop: 24, marginBottom: 8 },
   item: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 8 },
+  stepValue: { height: 28, minWidth: 56, alignItems: 'center', justifyContent: 'center' },
 });

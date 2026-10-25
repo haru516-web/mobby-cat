@@ -5,7 +5,7 @@ import { REVEAL_HOUR } from '../lib/encounter';
 import { useGame } from '../state/game';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../ui/base';
 import { Card, Header, ImgButton, InfoPill, Polaroid } from '../ui/kit';
-import { Pic } from '../ui/Slice';
+import { Pic, Slice } from '../ui/Slice';
 import { ScreenProps } from './types';
 
 // 部屋の中の猫の置き場所（部屋画像に対する割合）。手前ほど大きい
@@ -62,9 +62,9 @@ export default function HomeScreen({ go, openShop, width }: ScreenProps) {
                 <CatImage id={id} size={size} />
               </Bobbing>
               {talk === id && (
-                <View style={[s.bubble, { left: size * 0.2 }]}>
-                  <T w="x" size={12}>{CAT_BY_ID[id].name}「にゃ！」</T>
-                </View>
+                <Slice name="panel/speech-bubble" style={[s.bubble, { left: size * 0.1 }]}>
+                  <T w="x" size={12} numberOfLines={1}>{CAT_BY_ID[id].name}「にゃ！」</T>
+                </Slice>
               )}
             </Pressable>
           );
@@ -82,7 +82,7 @@ export default function HomeScreen({ go, openShop, width }: ScreenProps) {
           <ImgButton label="旅に出る ›" height={38} onPress={() => go('world')} style={{ marginTop: 'auto', width: 120 }} />
         </Card>
         <Card style={{ width: half, minHeight: 190 }}>
-          <T w="x" size={17}>きょうのようす</T>
+          <Pic name="brand/title-kyou" height={26} />
           <T w="m" size={12} color={C.sub} style={{ marginTop: 6 }}>
             {roomCats.length ? 'みんなのんびりしています' : '部屋はまだしずかです'}
           </T>
@@ -98,7 +98,7 @@ export default function HomeScreen({ go, openShop, width }: ScreenProps) {
 const s = StyleSheet.create({
   pills: { flexDirection: 'row', gap: 10, paddingHorizontal: 14, zIndex: 2 },
   empty: { position: 'absolute', left: 0, right: 0, top: '40%', alignItems: 'center' },
-  bubble: { position: 'absolute', top: -14, backgroundColor: '#fff', borderRadius: 14, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1.5, borderColor: C.line },
+  bubble: { position: 'absolute', top: -34, minWidth: 120, paddingHorizontal: 14, paddingTop: 8, paddingBottom: 16, alignItems: 'center' },
   camera: { position: 'absolute', right: 14, bottom: 20, alignItems: 'center', zIndex: 200 },
   cameraLabel: { marginTop: -4, textShadowColor: '#fff', textShadowRadius: 6 },
   cards: { flexDirection: 'row', gap: 10, paddingHorizontal: 16, marginTop: -6 },

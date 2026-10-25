@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { CATS, CatDef } from '../data/catalog';
-import { CONDITION_HINTS } from '../lib/encounter';
+import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../lib/conditions';
 import { useGame } from '../state/game';
 import { C, CatImage, FONT, T, catNo } from '../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, RarityBadge } from '../ui/kit';
-import { Pic, Slice } from '../ui/Slice';
+import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well } from '../ui/kit';
+import { Backdrop, Pic, Slice, Stretch } from '../ui/Slice';
 import { ScreenProps } from './types';
 
 type Filter = 'all' | 'normal' | 'rare' | 'limited';
@@ -16,9 +16,17 @@ const FILTERS: { key: Filter; label: string; skin: string; color: string }[] = [
   { key: 'limited', label: '限定', skin: 'button/tab-limited', color: '#6A4FB0' },
 ];
 
-const isLimited = (c: CatDef) => !!CONDITION_HINTS[c.id];
+// 「限定」= 条件で出会う猫と世界の猫。ノーマル / レア は毎日の抽選に入る猫
+const isLimited = (c: CatDef) => c.kind !== 'breed' && c.kind !== 'series';
 const match = (c: CatDef, f: Filter) =>
   f === 'all' ? true : f === 'limited' ? isLimited(c) : f === 'rare' ? !isLimited(c) && c.rarity >= 3 : !isLimited(c) && c.rarity <= 2;
+
+function hint(c: CatDef) {
+  if (c.kind === 'world') return WORLD_HINT;
+  if (c.kind === 'travel') return TRAVEL_HINT;
+  if (PENDING[c.id]) return `${HINTS[c.id] ?? ''}（${PENDING[c.id]}）`;
+  return HINTS[c.id] ?? 'まだ出会っていません。いつかの出会いを待とう';
+}
 
 export default function ZukanScreen({ openShop, width }: ScreenProps) {
   const { state, toggleFavorite } = useGame();
@@ -39,13 +47,14 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
 
   return (
     <View style={{ flex: 1 }}>
+      <Backdrop name="bg/screen-zukan" />
       <ScrollView contentContainerStyle={{ paddingBottom: cat ? 300 : 24 }}>
         <Header onShop={openShop} onBell={openShop} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Card style={s.collection}>
             <View style={{ flex: 1 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Pic name="brand/title-collection" height={30} fallback={<T w="x" size={16}>コレクション</T>} />
+                <Pic name="brand/title-collection" height={30} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginLeft: 8 }}>
                   <T w="x" size={26}>{have}</T>
                   <T w="b" size={14} color={C.sub} style={{ marginBottom: 3 }}>/{CATS.length}</T>
@@ -57,7 +66,7 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
             {mascot && <CatImage id={mascot.id} size={72} />}
           </Card>
 
-          <Slice name="button/search-bar" style={s.search} fallback={{ borderRadius: 25 }}>
+          <Slice name="button/search-bar" style={s.search}>
             <View>
               <TextInput
                 value={q}
@@ -75,7 +84,7 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
               const skin = f.key === 'all' && !on ? 'button/tab-normal' : f.skin;
               return (
                 <Pressable key={f.key} style={{ flex: 1, opacity: on || f.key === 'all' ? 1 : 0.72, transform: [{ scale: on ? 1.04 : 1 }] }} onPress={() => setFilter(f.key)}>
-                  <Slice name={skin} style={s.filter} fallback={{ borderRadius: 20 }}>
+                  <Slice name={skin} style={s.filter}>
                     <T w="x" size={13} color={f.key === 'all' && !on ? C.ink : f.color}>{f.label}</T>
                   </Slice>
                 </Pressable>
@@ -83,29 +92,33 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
             })}
           </View>
 
-          <View style={s.grid}>
+          {/* 1マス = 正方形の画像1〜2枚＋文字。数が多いのでマスごとの9スライスは使わず、一覧全体を1枚のパネルに載せる */}
+          <Card style={[s.grid, { marginHorizontal: -6, paddingHorizontal: 6 }]}>
             {list.map((c) => {
               const own = state.owned[c.id];
               const on = sel === c.id;
               return (
                 <Pressable key={c.id} style={{ width: cellW }} onPress={() => setSel(on ? null : c.id)}>
-                  <Card skin={on ? 'selected' : 'white'} style={{ padding: 4 }}>
-                    {own ? (
-                      <View style={[s.photo, { height: cellW - 8 }]}><CatImage id={c.id} size={cellW - 8} /></View>
-                    ) : (
-                      <Pic name="panel/card-locked" width={cellW - 8} fallback={<View style={[s.photo, { height: cellW - 8 }]}><CatImage id={c.id} size={cellW - 12} silhouette /></View>} />
-                    )}
-                    <View style={{ paddingHorizontal: 4, paddingTop: 3 }}>
-                      <T w="m" size={9} color={C.sub}>No.{catNo(c.id)}</T>
-                      <T w="x" size={10} numberOfLines={1}>{own ? c.name : '???'}</T>
+                  <View style={{ width: cellW, height: cellW }}>
+                    <Pic
+                      name={on ? 'panel/card-selected' : own ? 'panel/photo-well' : 'panel/card-locked'}
+                      width={cellW}
+                      style={StyleSheet.absoluteFill}
+                    />
+                    <View style={s.cellCat}>
+                      {own ? <CatImage id={c.id} size={cellW - 10} /> : <Icon name="icon/lock" size={cellW * 0.34} />}
                     </View>
-                    {own && own.count > 1 && <T w="x" size={10} color={C.accent} style={s.count}>×{own.count}</T>}
-                    {state.favorites.includes(c.id) && <View style={s.favMark}><Icon name="icon/heart-on" size={14} /></View>}
-                  </Card>
+                    {!!own && own.count > 1 && (
+                      <Slice name="badge/owned-count" style={s.count}><T w="x" size={10} color={C.accent}>×{own.count}</T></Slice>
+                    )}
+                    {state.favorites.includes(c.id) && <Icon name="icon/heart-on" size={16} style={s.favMark} />}
+                  </View>
+                  <T w="m" size={9} color={C.sub} style={{ marginTop: 3 }}>No.{catNo(c.id)}</T>
+                  <T w="x" size={10} numberOfLines={1}>{own ? c.name : '???'}</T>
                 </Pressable>
               );
             })}
-          </View>
+          </Card>
           {list.length === 0 && <T w="b" size={13} color={C.sub} style={{ textAlign: 'center' }}>見つかりませんでした</T>}
         </View>
       </ScrollView>
@@ -113,30 +126,31 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
       {cat && (
         <Card style={s.sheet}>
           <View style={{ flexDirection: 'row', gap: 12 }}>
-            <View style={s.bigPhoto}>
-              <CatImage id={cat.id} size={130} silhouette={!o} />
-            </View>
+            <Well style={s.bigPhoto}>
+              {o ? <CatImage id={cat.id} size={124} /> : <Pic name="cat/silhouette-locked" width={124} />}
+            </Well>
             <View style={{ flex: 1 }}>
               <T w="m" size={11} color={C.sub}>No.{catNo(cat.id)}</T>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
                 <T w="x" size={20}>{o ? cat.name : '???'}</T>
-                <RarityBadge cat={cat} limited={isLimited(cat)} height={20} />
+                <RarityBadge cat={cat} height={20} />
               </View>
               <T w="m" size={11} color={C.sub} style={{ marginTop: 4 }}>
-                {o ? (o.firstReason ? `「${o.firstReason}」に出会った子` : 'ふらりと遊びに来てくれた子') : CONDITION_HINTS[cat.id] ?? 'まだ出会っていません。いつかの出会いを待とう'}
+                {o ? (o.firstReason ? `「${o.firstReason}」に出会った子` : 'ふらりと遊びに来てくれた子') : hint(cat)}
               </T>
               {o && (
-                <View style={s.table}>
-                  <Row k="出会った日" v={o.firstDay.replace(/-/g, '/')} />
-                  <Row k="所持数" v={`${o.count}`} />
-                </View>
+                <Slice name="panel/info-table" style={s.table}>
+                  <Row icon="icon/calendar-small" k="出会った日" v={o.firstDay.replace(/-/g, '/')} />
+                  <Stretch name="panel/divider-h" style={{ height: 4 }} />
+                  <Row icon="icon/box" k="所持数" v={`${o.count}`} />
+                </Slice>
               )}
             </View>
           </View>
           <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
             {o && (
               <Pressable style={{ flex: 1 }} onPress={() => toggleFavorite(cat.id)}>
-                <Slice name={fav ? 'button/chip-favorite-on' : 'button/chip-favorite-off'} style={s.favBtn} fallback={{ borderRadius: 22 }}>
+                <Slice name={fav ? 'button/chip-favorite-on' : 'button/chip-favorite-off'} style={s.favBtn}>
                   <T w="x" size={13} style={{ marginLeft: 26 }}>{fav ? 'お気に入り中' : 'お気に入り'}</T>
                 </Slice>
               </Pressable>
@@ -149,10 +163,11 @@ export default function ZukanScreen({ openShop, width }: ScreenProps) {
   );
 }
 
-function Row({ k, v }: { k: string; v: string }) {
+function Row({ icon, k, v }: { icon: string; k: string; v: string }) {
   return (
     <View style={s.row}>
-      <T w="m" size={11} color={C.sub}>{k}</T>
+      <Icon name={icon} size={16} />
+      <T w="m" size={11} color={C.sub} style={{ marginLeft: 6, flex: 1 }}>{k}</T>
       <T w="b" size={12}>{v}</T>
     </View>
   );
@@ -160,17 +175,16 @@ function Row({ k, v }: { k: string; v: string }) {
 
 const s = StyleSheet.create({
   collection: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 12 },
-  vline: { width: 1, alignSelf: 'stretch', backgroundColor: C.line },
   search: { height: 48, justifyContent: 'center' },
-  searchInput: { marginLeft: 88, marginRight: 44, fontSize: 14, color: C.ink, height: 44 } as never,
+  searchInput: { marginLeft: 64, marginRight: 30, fontSize: 14, color: C.ink, height: 44 } as never,
   filter: { height: 38, alignItems: 'center', justifyContent: 'center' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  photo: { backgroundColor: '#F7EDE1', borderRadius: 10, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  count: { position: 'absolute', top: 6, right: 8 },
-  favMark: { position: 'absolute', top: 4, left: 4 },
+  cellCat: { position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' },
+  count: { position: 'absolute', top: 2, right: 2, height: 18, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center' },
+  favMark: { position: 'absolute', top: 2, left: 2 },
   sheet: { position: 'absolute', left: 10, right: 10, bottom: 8 },
-  bigPhoto: { width: 130, height: 130, borderRadius: 16, backgroundColor: '#F7EDE1', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  table: { marginTop: 6, borderWidth: 1, borderColor: C.line, borderRadius: 10, paddingHorizontal: 8 },
-  row: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4 },
+  bigPhoto: { width: 130, height: 130 },
+  table: { marginTop: 6, paddingHorizontal: 10, paddingVertical: 4 },
+  row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 4 },
   favBtn: { height: 44, alignItems: 'center', justifyContent: 'center' },
 });

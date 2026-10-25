@@ -4,11 +4,14 @@
     "slug": "mobby-cat",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ui/brand/app-icon.png",
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mobbycat.app"
+      "bundleIdentifier": "com.mobbycat.app",
+      "infoPlist": {
+        "NSMotionUsageDescription": "その日の歩数に合わせて、出会える猫モビーが変わります。"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +27,16 @@
     },
     "plugins": [
       "expo-image",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/ui/brand/logo-nekomobby.png",
+          "imageWidth": 240,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFF8F0"
+        }
+      ]
     ]
   }
 }
