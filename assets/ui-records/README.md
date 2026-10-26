@@ -126,3 +126,5 @@ Seventeen final assets used built-in image_gen. Five assets were redrawn once af
 ## UI v3 最終集計
 
 Manifest totals: 211 UI assets and 3 system icons. Category counts: badge 11, bg 19, brand 17, button 29, camera 20, cat 3, gauge 5, icon 28, illust 18, login 9, navbtn 9, opening 6, panel 16, share 10, tabbar 11. The UI v3 audit covers all 54 planned paths with zero pending assets and zero metadata/hash errors.
+
+Registry generated with `tools/build-ui-registry.ps1`: 211 entries, 53 sliced assets. It updated only generated `app/src/ui/uiAssets.ts`; no app build was run. The complete added/modified path inventory is `provenance/ui-v3-files.md`.
