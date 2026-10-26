@@ -17,3 +17,7 @@ Use the same Mobby anatomy, references, transparency, framing and exact hardware
 ## Service failure / resume
 
 First generation returned HTTP 429 usage_limit_reached; no output image. Service reset timestamp: 1793018220 (2026-10-26 21:37 JST). B/C were not submitted. Original traveling-mobby.png and manifest entry remain unchanged. No final selection or thumbnail acceptance has occurred. Resume with A, generate B and C with both references, save rejected prototypes, compare each against its five nearest cats at 512/256px and winner at 120px, inspect actual alpha and exact controls, then update only the traveling-mobby manifest entry and publish the completed asset.
+
+## 再開後の完了記録
+上の生成停止は初回時点の履歴。再開後に3案・A修正・余白修正を生成し、A修正版を採用した。実際に送信した全プロンプトは [traveler-v2-resumed-prompts.md](traveler-v2-resumed-prompts.md)、比較・採用理由は ../review/traveler.md に保存。採用画像のsha256: ba060a08c4da2455360d4043a42c328bc5e9f5ac3c27c02dc1102035bce7de69。
+
