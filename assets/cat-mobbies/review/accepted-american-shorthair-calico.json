@@ -17,5 +17,10 @@
     ],
     "bytes": 2114804,
     "sha256": "77fd4e8af53756d2d9c6eb83fb52fb8dfc48f82aa03fb43f0d5894ec746700be"
+  },
+  "combinedSimilarityReview": {
+    "status": "revision-pending",
+    "group": "calico-short",
+    "reason": "Three short calicos have similar face/build. Preserve white/orange/black short fur; American Shorthair must have massive broad cheeks, wide low rounded square build, small ears and different large asymmetric patch positions."
   }
 }

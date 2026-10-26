@@ -17,5 +17,10 @@
     ],
     "bytes": 2232105,
     "sha256": "7c648d1d62a277e0c25276f3d2d58017d239242bd61281f9727c27e9bd6d4e8b"
+  },
+  "combinedSimilarityReview": {
+    "status": "revision-pending",
+    "group": "brown-spotted-short",
+    "reason": "Bronze Mau and Mist still too similar to existing spotted cats. Mau: slim tall square, high flared ears, angular face, bronze/green iris; Mist: very muted misty low-contrast spots over taupe-brown, broad round face, small rounded ears and low wide square."
   }
 }

@@ -77,8 +77,8 @@
     "yofukashi",
     "yukidaruma"
   ],
-  "bAccepted": 81,
-  "bRemaining": 19,
+  "bAccepted": 85,
+  "bRemaining": 15,
   "bIds": [
     "abyssinian-blue",
     "abyssinian-fawn",
@@ -90,6 +90,9 @@
     "arabian-mau",
     "australian-mist",
     "bambino",
+    "bengal-marble",
+    "bengal-silver",
+    "bengal-snow-lynx",
     "birman-blue-point",
     "birman-chocolate-point",
     "british-bicolor",
@@ -105,6 +108,7 @@
     "cymric",
     "donskoy",
     "dragon-li",
+    "egyptian-mau-bronze",
     "european-burmese",
     "european-shorthair",
     "german-rex",
@@ -164,5 +168,10 @@
   ],
   "scopeCheck": "passed: only cat assets and records",
   "hashDimensionAlphaIdentityChecks": "passed",
-  "visualQA": "per accepted record; A similarity re-audit passed 2026-10-26; common padding finish pending"
+  "visualQA": "per accepted record; A similarity re-audit passed 2026-10-26; common padding finish pending",
+  "combinedSimilarityReview": "pending: six groups, nine saved B concepts need additional revision; see similarity.md",
+  "generationBlock": {
+    "reason": "image-generation-usage-limit",
+    "resetAtJapan": "2026-10-26T21:37:00+09:00"
+  }
 }

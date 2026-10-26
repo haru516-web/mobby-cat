@@ -64,3 +64,20 @@ bengal, toyger, ocicat, abyssinian, singapura, exotic-shorthair, scottish-fold, 
 ## A 描き分け完了（2026-10-26）
 
 追加shinirimobbyを採用。黄色長毛のjuuden/mangetsuに対し、淡いレモン短毛・小折れ耳・ミント目・低い横広体で分離した。初回74匹＋再監査追加1匹＝75匹を元ファイル名のまま再描画。全136匹の目視再監査で、同じ見た目の組は最大2匹までと判定した。after/は追加前の全件比較、追加後のshinirimobbyはregenerated一覧とaccepted記録で確認できる。Aの識別性の作業を終え、B本番へ移る。全画像共通の余白仕上げは別途確認待ち。
+
+## B 85種追加後の全221匹比較（2026-10-26・未完了）
+
+combined/groups-*.pngの全20枚を512px・3列で目視。a〜h各10種とiの4種、jの指定試作1種を保存。Bの制作中修正は9種（短尾4、eの3、hの2）を採用済み。i残り6種は生成の利用上限で失敗し、j残り9種は未着手。解除予定は2026-10-26 21:37日本時間。生成失敗はdrafts-batch-i.json、再開順と詳細方針はresume-state.jsonに保存。
+
+Bを加えた全体では、次の6組・Bの9種に追加修正が必要。全236匹の最終合格とはしていない。ID・名前・指定毛色は維持し、耳・顔・体型・模様の強さで分離する。
+
+| 組 | 近いID | 修正するBのIDと方針 |
+| --- | --- | --- |
+| 灰単色短毛 | british-shorthair, russian-blue, chartreux, korat | chartreuxは小耳・低い横広頬・密な毛、koratはハート型の顔・大耳・縦長四角胴 |
+| 銀タビー長毛 | maine-coon, siberian, maine-coon-silver-tabby, norwegian-forest-silver-tabby | B2種をさらに分離。メインクーンは長い四角いマズル・大きな房耳・高い胴、ノルウェージャンは三角顔・中耳・低い幅広胴・流れる毛 |
+| 茶ポイント白手袋長毛 | birman, ragdoll-seal-mitted, birman-chocolate-point | birman-chocolate-pointは小丸耳・丸いローマンノーズ・低い胴。チョコ色・白手袋・青目は維持 |
+| 茶タビー短毛 | dragon-li, american-shorthair-brown-tabby, bengal-marble | bengal-marbleの横方向に流れる大きなマーブル模様、低い耳、幅広マズルを強調 |
+| 茶斑点短毛 | ocicat, bengal, egyptian-mau-bronze, australian-mist | Mauは大耳・角張った顔・高い胴、Mistは薄く霞む模様・小丸耳・幅広顔 |
+| 三毛短毛 | japanese-bobtail, mike-neko, american-shorthair-calico | american-shorthair-calicoは大きな頬・小耳・横広胴・非対称の大斑へ |
+
+その他、銀斑点のegyptian-mau/bengal-silver、淡クリーム大耳のarabian-mau/abyssinian-fawn等の近い2匹組は、残り15種追加後に再照合する。共通の透明余白仕上げも未完了。コード/UI画像の変更はない。

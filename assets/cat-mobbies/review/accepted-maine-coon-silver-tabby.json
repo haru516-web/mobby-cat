@@ -17,5 +17,10 @@
     ],
     "bytes": 2209049,
     "sha256": "29e1b5a222ed0ec364f0127347bab0b05bc29361ee26552d1c39f90a658b5ec8"
+  },
+  "combinedSimilarityReview": {
+    "status": "revision-pending",
+    "group": "silver-tabby-long",
+    "reason": "Long silver tabbies remain a group larger than two. Maine Coon must have elongated square muzzle, heavy brow, tall angular square build and giant lynx ears. Norwegian needs smaller upright ears, triangular muzzle, smooth flowing coat and low broad body; recent first revision not enough at thumbnail."
   }
 }

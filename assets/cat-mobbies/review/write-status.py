@@ -7,6 +7,9 @@ plan=json.loads((review/'regen-plan.json').read_text(encoding='utf-8'));hold={'r
 a=[r for r in records if r.get('kind')!='breed'];b=[r for r in records if r.get('kind')=='breed'];done={r['id'] for r in a}
 rejected_breed_ids={r['id'] for p in review.glob('rejected-breed-*.json') for r in json.loads(p.read_text(encoding='utf-8'))}
 regenerated_breeds=len(rejected_breed_ids & {r['id'] for r in b})
+resume_path=review/'resume-state.json'
+resume=json.loads(resume_path.read_text(encoding='utf-8')) if resume_path.exists() and len(b)<100 else None
+block_note=('画像生成の利用上限により停止中。解除予定: '+resume['resetAtJapan']+'。未生成15種と、全体比較で追加修正が必要なBの9種はresume-state.jsonを参照。') if resume else ''
 pending=[id for g in plan for id in g['ids'] if id not in done|hold]
 for i,g in enumerate(plan,1):
  parts=['# '+g['group']+' — regeneration prompts','Built-in image_gen. Reference1: characters/bengal.png; reference2: characters/ragdoll.png; reference3: original target.']
@@ -21,6 +24,7 @@ summary=f'''# 制作の現在地
 - 生成: built-in image_gen。採用画像すべて1254×1254 RGBA、元の生成アルファを維持。
 - QA: 各accepted JSONの目視記録とvalidation、progress.jsonの機械検品結果を参照。
 - コード/UI画像の変更なし。初回資料groups-*.pngは再描画前の記録として固定。
+- 現在の制約: {block_note}
 
 ## A 採用済み
 
@@ -47,6 +51,7 @@ B本番a〜j → 100件照合と全236匹の比較 → 余白仕上げ → 最�
 - プロンプト: ../provenance/prompts-breeds2-*.md
 - 検品: レンズ以外の生体目1つ、十字キー1つ、無地丸ボタン2つ、小物なしを目視。寸法・アルファ・SHA256・bytesと固定ID/名前を機械検証。
 - 全体の重複最終検査と100件完成検品は未完了。
+- {block_note}
 
 現在の詳細進捗は ../review/STATUS.md と ../review/progress.json を参照。
 ''',encoding='utf-8')

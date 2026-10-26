@@ -1040,6 +1040,58 @@
     "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: siberian-blue. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Siberian blue: thick plush triple-coat in solid blue-grey, rounded tufted ears, broad muzzle, green-yellow iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides."
   },
   {
+    "id": "bengal-marble",
+    "name": "ベンガル（マーブル）",
+    "batch": "i",
+    "kind": "breed",
+    "file": "assets/cat-mobbies/breeds2/i/bengal-marble.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1933540,
+    "sha256": "4b7b72dcfc372175cf2b18325bc593081cbe4baf9c84ca45e8c239a73e566b0b",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: bengal-marble. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Bengal marble: warm golden coat with flowing horizontal marbled swirls, gold-green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides."
+  },
+  {
+    "id": "bengal-silver",
+    "name": "ベンガル（シルバー）",
+    "batch": "i",
+    "kind": "breed",
+    "file": "assets/cat-mobbies/breeds2/i/bengal-silver.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2355092,
+    "sha256": "f72600a41f24d218145a48541643a83536449ee1b6c05cd15433f893c2f60fdd",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: bengal-silver. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Bengal silver: bright silver-white coat with black rosettes and spots, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides."
+  },
+  {
+    "id": "bengal-snow-lynx",
+    "name": "ベンガル（スノーリンクス）",
+    "batch": "i",
+    "kind": "breed",
+    "file": "assets/cat-mobbies/breeds2/i/bengal-snow-lynx.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2115446,
+    "sha256": "c1a156de8e0d67fdcb6e9434b3fcc91272059119b53c176c00b0c5b85769e71e",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: bengal-snow-lynx. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Bengal snow lynx: cream-white coat with faint pale-brown rosettes, seal lynx points, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides."
+  },
+  {
+    "id": "egyptian-mau-bronze",
+    "name": "エジプシャンマウ（ブロンズ）",
+    "batch": "i",
+    "kind": "breed",
+    "file": "assets/cat-mobbies/breeds2/i/egyptian-mau-bronze.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2060521,
+    "sha256": "c2a916779a3066a7a9f3432e0a5c1a02234ec397c6f182fb2792ff1055b7d4ba",
+    "status": "concept",
+    "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: egyptian-mau-bronze. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Egyptian Mau bronze: warm bronze-brown coat with dark spots, forehead scarab \"M\", green-gooseberry iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides."
+  },
+  {
     "id": "mike-neko",
     "name": "三毛猫",
     "batch": "j",

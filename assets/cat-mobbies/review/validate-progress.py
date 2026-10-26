@@ -26,4 +26,10 @@ changed=subprocess.check_output(['git','diff','00114a8','--name-only'],text=True
 a=[r for r in records if r.get('kind')!='breed'];b=[r for r in records if r.get('kind')=='breed']
 report={'aAccepted':len(a),'aIds':sorted(r['id'] for r in a),'bAccepted':len(b),'bRemaining':100-len(b),'bIds':sorted(r['id'] for r in b),'scopeCheck':'passed: only cat assets and records','hashDimensionAlphaIdentityChecks':'passed','visualQA':'per accepted record; A similarity re-audit passed 2026-10-26; common padding finish pending'}
 (root/'review/progress.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+resume=root/'review/resume-state.json'
+if resume.exists() and len(b)<100:
+ state=json.loads(resume.read_text(encoding='utf-8'))
+ report['combinedSimilarityReview']='pending: six groups, nine saved B concepts need additional revision; see similarity.md'
+ report['generationBlock']={'reason':state['status'],'resetAtJapan':state['resetAtJapan']}
+ (root/'review/progress.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(report,ensure_ascii=False))
