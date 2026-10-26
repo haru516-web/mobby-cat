@@ -6,7 +6,7 @@
   "target": "assets/cat-mobbies/breeds2/h/maine-coon-silver-tabby.png",
   "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-e47d8765-fae7-4a49-95fa-40dddd4f88db.png",
   "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: maine-coon-silver-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Maine Coon silver tabby: shaggy silver coat with black tabby stripes, lynx-tip ear tufts, big ruff, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
-  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.",
   "validation": {
     "width": 1254,
     "height": 1254,
@@ -15,12 +15,30 @@
       0,
       255
     ],
-    "bytes": 2209049,
-    "sha256": "29e1b5a222ed0ec364f0127347bab0b05bc29361ee26552d1c39f90a658b5ec8"
+    "bytes": 1452067,
+    "sha256": "2a59072af057321cddfe305474536925168c06f053fda1f6dcd74feec338a861"
   },
   "combinedSimilarityReview": {
     "status": "revision-pending",
     "group": "silver-tabby-long",
     "reason": "Long silver tabbies remain a group larger than two. Maine Coon must have elongated square muzzle, heavy brow, tall angular square build and giant lynx ears. Norwegian needs smaller upright ears, triangular muzzle, smooth flowing coat and low broad body; recent first revision not enough at thumbnail."
-  }
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "29e1b5a222ed0ec364f0127347bab0b05bc29361ee26552d1c39f90a658b5ec8",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }

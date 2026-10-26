@@ -6,7 +6,7 @@
   "target": "assets/cat-mobbies/breeds2/e/arabian-mau.png",
   "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-68d70882-8bec-43a9-a2e3-1d6afddf1be2.png",
   "prompt": "Use case: precise-object-edit. Ref1 bengal/ref2 ragdoll define materials and hardware; ref3 is EDIT TARGET arabian-mau. Replace ALL spotted/tabby markings with a completely UNPATTERNED pale sandy-cream sleek short coat, golden iris. No spots, no stripes, no dark ear tips. Give larger upright ears, narrow angular muzzle, lean tall rounded-square build. Keep detailed real animal fur, one unified square head/body no neck, short arms/two feet, front full body. ONE living eye left with round black pupil, ONE green camera lens right, ONE black D-pad lower left and exactly TWO unmarked black round buttons diagonal lower right. No props/clothes/text. Transparent RGBA1254x1254 centered with ample clear margins.",
-  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.",
   "validation": {
     "width": 1254,
     "height": 1254,
@@ -15,7 +15,25 @@
       0,
       255
     ],
-    "bytes": 2229127,
-    "sha256": "fbd66cb18d3999cbe5442815a71489ea976a0d78c7ca2a761da64c916d9f88e7"
-  }
+    "bytes": 1568515,
+    "sha256": "fca29b596e33ab0d5bbd7be8d1b63001dacc4d1fa112020c8c35fcdb5f8b8438"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "fbd66cb18d3999cbe5442815a71489ea976a0d78c7ca2a761da64c916d9f88e7",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }

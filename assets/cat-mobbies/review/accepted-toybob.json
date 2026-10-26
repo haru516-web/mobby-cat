@@ -6,7 +6,7 @@
   "target": "assets/cat-mobbies/breeds2/e/toybob.png",
   "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-2d2ece74-4bef-4d33-829f-e4c56dcb6456.png",
   "prompt": "Use case: precise-object-edit. Ref1 bengal/ref2 ragdoll define materials and hardware; ref3 is EDIT TARGET toybob. Replace the long tail with a TINY kinked bobtail at the lower hip, only a small stub less than 10% of body height, does NOT rise above hip. Keep cream short coat and blue-green iris, very round small face; tiny squat rounded-square build. Keep detailed real animal fur, one unified square head/body no neck, short arms/two feet, front full body. ONE living eye left with round black pupil, ONE green camera lens right, ONE black D-pad lower left and exactly TWO unmarked black round buttons diagonal lower right. No props/clothes/text. Transparent RGBA1254x1254 centered with ample clear margins.",
-  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.",
   "validation": {
     "width": 1254,
     "height": 1254,
@@ -15,7 +15,25 @@
       0,
       255
     ],
-    "bytes": 2043632,
-    "sha256": "30d043023ae455f485f0628bc0a8aeb92fc75c5fcebaf81c0e5d87a5f6c1c991"
-  }
+    "bytes": 1455181,
+    "sha256": "d29475fdc07fd5e626391171b4c7ba1c53467032a4095e9c22d0f8b042fa7b40"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "30d043023ae455f485f0628bc0a8aeb92fc75c5fcebaf81c0e5d87a5f6c1c991",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }

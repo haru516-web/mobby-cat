@@ -6,7 +6,7 @@
   "target": "assets/cat-mobbies/breeds2/c/german-rex.png",
   "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-4c1f9f4d-56eb-4f40-950d-f64f19cf21c2.png",
   "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: german-rex. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: German Rex: short plush wavy blue-grey coat, rounded head, medium ears, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
-  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.",
   "validation": {
     "width": 1254,
     "height": 1254,
@@ -15,7 +15,25 @@
       0,
       255
     ],
-    "bytes": 2107834,
-    "sha256": "4432521389447a58bea86dc2eba7c64151dd96fc3fa55391ad87463512e8923c"
-  }
+    "bytes": 1400328,
+    "sha256": "0fbda30f18fbe3fb50340cd13d1d0eaf8c00253d2f9843ba5de467b77865eebe"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "4432521389447a58bea86dc2eba7c64151dd96fc3fa55391ad87463512e8923c",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }

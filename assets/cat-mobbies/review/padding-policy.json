@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+  "canvasSize": 1254,
+  "innerSize": 1054,
+  "minimumMargin": 100,
+  "method": "Resize the entire original generated RGBA canvas proportionally with Lanczos, then paste RGBA unchanged at (100,100) without an extra alpha mask. No cropping, recoloring, alpha thresholding or drawing. Always read the original source to avoid cumulative resampling."
+}

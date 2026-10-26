@@ -11,9 +11,27 @@
     "mode": "RGBA",
     "alphaExtrema": [
       0,
-      254
+      255
     ],
-    "bytes": 2602123,
-    "sha256": "40d0827a3cbc53650d1d2f8a086a1a9e23e9025b94aa72412a2a6c12dd187034"
-  }
+    "bytes": 1795733,
+    "sha256": "4c41d4f3db19941f2dc328f0a7dc5671857f60af9c9d074044f0886ef3375fd3"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "40d0827a3cbc53650d1d2f8a086a1a9e23e9025b94aa72412a2a6c12dd187034",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }

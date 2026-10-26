@@ -6,7 +6,7 @@
   "target": "assets/cat-mobbies/breeds2/b/highland-straight.png",
   "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-db230da8-6fbc-4778-a670-1d156e3f1d6f.png",
   "prompt": "Use case: stylized-concept. Generate ONE new real breed Mobby. Reference1 bengal and2 ragdoll define hardware, glossy eye and realistic material rendering only. Exact NEW BREED: highland-straight: Highland Straight: plush semi-long black smoke coat (dark with silver undercoat), straight small ears, round face, copper iris. Emphasize the specified ears, face shape, coat texture and body/leg proportions so breed reads distinctly at thumbnail size. Preserve ONE unified rounded-square head/body, NO neck/separate head, short arms/two short feet with breed-specific leg length. Exactly ONE biological cat eye viewer LEFT with large ROUND black pupil/white catchlight, ONE black concentric camera lens viewer RIGHT with green reflective glass. ONE black cross D-pad lower LEFT and exactly TWO plain black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional strand fur or bare wrinkled skin when the breed is hairless, never felt/toy plush. NO collar/props/clothes/text/watermark. Soft studio light. True RGBA transparent PNG1254x1254, subject only80% canvas and at least100px empty transparency all sides. Do not copy reference coat patterns.",
-  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.",
   "validation": {
     "width": 1254,
     "height": 1254,
@@ -15,7 +15,25 @@
       0,
       255
     ],
-    "bytes": 2821970,
-    "sha256": "587d5169e8fd97162651e528e84e9bc37c0f6f246384e2f5528bbeb6777c2859"
-  }
+    "bytes": 1827467,
+    "sha256": "30425660a84de16ad39b6cd84b1a3694f0f56926ef9c87cd99d6d473b2b91075"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "587d5169e8fd97162651e528e84e9bc37c0f6f246384e2f5528bbeb6777c2859",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }

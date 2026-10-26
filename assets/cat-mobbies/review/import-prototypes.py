@@ -1,15 +1,26 @@
-"""Import accepted built-in image_gen assets and reproduce QA sheets without pixel edits."""
+"""Import image_gen assets with explicitly approved proportional transparent padding."""
 from pathlib import Path
 import json,hashlib,shutil,math
 from PIL import Image,ImageDraw,ImageFont
 root=Path('assets/cat-mobbies');review=root/'review'
+policy_path=review/'padding-policy.json'
+policy=json.loads(policy_path.read_text(encoding='utf-8')) if policy_path.exists() else {}
 newpath=root/'new/manifest.json';new=json.loads(newpath.read_text(encoding='utf-8'))
 basepath=root/'manifest.json';base=json.loads(basepath.read_text(encoding='utf-8'));base_changed=False
 breeds=[];regen=[];prov={};records=[]
 for p in sorted(review.glob('accepted-*.json')):
  r=json.loads(p.read_text(encoding='utf-8'));dest=Path(r['target']);dest.parent.mkdir(parents=True,exist_ok=True)
  im=Image.open(r['source']);assert im.size==(1254,1254) and im.mode=='RGBA';extrema=im.getchannel('A').getextrema();assert extrema[0]==0 and extrema[1]>=250
- shutil.copyfile(r['source'],dest);data=dest.read_bytes();sha=hashlib.sha256(data).hexdigest()
+ if policy.get('enabled'):
+  size=policy['canvasSize'];inner=policy['innerSize'];offset=(size-inner)//2
+  canvas=Image.new('RGBA',(size,size),(0,0,0,0))
+  canvas.paste(im.resize((inner,inner),Image.Resampling.LANCZOS),(offset,offset))
+  canvas.save(dest)
+  r['postprocess']={'authorization':policy['authorization'],'originalSourceSha256':hashlib.sha256(Path(r['source']).read_bytes()).hexdigest(),'method':'whole-canvas proportional Lanczos resize and transparent centering','innerSize':[inner,inner],'offset':[offset,offset],'canvasSize':[size,size]}
+  r['paddingQA']='Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring.'
+  im=canvas;extrema=im.getchannel('A').getextrema()
+ else:shutil.copyfile(r['source'],dest)
+ data=dest.read_bytes();sha=hashlib.sha256(data).hexdigest()
  if r.get('kind')=='breed':
   e={k:r[k] for k in ['id','name','batch','kind']};e.update(file=dest.as_posix(),width=1254,height=1254,bytes=len(data),sha256=sha,status='concept',prompt=r['prompt']);breeds.append(e)
   prov.setdefault(r['batch'],[]).append('## '+r['id']+' — '+r['name']+'\n\n'+r['prompt']+'\n\nQA: '+r['qa'])

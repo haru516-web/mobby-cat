@@ -168,7 +168,8 @@
   ],
   "scopeCheck": "passed: only cat assets and records",
   "hashDimensionAlphaIdentityChecks": "passed",
-  "visualQA": "per accepted record; A similarity re-audit passed 2026-10-26; common padding finish pending",
+  "visualQA": "per accepted record; A similarity re-audit passed 2026-10-26; combined B similarity revisions pending",
+  "paddingCheck": "passed: 160 generated assets have at least 100px fully transparent margins and unchanged original source hashes",
   "combinedSimilarityReview": "pending: six groups, nine saved B concepts need additional revision; see similarity.md",
   "generationBlock": {
     "reason": "image-generation-usage-limit",

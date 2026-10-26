@@ -22,9 +22,12 @@ for e in json.loads((root/'breeds2/manifest.json').read_text(encoding='utf-8')):
 for r in records:
  p=Path(r['target']);im=Image.open(p);assert im.size==(1254,1254) and im.mode=='RGBA';lo,hi=im.getchannel('A').getextrema();assert lo==0 and hi>=250
  v=r['validation'];assert hashlib.sha256(p.read_bytes()).hexdigest()==v['sha256'] and p.stat().st_size==v['bytes']
+ if r.get('postprocess'):
+  box=im.getchannel('A').getbbox();assert box and min(box[0],box[1],1254-box[2],1254-box[3])>=100,(r['id'],box)
+  assert hashlib.sha256(Path(r['source']).read_bytes()).hexdigest()==r['postprocess']['originalSourceSha256']
 changed=subprocess.check_output(['git','diff','00114a8','--name-only'],text=True).splitlines();assert all(p.startswith(('assets/cat-mobbies/','docs/codex/')) for p in changed)
 a=[r for r in records if r.get('kind')!='breed'];b=[r for r in records if r.get('kind')=='breed']
-report={'aAccepted':len(a),'aIds':sorted(r['id'] for r in a),'bAccepted':len(b),'bRemaining':100-len(b),'bIds':sorted(r['id'] for r in b),'scopeCheck':'passed: only cat assets and records','hashDimensionAlphaIdentityChecks':'passed','visualQA':'per accepted record; A similarity re-audit passed 2026-10-26; common padding finish pending'}
+report={'aAccepted':len(a),'aIds':sorted(r['id'] for r in a),'bAccepted':len(b),'bRemaining':100-len(b),'bIds':sorted(r['id'] for r in b),'scopeCheck':'passed: only cat assets and records','hashDimensionAlphaIdentityChecks':'passed','visualQA':'per accepted record; A similarity re-audit passed 2026-10-26; combined B similarity revisions pending','paddingCheck':f'passed: {sum(bool(r.get("postprocess")) for r in records)} generated assets have at least 100px fully transparent margins and unchanged original source hashes'}
 (root/'review/progress.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 resume=root/'review/resume-state.json'
 if resume.exists() and len(b)<100:

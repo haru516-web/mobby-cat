@@ -19,9 +19,9 @@ for i,g in enumerate(plan,1):
 summary=f'''# 制作の現在地
 
 - ブランチ: codex/new-mobbies-2
-- A: 初回136匹監査、再描画採用 {len(a)}匹。初回計画の未生成 {len(pending)}匹。識別性の最終再監査は完了、全画像の余白仕上げは確認待ち。
+- A: 初回136匹監査、再描画採用 {len(a)}匹。初回計画の未生成 {len(pending)}匹。A内の識別性再監査は完了。B追加後の比較はsimilarity.mdを参照。
 - B: 指定試作3匹を含め採用 {len(b)}/100匹。残り {100-len(b)}匹。B本番はA完了後。
-- 生成: built-in image_gen。採用画像すべて1254×1254 RGBA、元の生成アルファを維持。
+- 生成: built-in image_gen。採用画像すべて1254×1254 RGBA。ユーザー承認により元画像を1054×1054へ等比縮小し、透明キャンバス中央へ配置（四辺100px以上）。元生成ファイルは保持。
 - QA: 各accepted JSONの目視記録とvalidation、progress.jsonの機械検品結果を参照。
 - コード/UI画像の変更なし。初回資料groups-*.pngは再描画前の記録として固定。
 - 現在の制約: {block_note}
@@ -36,7 +36,7 @@ summary=f'''# 制作の現在地
 
 ## 次の手順
 
-B本番a〜j → 100件照合と全236匹の比較 → 余白仕上げ → 最終検品。
+B残り15種 → 全体比較で指摘された9種の修正 → 100件照合と全236匹の比較 → 最終検品。余白統一は生成済み全件に適用済みで、新規生成にも同じ処理を適用。
 '''
 (review/'STATUS.md').write_text(summary,encoding='utf-8')
 (root/'breeds2/README.md').write_text(f'''# breeds2 — 制作途中
@@ -44,7 +44,7 @@ B本番a〜j → 100件照合と全236匹の比較 → 余白仕上げ → 最�
 実在猫種・毛色100種のうち **{len(b)}匹生成・採用済み**、残り{100-len(b)}匹。B本番はA完了後。先行3匹は指示書指定の質感確認試作。
 
 - 採用ID: {', '.join(sorted(r['id'] for r in b))}
-- 形式: 1254×1254 RGBA透過PNG。生成アルファを加工せず保存（最大値254〜255）。
+- 形式: 1254×1254 RGBA透過PNG。ユーザー承認の等比縮小と透明中央配置を適用、四辺100px以上の透明余白。描画や配色は変更せず、元生成ファイルを保持。
 - Bの再生成採用: {regenerated_breeds}匹（不採用理由はreview/rejected-breed-*.json）。
 - manifest.jsonには実際に生成・検品できた画像のみ登録。
 - previews/batch-*.pngは現在の採用分だけを合成した途中の一覧。

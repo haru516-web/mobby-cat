@@ -6,7 +6,7 @@
   "target": "assets/cat-mobbies/breeds2/d/american-bobtail.png",
   "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-29538b47-a009-4725-a55f-e015fa1b2d0b.png",
   "prompt": "Use case: precise-object-edit. Ref1 bengal and ref2 ragdoll are materials/Mobby hardware references; ref3 is the EDIT TARGET american-bobtail. Keep the same character face, coat detail and Mobby anatomy. Critical correction: replace the big curled tail with a TINY bobtail at the lower hip: only a compact round rabbit-like pom-pom, diameter at most 10% of body height, no curved stalk, no tail reaching the arm/face. Preserve ONE round-pupilled living eye left, green camera lens right, black D-pad lower left and exactly TWO plain black round buttons lower right. Unified rounded square no neck, short arms/two feet, front full body, detailed real fur. No props/text. Transparent RGBA1254x1254, centered with generous empty margins.",
-  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text. Common padding finish pending.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.",
   "validation": {
     "width": 1254,
     "height": 1254,
@@ -15,7 +15,25 @@
       0,
       255
     ],
-    "bytes": 2510297,
-    "sha256": "902978ed340017c4cca6f8842c2b2848e6015ca89028c6484b60b6765256b205"
-  }
+    "bytes": 1724514,
+    "sha256": "357993d1d170d9bce94495808affc5fa56fe7528176ad04a368664106eb48d65"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "902978ed340017c4cca6f8842c2b2848e6015ca89028c6484b60b6765256b205",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }

@@ -146,6 +146,6 @@
       "reason": "Three short calicos have similar face/build. Preserve white/orange/black short fur; American Shorthair must have massive broad cheeks, wide low rounded square build, small ears and different large asymmetric patch positions."
     }
   ],
-  "commonPadding": "pending explicit response to earlier mechanical resize-and-center question",
-  "resume": "Generate remaining i6, then j9; revise nine B similarity candidates; rebuild all236 visual audit; finish transparent margins; final validation and push. Built-in image_gen only unless user explicitly opts in to CLI."
+  "commonPadding": "User approved mechanical proportional resizing and transparent centering; applied to all 160 saved generated assets. New assets use the same import policy.",
+  "resume": "Generate remaining i6, then j9; revise nine B similarity candidates; importer applies approved 100px transparent padding; rebuild all236 visual audit; final validation and push."
 }

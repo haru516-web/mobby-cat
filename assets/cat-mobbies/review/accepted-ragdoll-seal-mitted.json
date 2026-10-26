@@ -15,7 +15,25 @@
       0,
       255
     ],
-    "bytes": 2648709,
-    "sha256": "618579800262eb29eae6a64d845e8fe27d90d9ad20dc2a08f2aa9750160e62eb"
-  }
+    "bytes": 1837290,
+    "sha256": "f0e8d268f68cd6339a9ab1a441f0701cede4d6a225691f1bdf493f34885e9b55"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "618579800262eb29eae6a64d845e8fe27d90d9ad20dc2a08f2aa9750160e62eb",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
 }
