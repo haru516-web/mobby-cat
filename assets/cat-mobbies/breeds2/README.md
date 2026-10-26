@@ -13,3 +13,12 @@
 - 画像生成の利用上限により停止中。解除予定: 2026-10-26T21:37:00+09:00。未生成15種と、全体比較で追加修正が必要なBの9種はresume-state.jsonを参照。
 
 現在の詳細進捗は ../review/STATUS.md と ../review/progress.json を参照。
+
+## 追加50種（codex/breeds-50）
+
+- 一覧: docs/codex/BREEDS_50_LIST.md（50種、既存221 IDと重複なし）。
+- 今回生成・採用: 0匹。再生成: 0匹。未生成: 50匹。既存85匹の画像・manifestは未変更。
+- 最初の egyptian-mau-smoke の生成が HTTP 429 usage_limit_reached で失敗。解除予定: 2026-10-26T21:37:01+09:00。
+- 再開: バッチ j の egyptian-mau-smoke から。10匹の生成・検品・登録ごとに codex/breeds-50 へ push。
+- 生成前比較: review/breeds50-before-*.png（6毛色、各256px/512px、各5匹）。比較の目視検品と各バッチの生成後比較は未完了。
+- 詳細: ../review/breeds50-status.json。
