@@ -2,17 +2,18 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 183,
+  "assetCount": 195,
   "counts": {
     "badge": 9,
     "bg": 19,
-    "brand": 15,
-    "button": 23,
+    "brand": 16,
+    "button": 24,
     "camera": 20,
     "cat": 3,
     "gauge": 5,
     "icon": 25,
-    "illust": 13,
+    "illust": 14,
+    "login": 9,
     "navbtn": 9,
     "opening": 6,
     "panel": 15,
@@ -469,6 +470,17 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "brand/title-login-record.png",
+      "width": 640,
+      "height": 110,
+      "sha256": "2581a57a91125465fedc2035d57ecc4aad95ea9fb58aa839599efde3544d2b23",
+      "bytes": 79635,
+      "prompt": "Edit the reference Japanese title treatment to read exactly「ログイン記録」(ログイン記録, six Japanese characters). Keep the same bold rounded dark-brown raised lettering, same baseline and scale, small orange paw accent at right, transparent background. Text only, no calendar icon, no extra symbols. Ensure kanji 記録 are exact and legible.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
       "path": "brand/title-matatabi.png",
       "width": 720,
       "height": 110,
@@ -758,6 +770,17 @@
       "stretchAxes": [
         "x"
       ],
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "button/login-record-round.png",
+      "width": 168,
+      "height": 168,
+      "sha256": "457c6afb650b64488c121580a103cc44f6d1f7928952ab772f7c6a8ebfa8ee77",
+      "bytes": 39344,
+      "prompt": "One round home shortcut button168x168 transparent, same outer diameter, cream face, bevel, fine brown outline, top-left highlight and shadow as reference bell button. Center a simple paper-calendar icon with one orange paw stamp; no lettering or numbers. Puffy paper-cut UI, soft low-contrast shading.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
     },
     {
@@ -1604,6 +1627,17 @@
       "processing": "Lanczos resize to exact dimensions; preserve generated alpha; clear residual alpha inside empty photo opening; proportionate fit with12px transparent clearance"
     },
     {
+      "path": "illust/empty-login.png",
+      "width": 600,
+      "height": 450,
+      "sha256": "5d7db4e8ce65ce1c361757e20145175fde4003fc6a41f545319cdbd5a6f154cc",
+      "bytes": 306431,
+      "prompt": "Transform this mascot into a clearly illustrated, hand-shaped paper-clay character for a soft Japanese mobile game UI. Preserve the seated pose, Bengal spots, green normal eye, camera-lens eye, chest directional pad and two buttons, and raised paw holding a paw stamp. Strongly simplify the fur into smooth matte sculpted color patches: absolutely no strands, fuzz, pores, photographic detail, or realistic animal fur. Use broad rounded shapes, tidy contours, gentle top-left highlight, warm cream and orange palette, soft restrained outline and contact shadow. It should read immediately as a polished cartoon sculpture illustration, not a photograph or photoreal render. Transparent background. No checkerboard pattern, no text, no new props. Centered full body. Do not alter the character's identifying controls.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
       "path": "illust/empty-notice.png",
       "width": 600,
       "height": 450,
@@ -1722,6 +1756,111 @@
       "bytes": 492462,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/arrow-next.png",
+      "width": 96,
+      "height": 96,
+      "sha256": "9b854538ea5033bc6f8261ab8b69cb5bb2f3e24e409af49d39cf57987331fc3d",
+      "bytes": 12363,
+      "prompt": "One soft circular month navigation button96x96 transparent, warm cream round base with fine brown outline, gentle highlight and subtle shadow, centered single dark chocolate right-pointing chevron. No text, no other symbols. Same size and lighting as previous companion.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/arrow-prev.png",
+      "width": 96,
+      "height": 96,
+      "sha256": "032529332b68c9c555de2a579595e7103e0ba6a634f88aaa0f40e94e3f5154c5",
+      "bytes": 12277,
+      "prompt": "One soft circular month navigation button96x96 transparent, warm cream round base with fine brown outline, gentle highlight and subtle shadow, centered single dark chocolate left-pointing chevron. No text, no other symbols. Same size and lighting as forward companion.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/cell-bonus.png",
+      "width": 120,
+      "height": 120,
+      "sha256": "301768ad9d21cc993dadccd233490daa4516f2ef61583804e01137699ac26c1c",
+      "bytes": 15973,
+      "prompt": "Single calendar day cell tile120x120 transparent. Same square rounded geometry and pale cream inset as reference tile. A modest golden edge accent and one gold paw-print reward stamp centered at y70%, leaving upper center clear for app-drawn date. No text or numbers. Same size, corner radius and margins as other cell variants.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/cell-empty.png",
+      "width": 120,
+      "height": 120,
+      "sha256": "265d419b7ccd2a06b4c918f071c8ed17048cce0aafccd587056ddfb2f8883c48",
+      "bytes": 14379,
+      "prompt": "Single calendar day cell tile120x120 transparent. Match reference tile's exact square rounded corners and inset geometry. Very pale warm cream paper, shallow subtle recessed center, thin taupe edge and tiny soft shadow. Absolutely no stamp, text, numerals, lines or decorations. Center identical to the other state variants.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/cell-stamped.png",
+      "width": 120,
+      "height": 120,
+      "sha256": "1721fb0b95b8a48a4ecfe6f284d6c7e800c928f095219361db933909b8fa86e4",
+      "bytes": 16936,
+      "prompt": "Single calendar day cell tile120x120 transparent. Match reference tile's exact square rounded corners and geometry. Pale warm cream paper, shallow inset. Add one muted orange-brown paw-print rubber stamp centered at y70% (slightly below center), leaving upper center clear for app-drawn date. No text, no numbers. Same dimensions, scale, corner radius and transparent margins as empty/today/bonus variants.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/cell-today.png",
+      "width": 120,
+      "height": 120,
+      "sha256": "86a291c46535050633d20cdb11f23ae9e25d9c7022e5258b3375dd1e6303ca06",
+      "bytes": 13268,
+      "prompt": "Single calendar day cell tile120x120 transparent. Match reference tile's exact square rounded geometry. Pale cream paper inset with a clean puffy orange outline around the outer perimeter, warm orange accent. No paw stamp, no text, no date. Same dimensions, scale, position and clear margins as companion cell variants.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/month-complete.png",
+      "width": 480,
+      "height": 480,
+      "sha256": "6f0fd003b9a49e8008d352380e90669b3b8b95d156dea8f805c9233a36dd596e",
+      "bytes": 289359,
+      "prompt": "One celebratory monthly calendar completion badge480x480 transparent: golden flower seal and soft ribbon around a warm paw-print stamp, puffy paper-cut game illustration, gold and cream, no lettering, no number, no calendar grid. Centered, gentle upper-left light, clean alpha.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 8px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/month-frame.png",
+      "width": 1000,
+      "height": 900,
+      "sha256": "ce441b85a6eef1bf432fc8f0269ccfd671b744234bffed26bc8a5d96e6675109",
+      "bytes": 896782,
+      "prompt": "Blank monthly calendar frame1000x900 transparent, production UI nine-slice panel. Puffy warm cream paper panel, subtle taupe outline and soft downward shadow fully within8px margins. A shallow ornamental header band across top where the app draws month text; no date grid, no numerals, no words. Keep all corners uniform rounded radius ~90 and edges clean, broad flat side rails; interior empty. Front view, matches reference card paper material.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 150,
+        "right": 90,
+        "bottom": 90,
+        "left": 90
+      }
+    },
+    {
+      "path": "login/stamp-paw.png",
+      "width": 160,
+      "height": 160,
+      "sha256": "0b2a6531040cacf02c6453a4d1c85109c675439a5d1dde78f1f48180af767b87",
+      "bytes": 38819,
+      "prompt": "Single warm vermilion-orange paw rubber stamp mark on transparent background. One large central pad and four toe pads, slightly imperfect ink edge with gentle stamp bleed, centered, no circle outline, no text, no extra objects. Soft paper-game UI style.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
     },
     {

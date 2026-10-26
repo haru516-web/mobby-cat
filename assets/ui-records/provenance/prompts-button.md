@@ -252,3 +252,12 @@ Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785
 Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
 
 9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
+
+## UI v3 / button/login-record-round.png
+
+Group E. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-ab00cb07-4fc5-49e6-956f-339c2ad245fa.png
+
+One round home shortcut button168x168 transparent, same outer diameter, cream face, bevel, fine brown outline, top-left highlight and shadow as reference bell button. Center a simple paper-calendar icon with one orange paw stamp; no lettering or numbers. Puffy paper-cut UI, soft low-contrast shading.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF

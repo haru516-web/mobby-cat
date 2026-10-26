@@ -136,3 +136,21 @@ Prompt: One isolated empty-state UI illustration, landscape600x450. Image1 is ex
 Processing: Lanczos resize to exact dimensions; preserve generated alpha; clear residual alpha inside empty photo opening; proportionate fit with12px transparent clearance
 
 SHA256: 0b42fe450155ad91b88570322f7a7d155f6fe4e2d8407dcc49273fc5696b3545
+
+## UI v3 / illust/empty-login.png
+
+Group E. Built-in image_gen. Three successful generations total; two redos. Generations 1 and 2 were superseded after visual review. Generation 3 is final.
+
+Generation 1 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-7608b061-5819-4b51-b5d7-b72c28de6249.png
+
+Friendly Cat Mobby character gently holding a small paw-print stamp, calm hopeful expression, for an empty login calendar state. Match the exact Bengal character identity reference: tawny rosette fur, normal green viewer-left eye and camera lens viewer-right, chest cross D-pad left and exactly two round buttons right. Seated at small scale, paws visible, transparent background, tiny soft contact shadow, no text, no calendar, no other objects.
+
+Generation 2 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-e4bec85a-f8ec-4ea9-9790-480418ff2698.png
+
+Repaint the first reference as an app illustration for the empty monthly login-record state. Preserve its seated Bengal cat mascot, asymmetric green eye and camera-lens eye, chest directional pad and two round buttons, and the raised paw holding a small round paw stamp. Keep the same warm cream, orange and dark-brown palette, transparent background, centered full-body composition, and expressive friendly face. Match the existing UI illustration references: rounded handmade paper-clay toy shapes, smooth matte colored surfaces, broad soft upper-left highlights, restrained soft grounding shadow, clean soft outline. Make the fur read as simple stylized sculpted patches; remove fine individual hairs, sharp photoreal fur strands, photographic texture, lens blur, metallic glare, and dramatic contrast. No text, no extra props, no border. Deliver one polished transparent PNG-style illustration.
+
+Generation 3 final source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-5ed6b126-b22b-4165-82e8-4226adf1c9d6.png
+
+Transform this mascot into a clearly illustrated, hand-shaped paper-clay character for a soft Japanese mobile game UI. Preserve the seated pose, Bengal spots, green normal eye, camera-lens eye, chest directional pad and two buttons, and raised paw holding a paw stamp. Strongly simplify the fur into smooth matte sculpted color patches: absolutely no strands, fuzz, pores, photographic detail, or realistic animal fur. Use broad rounded shapes, tidy contours, gentle top-left highlight, warm cream and orange palette, soft restrained outline and contact shadow. It should read immediately as a polished cartoon sculpture illustration, not a photograph or photoreal render. Transparent background. No checkerboard pattern, no text, no new props. Centered full body. Do not alter the character's identifying controls.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF

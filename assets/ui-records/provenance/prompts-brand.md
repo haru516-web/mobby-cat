@@ -197,3 +197,12 @@ Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148e
 Square1024 opaque cream app icon with centered British shorthair Cat Mobby, gray round ears, amber normal eye at viewer-left, black camera lens viewer-right, small nose, cross D-pad viewer-left chest and exactly two round buttons viewer-right. Soft illustrated storybook game icon, clean background, no text, no rounded outer corners.
 
 Finishing: Lanczos cover resize, opaque RGB, no EXIF
+
+## UI v3 / brand/title-login-record.png
+
+Group E. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-c0d42bb4-5754-4798-bf44-a441f8d17868.png
+
+Edit the reference Japanese title treatment to read exactly「ログイン記録」(ログイン記録, six Japanese characters). Keep the same bold rounded dark-brown raised lettering, same baseline and scale, small orange paw accent at right, transparent background. Text only, no calendar icon, no extra symbols. Ensure kanji 記録 are exact and legible.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF

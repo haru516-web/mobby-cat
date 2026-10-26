@@ -108,3 +108,9 @@ Updated bg/room-home.png1179x1900; one targeted redo (two generations total) shr
 
 ## UI v3 D: opening and app icons
 Added opening/bg.png1179x2556; opening/logo-hero.png1000x420; opening/cats-peek.png1179x700; opening/sparkle.png200x200; opening/paw-trail.png900x160; opening/tap-pill.png560x120; brand/app-icon.png1024x1024; system/android-icon-foreground.png512x512, android-icon-background.png512x512, android-icon-monochrome.png432x432. New preview: previews/ui-v3-D.png. Seven built-in image_gen final assets, no redo; logo-hero is a proportional derivative of the approved brand logo; cats-peek composites five unchanged existing character PNGs; android background is a flat cream fill matching app icon. Foreground and monochrome artwork fit within66% circular safe area. tap-pill slice top0/right60/bottom0/left60. Alpha and opaque rules checked by path; all dimensions, PNG, EXIF and hashes audited. Cat source files unchanged.
+
+## UI v3 E: ログイン記録（月次）
+
+Added 12 assets: `brand/title-login-record.png`; `button/login-record-round.png`; `illust/empty-login.png`; `login/month-frame.png`, `cell-empty.png`, `cell-stamped.png`, `cell-today.png`, `cell-bonus.png`, `stamp-paw.png`, `arrow-prev.png`, `arrow-next.png`, and `month-complete.png`. Monthly frame is 1000x900 with slice top150/right90/bottom90/left90. Four 120x120 calendar cell states share the same clear margin and alignment. Text and dates are left to the app. Preview: `previews/ui-v3-E.png`; four-state comparison: `previews/login-cells-compare.png`.
+
+Twelve final assets used built-in image_gen. The empty-state illustration took three generations total, including two redraws to simplify the fur into a smooth sculpted illustration; total E generation count is 14 with two redos. The final cat keeps the asymmetric eyes, chest controls, and stamp. All dimensions, PNG format, transparency, EXIF and manifest hashes passed the asset audit.
