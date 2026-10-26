@@ -79,7 +79,11 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
     return [...fav, ...byRecent.filter((id) => !fav.includes(id))].slice(0, SLOTS.length);
   }, [ownedIds, state.owned, state.favorites]);
 
-  const roomH = width * 1.25;
+  // 画面が縦に長いときは、カードの下に余白ができないよう部屋を伸ばす（背景は cover なので絵は切れない範囲に抑える）
+  const [vh, setVh] = useState(0);
+  const [topH, setTopH] = useState(0);
+  const CARDS_H = 128 - 6 + 16 + 24; // カードの高さ＋上の食い込み＋カードの下の余白＋下端の余白
+  const roomH = Math.min(width * 1.5, Math.max(width * 1.25, vh - pad - topH - CARDS_H + 20));
   const half = (width - 32 - 10) / 2;
   const waiting = state.days[todayKey] && !state.days[todayKey].freePick;
   // 今日の候補に条件を満たした特別な猫がいれば、そのシルエット。いなければふつうの猫のシルエット
@@ -89,7 +93,8 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
   const mins = Math.ceil(msUntilNextReveal(now) / 60000);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
+    <ScrollView onLayout={(e) => setVh(e.nativeEvent.layout.height)} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
+      <View style={{ zIndex: 2 }} onLayout={(e) => setTopH(e.nativeEvent.layout.height)}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       <View style={s.pills}>
         <InfoPill style={{ flex: 1 }} icon="icon/cat-head" label="所持" value={`${ownedIds.length}/${CATS.length}`} onPress={() => go('zukan')} />
@@ -101,6 +106,8 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
             onPress={() => go('deai')}
           />
         </TourAnchor>
+      </View>
+
       </View>
 
       <TourAnchor id="home-room" style={{ width, height: roomH, marginTop: -20, overflow: 'hidden' }}>
