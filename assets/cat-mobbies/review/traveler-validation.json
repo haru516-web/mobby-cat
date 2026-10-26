@@ -7,19 +7,8 @@
     0,
     255
   ],
-  "alphaBBox": [
-    0,
-    49,
-    1174,
-    1254
-  ],
-  "alphaBBoxAbove16": [
-    100,
-    360,
-    1163,
-    1038
-  ],
-  "sha256": "ba060a08c4da2455360d4043a42c328bc5e9f5ac3c27c02dc1102035bce7de69",
-  "bytes": 1356723,
+  "sha256": "92d7bd34dbd3b1601e70089c96197a8f32b086d87c7b15dd875f655f4d01ca44",
+  "bytes": 2902828,
+  "basis": "hoshizora explicitly requested by user",
   "generatedWithoutPixelPostprocessing": true
 }

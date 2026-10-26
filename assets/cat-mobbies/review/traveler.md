@@ -43,3 +43,6 @@ Aの初回生成で HTTP 429 usage_limit_reached。解除予定は2026-10-26 21:
 1254×1254 RGBA、alpha 0〜255を確認。主な可視画素(alpha>16)のbboxは[100,360,1163,1038]で、左右約100pxの余白あり。alpha最小値付近のごく薄い生成画素はキャンバス端にも存在するため、完全な無画素の外周とはしない。生成アルファをそのまま保持した。ハッシュとサイズはtraveler-validation.jsonおよびmanifestに記録。
 
 変更は指定の猫画像、manifest該当エントリ、review/traveler-*、provenanceの記録のみ。アプリ組み込みは実施しない。
+
+## ユーザー追加指定による最終差し替え
+星空モビーをベースにスカーフを巻く指定を受け、上記のA採用画像を星空版へ置換。元のhoshizoraは保持し、星空の毛並みと青目を継承。金色スカーフを追加して星の首飾りを外した。既存hoshizoraとの類似はユーザー指定による意図的なもの。1254角RGBA透過、片目1・レンズ1・十字キー1・黒丸ボタン2を確認。traveler-starry-comparison.pngに元画像と120pxの比較を保存。以前のtraveler-final-*はA案の履歴として保持。最新の採用画像はnew/g/traveling-mobby.png。
