@@ -139,6 +139,8 @@ function rng(seed: number) {
 // 実在の猫（猫種・毛色）。それ以外は個性のあるモビー
 const NOT_REAL = new Set(['rea-mobby', 'uyu-mobby']);
 export const isRealCat = (c: CatDef) => c.kind === 'breed' && !NOT_REAL.has(c.id);
+// 画面に出すレア度。実在の猫は、内部のレア度に関わらずノーマルとして見せる（条件の重さは変えない）
+export const shownRarity = (c: CatDef): Rarity => (isRealCat(c) ? 1 : c.rarity);
 
 // 判定の仕組みがまだなく、いまは出会えない猫
 // 世界・旅猫は対象外。

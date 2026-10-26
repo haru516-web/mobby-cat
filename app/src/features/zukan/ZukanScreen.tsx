@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { CATS, CatDef } from '../../data/catalog';
 import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
-import { recipeOf } from '../../core/recipes';
+import { recipeOf, shownRarity } from '../../core/recipes';
 import { useGame } from '../../core/game';
 import { C, CatImage, FONT, T, catNo } from '../../ui/base';
 import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap } from '../../ui/kit';
@@ -20,7 +20,7 @@ const FILTERS: { key: Filter; label: string; skin: string; color: string }[] = [
 // 「限定」= 世界の猫と旅猫。それ以外は、出会う条件の数と難しさで決まるレア度で分ける
 const isLimited = (c: CatDef) => c.kind === 'world' || c.kind === 'travel';
 const match = (c: CatDef, f: Filter) =>
-  f === 'all' ? true : f === 'limited' ? isLimited(c) : f === 'rare' ? !isLimited(c) && c.rarity >= 3 : !isLimited(c) && c.rarity <= 2;
+  f === 'all' ? true : f === 'limited' ? isLimited(c) : f === 'rare' ? !isLimited(c) && shownRarity(c) >= 3 : !isLimited(c) && shownRarity(c) <= 2;
 
 function hint(c: CatDef) {
   if (c.kind === 'world') return WORLD_HINT;

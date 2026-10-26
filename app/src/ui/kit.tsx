@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { shownRarity } from '../core/recipes';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import { CatDef } from '../data/catalog';
 import { useGame } from '../core/game';
@@ -127,8 +128,8 @@ export function RarityBadge({ cat, height = 22 }: { cat: CatDef; height?: number
   const world = cat.kind === 'world' || cat.kind === 'travel';
   const [name, label, color] = world
     ? ['travel-cat', '世界', '#fff']
-    : cat.rarity === 4 ? ['rarity-legend', 'でんせつ', '#fff']
-    : cat.rarity === 3 ? ['rarity-rare', 'レア', '#2F5DA8']
+    : shownRarity(cat) === 4 ? ['rarity-legend', 'でんせつ', '#fff']
+    : shownRarity(cat) === 3 ? ['rarity-rare', 'レア', '#2F5DA8']
     : ['rarity-normal', 'ノーマル', C.ink];
   return (
     <Slice name={`badge/${name}`} style={[k.badge, { height, minWidth: height * 2.8 }]}>
