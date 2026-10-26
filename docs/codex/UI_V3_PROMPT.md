@@ -1,16 +1,17 @@
 # Codex 依頼プロンプト（UI v3：オープニング／ログイン記録／アカウント／アプリ名変更／独立ナビボタン／ホーム背景）
 
 - ブランチ: `codex/ui-v3`（`main` 293de65 から分岐）
-- 作業フォルダ: **`D:\mobby-cat\.worktrees\ui-v3`**（git worktree。作成済み。なければ下の手順）。**このフォルダの中だけ**で作業し、`D:\mobby-cat` 本体や他のブランチは触らない。ブランチも切り替えない。
+- 作業フォルダ: **`<リポジトリのルート>/.worktrees/ui-v3`**（git worktree。**Codex が自分で作る**。手順は下）。このフォルダの中だけで作業し、ルートや他のブランチは触らない。ブランチも切り替えない。
 - 触ってよいもの: **画像と、画像の記録だけ**（`app/assets/ui/**`、`app/assets/system/**`、`assets/ui-records/**`）。**コード（`app/src`、`App.tsx`、`app.json`、`package.json`）は変更しない。** `app/src/ui/uiAssets.ts` は自動生成なので、`tools/build-ui-registry.ps1` を実行し直す。
 - 猫モビーのキャラ画像（`assets/cat-mobbies/**`、`app/assets/cats/**`）は変更しない（読むのはよい）。
 - 他の Codex（別ブランチ）が動いている場合があるので、そちらのファイルには触れない。
 
 ```bash
-# 初回だけ（作成済みなら不要）
-git -C D:/mobby-cat worktree add D:/mobby-cat/.worktrees/ui-v3 -b codex/ui-v3 main
-cd D:/mobby-cat/.worktrees/ui-v3
-git branch --show-current     # codex/ui-v3 であること
+git fetch origin
+git worktree add .worktrees/ui-v3 codex/ui-v3     # ブランチは作成済み（origin/codex/ui-v3）
+echo ".worktrees/" >> .git/info/exclude
+cd .worktrees/ui-v3
+git branch --show-current                           # codex/ui-v3 であること
 ```
 
 グループごとにコミットし、**そのたびに `git push origin codex/ui-v3`**（途中で止まっても成果が残るように）。
@@ -74,6 +75,8 @@ git branch --show-current     # codex/ui-v3 であること
 - あわせて、ボタン列の背後に敷いていた `tabbar/bg.png` は使わなくなるので、**ボタンどうしを結ぶ装飾は描かない**。
 
 ## C. ホーム背景（`bg/room-home.png`）の修正
+
+> 下の2枚のカードの裏に背景が足りず余白ができる問題は、別紙 `docs/codex/UI_V3_HOME_BG_PROMPT.md`（全画面版 `bg/room-home-full.png`）で扱う。C と合わせて作る。
 
 ナビがバーでなくなり、**ホーム画面の下端に4つの独立ボタンが浮かぶ**ため、背景を調整する。同じ名前・同じ寸法（1179×1900、不透明）で上書きする。**今の部屋のタッチ・色味・家具の配置は保つ。**
 
