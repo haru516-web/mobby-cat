@@ -206,3 +206,12 @@ Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148e
 Edit the reference Japanese title treatment to read exactly「ログイン記録」(ログイン記録, six Japanese characters). Keep the same bold rounded dark-brown raised lettering, same baseline and scale, small orange paw accent at right, transparent background. Text only, no calendar icon, no extra symbols. Ensure kanji 記録 are exact and legible.
 
 Finishing: Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / brand/title-account.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-f8ed0c96-9c63-405f-91f5-5872ec89023b.png
+
+Edit the reference brand heading in the same exact puffy rounded Japanese lettering style and proportions. The only text must read exactly 「アカウント」. Preserve dark chocolate brown plus restrained orange accent, soft upper-left highlight, small paw accent at the end, clean transparent background. Ensure every character is present and correctly legible. No extra decoration or words.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF

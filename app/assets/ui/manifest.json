@@ -2,25 +2,42 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 195,
+  "assetCount": 211,
   "counts": {
-    "badge": 9,
+    "badge": 11,
     "bg": 19,
-    "brand": 16,
-    "button": 24,
+    "brand": 17,
+    "button": 29,
     "camera": 20,
     "cat": 3,
     "gauge": 5,
-    "icon": 25,
-    "illust": 14,
+    "icon": 28,
+    "illust": 18,
     "login": 9,
     "navbtn": 9,
     "opening": 6,
-    "panel": 15,
+    "panel": 16,
     "share": 10,
     "tabbar": 11
   },
   "assets": [
+    {
+      "path": "badge/linked.png",
+      "width": 300,
+      "height": 84,
+      "sha256": "cbae72ee0aef0a158f89d181cdf0f1cac6f40907206ff55f1675ab34ce358105",
+      "bytes": 26643,
+      "prompt": "A small blank horizontal pill label background for linked account status, exact 300x84 ratio with transparent exterior. Soft muted sage green puffy paper base, fine darker green edge, gentle upper-left highlight, restrained tiny shadow. Empty surface only so app draws the label. No text, logos, letters, icons or symbols. Rounded caps suited to nine-slice stretching.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 21,
+        "right": 42,
+        "bottom": 21,
+        "left": 42
+      }
+    },
     {
       "path": "badge/new.png",
       "width": 120,
@@ -182,6 +199,23 @@
         "x"
       ],
       "alphaMode": "transparent"
+    },
+    {
+      "path": "badge/unlinked.png",
+      "width": 300,
+      "height": 84,
+      "sha256": "72f85f4064e5bf5ab3c9169d386bcd96d6d3698fbffb8f9e02f60c215f5d0ead",
+      "bytes": 24330,
+      "prompt": "Recolor this pill badge so the unlinked state is clearly a soft warm gray, not cream or white. Use neutral warm gray-beige fill around #D2CEC5 with a slightly darker taupe outline, keep the same rounded puffy paper shape, edge highlight and gentle compact shadow. Blank surface, transparent outside, no words or icons. Preserve exact target aspect 300x84 and clean smooth edges.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 21,
+        "right": 42,
+        "bottom": 21,
+        "left": 42
+      }
     },
     {
       "path": "bg/app-cream.png",
@@ -426,6 +460,17 @@
       "alphaMode": "opaque"
     },
     {
+      "path": "brand/title-account.png",
+      "width": 640,
+      "height": 110,
+      "sha256": "7df8feab0cc1ae0f7139b5986fb4b03d5d0ba2a78b66ddc924d37f9f3da10f57",
+      "bytes": 62317,
+      "prompt": "Edit the reference brand heading in the same exact puffy rounded Japanese lettering style and proportions. The only text must read exactly 「アカウント」. Preserve dark chocolate brown plus restrained orange accent, soft upper-left highlight, small paw accent at the end, clean transparent background. Ensure every character is present and correctly legible. No extra decoration or words.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
       "path": "brand/title-collection.png",
       "width": 560,
       "height": 110,
@@ -569,6 +614,51 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "button/account-round.png",
+      "width": 168,
+      "height": 168,
+      "sha256": "6383ef2ac2cc7a830d9e549f8999e84ef900b578ea9886b4787efac88edc9d79",
+      "bytes": 28596,
+      "prompt": "One round account shortcut button, 168x168 transparent. Match the reference bell-round button's exact outer diameter, cream face, puffy bevel, fine brown outline, upper-left highlight and compact shadow. Replace the bell with a simple dark warm-brown person bust silhouette with two small cat ears on the head. Centered, bold readable silhouette, no facial features, no text, no other icons.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "button/auth-wide-pressed.png",
+      "width": 960,
+      "height": 168,
+      "sha256": "5829aad56a6bd71e748249b2c691a1fdb05c605927cdbff44bfd51e312329266",
+      "bytes": 103525,
+      "prompt": "Repaint the pressed state to match the cream-colored auth-wide reference. It must remain a warm white/cream button, not orange or amber: use only pale ivory fill, a slightly deeper taupe inset edge and gentle lowered shading. Same exact long rounded shape, dimensions ratio 960:168, transparent outside. Make the inset pressed appearance subtle, keep the upper left gently highlighted. No orange fill, no text, logo, icon, letters or symbols.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 84,
+        "bottom": 0,
+        "left": 84
+      }
+    },
+    {
+      "path": "button/auth-wide.png",
+      "width": 960,
+      "height": 168,
+      "sha256": "93b6706e858c7c1399843e83eb950aa5d66c7808b3780c0d42aea315bf069671",
+      "bytes": 110075,
+      "prompt": "One long horizontal auth button background only, exact very wide 960x168 proportion, transparent outside. Soft warm white-to-cream puffy paper button with a clean subtle brown outline, small upper-left highlight, restrained contained lower shadow. Leave the full left third quiet and blank for app-drawn icon and the rest blank for app text. No icon, text, logos, letters, symbols or marks. Rounded ends sized for horizontal nine-slice stretching.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 84,
+        "bottom": 0,
+        "left": 84
+      }
+    },
+    {
       "path": "button/bell-badge.png",
       "width": 54,
       "height": 54,
@@ -671,6 +761,40 @@
       "sha256": "ccaf4b23d5455fbd126d1432c1c115d4f6cb8278f4e0b046c87d4d040281a2ce",
       "bytes": 22616,
       "alphaMode": "transparent"
+    },
+    {
+      "path": "button/danger-pressed.png",
+      "width": 640,
+      "height": 150,
+      "sha256": "95f18a100e44d46931d4cf6caccdf5b145beed3cf99d9905de262224d1a7f4be",
+      "bytes": 80231,
+      "prompt": "Pressed version of the muted dusty red-brown danger button. Use a low-saturation deeper terracotta brown (#A85E51), never vivid orange or red. Same puffy rounded paper geometry and exact 640:150 ratio as reference; gently pressed inward with a subtle inset border and softer upper highlight. Transparent outside, blank surface. No text, logos, icons, letters or symbols; calm and non-alarming.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 75,
+        "bottom": 0,
+        "left": 75
+      }
+    },
+    {
+      "path": "button/danger.png",
+      "width": 640,
+      "height": 150,
+      "sha256": "47f599bc60ddb07dee294eff143378316ae9015408ccd1f79214c0801ebc0b2f",
+      "bytes": 72587,
+      "prompt": "Recolor the reference button as a quiet muted red-brown danger action button, not orange and not bright red. Use dusty terracotta rose brown (#B87461) with a lighter desaturated upper-left highlight and a soft dark cacao edge. Same rounded puffy paper geometry, exact 640:150 wide ratio, transparent outside, blank for app text. No text, icons, logos, letters or symbols. Gentle and non-alarming.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 75,
+        "bottom": 0,
+        "left": 75
+      }
     },
     {
       "path": "button/disabled.png",
@@ -1407,6 +1531,17 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "icon/cloud.png",
+      "width": 150,
+      "height": 150,
+      "sha256": "9e086358da53dedeb6a13221751284c8a6564435ee96b76f12c9d3dfd9974369",
+      "bytes": 22630,
+      "prompt": "A simple cloud icon for an account backup settings row, 150x150 transparent. Match existing UI icon line weight, soft filled rounded geometry, warm cream body with a clean brown outline and a small sage-green upward arrow inside. No letters, numbers, text, logos, extra symbols or background. Centered with clear edges and gentle upper-left highlight.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
       "path": "icon/coin-paw.png",
       "width": 150,
       "height": 150,
@@ -1473,14 +1608,25 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "icon/key.png",
+      "width": 150,
+      "height": 150,
+      "sha256": "e2f5ef3aa2c98a84045486068412ae1ce205d9a50c1134dae2047a5c8290e057",
+      "bytes": 19278,
+      "prompt": "A simple account key settings icon, 150x150 transparent. Match the existing icon family's warm chocolate-brown outline and muted brass/orange details, rounded puffy paper-clay style, soft upper-left highlight. One clear old-fashioned key angled gently upward-right, large round bow and two small teeth. No text, letters, numbers, logos, extra objects or background.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
       "path": "icon/lock.png",
       "width": 150,
       "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Brown rounded padlock. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "5db8a5dcc55f2c189684bd38367a167bdf6e6d96e9194db0e636636e65707165",
-      "bytes": 28858,
+      "sha256": "db198768b52b2144d79a4ec724bbaf3d7cb30de321ad140ade648a130428ab64",
+      "bytes": 27288,
+      "prompt": "A simplified app settings-row lock icon, 150x150 transparent. Match reference's warm brown body and muted orange-brass shackle, thick clean rounded shape, gentle upper-left highlight, soft restrained shadow. Center one closed padlock with clear keyhole, no extra marks, no text, no background.",
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
     },
     {
@@ -1583,6 +1729,17 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "icon/shield-check.png",
+      "width": 150,
+      "height": 150,
+      "sha256": "dd1ef88740ed78950a667f87d75e309d10fe513161c76fe8e1e4a63597e5a192",
+      "bytes": 30882,
+      "prompt": "A simple shield-with-check settings icon, 150x150 transparent. Match the existing icon family's rounded 3D paper-clay style, warm brown outlines, pale cream highlights and small sage-green accent. Center one clear rounded shield with a simple dark brown checkmark. No words, letters, numbers, logos, extra objects or background.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
       "path": "icon/sun.png",
       "width": 150,
       "height": 150,
@@ -1602,6 +1759,50 @@
       "bytes": 27981,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "illust/account-backup.png",
+      "width": 600,
+      "height": 450,
+      "sha256": "d1d5a150e04db84d8344f4a2d7ef2a6bfd895f5297e218c89427f3cc2c2946e3",
+      "bytes": 309230,
+      "prompt": "A warm, clean empty-background app illustration for account backup and data transfer: the same Bengal Cat Mobby mascot from the references gently hugging a large soft cream cloud with a few small blank file tiles tucked inside. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. Friendly helpful expression, no text, letters, numbers, logos or extra objects. Transparent background, full composition centered, soft upper-left highlight and tiny grounding shadow.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "illust/account-goodbye.png",
+      "width": 600,
+      "height": 450,
+      "sha256": "8e6edca54a8be4f8e2bf63d3b7ee66fd550ce75dea43aaa8036fbbf802b3dd80",
+      "bytes": 285220,
+      "prompt": "A warm, gentle account-closure confirmation illustration of the same Bengal Cat Mobby mascot from the references. Seated with a slightly wistful but kind expression, shoulders relaxed and paws resting naturally; never fearful, guilty, crying, pleading, or blaming. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep green normal eye viewer-left, camera-lens eye viewer-right, chest directional pad viewer-left and exactly two round buttons viewer-right. No text, logos, warning marks, or extra objects. Transparent background, centered full character, calm upper-left lighting and soft tiny contact shadow.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "illust/account-signedout.png",
+      "width": 600,
+      "height": 450,
+      "sha256": "e4a7ccc9593a698d37b098f397137f75e4e4bd28695c0aef486048b4a4d55070",
+      "bytes": 305724,
+      "prompt": "A warm, clean empty-background app illustration of the same Bengal Cat Mobby mascot from the references after signing out: seated, gently waving one front paw goodbye with a calm reassuring smile. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. No text, letters, numbers, logos, stamp or extra objects. Transparent background, full figure centered, soft upper-left light and restrained contact shadow.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "illust/avatar-frame.png",
+      "width": 360,
+      "height": 360,
+      "sha256": "49364b09762d6602b75f04a0ef68b7a7cf1ad934c89768954b299c86ac9cf04c",
+      "bytes": 99307,
+      "prompt": "Edit this exact circular avatar frame. Preserve its circular cream and warm-brown puffy rim and the orange paw ornament overlapping the bottom edge. REMOVE the dark cat/person silhouette and REMOVE the cream disk inside the rim. Cut a completely open circular hole through the middle; the entire central aperture must have transparent alpha zero so a user photo can show through. The inside and outside of the ring are both transparent. No avatar, no silhouette, no checker pattern, no fill in the hole, no text. Keep the existing frame and paw only.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
     },
     {
@@ -2354,6 +2555,23 @@
       "sha256": "f32a49ef4656a819d9c097de53c051a31fc0ddc659137befc5bdea88d7dd274c",
       "bytes": 53747,
       "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/warning-card.png",
+      "width": 960,
+      "height": 420,
+      "sha256": "259293327b5c01efc2b2dc622facbbae9c7d0cbe6f130fb1cfe5e2d32cfb93dd",
+      "bytes": 375403,
+      "prompt": "One completely blank warning-information card for an account closure screen, exact 960x420 wide landscape ratio, transparent outside. Soft cream paper panel with a very subtle dusty-rose tint along the raised edge, rounded corners and contained gentle shadow. Blank quiet interior for app text. No text, icon, logo, lines or symbols. Puffy soft paper-clay material, not alarming, 9-slice safe straight central edges.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
+      }
     },
     {
       "path": "share/discovery-card-story.png",

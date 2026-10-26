@@ -154,3 +154,44 @@ Generation 3 final source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7
 Transform this mascot into a clearly illustrated, hand-shaped paper-clay character for a soft Japanese mobile game UI. Preserve the seated pose, Bengal spots, green normal eye, camera-lens eye, chest directional pad and two buttons, and raised paw holding a paw stamp. Strongly simplify the fur into smooth matte sculpted color patches: absolutely no strands, fuzz, pores, photographic detail, or realistic animal fur. Use broad rounded shapes, tidy contours, gentle top-left highlight, warm cream and orange palette, soft restrained outline and contact shadow. It should read immediately as a polished cartoon sculpture illustration, not a photograph or photoreal render. Transparent background. No checkerboard pattern, no text, no new props. Centered full body. Do not alter the character's identifying controls.
 
 Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / illust/account-backup.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-ab7230eb-eb52-4c93-9e29-3e56f6cd9c51.png
+
+A warm, clean empty-background app illustration for account backup and data transfer: the same Bengal Cat Mobby mascot from the references gently hugging a large soft cream cloud with a few small blank file tiles tucked inside. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. Friendly helpful expression, no text, letters, numbers, logos or extra objects. Transparent background, full composition centered, soft upper-left highlight and tiny grounding shadow.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / illust/account-signedout.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-10e80a5f-9366-4f68-baac-eaab8bbdcb4d.png
+
+A warm, clean empty-background app illustration of the same Bengal Cat Mobby mascot from the references after signing out: seated, gently waving one front paw goodbye with a calm reassuring smile. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. No text, letters, numbers, logos, stamp or extra objects. Transparent background, full figure centered, soft upper-left light and restrained contact shadow.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / illust/account-goodbye.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-762810b2-b57d-47c5-9cf8-5d22c9e133af.png
+
+A warm, gentle account-closure confirmation illustration of the same Bengal Cat Mobby mascot from the references. Seated with a slightly wistful but kind expression, shoulders relaxed and paws resting naturally; never fearful, guilty, crying, pleading, or blaming. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep green normal eye viewer-left, camera-lens eye viewer-right, chest directional pad viewer-left and exactly two round buttons viewer-right. No text, logos, warning marks, or extra objects. Transparent background, centered full character, calm upper-left lighting and soft tiny contact shadow.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / illust/avatar-frame.png
+
+Group F. Built-in image_gen. Two successful generations total; one redo. Generation 1 was superseded after visual review. Generation 2 is final.
+
+Generation 1 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-9a94b0f1-98e2-44d9-b0b7-c928af0cfa1d.png
+
+A circular profile-picture frame, transparent 360x360 PNG. Puffy cream paper-clay circular rim, smooth raised warm-brown outer edge, one small orange paw ornament attached at the bottom. IMPORTANT: the entire circular center is a true transparent hole with alpha zero, showing no cream fill, no gray checker pattern, no placeholder image. Frame only, centered, shadow contained within canvas, restrained upper-left light, no text.
+
+Generation 2 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-cdd59f64-7690-4e87-87a0-6b0541fb3641.png
+
+Edit this exact circular avatar frame. Preserve its circular cream and warm-brown puffy rim and the orange paw ornament overlapping the bottom edge. REMOVE the dark cat/person silhouette and REMOVE the cream disk inside the rim. Cut a completely open circular hole through the middle; the entire central aperture must have transparent alpha zero so a user photo can show through. The inside and outside of the ring are both transparent. No avatar, no silhouette, no checker pattern, no fill in the hole, no text. Keep the existing frame and paw only.
+
+Final finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF

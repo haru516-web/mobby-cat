@@ -114,3 +114,15 @@ Added opening/bg.png1179x2556; opening/logo-hero.png1000x420; opening/cats-peek.
 Added 12 assets: `brand/title-login-record.png`; `button/login-record-round.png`; `illust/empty-login.png`; `login/month-frame.png`, `cell-empty.png`, `cell-stamped.png`, `cell-today.png`, `cell-bonus.png`, `stamp-paw.png`, `arrow-prev.png`, `arrow-next.png`, and `month-complete.png`. Monthly frame is 1000x900 with slice top150/right90/bottom90/left90. Four 120x120 calendar cell states share the same clear margin and alignment. Text and dates are left to the app. Preview: `previews/ui-v3-E.png`; four-state comparison: `previews/login-cells-compare.png`.
 
 Twelve final assets used built-in image_gen. The empty-state illustration took three generations total, including two redraws to simplify the fur into a smooth sculpted illustration; total E generation count is 14 with two redos. The final cat keeps the asymmetric eyes, chest controls, and stamp. All dimensions, PNG format, transparency, EXIF and manifest hashes passed the asset audit.
+
+## UI v3 F: アカウント管理
+
+Added 17 assets: `brand/title-account.png`; `button/account-round.png`, `auth-wide.png`, `auth-wide-pressed.png`, `danger.png`, `danger-pressed.png`; `illust/avatar-frame.png`, `account-backup.png`, `account-signedout.png`, `account-goodbye.png`; `panel/warning-card.png`; `badge/linked.png`, `unlinked.png`; and `icon/lock.png`, `cloud.png`, `shield-check.png`, `key.png`.
+
+Four controls use 9-slice: auth buttons slice top0/right84/bottom0/left84; danger buttons top0/right75/bottom0/left75; warning card 60px on each edge; status badges top21/right42/bottom21/left42. Avatar frame has a verified alpha-zero circular center. No provider logos or text are baked into controls. The goodbye cat is calm and gentle.
+
+Seventeen final assets used built-in image_gen. Five assets were redrawn once after review (avatar-frame transparency, auth pressed color, both danger-button colors, and the unlinked badge color), for 22 generations total and five redos. Preview: `previews/ui-v3-F.png`. All file dimensions, transparency, PNG format, EXIF and manifest hashes passed the asset audit.
+
+## UI v3 最終集計
+
+Manifest totals: 211 UI assets and 3 system icons. Category counts: badge 11, bg 19, brand 17, button 29, camera 20, cat 3, gauge 5, icon 28, illust 18, login 9, navbtn 9, opening 6, panel 16, share 10, tabbar 11. The UI v3 audit covers all 54 planned paths with zero pending assets and zero metadata/hash errors.

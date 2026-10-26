@@ -100,3 +100,26 @@ Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785
 Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
 
 9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
+
+## UI v3 / badge/linked.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-3f99edd1-2d78-40b6-bede-4410915c2e8a.png
+
+A small blank horizontal pill label background for linked account status, exact 300x84 ratio with transparent exterior. Soft muted sage green puffy paper base, fine darker green edge, gentle upper-left highlight, restrained tiny shadow. Empty surface only so app draws the label. No text, logos, letters, icons or symbols. Rounded caps suited to nine-slice stretching.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / badge/unlinked.png
+
+Group F. Built-in image_gen. Two successful generations total; one color redo. The first was superseded after visual review; generation 2 is final.
+
+Generation 1 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-43f6625f-169f-42cf-80b6-0434cf3a223a.png
+
+A small blank horizontal pill label background for an unlinked account, exact 300x84 ratio with transparent exterior. Soft warm gray-beige puffy paper base, fine taupe edge, gentle upper-left highlight, restrained tiny shadow. Empty surface only so app draws the label. No text, logos, letters, icons or symbols. Rounded caps suited to nine-slice stretching.
+
+Generation 2 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-468eadfd-8649-4c64-a8ad-470be7a7ac44.png
+
+Recolor this pill badge so the unlinked state is clearly a soft warm gray, not cream or white. Use neutral warm gray-beige fill around #D2CEC5 with a slightly darker taupe outline, keep the same rounded puffy paper shape, edge highlight and gentle compact shadow. Blank surface, transparent outside, no words or icons. Preserve exact target aspect 300x84 and clean smooth edges.
+
+Final finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
