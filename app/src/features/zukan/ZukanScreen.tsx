@@ -107,7 +107,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                       style={StyleSheet.absoluteFill}
                     />
                     <View style={s.cellCat}>
-                      {own ? <CatImage id={c.id} size={cellW - 10} /> : <Icon name="icon/lock" size={cellW * 0.34} />}
+                      {own ? <CatImage id={c.id} size={cellW - 10} /> : <Pic name="cat/silhouette-locked" width={cellW - 18} />}
                     </View>
                     {!!own && own.count > 1 && (
                       <Slice name="badge/owned-count" style={s.count}><T w="x" size={10} color={C.accent}>×{own.count}</T></Slice>

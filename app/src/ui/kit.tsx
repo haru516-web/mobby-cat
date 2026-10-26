@@ -204,10 +204,8 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
               if (!on) playSfx('sfx_tap');
               onChange(t.key);
             }}>
-            {on && <Pic name="tabbar/active-glow" height={72} style={k.glow} />}
             <Icon name={`tabbar/${t.key}-${on ? 'on' : 'off'}`} size={34} />
-            <T w="x" size={12} color={on ? C.accent : C.sub} style={{ marginTop: 2 }}>{t.label}</T>
-            {on && <Pic name="tabbar/underline" width={60} style={{ marginTop: 3 }} />}
+            <T w="x" size={11} color={on ? C.accent : C.sub} style={{ marginTop: 1 }}>{t.label}</T>
           </Pressable>
         );
       })}
@@ -224,7 +222,7 @@ const k = StyleSheet.create({
   currency: { height: 40, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 22 },
   badge: { alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
   card: { padding: 14 },
-  tabbar: { flexDirection: 'row', paddingTop: 14 },
+  tabbar: { flexDirection: 'row', paddingTop: 12 },
   tab: { flex: 1, alignItems: 'center' },
   glow: { position: 'absolute', top: -18 },
   gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
