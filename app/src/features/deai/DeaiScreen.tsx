@@ -123,7 +123,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         {empty && (
           <Card style={{ marginHorizontal: 16, marginTop: 12 }}>
             <T w="b" size={13} style={{ textAlign: 'center' }}>今日は、出会いの条件がそろった子がいません</T>
-            <T w="m" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 4 }}>歩いたり、天気や曜日がかわったりすると、あしたは会えるかも。図鑑のヒントを見てみよう</T>
+            <T w="m" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 4 }}>歩いたり、天気や曜日がかわったりすると、あしたは会えるかも。歩数と位置情報を許可していないと、ほとんど会えません（設定で確認できます）</T>
           </Card>
         )}
         <TourAnchor id="deai-grid" style={s.grid}>

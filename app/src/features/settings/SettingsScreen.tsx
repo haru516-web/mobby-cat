@@ -1,10 +1,12 @@
 import Constants from 'expo-constants';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Linking, ScrollView, Share, StyleSheet, View } from 'react-native';
 import { useGame } from '../../core/game';
 import { INFO_BODY, INFO_TITLE, InfoKind, PRIVACY_URL, SUPPORT_EMAIL, TERMS_URL } from '../../data/appInfo';
 import { setAudioSettings, useAudioSettings } from '../../services/audio';
 import { confirmAction, notice } from '../../services/dialog';
+import { hasStepAccess } from '../../services/signals';
+import { hasLocationAccess } from '../../services/weather';
 import { disableDailyNotification, enableDailyNotification } from '../../services/notify';
 import { C, T } from '../../ui/base';
 import { Card, ImgButton, Toggle, Tap, withSfx } from '../../ui/kit';
@@ -39,6 +41,11 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
     else d = ((d - 1 + delta + DAYS_IN[m - 1]) % DAYS_IN[m - 1]) + 1;
     g.setBirthday({ m, d: Math.min(d, DAYS_IN[m - 1]) });
   };
+
+  const [perm, setPerm] = useState({ steps: false, location: false });
+  useEffect(() => {
+    Promise.all([hasStepAccess(), hasLocationAccess()]).then(([steps, location]) => setPerm({ steps, location }));
+  }, []);
 
   const step = (v: number, delta: number) => Math.round(Math.min(1, Math.max(0, v + delta)) * 10) / 10;
 
@@ -114,6 +121,24 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
             <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>端末の保存領域を読めなかったため、いまの記録を守るために保存を止めています。アプリを閉じて開き直してください。</T>
           </Card>
         )}
+
+        <Section title="歩数と天気の許可" />
+        <Card style={{ gap: 6 }}>
+          <T w="m" size={11} color={C.sub}>
+            猫の出会いの条件には、歩数と天気（位置情報）が使われています。許可しないと、ほとんどの猫に会えません。位置はおおまかな場所だけを使い、保存しません。
+          </T>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <T w="x" size={13}>歩数（モーションとフィットネス）</T>
+            <T w="x" size={13} color={perm.steps ? C.ok : C.accent}>{perm.steps ? '許可ずみ' : '未許可'}</T>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <T w="x" size={13}>位置情報（天気）</T>
+            <T w="x" size={13} color={perm.location ? C.ok : C.accent}>{perm.location ? '許可ずみ' : '未許可'}</T>
+          </View>
+          {(!perm.steps || !perm.location) && (
+            <ImgButton skin="ghost-outline" label="設定アプリを開く" height={38} fontSize={12} onPress={() => Linking.openSettings().catch(() => notice('設定を開けませんでした', '端末の設定アプリから、猫モビーの許可を変えてください'))} style={{ marginTop: 4 }} />
+          )}
+        </Card>
 
         <Section title="通知と誕生日" />
         <Card style={s.item}>

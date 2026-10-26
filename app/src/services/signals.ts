@@ -40,3 +40,12 @@ export async function readSteps(dayKey: string, now: Date): Promise<number | nul
     return null;
   }
 }
+
+// 歩数の許可が出ているか（設定画面の案内用）
+export async function hasStepAccess(): Promise<boolean> {
+  try {
+    return (await Pedometer.isAvailableAsync()) && (await Pedometer.getPermissionsAsync()).granted;
+  } catch {
+    return false;
+  }
+}

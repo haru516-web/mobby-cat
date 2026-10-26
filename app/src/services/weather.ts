@@ -11,6 +11,15 @@ export async function requestWeatherAccess(): Promise<void> {
 }
 
 export type WeatherNow = { weather: Weather | null; temp: number | null };
+// 位置の許可が出ているか（設定画面の案内用）
+export async function hasLocationAccess(): Promise<boolean> {
+  try {
+    return (await Location.getForegroundPermissionsAsync()).granted;
+  } catch {
+    return false;
+  }
+}
+
 const cache = new Map<string, WeatherNow | null>();
 
 // MET Norway の symbol_code（例: clearsky_day, lightrain, heavysnowshowers_night）を4種類にまとめる

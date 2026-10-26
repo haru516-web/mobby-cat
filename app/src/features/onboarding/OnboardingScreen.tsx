@@ -57,6 +57,7 @@ export default function OnboardingScreen({ width }: { width: number }) {
               <How icon="icon/calendar-today" text={`毎日${REVEAL_HOUR}時に、新しい猫モビー3匹と出会えます。1匹は無料でお迎え`} />
               <How icon="icon/sun" text="歩いた日、雨の日、満月の夜、スマホの電池が1%の日…あなたの毎日によって、会える猫が変わります" />
               <How icon="icon/book" text="条件は世界中のみんなと共通。図鑑のヒントを手がかりに、秘密の条件を見つけよう" />
+              <How icon="icon/paw" text="歩数と位置情報（天気）を許可しないと、ほとんどの猫に会えません。次に出る画面で「許可」を選んでね" />
             </Card>
             <ImgButton
               label="はじめる"
