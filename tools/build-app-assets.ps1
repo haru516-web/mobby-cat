@@ -1,9 +1,11 @@
 # Convert cat images to 512px WebP for the app and generate app/src/data/catalog.ts
 # Sources: assets/cat-mobbies/manifest.json (breeds) and assets/cat-mobbies/new/manifest.json (character Mobbies)
+#          assets/cat-mobbies/breeds2/manifest.json (real breed colour variants)
 # Requires ffmpeg with libwebp on PATH.
 $root = Split-Path $PSScriptRoot -Parent
 $base = Get-Content "$root\assets\cat-mobbies\manifest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $new = Get-Content "$root\assets\cat-mobbies\new\manifest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+$breeds2 = Get-Content "$root\assets\cat-mobbies\breeds2\manifest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $outDir = "$root\app\assets\cats"
 New-Item -ItemType Directory -Force $outDir | Out-Null
 Get-ChildItem $outDir -File | Remove-Item
@@ -15,6 +17,9 @@ $rarity = @{
   'norwegian-forest'=2;'balinese'=2;'somali'=2;'turkish-angora'=2;'siberian'=2;'tonkinese'=2;'ragamuffin'=2;'american-curl'=2;'manx'=2;'burmese'=2;'snowshoe'=2;
   'bengal'=3;'turkish-van'=3;'selkirk-rex'=3;'devon-rex'=3;'cornish-rex'=3;'egyptian-mau'=3;'ocicat'=3;'singapura'=3;'havana-brown'=3;
   'toyger'=4;'bombay'=4;
+  # breeds2: common colour variants of popular breeds / rare or unusual breeds (the rest default to 2)
+  'american-shorthair-brown-tabby'=1;'british-black'=1;'persian-black-smoke'=1;'european-shorthair'=1;
+  'sphynx'=3;'savannah'=3;'lykoi'=3;'peterbald'=3;'chausie'=3;'skookum'=3;'donskoy'=3;'sokoke'=3;'khao-manee'=3;'dragon-li'=3;'mike-neko'=3;'bengal-snow-lynx'=3;'bengal-silver'=3;'minskin'=3;'toybob'=3;'napoleon'=3;
   'rea-mobby'=3;'uyu-mobby'=2;
   # character Mobbies that are especially hard to meet
   'maboroshi-kuroneko'=4;'ousama'=4;'kiseki'=4;'pittari'=4;'aotsuki'=4;'shoku'=4;'kikan'=4;'uruu'=4
@@ -55,6 +60,12 @@ foreach ($c in $new) {
   $r = if ($rarity.ContainsKey($c.id)) { $rarity[$c.id] } elseif ($k -eq 'world' -or $k -eq 'travel') { 4 } else { 3 }
   $lines += "  { id: '$($c.id)', name: '$($c.name)', rarity: $r, kind: '$k', image: require('../../assets/cats/$($c.id).webp') },"
 }
+# real breed colour variants (breeds2): normal pool
+foreach ($c in $breeds2) {
+  Convert "$root\$($c.file.Replace('/', '\'))" $c.id
+  $r = if ($rarity.ContainsKey($c.id)) { $rarity[$c.id] } else { 2 }
+  $lines += "  { id: '$($c.id)', name: '$($c.name)', rarity: $r, kind: 'breed', image: require('../../assets/cats/$($c.id).webp') },"
+}
 $lines += "];"
 [System.IO.File]::WriteAllText("$root\app\src\data\catalog.ts", ($lines -join "`n") + "`n", (New-Object System.Text.UTF8Encoding($false)))
-"done: $($base.characters.Count + $new.Count)"
+"done: $($base.characters.Count + $new.Count + $breeds2.Count)"
