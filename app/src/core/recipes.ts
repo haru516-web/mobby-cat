@@ -24,47 +24,46 @@ export type Env = {
 };
 
 type Group = 'steps' | 'weather' | 'week' | 'time' | 'battery' | 'streak' | 'owned' | 'season' | 'moon';
-export type Atom = { id: string; group: Group; hard: boolean; label: string; test: (e: Env) => boolean };
+// p は、ふつうの人がその日にこの条件を満たす確率の目安（レア度の計算に使う）
+export type Atom = { id: string; group: Group; hard: boolean; p: number; label: string; test: (e: Env) => boolean };
 
 const stepsAtLeast = (n: number): Atom['test'] => (e) => e.steps != null && e.steps >= n;
 const openIn = (from: number, to: number): Atom['test'] => (e) => e.openHours.some((h) => h >= from && h < to);
 
 export const ATOMS: Atom[] = [
   // 簡単
-  { id: 'steps100', group: 'steps', hard: false, label: '歩数が100歩以上', test: stepsAtLeast(100) },
-  { id: 'steps500', group: 'steps', hard: false, label: '歩数が500歩以上', test: stepsAtLeast(500) },
-  { id: 'steps1000', group: 'steps', hard: false, label: '歩数が1,000歩以上', test: stepsAtLeast(1000) },
-  { id: 'steps3000', group: 'steps', hard: false, label: '歩数が3,000歩以上', test: stepsAtLeast(3000) },
-  { id: 'sunny', group: 'weather', hard: false, label: '天気が晴れ', test: (e) => e.weather === 'sunny' },
-  { id: 'cloudy', group: 'weather', hard: false, label: '天気がくもり', test: (e) => e.weather === 'cloudy' },
-  { id: 'rain', group: 'weather', hard: false, label: '天気が雨', test: (e) => e.weather === 'rain' },
-  { id: 'weekday', group: 'week', hard: false, label: '平日', test: (e) => !e.holiday && e.dow >= 1 && e.dow <= 5 },
-  { id: 'weekend', group: 'week', hard: false, label: '土日', test: (e) => e.dow === 0 || e.dow === 6 },
-  { id: 'holiday', group: 'week', hard: false, label: '祝日', test: (e) => e.holiday },
-  { id: 'morning', group: 'time', hard: false, label: '朝（5〜10時）に起動', test: openIn(5, 10) },
-  { id: 'noon', group: 'time', hard: false, label: '昼（10〜16時）に起動', test: openIn(10, 16) },
-  { id: 'evening', group: 'time', hard: false, label: '夕方（16〜19時）に起動', test: openIn(16, 19) },
-  { id: 'battery-half', group: 'battery', hard: false, label: 'バッテリーが50%以下になった', test: (e) => e.battery.some((v) => v <= 50) },
-  { id: 'battery-high', group: 'battery', hard: false, label: 'バッテリーが80%以上', test: (e) => e.battery.some((v) => v >= 80) },
-  { id: 'charging', group: 'battery', hard: false, label: '充電した', test: (e) => e.charging },
-  { id: 'streak3', group: 'streak', hard: false, label: '3日連続で起動', test: (e) => e.streak >= 3 },
-  { id: 'owned10', group: 'owned', hard: false, label: '10種類以上の猫と暮らしている', test: (e) => e.kinds >= 10 },
-  { id: 'owned30', group: 'owned', hard: false, label: '30種類以上の猫と暮らしている', test: (e) => e.kinds >= 30 },
-  { id: 'spring', group: 'season', hard: false, label: '春（3〜5月）', test: (e) => e.m >= 3 && e.m <= 5 },
-  { id: 'summer', group: 'season', hard: false, label: '夏（6〜8月）', test: (e) => e.m >= 6 && e.m <= 8 },
-  { id: 'autumn', group: 'season', hard: false, label: '秋（9〜11月）', test: (e) => e.m >= 9 && e.m <= 11 },
-  { id: 'winter', group: 'season', hard: false, label: '冬（12〜2月）', test: (e) => e.m === 12 || e.m <= 2 },
+  { id: 'steps3000', group: 'steps', hard: false, p: 0.5, label: '歩数が3,000歩以上', test: stepsAtLeast(3000) },
+  { id: 'steps5000', group: 'steps', hard: false, p: 0.3, label: '歩数が5,000歩以上', test: stepsAtLeast(5000) },
+  { id: 'sunny', group: 'weather', hard: false, p: 0.4, label: '天気が晴れ', test: (e) => e.weather === 'sunny' },
+  { id: 'cloudy', group: 'weather', hard: false, p: 0.3, label: '天気がくもり', test: (e) => e.weather === 'cloudy' },
+  { id: 'rain', group: 'weather', hard: false, p: 0.25, label: '天気が雨', test: (e) => e.weather === 'rain' },
+  { id: 'weekday', group: 'week', hard: false, p: 0.65, label: '平日', test: (e) => !e.holiday && e.dow >= 1 && e.dow <= 5 },
+  { id: 'weekend', group: 'week', hard: false, p: 0.29, label: '土日', test: (e) => e.dow === 0 || e.dow === 6 },
+  { id: 'holiday', group: 'week', hard: false, p: 0.04, label: '祝日', test: (e) => e.holiday },
+  { id: 'morning', group: 'time', hard: false, p: 0.4, label: '朝（5〜10時）に起動', test: openIn(5, 10) },
+  { id: 'noon', group: 'time', hard: false, p: 0.5, label: '昼（10〜16時）に起動', test: openIn(10, 16) },
+  { id: 'evening', group: 'time', hard: false, p: 0.4, label: '夕方（16〜19時）に起動', test: openIn(16, 19) },
+  { id: 'battery-half', group: 'battery', hard: false, p: 0.6, label: 'バッテリーが50%以下になった', test: (e) => e.battery.some((v) => v <= 50) },
+  { id: 'battery-high', group: 'battery', hard: false, p: 0.6, label: 'バッテリーが80%以上', test: (e) => e.battery.some((v) => v >= 80) },
+  { id: 'charging', group: 'battery', hard: false, p: 0.5, label: '充電した', test: (e) => e.charging },
+  { id: 'streak3', group: 'streak', hard: false, p: 0.5, label: '3日連続で起動', test: (e) => e.streak >= 3 },
+  { id: 'owned10', group: 'owned', hard: false, p: 0.5, label: '10種類以上の猫と暮らしている', test: (e) => e.kinds >= 10 },
+  { id: 'owned30', group: 'owned', hard: false, p: 0.3, label: '30種類以上の猫と暮らしている', test: (e) => e.kinds >= 30 },
+  { id: 'spring', group: 'season', hard: false, p: 0.25, label: '春（3〜5月）', test: (e) => e.m >= 3 && e.m <= 5 },
+  { id: 'summer', group: 'season', hard: false, p: 0.25, label: '夏（6〜8月）', test: (e) => e.m >= 6 && e.m <= 8 },
+  { id: 'autumn', group: 'season', hard: false, p: 0.25, label: '秋（9〜11月）', test: (e) => e.m >= 9 && e.m <= 11 },
+  { id: 'winter', group: 'season', hard: false, p: 0.25, label: '冬（12〜2月）', test: (e) => e.m === 12 || e.m <= 2 },
   // 難しい
-  { id: 'steps8000', group: 'steps', hard: true, label: '歩数が8,000歩以上', test: stepsAtLeast(8000) },
-  { id: 'steps12000', group: 'steps', hard: true, label: '歩数が12,000歩以上', test: stepsAtLeast(12000) },
-  { id: 'streak14', group: 'streak', hard: true, label: '14日連続で起動', test: (e) => e.streak >= 14 },
-  { id: 'streak30', group: 'streak', hard: true, label: '30日連続で起動', test: (e) => e.streak >= 30 },
-  { id: 'owned50', group: 'owned', hard: true, label: '50種類以上の猫と暮らしている', test: (e) => e.kinds >= 50 },
-  { id: 'owned100', group: 'owned', hard: true, label: '100種類以上の猫と暮らしている', test: (e) => e.kinds >= 100 },
-  { id: 'battery-low', group: 'battery', hard: true, label: 'バッテリーが10%以下になった', test: (e) => e.battery.some((v) => v <= 10) },
-  { id: 'snow', group: 'weather', hard: true, label: '天気が雪', test: (e) => e.weather === 'snow' },
-  { id: 'fullmoon', group: 'moon', hard: true, label: '満月の夜', test: (e) => e.fullMoon },
-  { id: 'newmoon', group: 'moon', hard: true, label: '新月の夜', test: (e) => e.newMoon },
+  { id: 'steps8000', group: 'steps', hard: true, p: 0.1, label: '歩数が8,000歩以上', test: stepsAtLeast(8000) },
+  { id: 'steps12000', group: 'steps', hard: true, p: 0.03, label: '歩数が12,000歩以上', test: stepsAtLeast(12000) },
+  { id: 'streak14', group: 'streak', hard: true, p: 0.15, label: '14日連続で起動', test: (e) => e.streak >= 14 },
+  { id: 'streak30', group: 'streak', hard: true, p: 0.06, label: '30日連続で起動', test: (e) => e.streak >= 30 },
+  { id: 'owned50', group: 'owned', hard: true, p: 0.15, label: '50種類以上の猫と暮らしている', test: (e) => e.kinds >= 50 },
+  { id: 'owned100', group: 'owned', hard: true, p: 0.05, label: '100種類以上の猫と暮らしている', test: (e) => e.kinds >= 100 },
+  { id: 'battery-low', group: 'battery', hard: true, p: 0.1, label: 'バッテリーが10%以下になった', test: (e) => e.battery.some((v) => v <= 10) },
+  { id: 'snow', group: 'weather', hard: true, p: 0.05, label: '天気が雪', test: (e) => e.weather === 'snow' },
+  { id: 'fullmoon', group: 'moon', hard: true, p: 0.035, label: '満月の夜', test: (e) => e.fullMoon },
+  { id: 'newmoon', group: 'moon', hard: true, p: 0.035, label: '新月の夜', test: (e) => e.newMoon },
 ];
 const ATOM_BY_ID: Record<string, Atom> = Object.fromEntries(ATOMS.map((a) => [a.id, a]));
 
@@ -155,7 +154,7 @@ const LEGEND = new Set(['maboroshi-kuroneko', 'ousama', 'kiseki', 'pittari', 'ao
 
 export type Recipe = { atoms: Atom[]; signature: boolean; rarity: Rarity };
 
-const pickAtoms = (id: string, easy: number, hard: number, skip: Group[]): Atom[] => {
+const pickAtoms = (id: string, easy: number, hard: number, skip: Group[], minP = 0): Atom[] => {
   const r = rng(hash(`recipe:${id}`));
   const taken = new Set<Group>(skip);
   const out: Atom[] = [];
@@ -167,12 +166,18 @@ const pickAtoms = (id: string, easy: number, hard: number, skip: Group[]): Atom[
       out.push(a);
     }
   };
-  draw(ATOMS.filter((a) => !a.hard), easy);
+  draw(ATOMS.filter((a) => !a.hard && a.p >= minP), easy);
   draw(ATOMS.filter((a) => a.hard), hard);
   return out;
 };
 
-// 条件の数と難しさからレア度を決める
+// 実在の猫のレア度は、条件が同時にそろう確率で決める（春だけ・祝日だけのような、年に数日しか会えない猫がノーマルにならないように）
+export function rarityFromChance(atoms: Atom[]): Rarity {
+  const p = atoms.reduce((x, a) => x * a.p, 1);
+  return p >= 0.15 ? 1 : p >= 0.06 ? 2 : 3; // 実在の猫は「でんせつ」にしない
+}
+
+// 条件の数と難しさからレア度を決める（個性のあるモビー）
 export function rarityFromConditions(count: number, hard: number): Rarity {
   if (count <= 2) return 1;
   if (count === 3) return hard > 0 ? 3 : 2;
@@ -193,12 +198,13 @@ export function recipeOf(c: CatDef): Recipe | null {
     // 実在の猫: 簡単2〜3個。重い猫種（元のレア度3以上）は簡単2＋難しい1
     const heavy = c.rarity >= 3;
     const easy = heavy ? 2 : 2 + (hash(c.id) % 2);
-    const atoms = pickAtoms(c.id, easy, heavy ? 1 : 0, []);
-    rec = { atoms, signature: false, rarity: rarityFromConditions(atoms.length, atoms.filter((a) => a.hard).length) };
+    // 簡単な条件は、ふつうに生活していて半分近い日にそろうものだけ（祝日・所持数など、人によって差が大きいものは入れない）
+    const atoms = pickAtoms(c.id, easy, heavy ? 1 : 0, ['owned'], 0.25);
+    rec = { atoms, signature: false, rarity: rarityFromChance(atoms) };
   } else {
     // 個性のあるモビー: 簡単4個＋難しい1個（個性条件がある猫はそれが難しい1個）
     const skip = SIGNATURE_GROUPS[c.id] ?? [];
-    const atoms = pickAtoms(c.id, 4, hasSignature ? 0 : 1, skip);
+    const atoms = pickAtoms(c.id, 4, hasSignature ? 0 : 1, skip, 0.25);
     const hardCount = (hasSignature ? (LEGEND.has(c.id) ? 2 : 1) : 0) + atoms.filter((a) => a.hard).length;
     rec = { atoms, signature: hasSignature, rarity: rarityFromConditions(atoms.length + (hasSignature ? 1 : 0), hardCount) };
   }
