@@ -63,7 +63,6 @@ export const ATOMS: Atom[] = [
   { id: 'owned50', group: 'owned', hard: true, p: 0.15, label: '50種類以上の猫と暮らしている', test: (e) => e.kinds >= 50 },
   { id: 'owned100', group: 'owned', hard: true, p: 0.05, label: '100種類以上の猫と暮らしている', test: (e) => e.kinds >= 100 },
   { id: 'battery-low', group: 'battery', hard: true, p: 0.1, label: 'バッテリーが10%以下になった', test: (e) => e.battery.some((v) => v <= 10) },
-  { id: 'snow', group: 'weather', hard: true, p: 0.05, label: '天気が雪', test: (e) => e.weather === 'snow' },
   { id: 'fullmoon', group: 'moon', hard: true, p: 0.035, label: '満月の夜', test: (e) => e.fullMoon },
   { id: 'newmoon', group: 'moon', hard: true, p: 0.035, label: '新月の夜', test: (e) => e.newMoon },
 ];
