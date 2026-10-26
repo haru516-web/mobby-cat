@@ -14,6 +14,8 @@ export type Signals = {
   catalogUpdated: boolean; // アプリ更新で新しい猫が増えたか
   birthday: { m: number; d: number } | null;
   weather?: Weather | null; // その日の天気。取れないときは null
+  // 端末の中で数えている累計（歩数は出会いの候補を作った日の分から）
+  totals?: { steps: number; photos: number; pets: number; openDays: number; cats: number };
 };
 
 export type Ctx = {
@@ -177,6 +179,15 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   addOnce(SANBIKI_SET.every(owns), 'sanbiki', '特別な3匹がそろった');
   addOnce(Object.values(ctx.appearCounts).some((n) => n >= 3), 'shitsukoi', '同じ猫が3回訪ねてきた');
 
+  // 端末の中で数える累計（世界の猫だった子たち。通信しない）
+  const t = s.totals;
+  addOnce(!!t && t.steps >= 1_000_000, 'world-marathon', '累計100万歩');
+  addOnce(!!t && t.openDays >= 100, 'pyonpyon', '100日会いに来た');
+  addOnce(!!t && t.cats >= 100, 'omatsuri', '累計100匹の猫を迎えた');
+  addOnce(!!t && t.photos >= 100, 'cameraman', '100枚撮影した');
+  addOnce(!!t && t.pets >= 1000, 'gorogoro', '1,000回なでた');
+  add(s.charging && s.openHours.some((h) => h >= 23 || h < 5), 'nemurio', '夜、充電しながら会いに来た');
+
   // 複合・隠し条件
   add(dow === 5 && d === 13 && full, 'maboroshi-kuroneko', '13日の金曜日の満月');
   add(newMoon && blackCount >= 3, 'yami', '新月の夜に黒猫が3匹');
@@ -319,6 +330,12 @@ export const HINTS: Record<string, string> = {
   yami: '月のない夜に黒い猫たちが集まると…',
   ousama: 'まあるい月の夜、たくさんの猫と暮らしていると…',
   shoku: '昼の空が暗くなる日に…',
+  'world-marathon': 'たくさん、たくさん歩いたら…',
+  pyonpyon: 'ぴょんぴょん、通い続けたら…',
+  omatsuri: 'おうちが猫でいっぱいになったら…',
+  cameraman: 'たくさん写真を撮ったら…',
+  gorogoro: 'たくさんなでてあげたら…',
+  nemurio: 'おやすみ前のスマホのそばで…',
   bishonure: '雨の日に…',
   yukidaruma: '雪の日に…',
   hatsuyuki: 'その冬はじめての雪の日に…',

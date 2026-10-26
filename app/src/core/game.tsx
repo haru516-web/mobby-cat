@@ -43,6 +43,9 @@ export type GameState = {
   starterChosen: boolean; // 初回の相棒選びを終えたか
   tutorialDone: boolean; // 相棒選びのあとのチュートリアルを見終えた（スキップした）か
   petCount: number; // 猫をなでた回数
+  photoCount: number; // 撮った写真の枚数
+  totalSteps: number; // 出会いの候補を作った日の歩数の合計
+  openDays: number; // 起動した日数（延べ）
   inbox: Notice[]; // お知らせ（新しい順）
   inboxRead: number; // 既読にした時点のお知らせ件数
   pass: { active: boolean; lastGrantMonth: string }; // またたびパス（テスト）
@@ -78,6 +81,9 @@ function initial(now: Date): GameState {
     starterChosen: false,
     tutorialDone: false,
     petCount: 0,
+    photoCount: 0,
+    totalSteps: 0,
+    openDays: 0,
     inbox: [],
     inboxRead: 0,
     pass: { active: false, lastGrantMonth: '' },
@@ -129,6 +135,7 @@ type Ctx = {
   chooseStarter: (id: string) => void;
   finishTutorial: () => void;
   pet: () => void;
+  countPhoto: () => void;
   markInboxRead: () => void;
   setPass: (v: boolean) => void;
   shiftDays: (n: number) => void;
@@ -228,7 +235,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (s.lastOpenDay === calendarDay) return s;
       const gap = s.lastOpenDay ? daysBetween(s.lastOpenDay, calendarDay) : 0;
       const streak = gap === 1 ? s.streak + 1 : 1;
-      let next: GameState = { ...s, lastOpenDay: calendarDay, lastGap: gap, streak };
+      let next: GameState = { ...s, lastOpenDay: calendarDay, lastGap: gap, streak, openDays: (s.openDays ?? 0) + 1 };
       // 7日続けて来てくれたらお迎え券を1枚。休んでも減るものはない
       if (streak % STREAK_GIFT_DAYS === 0) {
         next = notify({ ...next, tickets: next.tickets + 1 }, calendarDay, `${streak}日続けて会いに来てくれたお礼に、お迎え券を1枚どうぞ`);
@@ -278,12 +285,20 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             catalogUpdated: s.catalogVersion !== CATALOG_VERSION,
             birthday: s.birthday,
             weather,
+            totals: {
+              steps: (s.totalSteps ?? 0) + (steps ?? 0),
+              photos: s.photoCount ?? 0,
+              pets: s.petCount,
+              openDays: s.openDays ?? 0,
+              cats: Object.values(s.owned).reduce((n, o) => n + o.count, 0),
+            },
           };
           const d = buildDay(k, signals, { owned: s.owned, appearCounts: s.appearCounts });
           const appearCounts = { ...s.appearCounts };
           for (const id of d.candidates.slice(0, d.baseCount)) appearCounts[id] = (appearCounts[id] ?? 0) + 1;
           let next: GameState = {
             ...s,
+            totalSteps: (s.totalSteps ?? 0) + (steps ?? 0),
             appearCounts,
             catalogVersion: CATALOG_VERSION,
             days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], passBonus: s.pass.active ? PASS_BONUS : 0 } },
@@ -360,6 +375,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const finishTutorial = useCallback(() => setState((s) => (s.tutorialDone ? s : { ...s, tutorialDone: true })), []);
   const markInboxRead = useCallback(() => setState((s) => (s.inboxRead === s.inbox.length ? s : { ...s, inboxRead: s.inbox.length })), []);
   const pet = useCallback(() => setState((s) => ({ ...s, petCount: s.petCount + 1 })), []);
+  const countPhoto = useCallback(() => setState((s) => ({ ...s, photoCount: (s.photoCount ?? 0) + 1 })), []);
   const setPass = useCallback((v: boolean) => setState((s) => ({ ...s, pass: { ...s.pass, active: v } })), []);
   const shiftDays = useCallback((n: number) => setState((s) => ({ ...s, debugOffsetDays: s.debugOffsetDays + n })), []);
   // 開発用: 全猫を図鑑に開放する
@@ -381,7 +397,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, finishTutorial, pet, markInboxRead, setPass, shiftDays, unlockAll, reset,
+    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, reset,
     corruptBackup, discardBackup, saveBlocked,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;

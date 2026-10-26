@@ -155,6 +155,7 @@ const SIGNATURE_GROUPS: Record<string, Group[]> = {
   sakura: ['season'], tsuyu: ['season'], halloween: ['season'], hiruyoru: ['season'], taiyou: ['season'],
   juunyan: ['owned'], tomodachizure: ['owned'], collector: ['owned'], shirokuro: ['owned'], bunshin: ['owned'], sanbiki: ['owned'], shitsukoi: ['owned'],
   amayadori: ['weather', 'owned'],
+  'world-marathon': ['steps'], omatsuri: ['owned'], nemurio: ['battery', 'time'],
   bishonure: ['weather'], yukidaruma: ['weather', 'season'], hatsuyuki: ['weather', 'season'], hinata: ['weather'], mayonaka: ['weather', 'week', 'time'],
 };
 // 個性の条件が2つぶん以上の重さを持つ猫（レア度は「でんせつ」）

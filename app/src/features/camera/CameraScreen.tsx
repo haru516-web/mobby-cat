@@ -21,7 +21,7 @@ const touchInfo = (e: GestureResponderEvent) => {
 
 // 撮影（企画書 8.1 のカメラ合成）。猫はドラッグで移動、2本指で拡大・回転
 export default function CameraScreen({ onClose, width, height }: { onClose: () => void; width: number; height: number }) {
-  const { state } = useGame();
+  const { state, countPhoto } = useGame();
   const insets = useSafeAreaInsets();
   const [perm, requestPerm] = useCameraPermissions();
   const owned = useMemo(() => CATS.filter((c) => state.owned[c.id]), [state.owned]);
@@ -83,6 +83,7 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
       const pic = await cam.current?.takePictureAsync({ quality: 0.9, exif: false });
       if (pic?.uri) {
         playSfx('sfx_shutter');
+        countPhoto();
         setPhoto(pic.uri);
       }
     } catch {}
