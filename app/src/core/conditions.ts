@@ -66,6 +66,15 @@ const BLACK_CATS = ['bombay', 'noroware', 'shingetsu', 'yami', 'mayonaka', 'mabo
 const WHITE_CATS = ['persian', 'turkish-angora', 'santa', 'yukidaruma', 'country-01', 'oiwai'];
 // 「特定の3種類」は企画で未決定。仮に最初の3種（ブリティッシュ・シャム・ベンガル）にしている
 const SANBIKI_SET = ['british-shorthair', 'siamese-seal-point', 'bengal'];
+// 「あまやどり」: 雨の日に、この3種（レアの猫）を迎えていると会える
+const AMAYADORI_SET = ['egyptian-mau', 'sphynx', 'savannah'];
+// 日食（皆既・金環・ハイブリッド）の日付。部分日食は含めない。世界のどこかで起きる日で、日付は UTC。2035年まで
+// 月食の猫は別に追加する予定なので、ここには入れない
+const SOLAR_ECLIPSES = [
+  '2026-02-17', '2026-08-12', '2027-02-06', '2027-08-02', '2028-01-26', '2028-07-22',
+  '2030-06-01', '2030-11-25', '2031-05-21', '2031-11-14', '2032-05-09', '2033-03-30',
+  '2034-03-20', '2034-09-12', '2035-03-09', '2035-09-02',
+];
 // 季節イベントの期間は企画で未決定。仮の期間
 const SEASONS: { id: string; reason: string; from: [number, number]; to: [number, number] }[] = [
   { id: 'sakura', reason: '桜の季節', from: [3, 25], to: [4, 10] },
@@ -155,6 +164,7 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   add(full, 'mangetsu', '満月');
   add(newMoon, 'shingetsu', '新月');
   add(isBlueMoon(dayKey, day), 'aotsuki', 'ひと月に2回目の満月');
+  add(SOLAR_ECLIPSES.includes(dayKey), 'shoku', '日食の日');
   add((m === 1 && d === 4) || (m === 8 && d === 13) || (m === 12 && d === 14), 'hoshizora', '流星群の夜');
 
   // コレクション
@@ -179,6 +189,7 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
     add(w === 'snow', 'yukidaruma', '雪の日');
     addOnce(w === 'snow' && (m === 11 || m === 12 || m <= 2), 'hatsuyuki', 'その冬はじめての雪');
     add(w === 'sunny', 'hinata', 'よく晴れた日');
+    addOnce(w === 'rain' && AMAYADORI_SET.every(owns), 'amayadori', '雨の日に、3匹の猫がそろっていた');
     add(w === 'rain' && dow === 5 && (s.openHours.some((h) => h >= 23 || h < 4)), 'mayonaka', '雨の金曜日の夜');
   }
 
@@ -245,9 +256,7 @@ export function upcoming(fromKey: string, days: number, birthday: Signals['birth
 // 図鑑で未所持の条件猫に出すヒント（条件そのものは伏せる）。
 // PENDING の猫は判定の仕組みがまだなく、いまは出会えない。
 export const PENDING: Record<string, string> = {
-  shoku: '日食・月食の判定は準備中です',
   ondo: '天気の判定は準備中です',
-  amayadori: '天気の判定は準備中です',
   himitsu: '部屋の配置は準備中です',
 };
 
@@ -309,14 +318,14 @@ export const HINTS: Record<string, string> = {
   'maboroshi-kuroneko': '不吉な金曜日に、まあるい月が重なると…',
   yami: '月のない夜に黒い猫たちが集まると…',
   ousama: 'まあるい月の夜、たくさんの猫と暮らしていると…',
-  shoku: '空の明かりが隠れる日に…',
+  shoku: '昼の空が暗くなる日に…',
   bishonure: '雨の日に…',
   yukidaruma: '雪の日に…',
   hatsuyuki: 'その冬はじめての雪の日に…',
   hinata: 'よく晴れた日に…',
   ondo: '気温がある数字になった日に…',
   mayonaka: '雨の金曜日の夜に…',
-  amayadori: '雨の日、知り合いの猫がいると…',
+  amayadori: '雨の日、あの子たちが一緒にいると…',
   himitsu: '特定の猫たちを同じ部屋に置くと…',
 };
 
