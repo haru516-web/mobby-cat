@@ -48,7 +48,8 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const rest = visible.filter((id) => !isPicked(id));
   const [, m, d] = day.split('-').map(Number);
   const mins = Math.ceil(msUntilNextReveal(now) / 60000);
-  const cols = visible.length <= 3 ? visible.length : 3;
+  const empty = rec.candidates.length === 0;
+  const cols = Math.max(1, visible.length <= 3 ? visible.length : 3);
   const colW = (width - 32 - (cols - 1) * 8) / cols;
   const selCat = sel ? CAT_BY_ID[sel] : null;
   const heroH = width * (1400 / 1179) * 0.62;
@@ -119,6 +120,12 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           </View>
         )}
 
+        {empty && (
+          <Card style={{ marginHorizontal: 16, marginTop: 12 }}>
+            <T w="b" size={13} style={{ textAlign: 'center' }}>今日は、出会いの条件がそろった子がいません</T>
+            <T w="m" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 4 }}>歩いたり、天気や曜日がかわったりすると、あしたは会えるかも。図鑑のヒントを見てみよう</T>
+          </Card>
+        )}
         <TourAnchor id="deai-grid" style={s.grid}>
           {visible.map((id, i) => {
             const cat = CAT_BY_ID[id];
@@ -154,7 +161,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       </View>
 
       <View style={{ paddingHorizontal: 16, marginTop: 14, gap: 12 }}>
-        {!hasFree && (
+        {!hasFree && !empty && (
           <ImgButton
             label={selCat ? `${selCat.name}を無料でお迎え` : '迎えたい子をタップしてね'}
             disabled={!selCat}
@@ -164,7 +171,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           />
         )}
 
-        {!hasFree && (
+        {!hasFree && !empty && (
           <Card>
             <Pic name="brand/title-matatabi" height={26} />
             {/* 説明は全幅で読ませ、その下に「いま何匹か」と使うボタンを並べる */}

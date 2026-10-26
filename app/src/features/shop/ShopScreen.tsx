@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { rarityOdds } from '../../core/encounter';
 import { notice } from '../../services/dialog';
 import { useGame } from '../../core/game';
 import { C, T } from '../../ui/base';
@@ -16,7 +15,6 @@ const ITEMS = [
 ] as const;
 
 const PASS_BONUS_LABEL = 3;
-const RARITY_NAME: Record<number, string> = { 1: 'ノーマル', 2: 'ノーマル+', 3: 'レア', 4: 'でんせつ' };
 
 export default function ShopScreen({ onClose }: { onClose: () => void }) {
   const g = useGame();
@@ -64,7 +62,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         </Card>
 
         <View style={{ flexDirection: 'row', gap: 8 }}>
-          <ImgButton skin="ghost-outline" label="出現確率" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
+          <ImgButton skin="ghost-outline" label="出会いの仕組み" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
           <ImgButton
             skin="ghost-outline"
             label="購入を復元"
@@ -76,15 +74,9 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         </View>
         {odds && (
           <Card skin="white" style={{ marginTop: 8, gap: 6 }}>
-            <T w="x" size={13}>毎日の出会い・またたびで増える候補の出現確率</T>
-            {rarityOdds().map((o) => (
-              <View key={o.rarity} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <T w="b" size={12}>{RARITY_NAME[o.rarity]}（{o.count}種）</T>
-                <T w="x" size={12}>{o.pct.toFixed(1)}%</T>
-              </View>
-            ))}
-            <T w="m" size={10} color={C.sub}>
-              同じレア度の中ではどの子も同じ確率です。まだ持っていない子は1.5倍出やすくなります。条件で出会う「限定」の猫は抽選ではなく、条件を満たした日に候補の先頭に入ります。7匹以上そろった日は、その中からどの子も同じ確率で6匹が選ばれます。
+            <T w="x" size={13}>またたびで増える候補について</T>
+            <T w="m" size={11} color={C.sub}>
+              今日の候補は、その日に出会いの条件がすべてそろった猫だけです。またたびやお迎え券で、条件を飛ばして猫を迎えることはできません。またたびは、条件がそろった猫が多い日に、隠れていた候補を見せます（最大6匹）。
             </T>
             <T w="b" size={11} color={C.accent} onPress={withSfx(() => setOdds(false))}>閉じる</T>
           </Card>

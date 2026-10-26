@@ -82,10 +82,10 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
   // 画面が縦に長いときは、カードの下に余白ができないよう部屋を伸ばす（flex で余りを部屋に回す。背景は cover）
   const [roomH, setRoomH] = useState(width * 1.25);
   const half = (width - 32 - 10) / 2;
-  const waiting = state.days[todayKey] && !state.days[todayKey].freePick;
+  const waiting = !!state.days[todayKey]?.candidates.length && !state.days[todayKey].freePick;
   // 今日の候補に条件を満たした特別な猫がいれば、そのシルエット。いなければふつうの猫のシルエット
   const today = state.days[todayKey];
-  const special = today?.candidates.find((id) => today.reasons[id]);
+  const special = today?.candidates.find((id) => CAT_BY_ID[id]?.kind !== 'breed');
   const shownOwned = !!special && !!state.owned[special];
   const mins = Math.ceil(msUntilNextReveal(now) / 60000);
 

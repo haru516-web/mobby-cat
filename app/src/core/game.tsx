@@ -288,7 +288,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             catalogVersion: CATALOG_VERSION,
             days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], passBonus: s.pass.active ? PASS_BONUS : 0 } },
           };
-          const special = [...new Set(Object.values(d.reasons))];
+          // 実在の猫の簡単な条件は通知しない。個性のある猫（特別な猫）が来た日だけ知らせる
+          const special = [...new Set(d.candidates.filter((id) => CATS.find((c) => c.id === id)?.kind !== 'breed').map((id) => d.reasons[id]))];
           if (special.length) next = notify(next, k, `「${special.join('」「')}」の条件がそろって、特別な猫が来ています`);
           return next;
         });
