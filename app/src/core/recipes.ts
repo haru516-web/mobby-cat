@@ -32,6 +32,8 @@ const openIn = (from: number, to: number): Atom['test'] => (e) => e.openHours.so
 
 export const ATOMS: Atom[] = [
   // 簡単
+  { id: 'steps100', group: 'steps', hard: false, p: 0.9, label: '歩数が100歩以上', test: stepsAtLeast(100) },
+  { id: 'steps1000', group: 'steps', hard: false, p: 0.7, label: '歩数が1,000歩以上', test: stepsAtLeast(1000) },
   { id: 'steps3000', group: 'steps', hard: false, p: 0.5, label: '歩数が3,000歩以上', test: stepsAtLeast(3000) },
   { id: 'steps5000', group: 'steps', hard: false, p: 0.3, label: '歩数が5,000歩以上', test: stepsAtLeast(5000) },
   { id: 'sunny', group: 'weather', hard: false, p: 0.4, label: '天気が晴れ', test: (e) => e.weather === 'sunny' },
@@ -171,6 +173,10 @@ const pickAtoms = (id: string, easy: number, hard: number, skip: Group[], minP =
   return out;
 };
 
+// ノーマル+以上では、歩数の条件は3,000歩以上にする（100歩・1,000歩はノーマルだけ）
+const LOW_STEPS = new Set(['steps100', 'steps1000']);
+const raiseSteps = (atoms: Atom[]): Atom[] => atoms.map((a) => (LOW_STEPS.has(a.id) ? ATOM_BY_ID.steps3000 : a));
+
 // 実在の猫のレア度は、条件が同時にそろう確率で決める（春だけ・祝日だけのような、年に数日しか会えない猫がノーマルにならないように）
 export function rarityFromChance(atoms: Atom[]): Rarity {
   const p = atoms.reduce((x, a) => x * a.p, 1);
@@ -199,12 +205,17 @@ export function recipeOf(c: CatDef): Recipe | null {
     const heavy = c.rarity >= 3;
     const easy = heavy ? 2 : 2 + (hash(c.id) % 2);
     // 簡単な条件は、ふつうに生活していて半分近い日にそろうものだけ（祝日・所持数など、人によって差が大きいものは入れない）
-    const atoms = pickAtoms(c.id, easy, heavy ? 1 : 0, ['owned'], 0.25);
-    rec = { atoms, signature: false, rarity: rarityFromChance(atoms) };
+    let atoms = pickAtoms(c.id, easy, heavy ? 1 : 0, ['owned'], 0.25);
+    let rarity = rarityFromChance(atoms);
+    if (rarity >= 2) {
+      atoms = raiseSteps(atoms);
+      rarity = Math.max(rarity, rarityFromChance(atoms)) as Rarity;
+    }
+    rec = { atoms, signature: false, rarity };
   } else {
     // 個性のあるモビー: 簡単4個＋難しい1個（個性条件がある猫はそれが難しい1個）
     const skip = SIGNATURE_GROUPS[c.id] ?? [];
-    const atoms = pickAtoms(c.id, 4, hasSignature ? 0 : 1, skip, 0.25);
+    const atoms = raiseSteps(pickAtoms(c.id, 4, hasSignature ? 0 : 1, skip, 0.4));
     const hardCount = (hasSignature ? (LEGEND.has(c.id) ? 2 : 1) : 0) + atoms.filter((a) => a.hard).length;
     rec = { atoms, signature: hasSignature, rarity: rarityFromConditions(atoms.length + (hasSignature ? 1 : 0), hardCount) };
   }
