@@ -142,7 +142,7 @@ export const isRealCat = (c: CatDef) => c.kind === 'breed' && !NOT_REAL.has(c.id
 
 // 判定の仕組みがまだなく、いまは出会えない猫
 // 世界・旅猫は対象外。
-export const NO_RECIPE = new Set(['ondo', 'himitsu']);
+export const NO_RECIPE = new Set<string>();
 
 // 既存の個性条件（conditions.ts）が使う材料。簡単な条件はこの系統を避ける（食い違いを防ぐ）
 const SIGNATURE_GROUPS: Record<string, Group[]> = {
@@ -155,6 +155,7 @@ const SIGNATURE_GROUPS: Record<string, Group[]> = {
   sakura: ['season'], tsuyu: ['season'], halloween: ['season'], hiruyoru: ['season'], taiyou: ['season'],
   juunyan: ['owned'], tomodachizure: ['owned'], collector: ['owned'], shirokuro: ['owned'], bunshin: ['owned'], sanbiki: ['owned'], shitsukoi: ['owned'],
   amayadori: ['weather', 'owned'],
+  ondo: ['weather'], himitsu: [], hakubutsukan: ['owned'], oiwai: [],
   'world-marathon': ['steps'], omatsuri: ['owned'], nemurio: ['battery', 'time'],
   bishonure: ['weather'], yukidaruma: ['weather', 'season'], hatsuyuki: ['weather', 'season'], hinata: ['weather'], mayonaka: ['weather', 'week', 'time'],
 };

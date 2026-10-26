@@ -6,6 +6,8 @@ import { daysBetween } from './dates';
 import { buildDay, encounterDayKey, fmtDay, prevDayKey } from './encounter';
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
+import { readWorldStats } from '../services/world';
+import { worldGifts } from './world';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
 const CATALOG_VERSION = String(CATS.length);
@@ -268,7 +270,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (stateRef.current.days[k] || building.current.has(k)) continue;
       building.current.add(k);
       (async () => {
-        const [steps, battery, weather] = await Promise.all([readSteps(k, now), readBattery(), readWeather(k, todayKey)]);
+        const [steps, battery, wx] = await Promise.all([readSteps(k, now), readBattery(), readWeather(k, todayKey)]);
         setState((s) => {
           if (s.days[k]) return s;
           // 観測の記録が候補の生成より遅れることがあるので、いまの電池と時刻もここで足す
@@ -284,7 +286,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             openHours: o.hours,
             catalogUpdated: s.catalogVersion !== CATALOG_VERSION,
             birthday: s.birthday,
-            weather,
+            weather: wx?.weather ?? null,
+            temp: wx?.temp ?? null,
+            favorites: s.favorites,
+            installDay: s.installDay,
             totals: {
               steps: (s.totalSteps ?? 0) + (steps ?? 0),
               photos: s.photoCount ?? 0,
@@ -312,6 +317,25 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       })();
     }
   }, [ready, state.starterChosen, availableDays, now, todayKey, hour]);
+
+  // 世界みんなの記録で届く猫（国の数・旅猫の記録）。1日1回、静的JSONを読むだけ
+  useEffect(() => {
+    if (!ready || !state.starterChosen) return;
+    let alive = true;
+    readWorldStats().then((w) => {
+      if (!alive || !w) return;
+      setState((s) => {
+        let next = s;
+        for (const g of worldGifts(w, s.owned)) {
+          next = notify(addCat(next, g.id, todayKey, g.reason), todayKey, `「${g.reason}」ので、世界の猫が届きました`);
+        }
+        return next;
+      });
+    });
+    return () => {
+      alive = false;
+    };
+  }, [ready, state.starterChosen, todayKey]);
 
   const pickFree = useCallback((day: string, id: string) => {
     setState((s) => {

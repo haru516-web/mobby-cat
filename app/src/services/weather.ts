@@ -10,7 +10,8 @@ export async function requestWeatherAccess(): Promise<void> {
   } catch {}
 }
 
-const cache = new Map<string, Weather | null>();
+export type WeatherNow = { weather: Weather | null; temp: number | null };
+const cache = new Map<string, WeatherNow | null>();
 
 // MET Norway の symbol_code（例: clearsky_day, lightrain, heavysnowshowers_night）を4種類にまとめる
 export function weatherFromSymbol(code: string): Weather {
@@ -22,7 +23,7 @@ export function weatherFromSymbol(code: string): Weather {
 }
 
 // 判定は、その日の 20:00 に近い時刻の予報を使う。過去の日は取れないので、今日以外は null
-export async function readWeather(dayKey: string, todayKey: string): Promise<Weather | null> {
+export async function readWeather(dayKey: string, todayKey: string): Promise<WeatherNow | null> {
   if (dayKey !== todayKey) return null;
   if (cache.has(dayKey)) return cache.get(dayKey) ?? null;
   try {
@@ -38,14 +39,17 @@ export async function readWeather(dayKey: string, todayKey: string): Promise<Wea
     if (!res.ok) return null;
     const json = await res.json();
     const t = new Date(`${dayKey}T20:00:00`).getTime();
-    const series: { time: string; data: { next_1_hours?: { summary: { symbol_code: string } }; next_6_hours?: { summary: { symbol_code: string } } } }[] =
+    const series: { time: string; data: { instant?: { details?: { air_temperature?: number } }; next_1_hours?: { summary: { symbol_code: string } }; next_6_hours?: { summary: { symbol_code: string } } } }[] =
       json?.properties?.timeseries ?? [];
     let best = series[0];
     for (const s of series) if (Math.abs(new Date(s.time).getTime() - t) < Math.abs(new Date(best.time).getTime() - t)) best = s;
     const code = best?.data?.next_1_hours?.summary.symbol_code ?? best?.data?.next_6_hours?.summary.symbol_code;
-    const w = code ? weatherFromSymbol(code) : null;
-    cache.set(dayKey, w);
-    return w;
+    const now: WeatherNow = {
+      weather: code ? weatherFromSymbol(code) : null,
+      temp: best?.data?.instant?.details?.air_temperature ?? null,
+    };
+    cache.set(dayKey, now);
+    return now;
   } catch {
     return null;
   }

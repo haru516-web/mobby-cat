@@ -27,11 +27,11 @@ $rarity = @{
 
 # kind: breed (normal pool) / condition (only when its condition is met) /
 #       world (world-wide rewards, needs the server) / travel (the one travelling cat) / series (normal pool, no condition yet)
-# 利用国数は15か国まで（20・30・50・75・100か国と、同時に眠る猫は作らない）。世界累計の猫は、端末の中で数える条件猫にした
-$skip = @('country-20', 'country-30', 'country-50', 'country-75', 'country-100', 'issei-nenne')
+# 利用国数は15か国まで（country-20/30/50/75/100 の絵は11〜15か国の猫に使う）。同時に眠る猫は作らない。世界累計の猫は、端末の中で数える条件猫にした
+$skip = @('issei-nenne')
 $personal = @('world-marathon', 'pyonpyon', 'omatsuri', 'cameraman', 'gorogoro', 'nemurio')
 function Kind($c) {
-  if ($c.id -in $personal) { return 'condition' }
+  if ($c.id -in $personal -or $c.id -in @('ondo', 'himitsu', 'hakubutsukan', 'oiwai')) { return 'condition' }
   if ($c.id -like 'country-*' -or $c.id -in @('world-traveler', 'issei-nenne')) { return 'world' }
   switch ($c.batch) {
     'e' { 'world' } 'f' { 'world' } 'h' { 'series' }

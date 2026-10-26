@@ -1,8 +1,8 @@
 // 全ユーザー共通の出現条件（docs/appearance-catalog.md）。成立した猫はその日の候補に確定で入る。
 // 判定に使う材料（電池・歩数・起動の記録など）は Signals としてまとめて渡す。
 import { CATS } from '../data/catalog';
-import { fmtDay } from './dates';
-import { Env, Weather, evalAtoms, isJapaneseHoliday, recipeOf } from './recipes';
+import { daysBetween, fmtDay } from './dates';
+import { Env, Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf } from './recipes';
 
 export type Signals = {
   battery: number[]; // その日（出会いの締め切りまで）に観測した残量 %（整数）
@@ -14,6 +14,9 @@ export type Signals = {
   catalogUpdated: boolean; // アプリ更新で新しい猫が増えたか
   birthday: { m: number; d: number } | null;
   weather?: Weather | null; // その日の天気。取れないときは null
+  temp?: number | null; // その日の気温（℃）。取れないときは null
+  favorites?: string[]; // お気に入りの猫（部屋に置かれる）
+  installDay?: string; // 遊びはじめた日
   // 端末の中で数えている累計（歩数は出会いの候補を作った日の分から）
   totals?: { steps: number; photos: number; pets: number; openDays: number; cats: number };
 };
@@ -69,6 +72,8 @@ const WHITE_CATS = ['persian', 'turkish-angora', 'santa', 'yukidaruma', 'country
 // 「特定の3種類」は企画で未決定。仮に最初の3種（ブリティッシュ・シャム・ベンガル）にしている
 const SANBIKI_SET = ['british-shorthair', 'siamese-seal-point', 'bengal'];
 // 「あまやどり」: 雨の日に、この3種（レアの猫）を迎えていると会える
+// 「ひみつ」: お気に入りにこの3匹を入れて部屋に並べると会える
+const HIMITSU_SET = ['rea-mobby', 'uyu-mobby', 'mike-neko'];
 const AMAYADORI_SET = ['egyptian-mau', 'sphynx', 'savannah'];
 // 日食（皆既・金環・ハイブリッド）の日付。部分日食は含めない。世界のどこかで起きる日で、日付は UTC。2035年まで
 // 月食の猫は別に追加する予定なので、ここには入れない
@@ -179,6 +184,12 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   addOnce(SANBIKI_SET.every(owns), 'sanbiki', '特別な3匹がそろった');
   addOnce(Object.values(ctx.appearCounts).some((n) => n >= 3), 'shitsukoi', '同じ猫が3回訪ねてきた');
 
+  // 気温・お気に入り・図鑑・遊んだ日数
+  if (!forecast && s.temp != null) addOnce(Math.round(s.temp) === 22, 'ondo', '気温が22℃');
+  addOnce(HIMITSU_SET.every((id) => (s.favorites ?? []).includes(id) && owns(id)), 'himitsu', 'お気に入りに3匹がそろった');
+  addOnce(CATS.filter((c) => isRealCat(c) && owns(c.id)).length >= 100, 'hakubutsukan', '実在の猫を100種迎えた');
+  addOnce(!!s.installDay && daysBetween(s.installDay, dayKey) >= 365, 'oiwai', '遊びはじめて1年');
+
   // 端末の中で数える累計（世界の猫だった子たち。通信しない）
   const t = s.totals;
   addOnce(!!t && t.steps >= 1_000_000, 'world-marathon', '累計100万歩');
@@ -266,10 +277,7 @@ export function upcoming(fromKey: string, days: number, birthday: Signals['birth
 
 // 図鑑で未所持の条件猫に出すヒント（条件そのものは伏せる）。
 // PENDING の猫は判定の仕組みがまだなく、いまは出会えない。
-export const PENDING: Record<string, string> = {
-  ondo: '天気の判定は準備中です',
-  himitsu: '部屋の配置は準備中です',
-};
+export const PENDING: Record<string, string> = {};
 
 export const HINTS: Record<string, string> = {
   genkai: 'スマホの元気がなくなったとき…',
@@ -340,7 +348,7 @@ export const HINTS: Record<string, string> = {
   yukidaruma: '雪の日に…',
   hatsuyuki: 'その冬はじめての雪の日に…',
   hinata: 'よく晴れた日に…',
-  ondo: '気温がある数字になった日に…',
+  ondo: '気温が、ある数字になった日に…',
   mayonaka: '雨の金曜日の夜に…',
   amayadori: '雨の日、あの子たちが一緒にいると…',
   himitsu: '特定の猫たちを同じ部屋に置くと…',
