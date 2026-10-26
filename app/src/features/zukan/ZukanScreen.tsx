@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { CATS, CatDef } from '../../data/catalog';
 import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
+import { recipeOf } from '../../core/recipes';
 import { useGame } from '../../core/game';
 import { C, CatImage, FONT, T, catNo } from '../../ui/base';
 import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap } from '../../ui/kit';
@@ -16,8 +17,8 @@ const FILTERS: { key: Filter; label: string; skin: string; color: string }[] = [
   { key: 'limited', label: '限定', skin: 'button/tab-limited', color: '#6A4FB0' },
 ];
 
-// 「限定」= 条件で出会う猫と世界の猫。ノーマル / レア は毎日の抽選に入る猫
-const isLimited = (c: CatDef) => c.kind !== 'breed' && c.kind !== 'series';
+// 「限定」= 世界の猫と旅猫。それ以外は、出会う条件の数と難しさで決まるレア度で分ける
+const isLimited = (c: CatDef) => c.kind === 'world' || c.kind === 'travel';
 const match = (c: CatDef, f: Filter) =>
   f === 'all' ? true : f === 'limited' ? isLimited(c) : f === 'rare' ? !isLimited(c) && c.rarity >= 3 : !isLimited(c) && c.rarity <= 2;
 
@@ -25,7 +26,12 @@ function hint(c: CatDef) {
   if (c.kind === 'world') return WORLD_HINT;
   if (c.kind === 'travel') return TRAVEL_HINT;
   if (PENDING[c.id]) return `${HINTS[c.id] ?? ''}（${PENDING[c.id]}）`;
-  return HINTS[c.id] ?? 'まだ出会っていません。いつかの出会いを待とう';
+  // 簡単な条件はそのまま見せる。個性のある猫の難しい条件は、ヒントだけ
+  const rec = recipeOf(c);
+  if (!rec) return HINTS[c.id] ?? 'まだ出会っていません。いつかの出会いを待とう';
+  const lines = rec.atoms.map((a) => `・${a.label}`);
+  if (rec.signature) lines.push(`・${HINTS[c.id] ?? '？？？'}`);
+  return ['出会う条件（すべてそろうと会えます）', ...lines].join('\n');
 }
 
 export default function ZukanScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {

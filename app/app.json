@@ -54,7 +54,15 @@
           "isAccessMediaLocationEnabled": false
         }
       ],
-      "expo-audio"
+      "expo-audio",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "その日の天気に合わせて、出会える猫モビーが変わります。おおまかな位置だけを使い、保存はしません。",
+          "isAndroidBackgroundLocationEnabled": false,
+          "isIosBackgroundLocationEnabled": false
+        }
+      ]
     ]
   }
 }

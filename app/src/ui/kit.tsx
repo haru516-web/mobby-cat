@@ -123,11 +123,10 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSetti
 }
 
 // レア度バッジ。条件つきの猫は「限定」、世界の猫・旅猫は「世界」
-export function RarityBadge({ cat, limited, height = 22 }: { cat: CatDef; limited?: boolean; height?: number }) {
+export function RarityBadge({ cat, height = 22 }: { cat: CatDef; height?: number }) {
   const world = cat.kind === 'world' || cat.kind === 'travel';
   const [name, label, color] = world
     ? ['travel-cat', '世界', '#fff']
-    : limited || cat.kind === 'condition' ? ['rarity-limited', '限定', '#fff']
     : cat.rarity === 4 ? ['rarity-legend', 'でんせつ', '#fff']
     : cat.rarity === 3 ? ['rarity-rare', 'レア', '#2F5DA8']
     : ['rarity-normal', 'ノーマル', C.ink];

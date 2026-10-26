@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { REVEAL_HOUR } from '../../core/encounter';
 import { STARTERS, useGame } from '../../core/game';
 import { requestStepAccess } from '../../services/signals';
+import { requestWeatherAccess } from '../../services/weather';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, ImgButton, Tap, withSfx } from '../../ui/kit';
 import { Backdrop, Pic } from '../../ui/Slice';
@@ -54,7 +55,7 @@ export default function OnboardingScreen({ width }: { width: number }) {
             <T w="x" size={20} style={s.title}>{CAT_BY_ID[sel!].name}がやってきた！</T>
             <Card style={{ marginTop: 16, gap: 10 }}>
               <How icon="icon/calendar-today" text={`毎日${REVEAL_HOUR}時に、新しい猫モビー3匹と出会えます。1匹は無料でお迎え`} />
-              <How icon="icon/sun" text="歩いた日、満月の夜、スマホの電池が1%の日…あなたの毎日によって、会える猫が変わります" />
+              <How icon="icon/sun" text="歩いた日、雨の日、満月の夜、スマホの電池が1%の日…あなたの毎日によって、会える猫が変わります" />
               <How icon="icon/book" text="条件は世界中のみんなと共通。図鑑のヒントを手がかりに、秘密の条件を見つけよう" />
             </Card>
             <ImgButton
@@ -66,6 +67,7 @@ export default function OnboardingScreen({ width }: { width: number }) {
                 // 歩数の条件を説明したあとで許可を求める。断られても遊べる
                 setStarting(true);
                 await requestStepAccess();
+                await requestWeatherAccess();
                 chooseStarter(sel!);
                 playSfx('sfx_welcome');
               }}

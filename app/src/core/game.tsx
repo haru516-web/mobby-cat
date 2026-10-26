@@ -5,6 +5,7 @@ import { Signals } from './conditions';
 import { daysBetween } from './dates';
 import { buildDay, encounterDayKey, fmtDay, prevDayKey } from './encounter';
 import { readBattery, readSteps } from '../services/signals';
+import { readWeather } from '../services/weather';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
 const CATALOG_VERSION = String(CATS.length);
@@ -260,7 +261,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (stateRef.current.days[k] || building.current.has(k)) continue;
       building.current.add(k);
       (async () => {
-        const [steps, battery] = await Promise.all([readSteps(k, now), readBattery()]);
+        const [steps, battery, weather] = await Promise.all([readSteps(k, now), readBattery(), readWeather(k, todayKey)]);
         setState((s) => {
           if (s.days[k]) return s;
           // 観測の記録が候補の生成より遅れることがあるので、いまの電池と時刻もここで足す
@@ -276,6 +277,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             openHours: o.hours,
             catalogUpdated: s.catalogVersion !== CATALOG_VERSION,
             birthday: s.birthday,
+            weather,
           };
           const d = buildDay(k, signals, { owned: s.owned, appearCounts: s.appearCounts });
           const appearCounts = { ...s.appearCounts };

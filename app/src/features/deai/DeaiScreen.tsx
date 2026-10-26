@@ -134,7 +134,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
                   </Bobbing>
                   {picked && <Pic name="badge/picked-stamp" width={colW * 0.36} style={{ position: 'absolute', right: -2, top: 2, opacity: 0.9 }} />}
                 </View>
-                <View style={s.badgeRow}><RarityBadge cat={cat} limited={!!reason} /></View>
+                <View style={s.badgeRow}><RarityBadge cat={cat} /></View>
                 <Card skin={sel === id ? 'selected' : 'white'} style={s.candCard}>
                   {/* 長い名前（「〜モビー」など）は、3列のときに末尾が切れないよう少し小さくする */}
                   <T w="x" size={cols < 3 || cat.name.length <= 6 ? 13 : cat.name.length <= 8 ? 11 : 10} numberOfLines={1}>{cat.name}</T>
@@ -275,7 +275,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
               <Bobbing><CatImage id={detail} size={200} /></Bobbing>
               <T w="m" size={12} color={C.sub}>No.{catNo(detail)}</T>
               <T w="x" size={22} style={{ marginBottom: 6 }}>{CAT_BY_ID[detail].name}</T>
-              <RarityBadge cat={CAT_BY_ID[detail]} limited={!!rec.reasons[detail]} />
+              <RarityBadge cat={CAT_BY_ID[detail]} />
               <T w="m" size={13} style={{ marginTop: 10, textAlign: 'center' }}>
                 {rec.reasons[detail] ? `「${rec.reasons[detail]}」の条件で現れました` : 'ふらりと遊びに来た子です'}
                 {state.owned[detail] ? `\nおうちに ${state.owned[detail].count}匹います` : '\nまだおうちにはいません'}

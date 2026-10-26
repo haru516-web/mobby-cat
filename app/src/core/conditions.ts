@@ -1,6 +1,8 @@
 // 全ユーザー共通の出現条件（docs/appearance-catalog.md）。成立した猫はその日の候補に確定で入る。
 // 判定に使う材料（電池・歩数・起動の記録など）は Signals としてまとめて渡す。
+import { CATS } from '../data/catalog';
 import { fmtDay } from './dates';
+import { Env, Weather, evalAtoms, isJapaneseHoliday, recipeOf } from './recipes';
 
 export type Signals = {
   battery: number[]; // その日（出会いの締め切りまで）に観測した残量 %（整数）
@@ -11,6 +13,7 @@ export type Signals = {
   openHours: number[]; // その日に起動した時刻（時）
   catalogUpdated: boolean; // アプリ更新で新しい猫が増えたか
   birthday: { m: number; d: number } | null;
+  weather?: Weather | null; // その日の天気。取れないときは null
 };
 
 export type Ctx = {
@@ -80,7 +83,8 @@ const STEP_LINES: [number, string, string][] = [
   [222, 'nyanpo', '1日222歩'],
 ];
 
-export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx): Guaranteed[] {
+// 個性のある猫ごとの条件（そのまま「難しい1個」になる）。簡単な条件は guaranteedCats で重ねる
+function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean): Guaranteed[] {
   const [y, m, d] = dayKey.split('-').map(Number);
   const day = new Date(y, m - 1, d, 20, 0, 0); // 判定はその日の20:00時点
   const dow = day.getDay();
@@ -168,6 +172,52 @@ export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx): Guaranteed
   add(newMoon && blackCount >= 3, 'yami', '新月の夜に黒猫が3匹');
   add(full && kinds >= 50, 'ousama', '満月の夜に50種類');
 
+  // 天気（取れた日だけ）
+  if (!forecast) {
+    const w = s.weather;
+    add(w === 'rain', 'bishonure', '雨の日');
+    add(w === 'snow', 'yukidaruma', '雪の日');
+    addOnce(w === 'snow' && (m === 11 || m === 12 || m <= 2), 'hatsuyuki', 'その冬はじめての雪');
+    add(w === 'sunny', 'hinata', 'よく晴れた日');
+    add(w === 'rain' && dow === 5 && (s.openHours.some((h) => h >= 23 || h < 4)), 'mayonaka', '雨の金曜日の夜');
+  }
+
+  return out;
+}
+
+// その日に出会える猫。個性条件がある猫は「個性条件＋簡単な条件」、それ以外は猫ごとのレシピを満たしたときに確定で入る。
+// forecast（日付だけの予告）のときは、端末の状態に依存する簡単な条件を無視する
+export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = false): Guaranteed[] {
+  const [y, m, d] = dayKey.split('-').map(Number);
+  const day = new Date(y, m - 1, d, 20, 0, 0);
+  const env: Env = {
+    steps: s.steps,
+    battery: s.battery,
+    charging: s.charging,
+    streak: s.streak,
+    openHours: s.openHours,
+    weather: s.weather ?? null,
+    kinds: Object.keys(ctx.owned).length,
+    m,
+    d,
+    dow: day.getDay(),
+    holiday: isJapaneseHoliday(y, m, d),
+    fullMoon: isFullMoon(dayKey, day),
+    newMoon: isNewMoon(dayKey, day),
+  };
+  const sig = signatureCats(dayKey, s, ctx, forecast);
+  const out: Guaranteed[] = [];
+  const sigIds = new Set(sig.map((g) => g.id));
+  for (const c of CATS) {
+    const rec = recipeOf(c);
+    if (!rec) continue;
+    if (c.kind === 'condition') {
+      const g = sig.find((x) => x.id === c.id);
+      if (g && (forecast || evalAtoms(rec.atoms, env))) out.push(g);
+    } else if (!forecast && !sigIds.has(c.id) && evalAtoms(rec.atoms, env)) {
+      out.push({ id: c.id, reason: rec.atoms.map((a) => a.label).join('・') });
+    }
+  }
   return out;
 }
 
@@ -176,11 +226,11 @@ export function upcoming(fromKey: string, days: number, birthday: Signals['birth
   const neutral: Signals = { battery: [], charging: false, steps: null, gapDays: 0, streak: 0, openHours: [], catalogUpdated: false, birthday };
   const [y, m, d] = fromKey.split('-').map(Number);
   const out: { day: string; cats: Guaranteed[] }[] = [];
-  let prev = new Set(guaranteedCats(fromKey, neutral, { owned: {}, appearCounts: {} }).map((c) => c.id));
+  let prev = new Set(guaranteedCats(fromKey, neutral, { owned: {}, appearCounts: {} }, true).map((c) => c.id));
   const listed = new Set<string>();
   for (let i = 1; i <= days; i++) {
     const key = fmtDay(new Date(y, m - 1, d + i));
-    const all = guaranteedCats(key, neutral, { owned: {}, appearCounts: {} });
+    const all = guaranteedCats(key, neutral, { owned: {}, appearCounts: {} }, true);
     // 季節イベントのように何日も続く条件は、始まった日だけ載せる。
     // 毎週の金曜日のようにくり返す条件は、いちばん近い日だけ載せる（一覧が同じ子で埋まらないように）
     const cats = all.filter((c) => !prev.has(c.id) && !listed.has(c.id));
@@ -195,12 +245,7 @@ export function upcoming(fromKey: string, days: number, birthday: Signals['birth
 // PENDING の猫は判定の仕組みがまだなく、いまは出会えない。
 export const PENDING: Record<string, string> = {
   shoku: '日食・月食の判定は準備中です',
-  bishonure: '天気の判定は準備中です',
-  yukidaruma: '天気の判定は準備中です',
-  hatsuyuki: '天気の判定は準備中です',
-  hinata: '天気の判定は準備中です',
   ondo: '天気の判定は準備中です',
-  mayonaka: '天気の判定は準備中です',
   amayadori: '天気の判定は準備中です',
   himitsu: '部屋の配置は準備中です',
 };

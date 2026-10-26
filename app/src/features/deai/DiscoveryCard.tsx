@@ -34,7 +34,7 @@ export const DiscoveryCard = forwardRef<ViewRef, { id: string; day: string; reas
         <T w="x" size={catName.h * k * 0.5} numberOfLines={1}>{cat.name}</T>
       </View>
       <View style={[box(rarity), { alignItems: 'center', justifyContent: 'center' }]}>
-        <RarityBadge cat={cat} limited={!!reason} height={rarity.h * k * 0.62} />
+        <RarityBadge cat={cat} height={rarity.h * k * 0.62} />
       </View>
       <View style={[box(encounterDate), { justifyContent: 'center' }]}>
         <T w="b" size={encounterDate.h * k * 0.55}>{`${y}年${m}月${d}日に出会いました`}</T>
