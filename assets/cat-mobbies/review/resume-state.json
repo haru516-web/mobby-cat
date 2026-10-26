@@ -1,0 +1,151 @@
+{
+  "status": "image-generation-usage-limit",
+  "observed": "2026-10-26",
+  "resetAtJapan": "2026-10-26T21:37:00+09:00",
+  "resetUnix": 1793018220,
+  "bSaved": 85,
+  "ungenerated": [
+    {
+      "id": "egyptian-mau-smoke",
+      "batch": "i"
+    },
+    {
+      "id": "ocicat-silver",
+      "batch": "i"
+    },
+    {
+      "id": "burmese-blue",
+      "batch": "i"
+    },
+    {
+      "id": "burmese-champagne",
+      "batch": "i"
+    },
+    {
+      "id": "russian-white",
+      "batch": "i"
+    },
+    {
+      "id": "russian-black",
+      "batch": "i"
+    },
+    {
+      "id": "kijitora",
+      "batch": "j"
+    },
+    {
+      "id": "saba-tora",
+      "batch": "j"
+    },
+    {
+      "id": "chatora",
+      "batch": "j"
+    },
+    {
+      "id": "sabi-neko",
+      "batch": "j"
+    },
+    {
+      "id": "kuro-neko",
+      "batch": "j"
+    },
+    {
+      "id": "shiro-neko",
+      "batch": "j"
+    },
+    {
+      "id": "hachiware",
+      "batch": "j"
+    },
+    {
+      "id": "haiiro-neko",
+      "batch": "j"
+    },
+    {
+      "id": "kijishiro",
+      "batch": "j"
+    }
+  ],
+  "revisionPending": [
+    {
+      "group": "blue-solid-short",
+      "ids": [
+        "british-shorthair",
+        "russian-blue",
+        "chartreux",
+        "korat"
+      ],
+      "revise": [
+        "chartreux",
+        "korat"
+      ],
+      "reason": "All grey short coats still have similar round face/body. Chartreux: heavy low broad cheeks, tiny high ears, woolly double coat; Korat: strong heart-shaped brow/muzzle, tall flared ears, lean tall square, silver-tipped sleek hair. Preserve required colors."
+    },
+    {
+      "group": "silver-tabby-long",
+      "ids": [
+        "maine-coon",
+        "siberian",
+        "maine-coon-silver-tabby",
+        "norwegian-forest-silver-tabby"
+      ],
+      "revise": [
+        "maine-coon-silver-tabby",
+        "norwegian-forest-silver-tabby"
+      ],
+      "reason": "Long silver tabbies remain a group larger than two. Maine Coon must have elongated square muzzle, heavy brow, tall angular square build and giant lynx ears. Norwegian needs smaller upright ears, triangular muzzle, smooth flowing coat and low broad body; recent first revision not enough at thumbnail."
+    },
+    {
+      "group": "warm-point-mitted-long",
+      "ids": [
+        "birman",
+        "ragdoll-seal-mitted",
+        "birman-chocolate-point"
+      ],
+      "revise": [
+        "birman-chocolate-point"
+      ],
+      "reason": "Chocolate Birman still too close to two seal mitted longhairs. Preserve ivory/warm chocolate points/white gloves/blue iris; round broad Roman nose, compact squat body, smaller rounded ears and shorter silky lay."
+    },
+    {
+      "group": "brown-tabby-short",
+      "ids": [
+        "dragon-li",
+        "american-shorthair-brown-tabby",
+        "bengal-marble"
+      ],
+      "revise": [
+        "bengal-marble"
+      ],
+      "reason": "Bengal marble resembles classic tabby. Need unmistakable wide flowing HORIZONTAL marbling, athletic tall square body, broad low ears and wider muzzle."
+    },
+    {
+      "group": "brown-spotted-short",
+      "ids": [
+        "ocicat",
+        "bengal",
+        "egyptian-mau-bronze",
+        "australian-mist"
+      ],
+      "revise": [
+        "egyptian-mau-bronze",
+        "australian-mist"
+      ],
+      "reason": "Bronze Mau and Mist still too similar to existing spotted cats. Mau: slim tall square, high flared ears, angular face, bronze/green iris; Mist: very muted misty low-contrast spots over taupe-brown, broad round face, small rounded ears and low wide square."
+    },
+    {
+      "group": "calico-short",
+      "ids": [
+        "japanese-bobtail",
+        "mike-neko",
+        "american-shorthair-calico"
+      ],
+      "revise": [
+        "american-shorthair-calico"
+      ],
+      "reason": "Three short calicos have similar face/build. Preserve white/orange/black short fur; American Shorthair must have massive broad cheeks, wide low rounded square build, small ears and different large asymmetric patch positions."
+    }
+  ],
+  "commonPadding": "User approved mechanical proportional resizing and transparent centering; applied to all 160 saved generated assets. New assets use the same import policy.",
+  "resume": "Generate remaining i6, then j9; revise nine B similarity candidates; importer applies approved 100px transparent padding; rebuild all236 visual audit; final validation and push."
+}

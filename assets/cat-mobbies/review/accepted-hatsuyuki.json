@@ -1,0 +1,37 @@
+{
+  "id": "hatsuyuki",
+  "prompt": "Use case: stylized-concept. MAIN CAT REDESIGN hatsuyuki. Ref1 bengal/ref2 ragdoll: realistic strand fur and hardware. Ref3 ONLY original concept/props. REQUIRED NEW CAT: WHITE with pale BLUE TIPPED SEMI-LONG soft plush fur, TINY ROUND low ears almost buried, broad round cheekbones and squat square body, pale blue iris LARGE ROUND BLACK pupil. Preserve pale blue knit scarf and single held snowflake. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological cat eye viewer LEFT with large ROUND black pupil and white highlight, ONE black concentric green-glass lens viewer RIGHT. One black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body unobscured controls, soft studio light. True RGBA1254x1254 transparent PNG with margin, no floor/grid/new text/watermark. Explicit new ears/fur/body are mandatory.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-9ab6f3d0-049f-4bc1-abc2-a60d1b5a882b.png",
+  "target": "assets/cat-mobbies/new/c/hatsuyuki.png",
+  "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。WHITE with pale BLUE TIPPED SEMI-LONG soft plush fur, TINY ROUND low ears almost buried, broad round cheekbones and squat square body, pale blue iris LARGE ROUND BLACK pupil. Preserve pale blue knit scarf and single held snowflake.",
+  "qa": "accepted: one living left eye with round pupil, right lens, one D-pad and two plain buttons; differentiated texture/ears/body; original concept retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1531917,
+    "sha256": "722022b168a9514afb5a851c8268c951841a92ddbee07aacba6cb79619c728cc"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "9b759aa66671de92b454f637748dd391dd1e4a7cadb28617ae23f55f2d0b0782",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

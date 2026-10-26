@@ -1,0 +1,37 @@
+{
+  "id": "shinirimobby",
+  "prompt": "Use case: stylized-concept. Redesign shinirimobby after final similarity audit. References1 bengal and2 ragdoll define fur/hardware style. Reference3 original defines gold bow and welcoming raised paw only. REQUIRED new main cat: very PALE LEMON CREAM solid SHORT COARSE WIRY coat, NO golden long fluffy fur, no tabby/white bib. TINY FOLDED ears, exceptionally WIDE LOW rounded-square bread-loaf unified body with no neck, very broad flat cheekbones and tiny friendly muzzle. MINT GREEN iris with large ROUND black pupil and white highlight. Exactly one living eye LEFT and one black green-glass concentric camera lens RIGHT. One black D-pad lower LEFT and exactly TWO plain black round buttons diagonal lower RIGHT. Short arms and two short feet. Preserve gold bow collar and welcoming raised paw, no other accessories. Front full body. Entire character and all extremities occupy only 80 percent of canvas, at least100px transparent margin on ALL sides. True RGBA1254x1254 PNG, soft studio light, real strand fur, no floor/grid/text/watermark.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-e2e2e136-0fff-4dfe-b68d-715d706c0c5c.png",
+  "target": "assets/cat-mobbies/new/g/shinirimobby.png",
+  "regenReason": "全136匹再監査でjuuden / shinirimobby / mangetsuが黄色長毛・立ち耳・丸顔の3匹組に残っていたため、淡いレモン短毛・小さい折れ耳・横広体型・ミント目へ変更。金色の蝶ネクタイと歓迎する手を保持。",
+  "qa": "accepted: pale short coat and folded ears distinguish from juuden/mangetsu; correct one eye/right lens and belly controls",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1437206,
+    "sha256": "adaa58b7f4e53a6fc3522c1b50ed8f63ad4a5a5175e2a8b4f066610c11cc3f3c"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "30dcd0a1f67ea8d4b8b5ba5f1f570be8e579ef5bfbc17dbe82ad025a9997849a",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

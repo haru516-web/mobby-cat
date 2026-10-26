@@ -1,0 +1,37 @@
+{
+  "id": "nebosuke",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-f29eeb21-df56-4a11-9b85-caaf08141288.png",
+  "target": "assets/cat-mobbies/new/d/nebosuke.png",
+  "prompt": "Use case: stylized-concept. Regenerate ONE nebosuke cat Mobby. Reference1 bengal and reference2 ragdoll define realistic animal strand fur and hardware; reference3 original target defines props and concept. CHANGE MAIN CAT: Pale CREAM long CURLY RINGLETS, small folded ears, extremely plump low square body, tiny flat muzzle, sleepy half-lidded amber eye. No brown tabby or straight fluffy fur. Keep original soft blanket draped over shoulders/head without obscuring face and hardware. Preserve ONE unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye viewer LEFT with round black pupil and catchlight, exactly ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain unmarked round black buttons diagonally lower RIGHT. Controls unobscured. Front-facing full body, soft studio light. Exact1254x1254 RGBA PNG with real transparent background and generous margin, no floor/grid/text/watermark. No new props.",
+  "regenReason": "灰茶長毛・疲れ顔グループから分化。クリーム単色の長い巻き毛・小さい折れ耳へ変更。半眼と毛布を保持。",
+  "qa": "accepted: fatigue expression and original props retained, correct eye/lens/D-pad/two buttons",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1552571,
+    "sha256": "8622e66a08ac2c3833aeef25db16aca77e2986292520336e6ec2d1c87b1eb4b6"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "cf49ff3028e8405133a0b413c3110649c2121e0868612325eef94421a3d04f28",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

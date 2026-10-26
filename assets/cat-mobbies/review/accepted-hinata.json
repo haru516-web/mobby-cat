@@ -1,0 +1,37 @@
+{
+  "id": "hinata",
+  "prompt": "Use case: stylized-concept. MAIN CAT REDESIGN hinata. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: Very PALE APRICOT solid LONG SILKY fur, no bright orange tabby/white bib. TINY FOLDED ears, low extra-wide square body with round cheeks, half-lidded amber eye. Keep yellow gingham neck scarf and sleepy sunbathing expression. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-96582088-ead6-4887-9b41-8de8ee141b67.png",
+  "target": "assets/cat-mobbies/new/c/hinata.png",
+  "regenReason": "橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: Very PALE APRICOT solid LONG SILKY fur, no bright orange tabby/white bib. TINY FOLDED ears, low extra-wide square body with round cheeks, half-lidded amber eye. Keep yellow gingham neck scarf and sleepy sunbathing expression.",
+  "qa": "accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "bytes": 1692678,
+    "sha256": "ec5f543d723ff72034768f0a6de54149c6f00eec56a04ecae7a974f04454c2f8"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "39e4e95d12041171ff907ec118d9f73c99df3817e635eb8213d7f13b4fbb3be9",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

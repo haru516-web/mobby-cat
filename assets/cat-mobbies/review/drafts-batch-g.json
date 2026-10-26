@@ -1,0 +1,106 @@
+{
+  "batch": "g",
+  "records": [
+    {
+      "id": "british-golden-shaded",
+      "name": "ブリティッシュ（ゴールデンシェーデッド）",
+      "batch": "g",
+      "spec": "British Shorthair golden shaded: warm apricot-gold coat with dark tipping, plush round face, emerald-green iris with dark rim",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: british-golden-shaded. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: British Shorthair golden shaded: warm apricot-gold coat with dark tipping, plush round face, emerald-green iris with dark rim. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-855267dc-3271-4e6f-96ec-d6a614f37f89.png",
+      "target": "assets/cat-mobbies/breeds2/g/british-golden-shaded.png",
+      "kind": "breed"
+    },
+    {
+      "id": "british-silver-tabby",
+      "name": "ブリティッシュ（シルバータビー）",
+      "batch": "g",
+      "spec": "British Shorthair silver tabby: silver coat with bold black classic tabby swirls, round face, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: british-silver-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: British Shorthair silver tabby: silver coat with bold black classic tabby swirls, round face, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-8731c829-4277-4172-bd9f-0395a81be48b.png",
+      "target": "assets/cat-mobbies/breeds2/g/british-silver-tabby.png",
+      "kind": "breed"
+    },
+    {
+      "id": "british-black",
+      "name": "ブリティッシュ（ブラック）",
+      "batch": "g",
+      "spec": "British Shorthair black: solid dense jet-black plush coat, round face, copper iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: british-black. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: British Shorthair black: solid dense jet-black plush coat, round face, copper iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-f2d3d821-8999-4961-94ed-0c144a999988.png",
+      "target": "assets/cat-mobbies/breeds2/g/british-black.png",
+      "kind": "breed"
+    },
+    {
+      "id": "british-lilac",
+      "name": "ブリティッシュ（ライラック）",
+      "batch": "g",
+      "spec": "British Shorthair lilac: solid pinkish-grey plush coat, round face, copper iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: british-lilac. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: British Shorthair lilac: solid pinkish-grey plush coat, round face, copper iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-51e784e1-5d6e-41e7-8014-292b5d431e50.png",
+      "target": "assets/cat-mobbies/breeds2/g/british-lilac.png",
+      "kind": "breed"
+    },
+    {
+      "id": "british-bicolor",
+      "name": "ブリティッシュ（バイカラー）",
+      "batch": "g",
+      "spec": "British Shorthair blue-and-white bicolor: blue-grey patches with white face blaze, chest and paws, round face, orange iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: british-bicolor. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: British Shorthair blue-and-white bicolor: blue-grey patches with white face blaze, chest and paws, round face, orange iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-1f6d8553-95a8-4922-b4aa-7292e17fd8c2.png",
+      "target": "assets/cat-mobbies/breeds2/g/british-bicolor.png",
+      "kind": "breed"
+    },
+    {
+      "id": "american-shorthair-brown-tabby",
+      "name": "アメリカンショートヘア（ブラウンタビー）",
+      "batch": "g",
+      "spec": "American Shorthair brown tabby: brown coat with black classic swirls, forehead \"M\", green-gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: american-shorthair-brown-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: American Shorthair brown tabby: brown coat with black classic swirls, forehead \"M\", green-gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-76c97439-808e-43c2-8389-b7a5d085f89c.png",
+      "target": "assets/cat-mobbies/breeds2/g/american-shorthair-brown-tabby.png",
+      "kind": "breed"
+    },
+    {
+      "id": "american-shorthair-calico",
+      "name": "アメリカンショートヘア（キャリコ）",
+      "batch": "g",
+      "spec": "American Shorthair calico: white coat with bold orange and black patches, short dense coat, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: american-shorthair-calico. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: American Shorthair calico: white coat with bold orange and black patches, short dense coat, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-4bbd4309-c18b-473f-8503-1c1b42946eaa.png",
+      "target": "assets/cat-mobbies/breeds2/g/american-shorthair-calico.png",
+      "kind": "breed"
+    },
+    {
+      "id": "scottish-fold-silver-tabby",
+      "name": "スコティッシュフォールド（シルバータビー）",
+      "batch": "g",
+      "spec": "Scottish Fold silver tabby: silver coat with black tabby markings, small folded ears, round face, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: scottish-fold-silver-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Scottish Fold silver tabby: silver coat with black tabby markings, small folded ears, round face, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-799fcd3c-bd57-4526-94bb-1b31d0ae7c21.png",
+      "target": "assets/cat-mobbies/breeds2/g/scottish-fold-silver-tabby.png",
+      "kind": "breed"
+    },
+    {
+      "id": "scottish-fold-bicolor",
+      "name": "スコティッシュフォールド（バイカラー）",
+      "batch": "g",
+      "spec": "Scottish Fold black-and-white bicolor: small folded ears, round face, white blaze, gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: scottish-fold-bicolor. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Scottish Fold black-and-white bicolor: small folded ears, round face, white blaze, gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-9fa4a9cb-2860-4721-8a62-fd7c7c9245bf.png",
+      "target": "assets/cat-mobbies/breeds2/g/scottish-fold-bicolor.png",
+      "kind": "breed"
+    },
+    {
+      "id": "scottish-fold-white",
+      "name": "スコティッシュフォールド（ホワイト）",
+      "batch": "g",
+      "spec": "Scottish Fold white: pure white coat, small folded ears, round face, gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: scottish-fold-white. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Scottish Fold white: pure white coat, small folded ears, round face, gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-e11d629a-5704-4420-9b64-38db601315bd.png",
+      "target": "assets/cat-mobbies/breeds2/g/scottish-fold-white.png",
+      "kind": "breed"
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "country-01",
+  "prompt": "Use case: precise-object-edit. Reference1 bengal and2 ragdoll are eye/hardware style references. Reference3 is the EDIT TARGET country-01 torch Mobby. Change ONLY the biological eye viewer LEFT: replace the narrow slit pupil with a LARGE PERFECTLY ROUND BLACK PUPIL centered inside a glossy icy blue iris, white round catchlight, same natural detailed iris style as image1/2. Keep the ivory short satin fur, enormous upright ears, lean squared unified head/body with no neck, red-white ribbon, torch, one right camera lens and one D-pad plus two plain buttons EXACTLY. Transparent RGBA PNG1254x1254. No background/grid/floor/text/watermark. The biological pupil must be circular, not vertical.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-39593834-82de-4403-bc55-fe44e47f3b1a.png",
+  "target": "assets/cat-mobbies/new/e/country-01.png",
+  "regenReason": "白長毛の類似組からアイボリー極短毛・大耳・細い四角胴へ変更。聖火とリボンを保持。初稿の縦長瞳孔を丸い黒目に修正。",
+  "qa": "accepted: one living left eye with round pupil, right lens, one D-pad and two plain buttons; differentiated texture/ears/body; original concept retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1479662,
+    "sha256": "846054a513b8509bf7aba940021af2d49fea0a9ef3c451b6aee4043152b0ac64"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "06603653b3b03491e7393840bf16213bbb8f393ebc9133ecc1452fa453e7f4b4",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

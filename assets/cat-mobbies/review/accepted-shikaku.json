@@ -1,0 +1,37 @@
+{
+  "id": "shikaku",
+  "prompt": "Create one short-furred pale caramel Mobby cat, very wide low rounded-square bread-loaf unified head/body, no neck. Tiny low round ears, amber living eye viewer left, black green-glass camera lens viewer right. One black D-pad lower left, exactly two plain black round buttons diagonally lower right. Realistic directional short fur, short arms, two short feet. Front full body, transparent background 1254x1254 with padding. Reference 1 bengal and 2 ragdoll define hardware and fur quality. No tabby, white patches, accessories, clothes, text.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-ea428263-a649-4b78-be33-c461fff75580.png",
+  "target": "assets/cat-mobbies/new/h/shikaku.png",
+  "regenReason": "rea-mobby等と同じ長毛キジ三毛から、淡いキャラメル単色の短毛・低い丸耳・横広の食パン型・琥珀目へ変更。",
+  "qa": "accepted prototype: correct left eye/right lens/D-pad/two plain buttons, realistic fur, visibly differentiated from original reference palette",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1673581,
+    "sha256": "135c29505449238b3f63ff834c2bd7a2b4a61b25f0dc16bc892cd02adf5175fc"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "751ba55fec15c4d41cbc415f9adcb23cf8442b4433853e0d2d48c4ffad27cb73",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

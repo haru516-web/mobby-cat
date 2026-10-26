@@ -1,0 +1,37 @@
+{
+  "id": "uchuu",
+  "prompt": "Use case: stylized-concept. Redesign MAIN CAT uchuu. Ref1 bengal/ref2 ragdoll define real directional fur and hardware; ref3 only identity and conceptual props. REQUIRED NEW APPEARANCE: SILVER WHITE and CHARCOAL BLACK large patches of VERY SHORT glossy fur, NO navy star-patterned long fur. Small ROUND ears, exceptionally BROAD LOW square torso, broad blunt cheekbones, GOLD eye. Keep clear astronaut helmet with metallic rim, space concept; tiny planet motif on tail only. Exactly ONE unified rounded-square head/body NO neck, short arms/two short feet. ONE living eye viewer LEFT with LARGE ROUND black pupil and highlight, ONE black green-reflective camera lens RIGHT; ONE black D-pad lower LEFT and exactly TWO plain black round buttons diagonally lower RIGHT. Front full body, controls unobscured. Soft studio light, true RGBA1254x1254 transparent PNG with margin. No background/grid/floor/new text/watermark. Follow new fur ears face and body, no extra props.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-f585341f-3fa9-4c5a-b3f0-dbe4b00bb4c3.png",
+  "target": "assets/cat-mobbies/new/h/uchuu.png",
+  "regenReason": "夜空/紫黒の類似グループを分化。小物コンセプト保持。新しい外見: SILVER WHITE and CHARCOAL BLACK large patches of VERY SHORT glossy fur, NO navy star-patterned long fur. Small ROUND ears, exceptionally BROAD LOW square torso, broad blunt cheekbones, GOLD eye. Keep clear astronaut helmet with metallic rim, space concept; tiny planet motif on tail only.",
+  "qa": "accepted: individual coat/ear/face/body differences, one left biological eye/right lens/D-pad/two plain buttons; original concept retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1697522,
+    "sha256": "22e848dc2c079b519023f1400909dd79d02a00b2b5787a3ca7af7c7ed77f8ec8"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "08cbdc5593d232bd8ac17658025955249840a8d85cfe16a069b723461d85a5bd",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

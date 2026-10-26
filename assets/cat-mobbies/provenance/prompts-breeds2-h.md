@@ -1,0 +1,63 @@
+# Breeds2 batch h — in progress
+
+Built-in image_gen. Reference 1: characters/bengal.png; reference 2: characters/ragdoll.png. A edits also use original target as reference 3.
+
+## abyssinian-blue — アビシニアン（ブルー）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: abyssinian-blue. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Abyssinian blue: slate-blue ticked short coat with warm beige undertone, large ears, gold-green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## abyssinian-fawn — アビシニアン（フォーン）
+
+Use case: precise-object-edit. Ref1 bengal/ref2 ragdoll are materials/hardware references. Ref3 is EDIT TARGET abyssinian-fawn. Critical coat correction: FAWN is very PALE PINKISH BEIGE (like light oat milk), fine subtle light taupe ticking. Remove ALL warm rust/red/brown colouring and dark tail. Large flared ears, wedge-shaped slim face, golden iris. Make slender taller rounded-square body. Preserve detailed real strands, unified rounded-square head/body NO neck, short arms/two short feet. ONE biological eye viewer LEFT and ONE green-glass camera lens RIGHT, black D-pad lower LEFT and exactly TWO plain black round buttons lower RIGHT diagonal. Full body front, no props/text. True transparent RGBA1254x1254, character occupies75% canvas with wide clear margins.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## birman-blue-point — バーマン（ブルーポイント）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: birman-blue-point. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Birman blue point: pale cream-white body, slate-blue points, white gloves on all feet, long silky coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## birman-chocolate-point — バーマン（チョコレートポイント）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: birman-chocolate-point. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Birman chocolate point: ivory body, warm chocolate points, white gloves, long silky coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## maine-coon-black — メインクーン（ブラック）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: maine-coon-black. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Maine Coon black: shaggy solid black coat, lynx-tip ear tufts, big ruff and plume tail, gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## maine-coon-red-tabby — メインクーン（レッドタビー）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: maine-coon-red-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Maine Coon red tabby: shaggy bright orange coat with darker stripes, lynx-tip tufts, big ruff, gold-green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## maine-coon-silver-tabby — メインクーン（シルバータビー）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: maine-coon-silver-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Maine Coon silver tabby: shaggy silver coat with black tabby stripes, lynx-tip ear tufts, big ruff, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## norwegian-forest-black-white — ノルウェージャンフォレスト（ブラック＆ホワイト）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: norwegian-forest-black-white. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Norwegian Forest black-and-white: long flowing coat, white chest ruff and paws, tufted ears, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## norwegian-forest-silver-tabby — ノルウェージャンフォレスト（シルバータビー）
+
+Use case: precise-object-edit. Ref1 bengal/ref2 ragdoll are materials/hardware references. Ref3 is EDIT TARGET norwegian-forest-silver-tabby. Differentiate from Maine Coon: Norwegian Forest LONG flowing silver-black striped coat, triangular tapered muzzle with straight long nose, smaller almond-shaped eye but keep round black pupil, medium upright ears with only small tips (no giant lynx tufts). A broad low rounded-square body under long smooth flowing fur, distinct long white-silver bib; green iris. Keep silver tabby coat. Preserve detailed real strands, unified rounded-square head/body NO neck, short arms/two short feet. ONE biological eye viewer LEFT and ONE green-glass camera lens RIGHT, black D-pad lower LEFT and exactly TWO plain black round buttons lower RIGHT diagonal. Full body front, no props/text. True transparent RGBA1254x1254, character occupies75% canvas with wide clear margins.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.
+
+## siberian-blue — サイベリアン（ブルー）
+
+Use case: stylized-concept. Generate ONE real breed cat Mobby: siberian-blue. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Siberian blue: thick plush triple-coat in solid blue-grey, rounded tufted ears, broad muzzle, green-yellow iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.
+
+QA: accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.

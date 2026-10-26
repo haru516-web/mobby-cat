@@ -1,0 +1,71 @@
+{
+  "batch": "i",
+  "records": [
+    {
+      "id": "bengal-snow-lynx",
+      "name": "ベンガル（スノーリンクス）",
+      "batch": "i",
+      "spec": "Bengal snow lynx: cream-white coat with faint pale-brown rosettes, seal lynx points, blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: bengal-snow-lynx. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Bengal snow lynx: cream-white coat with faint pale-brown rosettes, seal lynx points, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-e5dea589-3d96-4e14-9324-1ea58cf5c7e0.png",
+      "target": "assets/cat-mobbies/breeds2/i/bengal-snow-lynx.png",
+      "kind": "breed"
+    },
+    {
+      "id": "bengal-silver",
+      "name": "ベンガル（シルバー）",
+      "batch": "i",
+      "spec": "Bengal silver: bright silver-white coat with black rosettes and spots, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: bengal-silver. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Bengal silver: bright silver-white coat with black rosettes and spots, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-c8297905-735e-4d69-8fcc-f416bb885299.png",
+      "target": "assets/cat-mobbies/breeds2/i/bengal-silver.png",
+      "kind": "breed"
+    },
+    {
+      "id": "bengal-marble",
+      "name": "ベンガル（マーブル）",
+      "batch": "i",
+      "spec": "Bengal marble: warm golden coat with flowing horizontal marbled swirls, gold-green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: bengal-marble. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Bengal marble: warm golden coat with flowing horizontal marbled swirls, gold-green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-374ec706-4275-4e4a-9530-c2222f2645cd.png",
+      "target": "assets/cat-mobbies/breeds2/i/bengal-marble.png",
+      "kind": "breed"
+    },
+    {
+      "id": "egyptian-mau-bronze",
+      "name": "エジプシャンマウ（ブロンズ）",
+      "batch": "i",
+      "spec": "Egyptian Mau bronze: warm bronze-brown coat with dark spots, forehead scarab \"M\", green-gooseberry iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: egyptian-mau-bronze. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Egyptian Mau bronze: warm bronze-brown coat with dark spots, forehead scarab \"M\", green-gooseberry iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-619472db-aaef-4096-b4ce-413ede620113.png",
+      "target": "assets/cat-mobbies/breeds2/i/egyptian-mau-bronze.png",
+      "kind": "breed"
+    }
+  ],
+  "failures": [
+    {
+      "id": "egyptian-mau-smoke",
+      "error": "image generation failed: http 429 Too Many Requests: Some(\"{\\\"error\\\":{\\\"type\\\":\\\"usage_limit_reached\\\",\\\"message\\\":\\\"The usage limit has been reached\\\",\\\"plan_type\\\":\\\"plus\\\",\\\"resets_at\\\":1793018220,\\\"eligible_promo\\\":null,\\\"limit_window_minutes\\\":1440,\\\"resets_in_seconds\\\":46122}}\")"
+    },
+    {
+      "id": "ocicat-silver",
+      "error": "image generation failed: http 429 Too Many Requests: Some(\"{\\\"error\\\":{\\\"type\\\":\\\"usage_limit_reached\\\",\\\"message\\\":\\\"The usage limit has been reached\\\",\\\"plan_type\\\":\\\"plus\\\",\\\"resets_at\\\":1793018220,\\\"eligible_promo\\\":null,\\\"limit_window_minutes\\\":1440,\\\"resets_in_seconds\\\":46105}}\")"
+    },
+    {
+      "id": "burmese-blue",
+      "error": "image generation failed: http 429 Too Many Requests: Some(\"{\\\"error\\\":{\\\"type\\\":\\\"usage_limit_reached\\\",\\\"message\\\":\\\"The usage limit has been reached\\\",\\\"plan_type\\\":\\\"plus\\\",\\\"resets_at\\\":1793018221,\\\"eligible_promo\\\":null,\\\"limit_window_minutes\\\":1440,\\\"resets_in_seconds\\\":46103}}\")"
+    },
+    {
+      "id": "burmese-champagne",
+      "error": "image generation failed: http 429 Too Many Requests: Some(\"{\\\"error\\\":{\\\"type\\\":\\\"usage_limit_reached\\\",\\\"message\\\":\\\"The usage limit has been reached\\\",\\\"plan_type\\\":\\\"plus\\\",\\\"resets_at\\\":1793018221,\\\"eligible_promo\\\":null,\\\"limit_window_minutes\\\":1440,\\\"resets_in_seconds\\\":46100}}\")"
+    },
+    {
+      "id": "russian-white",
+      "error": "image generation failed: http 429 Too Many Requests: Some(\"{\\\"error\\\":{\\\"type\\\":\\\"usage_limit_reached\\\",\\\"message\\\":\\\"The usage limit has been reached\\\",\\\"plan_type\\\":\\\"plus\\\",\\\"resets_at\\\":1793018220,\\\"eligible_promo\\\":null,\\\"limit_window_minutes\\\":1440,\\\"resets_in_seconds\\\":46097}}\")"
+    },
+    {
+      "id": "russian-black",
+      "error": "image generation failed: http 429 Too Many Requests: Some(\"{\\\"error\\\":{\\\"type\\\":\\\"usage_limit_reached\\\",\\\"message\\\":\\\"The usage limit has been reached\\\",\\\"plan_type\\\":\\\"plus\\\",\\\"resets_at\\\":1793018220,\\\"eligible_promo\\\":null,\\\"limit_window_minutes\\\":1440,\\\"resets_in_seconds\\\":46095}}\")"
+    }
+  ]
+}

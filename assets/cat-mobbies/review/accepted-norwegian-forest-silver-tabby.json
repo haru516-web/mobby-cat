@@ -1,0 +1,44 @@
+{
+  "id": "norwegian-forest-silver-tabby",
+  "name": "ノルウェージャンフォレスト（シルバータビー）",
+  "batch": "h",
+  "kind": "breed",
+  "target": "assets/cat-mobbies/breeds2/h/norwegian-forest-silver-tabby.png",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-3c3f9e97-8ec1-4670-a821-493d3faf7c08.png",
+  "prompt": "Use case: precise-object-edit. Ref1 bengal/ref2 ragdoll are materials/hardware references. Ref3 is EDIT TARGET norwegian-forest-silver-tabby. Differentiate from Maine Coon: Norwegian Forest LONG flowing silver-black striped coat, triangular tapered muzzle with straight long nose, smaller almond-shaped eye but keep round black pupil, medium upright ears with only small tips (no giant lynx tufts). A broad low rounded-square body under long smooth flowing fur, distinct long white-silver bib; green iris. Keep silver tabby coat. Preserve detailed real strands, unified rounded-square head/body NO neck, short arms/two short feet. ONE biological eye viewer LEFT and ONE green-glass camera lens RIGHT, black D-pad lower LEFT and exactly TWO plain black round buttons lower RIGHT diagonal. Full body front, no props/text. True transparent RGBA1254x1254, character occupies75% canvas with wide clear margins.",
+  "qa": "accepted visual QA: specified breed coat/ears/face, one left biological eye/right lens/D-pad/two plain round buttons; no props/text.",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1912197,
+    "sha256": "e28b5b33400e429c077a2a2fcdcfba68c894ec236df910b0cbc6f118502a3713"
+  },
+  "combinedSimilarityReview": {
+    "status": "revision-pending",
+    "group": "silver-tabby-long",
+    "reason": "Long silver tabbies remain a group larger than two. Maine Coon must have elongated square muzzle, heavy brow, tall angular square build and giant lynx ears. Norwegian needs smaller upright ears, triangular muzzle, smooth flowing coat and low broad body; recent first revision not enough at thumbnail."
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "2209fd6bf0dd1eceb0c17dcf6c5d5ebe2ed5390bebf7c4f0c3a6e57eec6528f2",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

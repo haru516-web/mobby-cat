@@ -1,0 +1,37 @@
+{
+  "id": "country-08",
+  "prompt": "Use case: stylized-concept. MAIN CAT REDESIGN country-08. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: WHITE base with THREE very LARGE solid BLACK patches: viewer-left cheek, viewer-right flank, tail. SHORT glossy coat, NO white V tuxedo cap or long fur. TINY rounded ears, very broad low squared body and blunt cheeks, green eye. Keep collar with 8 pendant. One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-d5d2cf67-a65b-4245-b5ba-d43737ea9564.png",
+  "target": "assets/cat-mobbies/new/e/country-08.png",
+  "regenReason": "橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: WHITE base with THREE very LARGE solid BLACK patches: viewer-left cheek, viewer-right flank, tail. SHORT glossy coat, NO white V tuxedo cap or long fur. TINY rounded ears, very broad low squared body and blunt cheeks, green eye. Keep collar with 8 pendant.",
+  "qa": "accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1603870,
+    "sha256": "5b782102193d4424b961a09e61505afa646b572e49b0a891bc4df1c18e6f5040"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "071dfc47b4e284c7fa54bf221ef698194216be84a62bd3d064d98f068df3f023",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

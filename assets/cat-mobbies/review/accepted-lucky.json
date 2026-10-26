@@ -1,0 +1,37 @@
+{
+  "id": "lucky",
+  "prompt": "Use case: stylized-concept. MAIN CAT REDESIGN for lucky. Ref1 bengal/ref2 ragdoll: real directional fur and Mobby hardware. Ref3 original ONLY props/identity, do not copy its coat/body. REQUIRED: SOLID metallic warm GOLD very SHORT SATIN animal fur, NO white bib or orange tabby. TINY small FOLDED ears, very wide round cheeks and low square body, emerald eye. Keep four leaf clover and red 777 ornament. Unified rounded-square head/body NO neck, short arms/two short feet, ONE living eye LEFT, ONE black camera lens RIGHT with green glass. One lower LEFT black cross D-pad and exactly TWO plain black round buttons diagonal lower RIGHT. Front full body. Realistic fur, soft studio light, true transparent PNG1254x1254 with margin. No grid/floor/text/watermark. Follow new coat/ears/body exactly; no brown-black-orange longhair tortie.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-f68f46e8-f184-4277-93a9-c069ec91852b.png",
+  "target": "assets/cat-mobbies/new/a/lucky.png",
+  "regenReason": "橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: SOLID metallic warm GOLD very SHORT SATIN animal fur, NO white bib or orange tabby. TINY small FOLDED ears, very wide round cheeks and low square body, emerald eye. Keep four leaf clover and red 777 ornament.",
+  "qa": "accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1837569,
+    "sha256": "dd71bb5354fe714a542293153c941e0c29ae19f745abe102c1dade18355c16f9"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "f58c3a2e48b02f77374a9db2f59bc25866c53c0704f4727706da1185b8234826",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

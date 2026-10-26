@@ -1,0 +1,37 @@
+{
+  "id": "norwegian-forest",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-894604e8-cbb5-4051-bd0e-15de46264933.png",
+  "target": "assets/cat-mobbies/characters/norwegian-forest.png",
+  "prompt": "Use case: stylized-concept. Regenerate ONE norwegian-forest cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: NORWEGIAN FOREST: RED and WHITE distinct bicolor with white triangular chest, very long straight flowing guard hairs, angular TRIANGULAR face, HIGH cheekbones, LARGE tall pointed ears with fine tufts, taller square torso, green iris. No brown black tortie/tabby. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+  "regenReason": "茶長毛グループから赤白の明確な配色、三角形の顔、大きい房耳、長い直毛へ変更。",
+  "qa": "accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      254
+    ],
+    "bytes": 2035411,
+    "sha256": "5e40076028b2e7df915fe00dcb6767f2242960444dd913e5717bef6a9f864446"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "c9d46fa5c82b183b34c958bf1111ee8da3e8ff8b8c7434d050a158a69ee68eaf",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

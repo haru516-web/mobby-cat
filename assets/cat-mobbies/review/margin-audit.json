@@ -1,0 +1,772 @@
+[
+  {
+    "id": "aotsuki",
+    "bboxAtAlpha128": [
+      26,
+      14,
+      1238,
+      1242
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "asa",
+    "bboxAtAlpha128": [
+      17,
+      54,
+      1242,
+      1200
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "balinese",
+    "bboxAtAlpha128": [
+      63,
+      22,
+      1233,
+      1231
+    ],
+    "minMargin": 21
+  },
+  {
+    "id": "birman",
+    "bboxAtAlpha128": [
+      19,
+      24,
+      1235,
+      1225
+    ],
+    "minMargin": 19
+  },
+  {
+    "id": "bouken-ou",
+    "bboxAtAlpha128": [
+      14,
+      49,
+      1228,
+      1210
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "british-shorthair",
+    "bboxAtAlpha128": [
+      32,
+      64,
+      1236,
+      1224
+    ],
+    "minMargin": 18
+  },
+  {
+    "id": "bunshin",
+    "bboxAtAlpha128": [
+      15,
+      160,
+      1238,
+      1190
+    ],
+    "minMargin": 15
+  },
+  {
+    "id": "burmese",
+    "bboxAtAlpha128": [
+      25,
+      81,
+      1242,
+      1207
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "chokotto",
+    "bboxAtAlpha128": [
+      122,
+      39,
+      1236,
+      1214
+    ],
+    "minMargin": 18
+  },
+  {
+    "id": "collector",
+    "bboxAtAlpha128": [
+      36,
+      142,
+      1241,
+      1189
+    ],
+    "minMargin": 13
+  },
+  {
+    "id": "country-01",
+    "bboxAtAlpha128": [
+      113,
+      7,
+      1224,
+      1242
+    ],
+    "minMargin": 7
+  },
+  {
+    "id": "country-06",
+    "bboxAtAlpha128": [
+      31,
+      17,
+      1252,
+      1233
+    ],
+    "minMargin": 2
+  },
+  {
+    "id": "country-07",
+    "bboxAtAlpha128": [
+      42,
+      28,
+      1245,
+      1226
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "country-08",
+    "bboxAtAlpha128": [
+      50,
+      86,
+      1239,
+      1215
+    ],
+    "minMargin": 15
+  },
+  {
+    "id": "country-20",
+    "bboxAtAlpha128": [
+      45,
+      86,
+      1248,
+      1213
+    ],
+    "minMargin": 6
+  },
+  {
+    "id": "country-30",
+    "bboxAtAlpha128": [
+      39,
+      54,
+      1237,
+      1192
+    ],
+    "minMargin": 17
+  },
+  {
+    "id": "country-50",
+    "bboxAtAlpha128": [
+      37,
+      12,
+      1248,
+      1238
+    ],
+    "minMargin": 6
+  },
+  {
+    "id": "country-75",
+    "bboxAtAlpha128": [
+      106,
+      24,
+      1247,
+      1236
+    ],
+    "minMargin": 7
+  },
+  {
+    "id": "denchigire",
+    "bboxAtAlpha128": [
+      16,
+      63,
+      1240,
+      1207
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "genkai",
+    "bboxAtAlpha128": [
+      32,
+      126,
+      1238,
+      1199
+    ],
+    "minMargin": 16
+  },
+  {
+    "id": "halloween",
+    "bboxAtAlpha128": [
+      79,
+      35,
+      1228,
+      1215
+    ],
+    "minMargin": 26
+  },
+  {
+    "id": "hatsuyuki",
+    "bboxAtAlpha128": [
+      74,
+      134,
+      1242,
+      1218
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "havana-brown",
+    "bboxAtAlpha128": [
+      104,
+      17,
+      1233,
+      1226
+    ],
+    "minMargin": 17
+  },
+  {
+    "id": "himitsu",
+    "bboxAtAlpha128": [
+      49,
+      120,
+      1249,
+      1192
+    ],
+    "minMargin": 5
+  },
+  {
+    "id": "hinata",
+    "bboxAtAlpha128": [
+      25,
+      124,
+      1247,
+      1202
+    ],
+    "minMargin": 7
+  },
+  {
+    "id": "hisashiburi",
+    "bboxAtAlpha128": [
+      15,
+      105,
+      1254,
+      1205
+    ],
+    "minMargin": 0
+  },
+  {
+    "id": "hodohodo",
+    "bboxAtAlpha128": [
+      101,
+      24,
+      1234,
+      1222
+    ],
+    "minMargin": 20
+  },
+  {
+    "id": "hyakunin",
+    "bboxAtAlpha128": [
+      45,
+      22,
+      1246,
+      1220
+    ],
+    "minMargin": 8
+  },
+  {
+    "id": "issei-nenne",
+    "bboxAtAlpha128": [
+      23,
+      203,
+      1246,
+      1209
+    ],
+    "minMargin": 8
+  },
+  {
+    "id": "juunyan",
+    "bboxAtAlpha128": [
+      32,
+      22,
+      1248,
+      1230
+    ],
+    "minMargin": 6
+  },
+  {
+    "id": "kikan",
+    "bboxAtAlpha128": [
+      50,
+      13,
+      1240,
+      1232
+    ],
+    "minMargin": 13
+  },
+  {
+    "id": "lucky",
+    "bboxAtAlpha128": [
+      61,
+      93,
+      1248,
+      1212
+    ],
+    "minMargin": 6
+  },
+  {
+    "id": "maine-coon",
+    "bboxAtAlpha128": [
+      32,
+      25,
+      1249,
+      1235
+    ],
+    "minMargin": 5
+  },
+  {
+    "id": "mainichi",
+    "bboxAtAlpha128": [
+      150,
+      26,
+      1244,
+      1231
+    ],
+    "minMargin": 10
+  },
+  {
+    "id": "mantan",
+    "bboxAtAlpha128": [
+      40,
+      42,
+      1223,
+      1207
+    ],
+    "minMargin": 31
+  },
+  {
+    "id": "mayonaka",
+    "bboxAtAlpha128": [
+      20,
+      17,
+      1240,
+      1214
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "mike-neko",
+    "bboxAtAlpha128": [
+      35,
+      38,
+      1238,
+      1221
+    ],
+    "minMargin": 16
+  },
+  {
+    "id": "mushoku",
+    "bboxAtAlpha128": [
+      24,
+      91,
+      1246,
+      1195
+    ],
+    "minMargin": 8
+  },
+  {
+    "id": "nebosuke",
+    "bboxAtAlpha128": [
+      9,
+      115,
+      1245,
+      1173
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "nekonohi",
+    "bboxAtAlpha128": [
+      32,
+      9,
+      1222,
+      1225
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "nemurio",
+    "bboxAtAlpha128": [
+      52,
+      51,
+      1240,
+      1211
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "noroware",
+    "bboxAtAlpha128": [
+      50,
+      9,
+      1244,
+      1232
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "norwegian-forest",
+    "bboxAtAlpha128": [
+      30,
+      8,
+      1247,
+      1227
+    ],
+    "minMargin": 7
+  },
+  {
+    "id": "nyannyan",
+    "bboxAtAlpha128": [
+      77,
+      96,
+      1238,
+      1200
+    ],
+    "minMargin": 16
+  },
+  {
+    "id": "nyanpo",
+    "bboxAtAlpha128": [
+      57,
+      66,
+      1229,
+      1228
+    ],
+    "minMargin": 25
+  },
+  {
+    "id": "oiwai",
+    "bboxAtAlpha128": [
+      35,
+      2,
+      1216,
+      1222
+    ],
+    "minMargin": 2
+  },
+  {
+    "id": "osanpo",
+    "bboxAtAlpha128": [
+      11,
+      29,
+      1245,
+      1221
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "ouji",
+    "bboxAtAlpha128": [
+      20,
+      42,
+      1243,
+      1210
+    ],
+    "minMargin": 11
+  },
+  {
+    "id": "persian",
+    "bboxAtAlpha128": [
+      17,
+      125,
+      1245,
+      1217
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "pittari",
+    "bboxAtAlpha128": [
+      55,
+      84,
+      1244,
+      1205
+    ],
+    "minMargin": 10
+  },
+  {
+    "id": "ragdoll-seal-mitted",
+    "bboxAtAlpha128": [
+      21,
+      33,
+      1240,
+      1224
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "russian-blue",
+    "bboxAtAlpha128": [
+      95,
+      15,
+      1237,
+      1233
+    ],
+    "minMargin": 15
+  },
+  {
+    "id": "sakura",
+    "bboxAtAlpha128": [
+      80,
+      30,
+      1238,
+      1231
+    ],
+    "minMargin": 16
+  },
+  {
+    "id": "samishigari",
+    "bboxAtAlpha128": [
+      33,
+      158,
+      1222,
+      1185
+    ],
+    "minMargin": 32
+  },
+  {
+    "id": "santa",
+    "bboxAtAlpha128": [
+      32,
+      51,
+      1240,
+      1219
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "savannah",
+    "bboxAtAlpha128": [
+      149,
+      9,
+      1227,
+      1234
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "shachou",
+    "bboxAtAlpha128": [
+      31,
+      72,
+      1252,
+      1221
+    ],
+    "minMargin": 2
+  },
+  {
+    "id": "shikaku",
+    "bboxAtAlpha128": [
+      31,
+      143,
+      1238,
+      1196
+    ],
+    "minMargin": 16
+  },
+  {
+    "id": "shingetsu",
+    "bboxAtAlpha128": [
+      7,
+      104,
+      1247,
+      1216
+    ],
+    "minMargin": 7
+  },
+  {
+    "id": "shitsukoi",
+    "bboxAtAlpha128": [
+      61,
+      113,
+      1242,
+      1207
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "siamese-seal-point",
+    "bboxAtAlpha128": [
+      79,
+      12,
+      1242,
+      1223
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "siberian",
+    "bboxAtAlpha128": [
+      13,
+      27,
+      1244,
+      1230
+    ],
+    "minMargin": 10
+  },
+  {
+    "id": "somali",
+    "bboxAtAlpha128": [
+      15,
+      15,
+      1245,
+      1239
+    ],
+    "minMargin": 9
+  },
+  {
+    "id": "tanabata",
+    "bboxAtAlpha128": [
+      72,
+      12,
+      1242,
+      1237
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "tanjoubi",
+    "bboxAtAlpha128": [
+      91,
+      17,
+      1242,
+      1226
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "tekuteku",
+    "bboxAtAlpha128": [
+      44,
+      15,
+      1241,
+      1237
+    ],
+    "minMargin": 13
+  },
+  {
+    "id": "tomodachizure",
+    "bboxAtAlpha128": [
+      85,
+      68,
+      1221,
+      1198
+    ],
+    "minMargin": 33
+  },
+  {
+    "id": "tonkinese",
+    "bboxAtAlpha128": [
+      26,
+      33,
+      1246,
+      1218
+    ],
+    "minMargin": 8
+  },
+  {
+    "id": "toshikoshi",
+    "bboxAtAlpha128": [
+      46,
+      76,
+      1242,
+      1203
+    ],
+    "minMargin": 12
+  },
+  {
+    "id": "traveling-mobby",
+    "bboxAtAlpha128": [
+      36,
+      21,
+      1240,
+      1224
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "tsuyu",
+    "bboxAtAlpha128": [
+      40,
+      23,
+      1236,
+      1222
+    ],
+    "minMargin": 18
+  },
+  {
+    "id": "turkish-angora",
+    "bboxAtAlpha128": [
+      84,
+      23,
+      1247,
+      1239
+    ],
+    "minMargin": 7
+  },
+  {
+    "id": "uchuu",
+    "bboxAtAlpha128": [
+      56,
+      35,
+      1248,
+      1218
+    ],
+    "minMargin": 6
+  },
+  {
+    "id": "usotsuki",
+    "bboxAtAlpha128": [
+      117,
+      14,
+      1234,
+      1232
+    ],
+    "minMargin": 14
+  },
+  {
+    "id": "world-traveler",
+    "bboxAtAlpha128": [
+      38,
+      20,
+      1234,
+      1215
+    ],
+    "minMargin": 20
+  },
+  {
+    "id": "yofukashi",
+    "bboxAtAlpha128": [
+      31,
+      26,
+      1234,
+      1221
+    ],
+    "minMargin": 20
+  },
+  {
+    "id": "yukidaruma",
+    "bboxAtAlpha128": [
+      60,
+      8,
+      1239,
+      1239
+    ],
+    "minMargin": 8
+  }
+]

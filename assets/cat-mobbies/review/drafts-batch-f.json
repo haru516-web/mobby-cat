@@ -1,0 +1,96 @@
+{
+  "batch": "f",
+  "records": [
+    {
+      "id": "ragdoll-blue-colorpoint",
+      "name": "ラグドール（ブルーカラーポイント）",
+      "batch": "f",
+      "spec": "Ragdoll blue colorpoint: pale blue-white body, slate-blue points, long silky coat, blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: ragdoll-blue-colorpoint. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Ragdoll blue colorpoint: pale blue-white body, slate-blue points, long silky coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-a7896e33-2e1d-4047-9308-3085ad3f7823.png",
+      "target": "assets/cat-mobbies/breeds2/f/ragdoll-blue-colorpoint.png",
+      "kind": "breed"
+    },
+    {
+      "id": "ragdoll-lilac-bicolor",
+      "name": "ラグドール（リラックスバイカラー）",
+      "batch": "f",
+      "spec": "Ragdoll lilac bicolor: lilac-grey points with white inverted-V face and white belly, long coat, blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: ragdoll-lilac-bicolor. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Ragdoll lilac bicolor: lilac-grey points with white inverted-V face and white belly, long coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-b6973fa3-9684-4bc5-b0fa-0c6a11c6b95f.png",
+      "target": "assets/cat-mobbies/breeds2/f/ragdoll-lilac-bicolor.png",
+      "kind": "breed"
+    },
+    {
+      "id": "persian-chinchilla-silver",
+      "name": "ペルシャ（チンチラシルバー）",
+      "batch": "f",
+      "spec": "Persian chinchilla silver: long white coat tipped with black shimmer, flat face, sea-green iris with dark eyeliner",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: persian-chinchilla-silver. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Persian chinchilla silver: long white coat tipped with black shimmer, flat face, sea-green iris with dark eyeliner. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-0d4a3a06-c586-4326-bd37-90eecd649789.png",
+      "target": "assets/cat-mobbies/breeds2/f/persian-chinchilla-silver.png",
+      "kind": "breed"
+    },
+    {
+      "id": "persian-black-smoke",
+      "name": "ペルシャ（ブラックスモーク）",
+      "batch": "f",
+      "spec": "Persian black smoke: long black coat with silver-white undercoat showing, flat face, copper iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: persian-black-smoke. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Persian black smoke: long black coat with silver-white undercoat showing, flat face, copper iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-d9d28723-a8d0-437e-83a7-f46599e1953d.png",
+      "target": "assets/cat-mobbies/breeds2/f/persian-black-smoke.png",
+      "kind": "breed"
+    },
+    {
+      "id": "persian-red-tabby",
+      "name": "ペルシャ（レッドタビー）",
+      "batch": "f",
+      "spec": "Persian red tabby: long deep-orange coat with darker red tabby striping, flat face, copper iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: persian-red-tabby. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Persian red tabby: long deep-orange coat with darker red tabby striping, flat face, copper iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-c2e0989b-540f-4b9f-a60b-432adab774d4.png",
+      "target": "assets/cat-mobbies/breeds2/f/persian-red-tabby.png",
+      "kind": "breed"
+    },
+    {
+      "id": "persian-blue-cream",
+      "name": "ペルシャ（ブルークリーム）",
+      "batch": "f",
+      "spec": "Persian blue-cream: long coat in soft blue-grey and cream patched pattern, flat face, copper iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: persian-blue-cream. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Persian blue-cream: long coat in soft blue-grey and cream patched pattern, flat face, copper iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-172be28f-737c-4486-9e14-e06f461e1dcf.png",
+      "target": "assets/cat-mobbies/breeds2/f/persian-blue-cream.png",
+      "kind": "breed"
+    },
+    {
+      "id": "siamese-blue-point",
+      "name": "シャム（ブルーポイント）",
+      "batch": "f",
+      "spec": "Siamese blue point: pale blue-white body, slate-blue points, short sleek coat, wedge face, vivid blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: siamese-blue-point. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Siamese blue point: pale blue-white body, slate-blue points, short sleek coat, wedge face, vivid blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-223d2ea6-8456-4f70-b5b5-b0efd299dd37.png",
+      "target": "assets/cat-mobbies/breeds2/f/siamese-blue-point.png",
+      "kind": "breed"
+    },
+    {
+      "id": "siamese-chocolate-point",
+      "name": "シャム（チョコレートポイント）",
+      "batch": "f",
+      "spec": "Siamese chocolate point: ivory body with warm milk-chocolate points, short sleek coat, blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: siamese-chocolate-point. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Siamese chocolate point: ivory body with warm milk-chocolate points, short sleek coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-9b858c7c-6a1f-4d10-85b0-e5df49a9d504.png",
+      "target": "assets/cat-mobbies/breeds2/f/siamese-chocolate-point.png",
+      "kind": "breed"
+    },
+    {
+      "id": "siamese-flame-point",
+      "name": "シャム（フレームポイント）",
+      "batch": "f",
+      "spec": "Siamese flame point: white-cream body with orange-red points, short sleek coat, blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: siamese-flame-point. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Siamese flame point: white-cream body with orange-red points, short sleek coat, blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-6b9f6e7d-65e5-4483-81bc-1382102479f4.png",
+      "target": "assets/cat-mobbies/breeds2/f/siamese-flame-point.png",
+      "kind": "breed"
+    }
+  ],
+  "failures": []
+}

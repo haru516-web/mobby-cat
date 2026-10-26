@@ -1,0 +1,37 @@
+{
+  "id": "tonkinese",
+  "prompt": "Use case: stylized-concept. Redesign ONE breed Mobby tonkinese. Ref1 bengal and2 ragdoll are fur/hardware quality references, ref3 original is identity reference only. REQUIRED NEW CAT: TONKINESE SABLE MINK: even warm taupe-brown SHORT satin fur with gently darker brown points, NO stark white belly or white face blaze. Medium ROUND ears, broad rounded cheeks, compact low squared body, AQUAMARINE living iris ROUND pupil. No accessories. Different from large-eared narrow Siamese. ONE unified rounded-square head/body NO neck or separate head, short arms/two short feet. Exactly ONE living eye LEFT with large ROUND black pupil/catchlight and ONE black green-glass concentric camera lens RIGHT. Exactly ONE black cross D-pad lower LEFT, TWO PLAIN unmarked black circular buttons diagonally lower RIGHT. Front full body with controls visible. Real animal strand fur and studio light, transparent RGBA PNG1254x1254 with margin; no floor/grid/watermark/text/props.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-591a0598-e046-4b24-8d68-780c20d0b033.png",
+  "target": "assets/cat-mobbies/characters/tonkinese.png",
+  "regenReason": "青白/虹白/青灰/ポイントの類似グループを分化。新しい毛丈・耳・顔・体型を個別指定。TONKINESE SABLE MINK: even warm taupe-brown SHORT satin fur with gently darker brown points, NO stark white belly or white face blaze. Medium ROUND ears, broad rounded cheeks, compact low squared body, AQUAMARINE living iris ROUND pupil. No accessories. Different from large-eared narrow Siamese.",
+  "qa": "accepted: one living left eye with round pupil, right lens, one D-pad and two plain buttons; differentiated texture/ears/body; original concept retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1795733,
+    "sha256": "4c41d4f3db19941f2dc328f0a7dc5671857f60af9c9d074044f0886ef3375fd3"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "40d0827a3cbc53650d1d2f8a086a1a9e23e9025b94aa72412a2a6c12dd187034",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

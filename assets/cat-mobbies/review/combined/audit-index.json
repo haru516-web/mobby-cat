@@ -1,0 +1,1549 @@
+[
+  {
+    "id": "british-shorthair",
+    "path": "assets/cat-mobbies/characters/british-shorthair.png",
+    "group": "grey-color",
+    "warm": 0.059,
+    "value": 0.454
+  },
+  {
+    "id": "siamese-seal-point",
+    "path": "assets/cat-mobbies/characters/siamese-seal-point.png",
+    "group": "warm",
+    "warm": 0.795,
+    "value": 0.519
+  },
+  {
+    "id": "bengal",
+    "path": "assets/cat-mobbies/characters/bengal.png",
+    "group": "warm",
+    "warm": 0.918,
+    "value": 0.55
+  },
+  {
+    "id": "ragdoll",
+    "path": "assets/cat-mobbies/characters/ragdoll.png",
+    "group": "grey-color",
+    "warm": 0.045,
+    "value": 0.678
+  },
+  {
+    "id": "american-shorthair",
+    "path": "assets/cat-mobbies/characters/american-shorthair.png",
+    "group": "grey-color",
+    "warm": 0.054,
+    "value": 0.525
+  },
+  {
+    "id": "scottish-fold",
+    "path": "assets/cat-mobbies/characters/scottish-fold.png",
+    "group": "warm",
+    "warm": 0.864,
+    "value": 0.754
+  },
+  {
+    "id": "maine-coon",
+    "path": "assets/cat-mobbies/characters/maine-coon.png",
+    "group": "light",
+    "warm": 0.167,
+    "value": 0.684
+  },
+  {
+    "id": "norwegian-forest",
+    "path": "assets/cat-mobbies/characters/norwegian-forest.png",
+    "group": "warm",
+    "warm": 0.587,
+    "value": 0.748
+  },
+  {
+    "id": "persian",
+    "path": "assets/cat-mobbies/characters/persian.png",
+    "group": "light",
+    "warm": 0.039,
+    "value": 0.802
+  },
+  {
+    "id": "balinese",
+    "path": "assets/cat-mobbies/characters/balinese.png",
+    "group": "warm",
+    "warm": 0.691,
+    "value": 0.535
+  },
+  {
+    "id": "russian-blue",
+    "path": "assets/cat-mobbies/characters/russian-blue.png",
+    "group": "grey-color",
+    "warm": 0.039,
+    "value": 0.485
+  },
+  {
+    "id": "abyssinian",
+    "path": "assets/cat-mobbies/characters/abyssinian.png",
+    "group": "warm",
+    "warm": 0.917,
+    "value": 0.596
+  },
+  {
+    "id": "somali",
+    "path": "assets/cat-mobbies/characters/somali.png",
+    "group": "warm",
+    "warm": 0.927,
+    "value": 0.641
+  },
+  {
+    "id": "turkish-angora",
+    "path": "assets/cat-mobbies/characters/turkish-angora.png",
+    "group": "light",
+    "warm": 0.058,
+    "value": 0.816
+  },
+  {
+    "id": "turkish-van",
+    "path": "assets/cat-mobbies/characters/turkish-van.png",
+    "group": "warm",
+    "warm": 0.282,
+    "value": 0.788
+  },
+  {
+    "id": "siberian",
+    "path": "assets/cat-mobbies/characters/siberian.png",
+    "group": "grey-color",
+    "warm": 0.23,
+    "value": 0.555
+  },
+  {
+    "id": "tonkinese",
+    "path": "assets/cat-mobbies/characters/tonkinese.png",
+    "group": "warm",
+    "warm": 0.905,
+    "value": 0.544
+  },
+  {
+    "id": "exotic-shorthair",
+    "path": "assets/cat-mobbies/characters/exotic-shorthair.png",
+    "group": "warm",
+    "warm": 0.926,
+    "value": 0.701
+  },
+  {
+    "id": "birman",
+    "path": "assets/cat-mobbies/characters/birman.png",
+    "group": "warm",
+    "warm": 0.568,
+    "value": 0.614
+  },
+  {
+    "id": "ragamuffin",
+    "path": "assets/cat-mobbies/characters/ragamuffin.png",
+    "group": "warm",
+    "warm": 0.567,
+    "value": 0.668
+  },
+  {
+    "id": "american-curl",
+    "path": "assets/cat-mobbies/characters/american-curl.png",
+    "group": "grey-color",
+    "warm": 0.041,
+    "value": 0.665
+  },
+  {
+    "id": "selkirk-rex",
+    "path": "assets/cat-mobbies/characters/selkirk-rex.png",
+    "group": "warm",
+    "warm": 0.665,
+    "value": 0.767
+  },
+  {
+    "id": "devon-rex",
+    "path": "assets/cat-mobbies/characters/devon-rex.png",
+    "group": "warm",
+    "warm": 0.541,
+    "value": 0.561
+  },
+  {
+    "id": "cornish-rex",
+    "path": "assets/cat-mobbies/characters/cornish-rex.png",
+    "group": "warm",
+    "warm": 0.577,
+    "value": 0.76
+  },
+  {
+    "id": "japanese-bobtail",
+    "path": "assets/cat-mobbies/characters/japanese-bobtail.png",
+    "group": "warm",
+    "warm": 0.392,
+    "value": 0.679
+  },
+  {
+    "id": "manx",
+    "path": "assets/cat-mobbies/characters/manx.png",
+    "group": "grey-color",
+    "warm": 0.21,
+    "value": 0.454
+  },
+  {
+    "id": "egyptian-mau",
+    "path": "assets/cat-mobbies/characters/egyptian-mau.png",
+    "group": "grey-color",
+    "warm": 0.071,
+    "value": 0.561
+  },
+  {
+    "id": "ocicat",
+    "path": "assets/cat-mobbies/characters/ocicat.png",
+    "group": "warm",
+    "warm": 0.92,
+    "value": 0.603
+  },
+  {
+    "id": "toyger",
+    "path": "assets/cat-mobbies/characters/toyger.png",
+    "group": "warm",
+    "warm": 0.882,
+    "value": 0.567
+  },
+  {
+    "id": "singapura",
+    "path": "assets/cat-mobbies/characters/singapura.png",
+    "group": "warm",
+    "warm": 0.791,
+    "value": 0.685
+  },
+  {
+    "id": "burmese",
+    "path": "assets/cat-mobbies/characters/burmese.png",
+    "group": "warm",
+    "warm": 0.922,
+    "value": 0.393
+  },
+  {
+    "id": "bombay",
+    "path": "assets/cat-mobbies/characters/bombay.png",
+    "group": "warm",
+    "warm": 0.415,
+    "value": 0.186
+  },
+  {
+    "id": "havana-brown",
+    "path": "assets/cat-mobbies/characters/havana-brown.png",
+    "group": "warm",
+    "warm": 0.909,
+    "value": 0.357
+  },
+  {
+    "id": "snowshoe",
+    "path": "assets/cat-mobbies/characters/snowshoe.png",
+    "group": "warm",
+    "warm": 0.59,
+    "value": 0.555
+  },
+  {
+    "id": "rea-mobby",
+    "path": "assets/cat-mobbies/characters/rea-mobby.png",
+    "group": "warm",
+    "warm": 0.942,
+    "value": 0.431
+  },
+  {
+    "id": "uyu-mobby",
+    "path": "assets/cat-mobbies/characters/uyu-mobby.png",
+    "group": "warm",
+    "warm": 0.79,
+    "value": 0.71
+  },
+  {
+    "id": "genkai",
+    "path": "assets/cat-mobbies/new/a/genkai.png",
+    "group": "grey-color",
+    "warm": 0.216,
+    "value": 0.498
+  },
+  {
+    "id": "denchigire",
+    "path": "assets/cat-mobbies/new/a/denchigire.png",
+    "group": "grey-color",
+    "warm": 0.048,
+    "value": 0.476
+  },
+  {
+    "id": "nyannyan",
+    "path": "assets/cat-mobbies/new/a/nyannyan.png",
+    "group": "warm",
+    "warm": 0.475,
+    "value": 0.787
+  },
+  {
+    "id": "hanbun",
+    "path": "assets/cat-mobbies/new/a/hanbun.png",
+    "group": "warm",
+    "warm": 0.852,
+    "value": 0.538
+  },
+  {
+    "id": "mantan",
+    "path": "assets/cat-mobbies/new/a/mantan.png",
+    "group": "warm",
+    "warm": 0.878,
+    "value": 0.803
+  },
+  {
+    "id": "juuden",
+    "path": "assets/cat-mobbies/new/a/juuden.png",
+    "group": "warm",
+    "warm": 0.906,
+    "value": 0.823
+  },
+  {
+    "id": "nyanpo",
+    "path": "assets/cat-mobbies/new/a/nyanpo.png",
+    "group": "warm",
+    "warm": 0.83,
+    "value": 0.553
+  },
+  {
+    "id": "lucky",
+    "path": "assets/cat-mobbies/new/a/lucky.png",
+    "group": "warm",
+    "warm": 0.899,
+    "value": 0.732
+  },
+  {
+    "id": "zorome",
+    "path": "assets/cat-mobbies/new/a/zorome.png",
+    "group": "warm",
+    "warm": 0.395,
+    "value": 0.587
+  },
+  {
+    "id": "osanpo",
+    "path": "assets/cat-mobbies/new/a/osanpo.png",
+    "group": "warm",
+    "warm": 0.933,
+    "value": 0.676
+  },
+  {
+    "id": "tekuteku",
+    "path": "assets/cat-mobbies/new/a/tekuteku.png",
+    "group": "warm",
+    "warm": 0.835,
+    "value": 0.617
+  },
+  {
+    "id": "ijike",
+    "path": "assets/cat-mobbies/new/a/ijike.png",
+    "group": "grey-color",
+    "warm": 0.261,
+    "value": 0.547
+  },
+  {
+    "id": "hisashiburi",
+    "path": "assets/cat-mobbies/new/a/hisashiburi.png",
+    "group": "light",
+    "warm": 0.279,
+    "value": 0.741
+  },
+  {
+    "id": "samishigari",
+    "path": "assets/cat-mobbies/new/a/samishigari.png",
+    "group": "warm",
+    "warm": 0.89,
+    "value": 0.679
+  },
+  {
+    "id": "mainichi",
+    "path": "assets/cat-mobbies/new/a/mainichi.png",
+    "group": "warm",
+    "warm": 0.675,
+    "value": 0.762
+  },
+  {
+    "id": "kikan",
+    "path": "assets/cat-mobbies/new/a/kikan.png",
+    "group": "warm",
+    "warm": 0.465,
+    "value": 0.475
+  },
+  {
+    "id": "asa",
+    "path": "assets/cat-mobbies/new/a/asa.png",
+    "group": "warm",
+    "warm": 0.57,
+    "value": 0.813
+  },
+  {
+    "id": "yofukashi",
+    "path": "assets/cat-mobbies/new/a/yofukashi.png",
+    "group": "grey-color",
+    "warm": 0.117,
+    "value": 0.49
+  },
+  {
+    "id": "yuugure",
+    "path": "assets/cat-mobbies/new/a/yuugure.png",
+    "group": "warm",
+    "warm": 0.788,
+    "value": 0.657
+  },
+  {
+    "id": "hanakin",
+    "path": "assets/cat-mobbies/new/b/hanakin.png",
+    "group": "warm",
+    "warm": 0.891,
+    "value": 0.829
+  },
+  {
+    "id": "noroware",
+    "path": "assets/cat-mobbies/new/b/noroware.png",
+    "group": "dark",
+    "warm": 0.152,
+    "value": 0.265
+  },
+  {
+    "id": "nekonohi",
+    "path": "assets/cat-mobbies/new/b/nekonohi.png",
+    "group": "light",
+    "warm": 0.222,
+    "value": 0.765
+  },
+  {
+    "id": "uruu",
+    "path": "assets/cat-mobbies/new/b/uruu.png",
+    "group": "warm",
+    "warm": 0.86,
+    "value": 0.531
+  },
+  {
+    "id": "usotsuki",
+    "path": "assets/cat-mobbies/new/b/usotsuki.png",
+    "group": "warm",
+    "warm": 0.64,
+    "value": 0.244
+  },
+  {
+    "id": "tanabata",
+    "path": "assets/cat-mobbies/new/b/tanabata.png",
+    "group": "grey-color",
+    "warm": 0.086,
+    "value": 0.392
+  },
+  {
+    "id": "ichiichi",
+    "path": "assets/cat-mobbies/new/b/ichiichi.png",
+    "group": "grey-color",
+    "warm": 0.132,
+    "value": 0.617
+  },
+  {
+    "id": "santa",
+    "path": "assets/cat-mobbies/new/b/santa.png",
+    "group": "light",
+    "warm": 0.135,
+    "value": 0.8
+  },
+  {
+    "id": "toshikoshi",
+    "path": "assets/cat-mobbies/new/b/toshikoshi.png",
+    "group": "grey-color",
+    "warm": 0.211,
+    "value": 0.625
+  },
+  {
+    "id": "hatsuhinode",
+    "path": "assets/cat-mobbies/new/b/hatsuhinode.png",
+    "group": "warm",
+    "warm": 0.748,
+    "value": 0.796
+  },
+  {
+    "id": "nikukyuu",
+    "path": "assets/cat-mobbies/new/b/nikukyuu.png",
+    "group": "warm",
+    "warm": 0.775,
+    "value": 0.803
+  },
+  {
+    "id": "hiruyoru",
+    "path": "assets/cat-mobbies/new/b/hiruyoru.png",
+    "group": "grey-color",
+    "warm": 0.037,
+    "value": 0.57
+  },
+  {
+    "id": "taiyou",
+    "path": "assets/cat-mobbies/new/b/taiyou.png",
+    "group": "warm",
+    "warm": 0.939,
+    "value": 0.874
+  },
+  {
+    "id": "sakasama",
+    "path": "assets/cat-mobbies/new/b/sakasama.png",
+    "group": "warm",
+    "warm": 0.494,
+    "value": 0.431
+  },
+  {
+    "id": "pittari",
+    "path": "assets/cat-mobbies/new/b/pittari.png",
+    "group": "light",
+    "warm": 0.205,
+    "value": 0.829
+  },
+  {
+    "id": "tanjoubi",
+    "path": "assets/cat-mobbies/new/b/tanjoubi.png",
+    "group": "warm",
+    "warm": 0.508,
+    "value": 0.826
+  },
+  {
+    "id": "mangetsu",
+    "path": "assets/cat-mobbies/new/c/mangetsu.png",
+    "group": "warm",
+    "warm": 0.883,
+    "value": 0.829
+  },
+  {
+    "id": "shingetsu",
+    "path": "assets/cat-mobbies/new/c/shingetsu.png",
+    "group": "dark",
+    "warm": 0.075,
+    "value": 0.278
+  },
+  {
+    "id": "aotsuki",
+    "path": "assets/cat-mobbies/new/c/aotsuki.png",
+    "group": "grey-color",
+    "warm": 0.048,
+    "value": 0.589
+  },
+  {
+    "id": "shoku",
+    "path": "assets/cat-mobbies/new/c/shoku.png",
+    "group": "warm",
+    "warm": 0.912,
+    "value": 0.369
+  },
+  {
+    "id": "hoshizora",
+    "path": "assets/cat-mobbies/new/c/hoshizora.png",
+    "group": "grey-color",
+    "warm": 0.05,
+    "value": 0.362
+  },
+  {
+    "id": "bishonure",
+    "path": "assets/cat-mobbies/new/c/bishonure.png",
+    "group": "warm",
+    "warm": 0.394,
+    "value": 0.46
+  },
+  {
+    "id": "yukidaruma",
+    "path": "assets/cat-mobbies/new/c/yukidaruma.png",
+    "group": "light",
+    "warm": 0.174,
+    "value": 0.779
+  },
+  {
+    "id": "hatsuyuki",
+    "path": "assets/cat-mobbies/new/c/hatsuyuki.png",
+    "group": "light",
+    "warm": 0.006,
+    "value": 0.777
+  },
+  {
+    "id": "hinata",
+    "path": "assets/cat-mobbies/new/c/hinata.png",
+    "group": "warm",
+    "warm": 0.868,
+    "value": 0.814
+  },
+  {
+    "id": "ondo",
+    "path": "assets/cat-mobbies/new/c/ondo.png",
+    "group": "warm",
+    "warm": 0.477,
+    "value": 0.716
+  },
+  {
+    "id": "mayonaka",
+    "path": "assets/cat-mobbies/new/c/mayonaka.png",
+    "group": "dark",
+    "warm": 0.25,
+    "value": 0.249
+  },
+  {
+    "id": "maboroshi-kuroneko",
+    "path": "assets/cat-mobbies/new/c/maboroshi-kuroneko.png",
+    "group": "grey-color",
+    "warm": 0.12,
+    "value": 0.404
+  },
+  {
+    "id": "yami",
+    "path": "assets/cat-mobbies/new/c/yami.png",
+    "group": "dark",
+    "warm": 0.068,
+    "value": 0.167
+  },
+  {
+    "id": "juunyan",
+    "path": "assets/cat-mobbies/new/d/juunyan.png",
+    "group": "warm",
+    "warm": 0.359,
+    "value": 0.604
+  },
+  {
+    "id": "collector",
+    "path": "assets/cat-mobbies/new/d/collector.png",
+    "group": "warm",
+    "warm": 0.489,
+    "value": 0.608
+  },
+  {
+    "id": "shirokuro",
+    "path": "assets/cat-mobbies/new/d/shirokuro.png",
+    "group": "warm",
+    "warm": 0.468,
+    "value": 0.526
+  },
+  {
+    "id": "bunshin",
+    "path": "assets/cat-mobbies/new/d/bunshin.png",
+    "group": "grey-color",
+    "warm": 0.044,
+    "value": 0.531
+  },
+  {
+    "id": "sanbiki",
+    "path": "assets/cat-mobbies/new/d/sanbiki.png",
+    "group": "warm",
+    "warm": 0.843,
+    "value": 0.63
+  },
+  {
+    "id": "himitsu",
+    "path": "assets/cat-mobbies/new/d/himitsu.png",
+    "group": "grey-color",
+    "warm": 0.057,
+    "value": 0.632
+  },
+  {
+    "id": "shitsukoi",
+    "path": "assets/cat-mobbies/new/d/shitsukoi.png",
+    "group": "light",
+    "warm": 0.052,
+    "value": 0.697
+  },
+  {
+    "id": "kiseki",
+    "path": "assets/cat-mobbies/new/d/kiseki.png",
+    "group": "warm",
+    "warm": 0.648,
+    "value": 0.832
+  },
+  {
+    "id": "ousama",
+    "path": "assets/cat-mobbies/new/d/ousama.png",
+    "group": "warm",
+    "warm": 0.936,
+    "value": 0.771
+  },
+  {
+    "id": "amayadori",
+    "path": "assets/cat-mobbies/new/d/amayadori.png",
+    "group": "warm",
+    "warm": 0.714,
+    "value": 0.527
+  },
+  {
+    "id": "tomodachizure",
+    "path": "assets/cat-mobbies/new/d/tomodachizure.png",
+    "group": "light",
+    "warm": 0.229,
+    "value": 0.735
+  },
+  {
+    "id": "nebosuke",
+    "path": "assets/cat-mobbies/new/d/nebosuke.png",
+    "group": "warm",
+    "warm": 0.598,
+    "value": 0.759
+  },
+  {
+    "id": "country-01",
+    "path": "assets/cat-mobbies/new/e/country-01.png",
+    "group": "warm",
+    "warm": 0.433,
+    "value": 0.796
+  },
+  {
+    "id": "country-02",
+    "path": "assets/cat-mobbies/new/e/country-02.png",
+    "group": "warm",
+    "warm": 0.495,
+    "value": 0.648
+  },
+  {
+    "id": "country-03",
+    "path": "assets/cat-mobbies/new/e/country-03.png",
+    "group": "grey-color",
+    "warm": 0.08,
+    "value": 0.567
+  },
+  {
+    "id": "country-04",
+    "path": "assets/cat-mobbies/new/e/country-04.png",
+    "group": "grey-color",
+    "warm": 0.241,
+    "value": 0.604
+  },
+  {
+    "id": "country-05",
+    "path": "assets/cat-mobbies/new/e/country-05.png",
+    "group": "warm",
+    "warm": 0.652,
+    "value": 0.578
+  },
+  {
+    "id": "country-06",
+    "path": "assets/cat-mobbies/new/e/country-06.png",
+    "group": "light",
+    "warm": 0.058,
+    "value": 0.788
+  },
+  {
+    "id": "country-07",
+    "path": "assets/cat-mobbies/new/e/country-07.png",
+    "group": "light",
+    "warm": 0.22,
+    "value": 0.792
+  },
+  {
+    "id": "country-08",
+    "path": "assets/cat-mobbies/new/e/country-08.png",
+    "group": "grey-color",
+    "warm": 0.199,
+    "value": 0.583
+  },
+  {
+    "id": "country-09",
+    "path": "assets/cat-mobbies/new/e/country-09.png",
+    "group": "warm",
+    "warm": 0.756,
+    "value": 0.802
+  },
+  {
+    "id": "country-10",
+    "path": "assets/cat-mobbies/new/e/country-10.png",
+    "group": "grey-color",
+    "warm": 0.067,
+    "value": 0.539
+  },
+  {
+    "id": "country-30",
+    "path": "assets/cat-mobbies/new/e/country-30.png",
+    "group": "warm",
+    "warm": 0.64,
+    "value": 0.639
+  },
+  {
+    "id": "country-100",
+    "path": "assets/cat-mobbies/new/e/country-100.png",
+    "group": "grey-color",
+    "warm": 0.042,
+    "value": 0.644
+  },
+  {
+    "id": "world-marathon",
+    "path": "assets/cat-mobbies/new/f/world-marathon.png",
+    "group": "warm",
+    "warm": 0.426,
+    "value": 0.74
+  },
+  {
+    "id": "pyonpyon",
+    "path": "assets/cat-mobbies/new/f/pyonpyon.png",
+    "group": "warm",
+    "warm": 0.935,
+    "value": 0.851
+  },
+  {
+    "id": "omatsuri",
+    "path": "assets/cat-mobbies/new/f/omatsuri.png",
+    "group": "warm",
+    "warm": 0.763,
+    "value": 0.693
+  },
+  {
+    "id": "cameraman",
+    "path": "assets/cat-mobbies/new/f/cameraman.png",
+    "group": "warm",
+    "warm": 0.9,
+    "value": 0.501
+  },
+  {
+    "id": "gorogoro",
+    "path": "assets/cat-mobbies/new/f/gorogoro.png",
+    "group": "warm",
+    "warm": 0.835,
+    "value": 0.809
+  },
+  {
+    "id": "nemurio",
+    "path": "assets/cat-mobbies/new/f/nemurio.png",
+    "group": "dark",
+    "warm": 0.056,
+    "value": 0.31
+  },
+  {
+    "id": "bouken-ou",
+    "path": "assets/cat-mobbies/new/f/bouken-ou.png",
+    "group": "warm",
+    "warm": 0.929,
+    "value": 0.629
+  },
+  {
+    "id": "hyakunin",
+    "path": "assets/cat-mobbies/new/f/hyakunin.png",
+    "group": "warm",
+    "warm": 0.406,
+    "value": 0.64
+  },
+  {
+    "id": "oiwai",
+    "path": "assets/cat-mobbies/new/f/oiwai.png",
+    "group": "light",
+    "warm": 0.208,
+    "value": 0.815
+  },
+  {
+    "id": "hakubutsukan",
+    "path": "assets/cat-mobbies/new/f/hakubutsukan.png",
+    "group": "warm",
+    "warm": 0.89,
+    "value": 0.493
+  },
+  {
+    "id": "traveling-mobby",
+    "path": "assets/cat-mobbies/new/g/traveling-mobby.png",
+    "group": "warm",
+    "warm": 0.909,
+    "value": 0.564
+  },
+  {
+    "id": "shinirimobby",
+    "path": "assets/cat-mobbies/new/g/shinirimobby.png",
+    "group": "warm",
+    "warm": 0.897,
+    "value": 0.803
+  },
+  {
+    "id": "ouji",
+    "path": "assets/cat-mobbies/new/h/ouji.png",
+    "group": "grey-color",
+    "warm": 0.137,
+    "value": 0.489
+  },
+  {
+    "id": "uchuu",
+    "path": "assets/cat-mobbies/new/h/uchuu.png",
+    "group": "grey-color",
+    "warm": 0.105,
+    "value": 0.548
+  },
+  {
+    "id": "toumei",
+    "path": "assets/cat-mobbies/new/h/toumei.png",
+    "group": "light",
+    "warm": 0.008,
+    "value": 0.751
+  },
+  {
+    "id": "shikaku",
+    "path": "assets/cat-mobbies/new/h/shikaku.png",
+    "group": "warm",
+    "warm": 0.917,
+    "value": 0.744
+  },
+  {
+    "id": "shachou",
+    "path": "assets/cat-mobbies/new/h/shachou.png",
+    "group": "grey-color",
+    "warm": 0.062,
+    "value": 0.592
+  },
+  {
+    "id": "mushoku",
+    "path": "assets/cat-mobbies/new/h/mushoku.png",
+    "group": "warm",
+    "warm": 0.45,
+    "value": 0.713
+  },
+  {
+    "id": "chokotto",
+    "path": "assets/cat-mobbies/new/i/chokotto.png",
+    "group": "warm",
+    "warm": 0.463,
+    "value": 0.658
+  },
+  {
+    "id": "hodohodo",
+    "path": "assets/cat-mobbies/new/i/hodohodo.png",
+    "group": "warm",
+    "warm": 0.394,
+    "value": 0.671
+  },
+  {
+    "id": "country-20",
+    "path": "assets/cat-mobbies/new/i/country-20.png",
+    "group": "warm",
+    "warm": 0.873,
+    "value": 0.813
+  },
+  {
+    "id": "country-50",
+    "path": "assets/cat-mobbies/new/i/country-50.png",
+    "group": "warm",
+    "warm": 0.941,
+    "value": 0.774
+  },
+  {
+    "id": "country-75",
+    "path": "assets/cat-mobbies/new/i/country-75.png",
+    "group": "light",
+    "warm": 0.008,
+    "value": 0.782
+  },
+  {
+    "id": "world-traveler",
+    "path": "assets/cat-mobbies/new/i/world-traveler.png",
+    "group": "warm",
+    "warm": 0.41,
+    "value": 0.536
+  },
+  {
+    "id": "issei-nenne",
+    "path": "assets/cat-mobbies/new/i/issei-nenne.png",
+    "group": "light",
+    "warm": 0.019,
+    "value": 0.795
+  },
+  {
+    "id": "sakura",
+    "path": "assets/cat-mobbies/new/i/sakura.png",
+    "group": "warm",
+    "warm": 0.618,
+    "value": 0.82
+  },
+  {
+    "id": "tsuyu",
+    "path": "assets/cat-mobbies/new/i/tsuyu.png",
+    "group": "grey-color",
+    "warm": 0.024,
+    "value": 0.678
+  },
+  {
+    "id": "halloween",
+    "path": "assets/cat-mobbies/new/i/halloween.png",
+    "group": "warm",
+    "warm": 0.309,
+    "value": 0.353
+  },
+  {
+    "id": "burmilla",
+    "path": "assets/cat-mobbies/breeds2/a/burmilla.png",
+    "group": "light",
+    "warm": 0.089,
+    "value": 0.692
+  },
+  {
+    "id": "chartreux",
+    "path": "assets/cat-mobbies/breeds2/a/chartreux.png",
+    "group": "grey-color",
+    "warm": 0.067,
+    "value": 0.426
+  },
+  {
+    "id": "colorpoint-shorthair",
+    "path": "assets/cat-mobbies/breeds2/a/colorpoint-shorthair.png",
+    "group": "warm",
+    "warm": 0.651,
+    "value": 0.682
+  },
+  {
+    "id": "himalayan",
+    "path": "assets/cat-mobbies/breeds2/a/himalayan.png",
+    "group": "grey-color",
+    "warm": 0.094,
+    "value": 0.649
+  },
+  {
+    "id": "javanese",
+    "path": "assets/cat-mobbies/breeds2/a/javanese.png",
+    "group": "warm",
+    "warm": 0.625,
+    "value": 0.75
+  },
+  {
+    "id": "korat",
+    "path": "assets/cat-mobbies/breeds2/a/korat.png",
+    "group": "grey-color",
+    "warm": 0.072,
+    "value": 0.46
+  },
+  {
+    "id": "nebelung",
+    "path": "assets/cat-mobbies/breeds2/a/nebelung.png",
+    "group": "grey-color",
+    "warm": 0.003,
+    "value": 0.515
+  },
+  {
+    "id": "oriental-longhair",
+    "path": "assets/cat-mobbies/breeds2/a/oriental-longhair.png",
+    "group": "warm",
+    "warm": 0.545,
+    "value": 0.781
+  },
+  {
+    "id": "oriental-shorthair",
+    "path": "assets/cat-mobbies/breeds2/a/oriental-shorthair.png",
+    "group": "warm",
+    "warm": 0.49,
+    "value": 0.582
+  },
+  {
+    "id": "thai",
+    "path": "assets/cat-mobbies/breeds2/a/thai.png",
+    "group": "warm",
+    "warm": 0.679,
+    "value": 0.636
+  },
+  {
+    "id": "bambino",
+    "path": "assets/cat-mobbies/breeds2/b/bambino.png",
+    "group": "warm",
+    "warm": 0.539,
+    "value": 0.449
+  },
+  {
+    "id": "british-longhair",
+    "path": "assets/cat-mobbies/breeds2/b/british-longhair.png",
+    "group": "light",
+    "warm": 0.041,
+    "value": 0.699
+  },
+  {
+    "id": "european-burmese",
+    "path": "assets/cat-mobbies/breeds2/b/european-burmese.png",
+    "group": "warm",
+    "warm": 0.92,
+    "value": 0.618
+  },
+  {
+    "id": "european-shorthair",
+    "path": "assets/cat-mobbies/breeds2/b/european-shorthair.png",
+    "group": "warm",
+    "warm": 0.496,
+    "value": 0.615
+  },
+  {
+    "id": "highland-fold",
+    "path": "assets/cat-mobbies/breeds2/b/highland-fold.png",
+    "group": "light",
+    "warm": 0.042,
+    "value": 0.696
+  },
+  {
+    "id": "highland-straight",
+    "path": "assets/cat-mobbies/breeds2/b/highland-straight.png",
+    "group": "warm",
+    "warm": 0.285,
+    "value": 0.411
+  },
+  {
+    "id": "minskin",
+    "path": "assets/cat-mobbies/breeds2/b/minskin.png",
+    "group": "warm",
+    "warm": 0.282,
+    "value": 0.643
+  },
+  {
+    "id": "munchkin",
+    "path": "assets/cat-mobbies/breeds2/b/munchkin.png",
+    "group": "warm",
+    "warm": 0.706,
+    "value": 0.735
+  },
+  {
+    "id": "napoleon",
+    "path": "assets/cat-mobbies/breeds2/b/napoleon.png",
+    "group": "warm",
+    "warm": 0.637,
+    "value": 0.63
+  },
+  {
+    "id": "scottish-straight",
+    "path": "assets/cat-mobbies/breeds2/b/scottish-straight.png",
+    "group": "warm",
+    "warm": 0.482,
+    "value": 0.63
+  },
+  {
+    "id": "american-wirehair",
+    "path": "assets/cat-mobbies/breeds2/c/american-wirehair.png",
+    "group": "warm",
+    "warm": 0.748,
+    "value": 0.702
+  },
+  {
+    "id": "donskoy",
+    "path": "assets/cat-mobbies/breeds2/c/donskoy.png",
+    "group": "warm",
+    "warm": 0.917,
+    "value": 0.631
+  },
+  {
+    "id": "german-rex",
+    "path": "assets/cat-mobbies/breeds2/c/german-rex.png",
+    "group": "grey-color",
+    "warm": 0.088,
+    "value": 0.499
+  },
+  {
+    "id": "laperm",
+    "path": "assets/cat-mobbies/breeds2/c/laperm.png",
+    "group": "warm",
+    "warm": 0.816,
+    "value": 0.735
+  },
+  {
+    "id": "lykoi",
+    "path": "assets/cat-mobbies/breeds2/c/lykoi.png",
+    "group": "warm",
+    "warm": 0.493,
+    "value": 0.358
+  },
+  {
+    "id": "peterbald",
+    "path": "assets/cat-mobbies/breeds2/c/peterbald.png",
+    "group": "warm",
+    "warm": 0.328,
+    "value": 0.527
+  },
+  {
+    "id": "selkirk-rex-longhair",
+    "path": "assets/cat-mobbies/breeds2/c/selkirk-rex-longhair.png",
+    "group": "warm",
+    "warm": 0.361,
+    "value": 0.469
+  },
+  {
+    "id": "skookum",
+    "path": "assets/cat-mobbies/breeds2/c/skookum.png",
+    "group": "grey-color",
+    "warm": 0.121,
+    "value": 0.629
+  },
+  {
+    "id": "sphynx",
+    "path": "assets/cat-mobbies/breeds2/c/sphynx.png",
+    "group": "warm",
+    "warm": 0.917,
+    "value": 0.721
+  },
+  {
+    "id": "ural-rex",
+    "path": "assets/cat-mobbies/breeds2/c/ural-rex.png",
+    "group": "warm",
+    "warm": 0.674,
+    "value": 0.54
+  },
+  {
+    "id": "american-bobtail",
+    "path": "assets/cat-mobbies/breeds2/d/american-bobtail.png",
+    "group": "warm",
+    "warm": 0.691,
+    "value": 0.605
+  },
+  {
+    "id": "chausie",
+    "path": "assets/cat-mobbies/breeds2/d/chausie.png",
+    "group": "warm",
+    "warm": 0.913,
+    "value": 0.573
+  },
+  {
+    "id": "cymric",
+    "path": "assets/cat-mobbies/breeds2/d/cymric.png",
+    "group": "warm",
+    "warm": 0.657,
+    "value": 0.724
+  },
+  {
+    "id": "japanese-bobtail-longhair",
+    "path": "assets/cat-mobbies/breeds2/d/japanese-bobtail-longhair.png",
+    "group": "grey-color",
+    "warm": 0.124,
+    "value": 0.655
+  },
+  {
+    "id": "karelian-bobtail",
+    "path": "assets/cat-mobbies/breeds2/d/karelian-bobtail.png",
+    "group": "warm",
+    "warm": 0.578,
+    "value": 0.748
+  },
+  {
+    "id": "kurilian-bobtail",
+    "path": "assets/cat-mobbies/breeds2/d/kurilian-bobtail.png",
+    "group": "warm",
+    "warm": 0.348,
+    "value": 0.588
+  },
+  {
+    "id": "mekong-bobtail",
+    "path": "assets/cat-mobbies/breeds2/d/mekong-bobtail.png",
+    "group": "warm",
+    "warm": 0.324,
+    "value": 0.624
+  },
+  {
+    "id": "pixie-bob",
+    "path": "assets/cat-mobbies/breeds2/d/pixie-bob.png",
+    "group": "warm",
+    "warm": 0.927,
+    "value": 0.555
+  },
+  {
+    "id": "savannah",
+    "path": "assets/cat-mobbies/breeds2/d/savannah.png",
+    "group": "warm",
+    "warm": 0.909,
+    "value": 0.607
+  },
+  {
+    "id": "serengeti",
+    "path": "assets/cat-mobbies/breeds2/d/serengeti.png",
+    "group": "warm",
+    "warm": 0.677,
+    "value": 0.593
+  },
+  {
+    "id": "aegean",
+    "path": "assets/cat-mobbies/breeds2/e/aegean.png",
+    "group": "warm",
+    "warm": 0.293,
+    "value": 0.646
+  },
+  {
+    "id": "arabian-mau",
+    "path": "assets/cat-mobbies/breeds2/e/arabian-mau.png",
+    "group": "warm",
+    "warm": 0.831,
+    "value": 0.779
+  },
+  {
+    "id": "australian-mist",
+    "path": "assets/cat-mobbies/breeds2/e/australian-mist.png",
+    "group": "warm",
+    "warm": 0.9,
+    "value": 0.599
+  },
+  {
+    "id": "dragon-li",
+    "path": "assets/cat-mobbies/breeds2/e/dragon-li.png",
+    "group": "warm",
+    "warm": 0.895,
+    "value": 0.531
+  },
+  {
+    "id": "khao-manee",
+    "path": "assets/cat-mobbies/breeds2/e/khao-manee.png",
+    "group": "light",
+    "warm": 0.105,
+    "value": 0.78
+  },
+  {
+    "id": "neva-masquerade",
+    "path": "assets/cat-mobbies/breeds2/e/neva-masquerade.png",
+    "group": "warm",
+    "warm": 0.559,
+    "value": 0.624
+  },
+  {
+    "id": "sokoke",
+    "path": "assets/cat-mobbies/breeds2/e/sokoke.png",
+    "group": "warm",
+    "warm": 0.916,
+    "value": 0.454
+  },
+  {
+    "id": "suphalak",
+    "path": "assets/cat-mobbies/breeds2/e/suphalak.png",
+    "group": "warm",
+    "warm": 0.924,
+    "value": 0.552
+  },
+  {
+    "id": "toybob",
+    "path": "assets/cat-mobbies/breeds2/e/toybob.png",
+    "group": "warm",
+    "warm": 0.558,
+    "value": 0.749
+  },
+  {
+    "id": "ukrainian-levkoy",
+    "path": "assets/cat-mobbies/breeds2/e/ukrainian-levkoy.png",
+    "group": "warm",
+    "warm": 0.819,
+    "value": 0.628
+  },
+  {
+    "id": "persian-black-smoke",
+    "path": "assets/cat-mobbies/breeds2/f/persian-black-smoke.png",
+    "group": "warm",
+    "warm": 0.285,
+    "value": 0.402
+  },
+  {
+    "id": "persian-blue-cream",
+    "path": "assets/cat-mobbies/breeds2/f/persian-blue-cream.png",
+    "group": "warm",
+    "warm": 0.324,
+    "value": 0.669
+  },
+  {
+    "id": "persian-chinchilla-silver",
+    "path": "assets/cat-mobbies/breeds2/f/persian-chinchilla-silver.png",
+    "group": "light",
+    "warm": 0.042,
+    "value": 0.733
+  },
+  {
+    "id": "persian-red-tabby",
+    "path": "assets/cat-mobbies/breeds2/f/persian-red-tabby.png",
+    "group": "warm",
+    "warm": 0.947,
+    "value": 0.715
+  },
+  {
+    "id": "ragdoll-blue-colorpoint",
+    "path": "assets/cat-mobbies/breeds2/f/ragdoll-blue-colorpoint.png",
+    "group": "grey-color",
+    "warm": 0.07,
+    "value": 0.632
+  },
+  {
+    "id": "ragdoll-lilac-bicolor",
+    "path": "assets/cat-mobbies/breeds2/f/ragdoll-lilac-bicolor.png",
+    "group": "light",
+    "warm": 0.11,
+    "value": 0.695
+  },
+  {
+    "id": "ragdoll-seal-mitted",
+    "path": "assets/cat-mobbies/breeds2/f/ragdoll-seal-mitted.png",
+    "group": "warm",
+    "warm": 0.515,
+    "value": 0.607
+  },
+  {
+    "id": "siamese-blue-point",
+    "path": "assets/cat-mobbies/breeds2/f/siamese-blue-point.png",
+    "group": "grey-color",
+    "warm": 0.152,
+    "value": 0.581
+  },
+  {
+    "id": "siamese-chocolate-point",
+    "path": "assets/cat-mobbies/breeds2/f/siamese-chocolate-point.png",
+    "group": "warm",
+    "warm": 0.799,
+    "value": 0.559
+  },
+  {
+    "id": "siamese-flame-point",
+    "path": "assets/cat-mobbies/breeds2/f/siamese-flame-point.png",
+    "group": "warm",
+    "warm": 0.699,
+    "value": 0.759
+  },
+  {
+    "id": "american-shorthair-brown-tabby",
+    "path": "assets/cat-mobbies/breeds2/g/american-shorthair-brown-tabby.png",
+    "group": "warm",
+    "warm": 0.92,
+    "value": 0.528
+  },
+  {
+    "id": "american-shorthair-calico",
+    "path": "assets/cat-mobbies/breeds2/g/american-shorthair-calico.png",
+    "group": "warm",
+    "warm": 0.548,
+    "value": 0.676
+  },
+  {
+    "id": "british-bicolor",
+    "path": "assets/cat-mobbies/breeds2/g/british-bicolor.png",
+    "group": "grey-color",
+    "warm": 0.053,
+    "value": 0.605
+  },
+  {
+    "id": "british-black",
+    "path": "assets/cat-mobbies/breeds2/g/british-black.png",
+    "group": "dark",
+    "warm": 0.279,
+    "value": 0.192
+  },
+  {
+    "id": "british-golden-shaded",
+    "path": "assets/cat-mobbies/breeds2/g/british-golden-shaded.png",
+    "group": "warm",
+    "warm": 0.9,
+    "value": 0.698
+  },
+  {
+    "id": "british-lilac",
+    "path": "assets/cat-mobbies/breeds2/g/british-lilac.png",
+    "group": "warm",
+    "warm": 0.455,
+    "value": 0.545
+  },
+  {
+    "id": "british-silver-tabby",
+    "path": "assets/cat-mobbies/breeds2/g/british-silver-tabby.png",
+    "group": "grey-color",
+    "warm": 0.094,
+    "value": 0.524
+  },
+  {
+    "id": "scottish-fold-bicolor",
+    "path": "assets/cat-mobbies/breeds2/g/scottish-fold-bicolor.png",
+    "group": "grey-color",
+    "warm": 0.211,
+    "value": 0.536
+  },
+  {
+    "id": "scottish-fold-silver-tabby",
+    "path": "assets/cat-mobbies/breeds2/g/scottish-fold-silver-tabby.png",
+    "group": "grey-color",
+    "warm": 0.06,
+    "value": 0.573
+  },
+  {
+    "id": "scottish-fold-white",
+    "path": "assets/cat-mobbies/breeds2/g/scottish-fold-white.png",
+    "group": "light",
+    "warm": 0.053,
+    "value": 0.778
+  },
+  {
+    "id": "abyssinian-blue",
+    "path": "assets/cat-mobbies/breeds2/h/abyssinian-blue.png",
+    "group": "warm",
+    "warm": 0.735,
+    "value": 0.564
+  },
+  {
+    "id": "abyssinian-fawn",
+    "path": "assets/cat-mobbies/breeds2/h/abyssinian-fawn.png",
+    "group": "warm",
+    "warm": 0.657,
+    "value": 0.75
+  },
+  {
+    "id": "birman-blue-point",
+    "path": "assets/cat-mobbies/breeds2/h/birman-blue-point.png",
+    "group": "grey-color",
+    "warm": 0.027,
+    "value": 0.659
+  },
+  {
+    "id": "birman-chocolate-point",
+    "path": "assets/cat-mobbies/breeds2/h/birman-chocolate-point.png",
+    "group": "warm",
+    "warm": 0.609,
+    "value": 0.634
+  },
+  {
+    "id": "maine-coon-black",
+    "path": "assets/cat-mobbies/breeds2/h/maine-coon-black.png",
+    "group": "warm",
+    "warm": 0.772,
+    "value": 0.26
+  },
+  {
+    "id": "maine-coon-red-tabby",
+    "path": "assets/cat-mobbies/breeds2/h/maine-coon-red-tabby.png",
+    "group": "warm",
+    "warm": 0.933,
+    "value": 0.696
+  },
+  {
+    "id": "maine-coon-silver-tabby",
+    "path": "assets/cat-mobbies/breeds2/h/maine-coon-silver-tabby.png",
+    "group": "grey-color",
+    "warm": 0.129,
+    "value": 0.598
+  },
+  {
+    "id": "norwegian-forest-black-white",
+    "path": "assets/cat-mobbies/breeds2/h/norwegian-forest-black-white.png",
+    "group": "grey-color",
+    "warm": 0.203,
+    "value": 0.516
+  },
+  {
+    "id": "norwegian-forest-silver-tabby",
+    "path": "assets/cat-mobbies/breeds2/h/norwegian-forest-silver-tabby.png",
+    "group": "grey-color",
+    "warm": 0.09,
+    "value": 0.638
+  },
+  {
+    "id": "siberian-blue",
+    "path": "assets/cat-mobbies/breeds2/h/siberian-blue.png",
+    "group": "grey-color",
+    "warm": 0.034,
+    "value": 0.509
+  },
+  {
+    "id": "bengal-marble",
+    "path": "assets/cat-mobbies/breeds2/i/bengal-marble.png",
+    "group": "warm",
+    "warm": 0.923,
+    "value": 0.587
+  },
+  {
+    "id": "bengal-silver",
+    "path": "assets/cat-mobbies/breeds2/i/bengal-silver.png",
+    "group": "warm",
+    "warm": 0.358,
+    "value": 0.538
+  },
+  {
+    "id": "bengal-snow-lynx",
+    "path": "assets/cat-mobbies/breeds2/i/bengal-snow-lynx.png",
+    "group": "warm",
+    "warm": 0.666,
+    "value": 0.637
+  },
+  {
+    "id": "egyptian-mau-bronze",
+    "path": "assets/cat-mobbies/breeds2/i/egyptian-mau-bronze.png",
+    "group": "warm",
+    "warm": 0.929,
+    "value": 0.559
+  },
+  {
+    "id": "mike-neko",
+    "path": "assets/cat-mobbies/breeds2/j/mike-neko.png",
+    "group": "warm",
+    "warm": 0.382,
+    "value": 0.683
+  }
+]

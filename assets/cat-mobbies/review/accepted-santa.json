@@ -1,0 +1,37 @@
+{
+  "id": "santa",
+  "prompt": "Use case: stylized-concept. MAIN CAT redesign santa. Reference1 bengal/reference2 ragdoll define realistic directional fur and Mobby hardware. Ref3 ONLY original concept and props. NEW REQUIRED CAT: PURE WHITE very SHORT dense plush coat, SMALL round upright ears, very ROUND puffy cheeks, LOW WIDE square torso, green iris. No long hair. Keep original red Santa hat and small white present sack with red bow. One unified rounded-square head/body NO neck, short arms/two feet. Exactly ONE living cat eye viewer LEFT, ONE black green-glass camera lens viewer RIGHT; ONE black D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Front full body, visible controls. True transparent alpha1254x1254 PNG with margin, soft studio light, no floor/grid/watermark/new text. Make new coat ears face and body mandatory.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-01b8160c-4728-475c-a40e-2a3fb75e263f.png",
+  "target": "assets/cat-mobbies/new/b/santa.png",
+  "regenReason": "桃白/白長毛の類似組を分化。対象santaの毛丈・質感・耳・顔・体比率を変更し、元の小物コンセプトを保持。新外見: PURE WHITE very SHORT dense plush coat, SMALL round upright ears, very ROUND puffy cheeks, LOW WIDE square torso, green iris. No long hair. Keep original red Santa hat and small white present sack with red bow.",
+  "qa": "accepted: realistic fur, visibly differentiated ears/texture/body, one living eye/right green-glass lens/D-pad/two plain buttons; original props preserved",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1583309,
+    "sha256": "1c57b1dcad80dac4c51bac5da0c531c23b3f84e2abc7a7b9b17ff217bb42f32a"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "28255a9082b442fca2e93df70893f9d055e78611a53ed63d2b60869b5b5e0e28",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

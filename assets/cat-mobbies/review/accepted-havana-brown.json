@@ -1,0 +1,37 @@
+{
+  "id": "havana-brown",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-f70fc534-e341-4d1b-a447-864961310b46.png",
+  "target": "assets/cat-mobbies/characters/havana-brown.png",
+  "prompt": "Use case: stylized-concept. Regenerate ONE havana-brown cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: HAVANA BROWN: solid deep warm chocolate brown extremely short glossy satin coat with no white or tabby. VERY LARGE upright ears, long squared protruding muzzle, angular cheeks, taller slim squared torso, clear green iris. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+  "regenReason": "チョコ単色の極短毛、大耳、細い顔と長めのマズルへ変更。",
+  "qa": "accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1712561,
+    "sha256": "07c66aa9c45e704af708ed4a27ae5a1b4417d5ecee53fc931f5d473c536fa6e6"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "91cc4e839ad80023715a9013a4188015d216a76faa00cfa2ab058164fff7de08",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

@@ -1,0 +1,96 @@
+{
+  "batch": "d",
+  "records": [
+    {
+      "id": "chausie",
+      "name": "チャウシー",
+      "batch": "d",
+      "spec": "Chausie: grizzled sandy grey-brown ticked coat, black-tipped ears, long face, athletic look, yellow-gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: chausie. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Chausie: grizzled sandy grey-brown ticked coat, black-tipped ears, long face, athletic look, yellow-gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-0c3c0d58-f564-4843-ade2-3ffb715f7aac.png",
+      "target": "assets/cat-mobbies/breeds2/d/chausie.png",
+      "kind": "breed"
+    },
+    {
+      "id": "serengeti",
+      "name": "セレンゲティ",
+      "batch": "d",
+      "spec": "Serengeti: pale silver coat with large dark spots, very large rounded ears, golden iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: serengeti. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Serengeti: pale silver coat with large dark spots, very large rounded ears, golden iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-052e27f3-36f6-429d-823f-eff55170b06e.png",
+      "target": "assets/cat-mobbies/breeds2/d/serengeti.png",
+      "kind": "breed"
+    },
+    {
+      "id": "pixie-bob",
+      "name": "ピクシーボブ",
+      "batch": "d",
+      "spec": "Pixie-bob: shaggy brown spotted-tabby coat, heavy brow, lynx-like ear tufts, short stubby tail, green-gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: pixie-bob. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Pixie-bob: shaggy brown spotted-tabby coat, heavy brow, lynx-like ear tufts, short stubby tail, green-gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-6c9b0517-773c-4f04-a761-905610cf3baa.png",
+      "target": "assets/cat-mobbies/breeds2/d/pixie-bob.png",
+      "kind": "breed"
+    },
+    {
+      "id": "american-bobtail",
+      "name": "アメリカンボブテイル",
+      "batch": "d",
+      "spec": "American Bobtail: brown mackerel-tabby-and-white coat, short bobbed tail, wild-looking broad face, gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: american-bobtail. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: American Bobtail: brown mackerel-tabby-and-white coat, short bobbed tail, wild-looking broad face, gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-c84368fd-f628-4a6d-8b6e-362df8fcf3e3.png",
+      "target": "assets/cat-mobbies/breeds2/d/american-bobtail.png",
+      "kind": "breed"
+    },
+    {
+      "id": "cymric",
+      "name": "シンリック",
+      "batch": "d",
+      "spec": "Cymric: tailless fluffy semi-long red-tabby-and-white coat, very round body and rump, round head, copper iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: cymric. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Cymric: tailless fluffy semi-long red-tabby-and-white coat, very round body and rump, round head, copper iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-77f51680-211b-4371-91b9-153d88f1e355.png",
+      "target": "assets/cat-mobbies/breeds2/d/cymric.png",
+      "kind": "breed"
+    },
+    {
+      "id": "kurilian-bobtail",
+      "name": "クリリアンボブテイル",
+      "batch": "d",
+      "spec": "Kurilian Bobtail: dense semi-long silver-black tabby and white coat, pom-pom tail, wild-looking, green iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: kurilian-bobtail. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Kurilian Bobtail: dense semi-long silver-black tabby and white coat, pom-pom tail, wild-looking, green iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-91613a86-9974-4dcf-8496-480cecccbb88.png",
+      "target": "assets/cat-mobbies/breeds2/d/kurilian-bobtail.png",
+      "kind": "breed"
+    },
+    {
+      "id": "karelian-bobtail",
+      "name": "カレリアンボブテイル",
+      "batch": "d",
+      "spec": "Karelian Bobtail: short fluffy bobtail, red-and-white bicolor coat, sturdy build, amber iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: karelian-bobtail. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Karelian Bobtail: short fluffy bobtail, red-and-white bicolor coat, sturdy build, amber iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-1f04ad4f-700d-4f4f-85da-827e487ad8f8.png",
+      "target": "assets/cat-mobbies/breeds2/d/karelian-bobtail.png",
+      "kind": "breed"
+    },
+    {
+      "id": "mekong-bobtail",
+      "name": "メコンボブテイル",
+      "batch": "d",
+      "spec": "Mekong Bobtail: short coat, blue-lynx-point (pale body, blue-grey tabby-striped points), short kinked tail, sapphire-blue iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: mekong-bobtail. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Mekong Bobtail: short coat, blue-lynx-point (pale body, blue-grey tabby-striped points), short kinked tail, sapphire-blue iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-b668194e-e08c-47af-a390-c7dd3b83f478.png",
+      "target": "assets/cat-mobbies/breeds2/d/mekong-bobtail.png",
+      "kind": "breed"
+    },
+    {
+      "id": "japanese-bobtail-longhair",
+      "name": "ジャパニーズボブテイル（ロングヘア）",
+      "batch": "d",
+      "spec": "Japanese Bobtail Longhair: black-and-white van-pattern long coat, bunny pom-pom tail, high cheekbones, gold iris",
+      "prompt": "Use case: stylized-concept. Generate ONE real breed cat Mobby: japanese-bobtail-longhair. Ref1 bengal/ref2 ragdoll define realistic materials and Mobby hardware only. EXACT NEW BREED: Japanese Bobtail Longhair: black-and-white van-pattern long coat, bunny pom-pom tail, high cheekbones, gold iris. Emphasize breed-specific ears, muzzle, coat texture and build so distinct at thumbnail size; do not substitute reference markings. One unified rounded-square head/body NO neck or separate head, short arms and two short feet, breed-specific tail. Exactly ONE living eye viewer LEFT with LARGE ROUND black pupil and white catchlight, ONE black concentric green-glass camera lens viewer RIGHT. One black cross D-pad lower LEFT belly and exactly TWO plain unmarked black round buttons diagonally lower RIGHT, no paw marks. Front full body, real directional animal strands, bare wrinkled skin ONLY for hairless breeds, never felt/plush. NO collar/accessories/clothes/props/text/watermark. Soft studio light. True RGBA1254x1254 transparent PNG. Whole subject including tail/ears only75% of canvas, at least120px empty transparent margin on ALL sides.",
+      "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-afd172dd-f0e4-4bed-aef6-b027e09ae014.png",
+      "target": "assets/cat-mobbies/breeds2/d/japanese-bobtail-longhair.png",
+      "kind": "breed"
+    }
+  ],
+  "failures": []
+}

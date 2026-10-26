@@ -1,0 +1,37 @@
+{
+  "id": "juunyan",
+  "prompt": "Use case: stylized-concept. MAIN CAT REDESIGN juunyan. Ref1 bengal/ref2 ragdoll define realistic fur and hardware; ref3 ONLY original concept/props. DO NOT copy original coat. REQUIRED NEW CAT: PURE WHITE base with clear separated round BLACK POLKA DOTS, short tight CURLY fur, NO tuxedo or orange/brown. Small FOLDED ears, tall narrow square torso, pointed muzzle, green eye. Keep 10 gold medal and surrounding small dark cat silhouettes (faceless, no eyes/lenses/controls). One unified rounded-square head/body NO neck, short arms/two short feet. Exactly ONE biological eye LEFT, ONE black concentric green-glass camera lens RIGHT. One black cross D-pad lower LEFT, exactly TWO plain black round buttons diagonal lower RIGHT. Unobscured controls. Front full body soft studio light, real fur not plush. Transparent alpha PNG1254x1254 with clear margin; no floor/grid/watermark/extra text. No long brown orange black tortie.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-bef90b4c-bba5-4744-bc7a-e31d27d31c1a.png",
+  "target": "assets/cat-mobbies/new/d/juunyan.png",
+  "regenReason": "橙長毛または黒白長毛の類似グループを分化。元の小物・出現条件・名前を保持。新しい外見: PURE WHITE base with clear separated round BLACK POLKA DOTS, short tight CURLY fur, NO tuxedo or orange/brown. Small FOLDED ears, tall narrow square torso, pointed muzzle, green eye. Keep 10 gold medal and surrounding small dark cat silhouettes (faceless, no eyes/lenses/controls).",
+  "qa": "accepted: explicit new coat/ears differentiated; correct one eye/right lens and belly controls; original accessories retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1930885,
+    "sha256": "6462a0ce1e77488351a13512b75e6f939915cc200a488ee05f9705a8eac88368"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "9e5be6824de2214c1d5f747ee16baf81939863c4393fc192be121d01cde21b43",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

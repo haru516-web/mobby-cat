@@ -1,0 +1,37 @@
+{
+  "id": "nyannyan",
+  "prompt": "Use case: stylized-concept. REPLACE MAIN CAT for nyannyan. References1 bengal and2 ragdoll define realistic fur/hardware, image3 ONLY conceptual accessories. DO NOT copy image3 orange-white coat. REQUIRED NEW DESIGN: SOLID pale CREAM very SHORT coat, NO white bib or orange/brown/red patches. TINY low ROUND upright ears, extremely wide loaf squared torso, small blunt muzzle, blue iris. Retain raised welcoming paws and red collar with gold 22 pendant. One unified rounded-square head/body no neck; short arms/two short feet. Exactly ONE living eye viewer LEFT, ONE black green reflective camera lens viewer RIGHT. Exactly ONE D-pad lower LEFT, TWO plain round black buttons diagonal lower RIGHT. Front full body, unobscured controls, soft studio light. Exact1254x1254 RGBA PNG transparent background, ample margin. No floor/grid/watermark or extra text. The new coat and ear shape are mandatory.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-b80bed8a-2cc4-42c6-8a14-2080577f399c.png",
+  "target": "assets/cat-mobbies/new/a/nyannyan.png",
+  "regenReason": "茶白の汎用顔グループ（world-traveler, nyanpo, hisashiburi, hyakunin, ouji, shitsukoi, nyannyan, chokotto, hodohodo, nekonohi）を分化。SOLID pale CREAM very SHORT coat, NO white bib or orange/brown/red patches. TINY low ROUND upright ears, extremely wide loaf squared torso, small blunt muzzle, blue iris. Retain raised welcoming paws and red collar with gold 22 pendant.",
+  "qa": "accepted second draft: new coat/ears visibly distinct, original concept props retained, exactly one eye/right lens and correct three belly controls",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1512665,
+    "sha256": "52031d6f800e13cebe3cd4cd3eeb1a1b63dc93066041dd82db8a5d61368eaa49"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "e885e7a1d3d19882fd83cd0d29fc89a1dba10da04c035a42691924067fec79da",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

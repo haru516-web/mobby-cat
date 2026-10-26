@@ -1,0 +1,37 @@
+{
+  "id": "yofukashi",
+  "prompt": "Use case: stylized-concept. Redesign MAIN CAT yofukashi. Ref1 bengal/ref2 ragdoll define real directional fur and hardware; ref3 only identity and conceptual props. REQUIRED NEW APPEARANCE: Solid cool BLUE GREY very SHORT satin fur, no navy stars, no long fluff. HUGE ROUND ears, tall narrow square torso, pointed cheeks, GOLD iris ROUND pupil with weary under-eye shadow. Keep crescent nightcap and few small floating stars. Exactly ONE unified rounded-square head/body NO neck, short arms/two short feet. ONE living eye viewer LEFT with LARGE ROUND black pupil and highlight, ONE black green-reflective camera lens RIGHT; ONE black D-pad lower LEFT and exactly TWO plain black round buttons diagonally lower RIGHT. Front full body, controls unobscured. Soft studio light, true RGBA1254x1254 transparent PNG with margin. No background/grid/floor/new text/watermark. Follow new fur ears face and body, no extra props.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-67dfda61-9d53-4787-ad4e-60263338393e.png",
+  "target": "assets/cat-mobbies/new/a/yofukashi.png",
+  "regenReason": "夜空/紫黒の類似グループを分化。小物コンセプト保持。新しい外見: Solid cool BLUE GREY very SHORT satin fur, no navy stars, no long fluff. HUGE ROUND ears, tall narrow square torso, pointed cheeks, GOLD iris ROUND pupil with weary under-eye shadow. Keep crescent nightcap and few small floating stars.",
+  "qa": "accepted: individual coat/ear/face/body differences, one left biological eye/right lens/D-pad/two plain buttons; original concept retained",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1812901,
+    "sha256": "9f152c6d44ff90732cfe9b9f8380d81b5780cbfff4110679156e7f3bf3524285"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "721fb6233b958d5e707dd3d3167d7095f0360e916effac231a633724fa12c9d2",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

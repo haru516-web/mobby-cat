@@ -1,0 +1,37 @@
+{
+  "id": "maine-coon",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-741310b5-b415-4934-9f7f-cf04d9725739.png",
+  "target": "assets/cat-mobbies/characters/maine-coon.png",
+  "prompt": "Use case: stylized-concept. Regenerate ONE maine-coon cat Mobby. References1 bengal and2 ragdoll define hardware and realistic fur rendering; ref3 original target is for identity/props. CHANGE cat anatomy/coat: MAINE COON: pale SILVER SHADED with cream undercoat, NO tabby stripes/brown/orange. Exceptionally LARGE tall LYNX-TUFTED ears, LONG shaggy guard hairs and majestic ruff, very SQUARE muzzle and heavy brow, long slim squared torso, green-gold iris, huge plume tail. No accessories. Maintain ONE unified rounded-square head/body NO neck or separate head, short arms and two short feet. Exactly ONE natural living eye viewer LEFT with round pupil/catchlight; exactly ONE black concentric green reflective camera lens viewer RIGHT. One black cross D-pad lower LEFT, exactly TWO plain round black buttons diagonally lower RIGHT. No paw marks. Front full body, soft studio light, centered with clear transparent margin, true RGBA1254x1254 transparent PNG. No floor/grid/text/watermark.",
+  "regenReason": "茶長毛グループから銀の長いガードヘア、大きな房耳、角形マズルへ変更。生成では淡い額縞が残るがsiberianより房耳・長い毛・体比率を強調。",
+  "qa": "accepted: correct Mobby one-eye/lens and belly controls, breed/concept retained; individual coat/ear/muzzle differences visible",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1907283,
+    "sha256": "82c5ea0bde5de2cb4a5fc1e053da28ae72d3c81d8d4f0b22bb79a2816ad1083a"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "c8cdfd945c2ab1984903fbefb0c4cac93016b3a9805282b6ebe505d461107132",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

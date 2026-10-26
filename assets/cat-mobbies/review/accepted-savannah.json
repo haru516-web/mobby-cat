@@ -1,0 +1,39 @@
+{
+  "id": "savannah",
+  "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. SAVANNAH: tall very LARGE upright ears, golden tan very SHORT sleek fur, bold black solid spots NOT rosettes, black tear-line marks, long angular muzzle, amber living iris. Athletic slightly taller rounded-square body with no separate head or neck. Tail slender with black rings. No accessories or clothes.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-dd9740fd-58a9-42ae-a42e-91c02eee5fc9.png",
+  "target": "assets/cat-mobbies/breeds2/d/savannah.png",
+  "name": "サバンナ",
+  "batch": "d",
+  "kind": "breed",
+  "qa": "accepted prototype: correct left eye/right lens/D-pad/two plain buttons, realistic fur, visibly differentiated from original reference palette",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1768486,
+    "sha256": "5a17b361de061f333cf845d2cf3e844f00c631b5f209312d3f1427a302bac659"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "50c4fe7abc39c8ddd9c2a322788af7ebc07fcccaec0d8a28735a44c24e110c51",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}

@@ -1,0 +1,39 @@
+{
+  "id": "ragdoll-seal-mitted",
+  "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. RAGDOLL SEAL MITTED: silky long ivory cream body, dark seal brown mask covering both eye positions with NO inverted white V, seal ears and long plume tail, a white chin and small white mittens on all paws. Sapphire blue living iris. Broad cheekbones with gentle smile, medium ears. No accessories or clothes.",
+  "source": "C:\\Users\\harui\\.codex\\generated_images\\01a172b4-c19f-78e2-a7ac-f83c3531d32e\\exec-2e81b3a9-34e2-48e5-ba52-29abb922e2aa.png",
+  "target": "assets/cat-mobbies/breeds2/f/ragdoll-seal-mitted.png",
+  "name": "ラグドール（シールミテッド）",
+  "batch": "f",
+  "kind": "breed",
+  "qa": "accepted prototype: seal mask without inverted V, white chin/mitts, cream long silky coat, blue iris, correct Mobby controls; full production pending A",
+  "validation": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "bytes": 1837290,
+    "sha256": "f0e8d268f68cd6339a9ab1a441f0701cede4d6a225691f1bdf493f34885e9b55"
+  },
+  "postprocess": {
+    "authorization": "User explicitly approved mechanical proportional resizing and centering on a transparent 1254x1254 canvas.",
+    "originalSourceSha256": "618579800262eb29eae6a64d845e8fe27d90d9ad20dc2a08f2aa9750160e62eb",
+    "method": "whole-canvas proportional Lanczos resize and transparent centering",
+    "innerSize": [
+      1054,
+      1054
+    ],
+    "offset": [
+      100,
+      100
+    ],
+    "canvasSize": [
+      1254,
+      1254
+    ]
+  },
+  "paddingQA": "Approved mechanical padding applied; minimum 100px transparent margins; source drawing retained without crop or recoloring."
+}
