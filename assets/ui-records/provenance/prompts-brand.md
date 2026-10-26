@@ -188,3 +188,12 @@ Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148e
 Edit target image1 is old splash. Image2 is approved NEW logo. Replace ONLY the old ねこモビー wordmark with image2's exact にゃこモビー wordmark, keeping its small ゃ. Cream #FFF8F0 full opaque background, portrait1179x2556 aspect. Logo centered horizontally and vertically, approximately85% canvas width. Preserve brown hiragana and orange katakana and paw. No other elements, no text except にゃこモビー, no vignette, flat warm cream background, soft paper illustration.
 
 Finishing: Lanczos cover resize, opaque RGB, no EXIF
+
+## UI v3 / brand/app-icon.png
+
+Group D. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-3b3129ec-d317-4468-912f-6fcfc4bc8e7a.png
+
+Square1024 opaque cream app icon with centered British shorthair Cat Mobby, gray round ears, amber normal eye at viewer-left, black camera lens viewer-right, small nose, cross D-pad viewer-left chest and exactly two round buttons viewer-right. Soft illustrated storybook game icon, clean background, no text, no rounded outer corners.
+
+Finishing: Lanczos cover resize, opaque RGB, no EXIF

@@ -237,5 +237,153 @@
       "image_gen refinement rejected: red fringe",
       "procedural smooth RGBA radial gradient adopted"
     ]
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-2d324a57-0ff9-45c8-9a42-366301bff1d5.png",
+    "path": "opening/bg.png",
+    "size": [
+      1179,
+      2556
+    ],
+    "mode": "opaque",
+    "prompt": "Portrait1179x2556 opaque mobile game opening background: gentle dawn bedroom, pastel cream-peach sky and warm sun through stylized window, smooth wall and warm orange floor, flat illustrated storybook shapes, central and upper60% calm low contrast for logo overlay, curtains and faint room silhouette only at far sides, lower area warm floor glow, no cats people words logo icons, no photography blur or strong shadows. Full bleed.",
+    "group": "D",
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+    "generation": 1
+  },
+  {
+    "path": "opening/cats-peek.png",
+    "prompt": "Opening peek composite using exact unchanged files assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue. Each original is cropped to upper head/shoulder and composited along lower canvas edge; faces peek up from bottom. No character repaint or source modification.",
+    "group": "D",
+    "source": "assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue",
+    "method": "exact composite of existing character images",
+    "processing": "Crop upper head/shoulders from the five original character PNGs, proportional Lanczos resize, alpha composite on1179x700 transparent canvas; source files byte-unchanged; no EXIF",
+    "generation": 1
+  },
+  {
+    "path": "opening/cats-peek.png",
+    "prompt": "Opening peek composite from unchanged assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue. Full upper original head/ears plus chest-top crop from canvas y0..900, arranged along bottom edge; five faces peek upward. Exact originals, no repaint.",
+    "group": "D",
+    "source": "assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue",
+    "method": "exact composite of existing character images",
+    "processing": "Rows0-900 preserve full ears; alpha composited five originals",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-3b3129ec-d317-4468-912f-6fcfc4bc8e7a.png",
+    "path": "brand/app-icon.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "mode": "opaque",
+    "prompt": "Square1024 opaque cream app icon with centered British shorthair Cat Mobby, gray round ears, amber normal eye at viewer-left, black camera lens viewer-right, small nose, cross D-pad viewer-left chest and exactly two round buttons viewer-right. Soft illustrated storybook game icon, clean background, no text, no rounded outer corners.",
+    "group": "D",
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+    "generation": 1
+  },
+  {
+    "path": "opening/logo-hero.png",
+    "prompt": "Exact derivative of app/assets/ui/brand/logo-nekomobby.png, preserving the approved Japanese wordmark にゃこモビー, its letterforms and colors. Proportionally resized and centered on transparent1000x420 canvas.",
+    "group": "D",
+    "source": "app/assets/ui/brand/logo-nekomobby.png",
+    "method": "derived resized wordmark",
+    "processing": "Proportional Lanczos resize to940x297 max and center on1000x420 transparent canvas; no regeneration or lettering change",
+    "generation": 1
+  },
+  {
+    "path": "system/android-icon-background.png",
+    "prompt": "Solid opaque warm cream #FFF8F0 adaptive icon background matching the app-icon background.",
+    "group": "D",
+    "source": "brand/app-icon.png background color",
+    "method": "procedural flat color",
+    "processing": "Flat RGB #FFF8F0 fill to512x512, opaque, no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-f833d724-d32c-44a3-ba9c-42286e8b0e35.png",
+    "path": "system/android-icon-foreground.png",
+    "size": [
+      512,
+      512
+    ],
+    "prompt": "Android adaptive icon foreground. Target512x512 genuinely transparent. Same British shorthair Cat Mobby identity as reference: gray round ears face with viewer-left amber biological eye, viewer-right black camera lens. Show full head, face and small visible upper chest with black cross D-pad at chest viewer-left and exactly two round buttons at chest viewer-right. Cute illustrated soft game icon. Center the whole cat within a strict 66% diameter circular safe area (content no wider or taller than330px), generous transparent margin, no background, no text, no badge, no framing, no photo, no shadow outside safe area.",
+    "group": "D",
+    "margin": 92,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 92px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-d52ea021-ba09-4e03-af45-a22c42e60a5f.png",
+    "path": "system/android-icon-monochrome.png",
+    "size": [
+      432,
+      432
+    ],
+    "prompt": "Android monochrome adaptive icon foreground, 432x432 transparent. Create a clean single-color warm-brown solid silhouette of Cat Mobby head and upper torso. Include two ears, one circular camera-lens eye shape distinguishable by an outer ring cutout, one ordinary round eye, and chest cross-D-pad plus exactly two circle buttons. One flat solid monochrome color only, no gradients or shading, no background, no words. Center all artwork within a 66% circular safe area with ample transparent margin. Avoid details too small to read.",
+    "group": "D",
+    "margin": 74,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 74px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c1538a8c-af0c-404f-a3b2-15d0c72c7144.png",
+    "path": "opening/paw-trail.png",
+    "size": [
+      900,
+      160
+    ],
+    "prompt": "One horizontal transparent orange paw-print trail for mobile game intro, pale soft orange 8-10 spaced paw stamps, centered, clean alpha edges.",
+    "group": "D",
+    "rotate": 15,
+    "margin": 5,
+    "processing": "Alpha>8 trim; rotate15deg, proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-7620b06a-0a1e-46ab-b67d-09e5203f8045.png",
+    "path": "opening/sparkle.png",
+    "size": [
+      200,
+      200
+    ],
+    "prompt": "One isolated warm ivory-orange rounded four-point sparkle with subtle glow, centered on transparent background, no text or other items.",
+    "group": "D",
+    "margin": 5,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-a3d1a1a1-5eae-4e68-ad37-52e196994524.png",
+    "path": "opening/tap-pill.png",
+    "size": [
+      560,
+      120
+    ],
+    "prompt": "Blank horizontal cream capsule button, warm brown outline and orange inset accent, soft highlight/shadow, transparent background, no text or icon.",
+    "group": "D",
+    "margin": 4,
+    "slice": {
+      "top": 0,
+      "right": 60,
+      "bottom": 0,
+      "left": 60
+    },
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c1538a8c-af0c-404f-a3b2-15d0c72c7144.png",
+    "path": "opening/paw-trail.png",
+    "size": [
+      900,
+      160
+    ],
+    "prompt": "Horizontal orange paw-print trail, transformed from the generated upward trail by rotating -15 degrees to align along the horizontal axis. Warm pale orange, 8 evenly spaced prints, transparent background.",
+    "group": "D",
+    "rotate": -15,
+    "margin": 5,
+    "processing": "Alpha>8 trim; rotate-15deg, proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
   }
 ]

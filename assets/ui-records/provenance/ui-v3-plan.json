@@ -165,21 +165,21 @@
     },
     {
       "group": "D",
-      "path": "../system/android-icon-foreground.png",
+      "path": "system/android-icon-foreground.png",
       "width": 512,
       "height": 512,
       "alphaMode": "transparent"
     },
     {
       "group": "D",
-      "path": "../system/android-icon-background.png",
+      "path": "system/android-icon-background.png",
       "width": 512,
       "height": 512,
       "alphaMode": "opaque"
     },
     {
       "group": "D",
-      "path": "../system/android-icon-monochrome.png",
+      "path": "system/android-icon-monochrome.png",
       "width": 432,
       "height": 432,
       "alphaMode": "transparent"

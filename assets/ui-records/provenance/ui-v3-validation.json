@@ -1,17 +1,7 @@
 {
-  "completed": 15,
+  "completed": 25,
   "required": 54,
   "pending": [
-    "opening/bg.png",
-    "opening/logo-hero.png",
-    "opening/cats-peek.png",
-    "opening/sparkle.png",
-    "opening/paw-trail.png",
-    "opening/tap-pill.png",
-    "brand/app-icon.png",
-    "../system/android-icon-foreground.png",
-    "../system/android-icon-background.png",
-    "../system/android-icon-monochrome.png",
     "button/login-record-round.png",
     "brand/title-login-record.png",
     "login/month-frame.png",
@@ -178,11 +168,107 @@
       "alphaMax": 168,
       "sha256": "36ef9a18a5425b8527763e20fa4116f96f90ad2c918c5075bf14374938562200",
       "errors": []
+    },
+    {
+      "path": "opening/bg.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "sha256": "eaade1a3e581badabec14bf544d04b3501e6748d2d6ed331f422c74c07fea7cb",
+      "errors": []
+    },
+    {
+      "path": "opening/cats-peek.png",
+      "width": 1179,
+      "height": 700,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "d9738b4a4a0bf4cc3fb1004b586cb4f2c55a6ac96ae7e6d4798fdda6b03fd7c5",
+      "errors": []
+    },
+    {
+      "path": "brand/app-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "sha256": "36f93983483feac8b77b4d09bd5b43be8c5192ff86f81368ee8d43f4f5897106",
+      "errors": []
+    },
+    {
+      "path": "opening/logo-hero.png",
+      "width": 1000,
+      "height": 420,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "944c49d45509daab52fe5425387b98203ad2c5ef2bdb046e749e9565d76897ed",
+      "errors": []
+    },
+    {
+      "path": "system/android-icon-background.png",
+      "width": 512,
+      "height": 512,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "sha256": "ad6cf767b834ae1b5d302c829ec5641985d7ff0fa981170aa40f9d8886588627",
+      "errors": []
+    },
+    {
+      "path": "system/android-icon-foreground.png",
+      "width": 512,
+      "height": 512,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "2fe53be14ec39128c867c7d36db0cd9da11dbeabf24b2d7f37c2c7fdf3a1f319",
+      "errors": []
+    },
+    {
+      "path": "system/android-icon-monochrome.png",
+      "width": 432,
+      "height": 432,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "6182e360e07007ce8b5b95790b4663ed1931c760ff23948198509a369ff808ca",
+      "errors": []
+    },
+    {
+      "path": "opening/paw-trail.png",
+      "width": 900,
+      "height": 160,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "4a63f43080b642cbb0de4d3702dc1972bca1cbc59cc33d67c1404e706918ffb6",
+      "errors": []
+    },
+    {
+      "path": "opening/sparkle.png",
+      "width": 200,
+      "height": 200,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "251dc3fe84adb84038baf7e84e623c0ed2f506b5cb84614ba622b740f9d3c1d7",
+      "errors": []
+    },
+    {
+      "path": "opening/tap-pill.png",
+      "width": 560,
+      "height": 120,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "6af138e5a6714e2a7d44f892054988381a58a489e399a2f04cc4ed70ad1f814e",
+      "errors": []
     }
   ],
-  "allManifestHashesChecked": 177,
+  "allManifestHashesChecked": 183,
   "changedFiles": [
+    "app/assets/system/android-icon-background.png",
+    "app/assets/system/android-icon-foreground.png",
+    "app/assets/system/android-icon-monochrome.png",
+    "app/assets/ui/bg/room-deai-full.png",
+    "app/assets/ui/bg/room-home-full.png",
     "app/assets/ui/bg/room-home.png",
+    "app/assets/ui/brand/app-icon.png",
     "app/assets/ui/brand/logo-nekomobby.png",
     "app/assets/ui/brand/splash.png",
     "app/assets/ui/manifest.json",
@@ -197,9 +283,13 @@
     "app/assets/ui/navbtn/zukan-on.png",
     "app/assets/ui/share/watermark.png",
     "assets/ui-records/README.md",
+    "assets/ui-records/previews/deai-full-compare.png",
+    "assets/ui-records/previews/home-compare.png",
+    "assets/ui-records/previews/home-full-compare.png",
     "assets/ui-records/previews/logo-compare.png",
     "assets/ui-records/previews/ui-v3-A.png",
     "assets/ui-records/previews/ui-v3-B.png",
+    "assets/ui-records/previews/ui-v3-C.png",
     "assets/ui-records/previews/ui-v3-before-1.png",
     "assets/ui-records/previews/ui-v3-before-2.png",
     "assets/ui-records/previews/ui-v3-before-3.png",
