@@ -6,7 +6,7 @@ import { useGame } from '../../core/game';
 import { playSfx } from '../../services/audio';
 import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
-import { Card, Header, ImgButton, InfoPill, Polaroid, useTabPad, Tap } from '../../ui/kit';
+import { Card, Header, InfoPill, useTabPad, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
@@ -22,15 +22,8 @@ const SLOTS = [
 ];
 const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！', 'にゃーん', 'もっと！'];
 
-// 時間帯で変わる「きょうのようす」
-function mood(h: number, n: number) {
-  if (n === 0) return '部屋はまだしずかです';
-  if (h < 6) return 'みんなぐっすり眠っています';
-  if (h < 11) return '朝ごはんを待っています';
-  if (h < 16) return 'ひなたでのんびりしています';
-  if (h < 20) return 'そろそろ新しい出会いの時間…';
-  return '夜の運動会がはじまりました';
-}
+// 旅猫の今いる場所（仮）。あとで「全員共通の静的JSON」を1日1回読む形に置き換える
+const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン', day: 12 };
 
 function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: number; onPet: () => void }) {
   const hop = useRef(new Animated.Value(0)).current;
@@ -89,6 +82,10 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
   const roomH = width * 1.25;
   const half = (width - 32 - 10) / 2;
   const waiting = state.days[todayKey] && !state.days[todayKey].freePick;
+  // 今日の候補に条件を満たした特別な猫がいれば、そのシルエット。いなければふつうの猫のシルエット
+  const today = state.days[todayKey];
+  const special = today?.candidates.find((id) => today.reasons[id]);
+  const shownOwned = !!special && !!state.owned[special];
   const mins = Math.ceil(msUntilNextReveal(now) / 60000);
 
   return (
@@ -128,19 +125,31 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
       </TourAnchor>
 
       <View style={s.cards}>
-        <Card style={{ width: half, minHeight: 190 }}>
-          <Pic name="brand/title-travel" height={30} />
-          <T w="m" size={12} color={C.sub} style={{ marginTop: 6 }}>世界に1匹だけの旅猫が、いつかあなたのもとへ</T>
-          <ImgButton label="旅の様子" height={38} onPress={() => go('world')} style={{ marginTop: 'auto', width: 120 }} />
-        </Card>
-        <Card style={{ width: half, minHeight: 190 }}>
-          <Pic name="brand/title-kyou" height={26} />
-          <T w="m" size={12} color={C.sub} style={{ marginTop: 6 }}>{mood(now.getHours(), roomCats.length)}</T>
-          {state.petCount > 0 && <T w="b" size={11} style={{ marginTop: 4 }}>なでた回数 {state.petCount}回</T>}
-          <Polaroid width={half * 0.48} style={{ alignSelf: 'flex-end', marginTop: 'auto', transform: [{ rotate: '4deg' }] }}>
-            {roomCats[0] ? <CatImage id={roomCats[0]} size={half * 0.4} /> : <Pic name="icon/paw" height={30} />}
-          </Polaroid>
-        </Card>
+        <Tap style={{ width: half }} onPress={() => go('world')} accessibilityLabel="旅するモビーの様子">
+          <Card style={s.card}>
+            <Pic name="brand/title-travel" height={26} />
+            <T w="m" size={11} color={C.sub} style={{ marginTop: 6 }}>いま、ここにいるよ</T>
+            <View style={s.where}>
+              <T size={30}>{TRAVELER.flag}</T>
+              <View style={{ flex: 1 }}>
+                <T w="x" size={15} numberOfLines={1}>{TRAVELER.country}</T>
+                <T w="m" size={11} color={C.sub} numberOfLines={1}>{TRAVELER.city}・旅{TRAVELER.day}日目</T>
+              </View>
+            </View>
+          </Card>
+        </Tap>
+        <Tap style={{ width: half }} onPress={() => go('deai')} accessibilityLabel="今日出会えるかもしれない猫">
+          <Card style={s.card}>
+            <T w="x" size={14}>今日の出会い</T>
+            <T w="m" size={11} color={special ? C.accent : C.sub} style={{ marginTop: 6 }}>
+              {special ? '✦ とくべつな子が…？' : 'どんな子が来るかな？'}
+            </T>
+            <View style={s.sil}>
+              {special && shownOwned ? <CatImage id={special} size={64} /> : <Pic name="cat/silhouette-locked" width={64} />}
+              {special && <T size={16} color={C.accent} style={s.spark}>✦</T>}
+            </View>
+          </Card>
+        </Tap>
       </View>
     </ScrollView>
   );
@@ -153,5 +162,9 @@ const s = StyleSheet.create({
   heart: { position: 'absolute', top: 0 },
   camera: { position: 'absolute', right: 14, bottom: 20, alignItems: 'center', zIndex: 200 },
   cameraLabel: { marginTop: -4, textShadowColor: '#fff', textShadowRadius: 6 },
+  card: { height: 128, alignItems: 'flex-start' },
+  where: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 'auto' },
+  sil: { position: 'absolute', right: 6, bottom: 4 },
+  spark: { position: 'absolute', right: -4, top: -4 },
   cards: { flexDirection: 'row', gap: 10, paddingHorizontal: 16, marginTop: -6 },
 });
