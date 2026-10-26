@@ -46,3 +46,7 @@ Aの初回生成で HTTP 429 usage_limit_reached。解除予定は2026-10-26 21:
 
 ## ユーザー追加指定による最終差し替え
 星空モビーをベースにスカーフを巻く指定を受け、上記のA採用画像を星空版へ置換。元のhoshizoraは保持し、星空の毛並みと青目を継承。金色スカーフを追加して星の首飾りを外した。既存hoshizoraとの類似はユーザー指定による意図的なもの。1254角RGBA透過、片目1・レンズ1・十字キー1・黒丸ボタン2を確認。traveler-starry-comparison.pngに元画像と120pxの比較を保存。以前のtraveler-final-*はA案の履歴として保持。最新の採用画像はnew/g/traveling-mobby.png。
+
+## 最新採用: 候補1と改善候補3の横並び
+
+ユーザー指定で候補3のスカーフを画面右へ変更し、左に候補1・右に改善候補3の透過ペア画像を採用。以前の単体案・星空案は履歴。最新はnew/g/traveling-mobby.png。単体1254角の条件は最新指定により横長構成へ変更。実寸法・ハッシュはmanifestとtraveler-validation.json。編集プロンプトはprovenance/prompts-traveler-adopted-pair.md。

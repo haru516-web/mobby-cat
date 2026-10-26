@@ -1,14 +1,14 @@
 {
   "file": "assets\\cat-mobbies\\new\\g\\traveling-mobby.png",
-  "width": 1254,
-  "height": 1254,
+  "width": 1774,
+  "height": 887,
   "mode": "RGBA",
   "alphaRange": [
     0,
     255
   ],
-  "sha256": "92d7bd34dbd3b1601e70089c96197a8f32b086d87c7b15dd875f655f4d01ca44",
-  "bytes": 2902828,
-  "basis": "hoshizora explicitly requested by user",
+  "sha256": "f3945a00857259c0b6fd43174def6ddd8ac43e55ccaf311e5477c0a4df0fb6f0",
+  "bytes": 2861856,
+  "selectedDesign": "left candidate1; right candidate3 with scarf blowing right",
   "generatedWithoutPixelPostprocessing": true
 }
