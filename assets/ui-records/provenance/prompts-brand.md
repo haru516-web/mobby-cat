@@ -170,3 +170,21 @@ Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785
 Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
 
 9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
+
+## UI v3 / brand/logo-nekomobby.png
+
+Group A. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-a7a9b5e1-3a42-45cb-993a-852a3a918eb6.png
+
+Edit target is the provided old logo. Redraw the app logo with the EXACT Japanese text にゃこモビー . Characters in order に / ゃ (small hiragana ya) / こ / モ / ビ / ー. Replace old ねこ with にゃこ. Keep the same puffy rounded paper-cut lettering, dark chocolate brown hiragana, orange katakana, tiny paw accent, small cat ears integrated in first hiragana. Single horizontal wordmark, no other text, no background, no enclosing badge, upper-left light, soft shading not photographic. Entire logo fits canvas target aspect 760:240 with minimal padding. Ensure the small ゃ is unambiguously legible and long vowel ー is present. Transparent background.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 3px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / brand/splash.png
+
+Group A. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-824b4aca-f7f4-438e-b3ea-18c7c292dd3c.png
+
+Edit target image1 is old splash. Image2 is approved NEW logo. Replace ONLY the old ねこモビー wordmark with image2's exact にゃこモビー wordmark, keeping its small ゃ. Cream #FFF8F0 full opaque background, portrait1179x2556 aspect. Logo centered horizontally and vertically, approximately85% canvas width. Preserve brown hiragana and orange katakana and paw. No other elements, no text except にゃこモビー, no vignette, flat warm cream background, soft paper illustration.
+
+Finishing: Lanczos cover resize, opaque RGB, no EXIF
