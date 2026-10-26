@@ -202,6 +202,7 @@ export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = 
     d,
     dow: day.getDay(),
     holiday: isJapaneseHoliday(y, m, d),
+    moonAge: (((day.getTime() - NEW_MOON_REF) / 86400000) % SYNODIC + SYNODIC) % SYNODIC,
     fullMoon: isFullMoon(dayKey, day),
     newMoon: isNewMoon(dayKey, day),
   };

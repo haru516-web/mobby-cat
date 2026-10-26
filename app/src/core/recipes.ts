@@ -19,6 +19,7 @@ export type Env = {
   d: number;
   dow: number;
   holiday: boolean;
+  moonAge: number; // 月齢（新月から何日たったか。0〜29.5）
   fullMoon: boolean;
   newMoon: boolean;
 };
@@ -63,6 +64,11 @@ export const ATOMS: Atom[] = [
   { id: 'owned50', group: 'owned', hard: true, p: 0.15, label: '50種類以上の猫と暮らしている', test: (e) => e.kinds >= 50 },
   { id: 'owned100', group: 'owned', hard: true, p: 0.05, label: '100種類以上の猫と暮らしている', test: (e) => e.kinds >= 100 },
   { id: 'battery-low', group: 'battery', hard: true, p: 0.1, label: 'バッテリーが10%以下になった', test: (e) => e.battery.some((v) => v <= 10) },
+  { id: 'crescent', group: 'moon', hard: true, p: 0.07, label: '三日月の夜', test: (e) => e.moonAge >= 2.5 && e.moonAge < 4.5 },
+  { id: 'firstquarter', group: 'moon', hard: true, p: 0.07, label: '上弦の月（半月）の夜', test: (e) => e.moonAge >= 6.4 && e.moonAge < 8.4 },
+  { id: 'gibbous', group: 'moon', hard: true, p: 0.07, label: '十三夜（ふくらんだ月）の夜', test: (e) => e.moonAge >= 11 && e.moonAge < 13 },
+  { id: 'lastquarter', group: 'moon', hard: true, p: 0.07, label: '下弦の月（半月）の夜', test: (e) => e.moonAge >= 21 && e.moonAge < 23 },
+  { id: 'waning', group: 'moon', hard: true, p: 0.07, label: '有明の月（細い月）の夜', test: (e) => e.moonAge >= 25.5 && e.moonAge < 27.5 },
   { id: 'fullmoon', group: 'moon', hard: true, p: 0.035, label: '満月の夜', test: (e) => e.fullMoon },
   { id: 'newmoon', group: 'moon', hard: true, p: 0.035, label: '新月の夜', test: (e) => e.newMoon },
 ];
@@ -168,7 +174,15 @@ const pickAtoms = (id: string, easy: number, hard: number, skip: Group[], minP =
     }
   };
   draw(ATOMS.filter((a) => !a.hard && a.p >= minP), easy);
-  draw(ATOMS.filter((a) => a.hard), hard);
+  // 難しい条件は、系統（歩数・連続起動・所持数・電池・月）をまず選んでから条件を選ぶ（月の条件が多くても月に偏らないように）
+  for (let n = 0; n < hard; n++) {
+    const groups = [...new Set(ATOMS.filter((a) => a.hard && !taken.has(a.group)).map((a) => a.group))];
+    if (!groups.length) break;
+    const g = groups[Math.floor(r() * groups.length)];
+    const pool = ATOMS.filter((a) => a.hard && a.group === g);
+    out.push(pool[Math.floor(r() * pool.length)]);
+    taken.add(g);
+  }
   return out;
 };
 
