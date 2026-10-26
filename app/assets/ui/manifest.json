@@ -2,10 +2,10 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 166,
+  "assetCount": 177,
   "counts": {
     "badge": 9,
-    "bg": 17,
+    "bg": 19,
     "brand": 15,
     "button": 23,
     "camera": 20,
@@ -13,6 +13,7 @@
     "gauge": 5,
     "icon": 25,
     "illust": 13,
+    "navbtn": 9,
     "panel": 15,
     "share": 10,
     "tabbar": 11
@@ -258,6 +259,17 @@
       "alphaMode": "opaque"
     },
     {
+      "path": "bg/room-deai-full.png",
+      "width": 1179,
+      "height": 2556,
+      "sha256": "022d4cb3b4ee8fb07e7e43d753819ed9bdc7ee015a4ab6d59e434c3d0a00ad63",
+      "bytes": 2268704,
+      "prompt": "Use case: stylized-concept, full-bleed mobile game background. Portrait1179x2556 opaque illustration extending same cozy room as image reference. Preserve warm illustrated room palette, softly painted shapes, cream/beige wall, pale orange floor, muted sage green accents; no photorealism. Top0-30% is bright gentle low-detail wall for UI heading. 30-62% is calm simple low-contrast wall and floor behind three cat overlays. Lower38% is quiet flat warm orange floor continuing to bottom with no seams, bands, furniture, text or objects. A window with curtain, simple bookcase and one plant may frame far outer sides only in upper 40%, but keep central overlay areas plain. No cats, no people, no letters, no logos. Soft game-storybook illustration with flat colors and gentle gradients, no lens blur, no strong shadow, no fiber texture. Full bleed.",
+      "method": "built-in image_gen",
+      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+      "alphaMode": "opaque"
+    },
+    {
       "path": "bg/room-deai.png",
       "width": 1179,
       "height": 1400,
@@ -269,16 +281,26 @@
       "alphaMode": "opaque"
     },
     {
+      "path": "bg/room-home-full.png",
+      "width": 1179,
+      "height": 2556,
+      "sha256": "decf1b83fc56185a983e6fec1e18e433d0c0684d4e643913eefab66cc2029916",
+      "bytes": 2909575,
+      "prompt": "Use case: stylized-concept. Create a full portrait room background 1179x2556. Image1 is room-home style/composition reference only. Preserve cozy painted game-illustration room with arch window and curtains left, cream sofa, bookshelf and greenery in top half; soft oval woven rug centered and fully inside side edges around vertical45-60%, empty rug center for a cat. Orange wooden floor continues seamlessly to the bottom edge. Keep right wall open at 12-30% for a button. The upper area through 62% should retain room scene and furniture; the lower 38% must be a flat, quiet, low-contrast orange floor for two large UI cards and four floating navigation buttons, no seams, objects, shadows, bands or color breaks. Floor is a broad gentle orange plane, lower two thirds simple. Illustrative storybook game background, rounded forms, flat painted colors, soft gradients, moderate detail, no photo, no depth blur, no lens effects, no text, no cats or people, opaque full-bleed.",
+      "method": "built-in image_gen",
+      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+      "alphaMode": "opaque"
+    },
+    {
       "path": "bg/room-home.png",
       "width": 1179,
       "height": 1900,
-      "prompt": "Edit the referenced room-home game background. User request: a little more fine detail than this first draft. Preserve the EXACT overall composition, framing, rounded soft storybook illustration style, warm cream/beige/soft orange/muted green palette, all existing object positions, and empty generous central rug/floor. Enrich the existing objects with tasteful hand-painted medium-scale detail: more articulated plant leaf edges and layered small leaves with restrained painted veins, rounded window joinery and curtain folds, gentle upholstery seam lines and a small embroidered pattern on cushion, clearer woven shapes on existing baskets, softly drawn braided edge around rug and subtle sparse weave marks, gentle carved wood accents on shelves and floor, a few painted rope winding lines on cat tower and knitted stitches on existing green throw. Slightly richer color separation and soft ambient shading for furniture depth. Keep detail restrained and illustrative, not photo-texture. Do not add new furniture or clutter. Rug center at vertical 50–75% remains plain, empty, flat and low contrast for character overlays. Bottom15% and lower right remain calm. Top12% calm for header. Clearly a beautiful detailed painted cozy mobile game background with rounded forms; NOT photographic, NOT realistic CGI, no sharp high contrast, no lens effects, no reflective floor, no individual fabric fibers or highly realistic wood grain. NO cats, NO people, NO animals, NO text or letters, NO UI or border. One opaque edge-to-edge portrait image, aspect1179:1900.",
-      "sha256": "1998ab6e89bff2b799046a7381c4853fbc5f3025d2edb3bab95ceb677a63e0bb",
-      "bytes": 2759131,
+      "sha256": "753fcec42d72c626051eacdc6552f0b415b7517761a8d9f9833c461029bfe126",
+      "bytes": 2563255,
+      "prompt": "Use case: stylized-concept, mobile game UI background. Generate new 1179x1900 portrait opaque illustration matching the existing room image (reference image 1), with warm cream, pale green, soft orange palette, rounded storybook forms, flat painted color and gentle upper-left light. Preserve same general room: window and curtains upper left, cozy cream sofa upper center-left, leafy plants, small bookshelf/shelf, cat tower toward upper right. Place all furniture/wall decor in upper 44% only; preserve a broad simple warm orange wooden floor below, almost no floorboard seams below 70%. A soft woven oval rug centered in floor and fully inside both side edges, modest width with visible floor left and right; keep center rug area empty for cat. Entire lower 15% must be completely flat low-contrast floor with no objects or seams. Uppermost 12% gentle uncluttered backdrop; upper-right wall area at 12-30% clear and plain for a UI button. Keep lower-right camera-button area clear. No cats, people, text, signs, labels, photorealism, lens blur, glare, strong shadows, tiny wood grain or fabric fibers. Full bleed edge-to-edge, opaque.\nRedo 1: Edit the provided room illustration. Change ONLY the rug width and the lower floor. Shrink the complete oval rug to about78% of canvas width and center it so a clearly visible strip of orange floor remains at both left and right edges. Preserve the same rug texture and design. Make wooden floor seams below vertical70% almost invisible, blending into a smooth low-contrast warm orange floor through the bottom edge. Preserve all windows, furniture, plants, shelves, colors, positions and style exactly. No new objects, no text, no cats, no photographic effects. Full canvas1179x1900 opaque portrait.",
       "method": "built-in image_gen",
-      "processing": "RGB opaque; Lanczos resize to exact original dimensions",
-      "alphaMode": "opaque",
-      "reviewStatus": "style approved 2026-10-25"
+      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+      "alphaMode": "opaque"
     },
     {
       "path": "bg/screen-shop.png",
@@ -1702,6 +1724,105 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "navbtn/deai-off.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "a30f6b52b4acf28b7ea9ce6a6d70ec4f0de9f26756ff72d6e8c4fa1184191c14",
+      "bytes": 70888,
+      "prompt": "Edit only the center cat face icon in the cream standalone squircle button. Keep button shape, outer brown border, highlight, shadow and size exactly. Make the icon an unmistakable simple brown cat face with TWO small round cream eyes, a small cream inverted-triangle nose and short curved cream mouth whisker lines, and two pointed ears, all centered, no body. Face silhouette remains warm chocolate brown. Same flat front-on puffy paper-cut style. Preserve transparent surroundings. No text.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/deai-on.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "907e0027c66d66e02e8f38c9e4665f3d6de24f3b1403ccef0ac8f5c579ca4cd5",
+      "bytes": 70724,
+      "prompt": "Refine the selected-state image into a single navigation DEAI button. Preserve exact cream transparent canvas, squircle shape, brown outline, highlight and shadow. Keep orange center face, but use a dark chocolate cat-face silhouette in the center, same size and position as cream face in the reference. Add two small warm ivory circular eyes, small ivory triangular nose and short curved ivory mouth. Two pointed ears. Match the companion off-state reference's cat face silhouette and face layout while preserving selected orange face. No extra icons or text, transparent outside. 240x240.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/glow.png",
+      "width": 320,
+      "height": 320,
+      "sha256": "36ef9a18a5425b8527763e20fa4116f96f90ad2c918c5075bf14374938562200",
+      "bytes": 24635,
+      "prompt": "Create a soft radial amber glow behind a selected navigation button, 320x320, fully transparent at edges. Two built-in image_gen attempts produced a visible red fringe and were rejected. Final produced as a controlled procedural radial alpha gradient: pale peach center, warm orange middle, smooth falloff to transparent; no border or noise.",
+      "method": "built-in image_gen",
+      "processing": "Deterministic radial RGBA gradient, 320x320; smooth alpha falloff to transparent edges; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/home-off.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "8665a0d38332d6b487da65ef135fb50226b0fd034da26cdba0bfd16f38329918",
+      "bytes": 66229,
+      "prompt": "Create ONE independent navigation button HOME off state, final240x240. Reference image is existing round button style. Use a rounded SQUIRCLE button, warm cream ivory face, medium warm taupe-brown outline, narrow upper-left ivory highlight and soft downward shadow entirely inside canvas, minimal clearance only shadow. Center one simple HOUSE icon in brown-gray, no labels. Puffy layered paper-cut game UI, gently dimensional, matte simplified shading, not photo, no real fibers. Entire button silhouette approx224x224 centered with8px shadow clearance. This is one standalone button, no bar, no connecting ornament, no surrounding objects, transparent background, no text letters numbers.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/home-on.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "8713fb0cd2ccd1d3d670051a69465bac5f26b81e7981c8b20e3a20fa400bd6a7",
+      "bytes": 67485,
+      "prompt": "Edit reference image into ONE standalone HOME navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with HOUSE, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/world-off.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "cae8013654990c49219c9f4b77f8b4caf49226114309c3bd0634209e349bb325",
+      "bytes": 78377,
+      "prompt": "Edit reference image into ONE standalone WORLD navigation button off state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with GLOBE with clear continents and simple longitude latitude, centered at same visual size as original house. Keep cream ivory button face; icon is warm brown-gray. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/world-on.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "621de494e9a2c78f3373008afe71d7f39caa089d96ff3d51a084ac210b6c54fa",
+      "bytes": 80864,
+      "prompt": "Edit reference image into ONE standalone WORLD navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with GLOBE with clear continents and simple longitude latitude, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/zukan-off.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "1e09725da7ca9b91c906e45a206cd5fab94256233c8c5718d8b8bd6dafbf51aa",
+      "bytes": 64319,
+      "prompt": "Edit reference image into ONE standalone ZUKAN navigation button off state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with OPEN BOOK, centered at same visual size as original house. Keep cream ivory button face; icon is warm brown-gray. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "navbtn/zukan-on.png",
+      "width": 240,
+      "height": 240,
+      "sha256": "737136a3fbd44a3c26281bb9cf31370f9bfa6621b578e6e5cbd8c8ad370f5c18",
+      "bytes": 66456,
+      "prompt": "Edit reference image into ONE standalone ZUKAN navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with OPEN BOOK, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
       "path": "panel/card-cream.png",
       "width": 192,
       "height": 192,
@@ -2484,7 +2605,7 @@
       "prompt": "ONE standalone open book symbol orange same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
       "sha256": "2f3edfcdc7fd72f414fea5712724540cc6d120bab0df2d09a206758fb9afef60",
       "bytes": 20389,
-      "method": "built-in image_gen",
+      "method": "procedural RGBA gradient",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
     }

@@ -1,19 +1,7 @@
 {
-  "completed": 3,
+  "completed": 15,
   "required": 54,
   "pending": [
-    "navbtn/home-off.png",
-    "navbtn/home-on.png",
-    "navbtn/deai-off.png",
-    "navbtn/deai-on.png",
-    "navbtn/zukan-off.png",
-    "navbtn/zukan-on.png",
-    "navbtn/world-off.png",
-    "navbtn/world-on.png",
-    "navbtn/glow.png",
-    "bg/room-home.png",
-    "bg/room-home-full.png",
-    "bg/room-deai-full.png",
     "opening/bg.png",
     "opening/logo-hero.png",
     "opening/cats-peek.png",
@@ -82,16 +70,138 @@
       "alphaMax": 153,
       "sha256": "16be0f4c3a89b6bb9109bb4b4f5cdaf36d9b7f9df42b3e459f51d0b1167cf2ef",
       "errors": []
+    },
+    {
+      "path": "navbtn/home-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "8665a0d38332d6b487da65ef135fb50226b0fd034da26cdba0bfd16f38329918",
+      "errors": []
+    },
+    {
+      "path": "navbtn/home-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "8713fb0cd2ccd1d3d670051a69465bac5f26b81e7981c8b20e3a20fa400bd6a7",
+      "errors": []
+    },
+    {
+      "path": "navbtn/deai-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "a30f6b52b4acf28b7ea9ce6a6d70ec4f0de9f26756ff72d6e8c4fa1184191c14",
+      "errors": []
+    },
+    {
+      "path": "navbtn/deai-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "907e0027c66d66e02e8f38c9e4665f3d6de24f3b1403ccef0ac8f5c579ca4cd5",
+      "errors": []
+    },
+    {
+      "path": "navbtn/zukan-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "1e09725da7ca9b91c906e45a206cd5fab94256233c8c5718d8b8bd6dafbf51aa",
+      "errors": []
+    },
+    {
+      "path": "navbtn/zukan-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "737136a3fbd44a3c26281bb9cf31370f9bfa6621b578e6e5cbd8c8ad370f5c18",
+      "errors": []
+    },
+    {
+      "path": "navbtn/world-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "cae8013654990c49219c9f4b77f8b4caf49226114309c3bd0634209e349bb325",
+      "errors": []
+    },
+    {
+      "path": "navbtn/world-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "sha256": "621de494e9a2c78f3373008afe71d7f39caa089d96ff3d51a084ac210b6c54fa",
+      "errors": []
+    },
+    {
+      "path": "bg/room-home.png",
+      "width": 1179,
+      "height": 1900,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "sha256": "753fcec42d72c626051eacdc6552f0b415b7517761a8d9f9833c461029bfe126",
+      "errors": []
+    },
+    {
+      "path": "bg/room-home-full.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "sha256": "decf1b83fc56185a983e6fec1e18e433d0c0684d4e643913eefab66cc2029916",
+      "errors": []
+    },
+    {
+      "path": "bg/room-deai-full.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "sha256": "022d4cb3b4ee8fb07e7e43d753819ed9bdc7ee015a4ab6d59e434c3d0a00ad63",
+      "errors": []
+    },
+    {
+      "path": "navbtn/glow.png",
+      "width": 320,
+      "height": 320,
+      "alphaMin": 0,
+      "alphaMax": 168,
+      "sha256": "36ef9a18a5425b8527763e20fa4116f96f90ad2c918c5075bf14374938562200",
+      "errors": []
     }
   ],
-  "allManifestHashesChecked": 166,
+  "allManifestHashesChecked": 177,
   "changedFiles": [
+    "app/assets/ui/bg/room-home.png",
     "app/assets/ui/brand/logo-nekomobby.png",
     "app/assets/ui/brand/splash.png",
     "app/assets/ui/manifest.json",
     "app/assets/ui/share/watermark.png",
+    "assets/ui-records/README.md",
+    "assets/ui-records/previews/logo-compare.png",
+    "assets/ui-records/previews/ui-v3-A.png",
+    "assets/ui-records/previews/ui-v3-before-1.png",
+    "assets/ui-records/previews/ui-v3-before-2.png",
+    "assets/ui-records/previews/ui-v3-before-3.png",
+    "assets/ui-records/previews/ui-v3-before-4.png",
+    "assets/ui-records/previews/ui-v3-before-5.png",
+    "assets/ui-records/previews/ui-v3-before-6.png",
+    "assets/ui-records/provenance/prompts-bg.md",
     "assets/ui-records/provenance/prompts-brand.md",
-    "assets/ui-records/provenance/prompts-share.md"
+    "assets/ui-records/provenance/prompts-share.md",
+    "assets/ui-records/provenance/ui-v3-jobs.json",
+    "assets/ui-records/provenance/ui-v3-plan.json",
+    "assets/ui-records/provenance/ui-v3-validation.json"
   ],
   "visualScope": "Assets and contact sheets only; no app/device run or build"
 }
