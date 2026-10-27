@@ -26,7 +26,8 @@ export type Ctx = {
   appearCounts: Record<string, number>; // 候補に現れた回数
 };
 
-export type Guaranteed = { id: string; reason: string };
+// parts があるときは、そのうち1つを（均等な確率で）理由として見せる（encounter.ts の buildDay）
+export type Guaranteed = { id: string; reason: string; parts?: string[] };
 
 // ---- 暦・天文の計算（近似） -------------------------------------------------
 
@@ -249,7 +250,8 @@ export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = 
       const g = sig.find((x) => x.id === c.id);
       if (g && (forecast || evalAtoms(rec.atoms, env))) out.push(g);
     } else if (!forecast && !sigIds.has(c.id) && evalAtoms(rec.atoms, env)) {
-      out.push({ id: c.id, reason: rec.atoms.map((a) => a.label).join('・') });
+      const parts = rec.atoms.map((a) => a.label);
+      out.push({ id: c.id, reason: parts.join('・'), parts });
     }
   }
   return out;
@@ -361,6 +363,11 @@ const CARD_REASON: Record<string, string> = {
   'maboroshi-kuroneko': '13日の金曜日に、もうひとつ何かが重なった日',
   yami: '新月の夜に、ある猫たちがそろった日',
   ousama: '満月の夜に、ある条件がそろった日',
+};
+// その猫の出会いの条件の数。2つ以上あるときは、見せている理由はそのうちの1つだけ
+export const conditionTotal = (id: string): number => {
+  const cat = CATS.find((c) => c.id === id);
+  return (cat && cat.kind === 'breed' && recipeOf(cat)?.atoms.length) || 1;
 };
 export const cardReason = (id: string, reason: string) => CARD_REASON[id] ?? reason;
 

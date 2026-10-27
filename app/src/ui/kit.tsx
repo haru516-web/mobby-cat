@@ -195,23 +195,29 @@ export const TabPadCtx = React.createContext(0);
 export const useTabPad = () => React.useContext(TabPadCtx);
 
 export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: (t: TabKey) => void; bottomInset: number }) {
+  // 4つの独立ボタンが画面下に浮かぶ。選択中は光を敷いて、少し大きく上に出す
   return (
-    <Slice name="tabbar/bg" style={[k.tabbar, { paddingBottom: Math.max(bottomInset, 8) }]}>
+    <View pointerEvents="box-none" style={[k.tabbar, { paddingBottom: Math.max(bottomInset, 8) }]}>
       {TABS.map((t) => {
         const on = t.key === tab;
         return (
-          <Pressable key={t.key} style={k.tab} onPress={() => {
+          <Pressable key={t.key} style={k.tab} accessibilityLabel={t.label} accessibilityState={{ selected: on }} onPress={() => {
               if (!on) playSfx('sfx_tap');
               onChange(t.key);
             }}>
-            <Icon name={`tabbar/${t.key}-${on ? 'on' : 'off'}`} size={34} />
-            <T w="x" size={11} color={on ? C.accent : C.sub} style={{ marginTop: 1 }}>{t.label}</T>
+            <View style={[k.navBox, on && k.navBoxOn]}>
+              {on && <Pic name="navbtn/glow" width={NAV_SIZE * 1.3} style={k.navGlow} />}
+              <Pic name={`navbtn/${t.key}-${on ? 'on' : 'off'}`} width={NAV_SIZE} />
+            </View>
+            <T w="x" size={11} color={on ? C.accent : C.sub} style={k.navLabel}>{t.label}</T>
           </Pressable>
         );
       })}
-    </Slice>
+    </View>
   );
 }
+
+const NAV_SIZE = 58;
 
 const k = StyleSheet.create({
   btn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
@@ -222,9 +228,12 @@ const k = StyleSheet.create({
   currency: { height: 40, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 22 },
   badge: { alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
   card: { padding: 14 },
-  tabbar: { flexDirection: 'row', paddingTop: 12 },
+  tabbar: { flexDirection: 'row', paddingTop: 10, paddingHorizontal: 10 },
   tab: { flex: 1, alignItems: 'center' },
-  glow: { position: 'absolute', top: -18 },
+  navBox: { width: NAV_SIZE, height: NAV_SIZE, alignItems: 'center', justifyContent: 'center' },
+  navBoxOn: { transform: [{ translateY: -4 }, { scale: 1.08 }] },
+  navGlow: { position: 'absolute', left: -NAV_SIZE * 0.15, top: -NAV_SIZE * 0.15 },
+  navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 5 },
   gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   bellBadge: { position: 'absolute', right: 2, top: 2 },
 });

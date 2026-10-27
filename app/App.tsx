@@ -5,12 +5,14 @@ import {
   useFonts,
 } from '@expo-google-fonts/m-plus-rounded-1c';
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import CameraScreen from './src/features/camera/CameraScreen';
 import DeaiScreen from './src/features/deai/DeaiScreen';
 import HomeScreen from './src/features/home/HomeScreen';
+import LoginRecordScreen from './src/features/login/LoginRecordScreen';
+import OpeningScreen from './src/features/opening/OpeningScreen';
 import NoticeScreen from './src/features/notice/NoticeScreen';
 import OnboardingScreen from './src/features/onboarding/OnboardingScreen';
 import SettingsScreen from './src/features/settings/SettingsScreen';
@@ -23,22 +25,11 @@ import { GameProvider, useGame } from './src/core/game';
 import { initAudio, setBgmScene } from './src/services/audio';
 import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
 import { Backdrop } from './src/ui/Slice';
+import { Popup } from './src/ui/Popup';
 import { TourAnchor } from './src/ui/TourAnchor';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
 const MAX_W = 430; // iPad や Web の広い画面でもスマホ幅で中央に表示する
-
-// 全画面のシート。広い画面ではスマホ幅で中央に置く
-function Sheet({ visible, onClose, width, children }: { visible: boolean; onClose: () => void; width: number; children: React.ReactNode }) {
-  return (
-    <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
-      <View style={[s.fill, { alignItems: 'center' }]}>
-        <Backdrop name="bg/app-cream" />
-        <SafeAreaView style={[s.fill, { width }]}>{children}</SafeAreaView>
-      </View>
-    </Modal>
-  );
-}
 
 function Root() {
   const { ready, state, finishTutorial } = useGame();
@@ -46,6 +37,8 @@ function Root() {
   const [tab, setTab] = useState<TabKey>('home');
   const [shop, setShop] = useState(false);
   const [settings, setSettings] = useState(false);
+  const [loginRecord, setLoginRecord] = useState(false);
+  const [opened, setOpened] = useState(false); // 起動時のタイトルを抜けたか
   const [notice, setNotice] = useState<NoticeTab | null>(null);
   const [camera, setCamera] = useState(false);
   const [replay, setReplay] = useState(false); // 設定から見返すチュートリアル
@@ -71,6 +64,13 @@ function Root() {
       </View>
     );
   }
+  if (!opened) {
+    return (
+      <View style={s.fill}>
+        <OpeningScreen onStart={() => setOpened(true)} />
+      </View>
+    );
+  }
   if (!state.starterChosen) {
     return (
       <View style={[s.fill, { alignItems: 'center' }]}>
@@ -92,6 +92,7 @@ function Root() {
               go={setTab}
               openShop={() => setShop(true)}
               openSettings={() => setSettings(true)}
+              openLoginRecord={() => setLoginRecord(true)}
               openNotice={(t = 'notice') => setNotice(t)}
               openCamera={() => setCamera(true)}
               width={width}
@@ -113,10 +114,13 @@ function Root() {
           />
         )}
       </View>
-      <Sheet visible={shop} onClose={() => setShop(false)} width={width}>
+      <Popup visible={shop} onClose={() => setShop(false)}>
         <ShopScreen onClose={() => setShop(false)} />
-      </Sheet>
-      <Sheet visible={settings} onClose={() => setSettings(false)} width={width}>
+      </Popup>
+      <Popup visible={loginRecord} onClose={() => setLoginRecord(false)}>
+        <LoginRecordScreen onClose={() => setLoginRecord(false)} width={width} />
+      </Popup>
+      <Popup visible={settings} onClose={() => setSettings(false)}>
         <SettingsScreen
           onClose={() => setSettings(false)}
           onTutorial={() => {
@@ -125,10 +129,10 @@ function Root() {
             setReplay(true);
           }}
         />
-      </Sheet>
-      <Sheet visible={!!notice} onClose={() => setNotice(null)} width={width}>
+      </Popup>
+      <Popup visible={!!notice} onClose={() => setNotice(null)}>
         {notice && <NoticeScreen initialTab={notice} onClose={() => setNotice(null)} />}
-      </Sheet>
+      </Popup>
       <Modal visible={camera} animationType="fade" onRequestClose={() => setCamera(false)}>
         <View style={[s.fill, { alignItems: 'center' }]}>
           <Backdrop name="bg/app-cream" />

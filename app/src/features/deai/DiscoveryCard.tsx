@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { View } from 'react-native';
-import { cardReason } from '../../core/conditions';
+import { cardReason, conditionTotal } from '../../core/conditions';
 import type { ViewRef } from '../../services/share';
 import { CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { RarityBadge } from '../../ui/kit';
@@ -41,7 +41,7 @@ export const DiscoveryCard = forwardRef<ViewRef, { id: string; day: string; reas
       </View>
       <View style={[box(conditionHint), { justifyContent: 'center' }]}>
         <T w="m" size={conditionHint.h * k * 0.36} numberOfLines={2}>
-          {reason ? `出会えた条件：${cardReason(id, reason)}` : 'ふらりと遊びに来てくれた子'}　#ねこモビー
+          {reason ? `出会えた条件${conditionTotal(id) > 1 ? `（全${conditionTotal(id)}つのうちの1つ）` : ''}：${cardReason(id, reason)}` : 'ふらりと遊びに来てくれた子'}　#にゃこモビー
         </T>
       </View>
     </View>

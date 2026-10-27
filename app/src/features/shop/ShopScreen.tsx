@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { notice } from '../../services/dialog';
+import { useConfirm } from '../../ui/ConfirmPopup';
 import { useGame } from '../../core/game';
 import { C, T } from '../../ui/base';
 import { Card, Icon, ImgButton, Tap, withSfx } from '../../ui/kit';
-import { Backdrop, Pic } from '../../ui/Slice';
+import { Pic } from '../../ui/Slice';
 
 // 価格は設計書の仮値。実課金（StoreKit 等）は未接続で、購入ボタンは開発用の無料付与。
 const ITEMS = [
@@ -20,10 +21,10 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
   const g = useGame();
   const { state } = g;
   const [odds, setOdds] = useState(false);
+  const [confirm, confirmEl] = useConfirm();
 
   return (
     <View style={{ flex: 1 }}>
-      <Backdrop name="bg/screen-shop" />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Pic name="brand/title-shop" height={40} />
@@ -41,7 +42,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
               <T w="x" size={14}>{it.name}</T>
               <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>{it.desc}</T>
             </View>
-            <ImgButton label={it.price} height={40} onPress={() => g.grant(it.key, it.n)} style={{ width: 100 }} />
+            <ImgButton label={it.price} height={40} onPress={() => confirm(`${it.name}を購入しますか？`, `${it.price}です。`, '購入する', () => g.grant(it.key, it.n))} style={{ width: 100 }} />
           </Card>
         ))}
         <Card style={[s.item, { alignItems: 'flex-start' }]}>
@@ -56,7 +57,9 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             skin={state.pass.active ? 'ghost-outline' : 'primary-green'}
             label={state.pass.active ? '加入中' : '加入'}
             height={40}
-            onPress={() => g.setPass(!state.pass.active)}
+            onPress={() => state.pass.active
+              ? confirm('またたびパスを解約しますか？', '解約後も、迎えた猫はそのまま残ります。毎日の候補は3匹に戻ります。', '解約する', () => g.setPass(false))
+              : confirm('またたびパスに加入しますか？', `月額 ¥480です。毎日の候補が${3 + PASS_BONUS_LABEL}匹になり、毎月お迎え券が3枚届きます。いつでも解約できます。`, '加入する', () => g.setPass(true), { skin: 'primary-green' })}
             style={{ width: 84 }}
           />
         </Card>
@@ -83,6 +86,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         )}
         <T w="m" size={11} color={C.sub} style={{ marginTop: 8 }}>※ テスト版：実際の課金は未接続です。価格のボタンを押すと無料で付与します。</T>
       </ScrollView>
+      {confirmEl}
     </View>
   );
 }

@@ -4,7 +4,7 @@ import { HINTS, upcoming } from '../../core/conditions';
 import { useGame, visibleCount } from '../../core/game';
 import { C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Well, Tap } from '../../ui/kit';
-import { Backdrop, Pic, Slice } from '../../ui/Slice';
+import { Pic, Slice } from '../../ui/Slice';
 
 type Tab = 'notice' | 'history' | 'upcoming';
 const TABS: { key: Tab; label: string }[] = [
@@ -30,7 +30,6 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
 
   return (
     <View style={{ flex: 1 }}>
-      <Backdrop name="bg/screen-shop" />
       <View style={s.head}>
         <Pic name="button/bell-round" height={40} />
         <T w="x" size={22} style={{ marginLeft: 8, flex: 1 }}>お知らせ</T>
@@ -99,7 +98,7 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
                   return (
                     <View key={c.id} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                       <Well style={{ width: 48, height: 48 }}>
-                        {own ? <CatImage id={c.id} size={44} /> : <Pic name="cat/silhouette-locked" width={44} />}
+                        <CatImage id={c.id} size={44} silhouette={!own} />
                       </Well>
                       <View style={{ flex: 1 }}>
                         <T w="b" size={12}>{own ? CAT_BY_ID[c.id].name : '？？？'}</T>

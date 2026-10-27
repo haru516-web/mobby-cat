@@ -3,7 +3,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useR
 import { CATS } from '../data/catalog';
 import { Signals } from './conditions';
 import { daysBetween } from './dates';
-import { buildDay, encounterDayKey, fmtDay, prevDayKey } from './encounter';
+import { buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './encounter';
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
@@ -48,6 +48,7 @@ export type GameState = {
   photoCount: number; // 撮った写真の枚数
   totalSteps: number; // 出会いの候補を作った日の歩数の合計
   openDays: number; // 起動した日数（延べ）
+  loginDays: string[]; // 起動した暦日（ログイン記録のスタンプ。直近400日）
   inbox: Notice[]; // お知らせ（新しい順）
   inboxRead: number; // 既読にした時点のお知らせ件数
   pass: { active: boolean; lastGrantMonth: string }; // またたびパス（テスト）
@@ -86,6 +87,7 @@ function initial(now: Date): GameState {
     photoCount: 0,
     totalSteps: 0,
     openDays: 0,
+    loginDays: [],
     inbox: [],
     inboxRead: 0,
     pass: { active: false, lastGrantMonth: '' },
@@ -189,6 +191,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           const starterChosen = saved.starterChosen ?? Object.keys(saved.owned).length > 0;
           // チュートリアルの導入前から遊んでいた人には出さない
           const tutorialDone = saved.tutorialDone ?? starterChosen;
+          if (saved.days) singleReasons(saved.days);
           setState({ ...initial(new Date()), ...saved, starterChosen, tutorialDone });
         } catch {
           try {
@@ -237,7 +240,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (s.lastOpenDay === calendarDay) return s;
       const gap = s.lastOpenDay ? daysBetween(s.lastOpenDay, calendarDay) : 0;
       const streak = gap === 1 ? s.streak + 1 : 1;
-      let next: GameState = { ...s, lastOpenDay: calendarDay, lastGap: gap, streak, openDays: (s.openDays ?? 0) + 1 };
+      let next: GameState = { ...s, lastOpenDay: calendarDay, lastGap: gap, streak, openDays: (s.openDays ?? 0) + 1, loginDays: [...(s.loginDays ?? []), calendarDay].slice(-400) };
       // 7日続けて来てくれたらお迎え券を1枚。休んでも減るものはない
       if (streak % STREAK_GIFT_DAYS === 0) {
         next = notify({ ...next, tickets: next.tickets + 1 }, calendarDay, `${streak}日続けて会いに来てくれたお礼に、お迎え券を1枚どうぞ`);

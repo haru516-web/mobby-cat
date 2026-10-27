@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { ComponentRef, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { CATS, CatDef } from '../../data/catalog';
 import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
@@ -40,13 +40,15 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
   const [filter, setFilter] = useState<Filter>('all');
   const [q, setQ] = useState('');
   const [sel, setSel] = useState<string | null>(null);
+  const listRef = useRef<ComponentRef<typeof ScrollView>>(null);
+  const [showTop, setShowTop] = useState(false); // 下までスクロールしたら「トップへ」を出す
 
   const have = CATS.filter((c) => state.owned[c.id]).length;
   const list = useMemo(
     () => CATS.filter((c) => match(c, filter) && (!q || (state.owned[c.id] && c.name.includes(q)))),
     [filter, q, state.owned],
   );
-  const cellW = (width - 32 - 3 * 8) / 4;
+  const cellW = Math.floor((width - 42 - 3 * 8) / 4);
   const cat = sel ? CATS.find((c) => c.id === sel) : undefined;
   const o = sel ? state.owned[sel] : undefined;
   const fav = !!sel && state.favorites.includes(sel);
@@ -55,9 +57,9 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
   return (
     <View style={{ flex: 1 }}>
       <Backdrop name="bg/screen-zukan" />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: (cat ? 300 : 24) + pad }}>
-        <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
-        <View style={{ paddingHorizontal: 16, gap: 12 }}>
+      <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+      {/* 上の集計・検索・絞り込みは固定して、猫の一覧だけスクロールする */}
+      <View style={{ paddingHorizontal: 16, gap: 10 }}>
           <Card style={s.collection}>
             <View style={{ flex: 1 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -67,8 +69,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                   <T w="b" size={14} color={C.sub} style={{ marginBottom: 3 }}>/{CATS.length}</T>
                 </View>
               </View>
-              <View style={{ marginTop: 8 }}><Gauge value={have} max={CATS.length} /></View>
-              <T w="m" size={11} color={C.sub} style={{ marginTop: 6 }}>たくさんのねこモビーに出会いましょう！</T>
+              <View style={{ marginTop: 6 }}><Gauge value={have} max={CATS.length} /></View>
             </View>
             {mascot && <CatImage id={mascot.id} size={width < 360 ? 52 : 72} />}
           </Card>
@@ -99,8 +100,12 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
             })}
           </View>
 
+        </View>
+      {/* 一覧のパネル（丸い角）は固定して、中の猫だけがスクロールする */}
+      <View style={{ flex: 1, paddingHorizontal: 10, marginTop: 10, marginBottom: pad - 6 }}>
           {/* 1マス = 正方形の画像1〜2枚＋文字。数が多いのでマスごとの9スライスは使わず、一覧全体を1枚のパネルに載せる */}
-          <Card style={[s.grid, { marginHorizontal: -6, paddingHorizontal: 6 }]}>
+          <Card style={{ flex: 1, paddingHorizontal: 6, paddingVertical: 8, overflow: 'hidden' }}>
+            <ScrollView ref={listRef} scrollEventThrottle={64} onScroll={(e) => setShowTop(e.nativeEvent.contentOffset.y > 400)} showsVerticalScrollIndicator={false} contentContainerStyle={[s.grid, { paddingHorizontal: 4, paddingVertical: 6, paddingBottom: cat ? 290 : 10 }]}>
             {list.map((c) => {
               const own = state.owned[c.id];
               const on = sel === c.id;
@@ -113,7 +118,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                       style={StyleSheet.absoluteFill}
                     />
                     <View style={s.cellCat}>
-                      {own ? <CatImage id={c.id} size={cellW - 10} /> : <Pic name="cat/silhouette-locked" width={cellW - 18} />}
+                      <CatImage id={c.id} size={cellW - 10} silhouette={!own} />
                     </View>
                     {!!own && own.count > 1 && (
                       <Slice name="badge/owned-count" style={s.count}><T w="x" size={10} color={C.accent}>×{own.count}</T></Slice>
@@ -121,21 +126,26 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                     {state.favorites.includes(c.id) && <Icon name="icon/heart-on" size={16} style={s.favMark} />}
                   </View>
                   <T w="m" size={9} color={C.sub} style={{ marginTop: 3 }}>No.{catNo(c.id)}</T>
-                  <T w="x" size={10} numberOfLines={1}>{own ? c.name : '???'}</T>
+                  <T w="x" size={9} numberOfLines={2} style={{ textAlign: 'center', lineHeight: 11, minHeight: 22 }}>{own ? c.name : '???'}</T>
                 </Tap>
               );
             })}
+            {list.length === 0 && <T w="b" size={13} color={C.sub} style={{ textAlign: 'center', width: '100%', marginTop: 20 }}>見つかりませんでした</T>}
+            </ScrollView>
+            {showTop && (
+              <Tap style={s.toTop} onPress={() => listRef.current?.scrollTo({ y: 0, animated: true })} accessibilityLabel="トップにもどる">
+                <Pic name="login/arrow-next" height={46} style={{ transform: [{ rotate: '-90deg' }] }} />
+              </Tap>
+            )}
           </Card>
-          {list.length === 0 && <T w="b" size={13} color={C.sub} style={{ textAlign: 'center' }}>見つかりませんでした</T>}
-        </View>
-      </ScrollView>
+      </View>
 
       {cat && (
         // 下端が開いたシートを画面の下端まで伸ばし、ナビバーの後ろから出てくるように見せる
         <Slice name="panel/sheet-detail" style={[s.sheet, { paddingBottom: pad + 14 }]}>
           <View style={{ flexDirection: 'row', gap: 12 }}>
             <Well style={s.bigPhoto}>
-              {o ? <CatImage id={cat.id} size={124} /> : <Pic name="cat/silhouette-locked" width={124} />}
+              <CatImage id={cat.id} size={124} silhouette={!o} />
             </Well>
             <View style={{ flex: 1 }}>
               <T w="m" size={11} color={C.sub}>No.{catNo(cat.id)}</T>
@@ -182,6 +192,7 @@ function Row({ icon, k, v }: { icon: string; k: string; v: string }) {
 }
 
 const s = StyleSheet.create({
+  toTop: { position: 'absolute', right: 10, bottom: 10, zIndex: 5 },
   collection: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 12 },
   search: { height: 48, justifyContent: 'center' },
   searchInput: { marginLeft: 64, marginRight: 30, fontSize: 14, color: C.ink, height: 44 } as never,

@@ -1,4 +1,6 @@
 import { Ctx, Guaranteed, Signals, guaranteedCats } from './conditions';
+import { CATS } from '../data/catalog';
+import { recipeOf } from './recipes';
 
 export { REVEAL_HOUR, encounterDayKey, fmtDay, msUntilNextReveal, prevDayKey } from './dates';
 
@@ -40,7 +42,19 @@ export function buildDay(dayKey: string, signals: Signals, ctx: Ctx): DayCandida
   const picked: string[] = [];
   for (const x of g.slice(0, MAX_CANDIDATES)) {
     picked.push(x.id);
-    reasons[x.id] = x.reason;
+    // 条件が複数あるときは、そのうち1つだけを均等な確率で見せる
+    reasons[x.id] = x.parts?.length ? x.parts[Math.floor(rng() * x.parts.length)] : x.reason;
   }
   return { candidates: picked, reasons, baseCount: BASE_CANDIDATES };
+}
+
+// 以前の記録は、複数の条件を「・」でつないだ文のまま保存されている。読み込み時に1つだけへ直す（日と猫から決まるので毎回同じ）
+export function singleReasons(days: Record<string, { reasons: Record<string, string> }>): void {
+  for (const [day, rec] of Object.entries(days)) {
+    for (const [id, reason] of Object.entries(rec.reasons ?? {})) {
+      const cat = CATS.find((c) => c.id === id);
+      const parts = cat && cat.kind === 'breed' ? recipeOf(cat)?.atoms.map((a) => a.label) : undefined;
+      if (parts && parts.length > 1 && reason === parts.join('・')) rec.reasons[id] = parts[hash(`${day}:${id}`) % parts.length];
+    }
+  }
 }

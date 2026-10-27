@@ -11,13 +11,13 @@ export function notice(title: string, message?: string) {
 }
 
 // 取り消せない操作の確認。OK のときだけ onOk を呼ぶ
-export function confirmAction(title: string, message: string, okLabel: string, onOk: () => void) {
+export function confirmAction(title: string, message: string, okLabel: string, onOk: () => void, style: 'destructive' | 'default' = 'destructive') {
   if (isWeb) {
     if (web.confirm?.(`${title}\n${message}`)) onOk();
     return;
   }
   Alert.alert(title, message, [
     { text: 'キャンセル', style: 'cancel' },
-    { text: okLabel, style: 'destructive', onPress: onOk },
+    { text: okLabel, style, onPress: onOk },
   ]);
 }

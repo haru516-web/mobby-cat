@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal, ScrollView, StyleSheet, View } from 'react-native';
 import { C, CatImage, T } from '../../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well, useTabPad, Tap, withSfx } from '../../ui/kit';
+import { Card, Gauge, Header, Icon, ImgButton, Polaroid, Well, useTabPad, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { ScreenProps } from '../../navigation';
 
@@ -22,6 +22,10 @@ const SAMPLE = {
   ],
 };
 
+const VIEWS = [
+  { key: 'travel', label: '旅するモビー' }, { key: 'record', label: '記録' }, { key: 'news', label: 'お知らせ' },
+] as const;
+
 // 旅の記録（サンプル）。訪問者が残した定型スタンプと、滞在日数
 const JOURNEY = [
   { key: 'kenya', name: 'ケニア', days: 6, stamp: 'あついね！', date: '9/18' },
@@ -35,6 +39,7 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
   const pad = useTabPad();
   const stampW = (inner - 28 - 3 * 8) / 4;
   const [sheet, setSheet] = useState<'travel' | 'news' | null>(null);
+  const [view, setView] = useState<'travel' | 'record' | 'news'>('travel'); // 1画面を短く保つため、内容を3つに分ける
   const soon = () => setSheet('travel');
   return (
     <View style={{ flex: 1 }}>
@@ -44,6 +49,17 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
         <View style={{ paddingHorizontal: 16, gap: 12 }}>
           <Slice name="badge/sample" style={s.sample}><T w="b" size={10} color="#fff">サンプル表示（サーバー未接続）</T></Slice>
 
+          <View style={s.tabs}>
+            {VIEWS.map((v) => (
+              <Tap key={v.key} style={{ flex: 1 }} onPress={() => setView(v.key)}>
+                <Slice name={view === v.key ? 'button/tab-all-on' : 'button/tab-normal'} style={s.tab}>
+                  <T w="x" size={13} color={view === v.key ? '#fff' : C.ink}>{v.label}</T>
+                </Slice>
+              </Tap>
+            ))}
+          </View>
+
+          {view === 'travel' && (<>
           <Card style={{ padding: 6 }}>
             <Well style={{ height: (inner - 12) * (900 / 1179) }}>
               <Pic name="bg/world-hero" width={inner - 12} style={StyleSheet.absoluteFill} />
@@ -80,6 +96,9 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
             <Pic name="illust/stamp-japan" height={56} style={{ position: 'absolute', right: 2, top: -6, opacity: 0.85 }} />
           </Card>
 
+          </>)}
+
+          {view === 'record' && (<>
           <Card>
             <Pic name="brand/title-visited" height={26} />
             <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
@@ -108,13 +127,14 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
             <Pic name="illust/world-map" width={inner * 0.42} style={{ position: 'absolute', right: 8, top: 8, opacity: 0.9 }} />
           </Card>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Pic name="brand/title-news" height={30} />
-            <T w="b" size={12} color={C.sub} onPress={withSfx(() => setSheet('news'))}>すべて見る</T>
-          </View>
-          {SAMPLE.news.slice(0, 2).map((n) => (
-            <NewsCard key={n.title} n={n} onPress={() => setSheet('news')} />
+          </>)}
+
+          {view === 'news' && (<>
+          <Pic name="brand/title-news" height={30} />
+          {SAMPLE.news.map((n) => (
+            <NewsCard key={n.title} n={n} full />
           ))}
+          </>)}
         </View>
       </ScrollView>
 
@@ -197,6 +217,8 @@ function Stat({ label, value }: { label: string; value: string }) {
 }
 
 const s = StyleSheet.create({
+  tabs: { flexDirection: 'row', gap: 8 },
+  tab: { height: 38, alignItems: 'center', justifyContent: 'center' },
   sample: { alignSelf: 'flex-start', height: 22, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' },
   heroText: { position: 'absolute', left: 12, top: 12, right: 12 },
   heroCopy: { marginTop: 6, alignSelf: 'flex-start', paddingVertical: 8, paddingHorizontal: 12 },

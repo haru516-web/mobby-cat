@@ -67,7 +67,7 @@ function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: 
   );
 }
 
-export default function HomeScreen({ go, openShop, openSettings, openNotice, openCamera, width }: ScreenProps) {
+export default function HomeScreen({ go, openShop, openSettings, openLoginRecord, openNotice, openCamera, width }: ScreenProps) {
   const { state, now, todayKey, pet } = useGame();
   const pad = useTabPad();
 
@@ -90,6 +90,8 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
   const mins = Math.ceil(msUntilNextReveal(now) / 60000);
 
   return (
+    <View style={{ flex: 1 }}>
+    <Backdrop name="bg/room-home-full" />
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 + pad }}>
       <View style={{ zIndex: 2 }}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
@@ -108,7 +110,6 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
       </View>
 
       <TourAnchor id="home-room" style={{ width, minHeight: width * 1.25, maxHeight: width * 1.6, flexGrow: 1, marginTop: -20, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
-        <Backdrop name="bg/room-home" />
         {roomCats.length === 0 && (
           <View style={s.empty}>
             <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」から猫モビーを迎えましょう</T>
@@ -122,6 +123,10 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
             </View>
           );
         })}
+        <Tap style={s.loginBtn} onPress={openLoginRecord} accessibilityLabel="ログイン記録">
+          <Pic name="button/login-record-round" height={52} />
+          <T w="x" size={10} style={s.cameraLabel}>ログイン記録</T>
+        </Tap>
         <Tap style={s.camera} onPress={openCamera} accessibilityLabel="さつえい">
           <Pic name="button/camera-round" height={84} />
           <T w="x" size={12} style={s.cameraLabel}>さつえい</T>
@@ -156,6 +161,7 @@ export default function HomeScreen({ go, openShop, openSettings, openNotice, ope
         </Tap>
       </View>
     </ScrollView>
+    </View>
   );
 }
 
@@ -165,6 +171,7 @@ const s = StyleSheet.create({
   bubble: { position: 'absolute', top: -40, width: 120, paddingHorizontal: 14, paddingTop: 8, paddingBottom: 16, alignItems: 'center' },
   heart: { position: 'absolute', top: 0 },
   camera: { position: 'absolute', right: 14, bottom: 20, alignItems: 'center', zIndex: 200 },
+  loginBtn: { position: 'absolute', right: 14, top: 40, alignItems: 'center', zIndex: 200 },
   cameraLabel: { marginTop: -4, textShadowColor: '#fff', textShadowRadius: 6 },
   card: { height: 128, alignItems: 'flex-start' },
   where: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 'auto' },

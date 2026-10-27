@@ -9,7 +9,7 @@ import { notice } from './dialog';
 
 export type ViewRef = React.ComponentRef<typeof View>;
 
-export const HASHTAG = '#ねこモビー';
+export const HASHTAG = '#にゃこモビー';
 
 const isWeb = Platform.OS === 'web';
 
