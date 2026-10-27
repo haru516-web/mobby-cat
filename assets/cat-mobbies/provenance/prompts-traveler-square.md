@@ -1,0 +1,7 @@
+# Adopted duo square revision
+
+User requested square output. Built-in image_gen edit of the adopted 1774x887 duo, transparent_background=true. Output 1254x1254 RGBA, alpha0-255 validated, copied unchanged. Left candidate1, right improved candidate3, scarves outward. Both full bodies and hardware visually checked.
+
+## Prompt
+
+Reformat this EXACT adopted two-cat image into a SQUARE 1254x1254 RGBA transparent PNG. Preserve both exact character designs and proportions. LEFT silver-white cyan comet cat with red scarf blowing LEFT; RIGHT rose-gold plum nebula cat with dark blue patched scarf blowing RIGHT. Keep side by side at same scale with feet level, front-facing full bodies. DO NOT stretch or crop cats to fill square. Scale entire pair down proportionally to fit square WIDTH, adding generous EMPTY TRANSPARENT space ABOVE and BELOW so pair is centered vertically. Both cats including all scarf ends, ears, feet, tail and whiskers completely inside square, 50px clear transparent border at left and right. Keep anatomy, expressions, fur, colors, star sparkles, all hardware positions and counts exactly the same. Each cat has one left biological eye, one right green glass camera lens, one lower left black cross D-pad, exactly two lower right plain black round buttons. Actual TRANSPARENT background, no floor, no background color, no checkerboard, no text, watermark, labels or decorations. Only change square canvas framing.

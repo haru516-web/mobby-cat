@@ -50,3 +50,7 @@ Aの初回生成で HTTP 429 usage_limit_reached。解除予定は2026-10-26 21:
 ## 最新採用: 候補1と改善候補3の横並び
 
 ユーザー指定で候補3のスカーフを画面右へ変更し、左に候補1・右に改善候補3の透過ペア画像を採用。以前の単体案・星空案は履歴。最新はnew/g/traveling-mobby.png。単体1254角の条件は最新指定により横長構成へ変更。実寸法・ハッシュはmanifestとtraveler-validation.json。編集プロンプトはprovenance/prompts-traveler-adopted-pair.md。
+
+## 最新版: 正方形
+
+ユーザーの追加指定で採用ペアを1254×1254の正方形透過PNGへ変更。左1・右改善3の横並びとスカーフ方向を保持。上下に透明余白。実寸法とalpha0〜255を確認。生成記録: provenance/prompts-traveler-square.md。
