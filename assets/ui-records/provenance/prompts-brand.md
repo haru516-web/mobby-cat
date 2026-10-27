@@ -170,3 +170,48 @@ Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785
 Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
 
 9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
+
+## UI v3 / brand/logo-nekomobby.png
+
+Group A. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-a7a9b5e1-3a42-45cb-993a-852a3a918eb6.png
+
+Edit target is the provided old logo. Redraw the app logo with the EXACT Japanese text にゃこモビー . Characters in order に / ゃ (small hiragana ya) / こ / モ / ビ / ー. Replace old ねこ with にゃこ. Keep the same puffy rounded paper-cut lettering, dark chocolate brown hiragana, orange katakana, tiny paw accent, small cat ears integrated in first hiragana. Single horizontal wordmark, no other text, no background, no enclosing badge, upper-left light, soft shading not photographic. Entire logo fits canvas target aspect 760:240 with minimal padding. Ensure the small ゃ is unambiguously legible and long vowel ー is present. Transparent background.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 3px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / brand/splash.png
+
+Group A. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-824b4aca-f7f4-438e-b3ea-18c7c292dd3c.png
+
+Edit target image1 is old splash. Image2 is approved NEW logo. Replace ONLY the old ねこモビー wordmark with image2's exact にゃこモビー wordmark, keeping its small ゃ. Cream #FFF8F0 full opaque background, portrait1179x2556 aspect. Logo centered horizontally and vertically, approximately85% canvas width. Preserve brown hiragana and orange katakana and paw. No other elements, no text except にゃこモビー, no vignette, flat warm cream background, soft paper illustration.
+
+Finishing: Lanczos cover resize, opaque RGB, no EXIF
+
+## UI v3 / brand/app-icon.png
+
+Group D. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-3b3129ec-d317-4468-912f-6fcfc4bc8e7a.png
+
+Square1024 opaque cream app icon with centered British shorthair Cat Mobby, gray round ears, amber normal eye at viewer-left, black camera lens viewer-right, small nose, cross D-pad viewer-left chest and exactly two round buttons viewer-right. Soft illustrated storybook game icon, clean background, no text, no rounded outer corners.
+
+Finishing: Lanczos cover resize, opaque RGB, no EXIF
+
+## UI v3 / brand/title-login-record.png
+
+Group E. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-c0d42bb4-5754-4798-bf44-a441f8d17868.png
+
+Edit the reference Japanese title treatment to read exactly「ログイン記録」(ログイン記録, six Japanese characters). Keep the same bold rounded dark-brown raised lettering, same baseline and scale, small orange paw accent at right, transparent background. Text only, no calendar icon, no extra symbols. Ensure kanji 記録 are exact and legible.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / brand/title-account.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-f8ed0c96-9c63-405f-91f5-5872ec89023b.png
+
+Edit the reference brand heading in the same exact puffy rounded Japanese lettering style and proportions. The only text must read exactly 「アカウント」. Preserve dark chocolate brown plus restrained orange accent, soft upper-left highlight, small paw accent at the end, clean transparent background. Ensure every character is present and correctly legible. No extra decoration or words.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF

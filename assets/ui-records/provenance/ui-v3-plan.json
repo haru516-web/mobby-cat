@@ -1,0 +1,439 @@
+{
+  "branch": "codex/ui-v3",
+  "base": "313c872",
+  "note": "room-deai-full required: current hero is clipped at62% and fades into cream; visual app validation not performed",
+  "assets": [
+    {
+      "group": "A",
+      "path": "brand/logo-nekomobby.png",
+      "width": 760,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "A",
+      "path": "brand/splash.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaMode": "opaque"
+    },
+    {
+      "group": "A",
+      "path": "share/watermark.png",
+      "width": 360,
+      "height": 120,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/home-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/home-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/deai-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/deai-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/zukan-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/zukan-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/world-off.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/world-on.png",
+      "width": 240,
+      "height": 240,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "B",
+      "path": "navbtn/glow.png",
+      "width": 320,
+      "height": 320,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "C",
+      "path": "bg/room-home.png",
+      "width": 1179,
+      "height": 1900,
+      "alphaMode": "opaque"
+    },
+    {
+      "group": "C",
+      "path": "bg/room-home-full.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaMode": "opaque"
+    },
+    {
+      "group": "C",
+      "path": "bg/room-deai-full.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaMode": "opaque"
+    },
+    {
+      "group": "D",
+      "path": "opening/bg.png",
+      "width": 1179,
+      "height": 2556,
+      "alphaMode": "opaque"
+    },
+    {
+      "group": "D",
+      "path": "opening/logo-hero.png",
+      "width": 1000,
+      "height": 420,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "D",
+      "path": "opening/cats-peek.png",
+      "width": 1179,
+      "height": 700,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "D",
+      "path": "opening/sparkle.png",
+      "width": 200,
+      "height": 200,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "D",
+      "path": "opening/paw-trail.png",
+      "width": 900,
+      "height": 160,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "D",
+      "path": "opening/tap-pill.png",
+      "width": 560,
+      "height": 120,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 60,
+        "bottom": 0,
+        "left": 60
+      }
+    },
+    {
+      "group": "D",
+      "path": "brand/app-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMode": "opaque"
+    },
+    {
+      "group": "D",
+      "path": "system/android-icon-foreground.png",
+      "width": 512,
+      "height": 512,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "D",
+      "path": "system/android-icon-background.png",
+      "width": 512,
+      "height": 512,
+      "alphaMode": "opaque"
+    },
+    {
+      "group": "D",
+      "path": "system/android-icon-monochrome.png",
+      "width": 432,
+      "height": 432,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "button/login-record-round.png",
+      "width": 168,
+      "height": 168,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "brand/title-login-record.png",
+      "width": 640,
+      "height": 110,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/month-frame.png",
+      "width": 1000,
+      "height": 900,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 150,
+        "right": 90,
+        "bottom": 90,
+        "left": 90
+      }
+    },
+    {
+      "group": "E",
+      "path": "login/cell-empty.png",
+      "width": 120,
+      "height": 120,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/cell-stamped.png",
+      "width": 120,
+      "height": 120,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/cell-today.png",
+      "width": 120,
+      "height": 120,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/cell-bonus.png",
+      "width": 120,
+      "height": 120,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/stamp-paw.png",
+      "width": 160,
+      "height": 160,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/arrow-prev.png",
+      "width": 96,
+      "height": 96,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/arrow-next.png",
+      "width": 96,
+      "height": 96,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "login/month-complete.png",
+      "width": 480,
+      "height": 480,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "E",
+      "path": "illust/empty-login.png",
+      "width": 600,
+      "height": 450,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "button/account-round.png",
+      "width": 168,
+      "height": 168,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "brand/title-account.png",
+      "width": 640,
+      "height": 110,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "illust/avatar-frame.png",
+      "width": 360,
+      "height": 360,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "illust/account-backup.png",
+      "width": 600,
+      "height": 450,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "illust/account-signedout.png",
+      "width": 600,
+      "height": 450,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "illust/account-goodbye.png",
+      "width": 600,
+      "height": 450,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "button/auth-wide.png",
+      "width": 960,
+      "height": 168,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 84,
+        "bottom": 0,
+        "left": 84
+      }
+    },
+    {
+      "group": "F",
+      "path": "button/auth-wide-pressed.png",
+      "width": 960,
+      "height": 168,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 84,
+        "bottom": 0,
+        "left": 84
+      }
+    },
+    {
+      "group": "F",
+      "path": "button/danger.png",
+      "width": 640,
+      "height": 150,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 75,
+        "bottom": 0,
+        "left": 75
+      }
+    },
+    {
+      "group": "F",
+      "path": "button/danger-pressed.png",
+      "width": 640,
+      "height": 150,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 75,
+        "bottom": 0,
+        "left": 75
+      }
+    },
+    {
+      "group": "F",
+      "path": "panel/warning-card.png",
+      "width": 960,
+      "height": 420,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
+      }
+    },
+    {
+      "group": "F",
+      "path": "badge/linked.png",
+      "width": 300,
+      "height": 84,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 42,
+        "bottom": 0,
+        "left": 42
+      }
+    },
+    {
+      "group": "F",
+      "path": "badge/unlinked.png",
+      "width": 300,
+      "height": 84,
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 42,
+        "bottom": 0,
+        "left": 42
+      }
+    },
+    {
+      "group": "F",
+      "path": "icon/lock.png",
+      "width": 150,
+      "height": 150,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "icon/cloud.png",
+      "width": 150,
+      "height": 150,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "icon/shield-check.png",
+      "width": 150,
+      "height": 150,
+      "alphaMode": "transparent"
+    },
+    {
+      "group": "F",
+      "path": "icon/key.png",
+      "width": 150,
+      "height": 150,
+      "alphaMode": "transparent"
+    }
+  ]
+}

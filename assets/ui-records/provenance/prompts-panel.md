@@ -174,3 +174,12 @@ Prompt: Create ONE production blank bottom detail sheet UI panel, landscape1179x
 Processing: Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge; normalize corner geometry into required slice caps
 
 SHA256: c37b618edce5943e5552bceb67c4d66ecea5b3595d348b11737fcc7b0850e4d2
+
+## UI v3 / panel/warning-card.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-e4689fd6-7a22-4faa-9f9d-4ec67e600501.png
+
+One completely blank warning-information card for an account closure screen, exact 960x420 wide landscape ratio, transparent outside. Soft cream paper panel with a very subtle dusty-rose tint along the raised edge, rounded corners and contained gentle shadow. Blank quiet interior for app text. No text, icon, logo, lines or symbols. Puffy soft paper-clay material, not alarming, 9-slice safe straight central edges.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF

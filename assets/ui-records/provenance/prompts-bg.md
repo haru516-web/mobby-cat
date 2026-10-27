@@ -340,3 +340,31 @@ Prompt: Image1 is approved STYLE ONLY: soft rounded detailed painted storybook g
 Processing: Lanczos resize to exact dimensions; RGB opaque
 
 SHA256: 6bbbab99348fa2cebe759ede264ff99783e6c7146150592851edb8df63ed8cb7
+
+## UI v3 / bg/room-home.png
+
+Group C. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-e0da14fc-093d-4e7f-8028-1bb90daea87d.png
+
+Use case: stylized-concept, mobile game UI background. Generate new 1179x1900 portrait opaque illustration matching the existing room image (reference image 1), with warm cream, pale green, soft orange palette, rounded storybook forms, flat painted color and gentle upper-left light. Preserve same general room: window and curtains upper left, cozy cream sofa upper center-left, leafy plants, small bookshelf/shelf, cat tower toward upper right. Place all furniture/wall decor in upper 44% only; preserve a broad simple warm orange wooden floor below, almost no floorboard seams below 70%. A soft woven oval rug centered in floor and fully inside both side edges, modest width with visible floor left and right; keep center rug area empty for cat. Entire lower 15% must be completely flat low-contrast floor with no objects or seams. Uppermost 12% gentle uncluttered backdrop; upper-right wall area at 12-30% clear and plain for a UI button. Keep lower-right camera-button area clear. No cats, people, text, signs, labels, photorealism, lens blur, glare, strong shadows, tiny wood grain or fabric fibers. Full bleed edge-to-edge, opaque.
+Redo 1: Edit the provided room illustration. Change ONLY the rug width and the lower floor. Shrink the complete oval rug to about78% of canvas width and center it so a clearly visible strip of orange floor remains at both left and right edges. Preserve the same rug texture and design. Make wooden floor seams below vertical70% almost invisible, blending into a smooth low-contrast warm orange floor through the bottom edge. Preserve all windows, furniture, plants, shelves, colors, positions and style exactly. No new objects, no text, no cats, no photographic effects. Full canvas1179x1900 opaque portrait.
+
+Finishing: Lanczos cover resize, opaque RGB, no EXIF
+
+## UI v3 / bg/room-home-full.png
+
+Group C. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-d0b5ee57-a2c7-4ab6-95b6-d8676b0a5fb4.png
+
+Use case: stylized-concept. Create a full portrait room background 1179x2556. Image1 is room-home style/composition reference only. Preserve cozy painted game-illustration room with arch window and curtains left, cream sofa, bookshelf and greenery in top half; soft oval woven rug centered and fully inside side edges around vertical45-60%, empty rug center for a cat. Orange wooden floor continues seamlessly to the bottom edge. Keep right wall open at 12-30% for a button. The upper area through 62% should retain room scene and furniture; the lower 38% must be a flat, quiet, low-contrast orange floor for two large UI cards and four floating navigation buttons, no seams, objects, shadows, bands or color breaks. Floor is a broad gentle orange plane, lower two thirds simple. Illustrative storybook game background, rounded forms, flat painted colors, soft gradients, moderate detail, no photo, no depth blur, no lens effects, no text, no cats or people, opaque full-bleed.
+
+Finishing: Lanczos cover resize, opaque RGB, no EXIF
+
+## UI v3 / bg/room-deai-full.png
+
+Group C. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-111816d9-1422-4652-868b-f7bdf7c33d67.png
+
+Use case: stylized-concept, full-bleed mobile game background. Portrait1179x2556 opaque illustration extending same cozy room as image reference. Preserve warm illustrated room palette, softly painted shapes, cream/beige wall, pale orange floor, muted sage green accents; no photorealism. Top0-30% is bright gentle low-detail wall for UI heading. 30-62% is calm simple low-contrast wall and floor behind three cat overlays. Lower38% is quiet flat warm orange floor continuing to bottom with no seams, bands, furniture, text or objects. A window with curtain, simple bookcase and one plant may frame far outer sides only in upper 40%, but keep central overlay areas plain. No cats, no people, no letters, no logos. Soft game-storybook illustration with flat colors and gentle gradients, no lens blur, no strong shadow, no fiber texture. Full bleed.
+
+Finishing: Lanczos cover resize, opaque RGB, no EXIF

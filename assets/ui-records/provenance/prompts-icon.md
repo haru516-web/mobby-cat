@@ -260,3 +260,39 @@ Processing: Trim alpha margin and proportionally fit exact canvas without stretc
 
 Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785a2\exec-b1935a97-9061-4f0a-a4b2-80faaa394f9d.png
 
+
+## UI v3 / icon/lock.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-4b279feb-c410-4466-b36f-fd0e85b3a8b5.png
+
+A simplified app settings-row lock icon, 150x150 transparent. Match reference's warm brown body and muted orange-brass shackle, thick clean rounded shape, gentle upper-left highlight, soft restrained shadow. Center one closed padlock with clear keyhole, no extra marks, no text, no background.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / icon/cloud.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-65e6dbc6-312d-4b67-9469-29020c4236a4.png
+
+A simple cloud icon for an account backup settings row, 150x150 transparent. Match existing UI icon line weight, soft filled rounded geometry, warm cream body with a clean brown outline and a small sage-green upward arrow inside. No letters, numbers, text, logos, extra symbols or background. Centered with clear edges and gentle upper-left highlight.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / icon/shield-check.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-c56c7cf7-2a0c-477a-9662-2984f0bbb92d.png
+
+A simple shield-with-check settings icon, 150x150 transparent. Match the existing icon family's rounded 3D paper-clay style, warm brown outlines, pale cream highlights and small sage-green accent. Center one clear rounded shield with a simple dark brown checkmark. No words, letters, numbers, logos, extra objects or background.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / icon/key.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-ca871d9b-1f34-429a-8d27-34e839351d5a.png
+
+A simple account key settings icon, 150x150 transparent. Match the existing icon family's warm chocolate-brown outline and muted brass/orange details, rounded puffy paper-clay style, soft upper-left highlight. One clear old-fashioned key angled gently upward-right, large round bow and two small teeth. No text, letters, numbers, logos, extra objects or background.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF

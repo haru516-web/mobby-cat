@@ -106,3 +106,21 @@ Superseded attempt: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953
 
 Prompt: Generate ONE EMPTY share/watermark.png transparent image frame overlay. Exact final canvas 360x120 aspect360:120. Small translucent paw and cat ear emblem watermark without lettering. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.
 
+
+## UI v3 / share/watermark.png
+
+Group A. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-d699da2e-dace-44be-b5d2-0e3c9253fa9f.png
+
+Create replacement share watermark. Image1 is approved NEW app logo, image2 is old watermark style reference only. Use exact text にゃこモビー, small ゃ and clear ー, same rounded letterforms and paw accent as image1. One compact horizontal logo, target360x120. Muted warm chocolate brown and soft orange, semi-transparent ink (approximately60% opacity), genuinely transparent background. No rectangle, no other words, no extra symbols. Upper-left soft paper highlight, restrained shading, no photograph. All logo elements fit.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 3px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / share/watermark.png
+
+Group A. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-d699da2e-dace-44be-b5d2-0e3c9253fa9f.png
+
+Create replacement share watermark. Image1 is approved NEW app logo, image2 is old watermark style reference only. Use exact text にゃこモビー, small ゃ and clear ー, same rounded letterforms and paw accent as image1. One compact horizontal logo, target360x120. Muted warm chocolate brown and soft orange, semi-transparent ink (approximately60% opacity), genuinely transparent background. No rectangle, no other words, no extra symbols. Upper-left soft paper highlight, restrained shading, no photograph. All logo elements fit.
+
+Finishing: Alpha trim and proportionate fit360x120; multiply generated alpha by0.6 for semitransparent watermark; no EXIF

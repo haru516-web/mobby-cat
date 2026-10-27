@@ -252,3 +252,72 @@ Source: C:\Users\User\.codex\generated_images\01a16dc8-84e9-7e73-953c-375657e785
 Processing: Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance
 
 9slice padding normalization: see stretch-normalization.json. Exactfinal slice values: manifest.json. Original image corners and icon cap patches retained; only stretch bands resized.
+
+## UI v3 / button/login-record-round.png
+
+Group E. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-ab00cb07-4fc5-49e6-956f-339c2ad245fa.png
+
+One round home shortcut button168x168 transparent, same outer diameter, cream face, bevel, fine brown outline, top-left highlight and shadow as reference bell button. Center a simple paper-calendar icon with one orange paw stamp; no lettering or numbers. Puffy paper-cut UI, soft low-contrast shading.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / button/account-round.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-c12c5c52-4ff1-4132-85af-e62f7996afb4.png
+
+One round account shortcut button, 168x168 transparent. Match the reference bell-round button's exact outer diameter, cream face, puffy bevel, fine brown outline, upper-left highlight and compact shadow. Replace the bell with a simple dark warm-brown person bust silhouette with two small cat ears on the head. Centered, bold readable silhouette, no facial features, no text, no other icons.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / button/auth-wide.png
+
+Group F. Built-in image_gen. Generation 1, redo 0.
+Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-7e9b11d2-07aa-4fbf-a7ee-ed8a3a4d12f1.png
+
+One long horizontal auth button background only, exact very wide 960x168 proportion, transparent outside. Soft warm white-to-cream puffy paper button with a clean subtle brown outline, small upper-left highlight, restrained contained lower shadow. Leave the full left third quiet and blank for app-drawn icon and the rest blank for app text. No icon, text, logos, letters, symbols or marks. Rounded ends sized for horizontal nine-slice stretching.
+
+Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / button/auth-wide-pressed.png
+
+Group F. Built-in image_gen. Two successful generations total; one redo. Generation 1 was superseded after visual review. Generation 2 is final.
+
+Generation 1 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-2d6e7a3d-9300-44f6-9290-72498571cf2d.png
+
+Pressed-state partner of a long horizontal auth button background only, exact very wide 960x168 proportion, transparent outside. Same warm white-to-cream paper button shape and outline as reference, visibly pressed in with a slightly deeper inset shading and reduced upper highlight. Leave the full left third quiet and blank for app-drawn icon and the rest blank for app text. No icon, text, logos, letters, symbols or marks. Rounded ends sized for horizontal nine-slice stretching.
+
+Generation 2 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-af16db1d-e1c4-40ec-a1ef-61d66f30c4cb.png
+
+Repaint the pressed state to match the cream-colored auth-wide reference. It must remain a warm white/cream button, not orange or amber: use only pale ivory fill, a slightly deeper taupe inset edge and gentle lowered shading. Same exact long rounded shape, dimensions ratio 960:168, transparent outside. Make the inset pressed appearance subtle, keep the upper left gently highlighted. No orange fill, no text, logo, icon, letters or symbols.
+
+Final finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / button/danger.png
+
+Group F. Built-in image_gen. Two successful generations total; one redo. Generation 1 was superseded after visual review. Generation 2 is final.
+
+Generation 1 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-1a749b14-172a-468e-ba9f-95990c796f26.png
+
+A calm secondary danger-action button background only, exact wide 640x150 shape, transparent outside. Match the reference puffy paper button geometry and gentle upper-left highlight, but use a softened muted red-brown terracotta (not vivid red), brown outline and restrained shadow. Blank surface for app-drawn text. No text, icon, logos, letters or symbols. Rounded ends suitable for horizontal nine-slice.
+
+Generation 2 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-636800a8-710b-48f3-b412-6ae393890578.png
+
+Recolor the reference button as a quiet muted red-brown danger action button, not orange and not bright red. Use dusty terracotta rose brown (#B87461) with a lighter desaturated upper-left highlight and a soft dark cacao edge. Same rounded puffy paper geometry, exact 640:150 wide ratio, transparent outside, blank for app text. No text, icons, logos, letters or symbols. Gentle and non-alarming.
+
+Final finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## UI v3 / button/danger-pressed.png
+
+Group F. Built-in image_gen. Two successful generations total; one redo. Generation 1 was superseded after visual review. Generation 2 is final.
+
+Generation 1 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-75681a5b-7540-43eb-b596-9819e221a2b0.png
+
+Pressed partner for the muted red-brown danger button background, exact wide 640x150 shape, transparent outside. Same soft terracotta hue and puffy paper geometry as reference; make it gently depressed with darker lower edge and reduced top highlight. Blank for app-drawn text. No text, icons, logos, letters or symbols. Rounded ends suitable for horizontal nine-slice.
+
+Generation 2 source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148ed0\exec-2e7834d1-37b4-4a31-9a45-a40ea83148a8.png
+
+Pressed version of the muted dusty red-brown danger button. Use a low-saturation deeper terracotta brown (#A85E51), never vivid orange or red. Same puffy rounded paper geometry and exact 640:150 ratio as reference; gently pressed inward with a subtle inset border and softer upper highlight. Transparent outside, blank surface. No text, logos, icons, letters or symbols; calm and non-alarming.
+
+Final finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF

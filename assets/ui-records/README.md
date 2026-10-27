@@ -93,3 +93,38 @@ All17 passed exact dimensions, PNG, required opacity/transparency, bytes, SHA256
 Only app/assets/ui/** and assets/ui-records/** changed. No app/src, App.tsx, package.json, cat source assets, active-glow or underline changes. Registry integration remains with the requester as instructed; no app/device rendering verification performed.
 Final overview: previews/ui-fixes-final.png. Audit: provenance/ui-fixes-validation.json. Full prompts: manifest.json and provenance/prompts-bg.md, prompts-tabbar.md, prompts-illust.md, prompts-panel.md. Exact generation sources and finishing parameters: provenance/regen-resume.json. Photo-japan rejected/final prompts: provenance/photo-japan-regeneration.json.
 Lint reattempt: Missing script lint. Typecheck reattempt in offline mode: ENOTCACHED, local dependencies unavailable. Neither app check is claimed to pass. Asset audit errors0.
+
+## UI v3 A: app name (2026-10-26)
+Worktree: D:\mobby-cat\.worktrees\ui-v3. Branch: codex/ui-v3. Base313c872.
+Replaced exactly3 images: brand/logo-nekomobby.png760x240; brand/splash.png1179x2556 opaque; share/watermark.png360x120 with alpha capped153 (60%). All read にゃこモビー, small ゃ and long vowel ー visually checked. Same filenames retained. Built-in image_gen3 successful generations, redo0.
+Inspected all169 PNGs (166 UI +3 system) in previews/ui-v3-before-1.png through -6.png. Old app name found in logo-nekomobby and splash only. Watermark previously had paw/ears without words; replaced because explicitly required. discovery-card*, travel-card*, video-intro/outro and other brand/title-* contain no old app name; unchanged. No ambiguous app-name/species-name instances found.
+Prompts: provenance/prompts-brand.md and prompts-share.md; full sources: provenance/ui-v3-jobs.json. New/old comparison: previews/logo-compare.png. Exact dimensions/PNG/alpha/EXIF/SHA256 validated; all166 manifest hashes verified. No app/device rendering or build. B-F pending, tracked in provenance/ui-v3-plan.json. No source code changed.
+
+## UI v3 B: 独立ナビボタン
+Added navbtn/home-off.png, home-on.png, deai-off.png, deai-on.png, zukan-off.png, zukan-on.png, world-off.png, world-on.png (all240x240 RGBA), and glow.png320x320 RGBA. Preview: previews/ui-v3-B.png (4x2 button states plus glow). Eight final buttons; deai face eyes/mouth corrected with1 redo for each state (10 successful generations total counting initial+redo). Glow: two rejected image_gen red-fringe drafts, final smooth procedural radial alpha. Existing tabbar assets retained. All9 exact sizes, alpha, hashes and EXIF checked.
+
+## UI v3 C / C-2: home and encounter backgrounds
+Updated bg/room-home.png1179x1900; one targeted redo (two generations total) shrank rug to leave floor on both sides and softened the lower floor. Added bg/room-home-full.png1179x2556 and bg/room-deai-full.png1179x2556, opaque. The new full home preserves the approved home composition; floor continues through cards/navigation zone with low detail. Encounter full background has quiet upper overlays and floor continuing to bottom. Comparisons: previews/home-compare.png (old/new), home-full-compare.png (the upper74% side by side), deai-full-compare.png (visible62%). Contact sheet: previews/ui-v3-C.png. Four image_gen generations total for C assets, including one home redo. Existing room-deai.png was left unchanged because its top content remains appropriate; added the full-length variant to replace the lower empty page area. Existing bg/screen-zukan, screen-world, screen-shop are2556px high and showed no clear cut-off in inspected contact sheets, so left unchanged. No code changes.
+
+## UI v3 D: opening and app icons
+Added opening/bg.png1179x2556; opening/logo-hero.png1000x420; opening/cats-peek.png1179x700; opening/sparkle.png200x200; opening/paw-trail.png900x160; opening/tap-pill.png560x120; brand/app-icon.png1024x1024; system/android-icon-foreground.png512x512, android-icon-background.png512x512, android-icon-monochrome.png432x432. New preview: previews/ui-v3-D.png. Seven built-in image_gen final assets, no redo; logo-hero is a proportional derivative of the approved brand logo; cats-peek composites five unchanged existing character PNGs; android background is a flat cream fill matching app icon. Foreground and monochrome artwork fit within66% circular safe area. tap-pill slice top0/right60/bottom0/left60. Alpha and opaque rules checked by path; all dimensions, PNG, EXIF and hashes audited. Cat source files unchanged.
+
+## UI v3 E: ログイン記録（月次）
+
+Added 12 assets: `brand/title-login-record.png`; `button/login-record-round.png`; `illust/empty-login.png`; `login/month-frame.png`, `cell-empty.png`, `cell-stamped.png`, `cell-today.png`, `cell-bonus.png`, `stamp-paw.png`, `arrow-prev.png`, `arrow-next.png`, and `month-complete.png`. Monthly frame is 1000x900 with slice top150/right90/bottom90/left90. Four 120x120 calendar cell states share the same clear margin and alignment. Text and dates are left to the app. Preview: `previews/ui-v3-E.png`; four-state comparison: `previews/login-cells-compare.png`.
+
+Twelve final assets used built-in image_gen. The empty-state illustration took three generations total, including two redraws to simplify the fur into a smooth sculpted illustration; total E generation count is 14 with two redos. The final cat keeps the asymmetric eyes, chest controls, and stamp. All dimensions, PNG format, transparency, EXIF and manifest hashes passed the asset audit.
+
+## UI v3 F: アカウント管理
+
+Added 17 assets: `brand/title-account.png`; `button/account-round.png`, `auth-wide.png`, `auth-wide-pressed.png`, `danger.png`, `danger-pressed.png`; `illust/avatar-frame.png`, `account-backup.png`, `account-signedout.png`, `account-goodbye.png`; `panel/warning-card.png`; `badge/linked.png`, `unlinked.png`; and `icon/lock.png`, `cloud.png`, `shield-check.png`, `key.png`.
+
+Four controls use 9-slice: auth buttons slice top0/right84/bottom0/left84; danger buttons top0/right75/bottom0/left75; warning card 60px on each edge; status badges top21/right42/bottom21/left42. Avatar frame has a verified alpha-zero circular center. No provider logos or text are baked into controls. The goodbye cat is calm and gentle.
+
+Seventeen final assets used built-in image_gen. Five assets were redrawn once after review (avatar-frame transparency, auth pressed color, both danger-button colors, and the unlinked badge color), for 22 generations total and five redos. Preview: `previews/ui-v3-F.png`. All file dimensions, transparency, PNG format, EXIF and manifest hashes passed the asset audit.
+
+## UI v3 最終集計
+
+Manifest totals: 211 UI assets and 3 system icons. Category counts: badge 11, bg 19, brand 17, button 29, camera 20, cat 3, gauge 5, icon 28, illust 18, login 9, navbtn 9, opening 6, panel 16, share 10, tabbar 11. The UI v3 audit covers all 54 planned paths with zero pending assets and zero metadata/hash errors.
+
+Registry generated with `tools/build-ui-registry.ps1`: 211 entries, 53 sliced assets. It updated only generated `app/src/ui/uiAssets.ts`; no app build was run. The complete added/modified path inventory is `provenance/ui-v3-files.md`.

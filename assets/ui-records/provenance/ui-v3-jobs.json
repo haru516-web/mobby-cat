@@ -1,0 +1,1054 @@
+[
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-a7a9b5e1-3a42-45cb-993a-852a3a918eb6.png",
+    "path": "brand/logo-nekomobby.png",
+    "size": [
+      760,
+      240
+    ],
+    "prompt": "Edit target is the provided old logo. Redraw the app logo with the EXACT Japanese text にゃこモビー . Characters in order に / ゃ (small hiragana ya) / こ / モ / ビ / ー. Replace old ねこ with にゃこ. Keep the same puffy rounded paper-cut lettering, dark chocolate brown hiragana, orange katakana, tiny paw accent, small cat ears integrated in first hiragana. Single horizontal wordmark, no other text, no background, no enclosing badge, upper-left light, soft shading not photographic. Entire logo fits canvas target aspect 760:240 with minimal padding. Ensure the small ゃ is unambiguously legible and long vowel ー is present. Transparent background.",
+    "group": "A",
+    "margin": 3,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 3px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-824b4aca-f7f4-438e-b3ea-18c7c292dd3c.png",
+    "path": "brand/splash.png",
+    "size": [
+      1179,
+      2556
+    ],
+    "prompt": "Edit target image1 is old splash. Image2 is approved NEW logo. Replace ONLY the old ねこモビー wordmark with image2's exact にゃこモビー wordmark, keeping its small ゃ. Cream #FFF8F0 full opaque background, portrait1179x2556 aspect. Logo centered horizontally and vertically, approximately85% canvas width. Preserve brown hiragana and orange katakana and paw. No other elements, no text except にゃこモビー, no vignette, flat warm cream background, soft paper illustration.",
+    "group": "A",
+    "mode": "opaque",
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-d699da2e-dace-44be-b5d2-0e3c9253fa9f.png",
+    "path": "share/watermark.png",
+    "size": [
+      360,
+      120
+    ],
+    "prompt": "Create replacement share watermark. Image1 is approved NEW app logo, image2 is old watermark style reference only. Use exact text にゃこモビー, small ゃ and clear ー, same rounded letterforms and paw accent as image1. One compact horizontal logo, target360x120. Muted warm chocolate brown and soft orange, semi-transparent ink (approximately60% opacity), genuinely transparent background. No rectangle, no other words, no extra symbols. Upper-left soft paper highlight, restrained shading, no photograph. All logo elements fit.",
+    "group": "A",
+    "margin": 3,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 3px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-d699da2e-dace-44be-b5d2-0e3c9253fa9f.png",
+    "path": "share/watermark.png",
+    "size": [
+      360,
+      120
+    ],
+    "prompt": "Create replacement share watermark. Image1 is approved NEW app logo, image2 is old watermark style reference only. Use exact text にゃこモビー, small ゃ and clear ー, same rounded letterforms and paw accent as image1. One compact horizontal logo, target360x120. Muted warm chocolate brown and soft orange, semi-transparent ink (approximately60% opacity), genuinely transparent background. No rectangle, no other words, no extra symbols. Upper-left soft paper highlight, restrained shading, no photograph. All logo elements fit.",
+    "group": "A",
+    "margin": 3,
+    "processing": "Alpha trim and proportionate fit360x120; multiply generated alpha by0.6 for semitransparent watermark; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-6d8f3009-1be6-4915-9396-131f70f0e739.png",
+    "path": "navbtn/home-off.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Create ONE independent navigation button HOME off state, final240x240. Reference image is existing round button style. Use a rounded SQUIRCLE button, warm cream ivory face, medium warm taupe-brown outline, narrow upper-left ivory highlight and soft downward shadow entirely inside canvas, minimal clearance only shadow. Center one simple HOUSE icon in brown-gray, no labels. Puffy layered paper-cut game UI, gently dimensional, matte simplified shading, not photo, no real fibers. Entire button silhouette approx224x224 centered with8px shadow clearance. This is one standalone button, no bar, no connecting ornament, no surrounding objects, transparent background, no text letters numbers.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-554affd1-c221-40c6-83a6-5089f2c17206.png",
+    "path": "navbtn/home-on.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit reference image into ONE standalone HOME navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with HOUSE, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-fa729fb0-d124-4501-b60b-86a4bd68aa12.png",
+    "path": "navbtn/deai-off.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit reference image into ONE standalone DEAI navigation button off state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with CAT FACE silhouette with two small ears and tiny nose, centered at same visual size as original house. Keep cream ivory button face; icon is warm brown-gray. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-cc451cdf-d837-45ba-a6e1-2e682a08b86b.png",
+    "path": "navbtn/deai-on.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit reference image into ONE standalone DEAI navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with CAT FACE silhouette with two small ears and tiny nose, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-0c0295ba-d194-4243-ba85-d4d9f6466a3d.png",
+    "path": "navbtn/zukan-off.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit reference image into ONE standalone ZUKAN navigation button off state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with OPEN BOOK, centered at same visual size as original house. Keep cream ivory button face; icon is warm brown-gray. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-d42c31a7-63f7-42a9-9cc5-c6bb1a9a2a03.png",
+    "path": "navbtn/zukan-on.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit reference image into ONE standalone ZUKAN navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with OPEN BOOK, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-b9b1cb76-14f7-4832-b33f-51eda222faaf.png",
+    "path": "navbtn/world-off.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit reference image into ONE standalone WORLD navigation button off state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with GLOBE with clear continents and simple longitude latitude, centered at same visual size as original house. Keep cream ivory button face; icon is warm brown-gray. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-b6b23ac2-109e-438c-8a5d-0080fe38bf9c.png",
+    "path": "navbtn/world-on.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit reference image into ONE standalone WORLD navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with GLOBE with clear continents and simple longitude latitude, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+    "group": "B",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-e0da14fc-093d-4e7f-8028-1bb90daea87d.png",
+    "path": "bg/room-home.png",
+    "size": [
+      1179,
+      1900
+    ],
+    "mode": "opaque",
+    "group": "C",
+    "prompt": "Use case: stylized-concept, mobile game UI background. Generate new 1179x1900 portrait opaque illustration matching the existing room image (reference image 1), with warm cream, pale green, soft orange palette, rounded storybook forms, flat painted color and gentle upper-left light. Preserve same general room: window and curtains upper left, cozy cream sofa upper center-left, leafy plants, small bookshelf/shelf, cat tower toward upper right. Place all furniture/wall decor in upper 44% only; preserve a broad simple warm orange wooden floor below, almost no floorboard seams below 70%. A soft woven oval rug centered in floor and fully inside both side edges, modest width with visible floor left and right; keep center rug area empty for cat. Entire lower 15% must be completely flat low-contrast floor with no objects or seams. Uppermost 12% gentle uncluttered backdrop; upper-right wall area at 12-30% clear and plain for a UI button. Keep lower-right camera-button area clear. No cats, people, text, signs, labels, photorealism, lens blur, glare, strong shadows, tiny wood grain or fabric fibers. Full bleed edge-to-edge, opaque.\nRedo 1: Edit the provided room illustration. Change ONLY the rug width and the lower floor. Shrink the complete oval rug to about78% of canvas width and center it so a clearly visible strip of orange floor remains at both left and right edges. Preserve the same rug texture and design. Make wooden floor seams below vertical70% almost invisible, blending into a smooth low-contrast warm orange floor through the bottom edge. Preserve all windows, furniture, plants, shelves, colors, positions and style exactly. No new objects, no text, no cats, no photographic effects. Full canvas1179x1900 opaque portrait.",
+    "generation": 1,
+    "redoCount": 1,
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-78daa508-ef50-4882-8392-82a7419a393a.png",
+    "path": "navbtn/deai-off.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Edit only the center cat face icon in the cream standalone squircle button. Keep button shape, outer brown border, highlight, shadow and size exactly. Make the icon an unmistakable simple brown cat face with TWO small round cream eyes, a small cream inverted-triangle nose and short curved cream mouth whisker lines, and two pointed ears, all centered, no body. Face silhouette remains warm chocolate brown. Same flat front-on puffy paper-cut style. Preserve transparent surroundings. No text.",
+    "group": "B",
+    "margin": 6,
+    "redoCount": 1,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-d0b5ee57-a2c7-4ab6-95b6-d8676b0a5fb4.png",
+    "path": "bg/room-home-full.png",
+    "size": [
+      1179,
+      2556
+    ],
+    "mode": "opaque",
+    "prompt": "Use case: stylized-concept. Create a full portrait room background 1179x2556. Image1 is room-home style/composition reference only. Preserve cozy painted game-illustration room with arch window and curtains left, cream sofa, bookshelf and greenery in top half; soft oval woven rug centered and fully inside side edges around vertical45-60%, empty rug center for a cat. Orange wooden floor continues seamlessly to the bottom edge. Keep right wall open at 12-30% for a button. The upper area through 62% should retain room scene and furniture; the lower 38% must be a flat, quiet, low-contrast orange floor for two large UI cards and four floating navigation buttons, no seams, objects, shadows, bands or color breaks. Floor is a broad gentle orange plane, lower two thirds simple. Illustrative storybook game background, rounded forms, flat painted colors, soft gradients, moderate detail, no photo, no depth blur, no lens effects, no text, no cats or people, opaque full-bleed.",
+    "group": "C",
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-111816d9-1422-4652-868b-f7bdf7c33d67.png",
+    "path": "bg/room-deai-full.png",
+    "size": [
+      1179,
+      2556
+    ],
+    "mode": "opaque",
+    "prompt": "Use case: stylized-concept, full-bleed mobile game background. Portrait1179x2556 opaque illustration extending same cozy room as image reference. Preserve warm illustrated room palette, softly painted shapes, cream/beige wall, pale orange floor, muted sage green accents; no photorealism. Top0-30% is bright gentle low-detail wall for UI heading. 30-62% is calm simple low-contrast wall and floor behind three cat overlays. Lower38% is quiet flat warm orange floor continuing to bottom with no seams, bands, furniture, text or objects. A window with curtain, simple bookcase and one plant may frame far outer sides only in upper 40%, but keep central overlay areas plain. No cats, no people, no letters, no logos. Soft game-storybook illustration with flat colors and gentle gradients, no lens blur, no strong shadow, no fiber texture. Full bleed.",
+    "group": "C",
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-56328431-e3ef-44f3-beb3-2bb15a469393.png",
+    "path": "navbtn/deai-on.png",
+    "size": [
+      240,
+      240
+    ],
+    "prompt": "Refine the selected-state image into a single navigation DEAI button. Preserve exact cream transparent canvas, squircle shape, brown outline, highlight and shadow. Keep orange center face, but use a dark chocolate cat-face silhouette in the center, same size and position as cream face in the reference. Add two small warm ivory circular eyes, small ivory triangular nose and short curved ivory mouth. Two pointed ears. Match the companion off-state reference's cat face silhouette and face layout while preserving selected orange face. No extra icons or text, transparent outside. 240x240.",
+    "group": "B",
+    "margin": 6,
+    "redoCount": 1,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "path": "navbtn/glow.png",
+    "prompt": "Create a soft radial amber glow behind a selected navigation button, 320x320, fully transparent at edges. Two built-in image_gen attempts produced a visible red fringe and were rejected. Final produced as a controlled procedural radial alpha gradient: pale peach center, warm orange middle, smooth falloff to transparent; no border or noise.",
+    "group": "B",
+    "source": "procedural radial alpha gradient after 2 image_gen drafts rejected for red fringe",
+    "slice": null,
+    "processing": "Deterministic radial RGBA gradient, 320x320; smooth alpha falloff to transparent edges; no EXIF",
+    "generation": 2,
+    "redoCount": 0,
+    "attempts": [
+      "image_gen draft rejected: red fringe",
+      "image_gen refinement rejected: red fringe",
+      "procedural smooth RGBA radial gradient adopted"
+    ]
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-2d324a57-0ff9-45c8-9a42-366301bff1d5.png",
+    "path": "opening/bg.png",
+    "size": [
+      1179,
+      2556
+    ],
+    "mode": "opaque",
+    "prompt": "Portrait1179x2556 opaque mobile game opening background: gentle dawn bedroom, pastel cream-peach sky and warm sun through stylized window, smooth wall and warm orange floor, flat illustrated storybook shapes, central and upper60% calm low contrast for logo overlay, curtains and faint room silhouette only at far sides, lower area warm floor glow, no cats people words logo icons, no photography blur or strong shadows. Full bleed.",
+    "group": "D",
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+    "generation": 1
+  },
+  {
+    "path": "opening/cats-peek.png",
+    "prompt": "Opening peek composite using exact unchanged files assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue. Each original is cropped to upper head/shoulder and composited along lower canvas edge; faces peek up from bottom. No character repaint or source modification.",
+    "group": "D",
+    "source": "assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue",
+    "method": "exact composite of existing character images",
+    "processing": "Crop upper head/shoulders from the five original character PNGs, proportional Lanczos resize, alpha composite on1179x700 transparent canvas; source files byte-unchanged; no EXIF",
+    "generation": 1
+  },
+  {
+    "path": "opening/cats-peek.png",
+    "prompt": "Opening peek composite from unchanged assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue. Full upper original head/ears plus chest-top crop from canvas y0..900, arranged along bottom edge; five faces peek upward. Exact originals, no repaint.",
+    "group": "D",
+    "source": "assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue",
+    "method": "exact composite of existing character images",
+    "processing": "Rows0-900 preserve full ears; alpha composited five originals",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-3b3129ec-d317-4468-912f-6fcfc4bc8e7a.png",
+    "path": "brand/app-icon.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "mode": "opaque",
+    "prompt": "Square1024 opaque cream app icon with centered British shorthair Cat Mobby, gray round ears, amber normal eye at viewer-left, black camera lens viewer-right, small nose, cross D-pad viewer-left chest and exactly two round buttons viewer-right. Soft illustrated storybook game icon, clean background, no text, no rounded outer corners.",
+    "group": "D",
+    "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+    "generation": 1
+  },
+  {
+    "path": "opening/logo-hero.png",
+    "prompt": "Exact derivative of app/assets/ui/brand/logo-nekomobby.png, preserving the approved Japanese wordmark にゃこモビー, its letterforms and colors. Proportionally resized and centered on transparent1000x420 canvas.",
+    "group": "D",
+    "source": "app/assets/ui/brand/logo-nekomobby.png",
+    "method": "derived resized wordmark",
+    "processing": "Proportional Lanczos resize to940x297 max and center on1000x420 transparent canvas; no regeneration or lettering change",
+    "generation": 1
+  },
+  {
+    "path": "system/android-icon-background.png",
+    "prompt": "Solid opaque warm cream #FFF8F0 adaptive icon background matching the app-icon background.",
+    "group": "D",
+    "source": "brand/app-icon.png background color",
+    "method": "procedural flat color",
+    "processing": "Flat RGB #FFF8F0 fill to512x512, opaque, no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-f833d724-d32c-44a3-ba9c-42286e8b0e35.png",
+    "path": "system/android-icon-foreground.png",
+    "size": [
+      512,
+      512
+    ],
+    "prompt": "Android adaptive icon foreground. Target512x512 genuinely transparent. Same British shorthair Cat Mobby identity as reference: gray round ears face with viewer-left amber biological eye, viewer-right black camera lens. Show full head, face and small visible upper chest with black cross D-pad at chest viewer-left and exactly two round buttons at chest viewer-right. Cute illustrated soft game icon. Center the whole cat within a strict 66% diameter circular safe area (content no wider or taller than330px), generous transparent margin, no background, no text, no badge, no framing, no photo, no shadow outside safe area.",
+    "group": "D",
+    "margin": 92,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 92px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-d52ea021-ba09-4e03-af45-a22c42e60a5f.png",
+    "path": "system/android-icon-monochrome.png",
+    "size": [
+      432,
+      432
+    ],
+    "prompt": "Android monochrome adaptive icon foreground, 432x432 transparent. Create a clean single-color warm-brown solid silhouette of Cat Mobby head and upper torso. Include two ears, one circular camera-lens eye shape distinguishable by an outer ring cutout, one ordinary round eye, and chest cross-D-pad plus exactly two circle buttons. One flat solid monochrome color only, no gradients or shading, no background, no words. Center all artwork within a 66% circular safe area with ample transparent margin. Avoid details too small to read.",
+    "group": "D",
+    "margin": 74,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 74px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c1538a8c-af0c-404f-a3b2-15d0c72c7144.png",
+    "path": "opening/paw-trail.png",
+    "size": [
+      900,
+      160
+    ],
+    "prompt": "One horizontal transparent orange paw-print trail for mobile game intro, pale soft orange 8-10 spaced paw stamps, centered, clean alpha edges.",
+    "group": "D",
+    "rotate": 15,
+    "margin": 5,
+    "processing": "Alpha>8 trim; rotate15deg, proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-7620b06a-0a1e-46ab-b67d-09e5203f8045.png",
+    "path": "opening/sparkle.png",
+    "size": [
+      200,
+      200
+    ],
+    "prompt": "One isolated warm ivory-orange rounded four-point sparkle with subtle glow, centered on transparent background, no text or other items.",
+    "group": "D",
+    "margin": 5,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-a3d1a1a1-5eae-4e68-ad37-52e196994524.png",
+    "path": "opening/tap-pill.png",
+    "size": [
+      560,
+      120
+    ],
+    "prompt": "Blank horizontal cream capsule button, warm brown outline and orange inset accent, soft highlight/shadow, transparent background, no text or icon.",
+    "group": "D",
+    "margin": 4,
+    "slice": {
+      "top": 0,
+      "right": 60,
+      "bottom": 0,
+      "left": 60
+    },
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c1538a8c-af0c-404f-a3b2-15d0c72c7144.png",
+    "path": "opening/paw-trail.png",
+    "size": [
+      900,
+      160
+    ],
+    "prompt": "Horizontal orange paw-print trail, transformed from the generated upward trail by rotating -15 degrees to align along the horizontal axis. Warm pale orange, 8 evenly spaced prints, transparent background.",
+    "group": "D",
+    "rotate": -15,
+    "margin": 5,
+    "processing": "Alpha>8 trim; rotate-15deg, proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-3ec661ec-0df4-4419-bb7b-aa86943965e7.png",
+    "path": "login/cell-empty.png",
+    "size": [
+      120,
+      120
+    ],
+    "prompt": "Single calendar day cell tile120x120 transparent. Match reference tile's exact square rounded corners and inset geometry. Very pale warm cream paper, shallow subtle recessed center, thin taupe edge and tiny soft shadow. Absolutely no stamp, text, numerals, lines or decorations. Center identical to the other state variants.",
+    "group": "E",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-ab00cb07-4fc5-49e6-956f-339c2ad245fa.png",
+    "path": "button/login-record-round.png",
+    "size": [
+      168,
+      168
+    ],
+    "prompt": "One round home shortcut button168x168 transparent, same outer diameter, cream face, bevel, fine brown outline, top-left highlight and shadow as reference bell button. Center a simple paper-calendar icon with one orange paw stamp; no lettering or numbers. Puffy paper-cut UI, soft low-contrast shading.",
+    "group": "E",
+    "margin": 5,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-5f0d8362-8372-4131-8d52-033dbb04ee42.png",
+    "path": "login/cell-stamped.png",
+    "size": [
+      120,
+      120
+    ],
+    "prompt": "Single calendar day cell tile120x120 transparent. Match reference tile's exact square rounded corners and geometry. Pale warm cream paper, shallow inset. Add one muted orange-brown paw-print rubber stamp centered at y70% (slightly below center), leaving upper center clear for app-drawn date. No text, no numbers. Same dimensions, scale, corner radius and transparent margins as empty/today/bonus variants.",
+    "group": "E",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-b90c18f5-f438-4f7d-bfbd-5b5c24309340.png",
+    "path": "login/month-complete.png",
+    "size": [
+      480,
+      480
+    ],
+    "prompt": "One celebratory monthly calendar completion badge480x480 transparent: golden flower seal and soft ribbon around a warm paw-print stamp, puffy paper-cut game illustration, gold and cream, no lettering, no number, no calendar grid. Centered, gentle upper-left light, clean alpha.",
+    "group": "E",
+    "margin": 8,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 8px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c0d42bb4-5754-4798-bf44-a441f8d17868.png",
+    "path": "brand/title-login-record.png",
+    "size": [
+      640,
+      110
+    ],
+    "prompt": "Edit the reference Japanese title treatment to read exactly「ログイン記録」(ログイン記録, six Japanese characters). Keep the same bold rounded dark-brown raised lettering, same baseline and scale, small orange paw accent at right, transparent background. Text only, no calendar icon, no extra symbols. Ensure kanji 記録 are exact and legible.",
+    "group": "E",
+    "margin": 5,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-00d81c62-fad6-4f06-bedf-b6f9594766bc.png",
+    "path": "login/cell-today.png",
+    "size": [
+      120,
+      120
+    ],
+    "prompt": "Single calendar day cell tile120x120 transparent. Match reference tile's exact square rounded geometry. Pale cream paper inset with a clean puffy orange outline around the outer perimeter, warm orange accent. No paw stamp, no text, no date. Same dimensions, scale, position and clear margins as companion cell variants.",
+    "group": "E",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-03400f95-ab63-47c1-af3d-dd21ccdb0bdf.png",
+    "path": "login/stamp-paw.png",
+    "size": [
+      160,
+      160
+    ],
+    "prompt": "Single warm vermilion-orange paw rubber stamp mark on transparent background. One large central pad and four toe pads, slightly imperfect ink edge with gentle stamp bleed, centered, no circle outline, no text, no extra objects. Soft paper-game UI style.",
+    "group": "E",
+    "margin": 5,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-7608b061-5819-4b51-b5d7-b72c28de6249.png",
+    "path": "illust/empty-login.png",
+    "size": [
+      600,
+      450
+    ],
+    "prompt": "Friendly Cat Mobby character gently holding a small paw-print stamp, calm hopeful expression, for an empty login calendar state. Match the exact Bengal character identity reference: tawny rosette fur, normal green viewer-left eye and camera lens viewer-right, chest cross D-pad left and exactly two round buttons right. Seated at small scale, paws visible, transparent background, tiny soft contact shadow, no text, no calendar, no other objects.",
+    "group": "E",
+    "margin": 8,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 8px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "status": "superseded"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-8dd1c195-570b-435d-b78d-c6f3f2639996.png",
+    "path": "login/cell-bonus.png",
+    "size": [
+      120,
+      120
+    ],
+    "prompt": "Single calendar day cell tile120x120 transparent. Same square rounded geometry and pale cream inset as reference tile. A modest golden edge accent and one gold paw-print reward stamp centered at y70%, leaving upper center clear for app-drawn date. No text or numbers. Same size, corner radius and margins as other cell variants.",
+    "group": "E",
+    "margin": 6,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c79544c7-f494-41ec-9281-b794c9798067.png",
+    "path": "login/arrow-prev.png",
+    "size": [
+      96,
+      96
+    ],
+    "prompt": "One soft circular month navigation button96x96 transparent, warm cream round base with fine brown outline, gentle highlight and subtle shadow, centered single dark chocolate left-pointing chevron. No text, no other symbols. Same size and lighting as forward companion.",
+    "group": "E",
+    "margin": 5,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c18cc6bd-160c-49a7-b533-3cedcf6b02c2.png",
+    "path": "login/month-frame.png",
+    "size": [
+      1000,
+      900
+    ],
+    "prompt": "Blank monthly calendar frame1000x900 transparent, production UI nine-slice panel. Puffy warm cream paper panel, subtle taupe outline and soft downward shadow fully within8px margins. A shallow ornamental header band across top where the app draws month text; no date grid, no numerals, no words. Keep all corners uniform rounded radius ~90 and edges clean, broad flat side rails; interior empty. Front view, matches reference card paper material.",
+    "group": "E",
+    "margin": 6,
+    "slice": {
+      "top": 150,
+      "right": 90,
+      "bottom": 90,
+      "left": 90
+    },
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-1241a173-0972-403c-87b8-468cb45a96ef.png",
+    "path": "login/arrow-next.png",
+    "size": [
+      96,
+      96
+    ],
+    "prompt": "One soft circular month navigation button96x96 transparent, warm cream round base with fine brown outline, gentle highlight and subtle shadow, centered single dark chocolate right-pointing chevron. No text, no other symbols. Same size and lighting as previous companion.",
+    "group": "E",
+    "margin": 5,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-e4bec85a-f8ec-4ea9-9790-480418ff2698.png",
+    "path": "illust/empty-login.png",
+    "size": [
+      600,
+      450
+    ],
+    "prompt": "Repaint the first reference as an app illustration for the empty monthly login-record state. Preserve its seated Bengal cat mascot, asymmetric green eye and camera-lens eye, chest directional pad and two round buttons, and the raised paw holding a small round paw stamp. Keep the same warm cream, orange and dark-brown palette, transparent background, centered full-body composition, and expressive friendly face. Match the existing UI illustration references: rounded handmade paper-clay toy shapes, smooth matte colored surfaces, broad soft upper-left highlights, restrained soft grounding shadow, clean soft outline. Make the fur read as simple stylized sculpted patches; remove fine individual hairs, sharp photoreal fur strands, photographic texture, lens blur, metallic glare, and dramatic contrast. No text, no extra props, no border. Deliver one polished transparent PNG-style illustration.",
+    "group": "E",
+    "generation": 2,
+    "redoCount": 1,
+    "status": "superseded",
+    "method": "built-in image_gen",
+    "reference": "app/assets/ui/illust/empty-login.png; app/assets/ui/illust/empty-history.png; app/assets/ui/illust/empty-notice.png"
+  },
+  {
+    "path": "illust/empty-login.png",
+    "redoCount": 2,
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-5ed6b126-b22b-4165-82e8-4226adf1c9d6.png",
+    "generationCount": 3,
+    "prompt": "Transform this mascot into a clearly illustrated, hand-shaped paper-clay character for a soft Japanese mobile game UI. Preserve the seated pose, Bengal spots, green normal eye, camera-lens eye, chest directional pad and two buttons, and raised paw holding a paw stamp. Strongly simplify the fur into smooth matte sculpted color patches: absolutely no strands, fuzz, pores, photographic detail, or realistic animal fur. Use broad rounded shapes, tidy contours, gentle top-left highlight, warm cream and orange palette, soft restrained outline and contact shadow. It should read immediately as a polished cartoon sculpture illustration, not a photograph or photoreal render. Transparent background. No checkerboard pattern, no text, no new props. Centered full body. Do not alter the character's identifying controls.",
+    "group": "E",
+    "size": [
+      600,
+      450
+    ],
+    "margin": 4,
+    "sourceFile": "generated image",
+    "method": "built-in image_gen",
+    "reference": "app/assets/ui/illust/empty-login.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 3,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-9a94b0f1-98e2-44d9-b0b7-c928af0cfa1d.png",
+    "path": "illust/avatar-frame.png",
+    "size": [
+      360,
+      360
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A circular profile-picture frame, transparent 360x360 PNG. Puffy cream paper-clay circular rim, smooth raised warm-brown outer edge, one small orange paw ornament attached at the bottom. IMPORTANT: the entire circular center is a true transparent hole with alpha zero, showing no cream fill, no gray checker pattern, no placeholder image. Frame only, centered, shadow contained within canvas, restrained upper-left light, no text.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-9a94b0f1-98e2-44d9-b0b7-c928af0cfa1d.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 2,
+    "status": "superseded"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-f8ed0c96-9c63-405f-91f5-5872ec89023b.png",
+    "path": "brand/title-account.png",
+    "size": [
+      640,
+      110
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Edit the reference brand heading in the same exact puffy rounded Japanese lettering style and proportions. The only text must read exactly 「アカウント」. Preserve dark chocolate brown plus restrained orange accent, soft upper-left highlight, small paw accent at the end, clean transparent background. Ensure every character is present and correctly legible. No extra decoration or words.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-f8ed0c96-9c63-405f-91f5-5872ec89023b.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c12c5c52-4ff1-4132-85af-e62f7996afb4.png",
+    "path": "button/account-round.png",
+    "size": [
+      168,
+      168
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "One round account shortcut button, 168x168 transparent. Match the reference bell-round button's exact outer diameter, cream face, puffy bevel, fine brown outline, upper-left highlight and compact shadow. Replace the bell with a simple dark warm-brown person bust silhouette with two small cat ears on the head. Centered, bold readable silhouette, no facial features, no text, no other icons.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c12c5c52-4ff1-4132-85af-e62f7996afb4.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-ab7230eb-eb52-4c93-9e29-3e56f6cd9c51.png",
+    "path": "illust/account-backup.png",
+    "size": [
+      600,
+      450
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A warm, clean empty-background app illustration for account backup and data transfer: the same Bengal Cat Mobby mascot from the references gently hugging a large soft cream cloud with a few small blank file tiles tucked inside. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. Friendly helpful expression, no text, letters, numbers, logos or extra objects. Transparent background, full composition centered, soft upper-left highlight and tiny grounding shadow.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-ab7230eb-eb52-4c93-9e29-3e56f6cd9c51.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-10e80a5f-9366-4f68-baac-eaab8bbdcb4d.png",
+    "path": "illust/account-signedout.png",
+    "size": [
+      600,
+      450
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A warm, clean empty-background app illustration of the same Bengal Cat Mobby mascot from the references after signing out: seated, gently waving one front paw goodbye with a calm reassuring smile. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. No text, letters, numbers, logos, stamp or extra objects. Transparent background, full figure centered, soft upper-left light and restrained contact shadow.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-10e80a5f-9366-4f68-baac-eaab8bbdcb4d.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-762810b2-b57d-47c5-9cf8-5d22c9e133af.png",
+    "path": "illust/account-goodbye.png",
+    "size": [
+      600,
+      450
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A warm, gentle account-closure confirmation illustration of the same Bengal Cat Mobby mascot from the references. Seated with a slightly wistful but kind expression, shoulders relaxed and paws resting naturally; never fearful, guilty, crying, pleading, or blaming. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep green normal eye viewer-left, camera-lens eye viewer-right, chest directional pad viewer-left and exactly two round buttons viewer-right. No text, logos, warning marks, or extra objects. Transparent background, centered full character, calm upper-left lighting and soft tiny contact shadow.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-762810b2-b57d-47c5-9cf8-5d22c9e133af.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-7e9b11d2-07aa-4fbf-a7ee-ed8a3a4d12f1.png",
+    "path": "button/auth-wide.png",
+    "size": [
+      960,
+      168
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "One long horizontal auth button background only, exact very wide 960x168 proportion, transparent outside. Soft warm white-to-cream puffy paper button with a clean subtle brown outline, small upper-left highlight, restrained contained lower shadow. Leave the full left third quiet and blank for app-drawn icon and the rest blank for app text. No icon, text, logos, letters, symbols or marks. Rounded ends sized for horizontal nine-slice stretching.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 0,
+      "right": 84,
+      "bottom": 0,
+      "left": 84
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-7e9b11d2-07aa-4fbf-a7ee-ed8a3a4d12f1.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-2d6e7a3d-9300-44f6-9290-72498571cf2d.png",
+    "path": "button/auth-wide-pressed.png",
+    "size": [
+      960,
+      168
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Pressed-state partner of a long horizontal auth button background only, exact very wide 960x168 proportion, transparent outside. Same warm white-to-cream paper button shape and outline as reference, visibly pressed in with a slightly deeper inset shading and reduced upper highlight. Leave the full left third quiet and blank for app-drawn icon and the rest blank for app text. No icon, text, logos, letters, symbols or marks. Rounded ends sized for horizontal nine-slice stretching.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 0,
+      "right": 84,
+      "bottom": 0,
+      "left": 84
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-2d6e7a3d-9300-44f6-9290-72498571cf2d.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 2,
+    "status": "superseded"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-1a749b14-172a-468e-ba9f-95990c796f26.png",
+    "path": "button/danger.png",
+    "size": [
+      640,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A calm secondary danger-action button background only, exact wide 640x150 shape, transparent outside. Match the reference puffy paper button geometry and gentle upper-left highlight, but use a softened muted red-brown terracotta (not vivid red), brown outline and restrained shadow. Blank surface for app-drawn text. No text, icon, logos, letters or symbols. Rounded ends suitable for horizontal nine-slice.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 0,
+      "right": 75,
+      "bottom": 0,
+      "left": 75
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-1a749b14-172a-468e-ba9f-95990c796f26.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 2,
+    "status": "superseded"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-75681a5b-7540-43eb-b596-9819e221a2b0.png",
+    "path": "button/danger-pressed.png",
+    "size": [
+      640,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Pressed partner for the muted red-brown danger button background, exact wide 640x150 shape, transparent outside. Same soft terracotta hue and puffy paper geometry as reference; make it gently depressed with darker lower edge and reduced top highlight. Blank for app-drawn text. No text, icons, logos, letters or symbols. Rounded ends suitable for horizontal nine-slice.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 0,
+      "right": 75,
+      "bottom": 0,
+      "left": 75
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-75681a5b-7540-43eb-b596-9819e221a2b0.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 2,
+    "status": "superseded"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-cdd59f64-7690-4e87-87a0-6b0541fb3641.png",
+    "path": "illust/avatar-frame.png",
+    "size": [
+      360,
+      360
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Edit this exact circular avatar frame. Preserve its circular cream and warm-brown puffy rim and the orange paw ornament overlapping the bottom edge. REMOVE the dark cat/person silhouette and REMOVE the cream disk inside the rim. Cut a completely open circular hole through the middle; the entire central aperture must have transparent alpha zero so a user photo can show through. The inside and outside of the ring are both transparent. No avatar, no silhouette, no checker pattern, no fill in the hole, no text. Keep the existing frame and paw only.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-cdd59f64-7690-4e87-87a0-6b0541fb3641.png",
+    "redo": true,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 2,
+    "redoCount": 1,
+    "generationCount": 2,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-af16db1d-e1c4-40ec-a1ef-61d66f30c4cb.png",
+    "path": "button/auth-wide-pressed.png",
+    "size": [
+      960,
+      168
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Repaint the pressed state to match the cream-colored auth-wide reference. It must remain a warm white/cream button, not orange or amber: use only pale ivory fill, a slightly deeper taupe inset edge and gentle lowered shading. Same exact long rounded shape, dimensions ratio 960:168, transparent outside. Make the inset pressed appearance subtle, keep the upper left gently highlighted. No orange fill, no text, logo, icon, letters or symbols.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 0,
+      "right": 84,
+      "bottom": 0,
+      "left": 84
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-af16db1d-e1c4-40ec-a1ef-61d66f30c4cb.png",
+    "redo": true,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 2,
+    "redoCount": 1,
+    "generationCount": 2,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-636800a8-710b-48f3-b412-6ae393890578.png",
+    "path": "button/danger.png",
+    "size": [
+      640,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Recolor the reference button as a quiet muted red-brown danger action button, not orange and not bright red. Use dusty terracotta rose brown (#B87461) with a lighter desaturated upper-left highlight and a soft dark cacao edge. Same rounded puffy paper geometry, exact 640:150 wide ratio, transparent outside, blank for app text. No text, icons, logos, letters or symbols. Gentle and non-alarming.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 0,
+      "right": 75,
+      "bottom": 0,
+      "left": 75
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-636800a8-710b-48f3-b412-6ae393890578.png",
+    "redo": true,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 2,
+    "redoCount": 1,
+    "generationCount": 2,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-2e7834d1-37b4-4a31-9a45-a40ea83148a8.png",
+    "path": "button/danger-pressed.png",
+    "size": [
+      640,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Pressed version of the muted dusty red-brown danger button. Use a low-saturation deeper terracotta brown (#A85E51), never vivid orange or red. Same puffy rounded paper geometry and exact 640:150 ratio as reference; gently pressed inward with a subtle inset border and softer upper highlight. Transparent outside, blank surface. No text, logos, icons, letters or symbols; calm and non-alarming.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 0,
+      "right": 75,
+      "bottom": 0,
+      "left": 75
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-2e7834d1-37b4-4a31-9a45-a40ea83148a8.png",
+    "redo": true,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 2,
+    "redoCount": 1,
+    "generationCount": 2,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-e4689fd6-7a22-4faa-9f9d-4ec67e600501.png",
+    "path": "panel/warning-card.png",
+    "size": [
+      960,
+      420
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "One completely blank warning-information card for an account closure screen, exact 960x420 wide landscape ratio, transparent outside. Soft cream paper panel with a very subtle dusty-rose tint along the raised edge, rounded corners and contained gentle shadow. Blank quiet interior for app text. No text, icon, logo, lines or symbols. Puffy soft paper-clay material, not alarming, 9-slice safe straight central edges.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 60,
+      "right": 60,
+      "bottom": 60,
+      "left": 60
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-e4689fd6-7a22-4faa-9f9d-4ec67e600501.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-3f99edd1-2d78-40b6-bede-4410915c2e8a.png",
+    "path": "badge/linked.png",
+    "size": [
+      300,
+      84
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A small blank horizontal pill label background for linked account status, exact 300x84 ratio with transparent exterior. Soft muted sage green puffy paper base, fine darker green edge, gentle upper-left highlight, restrained tiny shadow. Empty surface only so app draws the label. No text, logos, letters, icons or symbols. Rounded caps suited to nine-slice stretching.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 21,
+      "right": 42,
+      "bottom": 21,
+      "left": 42
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-3f99edd1-2d78-40b6-bede-4410915c2e8a.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-43f6625f-169f-42cf-80b6-0434cf3a223a.png",
+    "path": "badge/unlinked.png",
+    "size": [
+      300,
+      84
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A small blank horizontal pill label background for an unlinked account, exact 300x84 ratio with transparent exterior. Soft warm gray-beige puffy paper base, fine taupe edge, gentle upper-left highlight, restrained tiny shadow. Empty surface only so app draws the label. No text, logos, letters, icons or symbols. Rounded caps suited to nine-slice stretching.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 21,
+      "right": 42,
+      "bottom": 21,
+      "left": 42
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-43f6625f-169f-42cf-80b6-0434cf3a223a.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 2,
+    "status": "superseded"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-4b279feb-c410-4466-b36f-fd0e85b3a8b5.png",
+    "path": "icon/lock.png",
+    "size": [
+      150,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A simplified app settings-row lock icon, 150x150 transparent. Match reference's warm brown body and muted orange-brass shackle, thick clean rounded shape, gentle upper-left highlight, soft restrained shadow. Center one closed padlock with clear keyhole, no extra marks, no text, no background.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-4b279feb-c410-4466-b36f-fd0e85b3a8b5.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-65e6dbc6-312d-4b67-9469-29020c4236a4.png",
+    "path": "icon/cloud.png",
+    "size": [
+      150,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A simple cloud icon for an account backup settings row, 150x150 transparent. Match existing UI icon line weight, soft filled rounded geometry, warm cream body with a clean brown outline and a small sage-green upward arrow inside. No letters, numbers, text, logos, extra symbols or background. Centered with clear edges and gentle upper-left highlight.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-65e6dbc6-312d-4b67-9469-29020c4236a4.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c56c7cf7-2a0c-477a-9662-2984f0bbb92d.png",
+    "path": "icon/shield-check.png",
+    "size": [
+      150,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A simple shield-with-check settings icon, 150x150 transparent. Match the existing icon family's rounded 3D paper-clay style, warm brown outlines, pale cream highlights and small sage-green accent. Center one clear rounded shield with a simple dark brown checkmark. No words, letters, numbers, logos, extra objects or background.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-c56c7cf7-2a0c-477a-9662-2984f0bbb92d.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-ca871d9b-1f34-429a-8d27-34e839351d5a.png",
+    "path": "icon/key.png",
+    "size": [
+      150,
+      150
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "A simple account key settings icon, 150x150 transparent. Match the existing icon family's warm chocolate-brown outline and muted brass/orange details, rounded puffy paper-clay style, soft upper-left highlight. One clear old-fashioned key angled gently upward-right, large round bow and two small teeth. No text, letters, numbers, logos, extra objects or background.",
+    "method": "built-in image_gen",
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-ca871d9b-1f34-429a-8d27-34e839351d5a.png",
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 1,
+    "redoCount": 0,
+    "generationCount": 1,
+    "status": "final"
+  },
+  {
+    "source": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-468eadfd-8649-4c64-a8ad-470be7a7ac44.png",
+    "path": "badge/unlinked.png",
+    "size": [
+      300,
+      84
+    ],
+    "margin": 4,
+    "group": "F",
+    "prompt": "Recolor this pill badge so the unlinked state is clearly a soft warm gray, not cream or white. Use neutral warm gray-beige fill around #D2CEC5 with a slightly darker taupe outline, keep the same rounded puffy paper shape, edge highlight and gentle compact shadow. Blank surface, transparent outside, no words or icons. Preserve exact target aspect 300x84 and clean smooth edges.",
+    "method": "built-in image_gen",
+    "slice": {
+      "top": 21,
+      "right": 42,
+      "bottom": 21,
+      "left": 42
+    },
+    "sourceFile": "C:\\Users\\User\\.codex\\generated_images\\01a17849-0ce3-7933-8ae2-427904148ed0\\exec-468eadfd-8649-4c64-a8ad-470be7a7ac44.png",
+    "redo": true,
+    "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+    "generation": 2,
+    "redoCount": 1,
+    "generationCount": 2,
+    "status": "final"
+  }
+]
