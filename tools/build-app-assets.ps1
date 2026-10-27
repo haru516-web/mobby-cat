@@ -2,13 +2,16 @@
 # Sources: assets/cat-mobbies/manifest.json (breeds) and assets/cat-mobbies/new/manifest.json (character Mobbies)
 #          assets/cat-mobbies/breeds2/manifest.json (real breed colour variants)
 # Requires ffmpeg with libwebp on PATH.
+# 変換済みの WebP（元の PNG より新しいもの）は飛ばすので、猫を足したときは足した分だけ変換される。
+# 全部を作り直したいときは -Force を付ける。使われなくなった WebP は最後に消す。
+param([switch]$Force)
 $root = Split-Path $PSScriptRoot -Parent
 $base = Get-Content "$root\assets\cat-mobbies\manifest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $new = Get-Content "$root\assets\cat-mobbies\new\manifest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $breeds2 = Get-Content "$root\assets\cat-mobbies\breeds2\manifest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $outDir = "$root\app\assets\cats"
 New-Item -ItemType Directory -Force $outDir | Out-Null
-Get-ChildItem $outDir -File | Remove-Item
+$made = New-Object 'System.Collections.Generic.HashSet[string]'
 New-Item -ItemType Directory -Force "$root\app\src\data" | Out-Null
 
 # rarity: 1=common 2=uncommon 3=rare 4=legend
@@ -41,7 +44,10 @@ function Kind($c) {
 }
 
 function Convert($src, $id) {
-  & ffmpeg -v error -y -i $src -vf 'scale=512:512:flags=lanczos,format=yuva420p' -c:v libwebp -quality 88 -compression_level 6 "$outDir\$id.webp"
+  $dst = "$outDir\$id.webp"
+  [void]$made.Add("$id.webp")
+  if (-not $Force -and (Test-Path $dst) -and ((Get-Item $dst).LastWriteTime -ge (Get-Item $src).LastWriteTime)) { return }
+  & ffmpeg -v error -y -i $src -vf 'scale=512:512:flags=lanczos,format=yuva420p' -c:v libwebp -quality 88 -compression_level 6 $dst
   if ($LASTEXITCODE -ne 0) { throw "ffmpeg failed: $src" }
 }
 
@@ -72,5 +78,7 @@ foreach ($c in $breeds2) {
   $lines += "  { id: '$($c.id)', name: '$($c.name)', rarity: $r, kind: 'breed', image: require('../../assets/cats/$($c.id).webp') },"
 }
 $lines += "];"
+# 一覧に無くなった WebP を片づける
+Get-ChildItem $outDir -File | Where-Object { -not $made.Contains($_.Name) } | Remove-Item
 [System.IO.File]::WriteAllText("$root\app\src\data\catalog.ts", ($lines -join "`n") + "`n", (New-Object System.Text.UTF8Encoding($false)))
 "done: $($base.characters.Count + $new.Count + $breeds2.Count)"
