@@ -4,15 +4,18 @@
   "base": "4c1d389",
   "listCommit": "6d1b3da",
   "planned": 50,
-  "generated": 20,
+  "generated": 50,
   "regenerated": 2,
-  "nextBatch": "l",
-  "nextId": "burmilla-longhair",
+  "nextBatch": null,
+  "nextId": null,
   "blockedBy": null,
   "completedBatches": [
     "j",
-    "k"
+    "k",
+    "l",
+    "m",
+    "n"
   ],
-  "comparisonSheets": 32,
+  "comparisonSheets": 62,
   "manifestChanged": true
 }

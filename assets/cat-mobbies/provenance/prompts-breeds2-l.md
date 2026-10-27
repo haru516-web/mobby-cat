@@ -1,0 +1,43 @@
+# Prompts: breeds2 batch l
+
+Image generation: built-in image_gen; Bengal and Ragdoll character images were referenced for all new designs. Final outputs were alpha-cropped, scaled proportionally and centered on transparent 1254×1254 canvases.
+
+## burmilla-longhair (バーミラ（ロングヘア）)
+
+Use case: stylized-concept. Generate one distinct real cat breed Mobby, square 1254x1254 transparent PNG with ample clear margin. Full body front view, unified rounded-square head/body, no neck, short arms and feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one black cross D-pad lower-left chest, exactly two plain black round buttons diagonal lower-right. Bengal and Ragdoll references define only Mobby silhouette, realistic fur and controls. Soft studio light. No accessories, clothes, props, text or watermark. Burmilla Longhair: long silky silver shaded coat with fine black tipping, dark eyeliner around green iris, elegant medium ears, plumed tail and moderate muzzle. Silver with shaded black tips, not solid white.
+
+## laperm-black (ラパーム（ブラック）)
+
+Use case: stylized-concept. Generate one distinct real cat breed Mobby, square 1254x1254 transparent PNG with ample clear margin. Full body front view, unified rounded-square head/body, no neck, short arms and feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one black cross D-pad lower-left chest, exactly two plain black round buttons diagonal lower-right. Bengal and Ragdoll references define only Mobby silhouette, realistic fur and controls. Soft studio light. No accessories, clothes, props, text or watermark. LaPerm black: solid black coat in loose springy ringlets, curly whiskers and flared ears, graceful wedge muzzle, gold iris. Open separated curls, not dense plush tight ringlets.
+
+## laperm-red-white (ラパーム（レッド＆ホワイト）)
+
+Use case: stylized-concept. Generate one distinct real cat breed Mobby, square 1254x1254 transparent PNG with ample clear margin. Full body front view, unified rounded-square head/body, no neck, short arms and feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one black cross D-pad lower-left chest, exactly two plain black round buttons diagonal lower-right. Bengal and Ragdoll references define only Mobby silhouette, realistic fur and controls. Soft studio light. No accessories, clothes, props, text or watermark. LaPerm red and white: loose springy red-and-white short curls, softly curled whiskers and open flared ears, graceful wedge muzzle, gold iris. Make curls visible and airy.
+
+## american-curl-red-tabby (アメリカンカール（レッドタビー）)
+
+Use case: stylized-concept. Generate one distinct real cat breed Mobby, square 1254x1254 transparent PNG with ample clear margin. Full body front view, unified rounded-square head/body, no neck, short arms and feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one black cross D-pad lower-left chest, exactly two plain black round buttons diagonal lower-right. Bengal and Ragdoll references define only Mobby silhouette, realistic fur and controls. Soft studio light. No accessories, clothes, props, text or watermark. American Curl red tabby: silky semi-long orange mackerel tabby, ears curling backward in a broad arc from the base, walnut-shaped eye, elegant natural face, amber iris. Curl only the ear tips backward.
+
+## american-curl-blue-white (アメリカンカール（ブルー＆ホワイト）)
+
+Use case: stylized-concept. Generate one distinct real cat breed Mobby, square 1254x1254 transparent PNG with ample clear margin. Full body front view, unified rounded-square head/body, no neck, short arms and feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one black cross D-pad lower-left chest, exactly two plain black round buttons diagonal lower-right. Bengal and Ragdoll references define only Mobby silhouette, realistic fur and controls. Soft studio light. No accessories, clothes, props, text or watermark. American Curl blue and white: short blue-grey and white bicolor coat, ears curling backward in a broad arc from the base, slender rectangular build, moderate muzzle, gold iris. Curl only the ear tips backward.
+
+## devon-rex-chocolate (デボンレックス（チョコレート）)
+
+Use case: stylized-concept. Generate one real cat breed Mobby in square 1254x1254 transparent PNG with generous clear margin. Full body front view, rounded-square unified head/body with no neck, short arms and two feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one cross D-pad lower-left chest, exactly two plain black circular buttons diagonal lower-right. Bengal and Ragdoll reference images define only Mobby silhouette, realistic fur and controls. Soft studio light; no accessories, clothes, props, text or watermark. Devon Rex chocolate: very short fine rippled chocolate-brown coat, enormous low-set ears, broad cheekbones, short pixie-like muzzle and golden-green iris. Compact broad face with low ears, delicate short-wave fur.
+
+## devon-rex-white (デボンレックス（ホワイト）)
+
+Use case: stylized-concept. Generate one real cat breed Mobby in square 1254x1254 transparent PNG with generous clear margin. Full body front view, rounded-square unified head/body with no neck, short arms and two feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one cross D-pad lower-left chest, exactly two plain black circular buttons diagonal lower-right. Bengal and Ragdoll reference images define only Mobby silhouette, realistic fur and controls. Soft studio light; no accessories, clothes, props, text or watermark. Devon Rex white: pure white sparse short wavy coat with fine peach fuzz, enormous low-set ears, high cheekbones, short pixie muzzle, gold iris. Delicate fine waves, not thick curls.
+
+## cornish-rex-black-white (コーニッシュレックス（ブラック＆ホワイト）)
+
+Use case: stylized-concept. Generate one real cat breed Mobby in square 1254x1254 transparent PNG with generous clear margin. Full body front view, rounded-square unified head/body with no neck, short arms and two feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one cross D-pad lower-left chest, exactly two plain black circular buttons diagonal lower-right. Bengal and Ragdoll reference images define only Mobby silhouette, realistic fur and controls. Soft studio light; no accessories, clothes, props, text or watermark. Cornish Rex black and white: close short tight marcel waves in black-and-white tuxedo patches, exceptionally tall ears, long narrow Roman-nosed profile, slender torso, amber iris. Tight waves and longer profile than Devon Rex.
+
+## cornish-rex-red (コーニッシュレックス（レッド）)
+
+Use case: stylized-concept. Generate one real cat breed Mobby in square 1254x1254 transparent PNG with generous clear margin. Full body front view, rounded-square unified head/body with no neck, short arms and two feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one cross D-pad lower-left chest, exactly two plain black circular buttons diagonal lower-right. Bengal and Ragdoll reference images define only Mobby silhouette, realistic fur and controls. Soft studio light; no accessories, clothes, props, text or watermark. Cornish Rex red: solid deep red short tight marcel waves, very tall ears, long narrow Roman-nosed profile, slender torso, gold iris. Tight uniform wave rows, distinct from a pixie face.
+
+## somali-blue (ソマリ（ブルー）)
+
+Use case: stylized-concept. Generate one real cat breed Mobby in square 1254x1254 transparent PNG with generous clear margin. Full body front view, rounded-square unified head/body with no neck, short arms and two feet. Exactly one living eye viewer-left with round black pupil and catchlight, one black camera lens green reflective glass viewer-right, one cross D-pad lower-left chest, exactly two plain black circular buttons diagonal lower-right. Bengal and Ragdoll reference images define only Mobby silhouette, realistic fur and controls. Soft studio light; no accessories, clothes, props, text or watermark. Somali blue: semi-long blue-grey ticked coat with warm beige undercoat and lighter cream ruff, large cupped ears, foxlike wedge face, plume tail, green iris. Richly ticked individual hairs.

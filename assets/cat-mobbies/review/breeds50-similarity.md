@@ -28,3 +28,43 @@
 - asian-black-smoke: 黒い毛先と銀色の下毛が見えるスモーク。無地黒や長毛のブラックスモークと比較。
 
 目視で共通型と毛色・耳・尾・毛質を確認。全10匹をバッチkの一覧に掲載した。
+
+
+## バッチ l
+
+確認資料: breeds50-after-l-*-512.png。各パネルは対象と近い既存猫5匹を同じ512px枠に並べた。
+
+- burmilla-longhair: 長い銀色の毛と細かな黒いティッピング。ブリティッシュロングヘア等の単色/柄毛と比較。
+- laperm-black / laperm-red-white: 開いたゆるいリングレットとカールしたひげ。タイトなコーニッシュや密なセルカークと異なる。
+- american-curl-red-tabby / american-curl-blue-white: 耳先が後ろへ弧を描く形。ハイランダーのカール耳やスコティッシュの折れ耳と区別。
+- devon-rex-chocolate / devon-rex-white: 大きく低い耳、頬骨、短い顔と細かな短毛の波。コーニッシュの高い耳・長い輪郭、無毛種と差を確認。
+- cornish-rex-black-white / cornish-rex-red: 高い耳、細長い顔、細かな均一の波毛。
+- somali-blue: ブルーのティックドセミロング、明るい襟毛とふさ尾。ソマリやアビシニアンの別色と比較。
+
+目視で共通型、毛色・耳・毛質を確認。全10匹をバッチlの一覧に掲載した。
+
+## バッチ m
+
+確認資料: breeds50-after-m-*-512.png。各パネルは対象と近い既存猫5匹を同じ512px枠に並べた。
+
+- somali-fawn: フォーンのティックド毛と明るい襟毛。ソマリブルーとアビシニアンの短毛ティックドとの差を確認。
+- turkish-angora-black-smoke / turkish-angora-red-tabby: 細く流れるセミロングと細いウェッジ。スモークの銀色の下毛、レッドタビーの細い縞を比較。
+- turkish-van-cream / turkish-van-black: 頭部と尾だけに色があり、胴と足が白いバン柄。ポイントカラーのラグドール、バーマン、シャムと差を確認。
+- manx-blue-white / manx-red-tabby: 短毛で丸い後躯、高い後脚、尾が見えない形。キムリックや短尾のボブテイル種と比較。
+- exotic-shorthair-chocolate / exotic-shorthair-cream: 短く密な毛、低い小耳、平たい鼻先と幅広い顔。ペルシャやブリティッシュ系の近似例と比較。
+- tonkinese-platinum-mink: 銀灰色のミンク毛色とアクアの目。シャム、タイ、カラーポイントショートヘア等と比較。
+
+目視で共通型、毛色、毛質、耳、顔、尾を確認。全10匹の生体目・レンズ・十字キー・2ボタンを確認し、バッチmプレビューに掲載した。
+
+## バッチ n
+
+確認資料: breeds50-after-n-*-512.png。各パネルは対象と近い既存猫5匹を同じ512px枠に並べた。
+
+- tonkinese-champagne-mink: 暖色のシャンパン地に柔らかなチョコレートポイントとアクア眼。シャム、タイ、カラーポイント系とミンクの中間的な濃淡を比較。
+- balinese-chocolate-point / balinese-lilac-point: 絹のようなセミロング、長いウェッジと大きな耳。チョコレートと淡いライラックのポイント、青眼を既存ポイント種と比較。
+- ragamuffin-tortie-white / ragamuffin-cream-white: 頬と体のボリューム、長い毛、ラガマフィンの丸い耳。白い胸・手袋をもつトーティとクリームの柄を比較。
+- selkirk-rex-chocolate / selkirk-rex-cream: 短く密な不規則カールと巻きひげ。LaPerm、German Rex、Ural Rex、Cornish Rexの毛質と差を確認。
+- siberian-golden-tabby / siberian-tortie-white: 厚い三重毛、丸い房毛の耳、幅広い体。ゴールデンタビーと白斑のあるトーティの柄を比較。
+- japanese-bobtail-red-white: 短い赤白毛、高い耳、頬骨と丸いポンポン尾。長毛ジャパニーズボブテイルと各ボブテイル種を比較。
+
+目視で共通型、目・レンズ・操作部品、毛色・毛質・耳・尾を確認。全10匹をバッチnの一覧に掲載した。
