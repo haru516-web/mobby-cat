@@ -4,14 +4,15 @@
   "base": "4c1d389",
   "listCommit": "6d1b3da",
   "planned": 50,
-  "generated": 10,
+  "generated": 20,
   "regenerated": 2,
-  "nextBatch": "k",
-  "nextId": "kuro-neko",
+  "nextBatch": "l",
+  "nextId": "burmilla-longhair",
   "blockedBy": null,
   "completedBatches": [
-    "j"
+    "j",
+    "k"
   ],
-  "comparisonSheets": 22,
+  "comparisonSheets": 32,
   "manifestChanged": true
 }

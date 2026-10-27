@@ -83,4 +83,5 @@ https://cfa.org/breeds/
 https://cfa.org/coat-color-descriptions/
 https://tica.org/breed/highlander/
 https://tica.org/ticas-breeds/browse-all-breeds/
+https://tica.org/breed/tennessee-rex/
 https://www.gccfcats.org/getting-a-cat/choosing/cat-breeds/suffolk/

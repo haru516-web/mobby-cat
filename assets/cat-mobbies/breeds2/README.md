@@ -1,6 +1,6 @@
 # breeds2 — 制作途中
 
-実在猫種・毛色100種のうち **95匹生成・採用済み**（当初分85匹＋本依頼バッチjの10匹）。当初リストの未作成は5匹。本依頼の残りは40匹。先行3匹は指示書指定の質感確認試作。
+実在猫種・毛色100種のうち **105匹生成・採用済み**（当初分85匹＋本依頼バッチj/kの20匹）。当初リスト100種は完了。本依頼の残りは30匹。先行3匹は指示書指定の質感確認試作。
 
 - 採用ID: abyssinian-blue, abyssinian-fawn, aegean, american-bobtail, american-shorthair-brown-tabby, american-shorthair-calico, american-wirehair, arabian-mau, australian-mist, bambino, bengal-marble, bengal-silver, bengal-snow-lynx, birman-blue-point, birman-chocolate-point, british-bicolor, british-black, british-golden-shaded, british-lilac, british-longhair, british-silver-tabby, burmilla, chartreux, chausie, colorpoint-shorthair, cymric, donskoy, dragon-li, egyptian-mau-bronze, european-burmese, european-shorthair, german-rex, highland-fold, highland-straight, himalayan, japanese-bobtail-longhair, javanese, karelian-bobtail, khao-manee, korat, kurilian-bobtail, laperm, lykoi, maine-coon-black, maine-coon-red-tabby, maine-coon-silver-tabby, mekong-bobtail, mike-neko, minskin, munchkin, napoleon, nebelung, neva-masquerade, norwegian-forest-black-white, norwegian-forest-silver-tabby, oriental-longhair, oriental-shorthair, persian-black-smoke, persian-blue-cream, persian-chinchilla-silver, persian-red-tabby, peterbald, pixie-bob, ragdoll-blue-colorpoint, ragdoll-lilac-bicolor, ragdoll-seal-mitted, savannah, scottish-fold-bicolor, scottish-fold-silver-tabby, scottish-fold-white, scottish-straight, selkirk-rex-longhair, serengeti, siamese-blue-point, siamese-chocolate-point, siamese-flame-point, siberian-blue, skookum, sokoke, sphynx, suphalak, thai, toybob, ukrainian-levkoy, ural-rex
 - 形式: 1254×1254 RGBA透過PNG。ユーザー承認の等比縮小と透明中央配置を適用、四辺100px以上の透明余白。描画や配色は変更せず、元生成ファイルを保持。
@@ -17,8 +17,9 @@
 ## 追加50種（codex/breeds-50）
 
 - 一覧: docs/codex/BREEDS_50_LIST.md（50種、既存221 IDと重複なし）。
-- 登録済み: 10匹（バッチj）。残り40匹（バッチk〜n）。再生成: 2匹（russian-white / russian-black の瞳修正）。できなかったもの: なし。
-- バッチjは10匹すべて1254×1254透過PNG、操作部品を目視確認。生成前・生成後の近似猫比較画像を review/ に保存。
-- 生成後一覧: previews/batch-j.png。プロンプト: ../provenance/prompts-breeds2-j.md。
-- 次はバッチkのkuro-nekoから作成し、10匹ごとに codex/breeds-50 へ push。
-- 詳細進捗: ../review/breeds50-status.json。比較メモ: ../review/breeds50-similarity.md。
+- 登録済み: 20匹（バッチj/k）。残り30匹（バッチl〜n）。再生成: 2匹（russian-white / russian-black の瞳修正）。できなかったもの: なし。
+- バッチj/kは各10匹を1254×1254 RGBA透過PNGとして登録し、目・レンズ・操作部品・毛色/柄を目視確認。SHA-256とbytesを照合。
+- 一覧: previews/batch-j.png / previews/batch-k.png。プロンプト: ../provenance/prompts-breeds2-j.md / prompts-breeds2-k.md。
+- 各バッチの近似猫比較画像と検品メモ: ../review/breeds50-after-*.png / breeds50-similarity.md。
+- 次はバッチlのburmilla-longhairから作成し、10匹ごとにcodex/breeds-50へpush。
+- 詳細進捗: ../review/breeds50-status.json。
