@@ -4,11 +4,14 @@
   "base": "4c1d389",
   "listCommit": "6d1b3da",
   "planned": 50,
-  "generated": 0,
-  "nextBatch": "j",
-  "nextId": "egyptian-mau-smoke",
-  "blockedBy": "image_gen usage_limit_reached (HTTP 429)",
-  "resetsAtJST": "2026-10-26T21:37:01+09:00",
-  "comparisonSheets": 12,
-  "manifestChanged": false
+  "generated": 10,
+  "regenerated": 2,
+  "nextBatch": "k",
+  "nextId": "kuro-neko",
+  "blockedBy": null,
+  "completedBatches": [
+    "j"
+  ],
+  "comparisonSheets": 22,
+  "manifestChanged": true
 }
