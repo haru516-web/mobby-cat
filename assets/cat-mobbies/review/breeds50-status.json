@@ -1,0 +1,18 @@
+{
+  "branch": "codex/breeds-50",
+  "worktree": ".worktrees/breeds-50",
+  "base": "4c1d389",
+  "listCommit": "6d1b3da",
+  "planned": 50,
+  "generated": 20,
+  "regenerated": 2,
+  "nextBatch": "l",
+  "nextId": "burmilla-longhair",
+  "blockedBy": null,
+  "completedBatches": [
+    "j",
+    "k"
+  ],
+  "comparisonSheets": 32,
+  "manifestChanged": true
+}
