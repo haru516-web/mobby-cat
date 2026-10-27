@@ -1,0 +1,50 @@
+[
+  {
+    "candidate": 1,
+    "file": "assets\\cat-mobbies\\review\\traveler-cosmic-candidate-1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "bytes": 2960667,
+    "sha256": "635dfd59708e42626ea53288dedc9395b132cae813f65438a88b94cdf66b5a60",
+    "status": "candidate, not selected"
+  },
+  {
+    "candidate": 2,
+    "file": "assets\\cat-mobbies\\review\\traveler-cosmic-candidate-2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "bytes": 2497813,
+    "sha256": "34a08235731fe4394a983ed104c720abca30f80472658e6a2e20d70dccea8fa7",
+    "status": "candidate, not selected"
+  },
+  {
+    "candidate": 3,
+    "file": "assets\\cat-mobbies\\review\\traveler-cosmic-candidate-3.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alphaRange": [
+      0,
+      255
+    ],
+    "bytes": 2981777,
+    "sha256": "ab494ce7d35e067b1e77ffc14f7c0ef5277356ba9a8bcb45b5e62e6c7cd70158",
+    "status": "candidate, not selected"
+  }
+]

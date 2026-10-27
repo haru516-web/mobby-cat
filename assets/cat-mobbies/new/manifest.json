@@ -1123,12 +1123,12 @@
     "file": "assets/cat-mobbies/new/g/traveling-mobby.png",
     "width": 1254,
     "height": 1254,
-    "sha256": "3c4ac077324bfe6482d1e53a3e9b1bd0f6f5469191a093a97e2c173a3e6314b7",
+    "sha256": "274405fe6e9d7a3a066f141fdde8297b275a2aefd8a27a0367e87b5d394105c1",
     "status": "concept",
-    "prompt": "Use case: stylized-concept. ONE cat Mobby, exact 1254x1254 transparent alpha PNG. References 1 bengal and 2 ragdoll define realistic individually visible directional animal fur, glossy eye, camera lens and controls. Unified rounded-square head/body with NO neck or separate head, short arms and two short feet, front-facing upright full body. Exactly ONE living cat eye viewer LEFT, round black pupil and white catchlight; exactly ONE black concentric camera lens viewer RIGHT, green reflective glass. Exactly one black cross D-pad lower LEFT with four inset slots and exactly TWO plain unmarked black round buttons diagonally lower RIGHT. Tiny nose W mouth whiskers. No paw marks on controls. Soft studio light. Centered with generous TRANSPARENT margin around all extremities, no floor, checkerboard, text or watermark. Never plush or felt. REGENERATE traveling-mobby. Reference image 3 is the original edit target; retain its concept and the specified props while replacing the MAIN CAT's appearance. References 1/2 define hardware/fur quality only. SHORT red-brown MACKEREL TABBY fur with distinct narrow stripes, white small muzzle, NO black/orange calico mottling, no shaggy coat. LARGE upright pointed ears, angular cheeks, taller athletic squared torso, amber iris. Preserve backpack, tiny hanging camera, compass collar, explorer concept from image 3. No extra props. All props must leave eye lens and controls visible. Keep original filename/identity; no new text.",
-    "bytes": 1921620,
+    "prompt": "Reformat this EXACT adopted two-cat image into a SQUARE 1254x1254 RGBA transparent PNG. Preserve both exact character designs and proportions. LEFT silver-white cyan comet cat with red scarf blowing LEFT; RIGHT rose-gold plum nebula cat with dark blue patched scarf blowing RIGHT. Keep side by side at same scale with feet level, front-facing full bodies. DO NOT stretch or crop cats to fill square. Scale entire pair down proportionally to fit square WIDTH, adding generous EMPTY TRANSPARENT space ABOVE and BELOW so pair is centered vertically. Both cats including all scarf ends, ears, feet, tail and whiskers completely inside square, 50px clear transparent border at left and right. Keep anatomy, expressions, fur, colors, star sparkles, all hardware positions and counts exactly the same. Each cat has one left biological eye, one right green glass camera lens, one lower left black cross D-pad, exactly two lower right plain black round buttons. Actual TRANSPARENT background, no floor, no background color, no checkerboard, no text, watermark, labels or decorations. Only change square canvas framing.",
+    "bytes": 1498782,
     "regen": true,
-    "regenReason": "rea-mobbyを含む長毛キジ三毛グループとの重複を解消。赤茶の短毛マッカレル縞、大きな耳、角張った頬と琥珀目へ変更。リュック・カメラ・コンパスを保持。"
+    "regenReason": "ユーザー追加指定で採用ペアを1254×1254の正方形透過PNGへ変更。左は候補1、右はスカーフが右へなびく候補3。上下に透明余白を配置。"
   },
   {
     "id": "shinirimobby",
