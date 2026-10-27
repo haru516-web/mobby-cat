@@ -4,17 +4,18 @@
   "base": "4c1d389",
   "listCommit": "6d1b3da",
   "planned": 50,
-  "generated": 40,
+  "generated": 50,
   "regenerated": 2,
-  "nextBatch": "n",
-  "nextId": "tonkinese-champagne-mink",
+  "nextBatch": null,
+  "nextId": null,
   "blockedBy": null,
   "completedBatches": [
     "j",
     "k",
     "l",
-    "m"
+    "m",
+    "n"
   ],
-  "comparisonSheets": 52,
+  "comparisonSheets": 62,
   "manifestChanged": true
 }

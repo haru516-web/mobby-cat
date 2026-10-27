@@ -1,6 +1,6 @@
 # breeds2 — 制作途中
 
-当初の実在猫種・毛色リスト100種を完了し、本依頼分は25匹を追加済み（合計125匹）。本依頼の残りは10匹。先行3匹は指示書指定の質感確認試作。
+当初の実在猫種・毛色リスト100種を完了し、本依頼の追加50匹も完了（合計135匹）。先行3匹は指示書指定の質感確認試作。
 
 - 採用ID: abyssinian-blue, abyssinian-fawn, aegean, american-bobtail, american-shorthair-brown-tabby, american-shorthair-calico, american-wirehair, arabian-mau, australian-mist, bambino, bengal-marble, bengal-silver, bengal-snow-lynx, birman-blue-point, birman-chocolate-point, british-bicolor, british-black, british-golden-shaded, british-lilac, british-longhair, british-silver-tabby, burmilla, chartreux, chausie, colorpoint-shorthair, cymric, donskoy, dragon-li, egyptian-mau-bronze, european-burmese, european-shorthair, german-rex, highland-fold, highland-straight, himalayan, japanese-bobtail-longhair, javanese, karelian-bobtail, khao-manee, korat, kurilian-bobtail, laperm, lykoi, maine-coon-black, maine-coon-red-tabby, maine-coon-silver-tabby, mekong-bobtail, mike-neko, minskin, munchkin, napoleon, nebelung, neva-masquerade, norwegian-forest-black-white, norwegian-forest-silver-tabby, oriental-longhair, oriental-shorthair, persian-black-smoke, persian-blue-cream, persian-chinchilla-silver, persian-red-tabby, peterbald, pixie-bob, ragdoll-blue-colorpoint, ragdoll-lilac-bicolor, ragdoll-seal-mitted, savannah, scottish-fold-bicolor, scottish-fold-silver-tabby, scottish-fold-white, scottish-straight, selkirk-rex-longhair, serengeti, siamese-blue-point, siamese-chocolate-point, siamese-flame-point, siberian-blue, skookum, sokoke, sphynx, suphalak, thai, toybob, ukrainian-levkoy, ural-rex
 - 形式: 1254×1254 RGBA透過PNG。ユーザー承認の等比縮小と透明中央配置を適用、四辺100px以上の透明余白。描画や配色は変更せず、元生成ファイルを保持。
@@ -17,9 +17,9 @@
 ## 追加50種（codex/breeds-50）
 
 - 一覧: docs/codex/BREEDS_50_LIST.md（50種、既存221 IDと重複なし）。
-- 登録済み: 40匹（バッチj/k/l/m）。残り10匹（バッチn）。再生成: 2匹（russian-white / russian-black の瞳修正）。できなかったもの: なし。
+- 登録済み: 50匹（バッチj/k/l/m/n）。残り: 0匹。再生成: 2匹（russian-white / russian-black の瞳修正）。できなかったもの: なし。
 - 各バッチ10匹を1254×1254 RGBA透過PNGとして登録し、目・レンズ・操作部品・毛色/柄を目視確認。SHA-256とbytesを照合。
-- 一覧画像: previews/batch-j.png / batch-k.png / batch-l.png / batch-m.png。プロンプト: ../provenance/prompts-breeds2-{j,k,l,m}.md。
+- 一覧画像: previews/batch-j.png / batch-k.png / batch-l.png / batch-m.png / batch-n.png。プロンプト: ../provenance/prompts-breeds2-{j,k,l,m,n}.md。
 - 近似猫比較画像と検品メモ: ../review/breeds50-after-*.png / breeds50-similarity.md。
-- 次はバッチnのtonkinese-champagne-minkから作成し、10匹ごとにcodex/breeds-50へpush。
+- 全5バッチをcodex/breeds-50へpush済み。
 - 詳細進捗: ../review/breeds50-status.json。

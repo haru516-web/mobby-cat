@@ -55,3 +55,16 @@
 - tonkinese-platinum-mink: 銀灰色のミンク毛色とアクアの目。シャム、タイ、カラーポイントショートヘア等と比較。
 
 目視で共通型、毛色、毛質、耳、顔、尾を確認。全10匹の生体目・レンズ・十字キー・2ボタンを確認し、バッチmプレビューに掲載した。
+
+## バッチ n
+
+確認資料: breeds50-after-n-*-512.png。各パネルは対象と近い既存猫5匹を同じ512px枠に並べた。
+
+- tonkinese-champagne-mink: 暖色のシャンパン地に柔らかなチョコレートポイントとアクア眼。シャム、タイ、カラーポイント系とミンクの中間的な濃淡を比較。
+- balinese-chocolate-point / balinese-lilac-point: 絹のようなセミロング、長いウェッジと大きな耳。チョコレートと淡いライラックのポイント、青眼を既存ポイント種と比較。
+- ragamuffin-tortie-white / ragamuffin-cream-white: 頬と体のボリューム、長い毛、ラガマフィンの丸い耳。白い胸・手袋をもつトーティとクリームの柄を比較。
+- selkirk-rex-chocolate / selkirk-rex-cream: 短く密な不規則カールと巻きひげ。LaPerm、German Rex、Ural Rex、Cornish Rexの毛質と差を確認。
+- siberian-golden-tabby / siberian-tortie-white: 厚い三重毛、丸い房毛の耳、幅広い体。ゴールデンタビーと白斑のあるトーティの柄を比較。
+- japanese-bobtail-red-white: 短い赤白毛、高い耳、頬骨と丸いポンポン尾。長毛ジャパニーズボブテイルと各ボブテイル種を比較。
+
+目視で共通型、目・レンズ・操作部品、毛色・毛質・耳・尾を確認。全10匹をバッチnの一覧に掲載した。
