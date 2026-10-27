@@ -4,16 +4,17 @@
   "base": "4c1d389",
   "listCommit": "6d1b3da",
   "planned": 50,
-  "generated": 30,
+  "generated": 40,
   "regenerated": 2,
-  "nextBatch": "m",
-  "nextId": "somali-fawn",
+  "nextBatch": "n",
+  "nextId": "tonkinese-champagne-mink",
   "blockedBy": null,
   "completedBatches": [
     "j",
     "k",
-    "l"
+    "l",
+    "m"
   ],
-  "comparisonSheets": 42,
+  "comparisonSheets": 52,
   "manifestChanged": true
 }
