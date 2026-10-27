@@ -395,7 +395,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setState((s) => {
         if (s.starterChosen) return s;
         const next = addCat({ ...s, starterChosen: true }, id, encounterDayKey(new Date(Date.now() + s.debugOffsetDays * DAY_MS)), '最初の相棒');
-        return notify(next, next.owned[id].firstDay, 'ようこそ！毎日20時に、新しい猫モビーとの出会いが届きます');
+        return notify(next, next.owned[id].firstDay, 'ようこそ！毎日20時に、新しいにゃこモビーとの出会いが届きます');
       }),
     [],
   );

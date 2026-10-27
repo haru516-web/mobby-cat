@@ -4,7 +4,7 @@
 
 ---
 
-ねこモビー（D:\mobby-cat）の続きの作業をお願いします。
+にゃこモビー（D:\mobby-cat）の続きの作業をお願いします。
 
 ## 作業場所
 - ブランチ: feature/next、作業フォルダ: D:\mobby-cat\.worktrees\next（git worktree。ここだけで作業する）

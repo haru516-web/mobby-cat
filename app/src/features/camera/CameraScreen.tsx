@@ -94,7 +94,7 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
       <View style={[s.fill, { alignItems: 'center', justifyContent: 'center', padding: 24 }]}>
         <Backdrop name="bg/app-cream" />
         <Pic name="button/camera-round" height={96} />
-        <T w="x" size={18} style={{ marginTop: 16, textAlign: 'center' }}>猫モビーと写真を撮ろう</T>
+        <T w="x" size={18} style={{ marginTop: 16, textAlign: 'center' }}>にゃこモビーと写真を撮ろう</T>
         <T w="m" size={13} style={{ marginTop: 8, textAlign: 'center' }}>カメラを使うには許可が必要です。撮った写真は端末の中だけに保存されます</T>
         <ImgButton label="カメラを使う" height={50} onPress={requestPerm} style={{ marginTop: 20, alignSelf: 'stretch' }} />
         <ImgButton skin="ghost-outline" label="もどる" height={44} onPress={onClose} style={{ marginTop: 10, alignSelf: 'stretch' }} />
@@ -143,7 +143,7 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
             <Action
               icon="camera/btn-share"
               label="共有"
-              onPress={() => shareView(shot, `${catId ? CAT_BY_ID[catId].name : '猫モビー'}と写真を撮りました ${HASHTAG}`)}
+              onPress={() => shareView(shot, `${catId ? CAT_BY_ID[catId].name : 'にゃこモビー'}と写真を撮りました ${HASHTAG}`)}
             />
           </View>
         ) : (

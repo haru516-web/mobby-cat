@@ -10,7 +10,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.mobbycat.app",
       "infoPlist": {
-        "NSMotionUsageDescription": "その日の歩数に合わせて、出会える猫モビーが変わります。"
+        "NSMotionUsageDescription": "その日の歩数に合わせて、出会えるにゃこモビーが変わります。"
       }
     },
     "android": {
@@ -41,7 +41,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "猫モビーと一緒に写真を撮るためにカメラを使います。",
+          "cameraPermission": "にゃこモビーと一緒に写真を撮るためにカメラを使います。",
           "microphonePermission": false,
           "recordAudioAndroid": false
         }
@@ -49,8 +49,8 @@
       [
         "expo-media-library",
         {
-          "photosPermission": "猫モビーと撮った写真を保存するために使います。",
-          "savePhotosPermission": "猫モビーと撮った写真を写真アプリに保存します。",
+          "photosPermission": "にゃこモビーと撮った写真を保存するために使います。",
+          "savePhotosPermission": "にゃこモビーと撮った写真を写真アプリに保存します。",
           "isAccessMediaLocationEnabled": false
         }
       ],
@@ -58,7 +58,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "その日の天気に合わせて、出会える猫モビーが変わります。おおまかな位置だけを使い、保存はしません。",
+          "locationWhenInUsePermission": "その日の天気に合わせて、出会えるにゃこモビーが変わります。おおまかな位置だけを使い、保存はしません。",
           "isAndroidBackgroundLocationEnabled": false,
           "isIosBackgroundLocationEnabled": false
         }

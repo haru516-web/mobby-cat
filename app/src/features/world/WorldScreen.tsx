@@ -18,7 +18,7 @@ const SAMPLE = {
   news: [
     { thumb: 'bg/news-thumb-1', title: '韓国で最初のユーザーが誕生！', body: 'つながりの輪が世界に広がっています。', date: '2026/10/12' },
     { thumb: 'bg/news-thumb-2', title: '旅猫が新しい国に到着！', body: '旅するモビーがフランスに到着しました。', date: '2026/10/08' },
-    { thumb: 'bg/news-thumb-3', title: 'フランス限定モビー配布中！', body: '街をイメージした特別なねこモビーを期間限定でプレゼント。', date: '2026/10/05' },
+    { thumb: 'bg/news-thumb-3', title: 'フランス限定モビー配布中！', body: '街をイメージした特別なにゃこモビーを期間限定でプレゼント。', date: '2026/10/05' },
   ],
 };
 
@@ -66,7 +66,7 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
               <View style={s.heroText}>
                 <Pic name="brand/title-travel" height={44} />
                 <Card skin="white" style={s.heroCopy}>
-                  <T w="b" size={12}>ねこモビーたちといっしょに、{'\n'}世界中のすてきな場所をめぐりましょう！</T>
+                  <T w="b" size={12}>にゃこモビーたちといっしょに、{'\n'}世界中のすてきな場所をめぐりましょう！</T>
                 </Card>
                 <ImgButton label="旅の様子をみる" height={40} onPress={soon} style={{ width: 170, marginTop: 10 }} />
               </View>
@@ -87,7 +87,7 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
                 </View>
               </View>
               <T w="m" size={12} color={C.sub} style={{ marginTop: 6 }}>
-                ねこモビーたちが{SAMPLE.now.name}を旅しています。すてきな出会いを探し中…！
+                にゃこモビーたちが{SAMPLE.now.name}を旅しています。すてきな出会いを探し中…！
               </T>
             </View>
             <Polaroid width={104} style={{ marginLeft: 8, transform: [{ rotate: '4deg' }] }}>
@@ -117,7 +117,7 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
 
           <Card>
             <Pic name="brand/title-world-mission" height={30} />
-            <T w="m" size={12} color={C.sub} style={{ marginTop: 4 }}>みんなの力で、ねこモビーを{'\n'}世界のすべての国に連れていこう！</T>
+            <T w="m" size={12} color={C.sub} style={{ marginTop: 4 }}>みんなの力で、にゃこモビーを{'\n'}世界のすべての国に連れていこう！</T>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 }}>
               <View style={{ flex: 1 }}><Gauge value={SAMPLE.mission.value} max={SAMPLE.mission.max} color="yellow" height={18} /></View>
               {/* 数字と単位は縮めない（狭い幅で「か国」が2行に割れないように）。縮むのはゲージだけ */}

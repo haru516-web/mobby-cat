@@ -79,7 +79,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
               <TextInput
                 value={q}
                 onChangeText={setQ}
-                placeholder="ねこモビーを検索"
+                placeholder="にゃこモビーを検索"
                 placeholderTextColor="#B4A596"
                 style={[s.searchInput, { fontFamily: FONT.b }]}
               />

@@ -112,7 +112,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
       <TourAnchor id="home-room" style={{ width, minHeight: width * 1.25, maxHeight: width * 1.6, flexGrow: 1, marginTop: -20, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
         {roomCats.length === 0 && (
           <View style={s.empty}>
-            <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」から猫モビーを迎えましょう</T>
+            <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」からにゃこモビーを迎えましょう</T>
           </View>
         )}
         {roomCats.map((id, i) => {

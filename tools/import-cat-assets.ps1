@@ -56,7 +56,7 @@ $manifest | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $targe
 if ($entries.Count -ne 34 -or @($entries.id | Select-Object -Unique).Count -ne 34) { throw 'Expected 34 unique characters' }
 $rows = $entries | ForEach-Object { '| '+$_.name+' | ['+$_.id+']('+$_.file+') | '+$_.buttonStyle+' |' }
 $readme = @'
-# 猫モビー アセット
+# にゃこモビー アセット
 
 このチャットで作成した34種のPNGを、元ファイルと同じ内容で取り込んでいます。
 
