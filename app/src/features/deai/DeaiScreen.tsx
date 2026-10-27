@@ -115,15 +115,20 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       <TourAnchor id="deai-hero" style={s.hero}>
         <Card skin="white" style={s.heroNote}>
           <T w="x" size={16} style={{ textAlign: 'center' }}>
-            {hasFree ? '無料のお迎えが完了しました' : `${visible.length}匹の中から1匹を無料でお迎え`}
+            {empty ? '今日は出会える子がいません' : hasFree ? '無料のお迎えが完了しました' : `${visible.length}匹の中から1匹を無料でお迎え`}
           </T>
-          <View style={s.heroSub}>
-            <T w="b" size={11} color={C.sub}>あと{Math.floor(mins / 60)}時間{mins % 60}分</T>
-            <Tap onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <T w="b" size={11} color={C.accent}>これから会える猫</T>
-              <Pic name="icon/chevron-right" height={11} style={{ marginLeft: 2 }} />
-            </Tap>
+          {/* 次の出会いの準備ができる20時まで、残りの時間を大きく見せる */}
+          <View style={s.countdown}>
+            <T w="b" size={11} color={C.sub} style={{ flex: 1 }}>お迎えの準備が完了するまで</T>
+            <T w="b" size={13} color={C.accent}>あと</T>
+            <T w="x" size={30} color={C.accent} style={{ marginHorizontal: 4 }}>
+              {mins >= 60 ? `${Math.floor(mins / 60)}時間${mins % 60}分` : `${mins}分`}
+            </T>
           </View>
+          <Tap onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end' }}>
+            <T w="b" size={11} color={C.accent}>これから会える猫</T>
+            <Pic name="icon/chevron-right" height={11} style={{ marginLeft: 2 }} />
+          </Tap>
         </Card>
       </TourAnchor>
 
@@ -326,7 +331,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
 const s = StyleSheet.create({
   hero: { alignItems: 'stretch', paddingTop: 6, paddingHorizontal: 16 },
   heroNote: { paddingVertical: 8, paddingHorizontal: 14, gap: 2 },
-  heroSub: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  countdown: { flexDirection: 'row', alignItems: 'baseline', marginTop: 2 },
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
   selInfo: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   pass: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },

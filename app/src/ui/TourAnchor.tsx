@@ -2,7 +2,7 @@ import React, { ComponentRef, useEffect, useRef } from 'react';
 import { LayoutChangeEvent, StyleProp, View, ViewStyle } from 'react-native';
 
 // チュートリアルが指し示せる場所。各画面が <TourAnchor> で目印を付ける
-export type AnchorId = 'header-items' | 'header-bell' | 'home-room' | 'home-deai' | 'deai-hero' | 'deai-grid' | 'tabbar';
+export type AnchorId = 'header-items' | 'header-bell' | 'home-room' | 'deai-hero' | 'deai-grid' | 'tabbar';
 
 type ViewHandle = ComponentRef<typeof View>;
 

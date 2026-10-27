@@ -278,6 +278,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               <ImgButton skin="ghost-outline" label={`日付を1日進める（+${state.debugOffsetDays}日）`} height={44} onPress={() => g.shiftDays(1)} />
               <ImgButton skin="ghost-outline" label="日付をリセット" height={44} onPress={() => g.shiftDays(-state.debugOffsetDays)} />
               <ImgButton skin="ghost-outline" label="全キャラを開放" height={44} onPress={g.unlockAll} />
+              <ImgButton skin="ghost-outline" label="相棒選びからやり直す（記録を消す）" height={44} onPress={() => confirm('相棒選びからやり直しますか？', '記録がすべて消えて、相棒選び（引き直し3回）から始まります。開発用です。', 'やり直す', g.reset, { cancelLabel: 'やめる' })} />
             </View>
           )}
         </ScrollView>

@@ -19,7 +19,8 @@ import SettingsScreen from './src/features/settings/SettingsScreen';
 import ShopScreen from './src/features/shop/ShopScreen';
 import { NoticeTab } from './src/navigation';
 import WorldScreen from './src/features/world/WorldScreen';
-import TutorialTour from './src/features/tutorial/TutorialTour';
+import TutorialTour, { TourCoach } from './src/features/tutorial/TutorialTour';
+import { emitTour } from './src/features/tutorial/tourStore';
 import ZukanScreen from './src/features/zukan/ZukanScreen';
 import { GameProvider, useGame } from './src/core/game';
 import { initAudio, setBgmScene } from './src/services/audio';
@@ -47,10 +48,33 @@ function Root() {
   const { width: winW, height: winH } = useWindowDimensions();
   const width = Math.min(winW, MAX_W);
   const tour = replay || !state.tutorialDone;
+  // 利用者の操作はチュートリアルに知らせる（光っている場所を押したかを見るため）。チュートリアル自身の切り替え（setTab）は知らせない
+  const go = (t: TabKey) => {
+    setTab(t);
+    emitTour(`tab:${t}`);
+  };
+  const closeShop = () => {
+    setShop(false);
+    emitTour('popup-closed');
+  };
+  const closeNotice = () => {
+    setNotice(null);
+    emitTour('popup-closed');
+  };
 
   useEffect(() => {
     initAudio();
   }, []);
+  // 記録を消して最初からやり直したときは、開いていたポップを閉じる（相棒を選んだあとにホームで残らないように）
+  useEffect(() => {
+    if (ready && !state.starterChosen) {
+      setSettings(false);
+      setShop(false);
+      setNotice(null);
+      setLoginRecord(false);
+      setCamera(false);
+    }
+  }, [ready, state.starterChosen]);
   // 場面に合う BGM を伝える（音源が無いあいだは何も起きない）
   const welcome = ready && (!state.starterChosen || tour);
   useEffect(() => {
@@ -89,23 +113,33 @@ function Root() {
         <SafeAreaView edges={['top']} style={s.fill}>
           <TabPadCtx.Provider value={tabH}>
             <Active
-              go={setTab}
-              openShop={() => setShop(true)}
+              go={go}
+              openShop={() => {
+                setShop(true);
+                emitTour('shop');
+              }}
               openSettings={() => setSettings(true)}
               openLoginRecord={() => setLoginRecord(true)}
-              openNotice={(t = 'notice') => setNotice(t)}
+              openNotice={(t = 'notice') => {
+                setNotice(t);
+                emitTour('notice');
+              }}
               openCamera={() => setCamera(true)}
               width={width}
             />
           </TabPadCtx.Provider>
         </SafeAreaView>
         <TourAnchor id="tabbar" style={s.tabbar} onLayout={(e) => setTabH(e.nativeEvent.layout.height)}>
-          <TabBar tab={tab} onChange={setTab} bottomInset={insets.bottom} />
+          <TabBar tab={tab} onChange={go} bottomInset={insets.bottom} />
         </TourAnchor>
         {tour && (
           <TutorialTour
             bottomInset={insets.bottom}
             onNavigate={setTab}
+            closePopups={() => {
+              setShop(false);
+              setNotice(null);
+            }}
             onClose={() => {
               setReplay(false);
               finishTutorial();
@@ -114,8 +148,9 @@ function Root() {
           />
         )}
       </View>
-      <Popup visible={shop} onClose={() => setShop(false)}>
-        <ShopScreen onClose={() => setShop(false)} />
+      <Popup visible={shop} onClose={closeShop}>
+        <ShopScreen onClose={closeShop} />
+        <TourCoach kind="shop" close={closeShop} />
       </Popup>
       <Popup visible={loginRecord} onClose={() => setLoginRecord(false)}>
         <LoginRecordScreen onClose={() => setLoginRecord(false)} width={width} />
@@ -130,8 +165,9 @@ function Root() {
           }}
         />
       </Popup>
-      <Popup visible={!!notice} onClose={() => setNotice(null)}>
-        {notice && <NoticeScreen initialTab={notice} onClose={() => setNotice(null)} />}
+      <Popup visible={!!notice} onClose={closeNotice}>
+        {notice && <NoticeScreen initialTab={notice} onClose={closeNotice} />}
+        <TourCoach kind="notice" close={closeNotice} />
       </Popup>
       <Modal visible={camera} animationType="fade" onRequestClose={() => setCamera(false)}>
         <View style={[s.fill, { alignItems: 'center' }]}>

@@ -6,7 +6,7 @@
 
 | 機能 | 画面（見た目） | ルール・データ |
 |---|---|---|
-| 初回の相棒選び | `features/onboarding/OnboardingScreen.tsx` | `core/game.tsx`（`STARTERS`、`chooseStarter`） |
+| 初回の相棒選び | `features/onboarding/OnboardingScreen.tsx` | `core/game.tsx`（`drawStarters`、`rerollStarter`、`chooseStarter`） |
 | 初回のチュートリアル（相棒選びのあと。設定から見返せる） | `features/tutorial/TutorialTour.tsx` | 手順 `features/tutorial/steps.ts`、指す場所の目印 `ui/TourAnchor.tsx`、見終えたか `core/game.tsx`（`tutorialDone`） |
 | ホーム（猫部屋・なでる） | `features/home/HomeScreen.tsx` | `core/game.tsx`（`pet`） |
 | 毎日の出会い（候補・無料1匹・お迎え券・またたび） | `features/deai/DeaiScreen.tsx` | 抽選 `core/encounter.ts`、条件 `core/conditions.ts`、状態 `core/game.tsx` |
@@ -17,6 +17,7 @@
 | 設定（通知・誕生日・音とバイブ・使い方・お問い合わせ・規約・クレジット・開発用）。ヘッダーの歯車から開く | `features/settings/SettingsScreen.tsx` | 文面と連絡先 `data/appInfo.ts`、通知 `services/notify.ts`、音と触覚の設定 `services/audio.ts` |
 | 音（BGM・効果音）と触覚 | — （ボタン・タブ・スイッチは `ui/kit.tsx` で自動。場面ごとの音は各画面から `playSfx`、BGM は `App.tsx`） | `services/audio.ts`、`services/haptics.ts`、音源の一覧 `data/audioAssets.ts` |
 | お知らせ・出会い履歴・これから会える猫 | `features/notice/NoticeScreen.tsx` | 予告の計算 `core/conditions.ts`（`upcoming`） |
+| ホームに出す猫を選ぶ（1〜6番の場所ごと） | `features/home/HomeSelect.tsx` | `core/game.tsx`（`homeSlotsOf`、`setHomeSlots`） |
 | 起動時のタイトル（猫が降ってきて、タップで始まる） | `features/opening/OpeningScreen.tsx` | `App.tsx`（`opened`） |
 | ログイン記録（月のカレンダー。ホーム右上のボタンから） | `features/login/LoginRecordScreen.tsx` | `core/game.tsx`（`loginDays`） |
 | 撮影（カメラ合成） | `features/camera/CameraScreen.tsx` | `services/share.ts` |
@@ -39,6 +40,7 @@ src/
 │  ├─ kit.tsx          ボタン・ピル・バッジ・ゲージ・カード・ナビボタン（4つの独立ボタン）。ナビは画面の上に重なるので、各画面は `useTabPad()` の高さぶん下に余白を取る
 │  ├─ Popup.tsx        画面中央のポップ（背景画像＋角丸）。設定・ショップ・通知・ログイン記録が使う。入れ子にできる
 │  ├─ ConfirmPopup.tsx 取り消せない操作の最終確認。対象の猫を大きく見せて決める（`useConfirm`）。迎える・使う・加入する・消すはすべてこれ
+│  ├─ （features/tutorial/tourStore.ts：チュートリアルと画面側をつなぐ小さな橋。ポップの中の説明に使う）
 │  ├─ TourAnchor.tsx   チュートリアルが指し示す場所の目印（`<TourAnchor id>` で包むだけ）
 │  ├─ Slice.tsx        画像を伸縮させて描く仕組み（9スライス）、背景、画像表示
 │  └─ uiAssets.ts      画像の一覧（自動生成）

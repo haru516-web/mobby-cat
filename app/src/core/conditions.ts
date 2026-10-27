@@ -15,7 +15,7 @@ export type Signals = {
   birthday: { m: number; d: number } | null;
   weather?: Weather | null; // その日の天気。取れないときは null
   temp?: number | null; // その日の気温（℃）。取れないときは null
-  favorites?: string[]; // お気に入りの猫（部屋に置かれる）
+  favorites?: string[]; // お気に入りの猫
   installDay?: string; // 遊びはじめた日
   // 端末の中で数えている累計（歩数は出会いの候補を作った日の分から）
   totals?: { steps: number; photos: number; pets: number; openDays: number; cats: number };

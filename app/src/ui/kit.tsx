@@ -195,6 +195,9 @@ export const TabPadCtx = React.createContext(0);
 export const useTabPad = () => React.useContext(TabPadCtx);
 
 export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: (t: TabKey) => void; bottomInset: number }) {
+  const { state, todayKey } = useGame();
+  // 今日の候補がいて、無料のお迎えがまだなら「出会い」に赤い点
+  const waiting = !!state.days[todayKey]?.candidates.length && !state.days[todayKey].freePick;
   // 4つの独立ボタンが画面下に浮かぶ。選択中は光を敷いて、少し大きく上に出す
   return (
     <View pointerEvents="box-none" style={[k.tabbar, { paddingBottom: Math.max(bottomInset, 8) }]}>
@@ -208,6 +211,7 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
             <View style={[k.navBox, on && k.navBoxOn]}>
               {on && <Pic name="navbtn/glow" width={NAV_SIZE * 1.3} style={k.navGlow} />}
               <Pic name={`navbtn/${t.key}-${on ? 'on' : 'off'}`} width={NAV_SIZE} />
+              {t.key === 'deai' && waiting && <Pic name="button/bell-badge" height={16} style={k.navDot} />}
             </View>
             <T w="x" size={11} color={on ? C.accent : C.sub} style={k.navLabel}>{t.label}</T>
           </Pressable>
@@ -233,6 +237,7 @@ const k = StyleSheet.create({
   navBox: { width: NAV_SIZE, height: NAV_SIZE, alignItems: 'center', justifyContent: 'center' },
   navBoxOn: { transform: [{ translateY: -4 }, { scale: 1.08 }] },
   navGlow: { position: 'absolute', left: -NAV_SIZE * 0.15, top: -NAV_SIZE * 0.15 },
+  navDot: { position: 'absolute', right: 2, top: 2 },
   navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 5 },
   gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   bellBadge: { position: 'absolute', right: 2, top: 2 },

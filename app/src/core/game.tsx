@@ -7,6 +7,7 @@ import { buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
+import { isRealCat } from './recipes';
 import { worldGifts } from './world';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
@@ -43,6 +44,9 @@ export type GameState = {
   catalogVersion: string;
   birthday: { m: number; d: number } | null;
   starterChosen: boolean; // 初回の相棒選びを終えたか
+  homeSlots: (string | null)[] | null; // ホームに出す猫（1〜6番目。null のときは入手した順に6体まで）
+  starterOffer: string[]; // 相棒選びで見せている3匹（アプリを閉じても同じ子を見せる）
+  starterRerolls: number; // 相棒を引き直した回数（最大 STARTER_REROLLS）
   tutorialDone: boolean; // 相棒選びのあとのチュートリアルを見終えた（スキップした）か
   petCount: number; // 猫をなでた回数
   photoCount: number; // 撮った写真の枚数
@@ -54,8 +58,19 @@ export type GameState = {
   pass: { active: boolean; lastGrantMonth: string }; // またたびパス（テスト）
 };
 
-// 初回に選べる相棒（色と毛並みがはっきり違う3匹）
-export const STARTERS = ['british-shorthair', 'ragdoll', 'bengal'];
+// 初回の相棒は、実在の猫種から均等な確率で3種を引く。引き直しは最大3回（回数は端末に保存する）
+export const STARTER_REROLLS = 3;
+export function drawStarters(avoid: string[] = []): string[] {
+  const pool = CATS.filter(isRealCat).map((c) => c.id);
+  const fresh = pool.filter((id) => !avoid.includes(id)); // 直前に見た子は、できるだけ外す
+  const from = fresh.length >= 3 ? fresh : pool;
+  const out: string[] = [];
+  while (out.length < 3) {
+    const id = from[Math.floor(Math.random() * from.length)];
+    if (!out.includes(id)) out.push(id);
+  }
+  return out;
+}
 const PASS_BONUS = 3;
 const PASS_TICKETS = 3;
 const STREAK_GIFT_DAYS = 7;
@@ -82,6 +97,9 @@ function initial(now: Date): GameState {
     catalogVersion: CATALOG_VERSION,
     birthday: null,
     starterChosen: false,
+    homeSlots: null,
+    starterOffer: [],
+    starterRerolls: 0,
     tutorialDone: false,
     petCount: 0,
     photoCount: 0,
@@ -137,6 +155,8 @@ type Ctx = {
   setBirthday: (b: { m: number; d: number } | null) => void;
   toggleFavorite: (id: string) => void;
   chooseStarter: (id: string) => void;
+  rerollStarter: () => void;
+  setHomeSlots: (slots: (string | null)[] | null) => void;
   finishTutorial: () => void;
   pet: () => void;
   countPhoto: () => void;
@@ -149,6 +169,16 @@ type Ctx = {
   discardBackup: () => void;
   saveBlocked: boolean; // 保存領域を読めず、記録を守るために保存を止めている
 };
+
+// ホームに出せる数。置き場所は HomeScreen の SLOTS と同じ並び（1番目が手前の大きい場所）
+export const HOME_SLOTS = 6;
+// いまホームに出す猫。自分で選んでいなければ、入手した順（owned の追加順）に6体まで。お気に入りは関係しない
+export function homeSlotsOf(s: Pick<GameState, 'owned' | 'homeSlots'>): (string | null)[] {
+  const auto = Object.keys(s.owned).slice(0, HOME_SLOTS);
+  const picked = s.homeSlots;
+  const base = picked ? picked.map((id) => (id && s.owned[id] ? id : null)) : auto;
+  return Array.from({ length: HOME_SLOTS }, (_, i) => base[i] ?? null);
+}
 
 const GameCtx = createContext<Ctx>(null as unknown as Ctx);
 export const useGame = () => useContext(GameCtx);
@@ -390,6 +420,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       })),
     [],
   );
+  // 相棒選びの3匹を、まだ決まっていなければ引く（起動のたびに変わらないよう、引いた結果を保存する）
+  useEffect(() => {
+    if (!ready || saveBlocked) return;
+    setState((s) => (s.starterChosen || s.starterOffer?.length === 3 ? s : { ...s, starterOffer: drawStarters() }));
+  }, [ready, saveBlocked, state.starterChosen]);
+
+  const rerollStarter = useCallback(() => {
+    setState((s) =>
+      s.starterChosen || (s.starterRerolls ?? 0) >= STARTER_REROLLS
+        ? s
+        : { ...s, starterOffer: drawStarters(s.starterOffer ?? []), starterRerolls: (s.starterRerolls ?? 0) + 1 },
+    );
+  }, []);
+
+  const setHomeSlots = useCallback((slots: (string | null)[] | null) => setState((s) => ({ ...s, homeSlots: slots })), []);
+
   const chooseStarter = useCallback(
     (id: string) =>
       setState((s) => {
@@ -424,7 +470,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, reset,
+    pickFree, pickExtra, useMatatabi, grant, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, reset,
     corruptBackup, discardBackup, saveBlocked,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
