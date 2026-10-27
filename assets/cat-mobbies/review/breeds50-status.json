@@ -4,15 +4,16 @@
   "base": "4c1d389",
   "listCommit": "6d1b3da",
   "planned": 50,
-  "generated": 20,
+  "generated": 30,
   "regenerated": 2,
-  "nextBatch": "l",
-  "nextId": "burmilla-longhair",
+  "nextBatch": "m",
+  "nextId": "somali-fawn",
   "blockedBy": null,
   "completedBatches": [
     "j",
-    "k"
+    "k",
+    "l"
   ],
-  "comparisonSheets": 32,
+  "comparisonSheets": 42,
   "manifestChanged": true
 }
