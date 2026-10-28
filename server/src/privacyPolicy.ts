@@ -8,7 +8,7 @@ export const PRIVACY_POLICY_TITLE = "プライバシーポリシー";
 
 export const PRIVACY_MARKDOWN = `# プライバシーポリシー
 
-制定日：【要設定】
+制定日：2026年10月28日
 運営者：${OPERATOR_NAME}
 連絡先：${CONTACT_EMAIL}
 
