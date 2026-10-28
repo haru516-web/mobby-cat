@@ -1,0 +1,39 @@
+name = "nyakomobby-server"
+main = "src/index.ts"
+compatibility_date = "2026-09-30"
+compatibility_flags = ["nodejs_compat"]
+
+# Hourly clean-up of rate-limit counters (so an address is not kept past its window).
+[triggers]
+crons = ["23 * * * *"]
+
+# Create it with `npx wrangler d1 create nyakomobby`, then put the printed id here. Never commit account credentials.
+[[d1_databases]]
+binding = "DB"
+database_name = "nyakomobby"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[vars]
+APPLE_BUNDLE_ID = "com.mobbycat.app"
+# Sandbox is accepted so TestFlight and App Review purchases work. Remove it before the public release.
+PURCHASE_ENVIRONMENTS = "Production,Sandbox"
+# Product ids are provisional; ids and prices must match App Store Connect before release.
+# A product is either a one-time purchase (tickets or matatabi) or a plan; never both.
+PRODUCT_CATALOG_JSON = '''{"com.mobbycat.app.ticket.1":{"tickets":1,"priceYen":200},"com.mobbycat.app.ticket.6":{"tickets":6,"priceYen":1000},"com.mobbycat.app.matatabipass.monthly":{"plan":"matatabi_pass","monthlyTickets":8,"priceYen":1600}}'''
+APPLE_ROOT_CERTIFICATES = '''
+-----BEGIN CERTIFICATE-----
+MIICQzCCAcmgAwIBAgIILcX8iNLFS5UwCgYIKoZIzj0EAwMwZzEbMBkGA1UEAwwS
+QXBwbGUgUm9vdCBDQSAtIEczMSYwJAYDVQQLDB1BcHBsZSBDZXJ0aWZpY2F0aW9u
+IEF1dGhvcml0eTETMBEGA1UECgwKQXBwbGUgSW5jLjELMAkGA1UEBhMCVVMwHhcN
+MTQwNDMwMTgxOTA2WhcNMzkwNDMwMTgxOTA2WjBnMRswGQYDVQQDDBJBcHBsZSBS
+b290IENBIC0gRzMxJjAkBgNVBAsMHUFwcGxlIENlcnRpZmljYXRpb24gQXV0aG9y
+aXR5MRMwEQYDVQQKDApBcHBsZSBJbmMuMQswCQYDVQQGEwJVUzB2MBAGByqGSM49
+AgEGBSuBBAAiA2IABJjpLz1AcqTtkyJygRMc3RCV8cWjTnHcFBbZDuWmBSp3ZHtf
+TjjTuxxEtX/1H7YyYl3J6YRbTzBPEVoA/VhYDKX1DyxNB0cTddqXl5dvMVztK517
+IDvYuVTZXpmkOlEKMaNCMEAwHQYDVR0OBBYEFLuw3qFYM4iapIqZ3r6966/ayySr
+MA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMDA2gA
+MGUCMQCD6cHEFl4aXTQY2e3v9GwOAEZLuN+yRhHFD/3meoyhpmvOwgPUnPWTxnS4
+at+qIxUCMG1mihDK1A3UT82NQz60imOlM27jbdoXt2QfyFMm+YhidDkLF1vLUagM
+6BgD56KyKA==
+-----END CERTIFICATE-----
+'''

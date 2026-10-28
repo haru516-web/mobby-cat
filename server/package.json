@@ -1,0 +1,17 @@
+{
+  "name": "nyakomobby-server",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "dev": "wrangler dev",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --experimental-sqlite --test tests/*.test.mjs",
+    "db:apply": "wrangler d1 execute nyakomobby --local --file=./schema.sql"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261001.1",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.35.0"
+  }
+}
