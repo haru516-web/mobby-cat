@@ -72,7 +72,7 @@ export function drawStarters(avoid: string[] = []): string[] {
   return out;
 }
 const PASS_BONUS = 3;
-const PASS_TICKETS = 3;
+const PASS_TICKETS = 8;
 const STREAK_GIFT_DAYS = 7;
 
 const KEY = 'mobby-cat/state/v1';

@@ -40,7 +40,7 @@ export const TOUR_STEPS: readonly TourStep[] = [
   },
   {
     tab: 'deai', anchor: 'deai-hero', title: '無料のお迎えは1日1匹',
-    detail: '開けなかった日も、次の日まで受け取れます。次の出会いまでの時間と、これから会える猫の予告もここから見られます。',
+    detail: '開けなかった日も、次の日まで受け取れます。次の出会いまでの時間もここから見られます。',
   },
   {
     tab: 'deai', anchor: 'deai-grid', title: '候補から選ぶ',
@@ -52,7 +52,7 @@ export const TOUR_STEPS: readonly TourStep[] = [
     items: [
       { icon: 'icon/ticket-paw', name: 'お迎え券', text: '無料の1匹のあとに、好きな子を1匹ずつ追加で迎えられます。1枚で1匹。' },
       { icon: 'icon/matatabi-leaf', name: 'またたび', text: '迎える前に使うと、隠れているシルエットの子が1匹見えるようになります。1個で1匹。' },
-      { icon: 'icon/matatabi-bag', name: 'またたびパス', text: '毎日の候補がはじめから6匹になり、毎月お迎え券が3枚届きます。いつでも解約できます。' },
+      { icon: 'icon/matatabi-bag', name: 'またたびパス', text: '毎日の候補がはじめから6匹になり、毎月お迎え券が8枚届きます。いつでも解約できます。' },
     ],
   },
   {

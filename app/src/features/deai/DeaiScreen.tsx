@@ -125,10 +125,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
               {mins >= 60 ? `${Math.floor(mins / 60)}時間${mins % 60}分` : `${mins}分`}
             </T>
           </View>
-          <Tap onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end' }}>
-            <T w="b" size={11} color={C.accent}>これから会える猫</T>
-            <Pic name="icon/chevron-right" height={11} style={{ marginLeft: 2 }} />
-          </Tap>
         </Card>
       </TourAnchor>
 
@@ -276,7 +272,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             <Pic name="icon/matatabi-bag" height={32} />
             <View style={{ flex: 1 }}>
               <T w="x" size={12}>{state.pass.active ? 'またたびパス加入中' : 'またたびパス'}</T>
-              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹に会える＋毎月お迎え券3枚</T>
+              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹に会える＋毎月お迎え券8枚</T>
             </View>
             {!state.pass.active && <T w="x" size={11} color={C.accent}>くわしく</T>}
             <Pic name="icon/chevron-right" height={12} />

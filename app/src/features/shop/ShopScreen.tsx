@@ -9,9 +9,8 @@ import { Pic } from '../../ui/Slice';
 
 // 価格は設計書の仮値。実課金（StoreKit 等）は未接続で、購入ボタンは開発用の無料付与。
 const ITEMS = [
-  { key: 'ticket', n: 1, icon: 'icon/ticket-paw', name: 'お迎え券 1枚', price: '¥160', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
-  { key: 'ticket', n: 3, icon: 'icon/ticket-paw', name: 'お迎え券 3枚', price: '¥320', desc: 'まとめ買い' },
-  { key: 'ticket', n: 10, icon: 'icon/ticket-paw', name: 'お迎え券 10枚', price: '¥800', desc: 'お得なまとめ買い' },
+  { key: 'ticket', n: 1, icon: 'icon/ticket-paw', name: 'お迎え券 1枚', price: '¥200', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
+  { key: 'ticket', n: 6, icon: 'icon/ticket-paw', name: 'お迎え券 6枚', price: '¥1,000', desc: 'まとめ買い（5枚＋おまけ1枚）' },
   { key: 'matatabi', n: 1, icon: 'icon/matatabi-leaf', name: 'またたび 1個', price: '¥120', desc: '今日の候補が1匹ふえます（最大6匹）。またたびパス加入中は、はじめから6匹です' },
 ] as const;
 
@@ -48,9 +47,9 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         <Card style={[s.item, { alignItems: 'flex-start' }]}>
           <Icon name="icon/matatabi-bag" size={44} />
           <View style={{ flex: 1 }}>
-            <T w="x" size={14}>またたびパス（月額 ¥480）</T>
+            <T w="x" size={14}>またたびパス（月額 ¥1,600）</T>
             <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>
-              加入中は毎日の候補が3匹から{3 + PASS_BONUS_LABEL}匹にふえて、毎月お迎え券が3枚届きます。いつでも解約でき、解約後も迎えた猫はそのまま残ります
+              加入中は毎日の候補が3匹から{3 + PASS_BONUS_LABEL}匹にふえて、毎月お迎え券が8枚届きます。いつでも解約でき、解約後も迎えた猫はそのまま残ります
             </T>
           </View>
           <ImgButton
@@ -59,7 +58,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             height={40}
             onPress={() => state.pass.active
               ? confirm('またたびパスを解約しますか？', '解約後も、迎えた猫はそのまま残ります。毎日の候補は3匹に戻ります。', '解約する', () => g.setPass(false))
-              : confirm('またたびパスに加入しますか？', `月額 ¥480です。毎日の候補が${3 + PASS_BONUS_LABEL}匹になり、毎月お迎え券が3枚届きます。いつでも解約できます。`, '加入する', () => g.setPass(true), { skin: 'primary-green' })}
+              : confirm('またたびパスに加入しますか？', `月額 ¥1,600です。毎日の候補が${3 + PASS_BONUS_LABEL}匹になり、毎月お迎え券が8枚届きます。いつでも解約できます。`, '加入する', () => g.setPass(true), { skin: 'primary-green' })}
             style={{ width: 84 }}
           />
         </Card>
