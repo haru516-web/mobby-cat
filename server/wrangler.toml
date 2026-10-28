@@ -7,11 +7,11 @@ compatibility_flags = ["nodejs_compat"]
 [triggers]
 crons = ["23 * * * *"]
 
-# Create it with `npx wrangler d1 create nyakomobby`, then put the printed id here. Never commit account credentials.
+# Created with `npx wrangler d1 create nyakomobby` (2026-10-28). The id is not a secret; never commit account credentials.
 [[d1_databases]]
 binding = "DB"
 database_name = "nyakomobby"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "527c0d28-1d3a-48e2-9d26-109e79773bc3"
 
 [vars]
 APPLE_BUNDLE_ID = "com.mobbycat.app"
