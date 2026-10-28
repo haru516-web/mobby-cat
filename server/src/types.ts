@@ -114,8 +114,8 @@ export interface Store {
   /** Count one call in this window (`window` is the number of the `windowMs`-long period); the counter expires two periods after it started. */
   hitRateLimit(key: string, window: number, windowMs: number): Promise<number>;
   wallet(userId: string): Promise<Wallet>;
-  /** Spend `amount` of a currency once for this `ref`. False when the balance is short or the `ref` was already spent. */
-  consume(userId: string, currency: Currency, amount: number, ref: string): Promise<boolean>;
+  /** Spend `amount` of a currency once for this `ref`. "duplicate" when this `ref` was already spent (a retry after a lost answer), "short" when the balance is not enough. */
+  consume(userId: string, currency: Currency, amount: number, ref: string): Promise<"ok" | "duplicate" | "short">;
   /** Record a purchase and credit a one-time product. False when this transaction was already recorded (or already refunded). Safe to repeat. */
   recordPurchase(userId: string, transaction: VerifiedTransaction, product: ProductDefinition): Promise<boolean>;
   /** One billing period of a plan: remember it and credit that period's お迎え券 once. Safe to repeat. */

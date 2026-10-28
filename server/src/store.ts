@@ -109,13 +109,15 @@ export class D1Store implements Store {
     return { tickets: row?.tickets ?? 0, matatabi: row?.matatabi ?? 0 };
   }
 
-  async consume(userId: string, currency: Currency, amount: number, ref: string): Promise<boolean> {
+  async consume(userId: string, currency: Currency, amount: number, ref: string): Promise<"ok" | "duplicate" | "short"> {
     const column = COLUMN[currency];
+    // The same request id again means the first call got through and only its answer was lost: it is not spent twice, and it is not "short".
+    if (await this.db.prepare("SELECT 1 AS found FROM wallet_ledger WHERE user_id = ? AND currency = ? AND reason = 'consume' AND ref = ?").bind(userId, currency, ref).first()) return "duplicate";
     const result = await this.db.prepare(`INSERT INTO wallet_ledger (id, user_id, currency, delta, reason, ref, created_at)
       SELECT ?, ?, ?, ?, 'consume', ?, ? WHERE COALESCE((SELECT ${column} FROM wallet WHERE user_id = ?), 0) >= ?
       ON CONFLICT(user_id, currency, reason, ref) DO NOTHING`)
       .bind(ledgerId(), userId, currency, -amount, ref, nowIso(), userId, amount).run();
-    return (result.meta?.changes ?? 0) > 0;
+    return (result.meta?.changes ?? 0) > 0 ? "ok" : "short";
   }
 
   async recordPurchase(userId: string, transaction: VerifiedTransaction, product: ProductDefinition): Promise<boolean> {

@@ -22,6 +22,7 @@ import WorldScreen from './src/features/world/WorldScreen';
 import TutorialTour, { TourCoach } from './src/features/tutorial/TutorialTour';
 import { emitTour } from './src/features/tutorial/tourStore';
 import ZukanScreen from './src/features/zukan/ZukanScreen';
+import { AccountProvider } from './src/core/account';
 import { GameProvider, useGame } from './src/core/game';
 import { initAudio, setBgmScene } from './src/services/audio';
 import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
@@ -185,8 +186,10 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <GameProvider>
-        <StatusBar style="dark" />
-        <Root />
+        <AccountProvider>
+          <StatusBar style="dark" />
+          <Root />
+        </AccountProvider>
       </GameProvider>
     </SafeAreaProvider>
   );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { shownRarity } from '../core/recipes';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import { CatDef } from '../data/catalog';
-import { useGame } from '../core/game';
+import { matatabiOf, ticketsOf, useGame } from '../core/game';
 import { SfxId } from '../data/audioAssets';
 import { playSfx } from '../services/audio';
 import { hapticTap } from '../services/haptics';
@@ -97,9 +97,9 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSetti
         <Tap onPress={onShop}>
           <Slice name="panel/pill-currency" style={k.currency}>
             <Icon name="icon/ticket-paw" size={20} />
-            <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{state.tickets}</T>
+            <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{ticketsOf(state)}</T>
             <Icon name="icon/matatabi-leaf" size={20} />
-            <T w="x" size={14} style={{ marginLeft: 3 }}>{state.matatabi}</T>
+            <T w="x" size={14} style={{ marginLeft: 3 }}>{matatabiOf(state)}</T>
           </Slice>
         </Tap>
       </TourAnchor>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { REVEAL_HOUR } from '../../core/encounter';
+import { useAccount } from '../../core/account';
 import { STARTER_REROLLS, useGame } from '../../core/game';
+import { notice } from '../../services/dialog';
 import { requestStepAccess } from '../../services/signals';
 import { requestWeatherAccess } from '../../services/weather';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
@@ -22,6 +24,22 @@ const TIPS = [
 // 初回起動：相棒を1匹選んでもらい、毎日の出会いのしくみを体験で伝える
 export default function OnboardingScreen({ width }: { width: number }) {
   const { chooseStarter, rerollStarter, reset, state } = useGame();
+  const acc = useAccount();
+  const [restoring, setRestoring] = useState(false);
+  // 以前のiPhoneの記録を、Appleでサインインして戻す（記録が戻ると、この画面は閉じる）
+  const restore = async () => {
+    if (restoring) return;
+    setRestoring(true);
+    try {
+      const r = await acc.restoreWithApple();
+      if (r === 'nothing') notice('記録が見つかりません', 'このApple IDで預けた記録はありません。');
+      else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
+      else if (r === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');
+      else if (r === 'failed') notice('引き継げませんでした', 'もう一度お試しください。');
+    } finally {
+      setRestoring(false);
+    }
+  };
   const offer = state.starterOffer ?? [];
   const left = Math.max(0, STARTER_REROLLS - (state.starterRerolls ?? 0));
   const [confirm, confirmEl] = useConfirm(); // 相棒は、大きく見せるポップで最終決定する
@@ -80,6 +98,9 @@ export default function OnboardingScreen({ width }: { width: number }) {
               )}
               style={{ marginTop: 12 }}
             />
+            <T w="b" size={12} color={C.accent} style={{ textAlign: 'center', marginTop: 16 }} onPress={withSfx(restore)}>
+              以前のiPhoneの記録を引き継ぐ（Appleでサインイン）
+            </T>
             {/* 開発ビルドだけ：引き直しの回数を使い切っても、ここから最初に戻して何度でも試せる */}
             {__DEV__ && (
               <T w="b" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 16 }} onPress={withSfx(reset)}>（開発用）引き直しの回数をもどす</T>

@@ -161,7 +161,8 @@ test("spending takes from the balance once per request id, and never below zero"
   await purchase(context, root, user, TICKET3, "tx-1");
   const spend = (body) => context.call("POST", "/wallet/consume", { user, body });
   assert.equal((await spend({ currency: "tickets", amount: 2, requestId: "r1" })).data.remaining.tickets, 1);
-  assert.equal((await spend({ currency: "tickets", amount: 2, requestId: "r1" })).status, 409, "the same request id is not spent twice");
+  const again = await spend({ currency: "tickets", amount: 2, requestId: "r1" });
+  assert.deepEqual([again.status, again.data.duplicate, again.data.remaining.tickets], [200, true, 1], "the same request id is answered again but not spent twice");
   assert.equal((await spend({ currency: "tickets", amount: 2, requestId: "r2" })).status, 409, "more than the balance");
   assert.equal((await spend({ currency: "matatabi", amount: 1, requestId: "r3" })).status, 409, "the other currency is separate");
   assert.equal((await spend({ currency: "coins", amount: 1, requestId: "r4" })).status, 400);
@@ -311,7 +312,7 @@ test("the cloud record is for Apple-linked accounts only, and versioned so a sta
   const saved = (await context.call("GET", "/save", { user })).data;
   assert.deepEqual([saved.data, saved.version], ['{"cats":2}', 2]);
   assert.equal((await context.call("POST", "/save", { user, body: { data: "x", baseVersion: 2 } })).status, 400);
-  assert.equal((await context.call("POST", "/save", { user, body: { data: "x".repeat(200_001), baseVersion: 2 } })).status, 413);
+  assert.equal((await context.call("POST", "/save", { user, body: { data: "x".repeat(400_001), baseVersion: 2 } })).status, 413);
   assert.equal((await context.call("POST", "/save", { user, body: { data: '{"a":1}', baseVersion: -1 } })).status, 400);
 });
 

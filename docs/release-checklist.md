@@ -97,7 +97,7 @@ Users and Access → Sandbox → テスター で、テスト用の Apple Accoun
 
 ## E. アプリ側の接続（私）
 
-未実装。決めた方針は `docs/game-design.md` の 16。
+2026-10-28 に実装（設計は `docs/account-design.md`）。型チェックと Web 表示、サーバーとの通信までは確認済み。**実機（開発ビルド・TestFlight・サンドボックス）での検証は未実施。**
 
 1. アカウント：起動時に匿名アカウントを作る。認証の secret は `expo-secure-store`（Keychain）に保存する。
 2. Apple でサインイン（`expo-apple-authentication`）：連携と、新しい端末での引き継ぎ。

@@ -10,8 +10,10 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.mobbycat.app",
       "infoPlist": {
-        "NSMotionUsageDescription": "その日の歩数に合わせて、出会えるにゃこモビーが変わります。"
-      }
+        "NSMotionUsageDescription": "その日の歩数に合わせて、出会えるにゃこモビーが変わります。",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "usesAppleSignIn": true
     },
     "android": {
       "adaptiveIcon": {
@@ -62,7 +64,10 @@
           "isAndroidBackgroundLocationEnabled": false,
           "isIosBackgroundLocationEnabled": false
         }
-      ]
+      ],
+      "expo-secure-store",
+      "expo-iap",
+      "expo-apple-authentication"
     ]
   }
 }

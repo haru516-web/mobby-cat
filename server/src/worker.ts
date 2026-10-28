@@ -21,7 +21,7 @@ function tokyoMonthRange(now: Date): { from: string; to: string } {
 }
 
 /** The largest record kept for one account. A real record is a few kilobytes. */
-const MAX_SAVE_CHARS = 200_000;
+const MAX_SAVE_CHARS = 400_000;
 
 /** Anonymous sign-ups allowed from one source address. */
 const REGISTER_PER_MINUTE = 5;
@@ -68,10 +68,10 @@ const json = (value: unknown, status = 200): Response => new Response(JSON.strin
 
 /**
  * The largest request body each kind of call may send, in bytes. An ordinary call is a few hundred bytes; a signed
- * transaction or notification is at most 200,000 characters of base64 plus its wrapper; a save is at most 200,000
+ * transaction or notification is at most 200,000 characters of base64 plus its wrapper; a save is at most 400,000
  * characters of text, which in UTF-8 and with the escaping of quotes can be several times that many bytes.
  */
-const BODY_BYTES = { ordinary: 16_384, signed: 262_144, save: 1_000_000 } as const;
+const BODY_BYTES = { ordinary: 16_384, signed: 262_144, save: 1_500_000 } as const;
 
 /** The body as bytes, refusing (413) one that is larger than `maxBytes` before it is held or parsed, whatever the header says. */
 async function readBodyBytes(request: Request, maxBytes: number): Promise<Uint8Array> {
@@ -322,8 +322,9 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     const amount = input.amount;
     if (typeof amount !== "number" || !Number.isSafeInteger(amount) || amount < 1 || amount > 1000) throw new HttpError(400, "invalid_amount");
     const ref = requireString(input.requestId, "missing_request_id", 128);
-    if (!(await store.consume(userId, input.currency, amount, ref))) throw new HttpError(409, "insufficient_balance_or_duplicate_request");
-    return json({ consumed: amount, remaining: await store.wallet(userId) });
+    const result = await store.consume(userId, input.currency, amount, ref);
+    if (result === "short") throw new HttpError(409, "insufficient_balance");
+    return json({ consumed: amount, duplicate: result === "duplicate", remaining: await store.wallet(userId) });
   }
 
   if (method === "GET" && path === "/plan") return json({ plan: (await store.activePlan(userId, now.toISOString())) ?? "none" });

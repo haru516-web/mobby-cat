@@ -1,6 +1,7 @@
 import Constants from 'expo-constants';
 import { useEffect, useState } from 'react';
 import { Linking, ScrollView, Share, StyleSheet, View } from 'react-native';
+import { useAccount } from '../../core/account';
 import { useGame } from '../../core/game';
 import { INFO_BODY, INFO_TITLE, InfoKind, PRIVACY_URL, SUPPORT_EMAIL, TERMS_URL } from '../../data/appInfo';
 import { setAudioSettings, useAudioSettings } from '../../services/audio';
@@ -17,15 +18,16 @@ import { Pic, Slice } from '../../ui/Slice';
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const DAYS_IN = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-type Category = 'permission' | 'notify' | 'sound' | 'support' | 'about' | 'data' | 'dev';
+type Category = 'permission' | 'notify' | 'sound' | 'support' | 'about' | 'account' | 'data' | 'dev';
 // 内容の量に合わせたポップの高さ（画面の高さに対する割合）
-const POP_H: Record<Category, number> = { permission: 0.5, notify: 0.5, sound: 0.46, support: 0.4, about: 0.46, data: 0.38, dev: 0.42 };
+const POP_H: Record<Category, number> = { permission: 0.5, notify: 0.5, sound: 0.46, support: 0.4, about: 0.46, account: 0.7, data: 0.38, dev: 0.42 };
 const CATEGORIES: { key: Category; title: string; desc: string; icon: string; dev?: boolean }[] = [
   { key: 'permission', title: '歩数と天気の許可', desc: '出会いの条件に使う許可の状態', icon: 'icon/shield-check' },
   { key: 'notify', title: '通知と誕生日', desc: '毎日20時の通知、誕生日の登録', icon: 'icon/calendar-today' },
   { key: 'sound', title: '音とバイブ', desc: 'BGM・効果音・バイブ', icon: 'icon/heart-on' },
   { key: 'support', title: '使い方とサポート', desc: 'チュートリアル、お問い合わせ', icon: 'icon/megaphone' },
   { key: 'about', title: 'このアプリについて', desc: '規約・プライバシー・クレジット', icon: 'icon/paw' },
+  { key: 'account', title: 'アカウント', desc: 'Appleでサインイン・記録の引き継ぎ・削除', icon: 'icon/key' },
   { key: 'data', title: 'データ', desc: '記録の保存と消去', icon: 'icon/cloud' },
   { key: 'dev', title: '開発用', desc: '日付を進める・全キャラ開放', icon: 'icon/key', dev: true },
 ];
@@ -39,6 +41,41 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
   const [category, setCategory] = useState<Category | null>(null);
   const [info, setInfo] = useState<InfoKind | null>(null);
   const [confirm, confirmEl] = useConfirm();
+  const acc = useAccount();
+  const [busy, setBusy] = useState(false);
+
+  // 通信を待つ操作は、続けて押せないようにする
+  const run = async (job: () => Promise<void>) => {
+    if (busy) return;
+    setBusy(true);
+    try { await job(); } finally { setBusy(false); }
+  };
+  const doLink = () => run(async () => {
+    const r = await acc.linkApple();
+    if (r === 'ok') notice('Appleでサインインしました', '記録をクラウドに預けました。機種変更のときは、新しいiPhoneで「別のiPhoneの記録を引き継ぐ」から戻せます。');
+    else if (r === 'in_use') notice('このApple IDは、すでに使われています', 'すでに別の記録と結びついています。「別のiPhoneの記録を引き継ぐ」を押すと、その記録に切り替えられます。');
+    else if (r === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');
+    else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
+    else if (r === 'failed') notice('サインインできませんでした', 'もう一度お試しください。');
+  });
+  const doRestore = () => run(async () => {
+    const r = await acc.restoreWithApple();
+    if (r === 'restored') notice('引き継ぎました', '預けてあった記録と、購入したものを戻しました。');
+    else if (r === 'choose') notice('記録が食い違っています', 'この端末の記録と、クラウドの記録の、どちらを使うか選んでください。');
+    else if (r === 'nothing') notice('記録が見つかりません', 'このApple IDで預けた記録はありません。');
+    else if (r === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');
+    else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
+    else if (r === 'failed') notice('引き継げませんでした', 'もう一度お試しください。');
+  });
+  const doDelete = () => run(async () => {
+    const r = await acc.deleteAccount();
+    if (r === 'deleted') notice('削除しました', 'アカウントと、サーバーの記録を削除しました。');
+    else if (r === 'offline') notice('つながりませんでした', '削除はできていません。電波のよいところで、もう一度お試しください。');
+    else if (r === 'apple_needed') notice('Appleでのサインインが必要です', '削除の確認のため、もう一度Appleでサインインしてください。削除はできていません。');
+    else if (r === 'apple_mismatch') notice('別のApple IDです', 'このアカウントと結びついているApple IDで、サインインしてください。削除はできていません。');
+    else if (r === 'signed_out') notice('この端末のアカウントが受け付けられません', '下の「Appleでサインインし直す」から、アカウントを戻してください。削除はできていません。');
+    else notice('削除できませんでした', 'しばらくしてから、もう一度お試しください。続く場合は、サポートまでご連絡ください。');
+  });
 
   const toggleNotify = async (v: boolean) => {
     if (v) {
@@ -261,11 +298,65 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
             </View>
           )}
 
+          {category === 'account' && (
+            <View style={{ gap: 8, marginTop: 8 }}>
+              {acc.signedOut ? (
+                <Card skin="selected" style={{ gap: 6 }}>
+                  <T w="x" size={13}>この端末のアカウントが使えません</T>
+                  <T w="m" size={11} color={C.sub}>別のiPhoneが引き継いだか、サーバーにアカウントが見つかりません。Appleでサインインし直すと、元の記録に戻れます。</T>
+                  <ImgButton label="Appleでサインインし直す" height={44} disabled={busy} onPress={doRestore} />
+                  <ImgButton
+                    skin="ghost-outline"
+                    label="新しく始める"
+                    height={40}
+                    fontSize={12}
+                    disabled={busy}
+                    onPress={() => confirm('新しく始めますか？', 'この端末のアカウントを捨てて、新しいアカウントで始めます。元のアカウントの購入は、この端末から使えなくなります。', '新しく始める', () => void acc.startOver(), { cancelLabel: 'やめる' })}
+                  />
+                </Card>
+              ) : acc.linked === true ? (
+                <Card skin="white" style={{ gap: 4 }}>
+                  <T w="x" size={13}>Appleでサインイン済み</T>
+                  <T w="m" size={11} color={C.sub}>記録をクラウドに預けています。機種変更のときは、新しいiPhoneで「別のiPhoneの記録を引き継ぐ」から戻せます。購入したお迎え券・またたび・またたびパスも、同じApple IDで引き継げます。</T>
+                </Card>
+              ) : (
+                <Card skin="white" style={{ gap: 6 }}>
+                  <T w="x" size={13}>Appleでサインインしていません</T>
+                  <T w="m" size={11} color={C.sub}>サインインすると、記録をクラウドに預けて、機種変更でも引き継げます。購入には、サインインが必要です。名前やメールアドレスは受け取りません。</T>
+                  <ImgButton label="Appleでサインイン" height={44} disabled={busy} onPress={doLink} />
+                </Card>
+              )}
+
+              {acc.pendingCloud && (
+                <Card skin="selected" style={{ gap: 6 }}>
+                  <T w="x" size={13}>記録が食い違っています</T>
+                  <T w="m" size={11} color={C.sub}>この端末の記録と、クラウドの記録が違います。どちらを使いますか？（選ばなかった方は、置き換わります）</T>
+                  <ImgButton label="クラウドの記録を使う" height={44} disabled={busy} onPress={() => confirm('クラウドの記録を使いますか？', 'この端末の記録は、クラウドの記録に置き換わります。元に戻せません。', '使う', () => void acc.resolveCloud('cloud'), { cancelLabel: 'やめる' })} />
+                  <ImgButton skin="ghost-outline" label="この端末の記録を使う" height={44} disabled={busy} onPress={() => confirm('この端末の記録を使いますか？', 'クラウドの記録は、この端末の記録に置き換わります。元に戻せません。', '使う', () => void acc.resolveCloud('local'), { cancelLabel: 'やめる' })} />
+                </Card>
+              )}
+
+              {!acc.signedOut && (
+                <ImgButton skin="ghost-outline" label="別のiPhoneの記録を引き継ぐ" height={44} disabled={busy} onPress={() => confirm('記録を引き継ぎますか？', '以前のiPhoneでAppleにサインインしたときの記録を、この端末に戻します。この端末に記録があるときは、どちらを使うか選べます。', 'Appleでサインイン', () => void doRestore(), { cancelLabel: 'やめる' })} />
+              )}
+
+              {(acc.linked === true || acc.signedOut) && (
+                <Card skin="white" style={{ gap: 4 }}>
+                  <T w="x" size={13}>アカウントの削除</T>
+                  <T w="m" size={11} color={C.sub}>アカウントと、サーバーに預けた記録・購入の記録を、すべて削除します。残っているお迎え券とまたたびは、失われます。またたびパスは、自動では解約されません。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から行ってください。</T>
+                  <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('アカウントを削除しますか？', 'サーバーの記録と購入の記録を削除し、この端末の記録も消します。元に戻せません。', '削除する', () => void doDelete(), { cancelLabel: 'やめる' }))}>
+                    アカウントを削除する
+                  </T>
+                </Card>
+              )}
+            </View>
+          )}
+
           {category === 'data' && (
             <Card skin="white" style={{ marginTop: 8, gap: 4 }}>
               <T w="x" size={13}>データについて</T>
               <T w="m" size={11} color={C.sub}>
-                記録はこの端末の中だけに保存されます。機種変更のときの引き継ぎには、まだ対応していません。
+                記録は、この端末の中に保存されます。Appleでサインインすると、クラウドにも預けて、機種変更で引き継げます（「アカウント」から）。
               </T>
               <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('すべての記録を消しますか？', '迎えた猫・お迎え券・設定がすべて消えます。元に戻せません。', 'すべて消す', g.reset, { cancelLabel: 'やめておく' }))}>
                 すべての記録を消して、はじめから
