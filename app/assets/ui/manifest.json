@@ -2,14 +2,15 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 158,
+  "assetCount": 166,
   "counts": {
-    "badge": 11,
+    "badge": 15,
     "bg": 15,
     "brand": 12,
     "button": 31,
     "camera": 18,
     "cat": 2,
+    "deai": 4,
     "gauge": 3,
     "home": 2,
     "icon": 18,
@@ -21,6 +22,50 @@
     "share": 1
   },
   "assets": [
+    {
+      "path": "badge/label-legend.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. Horizontal rounded pill badge exactly 3:1 shape, fills width. Golden #E5A23B puffy paper plate, fine ivory upper-left edge highlight and gentle glow. White large bold rounded Japanese text exactly 「でんせつ」, precisely two small sparkles, one at each side. Text dominates, readable at 66x22 points. No other text. Target 240x80. Same simple rounded capsule silhouette across badge family.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "6bd2fde955dcfdc89040790a78ad77e34a1821219ca17714875d3b43d130ab02",
+      "bytes": 28505,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "badge/label-normal.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. A horizontal rounded pill badge, exactly 3:1 shape, fills width, cream #FFF8F0 with dark brown #4A3B32 large bold rounded Japanese text exactly 「ノーマル」. Readable at 66x22 points. No other text or decorations. Target 240x80.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "bc7630a214750c0d931b24c23c0586976f91eea60743b7bfc8773bc234978571",
+      "bytes": 21789,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "badge/label-rare.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. Horizontal rounded pill badge exactly 3:1 shape, fills width. Blue #2F5DA8 puffy paper plate with white large bold rounded Japanese text exactly 「レア」, one small sparkle. Readable at 66x22 points. No other text. Target 240x80. Same simple rounded capsule silhouette across badge family.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "d736ee4c17e2e70d0960d6c4502ed2974d2c837aed0c3ee7cabb1ef37f74f03d",
+      "bytes": 25489,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "badge/label-world.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. Horizontal rounded pill badge exactly 3:1 shape fills width. Pale lavender #E1D4FF puffy paper plate with dark purple-brown large bold rounded Japanese text exactly 「世界」 and one small globe emblem at left, subdued blue/green continents, no lettering inside globe. Text dominates, readable at 66x22 points. No other text or decorations. Target 240x80. Same simple rounded capsule silhouette across badge family.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "0a53f62243ddfe0ec753360597508448d9380c8e508c32792b3a95499e61189c",
+      "bytes": 28080,
+      "alphaMode": "transparent"
+    },
     {
       "path": "badge/linked.png",
       "width": 300,
@@ -1292,6 +1337,60 @@
       "bytes": 254710,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "deai/mystery-cat.png",
+      "width": 512,
+      "height": 512,
+      "prompt": "Use case: stylized-concept. ONE isolated production game asset for a cozy Japanese cat collection game. A small round seated cat completely hidden underneath a soft warm caramel-orange and cream cloth, only two triangular ear-shaped bumps under the fabric imply a cat inside. Cute inviting mysterious, soft rounded puffy paper illustration, warm brown #4A3B32 subtle folds and orange #F08A5D shading, upper-left ivory highlights and low contrast downward shadow. Entire face body eyes paws tail all concealed: no visible species, breed, fur pattern, camera eye, buttons or identity clues. Plain cloth without printed motifs. No question marks, text, symbols, sparkles or extra objects. Front view centered single cloth-covered cat-shaped mound occupying most of a square canvas, fully visible with margin. Target 512x512. Genuinely transparent background clean alpha edges no white fringe.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; proportionate Lanczos fit with 12px minimum clearance; generated alpha retained; strip metadata.",
+      "sha256": "21edec9982766400a745fc8abe45f1fab435475910b3a3cd022f22ded30aef72",
+      "bytes": 212957,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "deai/reveal-burst.png",
+      "width": 768,
+      "height": 768,
+      "prompt": "Use case: stylized-concept. ONE production game visual effect sprite, cozy warm Japanese cat collection game. A single perfectly circular expanding ring of light with soft glowing white-cream center and subtle pale golden outer rim. Straight-on face-on circle, centered, no perspective ellipse. Smooth feathered edges and gentle ivory luminosity, warm delicate paper-like softness. One soft ring plus center light, enough transparent space around the ring for scaling animation. No radiating spokes, no sparkles, no stars, no paw marks, no cats, no text, no objects. Genuinely transparent exterior and soft semi-transparent inner glow, no opaque square or black backdrop. Target 768x768.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; proportionate Lanczos fit with 24px minimum clearance; generated alpha retained; strip metadata.",
+      "sha256": "a8b0fdd7b72071017300f506bddcd41f5be03c865359a71f3e8712ae9bb429d9",
+      "bytes": 656587,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "deai/reveal-dim.png",
+      "width": 1179,
+      "height": 2556,
+      "prompt": "Use case: stylized-concept. ONE production full-screen translucent game scrim texture, tall portrait aspect 1179:2556. Absolutely full-bleed deep dark brown #241D21 blending toward midnight navy #111827 at edges, center only very slightly lighter warm dark brown #352C30 like a subtle broad diffused spotlight. Very dark night-like mood, NOT pale gray or white fog. Uniform gently smooth color field, only subtle paper softness. No actual curtain fabric, no folds, no scene, no objects, no stars, no rays, no circle outlines, no text. Fill every pixel to all four edges, no transparent border. Entire field 70-80 percent opacity, genuinely semi-transparent PNG. Target 1179x2556.",
+      "method": "built-in image_gen",
+      "processing": "Resize generated full-bleed scrim to 1179x2556 with Lanczos; normalize generated alpha to 179..204 (70.2..80%); preserve generated RGB; strip metadata.",
+      "sha256": "f911e66ab81516c4fa357e8c7a43af06f110abb41163a1dbe9107188fcea08d7",
+      "bytes": 2317851,
+      "alphaMode": "semi-transparent",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "stretchAxes": [
+        "x",
+        "y"
+      ]
+    },
+    {
+      "path": "deai/reveal-rays.png",
+      "width": 1024,
+      "height": 1024,
+      "prompt": "Use case: stylized-concept. ONE production game visual effect sprite for a cozy warm paper-textured Japanese cat game. A perfectly centered, rotationally balanced radial fan of exactly 16 broad soft luminous rays, alternating slightly wide and narrow, pure ivory white at center flowing into pale warm gold #E5A23B. Central bright glow, each long beam tapers and smoothly fades to completely transparent well before the square canvas edge. Straight-on circular composition, full circle, equal weight top bottom left right for slow rotation. Gentle light, restrained warm paper-like softness, no sharp spiky explosive look. No stars, no paw marks, no cat, no objects, no ring, no text or symbols. Genuinely transparent between and beyond rays, no dark background, no opaque square. Target 1024x1024.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; proportionate Lanczos fit with 24px minimum clearance; generated alpha retained; strip metadata.",
+      "sha256": "c4d156cca297f6e71da994ddd83d3e52a3ea1e37822d08f9a6ffb17ffa4ff86a",
+      "bytes": 1266827,
       "alphaMode": "transparent"
     },
     {
