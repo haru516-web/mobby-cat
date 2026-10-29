@@ -163,9 +163,16 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   if (method === "GET" && path === "/support") return new Response(documentPageHtml(SUPPORT_TITLE, SUPPORT_MARKDOWN), { headers: PAGE_HEADERS });
   if (method === "GET" && path === "/legal") return new Response(documentPageHtml(LEGAL_NOTICE_TITLE, LEGAL_MARKDOWN), { headers: PAGE_HEADERS });
   if (method === "GET" && path === "/privacy") return new Response(privacyPageHtml(), { headers: PAGE_HEADERS });
+  // The app sets its day by this clock, so moving the device clock forward does not bring the next days' cats early. Nothing is stored.
+  if (method === "GET" && path === "/time") return json({ now: now.getTime() });
+
+  // Every other call is counted per source address before anything costly (a signature check, a database read) is done.
+  // The counter is Cloudflare's, kept for a minute in memory at the edge, never in the database.
+  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  const limiter = path === "/apple/notifications" ? env.NOTIFY_LIMITER : env.IP_LIMITER;
+  if (limiter && !(await limiter.limit({ key: ip })).success) throw new HttpError(429, "rate_limited");
 
   if (method === "POST" && path === "/auth/register") {
-    const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
     const perMinute = await store.hitRateLimit(`register:minute:${ip}`, Math.floor(now.getTime() / 60_000), 60_000);
     const perDay = await store.hitRateLimit(`register:day:${ip}`, Math.floor(now.getTime() / 86_400_000), 86_400_000);
     if (perMinute > REGISTER_PER_MINUTE || perDay > REGISTER_PER_DAY) throw new HttpError(429, "rate_limited");
@@ -176,7 +183,6 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   }
 
   if (method === "POST" && path === "/auth/apple") {
-    const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
     const perMinute = await store.hitRateLimit(`apple:minute:${ip}`, Math.floor(now.getTime() / 60_000), 60_000);
     if (perMinute > REGISTER_PER_MINUTE) throw new HttpError(429, "rate_limited");
     const input = await body(request);
@@ -228,6 +234,7 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   }
 
   if (method === "POST" && path === "/account/apple/link") {
+    await limit(store, "link", userId, 3_600_000, 20, now);
     const input = await body(request);
     const token = requireString(input.identityToken, "missing_identity_token", 8000);
     let appleSub: string;
@@ -272,6 +279,7 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
 
   // The whole record, kept only for accounts tied to an Apple ID, so a new device can pick it up.
   if (method === "GET" && path === "/save") {
+    await limit(store, "save-read", userId, 3_600_000, 120, now);
     if (!(await store.appleLinked(userId))) throw new HttpError(403, "apple_required");
     const save = await store.cloudSave(userId);
     if (!save) throw new HttpError(404, "no_save");
@@ -279,6 +287,8 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   }
 
   if (method === "POST" && path === "/save") {
+    // The app saves at most once a minute (and when it is closed); this leaves room for that and stops a flood of 400 KB writes.
+    await limit(store, "save-write", userId, 3_600_000, 120, now);
     if (!(await store.appleLinked(userId))) throw new HttpError(403, "apple_required");
     const input = await body(request, BODY_BYTES.save);
     const data = input.data;
@@ -317,6 +327,7 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   if (method === "GET" && path === "/wallet") return json(await store.wallet(userId));
 
   if (method === "POST" && path === "/wallet/consume") {
+    await limit(store, "consume", userId, 3_600_000, 600, now);
     const input = await body(request);
     if (!isCurrency(input.currency)) throw new HttpError(400, "invalid_currency");
     const amount = input.amount;
@@ -327,9 +338,14 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     return json({ consumed: amount, duplicate: result === "duplicate", remaining: await store.wallet(userId) });
   }
 
-  if (method === "GET" && path === "/plan") return json({ plan: (await store.activePlan(userId, now.toISOString())) ?? "none" });
+  if (method === "GET" && path === "/plan") {
+    // until: when the current period ends, so the app stops the pass on time even while it cannot reach the server.
+    const active = await store.activePlan(userId, now.toISOString());
+    return json(active ? { plan: active.plan, until: active.until } : { plan: "none" });
+  }
 
   if (method === "POST" && path === "/profile/age-group") {
+    await limit(store, "age", userId, 3_600_000, 20, now);
     const input = await body(request);
     if (!isAgeGroup(input.ageGroup)) throw new HttpError(400, "invalid_age_group");
     const current = await store.ageGroup(userId);
@@ -343,7 +359,8 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     const ageGroup = await store.ageGroup(userId);
     const { from, to } = tokyoMonthRange(now);
     const products = configuredProducts(env);
-    const spentYen = (await store.purchasedProducts(userId, from, to)).reduce((sum, productId) => sum + (products[productId]?.priceYen ?? 0), 0);
+    // What Apple charged (in yen) in the month the purchase was made; the catalog price only when Apple did not say (another currency, an old record).
+    const spentYen = (await store.purchasedProducts(userId, from, to)).reduce((sum, row) => sum + (row.priceYen ?? products[row.productId]?.priceYen ?? 0), 0);
     // Until an age group is chosen the strictest cap applies.
     const capYen = MONTHLY_CAP_YEN[ageGroup ?? "under16"];
     const restricted = await store.refundShortfalls(userId, new Date(now.getTime() - REFUND_RESTRICT_WINDOW_MS).toISOString()) >= REFUND_RESTRICT_COUNT;

@@ -29,6 +29,13 @@ export interface Env {
   APPLE_SIGN_IN_PRIVATE_KEY?: string;
   /** Comma-separated purchase environments to accept; default "Production". Add "Sandbox" only while testing (TestFlight, App Review). */
   PURCHASE_ENVIRONMENTS?: string;
+  /** Cloudflare rate limiters (wrangler.toml [[ratelimits]]), keyed by source address. Missing in tests. */
+  IP_LIMITER?: RateLimiter;
+  NOTIFY_LIMITER?: RateLimiter;
+}
+
+export interface RateLimiter {
+  limit(options: { key: string }): Promise<{ success: boolean }>;
 }
 
 /** The two things a player buys and spends. */
@@ -58,6 +65,9 @@ export interface VerifiedTransaction {
   appAccountToken?: string;
   /** "Production" or "Sandbox" (TestFlight and App Review buy in the Sandbox). */
   environment?: string;
+  /** What Apple charged, in thousandths of the currency unit, and its ISO currency code. */
+  price?: number;
+  currency?: string;
 }
 
 export type AgeGroup = "under16" | "16to19" | "adult";
@@ -109,8 +119,8 @@ export interface Store {
   setAppleRefreshToken(userId: string, token: string): Promise<void>;
   ageGroup(userId: string): Promise<AgeGroup | null>;
   setAgeGroup(userId: string, group: AgeGroup): Promise<void>;
-  /** Product ids of this user's purchases (not revoked) granted in [from, to). */
-  purchasedProducts(userId: string, from: string, to: string): Promise<string[]>;
+  /** This user's purchases (not revoked) made in [from, to), with the yen Apple charged when known. */
+  purchasedProducts(userId: string, from: string, to: string): Promise<{ productId: string; priceYen: number | null }[]>;
   /** Count one call in this window (`window` is the number of the `windowMs`-long period); the counter expires two periods after it started. */
   hitRateLimit(key: string, window: number, windowMs: number): Promise<number>;
   wallet(userId: string): Promise<Wallet>;
@@ -120,8 +130,8 @@ export interface Store {
   recordPurchase(userId: string, transaction: VerifiedTransaction, product: ProductDefinition): Promise<boolean>;
   /** One billing period of a plan: remember it and credit that period's お迎え券 once. Safe to repeat. */
   recordPlanPeriod(userId: string, plan: string, periodStart: string, periodEnd: string, tickets: number, transactionId: string): Promise<void>;
-  /** The plan whose billing period covers `at`, or null. */
-  activePlan(userId: string, at: string): Promise<string | null>;
+  /** The plan whose billing period covers `at` and when that period ends, or null. */
+  activePlan(userId: string, at: string): Promise<{ plan: string; until: string } | null>;
   /** Apple refunded this purchase: take back what is unspent of it. Safe to repeat. */
   revokePurchase(transactionId: string, product?: ProductDefinition, plan?: { name: string; periodStart: string }): Promise<void>;
   /** Whether a refund or revocation of this transaction is on record (it may have arrived before the purchase did). */

@@ -14,6 +14,8 @@ import { C, T } from '../../ui/base';
 import { Card, ImgButton, Toggle, Tap, withSfx } from '../../ui/kit';
 import { Popup } from '../../ui/Popup';
 import { Pic, Slice } from '../../ui/Slice';
+import { AGE_LABEL, AgePopup } from '../shop/AgePopup';
+import type { AgeGroup } from '../../services/account/purchase';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const DAYS_IN = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -43,6 +45,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
   const [confirm, confirmEl] = useConfirm();
   const acc = useAccount();
   const [busy, setBusy] = useState(false);
+  const [lowerAge, setLowerAge] = useState(false);
 
   // 通信を待つ操作は、続けて押せないようにする
   const run = async (job: () => Promise<void>) => {
@@ -53,6 +56,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
   const doLink = () => run(async () => {
     const r = await acc.linkApple();
     if (r === 'ok') notice('Appleでサインインしました', '記録をクラウドに預けました。機種変更のときは、新しいiPhoneで「別のiPhoneの記録を引き継ぐ」から戻せます。');
+    else if (r === 'ok_unsaved') notice('Appleでサインインしました', '記録は、まだクラウドに預けられていません。電波のよいところで、自動で預け直します。「アカウント」から、すぐに預け直すこともできます。');
     else if (r === 'in_use') notice('このApple IDは、すでに使われています', 'すでに別の記録と結びついています。「別のiPhoneの記録を引き継ぐ」を押すと、その記録に切り替えられます。');
     else if (r === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');
     else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
@@ -67,6 +71,29 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
     else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
     else if (r === 'failed') notice('引き継げませんでした', 'もう一度お試しください。');
   });
+  const doResolve = (choice: 'local' | 'cloud') => run(async () => {
+    if (!(await acc.resolveCloud(choice))) notice('記録を預けられませんでした', '電波のよいところで、自動で預け直します。');
+  });
+  const doRetry = () => run(async () => {
+    if (await acc.retryCloud()) notice('記録を預けました', 'クラウドの記録が、いまの記録になりました。');
+    else if (acc.pendingCloud) notice('記録が食い違っています', 'この端末の記録と、クラウドの記録の、どちらを使うか選んでください。');
+    else notice('記録を預けられませんでした', '電波のよいところで、もう一度お試しください。');
+  });
+  const pickLowerAge = (group: AgeGroup) => {
+    setLowerAge(false);
+    void run(async () => {
+      if (await acc.setAge(group)) notice('年齢の区分を変えました', `${AGE_LABEL[group]}になりました。`);
+      else notice('変えられませんでした', '電波のよいところで、もう一度お試しください。');
+    });
+  };
+  const savedAt = acc.cloudSavedAt ? new Date(acc.cloudSavedAt) : null;
+  const savedText = savedAt ? `${savedAt.getMonth() + 1}月${savedAt.getDate()}日 ${savedAt.getHours()}:${String(savedAt.getMinutes()).padStart(2, '0')}` : '';
+  const cloudText =
+    acc.cloud === 'saving' ? 'いま、記録を預けています…'
+    : acc.cloud === 'failed' ? 'さいごに預けようとしたとき、つながりませんでした。電波のよいところで、自動で預け直します。'
+    : savedAt ? `記録をクラウドに預けています（さいごに預けたのは ${savedText}）。`
+    : 'まだ記録を預けていません。少しすると、自動で預けます。';
+
   const doDelete = () => run(async () => {
     const r = await acc.deleteAccount();
     if (r === 'deleted') notice('削除しました', 'アカウントと、サーバーの記録を削除しました。');
@@ -146,7 +173,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
           <Card skin="selected" style={{ marginTop: 8, gap: 6 }}>
             <T w="x" size={13}>読み込めなかった記録があります</T>
             <T w="m" size={11} color={C.sub}>
-              以前の記録を読み込めなかったため、端末の中に取っておいてあります。お問い合わせのときに書き出してお送りいただければ、復旧できるかもしれません。
+              以前の記録の全部、または一部を読み込めなかったため、元の記録を端末の中に取っておいてあります。お問い合わせのときに書き出してお送りいただければ、復旧できるかもしれません。
             </T>
             <View style={{ flexDirection: 'row', gap: 8 }}>
               <ImgButton skin="ghost-outline" label="書き出す" height={36} fontSize={12} onPress={() => Share.share({ message: g.corruptBackup ?? '' }).catch(() => {})} style={{ flex: 1 }} />
@@ -193,7 +220,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
           {category === 'permission' && (
             <Card style={{ gap: 6, marginTop: 8 }}>
               <T w="m" size={11} color={C.sub}>
-                猫の出会いの条件には、歩数と天気（位置情報）が使われています。許可しないと、ほとんどの猫に会えません。位置はおおまかな場所だけを使い、保存しません。
+                猫の出会いの条件には、歩数と天気（位置情報）が使われています。許可しないと、ほとんどの猫に会えません。位置はおおまかな場所だけを使い、保存しません。許可を変えたときは、次の出会い（20時）の候補から反映されます。
               </T>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <T w="x" size={13}>歩数（モーションとフィットネス）</T>
@@ -221,7 +248,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               <Card style={s.item}>
                 <View style={{ flex: 1 }}>
                   <T w="x" size={14}>誕生日</T>
-                  <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>その日に特別な猫が来ます。端末の中だけに保存します</T>
+                  <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>誕生日の出会いに、特別な猫が来ることがあります。候補は20時にできるので、その前に登録してください。端末の中だけに保存します</T>
                 </View>
                 {bd ? (
                   <View style={{ alignItems: 'flex-end', gap: 4 }}>
@@ -325,7 +352,11 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               ) : acc.linked === true ? (
                 <Card skin="white" style={{ gap: 4 }}>
                   <T w="x" size={13}>Appleでサインイン済み</T>
-                  <T w="m" size={11} color={C.sub}>記録をクラウドに預けています。機種変更のときは、新しいiPhoneで「別のiPhoneの記録を引き継ぐ」から戻せます。購入したお迎え券・またたび・またたびパスも、同じApple IDで引き継げます。</T>
+                  <T w="m" size={11} color={acc.cloud === 'failed' ? C.accent : C.sub}>{cloudText}</T>
+                  <T w="m" size={11} color={C.sub}>機種変更のときは、新しいiPhoneで「別のiPhoneの記録を引き継ぐ」から戻せます。購入したお迎え券・またたび・またたびパスも、同じApple IDで引き継げます。</T>
+                  {(acc.cloud === 'failed' || !savedAt) && acc.cloud !== 'saving' && (
+                    <ImgButton skin="ghost-outline" label="いま預ける" height={38} fontSize={12} disabled={busy} onPress={doRetry} style={{ marginTop: 4 }} />
+                  )}
                 </Card>
               ) : (
                 <Card skin="white" style={{ gap: 6 }}>
@@ -339,13 +370,23 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 <Card skin="selected" style={{ gap: 6 }}>
                   <T w="x" size={13}>記録が食い違っています</T>
                   <T w="m" size={11} color={C.sub}>この端末の記録と、クラウドの記録が違います。どちらを使いますか？（選ばなかった方は、置き換わります）</T>
-                  <ImgButton label="クラウドの記録を使う" height={44} disabled={busy} onPress={() => confirm('クラウドの記録を使いますか？', 'この端末の記録は、クラウドの記録に置き換わります。元に戻せません。', '使う', () => void acc.resolveCloud('cloud'), { cancelLabel: 'やめる' })} />
-                  <ImgButton skin="ghost-outline" label="この端末の記録を使う" height={44} disabled={busy} onPress={() => confirm('この端末の記録を使いますか？', 'クラウドの記録は、この端末の記録に置き換わります。元に戻せません。', '使う', () => void acc.resolveCloud('local'), { cancelLabel: 'やめる' })} />
+                  <ImgButton label="クラウドの記録を使う" height={44} disabled={busy} onPress={() => confirm('クラウドの記録を使いますか？', 'この端末の記録は、クラウドの記録に置き換わります。元に戻せません。', '使う', () => void doResolve('cloud'), { cancelLabel: 'やめる' })} />
+                  <ImgButton skin="ghost-outline" label="この端末の記録を使う" height={44} disabled={busy} onPress={() => confirm('この端末の記録を使いますか？', 'クラウドの記録は、この端末の記録に置き換わります。元に戻せません。', '使う', () => void doResolve('local'), { cancelLabel: 'やめる' })} />
                 </Card>
               )}
 
               {!acc.signedOut && (
                 <ImgButton skin="ghost-outline" label="別のiPhoneの記録を引き継ぐ" height={44} disabled={busy} onPress={() => confirm('記録を引き継ぎますか？', '以前のiPhoneでAppleにサインインしたときの記録を、この端末に戻します。この端末に記録があるときは、どちらを使うか選べます。', 'Appleでサインイン', () => void doRestore(), { cancelLabel: 'やめる' })} />
+              )}
+
+              {!acc.signedOut && acc.ageGroup && (
+                <Card skin="white" style={{ gap: 4 }}>
+                  <T w="x" size={13}>年齢の区分：{AGE_LABEL[acc.ageGroup]}</T>
+                  <T w="m" size={11} color={C.sub}>毎月の購入の上限に使います（15歳以下は5,000円、16〜19歳は10,000円まで）。間違えて選んだときは、小さい区分に変えられます。大きい区分には変えられません。</T>
+                  {acc.ageGroup !== 'under16' && (
+                    <ImgButton skin="ghost-outline" label="小さい区分に変える" height={38} fontSize={12} disabled={busy} onPress={() => setLowerAge(true)} style={{ marginTop: 4 }} />
+                  )}
+                </Card>
               )}
 
               {/* Apple に連携していない（匿名の）アカウントも、ここから削除できる。サーバーにアカウントが無ければ、端末の記録だけを消す */}
@@ -383,6 +424,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
       </Popup>
 
       {confirmEl}
+      <AgePopup visible={lowerAge} below={acc.ageGroup ?? undefined} onPick={pickLowerAge} onClose={() => setLowerAge(false)} />
 
       {/* 規約・プライバシー・クレジットの本文：さらにその上に重なる */}
       <Popup visible={!!info} onClose={() => setInfo(null)} maxWidth={380} heightRatio={0.74}>

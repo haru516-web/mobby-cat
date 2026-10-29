@@ -4,7 +4,7 @@ import { AppState } from 'react-native';
 import { disableDailyNotification } from '../services/notify';
 import { appleCredential } from '../services/account/appleSignIn';
 import { createAppStore } from '../services/account/appStore';
-import { emptyCloudMeta, fingerprint, fromRecord, isEmptyRecord, normalizeCloudMeta, shouldUpload, toRecord, type CloudMeta } from '../services/account/cloudSave';
+import { emptyCloudMeta, fingerprint, fromRecord, isEmptyRecord, normalizeCloudMeta, toRecord, uploadWaitMs, type CloudMeta } from '../services/account/cloudSave';
 import { server } from '../services/account/credentials';
 import type { ProductKey } from '../services/account/products';
 import { buy as buyProduct, fetchPlan, fetchWallet, setAgeGroup, settle, spendPaid, type AgeGroup, type BuyOutcome, type Plan, type SettleOutcome } from '../services/account/purchase';
@@ -20,11 +20,17 @@ import { useGame } from './game';
 
 const META_KEY = 'mobby-cat/cloud/v1';
 const REFRESH_GAP_MS = 60_000;
+// アプリを開いたままでも、ときどきサーバーを確かめる（またたびパスの更新・終了を反映するため。B-01）
+const REFRESH_EVERY_MS = 30 * 60_000;
+// 預けられなかったときに、預け直すまでの時間
+const RETRY_MS = 2 * 60_000;
 
-export type CloudStatus = 'off' | 'synced' | 'conflict';
+// off: 預けていない / saving: 預けている途中 / synced: 預けた / failed: 預けられなかった（あとで自動で預け直す） / conflict: 食い違い
+export type CloudStatus = 'off' | 'saving' | 'synced' | 'failed' | 'conflict';
 type Pending = { data: string; version: number; updatedAt: string };
 
-export type LinkOutcome = 'ok' | 'cancelled' | 'unavailable' | 'offline' | 'failed' | 'in_use';
+// ok_unsaved: サインインはできたが、記録はまだ預けられていない（あとで自動で預ける）
+export type LinkOutcome = 'ok' | 'ok_unsaved' | 'cancelled' | 'unavailable' | 'offline' | 'failed' | 'in_use';
 export type RestoreOutcome = 'restored' | 'choose' | 'nothing' | 'cancelled' | 'unavailable' | 'offline' | 'failed';
 export type DeleteOutcome = 'deleted' | 'offline' | 'failed' | 'apple_needed' | 'apple_mismatch' | 'signed_out';
 
@@ -37,6 +43,12 @@ type Ctx = {
   signedOut: boolean;
   plan: Plan;
   cloud: CloudStatus;
+  /** 最後にクラウドに預けた（受け取った）時刻（ms）。まだなら null */
+  cloudSavedAt: number | null;
+  /** 預け直す */
+  retryCloud: () => Promise<boolean>;
+  /** 年齢の区分（まだ選んでいなければ null） */
+  ageGroup: AgeGroup | null;
   /** 記録が、この端末とクラウドで食い違っている（どちらを使うか選ぶ） */
   pendingCloud: { updatedAt: string } | null;
   storeAvailable: boolean;
@@ -70,6 +82,8 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   const [cloud, setCloud] = useState<CloudStatus>('off');
   const [pending, setPendingState] = useState<Pending | null>(null);
   const [prices, setPrices] = useState<Record<string, string>>({});
+  const [cloudSavedAt, setCloudSavedAt] = useState<number | null>(null);
+  const [ageGroup, setAgeGroupState] = useState<AgeGroup | null>(null);
 
   // 画面の外（非同期の途中）から、いまの値を読むための写し
   const linkedRef = useRef<boolean | null>(null);
@@ -80,8 +94,10 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
 
   const setLinked = (value: boolean | null) => { linkedRef.current = value; setLinkedState(value); };
   const setPending = (value: Pending | null) => { pendingRef.current = value; setPendingState(value); };
+  const retryTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const saveMeta = (value: CloudMeta) => {
     meta.current = value;
+    setCloudSavedAt(value.at > 0 ? value.at : null);
     AsyncStorage.setItem(META_KEY, JSON.stringify(value)).catch(() => {});
   };
 
@@ -113,21 +129,45 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     else { setPending(found); setCloud('conflict'); }
   }, [applyCloud, readCloud]);
 
-  const syncCloud = useCallback(async (force: boolean) => {
-    if (linkedRef.current !== true || pendingRef.current || syncing.current) return;
+  /**
+   * いまの記録を預ける。クラウドが最新になったら（変わっていなかったときも）true。
+   * 続けて預けすぎないよう間をあけるときは、その時間のあとに預け直す（B-06）。預けられなかったときは、少しあとに預け直す（B-05）。
+   */
+  const syncCloud = useCallback(async (force: boolean): Promise<boolean> => {
+    if (linkedRef.current !== true || pendingRef.current || syncing.current) return false;
     const record = toRecord(gRef.current.state);
     const hash = fingerprint(record);
-    if (!shouldUpload(meta.current, hash, Date.now(), force)) return;
+    const wait = uploadWaitMs(meta.current, hash, Date.now(), force);
+    if (wait === null) return true;
+    const retry = (ms: number) => {
+      if (retryTimer.current) clearTimeout(retryTimer.current);
+      retryTimer.current = setTimeout(() => { retryTimer.current = null; void syncRef.current(false); }, ms);
+    };
+    if (wait > 0) { retry(wait + 1000); return false; }
     syncing.current = true;
+    setCloud('saving');
     try {
       const reply = await server.authedIfAny('/save', { body: { data: record, baseVersion: meta.current.version } });
-      if (ok(reply) && typeof reply?.data?.version === 'number') { saveMeta({ version: reply.data.version, hash, at: Date.now() }); setCloud('synced'); }
-      else if (reply?.status === 409) await handleConflict();
+      if (ok(reply) && typeof reply?.data?.version === 'number') {
+        saveMeta({ version: reply.data.version, hash, at: Date.now() });
+        setCloud('synced');
+        return true;
+      }
+      if (reply?.status === 409) await handleConflict();
       else if (reply?.status === 401) setSignedOut(true);
+      else retry(RETRY_MS);
+      setCloud((value) => (value === 'saving' ? 'failed' : value));
+      return false;
+    } catch {
+      setCloud('failed');
+      retry(RETRY_MS);
+      return false;
     } finally {
       syncing.current = false;
     }
   }, [handleConflict]);
+  const syncRef = useRef(syncCloud);
+  syncRef.current = syncCloud;
 
   // サーバーの答えを写す：Apple 連携、買った分の残高、またたびパス
   const refresh = useCallback(async () => {
@@ -140,15 +180,18 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     if (!ok(profile) || typeof profile.data?.appleLinked !== 'boolean') return;
     setSignedOut(false);
     setLinked(profile.data.appleLinked);
+    const group = profile.data.ageGroup;
+    setAgeGroupState(group === 'under16' || group === '16to19' || group === 'adult' ? group : null);
     // 前回、途中で止まった購入を片づけてから、残高を読む
     await settle(store, server).catch(() => undefined);
     const quiet = { authed: server.authedIfAny };
     const wallet = await fetchWallet(quiet);
     if (wallet) gRef.current.setPaid(wallet);
     const current = await fetchPlan(quiet);
-    if (current) { setPlan(current); gRef.current.setPassActive(current !== 'none'); }
+    if (current) { setPlan(current.plan); gRef.current.setPass(current.plan !== 'none', current.until); }
     if (profile.data.appleLinked) {
-      setCloud((value) => (value === 'off' ? 'synced' : value));
+      // 預けたことがあれば「預けた」。まだなら、下の「少し待ってから預ける」が預ける
+      if (meta.current.hash) setCloud((value) => (value === 'off' ? 'synced' : value));
       // 入れ直した端末など、記録が空のときは、クラウドの記録をそのまま戻す
       if (isEmptyRecord(gRef.current.state)) {
         const found = await readCloud();
@@ -182,6 +225,15 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     });
     return () => sub.remove();
   }, [refresh, syncCloud]);
+  // アプリを開いたままでも、ときどきサーバーを確かめる。またたびパスの期間の終わりにも確かめる（更新されていれば、続けて使える）
+  const passUntil = g.state.pass.until;
+  useEffect(() => {
+    if (!ready) return;
+    const every = setInterval(() => { if (AppState.currentState === 'active') void refresh(); }, REFRESH_EVERY_MS);
+    const left = passUntil ? passUntil - (Date.now() + (gRef.current.state.clockSkewMs ?? 0)) : -1;
+    const atEnd = left > 0 && left < REFRESH_EVERY_MS ? setTimeout(() => void refresh(), left + 5000) : null;
+    return () => { clearInterval(every); if (atEnd) clearTimeout(atEnd); };
+  }, [ready, refresh, passUntil]);
 
   // 買った分は、サーバーの残高から使う
   useEffect(() => {
@@ -203,10 +255,10 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     if (ok(reply)) {
       setSignedOut(false);
       setLinked(true);
-      setCloud('synced');
-      await syncCloud(true);
+      // 預けられたときだけ「預けました」と伝える。預けられなければ、あとで自動で預け直す（B-05）
+      const saved = await syncCloud(true);
       await refresh();
-      return 'ok';
+      return saved ? 'ok' : 'ok_unsaved';
     }
     if (reply.status === 409 && reply.data?.error === 'apple_in_use') return 'in_use';
     if (reply.status === 401 && reply.data?.error === 'unauthorized') setSignedOut(true);
@@ -243,9 +295,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     // この端末の記録を使う：クラウドの版を踏まえて、上書きする
     saveMeta({ version: from.version, hash: '', at: 0 });
     setPending(null);
-    setCloud('synced');
-    await syncCloud(true);
-    return true;
+    return syncCloud(true);
   }, [applyCloud, syncCloud]);
 
   const buy = useCallback(async (key: ProductKey): Promise<BuyOutcome> => {
@@ -260,7 +310,13 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     return outcome;
   }, [refresh, store]);
 
-  const setAge = useCallback((group: AgeGroup) => setAgeGroup(server, group), []);
+  const setAge = useCallback(async (group: AgeGroup) => {
+    const done = await setAgeGroup(server, group);
+    if (done) setAgeGroupState(group);
+    return done;
+  }, []);
+  const retryCloud = useCallback(() => syncCloud(true), [syncCloud]);
+  const stopRetry = () => { if (retryTimer.current) clearTimeout(retryTimer.current); retryTimer.current = null; };
 
   const deleteAccount = useCallback(async (): Promise<DeleteOutcome> => {
     const creds = await server.existing();
@@ -272,6 +328,8 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
       setPlan('none');
       setCloud('off');
       setPending(null);
+      setAgeGroupState(null);
+      stopRetry();
       await disableDailyNotification();
       gRef.current.reset();
       return 'deleted';
@@ -297,8 +355,10 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     setLinked(false);
     setPlan('none');
     setCloud('off');
+    setAgeGroupState(null);
+    stopRetry();
     gRef.current.setPaid({ tickets: 0, matatabi: 0 });
-    gRef.current.setPassActive(false);
+    gRef.current.setPass(false);
   }, []);
 
   const loadPrices = useCallback(async () => {
@@ -306,7 +366,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   }, [store]);
 
   const value: Ctx = {
-    ready, linked, signedOut, plan, cloud, pendingCloud: pending ? { updatedAt: pending.updatedAt } : null,
+    ready, linked, signedOut, plan, cloud, cloudSavedAt, retryCloud, ageGroup, pendingCloud: pending ? { updatedAt: pending.updatedAt } : null,
     storeAvailable: !!store, prices, loadPrices, refresh, linkApple, restoreWithApple, resolveCloud, buy, restorePurchases, setAge, deleteAccount, startOver,
   };
   return <AccountCtx.Provider value={value}>{children}</AccountCtx.Provider>;

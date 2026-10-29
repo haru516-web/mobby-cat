@@ -13,6 +13,7 @@ import { ok, type Client, type Reply } from './serverClient';
  */
 
 export type AgeGroup = 'under16' | '16to19' | 'adult';
+export const AGE_RANK: Record<AgeGroup, number> = { under16: 0, '16to19': 1, adult: 2 };
 export type Limits = { ageGroup: AgeGroup | null; capYen: number | null; remainingYen: number | null; restricted: boolean };
 export type Wallet = { tickets: number; matatabi: number };
 export type Plan = 'none' | typeof PASS_PLAN;
@@ -30,10 +31,12 @@ export async function fetchWallet(api: Pick<Client, 'authed'>): Promise<Wallet |
   return { tickets: Math.max(0, tickets), matatabi: Math.max(0, matatabi) };
 }
 
-export async function fetchPlan(api: Pick<Client, 'authed'>): Promise<Plan | null> {
+/** いまのプランと、その期間が終わる時刻（ms。サーバーの時計。分からなければ undefined）。つながらなければ null。 */
+export async function fetchPlan(api: Pick<Client, 'authed'>): Promise<{ plan: Plan; until?: number } | null> {
   const reply = await api.authed('/plan', { method: 'GET' });
   if (!ok(reply)) return null;
-  return reply?.data?.plan === PASS_PLAN ? PASS_PLAN : 'none';
+  const until = typeof reply?.data?.until === 'string' ? Date.parse(reply.data.until) : NaN;
+  return reply?.data?.plan === PASS_PLAN ? { plan: PASS_PLAN, ...(Number.isFinite(until) ? { until } : {}) } : { plan: 'none' };
 }
 
 export async function fetchLimits(api: Pick<Client, 'authed'>): Promise<Limits | null> {
@@ -62,8 +65,20 @@ export async function setAgeGroup(api: Pick<Client, 'authed'>, group: AgeGroup):
 
 const verify = async (api: Pick<Client, 'authed'>, jws: string) => ok(await api.authed('/purchases/verify', { body: { signedTransactionInfo: jws } }));
 
+// 購入の画面は、一度に1つだけ開く。上限の確認と支払いのあいだに、別の購入が割り込まないようにする（B-12）。
+// アカウントの鍵は1台の端末にしかない（引き継ぐと前の端末の鍵は使えなくなる）ので、同じアカウントで同時に買えるのは、この端末だけ
+let buying = false;
 export async function buy(key: ProductKey, store: PurchaseStore | null, api: Pick<Client, 'authed' | 'account'>): Promise<BuyOutcome> {
   if (!store) return { ok: false, reason: 'unavailable', detail: 'store_module_missing' };
+  if (buying) return { ok: false, reason: 'cancelled' };
+  buying = true;
+  try {
+    return await buyOnce(key, store, api);
+  } finally {
+    buying = false;
+  }
+}
+async function buyOnce(key: ProductKey, store: PurchaseStore, api: Pick<Client, 'authed' | 'account'>): Promise<BuyOutcome> {
   const product = PRODUCTS[key];
   const account = await api.account();
   if (!account) return { ok: false, reason: 'offline' };

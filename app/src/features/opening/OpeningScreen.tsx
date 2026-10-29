@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { playSfx } from '../../services/audio';
-import { C, CatImage, T } from '../../ui/base';
+import { C, CatImage, T, useReduceMotion } from '../../ui/base';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 
 // 上から降ってきて画面の下にたまる猫。指定の6匹に、ノーマルから10種を足して各1体。下の段から順に落ちる
@@ -74,11 +74,14 @@ function FallingCat({ id, x, row, rot, spin, delay, drift, w, h }: { id: string;
   const fallDist = h + size * 1.6 + row * size * 0.5; // 画面の上の外から落ちる
   const curve = useMemo(() => dropCurve(fallDist, spin, drift * w), [fallDist, spin, drift, w]);
   const clock = useRef(new Animated.Value(0)).current;
+  const still = useReduceMotion();
   useEffect(() => {
+    // 動きを減らす設定では、落ちずに、はじめから積もった形で見せる
+    if (still) { clock.setValue(curve.total); return; }
     const t = Animated.timing(clock, { toValue: curve.total, duration: curve.total * 1000, delay, easing: Easing.linear, useNativeDriver: true });
     t.start();
     return () => t.stop();
-  }, [clock, curve, delay]);
+  }, [clock, curve, delay, still]);
   const input = curve.ts;
   return (
     <Animated.View
@@ -108,7 +111,9 @@ const SPARKLES = [
 
 function Sparkle({ x, y, s, d }: { x: number; y: number; s: number; d: number }) {
   const v = useRef(new Animated.Value(0)).current;
+  const still = useReduceMotion();
   useEffect(() => {
+    if (still) { v.setValue(0.8); return; }
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(v, { toValue: 1, duration: 900, delay: d, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
@@ -117,7 +122,7 @@ function Sparkle({ x, y, s, d }: { x: number; y: number; s: number; d: number })
     );
     loop.start();
     return () => loop.stop();
-  }, [v, d]);
+  }, [v, d, still]);
   const rotate = v.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '60deg'] });
   const scale = v.interpolate({ inputRange: [0, 1], outputRange: [0.7, 1.15] });
   return (
@@ -135,7 +140,9 @@ export default function OpeningScreen({ onStart }: { onStart: () => void }) {
   const logoH = logoW * (420 / 1000);
   const reveal = useRef(new Animated.Value(0)).current; // ロゴを左から出す（0→1）
   const blink = useRef(new Animated.Value(0)).current;
+  const still = useReduceMotion();
   useEffect(() => {
+    if (still) { reveal.setValue(1); blink.setValue(1); return; }
     Animated.sequence([
       Animated.timing(reveal, { toValue: 1, duration: 1500, easing: Easing.inOut(Easing.cubic), useNativeDriver: false }),
     ]).start();
@@ -147,7 +154,7 @@ export default function OpeningScreen({ onStart }: { onStart: () => void }) {
     );
     loop.start();
     return () => loop.stop();
-  }, [reveal, blink]);
+  }, [reveal, blink, still]);
 
   return (
     <Pressable

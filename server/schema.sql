@@ -42,7 +42,11 @@ CREATE TABLE IF NOT EXISTS purchases (
   granted_at TEXT NOT NULL,
   revoked_at TEXT,
   -- 'Production' for a real purchase, 'Sandbox' for TestFlight and App Review; kept so test grants can be told apart.
-  environment TEXT NOT NULL DEFAULT 'Production'
+  environment TEXT NOT NULL DEFAULT 'Production',
+  -- When the purchase was made (Apple's purchaseDate) and the yen Apple charged; the monthly cap counts these.
+  -- Added 2026-10-29 (migrations/0002_purchase_price.sql for an existing database). NULL in older rows.
+  purchased_at TEXT,
+  price_yen INTEGER
 );
 CREATE INDEX IF NOT EXISTS purchases_user ON purchases(user_id, granted_at);
 

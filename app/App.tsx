@@ -29,6 +29,7 @@ import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
 import { Backdrop } from './src/ui/Slice';
 import { Popup } from './src/ui/Popup';
 import { TourAnchor } from './src/ui/TourAnchor';
+import { ErrorBoundary } from './src/ui/ErrorBoundary';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
 const MAX_W = 430; // iPad や Web の広い画面でもスマホ幅で中央に表示する
@@ -176,12 +177,14 @@ function Root() {
 export default function App() {
   return (
     <SafeAreaProvider>
-      <GameProvider>
-        <AccountProvider>
-          <StatusBar style="dark" />
-          <Root />
-        </AccountProvider>
-      </GameProvider>
+      <StatusBar style="dark" />
+      <ErrorBoundary>
+        <GameProvider>
+          <AccountProvider>
+            <Root />
+          </AccountProvider>
+        </GameProvider>
+      </ErrorBoundary>
     </SafeAreaProvider>
   );
 }

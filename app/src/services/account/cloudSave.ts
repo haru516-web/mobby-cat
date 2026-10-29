@@ -1,4 +1,5 @@
 import type { GameState } from '../../core/game';
+import { checkSaved } from '../../core/saveShape';
 
 /*
  * クラウドに預ける「記録」。Apple でサインインしたアカウントだけが使う。
@@ -6,7 +7,7 @@ import type { GameState } from '../../core/game';
  * 古い端末が新しい記録を消すことはない。
  *
  * 預けないもの：
- *  - 開発用の日付のずれ（debugOffsetDays）
+ *  - 開発用の日付のずれ（debugOffsetDays）と、この端末の時計のずれ（clockSkewMs）
  *  - 買った分の残高のコピー（paid）と、またたびパスの状態（pass）。正しい値はサーバーが持つ（古い写しで上書きしないため）
  *  - 端末の中だけで使うと説明している情報：誕生日（birthday）、歩数の合計（totalSteps）、電池・起動時刻の観測（obs）
  *    （プライバシーポリシーと App Privacy の回答に合わせる。機種変更のあとは、新しい端末で入れ直す）
@@ -15,7 +16,7 @@ const KEEP_DAYS = 180; // 出会いの記録は、新しい方から180日分だ
 const MAX_CHARS = 380_000;
 
 export function toRecord(state: GameState): string {
-  const { debugOffsetDays: _debug, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, ...rest } = state;
+  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, ...rest } = state;
   const trim = (days: number, inbox: number) => {
     const keys = Object.keys(rest.days).sort().slice(-days);
     return JSON.stringify({ ...rest, days: Object.fromEntries(keys.map((key) => [key, rest.days[key]])), inbox: rest.inbox.slice(0, inbox) });
@@ -24,11 +25,11 @@ export function toRecord(state: GameState): string {
   return full.length <= MAX_CHARS ? full : trim(60, 20);
 }
 
-/** 預けた記録を読む。読めなければ null（壊れた記録で、いまの記録を上書きしないため）。 */
+/** 預けた記録を読む。読めない・形の合わない項目があるときは null（壊れた記録で、いまの記録を上書きしないため。B-02）。 */
 export function fromRecord(text: string): Partial<GameState> | null {
   try {
-    const value = JSON.parse(text) as Partial<GameState> | null;
-    return value && typeof value === 'object' && value.owned && typeof value.owned === 'object' ? value : null;
+    const checked = checkSaved(JSON.parse(text));
+    return checked && !checked.repaired ? checked.saved : null;
   } catch {
     return null;
   }
@@ -70,8 +71,12 @@ export function normalizeCloudMeta(value: unknown): CloudMeta {
 /** 預けるべきか。変わっていなければ預けない。続けて預けすぎないよう、間をあける（force のときは、あけない）。 */
 export const MIN_UPLOAD_GAP_MS = 60_000;
 export function shouldUpload(meta: CloudMeta, hash: string, now: number, force: boolean): boolean {
-  if (hash === meta.hash) return false;
-  return force || now - meta.at >= MIN_UPLOAD_GAP_MS;
+  return uploadWaitMs(meta, hash, now, force) === 0;
+}
+/** あと何 ms 待てば預けられるか（0 ならいま。変わっていなければ null）。間をあけるために見送ったら、この時間のあとに預け直す（B-06）。 */
+export function uploadWaitMs(meta: CloudMeta, hash: string, now: number, force: boolean): number | null {
+  if (hash === meta.hash) return null;
+  return force ? 0 : Math.max(0, MIN_UPLOAD_GAP_MS - (now - meta.at));
 }
 
 /** 記録が空に近いか（新しく入れたばかりの端末）。空なら、クラウドの記録をそのまま使って困らない。 */

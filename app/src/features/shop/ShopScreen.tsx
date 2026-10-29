@@ -83,6 +83,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         async () => {
           const result = await acc.linkApple();
           if (result === 'ok') return notice('サインインしました', '機種変更をしても、購入したものと記録を引き継げます。');
+          if (result === 'ok_unsaved') return notice('サインインしました', '購入したものは引き継げます。記録はまだクラウドに預けられていません。電波のよいところで、自動で預け直します。');
           if (result === 'in_use') {
             notice('このApple IDは、すでに使われています', '別の記録と結びついています。設定の「アカウント」から、その記録を引き継いでください。');
           } else if (result === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');

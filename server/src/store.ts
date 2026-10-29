@@ -91,10 +91,11 @@ export class D1Store implements Store {
       .bind(userId, group, nowIso()).run();
   }
 
-  async purchasedProducts(userId: string, from: string, to: string): Promise<string[]> {
-    const rows = await this.db.prepare("SELECT product_id FROM purchases WHERE user_id = ? AND revoked_at IS NULL AND granted_at >= ? AND granted_at < ?")
-      .bind(userId, from, to).all<{ product_id: string }>();
-    return (rows.results ?? []).map((row) => row.product_id);
+  async purchasedProducts(userId: string, from: string, to: string): Promise<{ productId: string; priceYen: number | null }[]> {
+    // Counted in the month the purchase was made (a late verification still counts there), by what Apple charged.
+    const rows = await this.db.prepare("SELECT product_id, price_yen FROM purchases WHERE user_id = ? AND revoked_at IS NULL AND COALESCE(purchased_at, granted_at) >= ? AND COALESCE(purchased_at, granted_at) < ?")
+      .bind(userId, from, to).all<{ product_id: string; price_yen: number | null }>();
+    return (rows.results ?? []).map((row) => ({ productId: row.product_id, priceYen: row.price_yen ?? null }));
   }
 
   async hitRateLimit(key: string, window: number, windowMs: number): Promise<number> {
@@ -124,9 +125,11 @@ export class D1Store implements Store {
     const now = nowIso();
     const statements = [
       // Nothing is granted for a transaction whose refund is already on record: the statements below follow `changes()`.
-      this.db.prepare(`INSERT OR IGNORE INTO purchases (apple_transaction_id, user_id, product_id, original_transaction_id, granted_at, revoked_at, environment)
-        SELECT ?, ?, ?, ?, ?, NULL, ? WHERE NOT EXISTS (SELECT 1 FROM revoked_transactions WHERE transaction_id = ?)`)
-        .bind(transaction.transactionId, userId, transaction.productId, transaction.originalTransactionId ?? null, now, transaction.environment ?? "Production", transaction.transactionId)
+      this.db.prepare(`INSERT OR IGNORE INTO purchases (apple_transaction_id, user_id, product_id, original_transaction_id, granted_at, revoked_at, environment, purchased_at, price_yen)
+        SELECT ?, ?, ?, ?, ?, NULL, ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM revoked_transactions WHERE transaction_id = ?)`)
+        .bind(transaction.transactionId, userId, transaction.productId, transaction.originalTransactionId ?? null, now, transaction.environment ?? "Production",
+          new Date(transaction.purchaseDate).toISOString(), transaction.currency === "JPY" && transaction.price !== undefined ? Math.round(transaction.price / 1000) : null,
+          transaction.transactionId)
     ];
     // A one-time product holds one currency, so the single `changes()` above is the one that matters.
     const credit = (currency: Currency, amount: number | undefined): void => {
@@ -153,10 +156,10 @@ export class D1Store implements Store {
     await this.db.batch(statements);
   }
 
-  async activePlan(userId: string, at: string): Promise<string | null> {
-    const row = await this.db.prepare("SELECT plan FROM entitlements WHERE user_id = ? AND period_start <= ? AND period_end > ? ORDER BY period_end DESC LIMIT 1")
-      .bind(userId, at, at).first<{ plan: string }>();
-    return row?.plan ?? null;
+  async activePlan(userId: string, at: string): Promise<{ plan: string; until: string } | null> {
+    const row = await this.db.prepare("SELECT plan, period_end FROM entitlements WHERE user_id = ? AND period_start <= ? AND period_end > ? ORDER BY period_end DESC LIMIT 1")
+      .bind(userId, at, at).first<{ plan: string; period_end: string }>();
+    return row ? { plan: row.plan, until: row.period_end } : null;
   }
 
   async revokePurchase(transactionId: string, product: ProductDefinition = {}, plan?: { name: string; periodStart: string }): Promise<void> {

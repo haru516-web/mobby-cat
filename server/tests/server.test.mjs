@@ -419,3 +419,49 @@ test("the hourly clean-up removes expired rate-limit counters and keeps live one
   assert.equal(outcome.rateLimitsRemaining, 1);
   assert.equal(outcome.expiredLeft, 0);
 });
+
+test("/time gives the server clock, and /plan says when the current period ends", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const at = new Date("2026-10-29T12:00:00.000Z");
+  assert.deepEqual((await context.call("GET", "/time", { now: at })).data, { now: at.getTime() });
+
+  const user = await context.register();
+  const ends = Date.now() + 30 * 86_400_000;
+  await purchase(context, root, user, PASS, "pass-until", { purchaseDate: Date.now() - 1000, expiresDate: ends });
+  assert.deepEqual((await context.call("GET", "/plan", { user })).data, { plan: "matatabi_pass", until: new Date(ends).toISOString() });
+});
+
+test("the monthly cap counts what Apple charged, in the month the purchase was made", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const user = await context.register();
+  // Apple's price is in thousandths of the currency: ¥250 here, not the catalog's ¥320.
+  await purchase(context, root, user, TICKET3, "paid-yen", { price: 250_000, currency: "JPY" });
+  // Another currency: the catalog price is used.
+  await purchase(context, root, user, TICKET3, "paid-usd", { price: 1_990, currency: "USD" });
+  assert.equal((await context.call("GET", "/limits", { user })).data.spentYen, 250 + 320);
+
+  // Bought last month and only verified now: it belongs to last month.
+  const lastMonth = Date.now() - 40 * 86_400_000;
+  await purchase(context, root, user, TICKET3, "late", { purchaseDate: lastMonth, price: 320_000, currency: "JPY" });
+  assert.equal((await context.call("GET", "/limits", { user })).data.spentYen, 250 + 320);
+  assert.equal((await context.call("GET", "/limits", { user, now: new Date(lastMonth) })).data.spentYen, 320);
+});
+
+test("calls are limited per source address before any work, and per account for the costly ones", async () => {
+  const context = createContext();
+  let allowed = 2;
+  const limiter = { limit: async () => ({ success: allowed-- > 0 }) };
+  const env = { ...baseEnv, IP_LIMITER: limiter };
+  const user = await context.register();
+  assert.equal((await context.call("GET", "/wallet", { user, envOverride: env })).status, 200);
+  assert.equal((await context.call("GET", "/wallet", { user, envOverride: env })).status, 200);
+  assert.equal((await context.call("GET", "/wallet", { user, envOverride: env })).status, 429);
+  // The pages and the clock are not limited.
+  assert.equal((await context.call("GET", "/time", { envOverride: env })).status, 200);
+  assert.equal((await context.call("GET", "/privacy", { envOverride: env })).status, 200);
+
+  for (let i = 0; i < 20; i += 1) await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "under16" } });
+  assert.equal((await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "under16" } })).status, 429);
+});

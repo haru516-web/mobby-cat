@@ -343,7 +343,9 @@ export async function verifySignedTransaction(jws: string, env: Pick<Env, "APPLE
     ...(typeof payload.expiresDate === "number" ? { expiresDate: payload.expiresDate } : {}),
     ...(typeof payload.revocationDate === "number" ? { revocationDate: payload.revocationDate } : {}),
     ...(typeof payload.appAccountToken === "string" ? { appAccountToken: payload.appAccountToken } : {}),
-    ...(typeof payload.environment === "string" ? { environment: payload.environment } : {})
+    ...(typeof payload.environment === "string" ? { environment: payload.environment } : {}),
+    ...(typeof payload.price === "number" && Number.isFinite(payload.price) ? { price: payload.price } : {}),
+    ...(typeof payload.currency === "string" ? { currency: payload.currency } : {})
   };
 }
 

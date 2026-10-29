@@ -50,6 +50,21 @@ npm run dev        # ローカルで起動（先に npm run db:apply）
 5. `src/operator.ts` に運営者名と連絡先を入れ、公開ページの「【要設定】」を埋める。
 6. `PURCHASE_ENVIRONMENTS` は `Production,Sandbox` のまま運用する（上の理由）。
 
+## データベースの変更（すでに動いている DB に）
+
+`schema.sql` は新しく作るときだけ使う（`CREATE TABLE IF NOT EXISTS` なので、列は足されない）。動いている DB には、`migrations/` の SQL を**デプロイより先に**1回だけ流す。先にデプロイすると、新しい列に書き込む購入の記録が失敗する。
+
+| ファイル | 内容 | 本番に適用 |
+|---|---|---|
+| `migrations/0002_purchase_price.sql` | 購入した日時と、Apple が請求した金額（円）を記録する（月の購入上限の計算に使う） | 未 |
+
+```bash
+npx wrangler d1 execute nyakomobby --remote --file=./migrations/0002_purchase_price.sql
+npx wrangler deploy
+```
+
+回数制限：送信元のアドレスごとの制限は Cloudflare の Rate Limiting（`wrangler.toml` の `[[ratelimits]]`。DB には残らない）。アカウントごとの制限（購入の確認、Apple 連携、記録の保存・読み込み、残高の消費、年齢の区分）は DB の `rate_limits`。
+
 ## まだ無いもの
 
 - アプリ側の接続（アカウント作成、Apple 連携画面、購入、クラウドセーブ、アカウント削除の画面）

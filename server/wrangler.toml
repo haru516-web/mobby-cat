@@ -39,3 +39,15 @@ at+qIxUCMG1mihDK1A3UT82NQz60imOlM27jbdoXt2QfyFMm+YhidDkLF1vLUagM
 6BgD56KyKA==
 -----END CERTIFICATE-----
 '''
+
+# Per-address limits, counted by Cloudflare at the edge (in memory, never in the database). The app makes a few calls a
+# minute; Apple's notifications come from Apple's addresses and get a larger allowance (Apple retries after a 429).
+[[ratelimits]]
+name = "IP_LIMITER"
+namespace_id = "1001"
+simple = { limit = 120, period = 60 }
+
+[[ratelimits]]
+name = "NOTIFY_LIMITER"
+namespace_id = "1002"
+simple = { limit = 600, period = 60 }

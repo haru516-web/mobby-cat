@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { AppState } from 'react-native';
 import { CATS } from '../data/catalog';
 import { Signals } from './conditions';
 import { daysBetween } from './dates';
@@ -8,6 +9,9 @@ import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
 import { ensureDailyNotification } from '../services/notify';
+import { notice } from '../services/dialog';
+import { readServerClockOffset } from '../services/clock';
+import { checkSaved } from './saveShape';
 import { isRealCat } from './recipes';
 import { worldGifts } from './world';
 
@@ -56,9 +60,10 @@ export type GameState = {
   loginDays: string[]; // 起動した暦日（ログイン記録のスタンプ。直近400日）
   inbox: Notice[]; // お知らせ（新しい順）
   inboxRead: number; // 既読にした時点のお知らせ件数
-  pass: { active: boolean; lastGrantMonth: string }; // またたびパス（active はサーバーの答えの写し。毎月のお迎え券もサーバーが届ける）
+  pass: { active: boolean; lastGrantMonth: string; until?: number }; // またたびパス（active と until（いまの期間の終わり、ms）はサーバーの答えの写し。毎月のお迎え券もサーバーが届ける）
   spendSalt: string; // 買った分を使う操作の番号に混ぜる、この記録だけの値（記録を消すと変わる。クラウドから戻すと同じ）
   paid: { tickets: number; matatabi: number }; // 買った分の残高の写し（正しい値はサーバー。表示と、使う前の確認に使う。クラウドには預けない）
+  clockSkewMs: number; // 端末の時計とサーバーの時計の差（端末の時刻を進めて先の日の猫に会えないよう、サーバーの時刻で日を決める。クラウドには預けない）
 };
 
 // 持っているお迎え券・またたび = 無料で得た分（端末内）+ 買った分（サーバーの残高の写し）
@@ -97,6 +102,8 @@ const STREAK_GIFT_DAYS = 7;
 const KEY = 'mobby-cat/state/v1';
 const BACKUP_KEY = 'mobby-cat/state/v1.corrupt'; // 読み込めなかった記録の退避先
 const DAY_MS = 86400000;
+// ゲームの中の「いま」：サーバーの時刻に合わせた時計（と、開発用の日付のずれ）
+const clockNow = (s: Pick<GameState, 'clockSkewMs' | 'debugOffsetDays'>) => new Date(Date.now() + (s.clockSkewMs ?? 0) + s.debugOffsetDays * DAY_MS);
 
 function initial(now: Date): GameState {
   return {
@@ -130,10 +137,11 @@ function initial(now: Date): GameState {
     pass: { active: false, lastGrantMonth: '' },
     spendSalt: newSalt(),
     paid: { tickets: 0, matatabi: 0 },
+    clockSkewMs: 0,
   };
 }
 
-// 保存された記録（端末の中のものも、クラウドから戻したものも）を、いまの形に直す
+// 保存された記録（端末の中のものも、クラウドから戻したものも）を、いまの形に直す（形は checkSaved で確かめたもの）
 export function normalizeSaved(saved: Partial<GameState>, now: Date = new Date()): GameState {
   // 相棒選びの導入前から遊んでいた人には、選び直しを出さない
   const starterChosen = saved.starterChosen ?? Object.keys(saved.owned ?? {}).length > 0;
@@ -151,12 +159,6 @@ const notify = (s: GameState, day: string, text: string): GameState => {
   return { ...s, inbox: inbox.slice(0, INBOX_MAX), inboxRead: Math.max(0, s.inboxRead - over) };
 };
 
-const merge = (a?: Obs, b?: Obs): Obs => ({
-  battery: [...(a?.battery ?? []), ...(b?.battery ?? [])],
-  charging: !!(a?.charging || b?.charging),
-  hours: [...(a?.hours ?? []), ...(b?.hours ?? [])],
-});
-
 function observe(s: GameState, key: string, hour: number, battery: { level: number; charging: boolean } | null): GameState {
   const o = s.obs[key] ?? { battery: [], charging: false, hours: [] };
   const next: Obs = {
@@ -169,6 +171,9 @@ function observe(s: GameState, key: string, hour: number, battery: { level: numb
   const obs = Object.fromEntries(Object.entries({ ...s.obs, [key]: next }).filter(([k]) => k >= keep));
   return { ...s, obs };
 }
+
+// またたびパスの、いまの期間が終わったか（サーバーの時刻に合わせた時計で。開発用の日付のずれは含めない）
+const passOver = (s: Pick<GameState, 'pass' | 'clockSkewMs'>) => !!s.pass.until && Date.now() + (s.clockSkewMs ?? 0) >= s.pass.until;
 
 export const visibleCount = (r: DayRecord) => Math.min(r.candidates.length, r.baseCount + r.matatabiUsed + (r.passBonus ?? 0));
 
@@ -196,20 +201,22 @@ type Ctx = {
   pet: () => void;
   countPhoto: () => void;
   markInboxRead: () => void;
-  setPassActive: (v: boolean) => void;
+  /** サーバーの答え：加入中か、いまの期間がいつ終わるか（ms。分からなければ undefined） */
+  setPass: (active: boolean, until?: number) => void;
   shiftDays: (n: number) => void;
   unlockAll: () => void;
   reset: () => void;
   corruptBackup: string | null; // 読み込めずに退避した記録（無ければ null）
   discardBackup: () => void;
   saveBlocked: boolean; // 保存領域を読めず、記録を守るために保存を止めている
+  saveFailed: boolean; // 最後の保存に失敗した（空き容量の不足など。次の変更と30秒ごとに、保存し直す）
 };
 
 // ホームに出せる数。置き場所は HomeScreen の SLOTS と同じ並び（1番目が手前の大きい場所）
 export const HOME_SLOTS = 6;
 // いまホームに出す猫。自分で選んでいなければ、入手した順（owned の追加順）に6体まで。お気に入りは関係しない
 export function homeSlotsOf(s: Pick<GameState, 'owned' | 'homeSlots'>): (string | null)[] {
-  const auto = Object.keys(s.owned).slice(0, HOME_SLOTS);
+  const auto = Object.keys(s.owned).filter((id) => CATS.some((c) => c.id === id)).slice(0, HOME_SLOTS); // 新しい版で迎えた、知らない猫は出さない
   const picked = s.homeSlots;
   const base = picked ? picked.map((id) => (id && s.owned[id] ? id : null)) : auto;
   return Array.from({ length: HOME_SLOTS }, (_, i) => base[i] ?? null);
@@ -233,11 +240,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [tick, setTick] = useState(0);
   const [corruptBackup, setCorruptBackup] = useState<string | null>(null);
   const [saveBlocked, setSaveBlocked] = useState(false);
+  const [saveFailed, setSaveFailed] = useState(false);
   const stateRef = useRef(state);
   stateRef.current = state;
 
   // 読み込みに失敗したときは、初期状態で上書き保存しない（全データが消えるため）。
-  // 壊れた記録は別のキーに退避してから始め直す。保存領域そのものが読めないときは保存を止める。
+  // 壊れた記録は別のキーに退避してから始め直す。形の一部だけが合わない記録は、直して使い、元の記録も退避しておく。
+  // 保存領域そのものが読めないときは保存を止める。
   useEffect(() => {
     (async () => {
       let raw: string | null = null;
@@ -249,23 +258,23 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         return;
       }
       if (raw) {
+        let checked: ReturnType<typeof checkSaved> = null;
         try {
-          const saved = JSON.parse(raw) as Partial<GameState>;
-          if (!saved || typeof saved !== 'object' || !saved.owned || typeof saved.owned !== 'object') throw new Error('shape');
-          setState(normalizeSaved(saved));
-        } catch {
+          checked = checkSaved(JSON.parse(raw));
+        } catch {}
+        if (checked) setState(normalizeSaved(checked.saved));
+        if (!checked || checked.repaired) {
           try {
             await AsyncStorage.setItem(BACKUP_KEY, raw);
-            setCorruptBackup(raw);
           } catch {
-            setSaveBlocked(true); // 退避できないなら、壊れた記録を残すため保存しない
+            if (!checked) setSaveBlocked(true); // 退避できないなら、壊れた記録を残すため保存しない
           }
         }
-      } else {
-        try {
-          setCorruptBackup(await AsyncStorage.getItem(BACKUP_KEY));
-        } catch {}
       }
+      // 退避した記録があるかは、毎回の起動で調べる（退避したあとの起動でも、設定に案内を出し続ける）
+      try {
+        setCorruptBackup(await AsyncStorage.getItem(BACKUP_KEY));
+      } catch {}
       setReady(true);
     })();
   }, []);
@@ -275,14 +284,27 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     return () => clearInterval(t);
   }, []);
 
+  // 保存に失敗したら、知らせる（1回だけ）。次の変更と、30秒ごとの時計で、保存し直す
+  const failNoticeShown = useRef(false);
+  const retryTick = saveFailed ? tick : 0;
   useEffect(() => {
     if (!ready || saveBlocked) return;
-    AsyncStorage.setItem(KEY, JSON.stringify(state)).catch(() => {});
-  }, [state, ready, saveBlocked]);
+    AsyncStorage.setItem(KEY, JSON.stringify(stateRef.current))
+      .then(() => setSaveFailed(false))
+      .catch(() => {
+        setSaveFailed(true);
+        if (failNoticeShown.current) return;
+        failNoticeShown.current = true;
+        notice('記録を保存できませんでした', '端末の空き容量が足りないかもしれません。空きを作ると、自動で保存し直します。保存できるまでは、アプリを閉じると、いまの記録が失われることがあります。');
+      });
+  }, [state, ready, saveBlocked, retryTick]);
 
+  // 日付は、サーバーの時刻に合わせた時計で決める（端末の時刻を進めても、先の日の猫には会えない）
+  const { debugOffsetDays, clockSkewMs } = state;
   const now = useMemo(
-    () => new Date(Date.now() + state.debugOffsetDays * DAY_MS),
-    [state.debugOffsetDays, tick],
+    () => clockNow({ debugOffsetDays, clockSkewMs }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- tick: 30秒ごとに時計を進める
+    [debugOffsetDays, clockSkewMs, tick],
   );
   const todayKey = encounterDayKey(now);
   const yKey = prevDayKey(todayKey);
@@ -321,6 +343,27 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (ready && state.notifyEnabled) void ensureDailyNotification();
   }, [ready, state.notifyEnabled]);
 
+  // 端末の時計のずれを、起動したときと、アプリに戻ってきたときに、サーバーの時刻で確かめる。
+  // つながらないときは、前回のずれのまま（電波を切って時刻を進めた場合までは防げない）
+  useEffect(() => {
+    if (!ready) return;
+    const check = () => {
+      void readServerClockOffset().then((offset) => {
+        if (offset !== null) setState((s) => (s.clockSkewMs === offset ? s : { ...s, clockSkewMs: offset }));
+      });
+    };
+    check();
+    const sub = AppState.addEventListener('change', (next) => { if (next === 'active') check(); });
+    return () => sub.remove();
+  }, [ready]);
+
+  // またたびパスの期間が終わったら、サーバーの答えを待たずに、加入していない扱いにする（つながらないときも、期限を守る）。
+  // 更新されていれば、次にサーバーを確かめたときに戻る（account.tsx が、期限の時刻にも確かめる）
+  const passEnded = !!state.pass.active && passOver(state);
+  useEffect(() => {
+    if (passEnded) setState((s) => (s.pass.active ? { ...s, pass: { ...s.pass, active: false } } : s));
+  }, [passEnded]);
+
   // その日の候補を（未生成なら）確定させる。歩数・電池は非同期で読むので、生成中の日は記録しておく
   const building = useRef(new Set<string>());
   // 相棒を選ぶまでは作らない（所持猫の数で抽選が変わるのと、お知らせの順番を「ようこそ」が先になるようにするため）
@@ -333,13 +376,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         const [steps, battery, wx] = await Promise.all([readSteps(k, now), readBattery(), readWeather(k, todayKey)]);
         setState((s) => {
           if (s.days[k]) return s;
-          // 観測の記録が候補の生成より遅れることがあるので、いまの電池と時刻もここで足す
-          const o = merge(s.obs[prevDayKey(k)], s.obs[k]);
-          if (battery && !o.battery.includes(battery.level)) o.battery.push(battery.level);
-          if (k === todayKey && !o.hours.includes(hour)) o.hours.push(hour);
+          // 判定に使う「その日の様子」は、出会いの締め切り（20時）までの24時間（前日20時〜当日20時）の観測。
+          // 歩数も同じ24時間（readSteps）。きょうの候補を作るときだけ、いまの電池と時刻も1回分として足す
+          // （20時を過ぎて初めて開いた日にも、その日の様子が入るように）。きのうの分を遅れて作るときは、いまの値を足さない
+          const w = s.obs[prevDayKey(k)];
+          const o: Obs = { battery: [...(w?.battery ?? [])], charging: !!w?.charging, hours: [...(w?.hours ?? [])] };
+          if (k === todayKey) {
+            if (battery && !o.battery.includes(battery.level)) o.battery.push(battery.level);
+            if (battery?.charging) o.charging = true;
+            if (!o.hours.includes(hour)) o.hours.push(hour);
+          }
           const signals: Signals = {
             battery: o.battery,
-            charging: o.charging || !!battery?.charging,
+            charging: o.charging,
             steps,
             gapDays: s.lastGap,
             streak: s.streak,
@@ -366,7 +415,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             totalSteps: (s.totalSteps ?? 0) + (steps ?? 0),
             appearCounts,
             catalogVersion: CATALOG_VERSION,
-            days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], passBonus: s.pass.active ? PASS_BONUS : 0 } },
+            days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], passBonus: s.pass.active && !passOver(s) ? PASS_BONUS : 0 } },
           };
           // 実在の猫の簡単な条件は通知しない。個性のある猫（特別な猫）が来た日だけ知らせる
           const special = [...new Set(d.candidates.filter((id) => CATS.find((c) => c.id === id)?.kind !== 'breed').map((id) => d.reasons[id]))];
@@ -490,7 +539,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
   const replaceState = useCallback((saved: Partial<GameState>) => {
     // クラウドに預けない（端末の中だけの）情報は、この端末の値を残す
-    setState((s) => ({ ...normalizeSaved(saved), debugOffsetDays: s.debugOffsetDays, paid: s.paid, pass: s.pass, birthday: s.birthday, totalSteps: s.totalSteps, obs: s.obs }));
+    setState((s) => ({ ...normalizeSaved(saved), debugOffsetDays: s.debugOffsetDays, paid: s.paid, pass: s.pass, birthday: s.birthday, totalSteps: s.totalSteps, obs: s.obs, clockSkewMs: s.clockSkewMs }));
   }, []);
   const setNotify = useCallback((v: boolean) => setState((s) => ({ ...s, notifyEnabled: v })), []);
   const setBirthday = useCallback((b: { m: number; d: number } | null) => setState((s) => ({ ...s, birthday: b })), []);
@@ -522,7 +571,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     (id: string) =>
       setState((s) => {
         if (s.starterChosen) return s;
-        const next = addCat({ ...s, starterChosen: true }, id, encounterDayKey(new Date(Date.now() + s.debugOffsetDays * DAY_MS)), '最初の相棒');
+        const next = addCat({ ...s, starterChosen: true }, id, encounterDayKey(clockNow(s)), '最初の相棒');
         return notify(next, next.owned[id].firstDay, 'ようこそ！毎日20時に、新しいにゃこモビーとの出会いが届きます');
       }),
     [],
@@ -532,13 +581,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const pet = useCallback(() => setState((s) => ({ ...s, petCount: s.petCount + 1 })), []);
   const countPhoto = useCallback(() => setState((s) => ({ ...s, photoCount: (s.photoCount ?? 0) + 1 })), []);
   // またたびパスの有無は、サーバーの答え。加入した日のうちから、候補が増える（まだ作っていない日は、作るときに反映される）
-  const setPassActive = useCallback((v: boolean) => {
+  const setPass = useCallback((v: boolean, until?: number) => {
     setState((s) => {
-      if (s.pass.active === v) return s;
+      if (s.pass.active === v && s.pass.until === until) return s;
+      if (s.pass.active === v) return { ...s, pass: { ...s.pass, until } };
       const days = v
-        ? Object.fromEntries(Object.entries(s.days).map(([k, d]) => [k, k >= prevDayKey(encounterDayKey(new Date(Date.now() + s.debugOffsetDays * DAY_MS))) ? { ...d, passBonus: PASS_BONUS } : d]))
+        ? Object.fromEntries(Object.entries(s.days).map(([k, d]) => [k, k >= prevDayKey(encounterDayKey(clockNow(s))) ? { ...d, passBonus: PASS_BONUS } : d]))
         : s.days;
-      return { ...s, days, pass: { ...s.pass, active: v } };
+      return { ...s, days, pass: { ...s.pass, active: v, until } };
     });
   }, []);
   const shiftDays = useCallback((n: number) => setState((s) => ({ ...s, debugOffsetDays: s.debugOffsetDays + n })), []);
@@ -546,14 +596,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const unlockAll = useCallback(
     () =>
       setState((s) => {
-        const day = encounterDayKey(new Date(Date.now() + s.debugOffsetDays * DAY_MS));
+        const day = encounterDayKey(clockNow(s));
         const owned = { ...s.owned };
         for (const c of CATS) if (!owned[c.id]) owned[c.id] = { count: 1, firstDay: day, firstReason: '開発用に開放' };
         return { ...s, starterChosen: true, owned };
       }),
     [],
   );
-  const reset = useCallback(() => setState(initial(new Date())), []);
+  const reset = useCallback(() => setState((s) => ({ ...initial(new Date()), clockSkewMs: s.clockSkewMs })), []);
   const discardBackup = useCallback(() => {
     AsyncStorage.removeItem(BACKUP_KEY).catch(() => {});
     setCorruptBackup(null);
@@ -561,8 +611,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPassActive, shiftDays, unlockAll, reset,
-    corruptBackup, discardBackup, saveBlocked,
+    pickFree, pickExtra, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, reset,
+    corruptBackup, discardBackup, saveBlocked, saveFailed,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
 }
