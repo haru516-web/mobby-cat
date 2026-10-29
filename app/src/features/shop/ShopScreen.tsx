@@ -17,7 +17,7 @@ import { AgePopup } from './AgePopup';
 const ITEMS: { key: ProductKey; icon: string; name: string; yen: string; desc: string }[] = [
   { key: 'ticket1', icon: 'icon/ticket-paw', name: 'お迎え券 1枚', yen: '¥200', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
   { key: 'ticket6', icon: 'icon/ticket-paw', name: 'お迎え券 6枚', yen: '¥1,000', desc: 'まとめ買い（5枚＋おまけ1枚）' },
-  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '1個で、隠れている今日の候補が1匹見えます（条件がそろった子が4匹以上いる日。最大6匹）' },
+  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '1個で、今日の候補をもう1匹ひらけます（条件がそろった子が4匹以上いる日。最大6匹）' },
 ];
 
 const PASS_BONUS_LABEL = 3;
@@ -161,7 +161,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
           <View style={{ flex: 1 }}>
             <T w="x" size={14}>またたびパス（月額 {passPrice}）</T>
             <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>
-              加入中は、条件がそろった子を、毎日はじめから最大{3 + PASS_BONUS_LABEL}匹まで見られて（ふだんは最大3匹）、毎月お迎え券が8枚届きます。1か月ごとに自動で更新され、いつでも解約できます。解約後も迎えた猫はそのまま残ります
+              加入中は、毎日{3 + PASS_BONUS_LABEL}匹までひらけて（ふだんは3匹）、毎月お迎え券が8枚届きます。1か月ごとに自動で更新され、いつでも解約できます。解約後も迎えた猫はそのまま残ります
             </T>
           </View>
           <ImgButton
@@ -171,7 +171,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             disabled={busy || state.pass.active}
             onPress={() => confirm(
               'またたびパスに加入しますか？',
-              `月額 ${passPrice}です。条件がそろった子を毎日はじめから最大${3 + PASS_BONUS_LABEL}匹まで見られて、毎月お迎え券が8枚届きます。候補の数は、その日にそろった子の数までです。期間が終わる24時間前までに解約しない限り、1か月ごとに自動で更新され、Apple Accountに請求されます。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から、いつでもできます。`,
+              `月額 ${passPrice}です。毎日${3 + PASS_BONUS_LABEL}匹までひらけて、毎月お迎え券が8枚届きます。ひらける数は、その日にそろった子の数までです。期間が終わる24時間前までに解約しない限り、1か月ごとに自動で更新され、Apple Accountに請求されます。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から、いつでもできます。`,
               '加入する',
               () => void purchase('pass'),
               { skin: 'primary-green' },
@@ -196,7 +196,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
           <Card skin="white" style={{ marginTop: 8, gap: 6 }}>
             <T w="x" size={13}>またたびで増える候補について</T>
             <T w="m" size={11} color={C.sub}>
-              今日の候補は、その日に出会いの条件がすべてそろった猫だけです。またたびやお迎え券で、条件を飛ばして猫を迎えることはできません。またたびは、条件がそろった猫が多い日に、隠れていた候補を見せます（最大6匹）。
+              今日の候補は、その日に出会いの条件がすべてそろった猫だけです。またたびやお迎え券で、条件を飛ばして猫を迎えることはできません。またたびは、条件がそろった猫が多い日に、ひらける数を増やします（最大6匹）。
             </T>
             <T w="b" size={11} color={C.accent} onPress={withSfx(() => setOdds(false))}>閉じる</T>
           </Card>

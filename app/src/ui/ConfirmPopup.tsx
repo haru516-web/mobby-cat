@@ -10,7 +10,8 @@ import { Pic } from './Slice';
 export type ConfirmOpts = {
   catId?: string; // 対象の猫を大きく見せる
   catIds?: string[]; // 複数（まとめて迎えるとき）。先頭の3匹まで並べる
-  silhouette?: boolean; // 猫の形だけ見せる（またたびで会える子）
+  silhouette?: boolean; // 猫の形だけ見せる
+  pic?: string; // 猫の代わりに見せる画像（まだひらいていない候補の、共通のシルエットなど）
   skin?: 'primary-orange' | 'primary-green'; // 決定ボタンの色
   cancelLabel?: string;
 };
@@ -29,8 +30,9 @@ export function useConfirm() {
 
   const cats = shown?.catIds?.slice(0, 3) ?? (shown?.catId ? [shown.catId] : []);
   const big = cats.length === 1;
+  const hasPic = !!shown?.pic && !cats.length;
   const element = (
-    <Popup visible={!!spec} onClose={close} maxWidth={340} heightRatio={cats.length ? 0.64 : 0.4}>
+    <Popup visible={!!spec} onClose={close} maxWidth={340} heightRatio={cats.length || hasPic ? 0.64 : 0.4}>
       {shown && (
         <View style={{ flex: 1, padding: 18, alignItems: 'center', justifyContent: 'center', gap: 8 }}>
           <Tap onPress={close} accessibilityLabel="閉じる" style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
@@ -44,6 +46,11 @@ export function useConfirm() {
                 </Bobbing>
               ))}
             </View>
+          )}
+          {hasPic && (
+            <Bobbing style={{ marginBottom: 4 }}>
+              <Pic name={shown.pic!} height={170} />
+            </Bobbing>
           )}
           <T w="x" size={18} style={{ textAlign: 'center' }}>{shown.title}</T>
           {!!shown.message && <T w="m" size={12} color={C.sub} style={{ textAlign: 'center', lineHeight: 18 }}>{shown.message}</T>}

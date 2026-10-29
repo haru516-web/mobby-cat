@@ -30,6 +30,9 @@ export type DayRecord = {
   freePick?: string;
   extraPicks: string[];
   passBonus?: number; // またたびパス加入中に増える候補数
+  // ひらいた（中身を見た）候補。ひらく前は、どの子も同じシルエット。ひらける数は openLimit。
+  // 2026-10-30 より前の記録には無い（そのときは、先頭から openLimit 匹をひらいたものとして読む）
+  opened?: string[];
 };
 export type Notice = { day: string; text: string };
 export type GameState = {
@@ -175,7 +178,12 @@ function observe(s: GameState, key: string, hour: number, battery: { level: numb
 // またたびパスの、いまの期間が終わったか（サーバーの時刻に合わせた時計で。開発用の日付のずれは含めない）
 const passOver = (s: Pick<GameState, 'pass' | 'clockSkewMs'>) => !!s.pass.until && Date.now() + (s.clockSkewMs ?? 0) >= s.pass.until;
 
-export const visibleCount = (r: DayRecord) => Math.min(r.candidates.length, r.baseCount + r.matatabiUsed + (r.passBonus ?? 0));
+// その日にひらける数（ふだん3匹。またたび1個で+1、パスで+3。候補の数まで）
+export const openLimit = (r: DayRecord) => Math.min(r.candidates.length, r.baseCount + r.matatabiUsed + (r.passBonus ?? 0));
+/** ひらいた候補（ひらいた順） */
+export const openedOf = (r: DayRecord) => r.opened ?? r.candidates.slice(0, openLimit(r));
+/** あと何匹、無料でひらけるか */
+export const openLeft = (r: DayRecord) => Math.max(0, openLimit(r) - openedOf(r).length);
 
 type Ctx = {
   ready: boolean;
@@ -185,7 +193,10 @@ type Ctx = {
   availableDays: string[]; // [今日, (救済期間中の)きのう]
   pickFree: (day: string, id: string) => void;
   pickExtra: (day: string, ids: string | string[]) => Promise<boolean>;
-  useMatatabi: (day: string) => Promise<boolean>;
+  /** 候補を1匹ひらく（無料。ひらける数の中で） */
+  openCandidate: (day: string, id: string) => boolean;
+  /** またたびを1個使って、ひらける数を1つ増やし、その子をひらく */
+  useMatatabi: (day: string, openId: string) => Promise<boolean>;
   grant: (what: 'ticket' | 'matatabi', n: number) => void; // 開発用
   setPaid: (wallet: { tickets: number; matatabi: number }) => void;
   registerSpender: (fn: Spender | null) => void;
@@ -415,7 +426,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             totalSteps: (s.totalSteps ?? 0) + (steps ?? 0),
             appearCounts,
             catalogVersion: CATALOG_VERSION,
-            days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], passBonus: s.pass.active && !passOver(s) ? PASS_BONUS : 0 } },
+            days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], opened: [], passBonus: s.pass.active && !passOver(s) ? PASS_BONUS : 0 } },
           };
           // 実在の猫の簡単な条件は通知しない。個性のある猫（特別な猫）が来た日だけ知らせる
           const special = [...new Set(d.candidates.filter((id) => CATS.find((c) => c.id === id)?.kind !== 'breed').map((id) => d.reasons[id]))];
@@ -449,7 +460,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const pickFree = useCallback((day: string, id: string) => {
     setState((s) => {
       const r = s.days[day];
-      if (!r || r.freePick || !r.candidates.slice(0, visibleCount(r)).includes(id)) return s;
+      if (!r || r.freePick || !openedOf(r).includes(id)) return s;
       const next = addCat(s, id, day, r.reasons[id] ?? '');
       return { ...next, days: { ...next.days, [day]: { ...r, freePick: id } } };
     });
@@ -484,7 +495,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const check = (s: GameState) => {
       const r = s.days[day];
       if (!r || !r.freePick || list.length === 0 || ticketsOf(s) < list.length) return null;
-      const visible = r.candidates.slice(0, visibleCount(r));
+      const visible = openedOf(r);
       if (list.some((id) => r.freePick === id || r.extraPicks.includes(id) || !visible.includes(id))) return null;
       return r;
     };
@@ -508,10 +519,20 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [spendCurrency]);
 
-  const useMatatabi = useCallback(async (day: string) => {
+  const openCandidate = useCallback((day: string, id: string) => {
+    const r = stateRef.current.days[day];
+    if (!r || !r.candidates.includes(id) || openedOf(r).includes(id) || openLeft(r) < 1) return false;
+    const next: GameState = { ...stateRef.current, days: { ...stateRef.current.days, [day]: { ...r, opened: [...openedOf(r), id] } } };
+    stateRef.current = next;
+    setState(next);
+    return true;
+  }, []);
+
+  // ひらける数を使い切ったあとだけ使える（無駄にしない）。無料のお迎えのあとは使えない（またたびは、迎える子を選ぶためのもの）
+  const useMatatabi = useCallback(async (day: string, openId: string) => {
     const ok = (s: GameState) => {
       const r = s.days[day];
-      return !!r && !r.freePick && matatabiOf(s) >= 1 && visibleCount(r) < r.candidates.length;
+      return !!r && !r.freePick && matatabiOf(s) >= 1 && openLeft(r) === 0 && openLimit(r) < r.candidates.length && r.candidates.includes(openId) && !openedOf(r).includes(openId);
     };
     if (spending.current || !ok(stateRef.current)) return false;
     spending.current = true;
@@ -521,7 +542,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       const s = stateRef.current;
       const r = s.days[day];
       if (!r) return false;
-      const next: GameState = { ...s, matatabi: s.matatabi - fromFree, days: { ...s.days, [day]: { ...r, matatabiUsed: r.matatabiUsed + 1 } } };
+      // 買った分はすでに引かれているので、ひらく子が変わっていても、ひらける数は必ず増やす
+      const opened = openedOf(r).includes(openId) ? openedOf(r) : [...openedOf(r), openId];
+      const next: GameState = { ...s, matatabi: s.matatabi - fromFree, days: { ...s.days, [day]: { ...r, matatabiUsed: r.matatabiUsed + 1, opened } } };
       stateRef.current = next;
       setState(next);
       return true;
@@ -611,7 +634,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, reset,
+    pickFree, pickExtra, openCandidate, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, reset,
     corruptBackup, discardBackup, saveBlocked, saveFailed,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;

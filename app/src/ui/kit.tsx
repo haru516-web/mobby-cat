@@ -131,6 +131,9 @@ export function RarityBadge({ cat, height = 22 }: { cat: CatDef; height?: number
     : shownRarity(cat) === 4 ? ['rarity-legend', 'でんせつ', '#fff']
     : shownRarity(cat) === 3 ? ['rarity-rare', 'レア', '#2F5DA8']
     : ['rarity-normal', 'ノーマル', C.ink];
+  // 文字まで描いたバッジ（badge/label-*）があれば、それだけを出す
+  const labelPic = `badge/label-${world ? 'world' : name === 'rarity-legend' ? 'legend' : name === 'rarity-rare' ? 'rare' : 'normal'}`;
+  if (UI[labelPic]) return <View accessible accessibilityLabel={label}><Pic name={labelPic} height={height} /></View>;
   return (
     <Slice name={`badge/${name}`} style={[k.badge, { height, minWidth: height * 2.8 }]}>
       <T w="x" size={height * 0.52} color={color} style={world ? { marginLeft: height * 0.6 } : undefined}>{label}</T>
@@ -198,9 +201,9 @@ export const TabPadCtx = React.createContext(0);
 export const useTabPad = () => React.useContext(TabPadCtx);
 
 export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: (t: TabKey) => void; bottomInset: number }) {
-  const { state, todayKey } = useGame();
-  // 今日の候補がいて、無料のお迎えがまだなら「出会い」に赤い点
-  const waiting = !!state.days[todayKey]?.candidates.length && !state.days[todayKey].freePick;
+  const { state, availableDays } = useGame();
+  // 今日か、まだ受け取れるきのうに、候補がいて無料のお迎えがまだなら「出会い」に赤い点
+  const waiting = availableDays.some((k) => !!state.days[k]?.candidates.length && !state.days[k].freePick);
   // 4つの独立ボタンが画面下に浮かぶ。選択中は光を敷いて、少し大きく上に出す
   return (
     <View pointerEvents="box-none" style={[k.tabbar, { paddingBottom: Math.max(bottomInset, 8) }]}>

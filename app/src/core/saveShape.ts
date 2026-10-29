@@ -31,6 +31,7 @@ function day(v: unknown): DayRecord | null {
   if (!isObj(v) || !strList(v.candidates) || !isObj(v.reasons) || !isCount(v.baseCount) || !isCount(v.matatabiUsed) || !strList(v.extraPicks)) return null;
   if (v.freePick !== undefined && !isStr(v.freePick)) return null;
   if (v.passBonus !== undefined && !isCount(v.passBonus)) return null;
+  if (v.opened !== undefined && !strList(v.opened)) return null;
   const reasons: Record<string, string> = {};
   for (const [id, r] of Object.entries(v.reasons)) if (isStr(r)) reasons[id] = r;
   // 知らない猫は候補から外す（見えている数が変わらないよう、外した分だけ baseCount も減らす）
@@ -44,6 +45,7 @@ function day(v: unknown): DayRecord | null {
     extraPicks: v.extraPicks,
     ...(v.freePick !== undefined ? { freePick: v.freePick } : {}),
     ...(v.passBonus !== undefined ? { passBonus: v.passBonus } : {}),
+    ...(v.opened !== undefined ? { opened: v.opened.filter((id) => KNOWN.has(id)) } : {}),
   };
 }
 
