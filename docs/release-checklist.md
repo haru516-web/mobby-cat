@@ -74,7 +74,7 @@ npx wrangler secret put APPLE_SIGN_IN_PRIVATE_KEY
 ```
 
 ### D5. アプリの作成
-App Store Connect → マイApp → 新規App。プラットフォーム iOS、名前「にゃこモビー」（重複していると使えないので、候補を用意しておく）、プライマリ言語 日本語、Bundle ID `com.mobbycat.app`、SKU は任意。
+App Store Connect → マイApp → 新規App。プラットフォーム iOS、名前「にゃっコレ」（重複していると使えないので、候補を用意しておく）、プライマリ言語 日本語、Bundle ID `com.mobbycat.app`、SKU は任意。
 
 ### D6. アプリ内課金の商品
 アプリ → 収益化 → アプリ内課金 / サブスクリプションで登録する。商品 ID は、`server/wrangler.toml` の `PRODUCT_CATALOG_JSON` と**完全に一致**させる。

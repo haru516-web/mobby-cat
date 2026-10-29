@@ -85,7 +85,7 @@ test("health, the three public pages and CORS work, and the pages belong to this
   for (const path of ["/privacy", "/support", "/legal"]) {
     const page = await context.call("GET", path);
     assert.equal(page.status, 200, path);
-    assert.match(page.text, /にゃこモビー|特定商取引法/, path);
+    assert.match(page.text, /にゃっコレ|特定商取引法/, path);
     assert.doesNotMatch(page.text, /もび道|モビドウ|mobidou|木札|ガチャ|御朱印|フレンド/i, path);
   }
   const preflight = await handleWithStore(new Request("https://server.test/wallet", { method: "OPTIONS" }), baseEnv, context.store);

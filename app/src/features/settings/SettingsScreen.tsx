@@ -106,7 +106,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
 
   const contact = () => {
     if (!SUPPORT_EMAIL) return notice('お問い合わせ', '窓口は準備中です');
-    Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`にゃこモビー ${APP_VERSION}`)}`).catch(() =>
+    Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`にゃっコレ ${APP_VERSION}`)}`).catch(() =>
       notice('メールを開けませんでした', SUPPORT_EMAIL),
     );
   };

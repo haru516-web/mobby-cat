@@ -13,7 +13,7 @@ export const PRIVACY_MARKDOWN = `# プライバシーポリシー
 運営者：${OPERATOR_NAME}
 連絡先：${CONTACT_EMAIL}
 
-「にゃこモビー」（以下「本アプリ」）は、歩数・電池・天気・暦など、毎日の暮らしに合わせて猫と出会うアプリです。本アプリが取り扱う情報と、その使い道を説明します。
+「にゃっコレ」（以下「本アプリ」）は、歩数・電池・天気・暦など、毎日の暮らしに合わせて猫と出会うアプリです。本アプリが取り扱う情報と、その使い道を説明します。
 
 ## 1. 端末の中だけで使う情報
 
@@ -113,7 +113,7 @@ export function markdownToHtml(markdown: string): string {
 
 /** A plain, readable page for a legal document. */
 export function documentPageHtml(title: string, markdown: string): string {
-  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>にゃこモビー ${escapeHtml(title)}</title>
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>にゃっコレ ${escapeHtml(title)}</title>
 <style>body{font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;background:#FFF8F0;color:#3a2e28;margin:0;padding:24px 16px 56px;line-height:1.8}main{max-width:720px;margin:0 auto}h1{font-size:24px}h2{font-size:18px;margin-top:32px;border-bottom:1px solid #ecd9c6;padding-bottom:4px}table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0}th,td{border:1px solid #ecd9c6;padding:8px;text-align:left;vertical-align:top}th{background:#f8e8d6}ul{padding-left:1.4em}</style></head>
 <body><main>${markdownToHtml(markdown)}</main></body></html>`;
 }

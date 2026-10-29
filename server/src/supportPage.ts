@@ -5,7 +5,7 @@ import { CONTACT_EMAIL, OPERATOR_NAME } from "./operator.ts";
 
 export const SUPPORT_TITLE = "サポート";
 
-export const SUPPORT_MARKDOWN = `# にゃこモビー サポート
+export const SUPPORT_MARKDOWN = `# にゃっコレ サポート
 
 運営者：${OPERATOR_NAME}　連絡先：${CONTACT_EMAIL}
 

@@ -6,8 +6,8 @@
 
 | 項目 | 内容 |
 |---|---|
-| 名前（30字） | にゃこモビー |
-| サブタイトル（30字） | 今日の暮らしで、猫と出会う |
+| 名前（30字） | にゃっコレ |
+| サブタイトル（30字） | にゃこモビーを集める猫図鑑 |
 | カテゴリ（プライマリ） | ゲーム > シミュレーション（迷う場合は ライフスタイル） |
 | サポート URL | https://nyakomobby-server.mobidou.workers.dev/support |
 | プライバシーポリシー URL | https://nyakomobby-server.mobidou.workers.dev/privacy |
