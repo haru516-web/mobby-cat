@@ -1,0 +1,37 @@
+# EAS Build に送らないもの。.easignore があると .gitignore は使われないので、その分もここに書く。
+# 先頭の / は、リポジトリのルートだけを指す（app/assets は送る）。
+
+# .gitignore と同じ
+node_modules/
+.expo/
+dist/
+*.tsbuildinfo
+.DS_Store
+
+# アプリのビルドに使わないもの
+/assets/
+/docs/
+/server/
+/marketing/
+/tools/
+/.worktrees/
+/.claude/
+
+# app/.gitignore と同じ（鍵や証明書を送らないため）
+web-build/
+expo-env.d.ts
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+.metro-health-check*
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.env*.local
+/app/ios
+/app/android

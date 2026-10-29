@@ -103,7 +103,7 @@ Users and Access → Sandbox → テスター で、テスト用の Apple Accoun
 
 1. アカウント：起動時に匿名アカウントを作る。認証の secret は `expo-secure-store`（Keychain）に保存する。
 2. Apple でサインイン（`expo-apple-authentication`）：連携と、新しい端末での引き継ぎ。
-3. **課金の前に、Apple 連携を必須にする。**
+3. ~~課金の前に、Apple 連携を必須にする。~~ **やめた（2026-10-29）**：Apple 連携は任意。購入は匿名のアカウントのままでき、購入のあとに任意で案内する（ガイドライン 5.1.1）。
 4. 購入（`expo-iap`、StoreKit 2）：`appAccountToken` にアカウントの `userId` を付け、サーバーで検証してから付与する。購入の復元も実装する。
 5. クラウドセーブ：Apple 連携後に、記録を保存・復元する。
 6. アカウント削除の画面。
