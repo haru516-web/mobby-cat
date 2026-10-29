@@ -215,4 +215,8 @@ export const UI: Record<string, UIAsset | undefined> = {
   'tabbar/world-on': { src: require('../../assets/ui/tabbar/world-on.png'), w: 150, h: 150 },
   'tabbar/zukan-off': { src: require('../../assets/ui/tabbar/zukan-off.png'), w: 150, h: 150 },
   'tabbar/zukan-on': { src: require('../../assets/ui/tabbar/zukan-on.png'), w: 150, h: 150 },
+  'home/upcoming-card': { src: require('../../assets/ui/home/upcoming-card.png'), w: 720, h: 200, slice: { t: 70, r: 70, b: 70, l: 70 } },
+  'home/upcoming-well': { src: require('../../assets/ui/home/upcoming-well.png'), w: 192, h: 192, slice: { t: 56, r: 56, b: 56, l: 56 } },
+  'login/calendar-base': { src: require('../../assets/ui/login/calendar-base.png'), w: 1000, h: 960, slice: { t: 190, r: 90, b: 90, l: 90 } },
+  'login/calendar-weekbar': { src: require('../../assets/ui/login/calendar-weekbar.png'), w: 840, h: 72, slice: { t: 0, r: 36, b: 0, l: 36 } },
 };

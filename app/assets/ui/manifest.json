@@ -2,7 +2,7 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 211,
+  "assetCount": 215,
   "counts": {
     "badge": 11,
     "bg": 19,
@@ -11,9 +11,10 @@
     "camera": 20,
     "cat": 3,
     "gauge": 5,
+    "home": 2,
     "icon": 28,
     "illust": 18,
-    "login": 9,
+    "login": 11,
     "navbtn": 9,
     "opening": 6,
     "panel": 16,
@@ -1454,6 +1455,40 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "home/upcoming-card.png",
+      "width": 720,
+      "height": 200,
+      "prompt": "Use case: stylized-concept. ONE production UI bitmap upcoming encounter card, exact aspect720:200. Front-on horizontal softly rounded cream #FFF8F0 paper board, thin pale gold #E5A23B border inset a little from edge, ivory upper-left highlight, very soft low contrast downward shadow, restrained paper texture. One tiny gold four-point twinkle in upper right corner and one even tinier twinkle in lower left, entirely within70px corner squares at final720x200. Center and all edges middle completely blank uniform cream, no inset well no separate compartments. Nine-slice top70 right70 bottom70 left70, ensure rounded corners and all decoration inside these corner bounds. Near-full canvas with4px outer clearance. Truly transparent exterior. No text no letters no numbers no question mark no cats no logos. Warm softly puffy handcrafted paper UI.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; corner-preserving nine-slice normalization to720x200 with70px fixed corners; generated alpha preserved; no EXIF.",
+      "slice": {
+        "top": 70,
+        "right": 70,
+        "bottom": 70,
+        "left": 70
+      },
+      "sha256": "39afdb1db58fceb7433ef56b9d65d0d2c0b4da6d642cc7bedf763a0206363518",
+      "bytes": 152894,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "home/upcoming-well.png",
+      "width": 192,
+      "height": 192,
+      "prompt": "Use case: stylized-concept. ONE production UI bitmap square recessed photo well, exact aspect192:192. Cozy Nekomobby softly puffy cream paper rim with rounded corners, gentle inward shading. Very restrained pale lavender #E1D4FF to pale gold soft light bloom contained in rim, hinting an unseen cat. Center is bright blank ivory uniform flat surface with no objects, no sparkle shapes. Nine-slice top56 right56 bottom56 left56 final pixels; all curved corner detail confined to56px corners, edge middles and center stretch cleanly. Upper-left ivory highlight, faint downward outer shadow. Transparent outside the rounded square only; center opaque. Fill canvas with4px clearance. No text letters numerals symbols cat or silhouette.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; Lanczos fit to184x184 with4px clearance on192x192; generated alpha preserved; no EXIF.",
+      "slice": {
+        "top": 56,
+        "right": 56,
+        "bottom": 56,
+        "left": 56
+      },
+      "sha256": "fe41a6fde4cc53857621350dffd14c7d0e8bd6b8597961ed48c3dc3eea0aad48",
+      "bytes": 40193,
+      "alphaMode": "transparent"
+    },
+    {
       "path": "icon/book.png",
       "width": 150,
       "height": 150,
@@ -1980,6 +2015,43 @@
       "method": "built-in image_gen",
       "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
+    },
+    {
+      "path": "login/calendar-base.png",
+      "width": 1000,
+      "height": 960,
+      "prompt": "Use case: stylized-concept. Create ONE production UI bitmap calendar backing, front-on orthographic, exact aspect 1000:960. Transparent outside rounded paper and through ring holes. Cozy softly puffy ivory paper #FFF8F0, very restrained fine paper texture, gentle warm brown edge, fine ivory highlight and faint downward shadow, matching reference cream panel. Two small soft rounded cream-orange binder rings at x=23% and 77%, entirely within top 9% of canvas, no metal. Blank peach-cream header band between y=9% and 19%, keep header center empty. All ring and header detail contained above y=19.8% (190 pixels at final size). Below y=20%, a single completely blank bright cream flat area for 7 columns and up to 6 rows of separate date tiles; no grid no dates. Rounded corners contained in 90px edge insets. Four edge middle strips stretch cleanly for nine-slice top190 right90 bottom90 left90. Fill canvas nearly entirely with 6px outer clearance. No text letters numerals symbols logos cats or extra decorations.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; piecewise Lanczos header/body fit: header ends at y190; original alpha preserved; no EXIF.",
+      "slice": {
+        "top": 190,
+        "right": 90,
+        "bottom": 90,
+        "left": 90
+      },
+      "sha256": "b92fabdb5239765e41c1de09fede50baf9aad9d9817f9776ab79c5696c932244",
+      "bytes": 1061881,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/calendar-weekbar.png",
+      "width": 840,
+      "height": 72,
+      "prompt": "Use case: stylized-concept. ONE production UI asset blank weekday band, exact aspect 840:72, horizontal long slim pill with small softly rounded ends. Pale orange cream slightly darker than ivory calendar paper, subtle puffy stationery paper texture, upper-left ivory highlight, very faint lower shadow. Straight parallel horizontal edges; only 36px left and right end caps at final840px are fixed, middle entirely uniform and horizontally stretchable. No divisions no grid no lettering no numerals no symbols. Transparent outside, nearly fill canvas with2px clearance. Cozy Nekomobby cream paper UI matching reference.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; cap-preserving horizontal stretch to840x72, source semicircle caps mapped to36px; generated alpha preserved; no EXIF.",
+      "slice": {
+        "top": 0,
+        "right": 36,
+        "bottom": 0,
+        "left": 36
+      },
+      "sha256": "a4ede69b3ba4475cdc6383c1808603a6509ce265efe5850b2aa1b77c1eb84164",
+      "bytes": 75331,
+      "alphaMode": "transparent",
+      "stretchAxes": [
+        "x"
+      ]
     },
     {
       "path": "login/cell-bonus.png",
