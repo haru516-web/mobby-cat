@@ -1,0 +1,77 @@
+{
+  "assets": [
+    {
+      "path": "button/settings-round.png",
+      "width": 168,
+      "height": 168,
+      "hasAlpha": true,
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "8ead1b0e204aaa2bcbffa452ee25467299da4641ad51cf8d6c4836ddc787933e",
+      "bytes": 44745
+    },
+    {
+      "path": "button/home-cats-round.png",
+      "width": 168,
+      "height": 168,
+      "hasAlpha": true,
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "98de43d6c3c60c5db4bfff8e13f084a7eed40b25742d421f218911ccc4d5c34d",
+      "bytes": 49287
+    },
+    {
+      "path": "camera/zoom-track.png",
+      "width": 42,
+      "height": 660,
+      "hasAlpha": true,
+      "slice": {
+        "top": 42,
+        "right": 0,
+        "bottom": 42,
+        "left": 0
+      },
+      "sha256": "c06496fddf4100d1be2f6bf978cfab6319e30d6c98aa4b73c0dce8df1b10119e",
+      "bytes": 33723
+    },
+    {
+      "path": "camera/zoom-thumb.png",
+      "width": 90,
+      "height": 90,
+      "hasAlpha": true,
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "ba9c03451932033931da47b4177c33133f8eecc1a55af6fda9dfc994548badb6",
+      "bytes": 15606
+    },
+    {
+      "path": "bg/screen-zukan.png",
+      "width": 1179,
+      "height": 2556,
+      "hasAlpha": false,
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "eee4f2195ab87a7463360af894f7019645f386a2df0a1b46ca58132a5cdc857d",
+      "bytes": 4561306
+    }
+  ],
+  "previewCamera": "Windows bundled landscape img29.jpg, four columns: bright idle bottom (40%), bright active middle, dark idle bottom (40%), dark active middle",
+  "previewHome": "393x852 at 1px/pt; cat/calendar buttons52pt,12pt gap; bell/settings40pt",
+  "previewZukan": "Actual card-cream 9slice64px over lower three quarters; resized to393x852"
+}
