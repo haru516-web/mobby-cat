@@ -4,7 +4,7 @@ import { AppState } from 'react-native';
 import { CATS } from '../data/catalog';
 import { Signals } from './conditions';
 import { daysBetween } from './dates';
-import { buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './encounter';
+import { MAX_CANDIDATES, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './encounter';
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
@@ -221,6 +221,8 @@ type Ctx = {
   setPass: (active: boolean, until?: number) => void;
   shiftDays: (n: number) => void;
   unlockAll: () => void;
+  /** 開発用：今日の候補を、試験用の6匹で作り直す（ブラウザでは歩数・天気が取れず、候補が0匹になるため） */
+  devFillToday: () => void;
   reset: () => void;
   corruptBackup: string | null; // 読み込めずに退避した記録（無ければ null）
   discardBackup: () => void;
@@ -621,6 +623,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
   const shiftDays = useCallback((n: number) => setState((s) => ({ ...s, debugOffsetDays: s.debugOffsetDays + n })), []);
   // 開発用: 全猫を図鑑に開放する
+  const devFillToday = useCallback(
+    () =>
+      setState((s) => {
+        const day = encounterDayKey(clockNow(s));
+        const pool = CATS.filter(isRealCat).map((c) => c.id).sort(() => Math.random() - 0.5).slice(0, MAX_CANDIDATES);
+        const reasons = Object.fromEntries(pool.map((id) => [id, '開発用の試験']));
+        const rec: DayRecord = { candidates: pool, reasons, baseCount: 3, matatabiUsed: 0, extraPicks: [], opened: [], passBonus: s.pass.active ? PASS_BONUS : 0 };
+        return { ...s, days: { ...s.days, [day]: rec } };
+      }),
+    [],
+  );
   const unlockAll = useCallback(
     () =>
       setState((s) => {
@@ -639,7 +652,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, openCandidate, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, reset,
+    pickFree, pickExtra, openCandidate, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, devFillToday, reset,
     corruptBackup, discardBackup, saveBlocked, saveFailed,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
