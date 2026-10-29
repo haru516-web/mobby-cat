@@ -14,7 +14,7 @@
         1024
       ],
       "mode": "RGB",
-      "sha256": "09483e738c21ce90ddd8dadf8e72987e656d7add15c081a825d91ed799aa4a01"
+      "sha256": "7d5a14067725cb05ab3d727e2f16ec20530d531512dd2d41d5529cfda1012edb"
     },
     {
       "path": "icon-b.png",
@@ -23,7 +23,7 @@
         1024
       ],
       "mode": "RGB",
-      "sha256": "678eac903b9ec2014815334da5fdb208d0791a3f87cf896480adca666217bce6"
+      "sha256": "d602db7f77456a3a040f1440d5e05be707999b487c053d7c2daa2e5d468f8523"
     },
     {
       "path": "icon-c.png",
@@ -32,7 +32,7 @@
         1024
       ],
       "mode": "RGB",
-      "sha256": "360df4f197f02456203d1e482480c226f6fd54588563c860d8cc8dd57b82f6bc"
+      "sha256": "88b5d47fd1efb183f4e3c0d39ad357831dc3e739671bc1dd606e06e9273f22ad"
     },
     {
       "path": "icon-d.png",
@@ -41,7 +41,7 @@
         1024
       ],
       "mode": "RGB",
-      "sha256": "e8c00f3f7e86652f99602c9349362e7d02c9688ab2ded9fdc1e991f990b85cfa"
+      "sha256": "ca7082cbfcbb75d2d1ec1a2167f621d613f6c55d2b2df0e67f3d3d15dcd3da69"
     }
   ]
 }

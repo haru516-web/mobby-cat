@@ -29,24 +29,43 @@ shadow = shadow.filter(ImageFilter.GaussianBlur(17))
 records = []
 for key in 'abcd':
     if key == 'a':
-        bg = gradient(Y/1023,(246,160,60),(240,138,93))
+        # Fourteen broad alternating sectors, softened into cream at the center.
+        sector = (np.floor((np.arctan2(Y-512,X-512)+np.pi)*14/(2*np.pi)).astype(int)%2)
+        colors = np.array([(242,139,32),(246,160,60)])
+        base = colors[sector].astype(float)
+        radius = np.sqrt((X-512)**2+(Y-512)**2)
+        light = .97*np.exp(-(radius/465)**4)
+        bg = Image.fromarray(np.uint8(base*(1-light[...,None])+np.array([255,248,240])*light[...,None])).convert('RGBA')
     elif key == 'b':
-        t = np.minimum(1,np.sqrt(((X-512)/724)**2+((Y-470)/724)**2))
-        bg = gradient(t,(250,177,85),(242,139,32))
+        bg = gradient(Y/1023,(240,138,93),(242,139,32))
+        mask = Image.new('L',(N,N))
+        md = ImageDraw.Draw(mask)
+        # 716px wide, 870px tall, semicircular top.
+        md.ellipse((154,77,870,793),fill=255)
+        md.rectangle((154,435,870,947),fill=255)
+        window = gradient(Y/1023,(255,239,197),(255,248,240))
+        bg.paste(window,(0,0),mask)
+        border = Image.new('L',(N,N))
+        bd = ImageDraw.Draw(border)
+        bd.arc((154,77,870,793),180,360,fill=255,width=4)
+        bd.line([(154,435),(154,947),(870,947),(870,435)],fill=255,width=4)
+        bg.paste((246,183,119,255),(0,0,N,N),border)
+    elif key == 'c':
+        bg = gradient(Y/1023,(255,217,190),(240,138,93))
+        d = ImageDraw.Draw(bg)
+        # Upper half of a 666px sun; horizon is 40% above bottom.
+        d.pieslice((67,281,733,947),180,360,fill=(255,248,240,255))
+        # A broad, quiet foreground plane establishes the horizon.
+        ground = gradient(Y/1023,(250,176,125),(240,138,93))
+        bg.paste(ground.crop((0,614,N,N)),(0,614))
     else:
-        bg = Image.new('RGBA',(N,N),(242,139,32,255))
-        overlay = Image.new('RGBA',(N,N))
-        d = ImageDraw.Draw(overlay)
-        if key == 'c':
-            d.ellipse((128,128,896,896), fill=(255,248,240,89))
-        else:
-            for cx,cy,s in [(145,170,23),(855,160,28),(115,500,25),(900,460,24),(155,830,28),(850,845,25),(500,80,18),(510,950,18)]:
-                color=(210,113,28,65)
-                d.ellipse((cx-s,cy,cx+s,cy+s*1.5),fill=color)
-                for dx,dy in [(-1,-.4),(-.35,-.95),(.4,-.95),(1,-.4)]:
-                    px,py=cx+dx*s,cy+dy*s
-                    d.ellipse((px-s*.32,py-s*.43,px+s*.32,py+s*.43),fill=color)
-        bg = Image.alpha_composite(bg,overlay)
+        bg = gradient(Y/1023,(246,160,60),(240,138,93))
+        for angle in (12,-12,0):
+            card = Image.new('RGBA',(N,N))
+            cd = ImageDraw.Draw(card)
+            cd.rounded_rectangle((207,142,817,938),radius=46,fill=(255,248,240,255),outline=(74,59,50,255),width=3)
+            card = card.rotate(angle,Image.Resampling.BICUBIC,center=(512,760))
+            bg = Image.alpha_composite(bg,card)
     bg = Image.alpha_composite(bg,shadow)
     bg.alpha_composite(fg,(x,y))
     path = ROOT / f'icon-{key}.png'
