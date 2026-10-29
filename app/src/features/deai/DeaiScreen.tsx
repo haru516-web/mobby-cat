@@ -28,7 +28,8 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const [sel, setSel] = useState<string | null>(null);
   const [detail, setDetail] = useState<string | null>(null);
   const [welcome, setWelcome] = useState<string | null>(null); // 迎えた直後に出す発見カード
-  const [reveal, setReveal] = useState<{ id: string; isNew: boolean } | null>(null); // ひらく演出の最中の子
+  const [reveal, setReveal] = useState<{ ids: string[]; newIds: string[] } | null>(null); // ひらく演出の最中の子たち
+  const [openSel, setOpenSel] = useState<string[]>([]); // ひらく子として選んでいる候補（まだひらいていない）
   const card = useRef<ViewRef>(null);
   const [barH, setBarH] = useState(0);
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
@@ -36,6 +37,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   useEffect(() => {
     setDay(todayKey);
     setSel(null);
+    setOpenSel([]);
   }, [todayKey]);
 
   const rec = state.days[day];
@@ -55,13 +57,18 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   // ひらいた子（中身が見える）と、まだの子。並びは候補の順のまま（ひらいても場所が変わらない）
   const visible = openedOf(rec);
   // ひらく演出の最中の子は、一覧ではまだシルエットのまま（後ろで先に正体が見えないように）
-  const isOpened = (id: string) => visible.includes(id) && reveal?.id !== id;
+  const isOpened = (id: string) => visible.includes(id) && !reveal?.ids.includes(id);
   const isPicked = (id: string) => rec.freePick === id || rec.extraPicks.includes(id);
   const hasFree = !!rec.freePick;
   const rest = visible.filter((id) => !isPicked(id));
   const left = openLeft(rec); // あと何匹、無料でひらけるか
   // またたびで、ひらける数を増やせるか（無料のお迎えの前で、ひらける数を使い切っていて、まだひらいていない子がいる）
   const canMatatabi = !hasFree && left === 0 && openLimit(rec) < rec.candidates.length;
+  // まとめてひらく数：ひらける数（または、まだひらいていない子の数）。この数ぴったりを選んでから、いっしょにひらく
+  const unopened = rec.candidates.filter((id) => !visible.includes(id));
+  const need = Math.min(left, unopened.length);
+  const picking = !hasFree && need > 0; // ひらく子を選んでいる段階
+  const chosen = openSel.filter((id) => unopened.includes(id));
   const empty = rec.candidates.length === 0;
   const nextWord = now.getHours() >= REVEAL_HOUR ? 'あす' : '今日';
   const yKey = prevDayKey(todayKey);
@@ -84,21 +91,34 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   };
   // 買った分の券は、サーバーで引く。つながらない・足りないときは、何も引かれない
   const notEnough = () => notice('お迎えできませんでした', '通信できなかったか、お迎え券が足りません。電波のよいところで、もう一度お試しください。');
-  // まだひらいていない子を押したとき。ひらく前に、かならず確認する（ひらく数には限りがあるため）
-  const startReveal = (id: string) => {
+  // ひらく演出を始める（一覧では、ひらく子はまだシルエットのまま）
+  const startReveal = (ids: string[]) => {
     setSel(null);
-    setReveal({ id, isNew: !state.owned[id] });
+    setOpenSel([]);
+    setReveal({ ids, newIds: ids.filter((id) => !state.owned[id]) });
   };
-  const askOpen = (id: string) => {
-    if (left > 0) {
-      confirm(
-        'この子をひらきますか？',
-        `今日ひらけるのは、あと${left}匹です。ひらいた子の中から、1匹を無料で迎えられます。`,
-        'ひらく',
-        () => { if (g.openCandidate(day, id)) startReveal(id); },
-        { pic: MYSTERY },
-      );
-    } else if (!canMatatabi) {
+  // ひらく子を選ぶ（押すと選ぶ、もう一度押すと外す。いっぱいのときは、いちばん前に選んだ子を外して入れかえる）
+  const toggleOpen = (id: string) => {
+    setOpenSel((cur) => {
+      const now = cur.filter((x) => unopened.includes(x));
+      if (now.includes(id)) return now.filter((x) => x !== id);
+      return [...now, id].slice(-need);
+    });
+  };
+  // 選んだ子を、いっしょにひらく。ひらく前に、かならず確認する（ひらく数には限りがあり、取り消せないため）
+  const askOpenAll = () => {
+    if (chosen.length !== need || need < 1) return;
+    confirm(
+      need === 1 ? 'この子をひらきますか？' : `この${need}匹をひらきますか？`,
+      `ひらいた子の中から、1匹を無料で迎えられます。ひらいたあとは、選びなおせません。`,
+      'ひらく',
+      () => { if (g.openCandidates(day, chosen)) startReveal(chosen); },
+      { pic: MYSTERY, picCount: need },
+    );
+  };
+  // ひらける数を使い切ったあとに、まだひらいていない子を押したとき
+  const askExtra = (id: string) => {
+    if (!canMatatabi) {
       notice('もうひらけません', hasFree ? '無料のお迎えのあとは、新しくひらけません。あしたの出会いを待ってね。' : '今日ひらける数を使い切りました。');
     } else if (matatabiOf(state) >= 1) {
       confirm(
@@ -106,7 +126,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         `またたびを1個使って、この子をひらきます（${matatabiOf(state)}個 → ${matatabiOf(state) - 1}個）。無料で迎えられるのは1匹のままです。`,
         'またたびでひらく',
         async () => {
-          if (await g.useMatatabi(day, id)) { playSfx('sfx_matatabi'); startReveal(id); }
+          if (await g.useMatatabi(day, id)) { playSfx('sfx_matatabi'); startReveal([id]); }
           else notice('またたびを使えませんでした', '通信できなかったか、またたびが足りません。電波のよいところで、もう一度お試しください。');
         },
         { pic: MYSTERY, skin: 'primary-green' },
@@ -152,6 +172,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             if (none) return notice('きのうの出会いはありません', 'アプリを入れる前の日の出会いは届きません。あしたからは、前の日の子も選べます（次の20時まで）。');
             setDay(k);
             setSel(null);
+            setOpenSel([]);
           }}>
             <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
               {k !== todayKey && !none && !!state.days[k]?.candidates.length && !state.days[k]?.freePick && <Pic name="button/bell-badge" height={12} style={s.tabDot} />}
@@ -181,7 +202,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           <T w="x" size={16} style={{ textAlign: 'center' }}>
             {empty ? `${day === todayKey ? '今日' : 'きのう'}は出会える子がいません` : hasFree ? '無料のお迎えが完了しました' : '1匹を無料でお迎え'}
           </T>
-          {!empty && left > 0 && <T w="b" size={12} color={C.accent} style={{ textAlign: 'center' }}>気になる子をタップしてひらこう（あと{left}匹）</T>}
+          {!empty && picking && <T w="b" size={12} color={C.accent} style={{ textAlign: 'center' }}>{`気になる子を${need}匹えらんでね（${chosen.length}/${need}）`}</T>}
           {/* 迎え終えたら、次にいつ来ればよいかだけ伝える（20時に届くことは、通知と毎日の習慣で分かる） */}
           {hasFree && day === todayKey && <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>次の出会いは、{nextWord}の20時に届きます</T>}
         </Card>
@@ -198,19 +219,27 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       <TourAnchor id="deai-grid" style={s.grid}>
         {rec.candidates.map((id, i) => {
           if (!isOpened(id)) {
-            const openable = left > 0 || canMatatabi;
+            const mine = picking && chosen.includes(id); // いま、ひらく子として選んでいる
+            const openable = picking || canMatatabi;
             return (
-              <Tap key={id} style={{ width: colW, opacity: openable ? 1 : 0.55 }} onPress={() => askOpen(id)} accessibilityLabel={left > 0 ? 'まだひらいていない子。タップでひらく' : 'またたびでひらける子'}>
+              <Tap
+                key={id}
+                style={{ width: colW, opacity: openable ? 1 : 0.55 }}
+                onPress={() => (picking ? toggleOpen(id) : askExtra(id))}
+                accessibilityLabel={picking ? (mine ? 'ひらく子に選んでいる。タップで外す' : 'まだひらいていない子。タップでひらく子に選ぶ') : 'またたびでひらける子'}
+                accessibilityState={{ selected: mine }}
+              >
                 <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
+                  {mine && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', bottom: -colW * 0.08 }} />}
                   <Bobbing delay={i * 180}>
                     <Pic name={MYSTERY} width={colW * 0.92} />
                   </Bobbing>
                 </View>
-                <View style={s.badgeRow}>{left === 0 && canMatatabi ? <Pic name="icon/matatabi-leaf" height={24} /> : <View style={{ height: 24 }} />}</View>
-                <Card style={s.candCard}>
+                <View style={s.badgeRow}>{!picking && canMatatabi ? <Pic name="icon/matatabi-leaf" height={24} /> : <View style={{ height: 24 }} />}</View>
+                <Card skin={mine ? 'selected' : 'white'} style={s.candCard}>
                   <T w="x" size={13}>？？？</T>
                   <Slice name="badge/owned-count" style={s.cost}>
-                    <T w="x" size={11} color={openable ? C.accent : C.sub}>{left > 0 ? 'タップでひらく' : canMatatabi ? 'またたび1個' : 'ひらけません'}</T>
+                    <T w="x" size={11} color={openable ? C.accent : C.sub}>{picking ? (mine ? 'ひらく！' : 'えらぶ') : canMatatabi ? 'またたび1個' : 'ひらけません'}</T>
                   </Slice>
                 </Card>
               </Tap>
@@ -263,9 +292,18 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           </Card>
         )}
 
-        {!hasFree && (
+        {picking && (
           <ImgButton
-            label={selCat ? '無料でお迎えする' : visible.length ? '迎える子をえらんでね' : 'まずは、気になる子をひらいてね'}
+            label={chosen.length === need ? (need === 1 ? 'この子をひらく' : `この${need}匹をひらく`) : `ひらく子を${need}匹えらんでね（${chosen.length}/${need}）`}
+            disabled={chosen.length !== need}
+            height={50}
+            icon="icon/paw"
+            onPress={askOpenAll}
+          />
+        )}
+        {!hasFree && !picking && (
+          <ImgButton
+            label={selCat ? '無料でお迎えする' : '迎える子をえらんでね'}
             disabled={!selCat}
             height={50}
             icon="icon/paw"
@@ -350,11 +388,11 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       </Modal>
 
       <RevealOverlay
-        id={reveal?.id ?? null}
-        reason={reveal ? rec.reasons[reveal.id] : undefined}
-        isNew={!!reveal?.isNew}
+        ids={reveal?.ids ?? null}
+        reasons={rec.reasons}
+        newIds={reveal?.newIds ?? []}
         onClose={() => {
-          if (reveal) setSel(reveal.id); // ひらいた子を選んだ状態で戻る（そのまま迎えられる）
+          if (reveal?.ids.length === 1) setSel(reveal.ids[0]); // 1匹だけひらいたときは、その子を選んだ状態で戻る
           setReveal(null);
         }}
       />

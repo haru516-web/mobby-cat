@@ -198,8 +198,8 @@ type Ctx = {
   availableDays: string[]; // [今日, (救済期間中の)きのう]
   pickFree: (day: string, id: string) => void;
   pickExtra: (day: string, ids: string | string[]) => Promise<boolean>;
-  /** 候補を1匹ひらく（無料。ひらける数の中で） */
-  openCandidate: (day: string, id: string) => boolean;
+  /** 候補をまとめてひらく（無料。ひらける数の中で。ひらく子は、まだひらいていない候補だけ） */
+  openCandidates: (day: string, ids: string[]) => boolean;
   /** またたびを1個使って、ひらける数を1つ増やし、その子をひらく */
   useMatatabi: (day: string, openId: string) => Promise<boolean>;
   grant: (what: 'ticket' | 'matatabi', n: number) => void; // 開発用
@@ -526,10 +526,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [spendCurrency]);
 
-  const openCandidate = useCallback((day: string, id: string) => {
+  const openCandidates = useCallback((day: string, ids: string[]) => {
     const r = stateRef.current.days[day];
-    if (!r || !r.candidates.includes(id) || openedOf(r).includes(id) || openLeft(r) < 1) return false;
-    const next: GameState = { ...stateRef.current, days: { ...stateRef.current.days, [day]: { ...r, opened: [...openedOf(r), id] } } };
+    const list = [...new Set(ids)];
+    if (!r || list.length < 1 || list.length > openLeft(r) || list.some((id) => !r.candidates.includes(id) || openedOf(r).includes(id))) return false;
+    const next: GameState = { ...stateRef.current, days: { ...stateRef.current.days, [day]: { ...r, opened: [...openedOf(r), ...list] } } };
     stateRef.current = next;
     setState(next);
     return true;
@@ -652,7 +653,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, openCandidate, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, devFillToday, reset,
+    pickFree, pickExtra, openCandidates, useMatatabi, grant, setPaid, registerSpender, replaceState, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, devFillToday, reset,
     corruptBackup, discardBackup, saveBlocked, saveFailed,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;

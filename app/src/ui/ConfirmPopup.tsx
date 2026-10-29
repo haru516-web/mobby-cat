@@ -12,6 +12,7 @@ export type ConfirmOpts = {
   catIds?: string[]; // 複数（まとめて迎えるとき）。先頭の3匹まで並べる
   silhouette?: boolean; // 猫の形だけ見せる
   pic?: string; // 猫の代わりに見せる画像（まだひらいていない候補の、共通のシルエットなど）
+  picCount?: number; // その画像を並べる数（まとめてひらくとき。先頭の3匹まで）
   skin?: 'primary-orange' | 'primary-green'; // 決定ボタンの色
   cancelLabel?: string;
 };
@@ -48,9 +49,13 @@ export function useConfirm() {
             </View>
           )}
           {hasPic && (
-            <Bobbing style={{ marginBottom: 4 }}>
-              <Pic name={shown.pic!} height={170} />
-            </Bobbing>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 4 }}>
+              {Array.from({ length: Math.min(3, shown.picCount ?? 1) }, (_, i) => (
+                <Bobbing key={i} delay={i * 200} style={{ marginLeft: i ? -18 : 0 }}>
+                  <Pic name={shown.pic!} height={(shown.picCount ?? 1) > 1 ? 112 : 170} />
+                </Bobbing>
+              ))}
+            </View>
           )}
           <T w="x" size={18} style={{ textAlign: 'center' }}>{shown.title}</T>
           {!!shown.message && <T w="m" size={12} color={C.sub} style={{ textAlign: 'center', lineHeight: 18 }}>{shown.message}</T>}
