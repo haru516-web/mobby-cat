@@ -7,7 +7,7 @@ import HomeSelect from './HomeSelect';
 import { playSfx } from '../../services/audio';
 import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
-import { Card, Header, Well, useTabPad, Tap } from '../../ui/kit';
+import { Card, Header, useTabPad, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
@@ -143,10 +143,10 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
       <View style={s.bottom}>
         {/* 通知の「これから」から、いちばん近い予告を1つ。押すと一覧が開く */}
         <Tap style={{ flex: 1 }} onPress={() => openNotice('upcoming')} accessibilityLabel="これから会えるかもしれない猫">
-          <Card style={s.upcoming}>
-            <Well style={{ width: 64, height: 64 }}>
+          <Slice name="home/upcoming-card" style={s.upcoming}>
+            <Slice name="home/upcoming-well" style={s.upcomingWell}>
               {nextCat ? <CatImage id={nextCat.id} size={58} silhouette={!nextOwned} /> : <Pic name="cat/silhouette-locked" width={48} />}
-            </Well>
+            </Slice>
             <View style={{ flex: 1 }}>
               {nextCat ? (
                 <T w="x" size={14} style={{ lineHeight: 20 }}>
@@ -157,7 +157,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
               )}
             </View>
             <Pic name="icon/chevron-right" height={14} />
-          </Card>
+          </Slice>
         </Tap>
         <Tap style={s.camera} onPress={openCamera} accessibilityLabel="さつえい">
           <Pic name="button/camera-round" height={84} />
@@ -180,5 +180,6 @@ const s = StyleSheet.create({
   pick: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, paddingVertical: 6, paddingHorizontal: 10, minWidth: 72 },
   travel: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8, paddingHorizontal: 12 },
   bottom: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, marginTop: 2 },
+  upcomingWell: { width: 64, height: 64, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   upcoming: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 10, paddingHorizontal: 12, minHeight: 96 },
 });
