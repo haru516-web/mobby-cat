@@ -31,7 +31,7 @@ export type DayRecord = {
   extraPicks: string[];
   passBonus?: number; // またたびパス加入中に増える候補数
   // ひらいた（中身を見た）候補。ひらく前は、どの子も同じシルエット。ひらける数は openLimit。
-  // 2026-10-30 より前の記録には無い（そのときは、先頭から openLimit 匹をひらいたものとして読む）
+  // 2026-10-30 より前の記録には無い（openedOf を参照）
   opened?: string[];
 };
 export type Notice = { day: string; text: string };
@@ -180,8 +180,13 @@ const passOver = (s: Pick<GameState, 'pass' | 'clockSkewMs'>) => !!s.pass.until 
 
 // その日にひらける数（ふだん3匹。またたび1個で+1、パスで+3。候補の数まで）
 export const openLimit = (r: DayRecord) => Math.min(r.candidates.length, r.baseCount + r.matatabiUsed + (r.passBonus ?? 0));
-/** ひらいた候補（ひらいた順） */
-export const openedOf = (r: DayRecord) => r.opened ?? r.candidates.slice(0, openLimit(r));
+/**
+ * ひらいた候補（ひらいた順）。2026-10-30 より前の記録には opened が無い。
+ * まだ何も迎えず、またたびも使っていない日は、シルエットから始める（どの子もまだひらいていない）。
+ * 迎えた・またたびを使った日は、前と同じく、先頭から openLimit 匹をひらいたものとして読む（その状態で選んだため）。
+ */
+export const openedOf = (r: DayRecord) =>
+  r.opened ?? (r.freePick || r.extraPicks.length || r.matatabiUsed ? r.candidates.slice(0, openLimit(r)) : []);
 /** あと何匹、無料でひらけるか */
 export const openLeft = (r: DayRecord) => Math.max(0, openLimit(r) - openedOf(r).length);
 
