@@ -9,8 +9,11 @@ export const parseDay = (key: string) => {
 };
 
 // 20:00 (local) に切り替わる「出会いの日」のキー。20:00前は前日分。
+// 時間を引き算せず、その土地の時刻と暦で決める（夏時間のある地域でも、通知の20時とずれない）
 export function encounterDayKey(now: Date): string {
-  return fmtDay(new Date(now.getTime() - REVEAL_HOUR * 3600 * 1000));
+  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (now.getHours() < REVEAL_HOUR) d.setDate(d.getDate() - 1);
+  return fmtDay(d);
 }
 
 export function prevDayKey(key: string): string {

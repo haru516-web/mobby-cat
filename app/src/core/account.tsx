@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState } from 'react-native';
+import { disableDailyNotification } from '../services/notify';
 import { appleCredential } from '../services/account/appleSignIn';
 import { createAppStore } from '../services/account/appStore';
 import { emptyCloudMeta, fingerprint, fromRecord, isEmptyRecord, normalizeCloudMeta, shouldUpload, toRecord, type CloudMeta } from '../services/account/cloudSave';
@@ -13,7 +14,7 @@ import { useGame } from './game';
 /*
  * アカウント・購入・クラウドセーブを、画面とゲームの記録につなぐ。
  *  - 遊ぶだけなら、アカウントは作らない（端末の中だけ）。Apple 連携か購入のときに、はじめて作る。
- *  - 購入の前には、Apple 連携が必須。連携すると、記録をクラウドに預け、機種変更でも戻せる。
+ *  - 購入は匿名のアカウントのままでできる。Apple 連携は任意で、連携すると、記録をクラウドに預け、機種変更でも戻せる。
  *  - 買った分のお迎え券・またたびと、またたびパスの有無は、サーバーが正しい値を持つ。ここは写しを持つだけ。
  */
 
@@ -271,6 +272,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
       setPlan('none');
       setCloud('off');
       setPending(null);
+      await disableDailyNotification();
       gRef.current.reset();
       return 'deleted';
     };

@@ -6,6 +6,7 @@ import { STARTER_REROLLS, useGame } from '../../core/game';
 import { notice } from '../../services/dialog';
 import { requestStepAccess } from '../../services/signals';
 import { requestWeatherAccess } from '../../services/weather';
+import { enableDailyNotification } from '../../services/notify';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { useConfirm } from '../../ui/ConfirmPopup';
 import { Popup } from '../../ui/Popup';
@@ -13,17 +14,17 @@ import { Card, ImgButton, Tap, withSfx } from '../../ui/kit';
 import { Backdrop, Pic } from '../../ui/Slice';
 import { playSfx } from '../../services/audio';
 
-// 相棒を決めたあとに、1項目ずつポップで見せる。最後の「はじめる」で、歩数の許可を求めて始まる
+// 相棒を決めたあとに、1項目ずつポップで見せる。最後の「はじめる」で、歩数・位置・通知の許可を求めて始まる
 const TIPS = [
-  { icon: 'icon/calendar-today', title: '毎日の出会い', text: `毎日${REVEAL_HOUR}時に、新しいにゃこモビー3匹と出会えます。1匹は無料でお迎え` },
+  { icon: 'icon/calendar-today', title: '毎日の出会い', text: `毎日${REVEAL_HOUR}時に、その日の条件がそろったにゃこモビー（最大3匹）と出会えます。1匹は無料でお迎え` },
   { icon: 'icon/sun', title: '会える猫が変わる', text: '歩いた日、雨の日、満月の夜、スマホの電池が1%の日…あなたの毎日によって、会える猫が変わります' },
   { icon: 'icon/book', title: '秘密の条件', text: '条件は世界中のみんなと共通。図鑑のヒントを手がかりに、秘密の条件を見つけよう' },
-  { icon: 'icon/paw', title: '歩数と天気の許可', text: '歩数と位置情報（天気）を許可しないと、ほとんどの猫に会えません。次に出る画面で「許可」を選んでね' },
+  { icon: 'icon/paw', title: '歩数・天気・通知の許可', text: `歩数と位置情報（天気）を許可しないと、ほとんどの猫に会えません。通知を許可すると、毎日${REVEAL_HOUR}時の出会いをお知らせします。次に出る画面で「許可」を選んでね` },
 ];
 
 // 初回起動：相棒を1匹選んでもらい、毎日の出会いのしくみを体験で伝える
 export default function OnboardingScreen({ width }: { width: number }) {
-  const { chooseStarter, rerollStarter, reset, state } = useGame();
+  const { chooseStarter, rerollStarter, reset, setNotify, state } = useGame();
   const acc = useAccount();
   const [restoring, setRestoring] = useState(false);
   // 以前のiPhoneの記録を、Appleでサインインして戻す（記録が戻ると、この画面は閉じる）
@@ -135,6 +136,8 @@ export default function OnboardingScreen({ width }: { width: number }) {
                 setStarting(true);
                 await requestStepAccess();
                 await requestWeatherAccess();
+                // 毎日の出会いのお知らせ。断られても、アプリを開けば出会える
+                if (await enableDailyNotification()) setNotify(true);
                 chooseStarter(sel!);
                 playSfx('sfx_welcome');
               }}

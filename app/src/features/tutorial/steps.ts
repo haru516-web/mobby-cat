@@ -1,5 +1,5 @@
 import { AnchorId } from '../../ui/TourAnchor';
-import { TabKey } from '../../ui/kit';
+import { TabKey, WORLD_ON } from '../../ui/kit';
 
 // 初回起動後（相棒を選んだあと）に流れるチュートリアル。設定（右上の「設定」）からいつでも見返せる。
 // 利用者が押せるのは「もどる」「つぎへ」「スキップ」だけ。画面は、その段の説明に合う状態を実際に映す（タブを切り替える・ショップやお知らせを開く）。
@@ -15,7 +15,7 @@ export type TourStep = {
   items?: { icon: string; name: string; text: string }[]; // 画像つきの説明を、項目ごとに並べる
 };
 
-export const TOUR_STEPS: readonly TourStep[] = [
+const ALL_STEPS: TourStep[] = [
   {
     tab: 'home', anchor: 'home-room',
     title: '猫部屋',
@@ -45,7 +45,7 @@ export const TOUR_STEPS: readonly TourStep[] = [
     items: [
       { icon: 'icon/ticket-paw', name: 'お迎え券', text: '無料の1匹のあとに、好きな子を1匹ずつ追加で迎えられます。1枚で1匹。' },
       { icon: 'icon/matatabi-leaf', name: 'またたび', text: '迎える前に使うと、隠れているシルエットの子が1匹見えるようになります。1個で1匹。' },
-      { icon: 'icon/matatabi-bag', name: 'またたびパス', text: '毎日の候補がはじめから6匹になり、毎月お迎え券が8枚届きます。いつでも解約できます。' },
+      { icon: 'icon/matatabi-bag', name: 'またたびパス', text: '条件がそろった子を、毎日はじめから最大6匹まで見られて、毎月お迎え券が8枚届きます。いつでも解約できます。' },
     ],
   },
   {
@@ -56,14 +56,17 @@ export const TOUR_STEPS: readonly TourStep[] = [
   {
     tab: 'deai', popup: 'shop',
     title: 'ショップ',
-    detail: 'お迎え券、またたび、またたびパスを手に入れられます。買わなくても、毎日1匹は無料で迎えられます。',
+    detail: 'お迎え券、またたび、またたびパスを手に入れられます。買わなくても、候補がいる日は1匹を無料で迎えられます。',
   },
   {
     tab: 'zukan', nav: 'zukan', title: '図鑑',
-    detail: '迎えた猫が記録されます。まだ会えていない子はシルエットとヒントで、出会う条件を探せます。',
+    detail: `迎えた猫が記録されます。まだ会えていない子はシルエットとヒントで、出会う条件を探せます。${WORLD_ON ? '' : 'このチュートリアルは、右上の「設定」からいつでも見返せます。'}`,
   },
   {
     tab: 'world', nav: 'world', title: '世界',
-    detail: '世界を旅する猫や、みんなの目標が見られます。今はサンプル表示です。このチュートリアルは、右上の「設定」からいつでも見返せます。',
+    detail: '世界を旅する猫や、みんなの目標が見られます。このチュートリアルは、右上の「設定」からいつでも見返せます。',
   },
 ];
+
+// 世界を出さないあいだは、世界の段を外す
+export const TOUR_STEPS: readonly TourStep[] = ALL_STEPS.filter((st) => WORLD_ON || st.tab !== 'world');

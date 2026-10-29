@@ -132,7 +132,7 @@ Users and Access → Sandbox → テスター で、テスト用の Apple Accoun
 
 1. 審査に提出する。このとき `PURCHASE_ENVIRONMENTS` は `Production,Sandbox` のままにする（審査はサンドボックスで購入する）。
 2. 通ったら公開する。
-3. **公開後すぐに、`server/wrangler.toml` の `PURCHASE_ENVIRONMENTS` から `Sandbox` を外し、`npx wrangler deploy` する。**（外し忘れると、無料のサンドボックス購入で、お迎え券が付与される）
+3. **`PURCHASE_ENVIRONMENTS` は、公開後も `Production,Sandbox` のままにする**（2026-10-29 変更）。アップデートの審査でも、審査員はサンドボックスで購入するので、外すと次の審査で購入が失敗する。サンドボックスの購入ができるのは、開発者が作ったテスターと TestFlight・審査だけで、一般の利用者はできない。サンドボックスの購入は `purchases.environment = Sandbox` で記録されるので、売上の集計から除く。
 
 ## 公開後
 

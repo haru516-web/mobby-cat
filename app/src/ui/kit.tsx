@@ -171,7 +171,7 @@ export function Polaroid({ width, children, style }: { width: number; children: 
 }
 
 // 設定のスイッチ
-export function Toggle({ value, onChange }: { value: boolean; onChange: (v: boolean) => void }) {
+export function Toggle({ value, onChange, label }: { value: boolean; onChange: (v: boolean) => void; label: string }) {
   return (
     <Pressable
       onPress={() => {
@@ -179,16 +179,19 @@ export function Toggle({ value, onChange }: { value: boolean; onChange: (v: bool
         hapticTap();
         onChange(!value);
       }}
-      accessibilityRole="switch" accessibilityState={{ checked: value }}>
+      accessibilityRole="switch" accessibilityLabel={label} accessibilityState={{ checked: value }}>
       <Pic name={value ? 'button/toggle-on' : 'button/toggle-off'} height={36} />
     </Pressable>
   );
 }
 
 export type TabKey = 'home' | 'deai' | 'zukan' | 'world';
+// 世界（旅猫・世界ミッション・世界の猫）は、サーバーが整うまで出さない。サンプル表示のまま審査に出すと、未完成の機能とみなされる
+export const WORLD_ON = false;
 const TABS: { key: TabKey; label: string }[] = [
   { key: 'home', label: 'ホーム' }, { key: 'deai', label: '出会い' }, { key: 'zukan', label: '図鑑' }, { key: 'world', label: '世界' },
-];
+].filter((t) => WORLD_ON || t.key !== 'world') as { key: TabKey; label: string }[];
+export const NAV_KEYS: TabKey[] = TABS.map((t) => t.key);
 
 // ナビバーは画面下に重ねて置く。各画面はこの高さぶんだけ下に余白を取る
 export const TabPadCtx = React.createContext(0);

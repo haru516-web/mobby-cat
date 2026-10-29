@@ -4,7 +4,7 @@ import { ok, type Client, type Reply } from './serverClient';
 
 /*
  * お迎え券・またたび・またたびパスの購入。順番を守って、支払いが失われないようにする。
- *   1. アカウントと、Apple 連携を確かめる（購入の前に、Apple 連携が必須）
+ *   1. アカウントを確かめる（匿名のアカウントのままで買える。Apple 連携は、機種変更で引き継ぐための任意のもの。ガイドライン 5.1.1）
  *   2. 年齢の区分と、今月の購入上限を確かめる
  *   3. App Store で購入（アカウントの番号を appAccountToken に付ける）
  *   4. サーバーが Apple の署名つきの取引を確かめて、残高に足す
@@ -19,7 +19,7 @@ export type Plan = 'none' | typeof PASS_PLAN;
 
 export type BuyOutcome =
   | { ok: true }
-  | { ok: false; reason: 'cancelled' | 'offline' | 'unavailable' | 'verify_failed' | 'age_needed' | 'apple_needed' | 'restricted'; detail?: string }
+  | { ok: false; reason: 'cancelled' | 'offline' | 'unavailable' | 'verify_failed' | 'age_needed' | 'restricted'; detail?: string }
   | { ok: false; reason: 'limit'; capYen: number; remainingYen: number };
 
 export async function fetchWallet(api: Pick<Client, 'authed'>): Promise<Wallet | null> {
@@ -68,11 +68,6 @@ export async function buy(key: ProductKey, store: PurchaseStore | null, api: Pic
   const account = await api.account();
   if (!account) return { ok: false, reason: 'offline' };
 
-  const profile = await fetchProfile(api);
-  if (!profile) return { ok: false, reason: 'offline' };
-  // 購入の前に Apple 連携を必須にする。連携していれば、機種変更でも、購入したものを引き継げる
-  if (!profile.appleLinked) return { ok: false, reason: 'apple_needed' };
-
   const limits = await fetchLimits(api);
   if (!limits) return { ok: false, reason: 'offline' };
   if (limits.restricted) return { ok: false, reason: 'restricted' };
@@ -97,9 +92,11 @@ export async function buy(key: ProductKey, store: PurchaseStore | null, api: Pic
  * 前回、途中で止まった購入と、いま有効なサブスクを、サーバーに確かめてもらう。起動のたびに呼んでよい。
  * 別のアカウントの購入（appAccountToken が違う）は、数えずに数だけ返す。
  */
-export type SettleOutcome = { kind: 'offline' } | { kind: 'done'; credited: number; otherAccount: number; failed: number };
+export type SettleOutcome = { kind: 'offline' } | { kind: 'store_error' } | { kind: 'done'; credited: number; otherAccount: number; failed: number };
 export async function settle(store: PurchaseStore | null, api: Pick<Client, 'authedIfAny'>): Promise<SettleOutcome> {
-  const items = store ? await store.unfinished().catch(() => [] as PurchasedItem[]) : [];
+  // App Store から取れなかったときは「購入なし」と区別する（B-15）
+  const items = store ? await store.unfinished().catch(() => null) : [];
+  if (items === null) return { kind: 'store_error' };
   let credited = 0;
   let otherAccount = 0;
   let failedCount = 0;

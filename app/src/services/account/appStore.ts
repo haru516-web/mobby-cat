@@ -73,8 +73,16 @@ export function createAppStore(): PurchaseStore | null {
     },
     async unfinished() {
       await connect();
-      const purchases = await withTimeout(iap.getAvailablePurchases(), 10000, 'getAvailablePurchases');
-      return purchases.filter((purchase) => !!purchase.purchaseToken && isKnownSku(purchase.productId)).map(item);
+      // 支払い済みで、まだ終えていない取引（お迎え券・またたびの消耗型を含む）は getPendingTransactionsIOS でしか取れない。
+      // いま有効なサブスクは getAvailablePurchases から取る。同じ取引が両方に出たときは1つにまとめる
+      const [pending, available] = await Promise.all([
+        withTimeout(iap.getPendingTransactionsIOS(), 10000, 'getPendingTransactionsIOS').catch(() => [] as import('expo-iap').Purchase[]),
+        withTimeout(iap.getAvailablePurchases(), 10000, 'getAvailablePurchases'),
+      ]);
+      const seen = new Set<string>();
+      return [...pending, ...available]
+        .filter((purchase) => !!purchase.purchaseToken && isKnownSku(purchase.productId) && !seen.has(purchase.id) && !!seen.add(purchase.id))
+        .map(item);
     },
     async prices() {
       try {

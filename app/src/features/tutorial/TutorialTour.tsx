@@ -1,13 +1,13 @@
 import { ComponentRef, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { C, T } from '../../ui/base';
-import { Card, ImgButton, TabKey, Tap } from '../../ui/kit';
+import { Card, ImgButton, NAV_KEYS, TabKey, Tap } from '../../ui/kit';
 import { Pic, Slice, Stretch } from '../../ui/Slice';
 import { Rect, measureAnchor } from '../../ui/TourAnchor';
 import { TOUR_STEPS } from './steps';
 import { onTourEvent, setTourActions, setTourPopup, tourActions, useTourPopup } from './tourStore';
 
-const NAV_ORDER: TabKey[] = ['home', 'deai', 'zukan', 'world'];
+const NAV_ORDER: TabKey[] = NAV_KEYS;
 // 暗幕は他のモーダルと同じ素材（bg/overlay-dim）を、明るく残す場所の上下左右に4枚敷いて作る
 const DIM = 'bg/overlay-dim';
 

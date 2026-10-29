@@ -7,6 +7,8 @@ export const SERVER_URL = (process.env.EXPO_PUBLIC_SERVER_URL ?? 'https://nyakom
 export const SUPPORT_EMAIL = 'info@mobby.online';
 export const PRIVACY_URL = SERVER_URL + '/privacy'; // App Store Connect に入れる公開 URL（Web 版）
 export const TERMS_URL = '';
+// アプリ内課金の利用規約は、Apple 標準の使用許諾契約（EULA）。ショップの購入の近くに、ポリシーと並べて出す（ガイドライン 3.1.2）
+export const EULA_URL = 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/';
 
 export type InfoKind = 'privacy' | 'terms' | 'credits';
 export const INFO_TITLE: Record<InfoKind, string> = {
@@ -25,7 +27,7 @@ export const INFO_BODY: Record<InfoKind, string> = {
     '通知は、毎日20時の出会いをお知らせするためのもので、端末の中で予約されます。設定または端末の設定でいつでも切れます。',
     '広告の表示や、アクセス解析、ほかのアプリとのデータ共有はありません。',
     'アプリを削除すると、端末の中の記録も消えます。',
-    'サーバーに保存する情報：購入すると、Appleの取引番号・商品・日時と、持っているお迎え券・またたびの数を、ランダムな番号のアカウントに結びつけて保存します。Appleでサインインすると、Appleが発行するこのアプリ専用の識別子（名前やメールアドレスは受け取りません）と、遊んだ記録（迎えた猫、図鑑、持っているアイテム、設定）を保存します。年齢の区分（自己申告）は、毎月の購入の上限のために使います。接続元のIPアドレスは、不正なアクセスを防ぐために一時的に使い、最長73時間後に消えます。',
+    'サーバーに保存する情報：購入すると、Appleの取引番号・商品・日時と、持っているお迎え券・またたびの数を、ランダムな番号のアカウントに結びつけて保存します。Appleでサインインすると、Appleが発行するこのアプリ専用の識別子（名前やメールアドレスは受け取りません）と、遊んだ記録（迎えた猫、図鑑、出会いとログインの記録、持っているアイテム、設定。誕生日・歩数・電池などの端末の情報は含めません）を保存します。年齢の区分（自己申告）は、毎月の購入の上限のために使います。接続元のIPアドレスは、不正なアクセスを防ぐために一時的に使い、最長73時間後に消えます。',
     '設定の「アカウント」から、サーバーに保存した情報をすべて削除できます。削除すると元に戻せません。',
   ].join('\n\n'),
   terms: [

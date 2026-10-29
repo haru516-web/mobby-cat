@@ -15,7 +15,9 @@ database_id = "527c0d28-1d3a-48e2-9d26-109e79773bc3"
 
 [vars]
 APPLE_BUNDLE_ID = "com.mobbycat.app"
-# Sandbox is accepted so TestFlight and App Review purchases work. Remove it before the public release.
+# Sandbox is accepted so TestFlight and App Review purchases work. Keep it after the release too: App Review buys in the
+# Sandbox for every later update. Only the developer's testers, TestFlight and App Review can make Sandbox purchases;
+# they are stored with environment = Sandbox, so leave them out of sales figures.
 PURCHASE_ENVIRONMENTS = "Production,Sandbox"
 # Product ids are provisional; ids and prices must match App Store Connect before release.
 # A product is either a one-time purchase (tickets or matatabi) or a plan; never both.

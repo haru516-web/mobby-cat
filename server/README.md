@@ -28,7 +28,7 @@
 - `APPLE_ROOT_CERTIFICATES`：Apple の公開ルート証明書（設定済み）
 - `APPLE_BUNDLE_ID`：`com.mobbycat.app`
 - `PRODUCT_CATALOG_JSON`：上記
-- `PURCHASE_ENVIRONMENTS`：既定は `Production` のみ。`wrangler.toml` は TestFlight 用に `Production,Sandbox`。**公開前に `Sandbox` を外す**
+- `PURCHASE_ENVIRONMENTS`：既定は `Production` のみ。`wrangler.toml` は TestFlight 用に `Production,Sandbox`。**公開後も `Sandbox` は外さない**（アップデートの審査も、サンドボックスで購入するため。サンドボックスの購入は `purchases.environment` で見分けて、売上の集計から除く）
 - `APPLE_TEAM_ID` / `APPLE_SIGN_IN_KEY_ID` / `APPLE_SIGN_IN_PRIVATE_KEY`：Apple ログインのトークン取り消し用。秘密鍵は Worker の secret に入れる（`npx wrangler secret put APPLE_SIGN_IN_PRIVATE_KEY`）。未設定だと、Apple 連携済みのアカウントは削除できない
 - `APPLE_JWKS_JSON`：任意。Apple の公開鍵を上書きする
 
@@ -48,7 +48,7 @@ npm run dev        # ローカルで起動（先に npm run db:apply）
 3. 上の secret を登録し、`npx wrangler deploy`。
 4. App Store Connect の「App Store Server Notifications」の URL に `https://<worker>/apple/notifications` を設定（Production / Sandbox の両方）。
 5. `src/operator.ts` に運営者名と連絡先を入れ、公開ページの「【要設定】」を埋める。
-6. 公開前に `PURCHASE_ENVIRONMENTS` から `Sandbox` を外す。
+6. `PURCHASE_ENVIRONMENTS` は `Production,Sandbox` のまま運用する（上の理由）。
 
 ## まだ無いもの
 

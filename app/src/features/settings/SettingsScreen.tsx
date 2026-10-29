@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 import { useEffect, useState } from 'react';
-import { Linking, ScrollView, Share, StyleSheet, View } from 'react-native';
+import { AppState, Linking, ScrollView, Share, StyleSheet, View } from 'react-native';
 import { useAccount } from '../../core/account';
 import { useGame } from '../../core/game';
 import { INFO_BODY, INFO_TITLE, InfoKind, PRIVACY_URL, SUPPORT_EMAIL, TERMS_URL } from '../../data/appInfo';
@@ -9,7 +9,7 @@ import { notice } from '../../services/dialog';
 import { useConfirm } from '../../ui/ConfirmPopup';
 import { hasStepAccess } from '../../services/signals';
 import { hasLocationAccess } from '../../services/weather';
-import { disableDailyNotification, enableDailyNotification } from '../../services/notify';
+import { disableDailyNotification, enableDailyNotification, hasNotifyAccess } from '../../services/notify';
 import { C, T } from '../../ui/base';
 import { Card, ImgButton, Toggle, Tap, withSfx } from '../../ui/kit';
 import { Popup } from '../../ui/Popup';
@@ -98,8 +98,16 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
   };
 
   const [perm, setPerm] = useState({ steps: false, location: false });
+  // 開いたときと、設定アプリから戻ったときに、許可を確かめ直す。通知を端末の設定で切っていたら、こちらもオフにする
   useEffect(() => {
-    Promise.all([hasStepAccess(), hasLocationAccess()]).then(([steps, location]) => setPerm({ steps, location }));
+    const check = () => {
+      void Promise.all([hasStepAccess(), hasLocationAccess()]).then(([steps, location]) => setPerm({ steps, location }));
+      void hasNotifyAccess().then((granted) => { if (!granted) g.setNotify(false); });
+    };
+    check();
+    const sub = AppState.addEventListener('change', (next) => { if (next === 'active') check(); });
+    return () => sub.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const step = (v: number, delta: number) => Math.round(Math.min(1, Math.max(0, v + delta)) * 10) / 10;
@@ -196,7 +204,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 <T w="x" size={13} color={perm.location ? C.ok : C.accent}>{perm.location ? '許可ずみ' : '未許可'}</T>
               </View>
               {(!perm.steps || !perm.location) && (
-                <ImgButton skin="ghost-outline" label="設定アプリを開く" height={38} fontSize={12} onPress={() => Linking.openSettings().catch(() => notice('設定を開けませんでした', '端末の設定アプリから、にゃこモビーの許可を変えてください'))} style={{ marginTop: 4 }} />
+                <ImgButton skin="ghost-outline" label="設定アプリを開く" height={38} fontSize={12} onPress={() => Linking.openSettings().catch(() => notice('設定を開けませんでした', '端末の設定アプリから、にゃっコレの許可を変えてください'))} style={{ marginTop: 4 }} />
               )}
             </Card>
           )}
@@ -208,7 +216,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                   <T w="x" size={14}>毎日20:00に通知</T>
                   <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>通知なしでもアプリ内から受け取れます</T>
                 </View>
-                <Toggle value={state.notifyEnabled} onChange={toggleNotify} />
+                <Toggle label="毎日の出会いの通知" value={state.notifyEnabled} onChange={toggleNotify} />
               </Card>
               <Card style={s.item}>
                 <View style={{ flex: 1 }}>
@@ -243,7 +251,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                     </View>
                   )}
                 </View>
-                <Toggle value={audio.bgmEnabled} onChange={(v) => setAudioSettings({ bgmEnabled: v })} />
+                <Toggle label="BGM" value={audio.bgmEnabled} onChange={(v) => setAudioSettings({ bgmEnabled: v })} />
               </Card>
               <Card style={s.item}>
                 <View style={{ flex: 1 }}>
@@ -258,14 +266,14 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                     </View>
                   )}
                 </View>
-                <Toggle value={audio.sfxEnabled} onChange={(v) => setAudioSettings({ sfxEnabled: v })} />
+                <Toggle label="効果音" value={audio.sfxEnabled} onChange={(v) => setAudioSettings({ sfxEnabled: v })} />
               </Card>
               <Card style={s.item}>
                 <View style={{ flex: 1 }}>
                   <T w="x" size={14}>バイブ</T>
                   <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>なでる・お迎えのときに、ふるえて知らせます</T>
                 </View>
-                <Toggle value={audio.hapticsEnabled} onChange={(v) => setAudioSettings({ hapticsEnabled: v })} />
+                <Toggle label="バイブ" value={audio.hapticsEnabled} onChange={(v) => setAudioSettings({ hapticsEnabled: v })} />
               </Card>
             </View>
           )}
@@ -322,7 +330,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               ) : (
                 <Card skin="white" style={{ gap: 6 }}>
                   <T w="x" size={13}>Appleでサインインしていません</T>
-                  <T w="m" size={11} color={C.sub}>サインインすると、記録をクラウドに預けて、機種変更でも引き継げます。購入には、サインインが必要です。名前やメールアドレスは受け取りません。</T>
+                  <T w="m" size={11} color={C.sub}>サインインすると、記録をクラウドに預けて、機種変更でも引き継げます。サインインは任意で、しなくても購入できます。名前やメールアドレスは受け取りません。</T>
                   <ImgButton label="Appleでサインイン" height={44} disabled={busy} onPress={doLink} />
                 </Card>
               )}
@@ -340,15 +348,14 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 <ImgButton skin="ghost-outline" label="別のiPhoneの記録を引き継ぐ" height={44} disabled={busy} onPress={() => confirm('記録を引き継ぎますか？', '以前のiPhoneでAppleにサインインしたときの記録を、この端末に戻します。この端末に記録があるときは、どちらを使うか選べます。', 'Appleでサインイン', () => void doRestore(), { cancelLabel: 'やめる' })} />
               )}
 
-              {(acc.linked === true || acc.signedOut) && (
-                <Card skin="white" style={{ gap: 4 }}>
+              {/* Apple に連携していない（匿名の）アカウントも、ここから削除できる。サーバーにアカウントが無ければ、端末の記録だけを消す */}
+              <Card skin="white" style={{ gap: 4 }}>
                   <T w="x" size={13}>アカウントの削除</T>
                   <T w="m" size={11} color={C.sub}>アカウントと、サーバーに預けた記録・購入の記録を、すべて削除します。残っているお迎え券とまたたびは、失われます。またたびパスは、自動では解約されません。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から行ってください。</T>
                   <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('アカウントを削除しますか？', 'サーバーの記録と購入の記録を削除し、この端末の記録も消します。元に戻せません。', '削除する', () => void doDelete(), { cancelLabel: 'やめる' }))}>
                     アカウントを削除する
                   </T>
                 </Card>
-              )}
             </View>
           )}
 
@@ -358,7 +365,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               <T w="m" size={11} color={C.sub}>
                 記録は、この端末の中に保存されます。Appleでサインインすると、クラウドにも預けて、機種変更で引き継げます（「アカウント」から）。
               </T>
-              <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('すべての記録を消しますか？', '迎えた猫・お迎え券・設定がすべて消えます。元に戻せません。', 'すべて消す', g.reset, { cancelLabel: 'やめておく' }))}>
+              <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('すべての記録を消しますか？', '迎えた猫・お迎え券・設定がすべて消えます。元に戻せません。', 'すべて消す', () => { void disableDailyNotification(); g.reset(); }, { cancelLabel: 'やめておく' }))}>
                 すべての記録を消して、はじめから
               </T>
             </Card>

@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, Easing, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
 import { homeSlotsOf, useGame } from '../../core/game';
@@ -7,7 +7,7 @@ import HomeSelect from './HomeSelect';
 import { playSfx } from '../../services/audio';
 import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
-import { Card, Header, useTabPad, Tap } from '../../ui/kit';
+import { Card, Header, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
@@ -74,6 +74,9 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
   const [selecting, setSelecting] = useState(false);
+  // 画面の低い端末（iPhone SE など）では、部屋を低くして、下の予告カードとさつえいボタンがスクロールなしで見えるようにする
+  const winH = useWindowDimensions().height;
+  const roomMin = Math.max(300, Math.min(width * 1.25, winH - 340));
 
   // 画面が縦に長いときは、カードの下に余白ができないよう部屋を伸ばす（flex で余りを部屋に回す。背景は cover）
   const [roomH, setRoomH] = useState(width * 1.25);
@@ -96,6 +99,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
       <View style={{ zIndex: 2 }}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       <View style={{ paddingHorizontal: 14, flexDirection: 'row', gap: 8, alignItems: 'stretch' }}>
+        {WORLD_ON && (
         <Tap style={{ flex: 1 }} onPress={() => go('world')} accessibilityLabel="旅するモビーの様子">
           <Card style={s.travel}>
             <View>
@@ -110,6 +114,8 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
             <Pic name="icon/chevron-right" height={14} />
           </Card>
         </Tap>
+        )}
+        <View style={{ flex: WORLD_ON ? 0 : 1 }} />
         <Tap onPress={() => setSelecting(true)} accessibilityLabel="ホームに出す子をえらぶ">
           <Card style={s.pick}>
             <Pic name="icon/cat-head" height={28} />
@@ -119,7 +125,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
       </View>
       </View>
 
-      <TourAnchor id="home-room" style={{ width, minHeight: width * 1.25, maxHeight: width * 1.6, flexGrow: 1, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
+      <TourAnchor id="home-room" style={{ width, minHeight: roomMin, maxHeight: width * 1.6, flexGrow: 1, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
         {roomSlots.every((id) => !id) && (
           <View style={s.empty}>
             <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」からにゃこモビーを迎えましょう</T>

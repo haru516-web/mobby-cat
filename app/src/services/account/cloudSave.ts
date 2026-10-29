@@ -7,13 +7,15 @@ import type { GameState } from '../../core/game';
  *
  * 預けないもの：
  *  - 開発用の日付のずれ（debugOffsetDays）
- *  - 買った分の残高のコピー（paid）。残高の正しい値はサーバーが持つ
+ *  - 買った分の残高のコピー（paid）と、またたびパスの状態（pass）。正しい値はサーバーが持つ（古い写しで上書きしないため）
+ *  - 端末の中だけで使うと説明している情報：誕生日（birthday）、歩数の合計（totalSteps）、電池・起動時刻の観測（obs）
+ *    （プライバシーポリシーと App Privacy の回答に合わせる。機種変更のあとは、新しい端末で入れ直す）
  */
 const KEEP_DAYS = 180; // 出会いの記録は、新しい方から180日分だけ預ける（サーバーの上限に収めるため）
 const MAX_CHARS = 380_000;
 
 export function toRecord(state: GameState): string {
-  const { debugOffsetDays: _debug, paid: _paid, ...rest } = state;
+  const { debugOffsetDays: _debug, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, ...rest } = state;
   const trim = (days: number, inbox: number) => {
     const keys = Object.keys(rest.days).sort().slice(-days);
     return JSON.stringify({ ...rest, days: Object.fromEntries(keys.map((key) => [key, rest.days[key]])), inbox: rest.inbox.slice(0, inbox) });

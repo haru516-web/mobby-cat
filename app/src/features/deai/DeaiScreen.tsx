@@ -87,7 +87,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     } else {
       confirm(
         'またたびがありません',
-        'またたびを使うと、隠れている子に出会えます。またたびパスなら、毎日はじめから全員に会えます。',
+        'またたびを使うと、隠れている子に出会えます。またたびパスなら、条件がそろった子に、毎日はじめから最大6匹まで会えます。',
         'ショップを見る',
         openShop,
         { catId: hidden[0], silhouette: true, skin: 'primary-green', cancelLabel: 'もどる' },
@@ -278,7 +278,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             <Pic name="icon/matatabi-bag" height={32} />
             <View style={{ flex: 1 }}>
               <T w="x" size={12}>{state.pass.active ? 'またたびパス加入中' : 'またたびパス'}</T>
-              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹に会える＋毎月お迎え券8枚</T>
+              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日最大6匹に会える＋毎月お迎え券8枚</T>
             </View>
             {!state.pass.active && <T w="x" size={11} color={C.accent}>くわしく</T>}
             <Pic name="icon/chevron-right" height={12} />

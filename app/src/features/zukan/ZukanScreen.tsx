@@ -5,7 +5,7 @@ import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
 import { recipeOf, shownRarity } from '../../core/recipes';
 import { useGame } from '../../core/game';
 import { C, CatImage, FONT, T, catNo } from '../../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap } from '../../ui/kit';
+import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 import { ScreenProps } from '../../navigation';
 
@@ -14,12 +14,14 @@ const FILTERS: { key: Filter; label: string; skin: string; color: string }[] = [
   { key: 'all', label: 'すべて', skin: 'button/tab-all-on', color: '#fff' },
   { key: 'normal', label: 'ノーマル', skin: 'button/tab-normal', color: C.ink },
   { key: 'rare', label: 'レア', skin: 'button/tab-rare', color: '#2F5DA8' },
-  { key: 'limited', label: '限定', skin: 'button/tab-limited', color: '#6A4FB0' },
+  ...(WORLD_ON ? [{ key: 'limited' as Filter, label: '限定', skin: 'button/tab-limited', color: '#6A4FB0' }] : []),
   { key: 'fav', label: '', skin: 'button/tab-all-on', color: C.accent }, // お気に入りだけ（ハートの絵で見せる）
 ];
 
 // 「限定」= 世界の猫と旅猫。それ以外は、出会う条件の数と難しさで決まるレア度で分ける
 const isLimited = (c: CatDef) => c.kind === 'world' || c.kind === 'travel';
+// 世界を出さないあいだは、世界の猫・旅猫（まだ迎える方法が無い）を図鑑に出さない
+const ZUKAN_CATS = CATS.filter((c) => WORLD_ON || !isLimited(c));
 const match = (c: CatDef, f: Filter) =>
   f === 'all' || f === 'fav' ? true : f === 'limited' ? isLimited(c) : f === 'rare' ? !isLimited(c) && shownRarity(c) >= 3 : !isLimited(c) && shownRarity(c) <= 2;
 
@@ -44,9 +46,9 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
   const listRef = useRef<ComponentRef<typeof ScrollView>>(null);
   const [showTop, setShowTop] = useState(false); // 下までスクロールしたら「トップへ」を出す
 
-  const have = CATS.filter((c) => state.owned[c.id]).length;
+  const have = ZUKAN_CATS.filter((c) => state.owned[c.id]).length;
   const list = useMemo(
-    () => CATS.filter((c) => match(c, filter) && (filter !== 'fav' || state.favorites.includes(c.id)) && (!q || (state.owned[c.id] && c.name.includes(q)))),
+    () => ZUKAN_CATS.filter((c) => match(c, filter) && (filter !== 'fav' || state.favorites.includes(c.id)) && (!q || (state.owned[c.id] && c.name.includes(q)))),
     [filter, q, state.owned, state.favorites],
   );
   const cellW = Math.floor((width - 42 - 3 * 8) / 4);
@@ -67,10 +69,10 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                 <Pic name="brand/title-collection" height={width < 360 ? 24 : 30} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginLeft: 8 }}>
                   <T w="x" size={26}>{have}</T>
-                  <T w="b" size={14} color={C.sub} style={{ marginBottom: 3 }}>/{CATS.length}</T>
+                  <T w="b" size={14} color={C.sub} style={{ marginBottom: 3 }}>/{ZUKAN_CATS.length}</T>
                 </View>
               </View>
-              <View style={{ marginTop: 6 }}><Gauge value={have} max={CATS.length} /></View>
+              <View style={{ marginTop: 6 }}><Gauge value={have} max={ZUKAN_CATS.length} /></View>
             </View>
             {mascot && <CatImage id={mascot.id} size={width < 360 ? 52 : 72} />}
           </Card>

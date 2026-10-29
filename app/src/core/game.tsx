@@ -7,6 +7,7 @@ import { buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
+import { ensureDailyNotification } from '../services/notify';
 import { isRealCat } from './recipes';
 import { worldGifts } from './world';
 
@@ -56,6 +57,7 @@ export type GameState = {
   inbox: Notice[]; // お知らせ（新しい順）
   inboxRead: number; // 既読にした時点のお知らせ件数
   pass: { active: boolean; lastGrantMonth: string }; // またたびパス（active はサーバーの答えの写し。毎月のお迎え券もサーバーが届ける）
+  spendSalt: string; // 買った分を使う操作の番号に混ぜる、この記録だけの値（記録を消すと変わる。クラウドから戻すと同じ）
   paid: { tickets: number; matatabi: number }; // 買った分の残高の写し（正しい値はサーバー。表示と、使う前の確認に使う。クラウドには預けない）
 };
 
@@ -65,7 +67,16 @@ export const matatabiOf = (s: Pick<GameState, 'matatabi' | 'paid'>) => s.matatab
 
 /** 買った分をサーバーの残高から使う（account.tsx が渡す）。使えたら ok、残高が足りない・つながらないときは false。 */
 export type Spender = (currency: 'tickets' | 'matatabi', amount: number, requestId: string) => Promise<boolean>;
-const newRequestId = () => `use-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+const newSalt = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`;
+// 買った分を使う操作の番号。同じ操作（同じ日・同じ猫、同じ日の何個目のまたたび）なら同じ番号になる。
+// 通信が切れて結果が分からないまま、もう一度同じ操作をすると、サーバーは二重に引かず「使えた」と答える（A-04）
+// サーバーが受け付ける番号は128文字まで。猫をまとめて迎えると長くなるので、中身を短い値にする
+const fnv = (str: string) => {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+  return (h >>> 0).toString(36);
+};
+const spendId = (salt: string, what: string) => `use-${salt}-${fnv(what)}${fnv(`${what}:2`)}`;
 
 // 初回の相棒は、実在の猫種から均等な確率で3種を引く。引き直しは最大3回（回数は端末に保存する）
 export const STARTER_REROLLS = 3;
@@ -117,6 +128,7 @@ function initial(now: Date): GameState {
     inbox: [],
     inboxRead: 0,
     pass: { active: false, lastGrantMonth: '' },
+    spendSalt: newSalt(),
     paid: { tickets: 0, matatabi: 0 },
   };
 }
@@ -304,6 +316,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     };
   }, [ready, calendarDay, todayKey, hour]);
 
+  // 通知をオンにしている記録なのに、この端末で予約が無いとき（機種変更で戻したあとなど）は、予約し直す
+  useEffect(() => {
+    if (ready && state.notifyEnabled) void ensureDailyNotification();
+  }, [ready, state.notifyEnabled]);
+
   // その日の候補を（未生成なら）確定させる。歩数・電池は非同期で読むので、生成中の日は記録しておく
   const building = useRef(new Set<string>());
   // 相棒を選ぶまでは作らない（所持猫の数で抽選が変わるのと、お知らせの順番を「ようこそ」が先になるようにするため）
@@ -400,14 +417,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * お迎え券・またたびを n 個使う。まず端末内の無料分から、足りない分を買った分（サーバー）から。
    * 使えたら、無料分の引き算を済ませた状態を返す。使えなければ null（何も引かない）。
    */
-  const spendCurrency = useCallback(async (currency: 'tickets' | 'matatabi', n: number): Promise<number | null> => {
+  const spendCurrency = useCallback(async (currency: 'tickets' | 'matatabi', n: number, what: string): Promise<number | null> => {
     const s = stateRef.current;
     const free = currency === 'tickets' ? s.tickets : s.matatabi;
     const fromFree = Math.min(free, n);
     const fromPaid = n - fromFree;
     if (fromPaid > 0) {
       if (fromPaid > (s.paid?.[currency] ?? 0) || !spender.current) return null;
-      if (!(await spender.current(currency, fromPaid, newRequestId()))) return null;
+      if (!(await spender.current(currency, fromPaid, spendId(s.spendSalt, what)))) return null;
     }
     return fromFree;
   }, []);
@@ -425,7 +442,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (spending.current || !check(stateRef.current)) return false;
     spending.current = true;
     try {
-      const fromFree = await spendCurrency('tickets', list.length);
+      const fromFree = await spendCurrency('tickets', list.length, `extra:${day}:${list.join(',')}`);
       if (fromFree === null) return false;
       // 通信を待っているあいだに記録が変わっていないか、もう一度見る（買った分はすでに引かれているので、猫は必ず迎える）
       const s = stateRef.current;
@@ -450,7 +467,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (spending.current || !ok(stateRef.current)) return false;
     spending.current = true;
     try {
-      const fromFree = await spendCurrency('matatabi', 1);
+      const fromFree = await spendCurrency('matatabi', 1, `matatabi:${day}:${(stateRef.current.days[day]?.matatabiUsed ?? 0) + 1}`);
       if (fromFree === null) return false;
       const s = stateRef.current;
       const r = s.days[day];
@@ -472,7 +489,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setState((s) => (s.paid?.tickets === wallet.tickets && s.paid?.matatabi === wallet.matatabi ? s : { ...s, paid: { tickets: wallet.tickets, matatabi: wallet.matatabi } }));
   }, []);
   const replaceState = useCallback((saved: Partial<GameState>) => {
-    setState((s) => ({ ...normalizeSaved(saved), debugOffsetDays: s.debugOffsetDays, paid: s.paid }));
+    // クラウドに預けない（端末の中だけの）情報は、この端末の値を残す
+    setState((s) => ({ ...normalizeSaved(saved), debugOffsetDays: s.debugOffsetDays, paid: s.paid, pass: s.pass, birthday: s.birthday, totalSteps: s.totalSteps, obs: s.obs }));
   }, []);
   const setNotify = useCallback((v: boolean) => setState((s) => ({ ...s, notifyEnabled: v })), []);
   const setBirthday = useCallback((b: { m: number; d: number } | null) => setState((s) => ({ ...s, birthday: b })), []);
