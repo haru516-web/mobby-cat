@@ -12,10 +12,11 @@ import { Pic } from '../../ui/Slice';
 import { AgePopup } from './AgePopup';
 
 // 売る商品。価格は設計書（docs/game-design.md 4.3）のとおり。実際に請求される金額は、App Store が表示する価格。
-// またたび単品は、価格が決まるまで売らない。
+// またたびは5個セットだけを売る。
 const ITEMS: { key: ProductKey; icon: string; name: string; yen: string; desc: string }[] = [
   { key: 'ticket1', icon: 'icon/ticket-paw', name: 'お迎え券 1枚', yen: '¥200', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
   { key: 'ticket6', icon: 'icon/ticket-paw', name: 'お迎え券 6枚', yen: '¥1,000', desc: 'まとめ買い（5枚＋おまけ1枚）' },
+  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '1個で今日の候補が1匹ふえます（最大6匹）。またたびパス加入中は、はじめから6匹です' },
 ];
 
 const PASS_BONUS_LABEL = 3;
@@ -121,7 +122,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
     }
   };
 
-  const passPrice = priceOf('pass', '¥1,600');
+  const passPrice = priceOf('pass', '¥1,500');
 
   return (
     <View style={{ flex: 1 }}>
@@ -151,14 +152,6 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             />
           </Card>
         ))}
-        <Card style={s.item}>
-          <Icon name="icon/matatabi-leaf" size={40} />
-          <View style={{ flex: 1 }}>
-            <T w="x" size={14}>またたび 1個</T>
-            <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>今日の候補が1匹ふえます（最大6匹）。またたびパス加入中は、はじめから6匹です</T>
-          </View>
-          <ImgButton skin="ghost-outline" label="準備中" height={40} disabled onPress={() => {}} style={{ width: 100 }} />
-        </Card>
         <Card style={[s.item, { alignItems: 'flex-start' }]}>
           <Icon name="icon/matatabi-bag" size={44} />
           <View style={{ flex: 1 }}>

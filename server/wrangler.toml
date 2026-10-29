@@ -19,7 +19,7 @@ APPLE_BUNDLE_ID = "com.mobbycat.app"
 PURCHASE_ENVIRONMENTS = "Production,Sandbox"
 # Product ids are provisional; ids and prices must match App Store Connect before release.
 # A product is either a one-time purchase (tickets or matatabi) or a plan; never both.
-PRODUCT_CATALOG_JSON = '''{"com.mobbycat.app.ticket.1":{"tickets":1,"priceYen":200},"com.mobbycat.app.ticket.6":{"tickets":6,"priceYen":1000},"com.mobbycat.app.matatabipass.monthly":{"plan":"matatabi_pass","monthlyTickets":8,"priceYen":1600}}'''
+PRODUCT_CATALOG_JSON = '''{"com.mobbycat.app.ticket.1":{"tickets":1,"priceYen":200},"com.mobbycat.app.ticket.6":{"tickets":6,"priceYen":1000},"com.mobbycat.app.matatabi.5":{"matatabi":5,"priceYen":300},"com.mobbycat.app.matatabipass.monthly":{"plan":"matatabi_pass","monthlyTickets":8,"priceYen":1500}}'''
 APPLE_ROOT_CERTIFICATES = '''
 -----BEGIN CERTIFICATE-----
 MIICQzCCAcmgAwIBAgIILcX8iNLFS5UwCgYIKoZIzj0EAwMwZzEbMBkGA1UEAwwS

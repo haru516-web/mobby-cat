@@ -83,8 +83,8 @@ App Store Connect → マイApp → 新規App。プラットフォーム iOS、�
 |---|---|---|---|
 | お迎え券 1 枚 | 消耗型 | `com.mobbycat.app.ticket.1` | ¥200 |
 | お迎え券 6 枚 | 消耗型 | `com.mobbycat.app.ticket.6` | ¥1,000 |
-| またたびパス | 自動更新サブスク（1か月） | `com.mobbycat.app.matatabipass.monthly` | ¥1,600 |
-| またたび 1 個 | 消耗型 | 未決定（ショップは ¥120） | 未決定 |
+| またたびパス | 自動更新サブスク（1か月） | `com.mobbycat.app.matatabipass.monthly` | ¥1,500 |
+| またたび 5 個セット | 消耗型 | `com.mobbycat.app.matatabi.5` | ¥300 |
 
 - 価格は、App Store Connect で選べる価格帯にあるか確認する（mobidou では ¥250 が選べなかった）。
 - 各商品に、表示名・説明・審査用のスクリーンショットが要る。サブスクは、サブスクリプショングループも作る。

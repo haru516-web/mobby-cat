@@ -1,12 +1,12 @@
 // 設定画面に出す連絡先・規約・クレジット。
-// 連絡先と公開 URL は未定。決まったらここだけ書き換える（空のあいだは「準備中」と案内する）。
-export const SUPPORT_EMAIL = '';
-export const PRIVACY_URL = ''; // App Store Connect に入れる公開 URL（Web 版）
-export const TERMS_URL = '';
-
+// 連絡先と公開 URL。TERMS_URL は空のあいだ、アプリ内の文面を出す。
 // アカウント・購入・クラウドセーブのサーバー（server/）。サーバーの URL はここ 1 か所だけ。
 // 開発中に別のサーバーへつなぐときは、環境変数 EXPO_PUBLIC_SERVER_URL で上書きできる。
 export const SERVER_URL = (process.env.EXPO_PUBLIC_SERVER_URL ?? 'https://nyakomobby-server.mobidou.workers.dev').replace(/\/$/, '');
+
+export const SUPPORT_EMAIL = 'info@mobby.online';
+export const PRIVACY_URL = SERVER_URL + '/privacy'; // App Store Connect に入れる公開 URL（Web 版）
+export const TERMS_URL = '';
 
 export type InfoKind = 'privacy' | 'terms' | 'credits';
 export const INFO_TITLE: Record<InfoKind, string> = {
