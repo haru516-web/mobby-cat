@@ -74,9 +74,15 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
   const [selecting, setSelecting] = useState(false);
-  // 画面の低い端末（iPhone SE など）では、部屋を低くして、下の予告カードとさつえいボタンがスクロールなしで見えるようにする
+  // 画面の低い端末（iPhone SE など）では、部屋を低くして、下の予告カードとさつえいボタンがスクロールなしで見えるようにする。
+  // 高さは決め打ちにせず、実際の寸法から出す：スクロールの表示領域（上の安全領域は除かれている）から、
+  // 下のタブ（ホームバーの分も含む）・上の見出し・下のカードと余白を引いた残りが、部屋に使える高さ（実機のノッチやホームバーで、カードがタブに重ならないように）
   const winH = useWindowDimensions().height;
-  const roomMin = Math.max(300, Math.min(width * 1.25, winH - 340));
+  const [viewH, setViewH] = useState(0);
+  const [topH, setTopH] = useState(0);
+  const [botH, setBotH] = useState(0);
+  const fit = viewH && topH && botH ? viewH - pad - 24 - topH - botH - 6 : winH - 340;
+  const roomMin = Math.max(300, Math.min(width * 1.25, fit));
 
   // 画面が縦に長いときは、カードの下に余白ができないよう部屋を伸ばす（flex で余りを部屋に回す。背景は cover）
   const [roomH, setRoomH] = useState(width * 1.25);
@@ -95,8 +101,8 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   return (
     <View style={{ flex: 1 }}>
     <Backdrop name="bg/room-home-full" />
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 + pad }}>
-      <View style={{ zIndex: 2 }}>
+    <ScrollView showsVerticalScrollIndicator={false} onLayout={(e) => setViewH(e.nativeEvent.layout.height)} contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 + pad }}>
+      <View style={{ zIndex: 2 }} onLayout={(e) => setTopH(e.nativeEvent.layout.height)}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       <View style={{ paddingHorizontal: 14, flexDirection: 'row', gap: 8, alignItems: 'stretch' }}>
         {WORLD_ON && (
@@ -146,7 +152,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         </Tap>
       </TourAnchor>
 
-      <View style={s.bottom}>
+      <View style={s.bottom} onLayout={(e) => setBotH(e.nativeEvent.layout.height)}>
         {/* 通知の「これから」から、いちばん近い予告を1つ。押すと一覧が開く */}
         <Tap style={{ flex: 1 }} onPress={() => openNotice('upcoming')} accessibilityLabel="これから会えるかもしれない猫">
           <Slice name="home/upcoming-card" style={s.upcoming}>
