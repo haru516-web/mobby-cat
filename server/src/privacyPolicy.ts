@@ -1,5 +1,5 @@
 /*
- * The privacy policy, in one place. The server shows it at /privacy; `docs/privacy-policy.md` is a copy kept in step by a test.
+ * The privacy policy, in one place. The server shows it at /privacy.
  * When the app's handling of data changes, change this text and `docs/app-store-privacy.md` together.
  */
 import { CONTACT_EMAIL, OPERATOR_NAME } from "./operator.ts";
@@ -9,6 +9,7 @@ export const PRIVACY_POLICY_TITLE = "プライバシーポリシー";
 export const PRIVACY_MARKDOWN = `# プライバシーポリシー
 
 制定日：2026年10月28日
+最終更新日：2026年10月29日
 運営者：${OPERATOR_NAME}
 連絡先：${CONTACT_EMAIL}
 
@@ -16,12 +17,14 @@ export const PRIVACY_MARKDOWN = `# プライバシーポリシー
 
 ## 1. 端末の中だけで使う情報
 
-次の情報は、その日に出会える猫を決めるために端末の中で読み取るだけで、サーバーには送りません。
+次の情報は、その日に出会える猫を決めるために端末の中で読み取ります。運営者のサーバーには送りません（位置は、下の説明のとおり、天気を調べるときだけ外へ送ります）。
 
 - 歩数（iPhoneの「モーションとフィットネス」から読み取ります）
 - 電池の残量と充電の状態、端末の時刻
-- おおまかな位置（その日の天気を調べるためにだけ使い、保存しません）
+- おおまかな位置（その日の天気を調べるためにだけ使い、端末にも保存しません）
 - 誕生日の月と日（その日に特別な猫を呼ぶためにだけ使います）
+
+位置情報を許可すると、その日の天気を調べるために、おおまかな位置（緯度・経度を小数第1位、約10kmに丸めた値）を、1日1回、ノルウェー気象研究所（MET Norway）の天気予報サービスに送ります。このとき、接続元のIPアドレスも先方に届きます。運営者のサーバーには送りません。許可しなくても遊べますが、天気に関わる出会いは起きません。
 
 カメラは、猫と一緒に写真を撮るときにだけ使います。撮った写真は、保存や共有の操作をしたときだけ、写真アプリや共有先に渡されます。
 
@@ -46,6 +49,7 @@ export const PRIVACY_MARKDOWN = `# プライバシーポリシー
 
 - Apple（アプリ内課金、Appleでサインイン）
 - Cloudflare（サーバーの運用）
+- MET Norway（天気予報の取得。位置を許可した場合だけ）
 
 ## 5. 削除
 
