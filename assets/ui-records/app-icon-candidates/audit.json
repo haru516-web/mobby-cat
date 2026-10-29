@@ -1,0 +1,47 @@
+{
+  "foreground_box": [
+    123,
+    123,
+    900,
+    901
+  ],
+  "height_ratio": 0.759765625,
+  "files": [
+    {
+      "path": "icon-a.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "09483e738c21ce90ddd8dadf8e72987e656d7add15c081a825d91ed799aa4a01"
+    },
+    {
+      "path": "icon-b.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "678eac903b9ec2014815334da5fdb208d0791a3f87cf896480adca666217bce6"
+    },
+    {
+      "path": "icon-c.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "360df4f197f02456203d1e482480c226f6fd54588563c860d8cc8dd57b82f6bc"
+    },
+    {
+      "path": "icon-d.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "e8c00f3f7e86652f99602c9349362e7d02c9688ab2ded9fdc1e991f990b85cfa"
+    }
+  ]
+}
