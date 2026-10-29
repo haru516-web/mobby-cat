@@ -1,0 +1,42 @@
+[
+  {
+    "key": "settings",
+    "path": "button/settings-round.png",
+    "w": 168,
+    "h": 168,
+    "source": "C:/Users/User/.codex/generated_images/01a1880b-1c0b-7f40-9fad-b608f0fe5b4c/exec-acb2614f-f55a-4c6f-9cf4-986e7ac4ed95.png",
+    "prompt": "Use case: precise-object-edit. Create settings-round.png by replacing ONLY the central bell with a simple rounded dark brown #4A3B32 gear with 8 softly rounded teeth and a cream circular hole. Preserve reference cream circular plate, fine brown rim, upper-left highlight, warm paper texture and subtle downward shadow, exact silhouette and framing. Single orthographic button, no lettering or extra motifs. Transparent exterior. Target 168x168."
+  },
+  {
+    "key": "cats",
+    "path": "button/home-cats-round.png",
+    "w": 168,
+    "h": 168,
+    "source": "C:/Users/User/.codex/generated_images/01a1880b-1c0b-7f40-9fad-b608f0fe5b4c/exec-6d6e5e86-c41e-4e9c-9eb7-aa07e1fab8d3.png",
+    "prompt": "Use case: precise-object-edit. Replace ONLY calendar icon in reference with two cute cat faces sitting side by side on one tiny orange sofa cushion. One cream cat and one muted orange cat, rounded triangular ears, dark brown outlines, each has one ordinary eye and one small camera-lens eye (Nekomobby). Keep icon simple readable at 52pt. Preserve same circular cream plate fine brown rim bevel upper-left highlight paper texture and low downward shadow as reference, same footprint. Single isolated button for selecting home cats. Transparent exterior. No text letters numbers additional objects. Target168x168."
+  },
+  {
+    "key": "track",
+    "path": "camera/zoom-track.png",
+    "w": 42,
+    "h": 660,
+    "source": "C:/Users/User/.codex/generated_images/01a1880b-1c0b-7f40-9fad-b608f0fe5b4c/exec-fd7b3776-0421-475f-945c-5962f520abe7.png",
+    "prompt": "Use case: stylized-concept. ONE isolated camera zoom slider TRACK only, no thumb. Very slender straight vertical capsule groove, target42x660px aspect1:15.714. Pale translucent white-cream channel with thin white highlight rim and subtle dark taupe outer edge for visibility over bright and dark live camera. Uniform constant width and uniform central straight section suitable vertical nine-slice stretch; smooth rounded top/bottom caps occupy only end42px. ONE tiny dark warm taupe circular dot inside bottom cap indicates minimum zoom. No other ticks, no text, no digits, no paw. Straight orthographic, centered on transparent canvas. Cozy softly raised paper game UI low contrast shadow upper-left light. Render tall narrow track filling height with slight clearance; genuinely transparent exterior."
+  },
+  {
+    "key": "thumb",
+    "path": "camera/zoom-thumb.png",
+    "w": 90,
+    "h": 90,
+    "source": "C:/Users/User/.codex/generated_images/01a1880b-1c0b-7f40-9fad-b608f0fe5b4c/exec-f9499c0c-3461-484f-a07f-92a7eff219f6.png",
+    "prompt": "Use case: stylized-concept. ONE isolated camera zoom thumb UI asset target90x90. White cream circular raised paper button containing ONE orange #F28B20 paw print with four toe pads and one large pad. Fine warm taupe outline for contrast on any live camera image, subtle low downward shadow, fine white upper-left highlight. Cozy Nekomobby soft puffy paper style, restrained texture. Straight-on centered whole circle with small transparent clearance, genuinely transparent exterior. No text digits labels, no additional symbols."
+  },
+  {
+    "key": "bg",
+    "path": "bg/screen-zukan.png",
+    "w": 1179,
+    "h": 2556,
+    "source": "C:/Users/User/.codex/generated_images/01a1880b-1c0b-7f40-9fad-b608f0fe5b4c/exec-c2862590-d828-4665-8bc4-feecd895ab2f.png",
+    "prompt": "Use case: illustration-story. Create replacement bg/screen-zukan.png, full bleed opaque very tall portrait1179x2556 ratio. Reference image1 is same home's warm cozy painted storybook style, image2 is old study to improve. ONE coherent room from very top to bottom, room corner naturally connected. Upper quarter: cream walls reaching top edge, small arched sunny window left, low cream bookcase right holding pastel blank books and two framed cute cat face pictures (each one lens eye). Floor-wall junction at roughly30% height. Lower70% is a continuous light warm honey-ivory wooden plank floor viewed in correct perspective, subtle but CLEAR unbroken plank seams converging toward back wall, horizontal board joints visible ALL THE WAY to bottom edge. Floor must remain a drawn physical floor at bottom, never fade into blank beige or blur. Keep center/lower area calm low contrast sparse for card overlays. No rug, no objects scattered on floor. Soft upper-left sunlight, warm cream #FFF8F0, muted sage green, gentle peach wood, puffy rounded furnishings. Painterly stylized game illustration not photography, no blur. No text, no UI, no buttons, no logos, no lettering on books. Entire image opaque, draw up to top edge behind notch."
+  }
+]
