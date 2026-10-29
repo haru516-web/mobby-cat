@@ -1,9 +1,9 @@
 import { useSyncExternalStore } from 'react';
 
 // チュートリアルと、画面側（ポップの中の説明）をつなぐ小さな橋。
-// ・画面側の操作（ショップが開いた・タブが変わった…）は emitTour で知らせる
+// ・ポップが利用者の操作で閉じたときは、画面側が emitTour('popup-closed') で知らせる
 // ・ポップの中に出す説明は、popup に入れておく（TourCoach が読む）
-export type TourEvent = 'shop' | 'notice' | 'popup-closed' | 'tab:home' | 'tab:deai' | 'tab:zukan' | 'tab:world';
+export type TourEvent = 'popup-closed';
 
 type Listener = (e: TourEvent) => void;
 const listeners = new Set<Listener>();
@@ -15,7 +15,7 @@ export const onTourEvent = (f: Listener) => {
 };
 export const emitTour = (e: TourEvent) => listeners.forEach((f) => f(e));
 
-export type TourPopup = { kind: 'shop' | 'notice'; pos: number; total: number; title: string; detail: string; canBack: boolean };
+export type TourPopup = { kind: 'shop' | 'notice'; pos: number; total: number; title: string; detail: string; canBack: boolean; last: boolean };
 type Store = { popup: TourPopup | null };
 let store: Store = { popup: null };
 const subs = new Set<() => void>();
@@ -34,8 +34,8 @@ export const useTourPopup = () =>
     () => store.popup,
   );
 
-// ポップの中の説明の「もどる」「スキップ」を、チュートリアル本体へ伝える
-type Actions = { back: () => void; skip: () => void };
+// ポップの中の説明の「もどる」「つぎへ」「スキップ」を、チュートリアル本体へ伝える
+type Actions = { back: () => void; next: () => void; skip: () => void };
 let actions: Actions | null = null;
 export const setTourActions = (a: Actions | null) => {
   actions = a;

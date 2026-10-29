@@ -49,11 +49,7 @@ function Root() {
   const { width: winW, height: winH } = useWindowDimensions();
   const width = Math.min(winW, MAX_W);
   const tour = replay || !state.tutorialDone;
-  // 利用者の操作はチュートリアルに知らせる（光っている場所を押したかを見るため）。チュートリアル自身の切り替え（setTab）は知らせない
-  const go = (t: TabKey) => {
-    setTab(t);
-    emitTour(`tab:${t}`);
-  };
+  const go = (t: TabKey) => setTab(t);
   const closeShop = () => {
     setShop(false);
     emitTour('popup-closed');
@@ -115,16 +111,10 @@ function Root() {
           <TabPadCtx.Provider value={tabH}>
             <Active
               go={go}
-              openShop={() => {
-                setShop(true);
-                emitTour('shop');
-              }}
+              openShop={() => setShop(true)}
               openSettings={() => setSettings(true)}
               openLoginRecord={() => setLoginRecord(true)}
-              openNotice={(t = 'notice') => {
-                setNotice(t);
-                emitTour('notice');
-              }}
+              openNotice={(t = 'notice') => setNotice(t)}
               openCamera={() => setCamera(true)}
               width={width}
             />
@@ -137,6 +127,7 @@ function Root() {
           <TutorialTour
             bottomInset={insets.bottom}
             onNavigate={setTab}
+            openPopup={(kind) => (kind === 'shop' ? setShop(true) : setNotice('notice'))}
             closePopups={() => {
               setShop(false);
               setNotice(null);
@@ -151,7 +142,7 @@ function Root() {
       </View>
       <Popup visible={shop} onClose={closeShop}>
         <ShopScreen onClose={closeShop} />
-        <TourCoach kind="shop" close={closeShop} />
+        <TourCoach kind="shop" />
       </Popup>
       <Popup visible={loginRecord} onClose={() => setLoginRecord(false)}>
         <LoginRecordScreen onClose={() => setLoginRecord(false)} width={width} />
@@ -168,7 +159,7 @@ function Root() {
       </Popup>
       <Popup visible={!!notice} onClose={closeNotice}>
         {notice && <NoticeScreen initialTab={notice} onClose={closeNotice} />}
-        <TourCoach kind="notice" close={closeNotice} />
+        <TourCoach kind="notice" />
       </Popup>
       <Modal visible={camera} animationType="fade" onRequestClose={() => setCamera(false)}>
         <View style={[s.fill, { alignItems: 'center' }]}>

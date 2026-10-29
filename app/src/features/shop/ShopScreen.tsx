@@ -162,7 +162,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
           </View>
           <ImgButton
             skin={state.pass.active ? 'ghost-outline' : 'primary-green'}
-            label={state.pass.active ? '加入中' : '加入'}
+            label={state.pass.active ? '加入中' : passPrice}
             height={40}
             disabled={busy || state.pass.active}
             onPress={() => confirm(
@@ -172,7 +172,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
               () => void purchase('pass'),
               { skin: 'primary-green' },
             )}
-            style={{ width: 84 }}
+            style={{ width: 100 }}
           />
         </Card>
         {state.pass.active && (
