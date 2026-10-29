@@ -37,7 +37,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   if (!rec) {
     return (
       <View style={{ flex: 1 }}>
-        <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+        <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={s.preparing}>
           <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
           <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
@@ -115,7 +115,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     <View style={{ flex: 1 }}>
     <Backdrop name="bg/room-deai-full" />
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
-      <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+      <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
 
       {/* 見出しは文字で描く。またたび・パスで候補の数が変わるので、いまの数を出す */}
       <TourAnchor id="deai-hero" style={s.hero}>

@@ -84,17 +84,13 @@ export function InfoPill({ icon, label, value, onPress, style }: { icon: string;
   );
 }
 
-// ロゴ / タイトル画像＋所持品＋ベル
-export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSettings }: { title?: string; onShop: () => void; onBell: () => void; onSettings: () => void }) {
+// 所持品＋ベル＋設定を右にまとめる。いまの画面は下のタブで分かるので、ロゴや画面の名前は出さない
+export function Header({ onShop, onBell, onSettings }: { onShop: () => void; onBell: () => void; onSettings: () => void }) {
   const { state } = useGame();
-  const width = useWindowDimensions().width;
-  const logoH = (title === 'brand/logo-nekomobby' ? 44 : 52) * (width < 390 ? 0.8 : 1);
-  const tight = width < 390; // 設定ボタンが増えたぶん、ロゴを少し小さくする
   // 背景は画面の一番上（ノッチ・時刻の帯の裏）まで広げ、見出しだけをその下に置く
   const top = useSafeAreaInsets().top;
   return (
     <View style={[k.header, { paddingTop: k.header.paddingTop + top }]}>
-      <Pic name={title} height={logoH} />
       <View style={{ flex: 1 }} />
       <TourAnchor id="header-items">
         <Tap onPress={onShop}>
@@ -114,7 +110,7 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSetti
       </TourAnchor>
       <Tap onPress={onSettings} accessibilityLabel="設定" style={{ marginLeft: 6 }}>
         {UI['button/settings-round'] ? (
-          <Pic name="button/settings-round" height={tight ? 38 : 44} />
+          <Pic name="button/settings-round" height={44} />
         ) : (
           // 歯車の画像（button/settings-round）が届くまでの代わり。docs/codex/UI_SETTINGS_PROMPT.md
           <Slice name="button/ghost-outline" style={k.gearFallback}>
