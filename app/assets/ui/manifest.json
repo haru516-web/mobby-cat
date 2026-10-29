@@ -430,11 +430,11 @@
       "path": "brand/app-icon.png",
       "width": 1024,
       "height": 1024,
-      "sha256": "36f93983483feac8b77b4d09bd5b43be8c5192ff86f81368ee8d43f4f5897106",
-      "bytes": 1856254,
-      "prompt": "Square1024 opaque cream app icon with centered British shorthair Cat Mobby, gray round ears, amber normal eye at viewer-left, black camera lens viewer-right, small nose, cross D-pad viewer-left chest and exactly two round buttons viewer-right. Soft illustrated storybook game icon, clean background, no text, no rounded outer corners.",
-      "method": "built-in image_gen",
-      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+      "sha256": "46c082458b613032602abdd9a9a8511967864081ec5051ec4d12ca0e180d7e14",
+      "bytes": 1689678,
+      "prompt": "アプリ名「にゃっコレ」への変更に合わせたアイコン。ラガマフィンの三毛モビー（ragamuffin.png）を、斜めからのぞくポーズでオレンジの地に大きく置き、同系色の肉球を敷いた。文字なし、1024x1024、不透明。",
+      "method": "built-in image_gen (Codex, codex/app-icon 0911a4f icon-peek-trial.png)",
+      "processing": "候補 icon-peek-trial.png をそのまま採用（再加工なし）。元の候補は codex/app-icon ブランチの assets/ui-records/app-icon-candidates/ にある",
       "alphaMode": "opaque"
     },
     {
