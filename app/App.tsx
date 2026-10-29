@@ -108,7 +108,7 @@ function Root() {
     <View style={[s.fill, { alignItems: 'center' }]}>
       <Backdrop name="bg/app-cream" />
       <View style={[s.fill, { width }]}>
-        <SafeAreaView edges={['top']} style={s.fill}>
+        <View style={s.fill}>
           <TabPadCtx.Provider value={tabH}>
             <Active
               go={go}
@@ -120,7 +120,7 @@ function Root() {
               width={width}
             />
           </TabPadCtx.Provider>
-        </SafeAreaView>
+        </View>
         <TourAnchor id="tabbar" style={s.tabbar} onLayout={(e) => setTabH(e.nativeEvent.layout.height)}>
           <TabBar tab={tab} onChange={go} bottomInset={insets.bottom} />
         </TourAnchor>

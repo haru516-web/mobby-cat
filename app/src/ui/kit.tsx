@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { shownRarity } from '../core/recipes';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CatDef } from '../data/catalog';
 import { matatabiOf, ticketsOf, useGame } from '../core/game';
 import { SfxId } from '../data/audioAssets';
@@ -89,8 +90,10 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSetti
   const width = useWindowDimensions().width;
   const logoH = (title === 'brand/logo-nekomobby' ? 44 : 52) * (width < 390 ? 0.8 : 1);
   const tight = width < 390; // 設定ボタンが増えたぶん、ロゴを少し小さくする
+  // 背景は画面の一番上（ノッチ・時刻の帯の裏）まで広げ、見出しだけをその下に置く
+  const top = useSafeAreaInsets().top;
   return (
-    <View style={k.header}>
+    <View style={[k.header, { paddingTop: k.header.paddingTop + top }]}>
       <Pic name={title} height={logoH} />
       <View style={{ flex: 1 }} />
       <TourAnchor id="header-items">
