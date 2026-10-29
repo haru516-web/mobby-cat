@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Modal, ScrollView, StyleSheet, View } from 'react-native';
 import { cardReason, conditionTotal } from '../../core/conditions';
-import { msUntilNextReveal } from '../../core/encounter';
+import { REVEAL_HOUR, msUntilNextReveal } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
 import { matatabiOf, ticketsOf, useGame, visibleCount } from '../../core/game';
@@ -114,8 +114,22 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   return (
     <View style={{ flex: 1 }}>
     <Backdrop name="bg/room-deai-full" />
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
-      <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+    {/* 見出しと「今日・きのう」の切り替えは固定する（もび道と同じく、中身がノッチの裏に入り込まない）。その下の候補だけスクロールする */}
+    <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+    {availableDays.length > 1 && (
+      <View style={s.dayTabs}>
+        {availableDays.map((k) => (
+          <Tap key={k} onPress={() => { setDay(k); setSel(null); }}>
+            <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
+              <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
+                {k === todayKey ? '今日' : state.days[k]?.freePick ? 'きのう' : `きのう（受け取りは${now.getHours() >= REVEAL_HOUR ? 'あす' : '今日'}の20時まで）`}
+              </T>
+            </Slice>
+          </Tap>
+        ))}
+      </View>
+    )}
+    <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
 
       {/* 見出しは文字で描く。またたび・パスで候補の数が変わるので、いまの数を出す */}
       <TourAnchor id="deai-hero" style={s.hero}>
@@ -134,19 +148,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         </Card>
       </TourAnchor>
 
-      {availableDays.length > 1 && (
-        <View style={s.dayTabs}>
-          {availableDays.map((k) => (
-            <Tap key={k} onPress={() => { setDay(k); setSel(null); }}>
-              <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
-                <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
-                  {k === todayKey ? '今日' : state.days[k]?.freePick ? 'きのう' : 'きのう（受け取りは今日の20時まで）'}
-                </T>
-              </Slice>
-            </Tap>
-          ))}
-        </View>
-      )}
 
       {empty && (
         <Card style={{ marginHorizontal: 16, marginTop: 12 }}>

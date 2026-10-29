@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
 import { homeSlotsOf, useGame } from '../../core/game';
@@ -74,17 +74,8 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
   const [selecting, setSelecting] = useState(false);
-  // 画面の低い端末（iPhone SE など）では、部屋を低くして、下の予告カードとさつえいボタンがスクロールなしで見えるようにする。
-  // 高さは決め打ちにせず、実際の寸法から出す：スクロールの表示領域（上の安全領域は除かれている）から、
-  // 下のタブ（ホームバーの分も含む）・上の見出し・下のカードと余白を引いた残りが、部屋に使える高さ（実機のノッチやホームバーで、カードがタブに重ならないように）
-  const winH = useWindowDimensions().height;
-  const [viewH, setViewH] = useState(0);
-  const [topH, setTopH] = useState(0);
-  const [botH, setBotH] = useState(0);
-  const fit = viewH && topH && botH ? viewH - pad - 24 - topH - botH - 6 : winH - 340;
-  const roomMin = Math.max(300, Math.min(width * 1.25, fit));
-
-  // 画面が縦に長いときは、カードの下に余白ができないよう部屋を伸ばす（flex で余りを部屋に回す。背景は cover）
+  // ホームはスクロールしない（もび道と同じ）。見出しと下のカードの残りの高さを、ぜんぶ部屋に回す（flex）。
+  // 低い端末では部屋が低く、縦に長い端末では高くなる。猫の位置は、部屋の高さ（roomH）に対する割合で決める
   const [roomH, setRoomH] = useState(width * 1.25);
   // 通知の「これから」の、いちばん近い予告（暦や月で決まる特別な猫）
   const next = useMemo(() => upcoming(todayKey, 30, state.birthday)[0], [todayKey, state.birthday]);
@@ -101,8 +92,8 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   return (
     <View style={{ flex: 1 }}>
     <Backdrop name="bg/room-home-full" />
-    <ScrollView showsVerticalScrollIndicator={false} onLayout={(e) => setViewH(e.nativeEvent.layout.height)} contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 + pad }}>
-      <View style={{ zIndex: 2 }} onLayout={(e) => setTopH(e.nativeEvent.layout.height)}>
+    <View style={{ flex: 1, paddingBottom: 24 + pad }}>
+      <View style={{ zIndex: 2 }}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       <View style={{ paddingHorizontal: 14, flexDirection: 'row', gap: 8, alignItems: 'stretch' }}>
         {WORLD_ON && (
@@ -131,7 +122,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
       </View>
       </View>
 
-      <TourAnchor id="home-room" style={{ width, minHeight: roomMin, maxHeight: width * 1.6, flexGrow: 1, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
+      <TourAnchor id="home-room" style={{ width, flex: 1, maxHeight: width * 1.6, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
         {roomSlots.every((id) => !id) && (
           <View style={s.empty}>
             <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」からにゃこモビーを迎えましょう</T>
@@ -152,7 +143,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         </Tap>
       </TourAnchor>
 
-      <View style={s.bottom} onLayout={(e) => setBotH(e.nativeEvent.layout.height)}>
+      <View style={s.bottom}>
         {/* 通知の「これから」から、いちばん近い予告を1つ。押すと一覧が開く */}
         <Tap style={{ flex: 1 }} onPress={() => openNotice('upcoming')} accessibilityLabel="これから会えるかもしれない猫">
           <Slice name="home/upcoming-card" style={s.upcoming}>
@@ -176,7 +167,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
           <T w="x" size={12} style={s.cameraLabel}>さつえい</T>
         </Tap>
       </View>
-    </ScrollView>
+    </View>
     <HomeSelect visible={selecting} onClose={() => setSelecting(false)} width={width} />
     </View>
   );
