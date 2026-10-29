@@ -2,7 +2,7 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 211,
+  "assetCount": 215,
   "counts": {
     "badge": 11,
     "bg": 19,
@@ -11,9 +11,10 @@
     "camera": 20,
     "cat": 3,
     "gauge": 5,
+    "home": 2,
     "icon": 28,
     "illust": 18,
-    "login": 9,
+    "login": 11,
     "navbtn": 9,
     "opening": 6,
     "panel": 16,
@@ -229,17 +230,6 @@
       "alphaMode": "opaque"
     },
     {
-      "path": "bg/fade-cream-bottom.png",
-      "width": 1179,
-      "height": 300,
-      "prompt": "Only vertical cream #FFF8F0 alpha gradient, top0 bottom255, linear; no icons.",
-      "method": "procedural raster",
-      "processing": "Exact numeric RGBA bitmap, no app code changes",
-      "sha256": "70cd03cc690baed99837c26152a3cb553de9fbd6b507db19a71904744dda8102",
-      "bytes": 2213,
-      "alphaMode": "transparent"
-    },
-    {
       "path": "bg/news-thumb-1.png",
       "width": 330,
       "height": 330,
@@ -306,17 +296,6 @@
       "alphaMode": "opaque"
     },
     {
-      "path": "bg/room-deai.png",
-      "width": 1179,
-      "height": 1400,
-      "prompt": "Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Portrait1179x1400. Cozy living room corner with a softly rounded window and curtains on left, bookshelf and leafy plant at far right. Composition optimized for upper62% crop: top0–30% very pale almost plain wall and window light,30–62% quiet simple wall/floor empty for THREE character overlays. Keep tiny furniture details at far edges, no large sofa or table across central zone. Bottom62–100% calm simple pale floor. All essential room cues visible within upper62%. NO text.",
-      "sha256": "9159c0aaffd6e07248536f28084523e055466398454a06c1f6278ba826ea6099",
-      "bytes": 1812790,
-      "method": "built-in image_gen",
-      "processing": "Lanczos resize to exact canvas; opaque RGB full bleed",
-      "alphaMode": "opaque"
-    },
-    {
       "path": "bg/room-home-full.png",
       "width": 1179,
       "height": 2556,
@@ -325,28 +304,6 @@
       "prompt": "Use case: stylized-concept. Create a full portrait room background 1179x2556. Image1 is room-home style/composition reference only. Preserve cozy painted game-illustration room with arch window and curtains left, cream sofa, bookshelf and greenery in top half; soft oval woven rug centered and fully inside side edges around vertical45-60%, empty rug center for a cat. Orange wooden floor continues seamlessly to the bottom edge. Keep right wall open at 12-30% for a button. The upper area through 62% should retain room scene and furniture; the lower 38% must be a flat, quiet, low-contrast orange floor for two large UI cards and four floating navigation buttons, no seams, objects, shadows, bands or color breaks. Floor is a broad gentle orange plane, lower two thirds simple. Illustrative storybook game background, rounded forms, flat painted colors, soft gradients, moderate detail, no photo, no depth blur, no lens effects, no text, no cats or people, opaque full-bleed.",
       "method": "built-in image_gen",
       "processing": "Lanczos cover resize, opaque RGB, no EXIF",
-      "alphaMode": "opaque"
-    },
-    {
-      "path": "bg/room-home.png",
-      "width": 1179,
-      "height": 1900,
-      "sha256": "753fcec42d72c626051eacdc6552f0b415b7517761a8d9f9833c461029bfe126",
-      "bytes": 2563255,
-      "prompt": "Use case: stylized-concept, mobile game UI background. Generate new 1179x1900 portrait opaque illustration matching the existing room image (reference image 1), with warm cream, pale green, soft orange palette, rounded storybook forms, flat painted color and gentle upper-left light. Preserve same general room: window and curtains upper left, cozy cream sofa upper center-left, leafy plants, small bookshelf/shelf, cat tower toward upper right. Place all furniture/wall decor in upper 44% only; preserve a broad simple warm orange wooden floor below, almost no floorboard seams below 70%. A soft woven oval rug centered in floor and fully inside both side edges, modest width with visible floor left and right; keep center rug area empty for cat. Entire lower 15% must be completely flat low-contrast floor with no objects or seams. Uppermost 12% gentle uncluttered backdrop; upper-right wall area at 12-30% clear and plain for a UI button. Keep lower-right camera-button area clear. No cats, people, text, signs, labels, photorealism, lens blur, glare, strong shadows, tiny wood grain or fabric fibers. Full bleed edge-to-edge, opaque.\nRedo 1: Edit the provided room illustration. Change ONLY the rug width and the lower floor. Shrink the complete oval rug to about78% of canvas width and center it so a clearly visible strip of orange floor remains at both left and right edges. Preserve the same rug texture and design. Make wooden floor seams below vertical70% almost invisible, blending into a smooth low-contrast warm orange floor through the bottom edge. Preserve all windows, furniture, plants, shelves, colors, positions and style exactly. No new objects, no text, no cats, no photographic effects. Full canvas1179x1900 opaque portrait.",
-      "method": "built-in image_gen",
-      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
-      "alphaMode": "opaque"
-    },
-    {
-      "path": "bg/screen-shop.png",
-      "width": 1179,
-      "height": 2556,
-      "prompt": "Create ONE production UI bitmap asset: Full bleed #FFF8F0 warm ivory handmade paper with extremely faint tiny paw print pattern. No border no frame no vignette no objects no text.. Final canvas 1179x2556, requested aspect 1179:2556. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. OPAQUE full rectangular canvas edge to edge. NO transparency, no border, no isolated cutout. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
-      "method": "built-in image_gen",
-      "processing": "Opaque full-bleed cover resize to exact requested canvas",
-      "sha256": "43d1121b128cb5c9f0d658043a3731e7e6c804f473d17985140cbe3857b81780",
-      "bytes": 2751228,
       "alphaMode": "opaque"
     },
     {
@@ -430,45 +387,34 @@
       "path": "brand/app-icon.png",
       "width": 1024,
       "height": 1024,
-      "sha256": "36f93983483feac8b77b4d09bd5b43be8c5192ff86f81368ee8d43f4f5897106",
-      "bytes": 1856254,
-      "prompt": "Square1024 opaque cream app icon with centered British shorthair Cat Mobby, gray round ears, amber normal eye at viewer-left, black camera lens viewer-right, small nose, cross D-pad viewer-left chest and exactly two round buttons viewer-right. Soft illustrated storybook game icon, clean background, no text, no rounded outer corners.",
-      "method": "built-in image_gen",
-      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+      "sha256": "46c082458b613032602abdd9a9a8511967864081ec5051ec4d12ca0e180d7e14",
+      "bytes": 1689678,
+      "prompt": "アプリ名「にゃっコレ」への変更に合わせたアイコン。ラガマフィンの三毛モビー（ragamuffin.png）を、斜めからのぞくポーズでオレンジの地に大きく置き、同系色の肉球を敷いた。文字なし、1024x1024、不透明。",
+      "method": "built-in image_gen (Codex, codex/app-icon 0911a4f icon-peek-trial.png)",
+      "processing": "候補 icon-peek-trial.png をそのまま採用（再加工なし）。元の候補は codex/app-icon ブランチの assets/ui-records/app-icon-candidates/ にある",
       "alphaMode": "opaque"
     },
     {
       "path": "brand/logo-nekomobby.png",
       "width": 760,
       "height": 240,
-      "sha256": "a5d459ed9bfe4c1f32413db866e06a5d4f8125a74ed7d0c838b7cbf3511ba247",
-      "bytes": 179841,
-      "prompt": "Edit target is the provided old logo. Redraw the app logo with the EXACT Japanese text にゃこモビー . Characters in order に / ゃ (small hiragana ya) / こ / モ / ビ / ー. Replace old ねこ with にゃこ. Keep the same puffy rounded paper-cut lettering, dark chocolate brown hiragana, orange katakana, tiny paw accent, small cat ears integrated in first hiragana. Single horizontal wordmark, no other text, no background, no enclosing badge, upper-left light, soft shading not photographic. Entire logo fits canvas target aspect 760:240 with minimal padding. Ensure the small ゃ is unambiguously legible and long vowel ー is present. Transparent background.",
+      "sha256": "a15808a16b199686ae191630aa62952a785502b256d67dee792ce0f00b05dbbc",
+      "bytes": 171599,
+      "prompt": "Edit the supplied original logo to read exactly にゃっコレ (に・ゃ・っ・コ・レ). Preserve rounded puffy chocolate/clay texture, upper-left light and subtle downward shadow. にゃっ dark chocolate brown, コレ orange; hiragana smaller than katakana, ゃ and っ clearly small. Cat ears on upper left of に; orange paw above transition between ゃ and コ. Same wide composition and tight margins. Transparent background, no additional text or white outline.",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 3px minimum clearance, generated alpha preserved; no EXIF",
+      "processing": "Generated alpha preserved; alpha>8 bounding-box trim; proportional Lanczos fit within 752x224 on centered transparent 760x240 canvas.",
       "alphaMode": "transparent"
     },
     {
       "path": "brand/splash.png",
       "width": 1179,
       "height": 2556,
-      "sha256": "b5358a7b880a861958b4f6e71a46ac88b03da6057c60075a4a152e71c77d08cb",
-      "bytes": 1118469,
-      "prompt": "Edit target image1 is old splash. Image2 is approved NEW logo. Replace ONLY the old ねこモビー wordmark with image2's exact にゃこモビー wordmark, keeping its small ゃ. Cream #FFF8F0 full opaque background, portrait1179x2556 aspect. Logo centered horizontally and vertically, approximately85% canvas width. Preserve brown hiragana and orange katakana and paw. No other elements, no text except にゃこモビー, no vignette, flat warm cream background, soft paper illustration.",
-      "method": "built-in image_gen",
-      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+      "sha256": "bc689a47e80affd2369dc2539963aabb081693c2fef2bacb7255fecec1ad04e4",
+      "bytes": 251423,
+      "prompt": "Use approved にゃっコレ master logo without regeneration. Derived from brand/logo-nekomobby.png; Lanczos resize to 1002x316 (85% width), centered on solid RGB #FFF8F0 1179x2556 canvas.",
+      "method": "Pillow deterministic derivation from brand/logo-nekomobby.png",
+      "processing": "Derived from brand/logo-nekomobby.png; Lanczos resize to 1002x316 (85% width), centered on solid RGB #FFF8F0 1179x2556 canvas.",
       "alphaMode": "opaque"
-    },
-    {
-      "path": "brand/title-account.png",
-      "width": 640,
-      "height": 110,
-      "sha256": "7df8feab0cc1ae0f7139b5986fb4b03d5d0ba2a78b66ddc924d37f9f3da10f57",
-      "bytes": 62317,
-      "prompt": "Edit the reference brand heading in the same exact puffy rounded Japanese lettering style and proportions. The only text must read exactly 「アカウント」. Preserve dark chocolate brown plus restrained orange accent, soft upper-left highlight, small paw accent at the end, clean transparent background. Ensure every character is present and correctly legible. No extra decoration or words.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
     },
     {
       "path": "brand/title-collection.png",
@@ -493,28 +439,6 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "brand/title-free-pick.png",
-      "width": 1000,
-      "height": 330,
-      "prompt": "Create ONE production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text 3匹の中から1匹を無料でお迎え on soft cloud plaque, no subtitle. Target aspect 1000:330, final exact 1000x330px. Style matches the six approved internal style studies: warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20, restrained soft paper texture, friendly thick rounded shapes, subtle upper-left highlight and very low contrast downward shadow. Reduce glossy plastic thickness. Brand lettering chunky friendly rounded Japanese, brown and orange, no extra subtitle. Orthographic straight-on. All artwork fits canvas. True transparent background, smooth clean alpha edge no white fringe no scattered flecks. This is a standalone asset not a screen mockup.",
-      "sha256": "b58b7388ab16c08539668edc7e319710154e7071966a4f34d04bffb06db52966",
-      "bytes": 313261,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "brand/title-kyou.png",
-      "width": 560,
-      "height": 110,
-      "prompt": "Create ONE production UI bitmap asset: Exact Japanese lettering only: 「きょうのようす」. . Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 560x110, requested aspect 560:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
-      "method": "built-in image_gen",
-      "processing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance",
-      "sha256": "c88b829dc7741068c9ad2f79f10dc6618680b8ca73c033b0fbbf9b91c7f9cc5c",
-      "bytes": 62672,
-      "alphaMode": "transparent"
-    },
-    {
       "path": "brand/title-login-record.png",
       "width": 640,
       "height": 110,
@@ -523,28 +447,6 @@
       "prompt": "Edit the reference Japanese title treatment to read exactly「ログイン記録」(ログイン記録, six Japanese characters). Keep the same bold rounded dark-brown raised lettering, same baseline and scale, small orange paw accent at right, transparent background. Text only, no calendar icon, no extra symbols. Ensure kanji 記録 are exact and legible.",
       "method": "built-in image_gen",
       "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "brand/title-matatabi.png",
-      "width": 720,
-      "height": 110,
-      "prompt": "Create ONE production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text またたびで もっと出会える！ with leaf. Target aspect 720:110, final exact 720x110px. Style matches the six approved internal style studies: warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20, restrained soft paper texture, friendly thick rounded shapes, subtle upper-left highlight and very low contrast downward shadow. Reduce glossy plastic thickness. Brand lettering chunky friendly rounded Japanese, brown and orange, no extra subtitle. Orthographic straight-on. All artwork fits canvas. True transparent background, smooth clean alpha edge no white fringe no scattered flecks. This is a standalone asset not a screen mockup.",
-      "sha256": "55752dc7bafb2d5ed8a15d50c6d6b3b85a281c3fc5f156fdd94bb68ce9267db6",
-      "bytes": 125316,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "brand/title-mukaeru.png",
-      "width": 720,
-      "height": 110,
-      "prompt": "Create ONE production UI bitmap asset: Exact Japanese lettering only: 「この子たちも迎える」. one small paw accent. Match reference logo thick friendly rounded Japanese typography, dark brown #4A3B32 and restrained orange accent. Simple lettering without plaque or floral decoration. Full words visible, no extra letters.. Final canvas 720x110, requested aspect 720:110. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Only the exact specified brand lettering; app icon has NO text. NO extra flowers NO extra leaves NO extra objects.",
-      "method": "built-in image_gen",
-      "processing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance",
-      "sha256": "7757c922d4d145b4d35e7562e3b30cb99dd40f5ad96a8cc9290f4512ae0a3438",
-      "bytes": 67871,
       "alphaMode": "transparent"
     },
     {
@@ -1110,17 +1012,6 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "camera/ar-reticle.png",
-      "width": 480,
-      "height": 480,
-      "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White perspective floor placement target ring transparent center. Target 480x480 aspect 480:480. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
-      "sha256": "606d7abf98486b99fa87c41b5167830b91f310bc0adbb150443b2f3739f6a645",
-      "bytes": 106937,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
       "path": "camera/bottombar-scrim.png",
       "width": 1179,
       "height": 600,
@@ -1129,17 +1020,6 @@
       "bytes": 4237,
       "method": "procedural",
       "processing": "Vertical black alpha smoothstep, top alpha0 to bottom170; 1179x600. Black bottom fades to transparent top, no icons.",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "camera/btn-cat-picker.png",
-      "width": 132,
-      "height": 132,
-      "prompt": "Create exactly ONE iOS camera overlay UI bitmap: White cat head silhouette with small plus on translucent charcoal circle. Target 132x132 aspect 132:132. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
-      "sha256": "a71df264c92dfaea4cb9454931998754c28861389433db0fe41a85e86a43eb62",
-      "bytes": 24761,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
     },
     {
@@ -1262,34 +1142,12 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "camera/flash-white.png",
-      "width": 64,
-      "height": 64,
-      "prompt": "Pure uniform WHITE square. Solid RGB255255255 at every pixel. No object, no texture, no shadow, no gradient, no border, no margin, no icons, no transparency. This is a blank white raster swatch. Final64x64.",
-      "sha256": "df43710cdc7477a2e85a02cbdb383e85fbaf56e036e6fdd0f2c449be0fd00662",
-      "bytes": 181,
-      "method": "built-in image_gen",
-      "processing": "Generated white swatch center pixel resized uniformly to64x64",
-      "alphaMode": "opaque"
-    },
-    {
       "path": "camera/gesture-hint.png",
       "width": 600,
       "height": 300,
       "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Three simple white hand gesture diagrams: drag pinch rotate, no words, transparent. Target 600x300 aspect 600:300. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
       "sha256": "f32b5074007f28d9b4bc595ece297c46faab23ddd7940f364e6403c702b50029",
       "bytes": 152835,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "camera/handle-transform.png",
-      "width": 90,
-      "height": 90,
-      "prompt": "Create exactly ONE iOS camera overlay UI bitmap: Small white rounded corner resize handle with charcoal outline. Target 90x90 aspect 90:90. Cozy premium Nekomobby UI family, clean thick rounded silhouette, restrained paper texture only if appropriate, minimal bevel, upper-left light. White icons with charcoal semi-transparent circular plate and delicate contrast shadow readable on both light and dark camera footage. No actual cat or character, no flowers, no leaves, no extra motifs unless explicitly requested. NO TEXT OR LETTERS OR NUMERALS. For scrims output only the specified gradient rectangle, no objects. For white flash output solid white rectangle only. All edges fit without clipping, minimal margin. True alpha transparency, no matte no white fringe. Single component not a mockup.",
-      "sha256": "6b34a9ea2b2599dd869737d488643b281fbf4eed0c6ed07f929bedfe197ea46c",
-      "bytes": 12410,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
@@ -1350,45 +1208,12 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "cat/shadow-oval.png",
-      "width": 400,
-      "height": 120,
-      "prompt": "Create same kind of low-opacity dark warm-grey soft oval ground shadow as reference, but slightly stronger and narrower, final400x120. Shadow ONLY, soft feathered transparent boundary, no lighter colored halo NO white pixels no highlights no physical oval object no icons. Entire visible color dark grey-brown #4A3B32 with variable alpha, low opacity. Genuine transparency.",
-      "sha256": "07ebcfccc2c254624c31c448529fd2849dfb1e50d32729ad51b99a8e7ebae3e9",
-      "bytes": 12282,
-      "method": "built-in image_gen",
-      "processing": "Resize original transparent effect canvas without trimming feathered alpha",
-      "alphaMode": "transparent"
-    },
-    {
       "path": "cat/silhouette-locked.png",
       "width": 512,
       "height": 512,
       "prompt": "Create ONE isolated production UI graphic: Muted brown fluffy round cat silhouette ears stubby paws NO facial features NO QUESTION MARK NO text. Final target 512x512 aspect512:512. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
       "sha256": "93b7d2172ad61fb0f3f02a057d07892de6c1dc33840c0d5f0902d620d92ca110",
       "bytes": 254710,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "gauge/cat-dot-off.png",
-      "width": 120,
-      "height": 120,
-      "prompt": "Edit this cat head indicator. Recolor only dark brown to pale muted beige #E3D3BF. Preserve EXACT same silhouette details position proportions. NO question mark no text no added features. Transparent background. Final120x120.",
-      "sha256": "4fc5c17b45a70db4b74710af8b64a4b84d4b36e64fc1049fe37c32832efd74a6",
-      "bytes": 20767,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "gauge/cat-dot-on.png",
-      "width": 120,
-      "height": 120,
-      "prompt": "Create ONE isolated production UI graphic: Brown cat head silhouette indicator. Final target 120x120 aspect120:120. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "5f8be28f7aed58ff60609194c4e0ad3bd7b1750b891bed8c6d1278e434b5acdb",
-      "bytes": 20369,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
@@ -1451,6 +1276,40 @@
       "stretchAxes": [
         "x"
       ],
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "home/upcoming-card.png",
+      "width": 720,
+      "height": 200,
+      "prompt": "Use case: stylized-concept. ONE production UI bitmap upcoming encounter card, exact aspect720:200. Front-on horizontal softly rounded cream #FFF8F0 paper board, thin pale gold #E5A23B border inset a little from edge, ivory upper-left highlight, very soft low contrast downward shadow, restrained paper texture. One tiny gold four-point twinkle in upper right corner and one even tinier twinkle in lower left, entirely within70px corner squares at final720x200. Center and all edges middle completely blank uniform cream, no inset well no separate compartments. Nine-slice top70 right70 bottom70 left70, ensure rounded corners and all decoration inside these corner bounds. Near-full canvas with4px outer clearance. Truly transparent exterior. No text no letters no numbers no question mark no cats no logos. Warm softly puffy handcrafted paper UI.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; corner-preserving nine-slice normalization to720x200 with70px fixed corners; generated alpha preserved; no EXIF.",
+      "slice": {
+        "top": 70,
+        "right": 70,
+        "bottom": 70,
+        "left": 70
+      },
+      "sha256": "39afdb1db58fceb7433ef56b9d65d0d2c0b4da6d642cc7bedf763a0206363518",
+      "bytes": 152894,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "home/upcoming-well.png",
+      "width": 192,
+      "height": 192,
+      "prompt": "Use case: stylized-concept. ONE production UI bitmap square recessed photo well, exact aspect192:192. Cozy Nekomobby softly puffy cream paper rim with rounded corners, gentle inward shading. Very restrained pale lavender #E1D4FF to pale gold soft light bloom contained in rim, hinting an unseen cat. Center is bright blank ivory uniform flat surface with no objects, no sparkle shapes. Nine-slice top56 right56 bottom56 left56 final pixels; all curved corner detail confined to56px corners, edge middles and center stretch cleanly. Upper-left ivory highlight, faint downward outer shadow. Transparent outside the rounded square only; center opaque. Fill canvas with4px clearance. No text letters numerals symbols cat or silhouette.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; Lanczos fit to184x184 with4px clearance on192x192; generated alpha preserved; no EXIF.",
+      "slice": {
+        "top": 56,
+        "right": 56,
+        "bottom": 56,
+        "left": 56
+      },
+      "sha256": "fe41a6fde4cc53857621350dffd14c7d0e8bd6b8597961ed48c3dc3eea0aad48",
+      "bytes": 40193,
       "alphaMode": "transparent"
     },
     {
@@ -1542,61 +1401,6 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "icon/coin-paw.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Single gold paw coin UI currency icon for cozy Japanese Nekomobby iOS game. Front facing circular coin, embossed cat paw one large pad four toe pads, soft gold #E5A23B and warm yellow highlights, subtle dimensional rounded rim. Clean simple readable silhouette at150x150 final, minimal paperlike microtexture, upper-left lighting soft low contrast shadow below. Centered 8percent margin. No letters numbers or text, no extra objects. Genuine transparent background clean alpha no white matte or stray specks. Match currency coin in supplied home UI reference.",
-      "sha256": "4fdf0c67af3ee2995f69b089b9addbe39d1114f89340d51961f020156c2e201b",
-      "bytes": 39464,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/flag.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Brown small flag on pole. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "93799ea956854ac5dd96c5ab6b8db6fe62a6ffa40f2512f2efc47a10c5e3a8ec",
-      "bytes": 23730,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/gem.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Blue faceted jewel. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "3f8410cd6a4ce9fcb3a8428e5160811c2391777133789175028e941057652f96",
-      "bytes": 26305,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/globe.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Brown globe latitude longitude. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "9a64099f29a5280bdb5f23238d8cf8941d97ed73fb933e30d18777183b7cdf20",
-      "bytes": 35106,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/heart-off.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Use reference heart outer contour, produce only a thick warm brown rounded outline heart with fully transparent interior, matching same heart silhouette. No inner fill no shiny golden center. Single outline heart icon transparent background. Final150x150.",
-      "sha256": "7682e9dcfb61ca5d22f6507a8a5f1c2ba7ac65a5e36c742f10e833e4a60bf583",
-      "bytes": 13877,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
       "path": "icon/heart-on.png",
       "width": 150,
       "height": 150,
@@ -1614,17 +1418,6 @@
       "sha256": "e2f5ef3aa2c98a84045486068412ae1ce205d9a50c1134dae2047a5c8290e057",
       "bytes": 19278,
       "prompt": "A simple account key settings icon, 150x150 transparent. Match the existing icon family's warm chocolate-brown outline and muted brass/orange details, rounded puffy paper-clay style, soft upper-left highlight. One clear old-fashioned key angled gently upward-right, large round bow and two small teeth. No text, letters, numbers, logos, extra objects or background.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/lock.png",
-      "width": 150,
-      "height": 150,
-      "sha256": "db198768b52b2144d79a4ec724bbaf3d7cb30de321ad140ade648a130428ab64",
-      "bytes": 27288,
-      "prompt": "A simplified app settings-row lock icon, 150x150 transparent. Match reference's warm brown body and muted orange-brass shackle, thick clean rounded shape, gentle upper-left highlight, soft restrained shadow. Center one closed padlock with clear keyhole, no extra marks, no text, no background.",
       "method": "built-in image_gen",
       "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
@@ -1663,17 +1456,6 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "icon/paw-small.png",
-      "width": 60,
-      "height": 60,
-      "prompt": "Create ONE isolated production UI graphic: Small warm brown paw print. Final target 60x60 aspect60:60. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "5ad9dcaf774316e3960e958f4e5b90a9e73f1d4fe5109b0fd8908fc40091eda5",
-      "bytes": 6946,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
       "path": "icon/paw.png",
       "width": 150,
       "height": 150,
@@ -1691,39 +1473,6 @@
       "prompt": "Create ONE isolated production UI graphic: Orange map location pin. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
       "sha256": "5befb696d3ea748948f2e08caad9da96f1c532369434804a16e751ab9eaf7ac0",
       "bytes": 22014,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/plane.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Soft blue airplane silhouette. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "e4ee9e8ff2b1500d9d7d18d06b40e56ef1f73143a444ab1a00d298daaa2c744a",
-      "bytes": 24824,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/question.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Abstract rounded curved uncertainty glyph with dot. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "e521bded15d9dc8c18bf34cdbfc7af4039be07e195e947926f49acf75ee85d5a",
-      "bytes": 23841,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/search.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Brown magnifier. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "c5d1058557919a0dd6bd61d841e3b1159ce6903f7149cfb603b4e6dfdd8bec88",
-      "bytes": 27250,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
@@ -1759,50 +1508,6 @@
       "bytes": 27981,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "illust/account-backup.png",
-      "width": 600,
-      "height": 450,
-      "sha256": "d1d5a150e04db84d8344f4a2d7ef2a6bfd895f5297e218c89427f3cc2c2946e3",
-      "bytes": 309230,
-      "prompt": "A warm, clean empty-background app illustration for account backup and data transfer: the same Bengal Cat Mobby mascot from the references gently hugging a large soft cream cloud with a few small blank file tiles tucked inside. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. Friendly helpful expression, no text, letters, numbers, logos or extra objects. Transparent background, full composition centered, soft upper-left highlight and tiny grounding shadow.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "illust/account-goodbye.png",
-      "width": 600,
-      "height": 450,
-      "sha256": "8e6edca54a8be4f8e2bf63d3b7ee66fd550ce75dea43aaa8036fbbf802b3dd80",
-      "bytes": 285220,
-      "prompt": "A warm, gentle account-closure confirmation illustration of the same Bengal Cat Mobby mascot from the references. Seated with a slightly wistful but kind expression, shoulders relaxed and paws resting naturally; never fearful, guilty, crying, pleading, or blaming. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep green normal eye viewer-left, camera-lens eye viewer-right, chest directional pad viewer-left and exactly two round buttons viewer-right. No text, logos, warning marks, or extra objects. Transparent background, centered full character, calm upper-left lighting and soft tiny contact shadow.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "illust/account-signedout.png",
-      "width": 600,
-      "height": 450,
-      "sha256": "e4a7ccc9593a698d37b098f397137f75e4e4bd28695c0aef486048b4a4d55070",
-      "bytes": 305724,
-      "prompt": "A warm, clean empty-background app illustration of the same Bengal Cat Mobby mascot from the references after signing out: seated, gently waving one front paw goodbye with a calm reassuring smile. Clearly stylized smooth paper-clay character with simplified fur patches, no fine hairs or photographic texture. Keep normal green eye on viewer-left, camera-lens eye viewer-right, chest directional pad on viewer-left and exactly two round buttons on viewer-right. No text, letters, numbers, logos, stamp or extra objects. Transparent background, full figure centered, soft upper-left light and restrained contact shadow.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "illust/avatar-frame.png",
-      "width": 360,
-      "height": 360,
-      "sha256": "49364b09762d6602b75f04a0ef68b7a7cf1ad934c89768954b299c86ac9cf04c",
-      "bytes": 99307,
-      "prompt": "Edit this exact circular avatar frame. Preserve its circular cream and warm-brown puffy rim and the orange paw ornament overlapping the bottom edge. REMOVE the dark cat/person silhouette and REMOVE the cream disk inside the rim. Cut a completely open circular hole through the middle; the entire central aperture must have transparent alpha zero so a user photo can show through. The inside and outside of the ring are both transparent. No avatar, no silhouette, no checker pattern, no fill in the hole, no text. Keep the existing frame and paw only.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
     },
     {
@@ -1894,56 +1599,12 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "illust/paw-trail.png",
-      "width": 480,
-      "height": 240,
-      "prompt": "One trail of five faint warm beige paw print stamps, soft very low opacity. Flat stamped paper silhouette, NO gold NO bevel NO 3D NO highlight NO shadow. Four toe pads per paw. Wide480x240, true transparent background.",
-      "sha256": "a295e4cbc4c09f2e6c1cce8c2220361684dc4df0923fac34c7587b5781ecfa1b",
-      "bytes": 34690,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "illust/postmark-lines.png",
-      "width": 300,
-      "height": 120,
-      "prompt": "Create ONE isolated production UI graphic: Subtle brown parallel postal cancellation wavy lines. Final target 300x120 aspect300:120. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "676815ee405c624ab0f3c60f15473ad9a995c380848c06006f6c024b9b45a805",
-      "bytes": 38943,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "illust/sparkle.png",
-      "width": 120,
-      "height": 120,
-      "prompt": "Create ONE isolated production UI graphic: Single warm gold four point sparkle. Final target 120x120 aspect120:120. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "50cf3baa4bf4c9c87f56e84c7071edd97c1c0af660f45bbc78521db2f7cf303f",
-      "bytes": 13412,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
       "path": "illust/stamp-japan.png",
       "width": 360,
       "height": 360,
       "prompt": "Create ONE isolated production UI graphic: Coral circular postal cancellation with Mount Fuji stars and waves NO TEXT. Final target 360x360 aspect360:360. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
       "sha256": "f6114a23609b4800c41dab5ce61ccda6a49a2d5fe708ab786eab9c86081e632f",
       "bytes": 176924,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "illust/ticket-stack.png",
-      "width": 360,
-      "height": 300,
-      "prompt": "Create ONE isolated production UI graphic: Two overlapping ivory small adoption cards paw and heart motifs NO CATS NO TEXT. Final target 360x300 aspect360:300. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "290cb394e39402a0305ffc7766e2012e498eae1302948030de100dd89d78eefa",
-      "bytes": 144365,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
@@ -1980,6 +1641,43 @@
       "method": "built-in image_gen",
       "processing": "Alpha>8 trim; proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
+    },
+    {
+      "path": "login/calendar-base.png",
+      "width": 1000,
+      "height": 960,
+      "prompt": "Use case: stylized-concept. Create ONE production UI bitmap calendar backing, front-on orthographic, exact aspect 1000:960. Transparent outside rounded paper and through ring holes. Cozy softly puffy ivory paper #FFF8F0, very restrained fine paper texture, gentle warm brown edge, fine ivory highlight and faint downward shadow, matching reference cream panel. Two small soft rounded cream-orange binder rings at x=23% and 77%, entirely within top 9% of canvas, no metal. Blank peach-cream header band between y=9% and 19%, keep header center empty. All ring and header detail contained above y=19.8% (190 pixels at final size). Below y=20%, a single completely blank bright cream flat area for 7 columns and up to 6 rows of separate date tiles; no grid no dates. Rounded corners contained in 90px edge insets. Four edge middle strips stretch cleanly for nine-slice top190 right90 bottom90 left90. Fill canvas nearly entirely with 6px outer clearance. No text letters numerals symbols logos cats or extra decorations.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; piecewise Lanczos header/body fit: header ends at y190; original alpha preserved; no EXIF.",
+      "slice": {
+        "top": 190,
+        "right": 90,
+        "bottom": 90,
+        "left": 90
+      },
+      "sha256": "b92fabdb5239765e41c1de09fede50baf9aad9d9817f9776ab79c5696c932244",
+      "bytes": 1061881,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "login/calendar-weekbar.png",
+      "width": 840,
+      "height": 72,
+      "prompt": "Use case: stylized-concept. ONE production UI asset blank weekday band, exact aspect 840:72, horizontal long slim pill with small softly rounded ends. Pale orange cream slightly darker than ivory calendar paper, subtle puffy stationery paper texture, upper-left ivory highlight, very faint lower shadow. Straight parallel horizontal edges; only 36px left and right end caps at final840px are fixed, middle entirely uniform and horizontally stretchable. No divisions no grid no lettering no numerals no symbols. Transparent outside, nearly fill canvas with2px clearance. Cozy Nekomobby cream paper UI matching reference.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding trim; cap-preserving horizontal stretch to840x72, source semicircle caps mapped to36px; generated alpha preserved; no EXIF.",
+      "slice": {
+        "top": 0,
+        "right": 36,
+        "bottom": 0,
+        "left": 36
+      },
+      "sha256": "a4ede69b3ba4475cdc6383c1808603a6509ce265efe5850b2aa1b77c1eb84164",
+      "bytes": 75331,
+      "alphaMode": "transparent",
+      "stretchAxes": [
+        "x"
+      ]
     },
     {
       "path": "login/cell-bonus.png",
@@ -2035,23 +1733,6 @@
       "method": "built-in image_gen",
       "processing": "Alpha>8 trim; proportionate Lanczos fit, 8px minimum clearance, generated alpha preserved; no EXIF",
       "alphaMode": "transparent"
-    },
-    {
-      "path": "login/month-frame.png",
-      "width": 1000,
-      "height": 900,
-      "sha256": "ce441b85a6eef1bf432fc8f0269ccfd671b744234bffed26bc8a5d96e6675109",
-      "bytes": 896782,
-      "prompt": "Blank monthly calendar frame1000x900 transparent, production UI nine-slice panel. Puffy warm cream paper panel, subtle taupe outline and soft downward shadow fully within8px margins. A shallow ornamental header band across top where the app draws month text; no date grid, no numerals, no words. Keep all corners uniform rounded radius ~90 and edges clean, broad flat side rails; interior empty. Front view, matches reference card paper material.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent",
-      "slice": {
-        "top": 150,
-        "right": 90,
-        "bottom": 90,
-        "left": 90
-      }
     },
     {
       "path": "login/stamp-paw.png",
@@ -2175,36 +1856,14 @@
       "alphaMode": "opaque"
     },
     {
-      "path": "opening/cats-peek.png",
-      "width": 1179,
-      "height": 700,
-      "sha256": "d9738b4a4a0bf4cc3fb1004b586cb4f2c55a6ac96ae7e6d4798fdda6b03fd7c5",
-      "bytes": 431337,
-      "prompt": "Opening peek composite from unchanged assets/cat-mobbies/characters/british-shorthair, siamese-seal-point, bengal, ragdoll, russian-blue. Full upper original head/ears plus chest-top crop from canvas y0..900, arranged along bottom edge; five faces peek upward. Exact originals, no repaint.",
-      "method": "exact composite of existing character images",
-      "processing": "Crop original head and upper chest canvas rows0-900 to preserve ears; resize each to275x197 proportionally and alpha composite at lower edge of1179x700 transparent canvas; no source modifications, no EXIF",
-      "alphaMode": "transparent"
-    },
-    {
       "path": "opening/logo-hero.png",
       "width": 1000,
       "height": 420,
-      "sha256": "944c49d45509daab52fe5425387b98203ad2c5ef2bdb046e749e9565d76897ed",
-      "bytes": 186157,
-      "prompt": "Exact derivative of app/assets/ui/brand/logo-nekomobby.png, preserving the approved Japanese wordmark にゃこモビー, its letterforms and colors. Proportionally resized and centered on transparent1000x420 canvas.",
-      "method": "derived resized wordmark",
-      "processing": "Proportional Lanczos resize to940x297 max and center on1000x420 transparent canvas; no regeneration or lettering change",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "opening/paw-trail.png",
-      "width": 900,
-      "height": 160,
-      "sha256": "4a63f43080b642cbb0de4d3702dc1972bca1cbc59cc33d67c1404e706918ffb6",
-      "bytes": 80120,
-      "prompt": "Horizontal orange paw-print trail, transformed from the generated upward trail by rotating -15 degrees to align along the horizontal axis. Warm pale orange, 8 evenly spaced prints, transparent background.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; rotate-15deg, proportionate Lanczos fit, 5px minimum clearance, generated alpha preserved; no EXIF",
+      "sha256": "555751b423bae62a859aaea264048c6ae9abc5c99a0867cd6a6ff3b926cf7acc",
+      "bytes": 253542,
+      "prompt": "Use approved にゃっコレ master logo without regeneration. Derived from brand/logo-nekomobby.png; Lanczos proportional resize to 940x297, centered at (30,61) on transparent 1000x420 canvas.",
+      "method": "Pillow deterministic derivation from brand/logo-nekomobby.png",
+      "processing": "Derived from brand/logo-nekomobby.png; Lanczos proportional resize to 940x297, centered at (30,61) on transparent 1000x420 canvas.",
       "alphaMode": "transparent"
     },
     {
@@ -2342,55 +2001,6 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "panel/divider-v.png",
-      "width": 12,
-      "height": 300,
-      "prompt": "Fine vertical warm brown line x5..6, y6..293, alpha90; transparent outside.",
-      "method": "procedural raster",
-      "processing": "Exact numeric RGBA bitmap, no app code changes",
-      "slice": {
-        "top": 12,
-        "right": 0,
-        "bottom": 12,
-        "left": 0
-      },
-      "stretchAxes": [
-        "y"
-      ],
-      "sha256": "c5a24b82c3f323da7cc42a309d05c4b414acef39a7f00fd16787339fbe7a1e91",
-      "bytes": 275,
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "panel/frame-cat-photo.png",
-      "width": 192,
-      "height": 192,
-      "prompt": "Single simple empty ivory rounded square photo frame. Thin cream border only radius36 at final192x192. Center completely transparent. NO cats NO figures NO flowers NO leaves NO motifs NO text. Plain understated paper surface soft downward shadow. Orthographic front view. True transparency.",
-      "sha256": "80a2e221a0d7ecc5296498b0e20b0358cd87ce7986480058dc0a3781c66e174d",
-      "bytes": 15900,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "slice": {
-        "top": 48,
-        "right": 48,
-        "bottom": 48,
-        "left": 48
-      },
-      "regions": {
-        "photo": {
-          "x": 20,
-          "y": 21,
-          "w": 152,
-          "h": 148
-        }
-      },
-      "stretchAxes": [
-        "x",
-        "y"
-      ],
-      "alphaMode": "transparent"
-    },
-    {
       "path": "panel/info-table.png",
       "width": 300,
       "height": 150,
@@ -2498,27 +2108,6 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "panel/sheet-bottom.png",
-      "width": 1179,
-      "height": 300,
-      "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank cream bottom sheet top corners radius72 bottom corners square 9slice. File panel/sheet-bottom.png. Target aspect 1179:300, final exact 1179x300px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
-      "sha256": "2632a46af53c68623ed588753157c4828d4b5dad828c6888913bbb962207d722",
-      "bytes": 421330,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "slice": {
-        "top": 90,
-        "right": 90,
-        "bottom": 24,
-        "left": 90
-      },
-      "stretchAxes": [
-        "x",
-        "y"
-      ],
-      "alphaMode": "transparent"
-    },
-    {
       "path": "panel/sheet-detail.png",
       "width": 1179,
       "height": 600,
@@ -2554,66 +2143,6 @@
       "note": "Fixed300px width; vertical9slice preserves center tail without horizontal distortion.",
       "sha256": "f32a49ef4656a819d9c097de53c051a31fc0ddc659137befc5bdea88d7dd274c",
       "bytes": 53747,
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "panel/warning-card.png",
-      "width": 960,
-      "height": 420,
-      "sha256": "259293327b5c01efc2b2dc622facbbae9c7d0cbe6f130fb1cfe5e2d32cfb93dd",
-      "bytes": 375403,
-      "prompt": "One completely blank warning-information card for an account closure screen, exact 960x420 wide landscape ratio, transparent outside. Soft cream paper panel with a very subtle dusty-rose tint along the raised edge, rounded corners and contained gentle shadow. Blank quiet interior for app text. No text, icon, logo, lines or symbols. Puffy soft paper-clay material, not alarming, 9-slice safe straight central edges.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent",
-      "slice": {
-        "top": 60,
-        "right": 60,
-        "bottom": 60,
-        "left": 60
-      }
-    },
-    {
-      "path": "share/discovery-card-story.png",
-      "width": 1080,
-      "height": 1920,
-      "prompt": "Generate ONE EMPTY share/discovery-card-story.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall story cream paper discovery frame transparent photo aperture, empty name date hint rarity fields paw and paper tape decorations. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1080},\"catName\":{\"x\":90,\"y\":1290,\"w\":660,\"h\":100},\"encounterDate\":{\"x\":90,\"y\":1430,\"w\":900,\"h\":70},\"conditionHint\":{\"x\":90,\"y\":1540,\"w\":900,\"h\":90},\"rarity\":{\"x\":780,\"y\":1290,\"w\":210,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "403bb0f9bfd9a3ae6edeb76a2812c8e6ec9ab629999c54d3f1e4dfc7a3238186",
-      "bytes": 995474,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "photo": {
-          "x": 129,
-          "y": 263,
-          "w": 830,
-          "h": 1002
-        },
-        "catName": {
-          "x": 120,
-          "y": 1360,
-          "w": 600,
-          "h": 100
-        },
-        "rarity": {
-          "x": 800,
-          "y": 1360,
-          "w": 190,
-          "h": 100
-        },
-        "encounterDate": {
-          "x": 120,
-          "y": 1530,
-          "w": 840,
-          "h": 60
-        },
-        "conditionHint": {
-          "x": 120,
-          "y": 1660,
-          "w": 790,
-          "h": 100
-        }
-      },
       "alphaMode": "transparent"
     },
     {
@@ -2657,386 +2186,6 @@
           "h": 104
         }
       },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/photo-frame-polaroid.png",
-      "width": 1080,
-      "height": 1350,
-      "prompt": "Generate ONE EMPTY share/photo-frame-polaroid.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty ivory polaroid photo overlay with large transparent photo aperture, wide blank lower date border. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "1031b35e30768527cb53e8ab0446405aa2de8296929e25cba1e42328e69dcc3e",
-      "bytes": 745741,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "photo": {
-          "x": 142,
-          "y": 133,
-          "w": 812,
-          "h": 952
-        },
-        "date": {
-          "x": 96,
-          "y": 1120,
-          "w": 888,
-          "h": 196
-        }
-      },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/photo-frame-stamp.png",
-      "width": 1080,
-      "height": 1350,
-      "prompt": "Generate ONE EMPTY share/photo-frame-stamp.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty scalloped postage stamp frame with wavy postmark, transparent photo aperture. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "2c0846077449acb63f7ad87cbdd78e7c7513002c61482cc470035918f88f6bab",
-      "bytes": 981716,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "photo": {
-          "x": 107,
-          "y": 209,
-          "w": 849,
-          "h": 874
-        },
-        "date": {
-          "x": 116,
-          "y": 1152,
-          "w": 840,
-          "h": 112
-        }
-      },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/photo-frame-travel.png",
-      "width": 1080,
-      "height": 1350,
-      "prompt": "Generate ONE EMPTY share/photo-frame-travel.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty travel photo frame transparent photo aperture pastel map and plane route border small empty flag box. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":90,\"w\":900,\"h\":1020},\"date\":{\"x\":120,\"y\":1160,\"w\":840,\"h\":90},\"flag\":{\"x\":840,\"y\":1160,\"w\":120,\"h\":90}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "f63c01d186c7edf4f5c81b62c628cce605b11e05865a2b111cef20c08ec48e4c",
-      "bytes": 795842,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "photo": {
-          "x": 137,
-          "y": 173,
-          "w": 795,
-          "h": 965
-        },
-        "date": {
-          "x": 140,
-          "y": 1196,
-          "w": 620,
-          "h": 96
-        },
-        "flag": {
-          "x": 808,
-          "y": 1196,
-          "w": 120,
-          "h": 96
-        }
-      },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/travel-card-story.png",
-      "width": 1080,
-      "height": 1920,
-      "prompt": "Generate ONE EMPTY share/travel-card-story.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall story empty passport travel frame transparent photo aperture two empty country boxes arrow travel days visited count fields. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":1000},\"previousCountry\":{\"x\":90,\"y\":1240,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":1240,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1400,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1400,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1560,\"w\":900,\"h\":70}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "f2c60b1912135a281a41079615cb4430d8609eb668e4d358b39bdccef52694bb",
-      "bytes": 1236334,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "photo": {
-          "x": 174,
-          "y": 301,
-          "w": 745,
-          "h": 938
-        },
-        "previousCountry": {
-          "x": 80,
-          "y": 1316,
-          "w": 368,
-          "h": 112
-        },
-        "currentCountry": {
-          "x": 632,
-          "y": 1316,
-          "w": 364,
-          "h": 112
-        },
-        "travelDays": {
-          "x": 144,
-          "y": 1504,
-          "w": 320,
-          "h": 116
-        },
-        "visitedCountries": {
-          "x": 672,
-          "y": 1504,
-          "w": 304,
-          "h": 116
-        },
-        "date": {
-          "x": 172,
-          "y": 1680,
-          "w": 708,
-          "h": 84
-        }
-      },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/travel-card.png",
-      "width": 1080,
-      "height": 1350,
-      "prompt": "Generate ONE EMPTY share/travel-card.png transparent image frame overlay. Exact final canvas 1080x1350 aspect1080:1350. Empty passport boarding pass travel frame, transparent photo aperture, two empty country boxes with arrow between, blank travel days and visited count areas. All decorations strictly OUTSIDE these reserved rectangles, photo is fully transparent, text rectangles blank cream: {\"photo\":{\"x\":90,\"y\":150,\"w\":900,\"h\":650},\"previousCountry\":{\"x\":90,\"y\":890,\"w\":360,\"h\":90},\"currentCountry\":{\"x\":630,\"y\":890,\"w\":360,\"h\":90},\"travelDays\":{\"x\":90,\"y\":1040,\"w\":400,\"h\":80},\"visitedCountries\":{\"x\":590,\"y\":1040,\"w\":400,\"h\":80},\"date\":{\"x\":90,\"y\":1180,\"w\":900,\"h\":70}}. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "a2826298a8367b8855e0fe08c37f1b6f459116db01edc36dc03dfe2beff86694",
-      "bytes": 842629,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "photo": {
-          "x": 100,
-          "y": 154,
-          "w": 879,
-          "h": 700
-        },
-        "previousCountry": {
-          "x": 76,
-          "y": 916,
-          "w": 356,
-          "h": 104
-        },
-        "currentCountry": {
-          "x": 644,
-          "y": 916,
-          "w": 356,
-          "h": 104
-        },
-        "travelDays": {
-          "x": 92,
-          "y": 1084,
-          "w": 416,
-          "h": 84
-        },
-        "visitedCountries": {
-          "x": 576,
-          "y": 1084,
-          "w": 416,
-          "h": 84
-        },
-        "date": {
-          "x": 84,
-          "y": 1228,
-          "w": 912,
-          "h": 72
-        }
-      },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/video-intro.png",
-      "width": 1080,
-      "height": 1920,
-      "prompt": "Generate ONE EMPTY share/video-intro.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall transparent video opening overlay paw and small generic cat ear motif only, no logo lettering. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "a9672f8b5a035b8c538ab09ce769f762c1c5273e29d929b9af56bbc8e816b0bd",
-      "bytes": 920001,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "content": {
-          "x": 123,
-          "y": 210,
-          "w": 834,
-          "h": 1510
-        },
-        "logo": {
-          "x": 223,
-          "y": 1560,
-          "w": 634,
-          "h": 100
-        }
-      },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/video-outro.png",
-      "width": 1080,
-      "height": 1920,
-      "prompt": "Generate ONE EMPTY share/video-outro.png transparent image frame overlay. Exact final canvas 1080x1920 aspect1080:1920. Tall transparent video ending overlay paw and small generic cat ear motif only, no logo lettering. Cream warm paper #FFF8F0, brown #4A3B32 and orange #F28B20 accents, soft rounded corners thin ivory highlights very subtle downward shadow, restrained cozy stationery style. Only perimeter frame and sparse requested decorations. Absolutely NO photograph, NO scenery, NO character, NO cat drawing, NO text letters numbers logo lettering watermark words, NO fake content placeholders, NO UI buttons. Central photo hole truly transparent. Empty text spaces contain flat cream paper only. Do not add floral garlands. Keep all drawing within canvas. Clean alpha without matte or fringes. No app screen mockup.",
-      "sha256": "a648b45d8c199f7cb0aaa21dc4b73b14516fcd79a773948835a94521332f8341",
-      "bytes": 831068,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "regions": {
-        "content": {
-          "x": 128,
-          "y": 175,
-          "w": 823,
-          "h": 1545
-        },
-        "logo": {
-          "x": 228,
-          "y": 1560,
-          "w": 623,
-          "h": 100
-        }
-      },
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "share/watermark.png",
-      "width": 360,
-      "height": 120,
-      "sha256": "16be0f4c3a89b6bb9109bb4b4f5cdaf36d9b7f9df42b3e459f51d0b1167cf2ef",
-      "bytes": 50492,
-      "prompt": "Create replacement share watermark. Image1 is approved NEW app logo, image2 is old watermark style reference only. Use exact text にゃこモビー, small ゃ and clear ー, same rounded letterforms and paw accent as image1. One compact horizontal logo, target360x120. Muted warm chocolate brown and soft orange, semi-transparent ink (approximately60% opacity), genuinely transparent background. No rectangle, no other words, no extra symbols. Upper-left soft paper highlight, restrained shading, no photograph. All logo elements fit.",
-      "method": "built-in image_gen",
-      "processing": "Alpha trim and proportionate fit360x120; multiply generated alpha by0.6 for semitransparent watermark; no EXIF",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/active-glow.png",
-      "width": 300,
-      "height": 300,
-      "prompt": "ONE standalone Very soft translucent orange radial glow no hard edge. UI raster asset exact target 300x300, aspect300:300. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
-      "sha256": "b6ec110d9f0ff7940e032eacf754629f17ad4d7d7b8982b6206f3a1060b7e0a4",
-      "bytes": 82411,
-      "method": "built-in image_gen",
-      "processing": "Resize original transparent effect canvas without trimming feathered alpha",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/bg.png",
-      "width": 1179,
-      "height": 300,
-      "prompt": "Edit the referenced navigation bar background into one production game UI asset. Keep same warm ivory paper color, soft puffy cream surface, thin warm brown outline, top edge white highlight, TOP left and right large round corners. Canvas1179x300 aspect3.93:1. Critical shape: BOTTOM corners SQUARE, vertical side edges go straight all the way to canvas bottom, cream panel extends beyond bottom crop. Absolutely NO bottom horizontal brown outline, NO bottom shadow, NO bottom highlight, NO rounded bottom corners. Bottom row is cream fill across width except thin side borders. Only top corner exteriors and subtle upward shadow transparent; main surface opaque. Top corners fit90x90 slice caps. Blank no icons, text, symbols or extra decoration. True transparent background, not checkerboard.",
-      "sha256": "44951f399f9a384693ec723f891aee5aef4a44c4faa7ea82ef7451af09bb9dac",
-      "bytes": 214053,
-      "method": "built-in image_gen",
-      "processing": "Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge; normalize corner geometry into required slice caps",
-      "slice": {
-        "top": 90,
-        "right": 90,
-        "bottom": 0,
-        "left": 90
-      },
-      "stretchAxes": [
-        "x",
-        "y"
-      ],
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/deai-off.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Edit the reference icon. Recolor all orange areas to muted warm brown grey #8B7667 and any cream or white details to pale ivory. Preserve EXACT same shape silhouette linework internal geometry composition and lighting. Do not add blue green orange details or extra elements. Single monochrome inactive tab icon, same proportions. Transparent background. Final150x150.",
-      "sha256": "5fa9f179a750ca7b640975fc6241fa1df91f763f205d9e0023946f7e9c2e8496",
-      "bytes": 28248,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/deai-on.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "ONE standalone cat face silhouette symbol orange same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
-      "sha256": "15a381eaea0ea8fee03a363b2510c049b43774dfdba419622c293bcfcede84c2",
-      "bytes": 26058,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/home-off.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Edit the reference icon. Recolor all orange areas to muted warm brown grey #8B7667 and any cream or white details to pale ivory. Preserve EXACT same shape silhouette linework internal geometry composition and lighting. Do not add blue green orange details or extra elements. Single monochrome inactive tab icon, same proportions. Transparent background. Final150x150.",
-      "sha256": "440d3b7ff85486c55baedf5229e3b490447f4185035028284ab6334ee91e61bc",
-      "bytes": 22205,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/home-on.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "One home tab ON icon for cozy Japanese cat collection iOS UI, final150x150 square. Single rounded orange #F28B20 house silhouette with tiny ivory rounded doorway and tiny circular window. Restrained thick rounded shape, subtle warm paper texture and lightly puffy edge, upper-left illumination, very soft downward shadow. Straight-on orthographic, centered generous8percent clearance. No text, no label, no background plate, no cats. Genuine transparent background, clean smooth alpha silhouette, no fringe, no stray flecks. Match supplied app reference home tab.",
-      "sha256": "17ec388ed78ab2a6eb3c6c04e0adfcdae809f159114597110753c8f06f2ff974",
-      "bytes": 24212,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/underline.png",
-      "width": 210,
-      "height": 30,
-      "prompt": "ONE standalone Orange slim rounded underline capsule. UI raster asset exact target 210x30, aspect210:30. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
-      "sha256": "e72faaeeffedc394f8d9ee1eb4f21d80cdba2ab22dd8527439b25825c598cb59",
-      "bytes": 5876,
-      "method": "built-in image_gen",
-      "processing": "Height-normalized generated strip; preserve end caps, resize only middle to target width",
-      "slice": {
-        "top": 0,
-        "right": 18,
-        "bottom": 0,
-        "left": 18
-      },
-      "stretchAxes": [
-        "x"
-      ],
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/world-off.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Edit the reference icon. Recolor all orange areas to muted warm brown grey #8B7667 and any cream or white details to pale ivory. Preserve EXACT same shape silhouette linework internal geometry composition and lighting. Do not add blue green orange details or extra elements. Single monochrome inactive tab icon, same proportions. Transparent background. Final150x150.",
-      "sha256": "b7e438c2f93ac908a539e54b85caaa608ad94b8a7d7db199e3a206a2c750108b",
-      "bytes": 40261,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/world-on.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "ONE standalone globe latitude longitude symbol orange same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
-      "sha256": "af8aa6cbb1c69de1a03f398ef62d85a13eba384a283842073c4888aa3ef36acd",
-      "bytes": 39773,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/zukan-off.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Edit the reference icon. Recolor all orange areas to muted warm brown grey #8B7667 and any cream or white details to pale ivory. Preserve EXACT same shape silhouette linework internal geometry composition and lighting. Do not add blue green orange details or extra elements. Single monochrome inactive tab icon, same proportions. Transparent background. Final150x150.",
-      "sha256": "1f6ab4fc781107d848f91cb405f2082e2feab92f9f1b275fbe4026d14d4d16ba",
-      "bytes": 20222,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "tabbar/zukan-on.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "ONE standalone open book symbol orange same silhouette both states. UI raster asset exact target 150x150, aspect150:150. Single isolated component only, NOT a screen or collection. Cozy warm cream/brown/orange paper UI family, softly puffy rounded forms, thin upper-left highlight very soft low contrast downward shadow, readable simple silhouette. Palette #FFF8F0 #4A3B32 #F28B20 #5E9B3F #BFD8FF #E1D4FF #E5A23B as appropriate. No actual cats or characters except explicitly requested silhouette or tiny map icons. NO flowers NO extra leaves NO ornamental corners NO extra objects. Absolutely NO TEXT NO LETTERS NO NUMERALS except the requested question glyph. True transparent background clean alpha no fringe no stray specks. Orthographic front view. Artwork centered and fits canvas with minimal margin. If 9slice, flat undecorated central bands and all edge midpoints stretch safe.",
-      "sha256": "2f3edfcdc7fd72f414fea5712724540cc6d120bab0df2d09a206758fb9afef60",
-      "bytes": 20389,
-      "method": "procedural RGBA gradient",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
     }
   ],

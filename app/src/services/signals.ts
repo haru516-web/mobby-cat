@@ -25,15 +25,17 @@ export async function requestStepAccess(): Promise<void> {
   } catch {}
 }
 
-// その日（0:00〜20:00、または今まで）の歩数。iOS は過去7日分まで取得できる。
+// その出会いの日の歩数：締め切り（当日20:00）までの24時間（前日20:00〜当日20:00、または今まで）。
+// 電池・起動時刻の観測と同じ24時間にそろえる（B-09）。iOS は過去7日分まで取得できる。
 // 許可はここでは求めない（候補づくりの途中で、説明なしにダイアログが出てしまうため）
 export async function readSteps(dayKey: string, now: Date): Promise<number | null> {
   try {
     if (!(await Pedometer.isAvailableAsync())) return null;
     if (!(await Pedometer.getPermissionsAsync()).granted) return null;
-    const start = parseDay(dayKey);
-    const end = new Date(start);
+    const end = parseDay(dayKey);
     end.setHours(REVEAL_HOUR, 0, 0, 0);
+    const start = new Date(end);
+    start.setDate(start.getDate() - 1);
     const res = await Pedometer.getStepCountAsync(start, end < now ? end : now);
     return res.steps;
   } catch {

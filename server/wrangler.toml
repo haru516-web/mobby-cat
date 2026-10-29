@@ -1,0 +1,53 @@
+name = "nyakomobby-server"
+main = "src/index.ts"
+compatibility_date = "2026-09-30"
+compatibility_flags = ["nodejs_compat"]
+
+# Hourly clean-up of rate-limit counters (so an address is not kept past its window).
+[triggers]
+crons = ["23 * * * *"]
+
+# Created with `npx wrangler d1 create nyakomobby` (2026-10-28). The id is not a secret; never commit account credentials.
+[[d1_databases]]
+binding = "DB"
+database_name = "nyakomobby"
+database_id = "527c0d28-1d3a-48e2-9d26-109e79773bc3"
+
+[vars]
+APPLE_BUNDLE_ID = "com.mobbycat.app"
+# Sandbox is accepted so TestFlight and App Review purchases work. Keep it after the release too: App Review buys in the
+# Sandbox for every later update. Only the developer's testers, TestFlight and App Review can make Sandbox purchases;
+# they are stored with environment = Sandbox, so leave them out of sales figures.
+PURCHASE_ENVIRONMENTS = "Production,Sandbox"
+# Product ids are provisional; ids and prices must match App Store Connect before release.
+# A product is either a one-time purchase (tickets or matatabi) or a plan; never both.
+PRODUCT_CATALOG_JSON = '''{"com.mobbycat.app.ticket.1":{"tickets":1,"priceYen":200},"com.mobbycat.app.ticket.6":{"tickets":6,"priceYen":1000},"com.mobbycat.app.matatabi.5":{"matatabi":5,"priceYen":300},"com.mobbycat.app.matatabipass.monthly":{"plan":"matatabi_pass","monthlyTickets":8,"priceYen":1500}}'''
+APPLE_ROOT_CERTIFICATES = '''
+-----BEGIN CERTIFICATE-----
+MIICQzCCAcmgAwIBAgIILcX8iNLFS5UwCgYIKoZIzj0EAwMwZzEbMBkGA1UEAwwS
+QXBwbGUgUm9vdCBDQSAtIEczMSYwJAYDVQQLDB1BcHBsZSBDZXJ0aWZpY2F0aW9u
+IEF1dGhvcml0eTETMBEGA1UECgwKQXBwbGUgSW5jLjELMAkGA1UEBhMCVVMwHhcN
+MTQwNDMwMTgxOTA2WhcNMzkwNDMwMTgxOTA2WjBnMRswGQYDVQQDDBJBcHBsZSBS
+b290IENBIC0gRzMxJjAkBgNVBAsMHUFwcGxlIENlcnRpZmljYXRpb24gQXV0aG9y
+aXR5MRMwEQYDVQQKDApBcHBsZSBJbmMuMQswCQYDVQQGEwJVUzB2MBAGByqGSM49
+AgEGBSuBBAAiA2IABJjpLz1AcqTtkyJygRMc3RCV8cWjTnHcFBbZDuWmBSp3ZHtf
+TjjTuxxEtX/1H7YyYl3J6YRbTzBPEVoA/VhYDKX1DyxNB0cTddqXl5dvMVztK517
+IDvYuVTZXpmkOlEKMaNCMEAwHQYDVR0OBBYEFLuw3qFYM4iapIqZ3r6966/ayySr
+MA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMAoGCCqGSM49BAMDA2gA
+MGUCMQCD6cHEFl4aXTQY2e3v9GwOAEZLuN+yRhHFD/3meoyhpmvOwgPUnPWTxnS4
+at+qIxUCMG1mihDK1A3UT82NQz60imOlM27jbdoXt2QfyFMm+YhidDkLF1vLUagM
+6BgD56KyKA==
+-----END CERTIFICATE-----
+'''
+
+# Per-address limits, counted by Cloudflare at the edge (in memory, never in the database). The app makes a few calls a
+# minute; Apple's notifications come from Apple's addresses and get a larger allowance (Apple retries after a 429).
+[[ratelimits]]
+name = "IP_LIMITER"
+namespace_id = "1001"
+simple = { limit = 120, period = 60 }
+
+[[ratelimits]]
+name = "NOTIFY_LIMITER"
+namespace_id = "1002"
+simple = { limit = 600, period = 60 }

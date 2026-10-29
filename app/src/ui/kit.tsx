@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { shownRarity } from '../core/recipes';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import { CatDef } from '../data/catalog';
-import { useGame } from '../core/game';
+import { matatabiOf, ticketsOf, useGame } from '../core/game';
 import { SfxId } from '../data/audioAssets';
 import { playSfx } from '../services/audio';
 import { hapticTap } from '../services/haptics';
@@ -97,9 +97,9 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSetti
         <Tap onPress={onShop}>
           <Slice name="panel/pill-currency" style={k.currency}>
             <Icon name="icon/ticket-paw" size={20} />
-            <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{state.tickets}</T>
+            <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{ticketsOf(state)}</T>
             <Icon name="icon/matatabi-leaf" size={20} />
-            <T w="x" size={14} style={{ marginLeft: 3 }}>{state.matatabi}</T>
+            <T w="x" size={14} style={{ marginLeft: 3 }}>{matatabiOf(state)}</T>
           </Slice>
         </Tap>
       </TourAnchor>
@@ -171,7 +171,7 @@ export function Polaroid({ width, children, style }: { width: number; children: 
 }
 
 // 設定のスイッチ
-export function Toggle({ value, onChange }: { value: boolean; onChange: (v: boolean) => void }) {
+export function Toggle({ value, onChange, label }: { value: boolean; onChange: (v: boolean) => void; label: string }) {
   return (
     <Pressable
       onPress={() => {
@@ -179,22 +179,28 @@ export function Toggle({ value, onChange }: { value: boolean; onChange: (v: bool
         hapticTap();
         onChange(!value);
       }}
-      accessibilityRole="switch" accessibilityState={{ checked: value }}>
+      accessibilityRole="switch" accessibilityLabel={label} accessibilityState={{ checked: value }}>
       <Pic name={value ? 'button/toggle-on' : 'button/toggle-off'} height={36} />
     </Pressable>
   );
 }
 
 export type TabKey = 'home' | 'deai' | 'zukan' | 'world';
+// 世界（旅猫・世界ミッション・世界の猫）は、サーバーが整うまで出さない。サンプル表示のまま審査に出すと、未完成の機能とみなされる
+export const WORLD_ON = false;
 const TABS: { key: TabKey; label: string }[] = [
   { key: 'home', label: 'ホーム' }, { key: 'deai', label: '出会い' }, { key: 'zukan', label: '図鑑' }, { key: 'world', label: '世界' },
-];
+].filter((t) => WORLD_ON || t.key !== 'world') as { key: TabKey; label: string }[];
+export const NAV_KEYS: TabKey[] = TABS.map((t) => t.key);
 
 // ナビバーは画面下に重ねて置く。各画面はこの高さぶんだけ下に余白を取る
 export const TabPadCtx = React.createContext(0);
 export const useTabPad = () => React.useContext(TabPadCtx);
 
 export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: (t: TabKey) => void; bottomInset: number }) {
+  const { state, todayKey } = useGame();
+  // 今日の候補がいて、無料のお迎えがまだなら「出会い」に赤い点
+  const waiting = !!state.days[todayKey]?.candidates.length && !state.days[todayKey].freePick;
   // 4つの独立ボタンが画面下に浮かぶ。選択中は光を敷いて、少し大きく上に出す
   return (
     <View pointerEvents="box-none" style={[k.tabbar, { paddingBottom: Math.max(bottomInset, 8) }]}>
@@ -208,6 +214,7 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
             <View style={[k.navBox, on && k.navBoxOn]}>
               {on && <Pic name="navbtn/glow" width={NAV_SIZE * 1.3} style={k.navGlow} />}
               <Pic name={`navbtn/${t.key}-${on ? 'on' : 'off'}`} width={NAV_SIZE} />
+              {t.key === 'deai' && waiting && <Pic name="button/bell-badge" height={16} style={k.navDot} />}
             </View>
             <T w="x" size={11} color={on ? C.accent : C.sub} style={k.navLabel}>{t.label}</T>
           </Pressable>
@@ -233,6 +240,7 @@ const k = StyleSheet.create({
   navBox: { width: NAV_SIZE, height: NAV_SIZE, alignItems: 'center', justifyContent: 'center' },
   navBoxOn: { transform: [{ translateY: -4 }, { scale: 1.08 }] },
   navGlow: { position: 'absolute', left: -NAV_SIZE * 0.15, top: -NAV_SIZE * 0.15 },
+  navDot: { position: 'absolute', right: 2, top: 2 },
   navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 5 },
   gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   bellBadge: { position: 'absolute', right: 2, top: 2 },

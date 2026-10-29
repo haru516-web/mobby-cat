@@ -6,6 +6,8 @@ import { Tap } from '../../ui/kit';
 import { Pic, Slice } from '../../ui/Slice';
 
 const WEEK = ['日', '月', '火', '水', '木', '金', '土'];
+// 台紙（login/calendar-base）の左右の固定幅（pt）。日付のマスと曜日の帯は、この内側に並べる
+const FRAME_PAD = 30;
 const pad2 = (n: number) => String(n).padStart(2, '0');
 
 // ログインした日にスタンプが押される月のカレンダー。記録は起動した日（暦日）から作る
@@ -31,7 +33,7 @@ export default function LoginRecordScreen({ onClose, width }: { onClose: () => v
   };
 
   const inner = Math.min(width, 430) - 32;
-  const cell = Math.floor((inner - 36) / 7);
+  const cell = Math.floor((inner - 2 * FRAME_PAD) / 7);
   const cells: (number | null)[] = [...Array(firstWeekday).fill(null), ...days];
   while (cells.length % 7) cells.push(null);
 
@@ -46,7 +48,7 @@ export default function LoginRecordScreen({ onClose, width }: { onClose: () => v
           </Tap>
         </View>
 
-        <Slice name="login/month-frame" style={s.frame}>
+        <Slice name="login/calendar-base" style={s.frame}>
           <View style={s.monthRow}>
             <Tap onPress={() => move(-1)} disabled={!canPrev} style={{ opacity: canPrev ? 1 : 0.3 }} accessibilityLabel="前の月">
               <Pic name="login/arrow-prev" height={34} />
@@ -57,11 +59,11 @@ export default function LoginRecordScreen({ onClose, width }: { onClose: () => v
             </Tap>
           </View>
 
-          <View style={s.weekRow}>
+          <Slice name="login/calendar-weekbar" style={[s.weekRow, { width: cell * 7 + 12 }]}>
             {WEEK.map((w, i) => (
               <T key={w} w="x" size={11} color={i === 0 ? '#C0603A' : i === 6 ? '#4A78B5' : C.sub} style={{ width: cell, textAlign: 'center' }}>{w}</T>
             ))}
-          </View>
+          </Slice>
 
           {count > 0 || isCurrent ? (
             <View style={s.grid}>
@@ -103,9 +105,10 @@ export default function LoginRecordScreen({ onClose, width }: { onClose: () => v
 
 const s = StyleSheet.create({
   wrap: { padding: 16, paddingBottom: 40 },
-  frame: { marginTop: 14, paddingTop: 20, paddingBottom: 20, paddingHorizontal: 18 },
-  monthRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
-  weekRow: { flexDirection: 'row', marginBottom: 2 },
+  // 上の 63pt は、台紙の輪と見出し帯。月の行は、その帯の中に置く
+  frame: { marginTop: 14, paddingTop: 29, paddingBottom: 34, paddingHorizontal: FRAME_PAD },
+  monthRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
+  weekRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 24, alignSelf: 'center', marginBottom: 8 },
   grid: { flexDirection: 'row', flexWrap: 'wrap' },
   dayNum: { position: 'absolute', left: 0, right: 0, top: 4, textAlign: 'center' },
   summary: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 14, paddingHorizontal: 6 },

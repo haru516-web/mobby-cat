@@ -1,0 +1,131 @@
+{
+  "sources": [
+    {
+      "path": "login/calendar-base.png",
+      "source": "exec-be573a7a-67a2-4c84-973d-7aa953b9f1b4.png",
+      "sourceSha256": "9acb9515bd708ca1cb54d25ee2c1cf81c6a3d970f394d695d54bebc6bfb10308",
+      "crop": [
+        7,
+        6,
+        1274,
+        1220
+      ]
+    },
+    {
+      "path": "login/calendar-weekbar.png",
+      "source": "exec-28545d1d-0bb7-48fe-a2b2-ed8e7d405155.png",
+      "sourceSha256": "2c05f04b6169c2f51aaf08da2d198ac557d6bc482ddb838945422eebca84db7b",
+      "crop": [
+        16,
+        294,
+        1899,
+        518
+      ]
+    },
+    {
+      "path": "home/upcoming-card.png",
+      "source": "exec-4ef672a6-1196-41ce-8686-30a6000cba89.png",
+      "sourceSha256": "4443b0d977d721fdbdb6dc4eb11eb1266bca4fece87094924f39fc74eaed4cd5",
+      "crop": [
+        23,
+        52,
+        1975,
+        722
+      ]
+    },
+    {
+      "path": "home/upcoming-well.png",
+      "source": "exec-385adb90-1e93-41fa-9393-62c3e46dfa3a.png",
+      "sourceSha256": "059db44aa69d587a1a00428fcc307b2cb0ada925d0a64e8aea188d93e9e2ddbd",
+      "crop": [
+        13,
+        17,
+        1244,
+        1235
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "path": "login/calendar-base.png",
+      "size": [
+        1000,
+        960
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "slice": {
+        "top": 190,
+        "right": 90,
+        "bottom": 90,
+        "left": 90
+      },
+      "sha256": "b92fabdb5239765e41c1de09fede50baf9aad9d9817f9776ab79c5696c932244"
+    },
+    {
+      "path": "login/calendar-weekbar.png",
+      "size": [
+        840,
+        72
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "slice": {
+        "top": 0,
+        "right": 36,
+        "bottom": 0,
+        "left": 36
+      },
+      "sha256": "a4ede69b3ba4475cdc6383c1808603a6509ce265efe5850b2aa1b77c1eb84164"
+    },
+    {
+      "path": "home/upcoming-card.png",
+      "size": [
+        720,
+        200
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "slice": {
+        "top": 70,
+        "right": 70,
+        "bottom": 70,
+        "left": 70
+      },
+      "sha256": "39afdb1db58fceb7433ef56b9d65d0d2c0b4da6d642cc7bedf763a0206363518"
+    },
+    {
+      "path": "home/upcoming-well.png",
+      "size": [
+        192,
+        192
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "slice": {
+        "top": 56,
+        "right": 56,
+        "bottom": 56,
+        "left": 56
+      },
+      "sha256": "fe41a6fde4cc53857621350dffd14c7d0e8bd6b8597961ed48c3dc3eea0aad48"
+    }
+  ],
+  "existingCellsUnchanged": true,
+  "previewCardPt": [
+    290,
+    98
+  ],
+  "previewWellPt": [
+    64,
+    64
+  ]
+}

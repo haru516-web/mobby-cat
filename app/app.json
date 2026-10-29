@@ -1,17 +1,19 @@
 {
   "expo": {
-    "name": "にゃこモビー",
+    "name": "にゃっコレ",
     "slug": "mobby-cat",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/ui/brand/app-icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.mobbycat.app",
       "infoPlist": {
-        "NSMotionUsageDescription": "その日の歩数に合わせて、出会えるにゃこモビーが変わります。"
-      }
+        "NSMotionUsageDescription": "その日の歩数に合わせて、出会えるにゃこモビーが変わります。",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "usesAppleSignIn": true
     },
     "android": {
       "adaptiveIcon": {
@@ -58,11 +60,21 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "その日の天気に合わせて、出会えるにゃこモビーが変わります。おおまかな位置だけを使い、保存はしません。",
+          "locationWhenInUsePermission": "その日の天気に合わせて、出会えるにゃこモビーが変わります。天気を調べるため、おおまかな位置（約10km）を天気予報サービスに送ります。保存はしません。",
           "isAndroidBackgroundLocationEnabled": false,
           "isIosBackgroundLocationEnabled": false
         }
-      ]
-    ]
+      ],
+      "expo-secure-store",
+      "expo-iap",
+      "expo-apple-authentication",
+      "expo-asset"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8a487daa-c2cd-4dde-b738-635988ac9a15"
+      }
+    },
+    "owner": "obana.h"
   }
 }

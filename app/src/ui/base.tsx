@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
-import React, { useEffect, useRef } from 'react';
-import { Animated, Easing, StyleProp, Text, TextProps, TextStyle, ViewStyle } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { AccessibilityInfo, Animated, Easing, StyleProp, Text, TextProps, TextStyle, View, ViewStyle } from 'react-native';
 import { CATS, CatDef } from '../data/catalog';
 
 export const C = {
@@ -34,6 +34,7 @@ export function T({ w = 'b', size = 14, color = C.ink, style, ...rest }: TProps)
 export const SILHOUETTE = '#6F6258';
 export function CatImage({ id, size, silhouette }: { id: string; size: number; silhouette?: boolean }) {
   const cat = CAT_BY_ID[id];
+  if (!cat) return <View style={{ width: size, height: size }} />; // 知らない猫（新しい版の記録）は、場所だけあける
   return (
     <Image
       source={cat.image}
@@ -44,10 +45,26 @@ export function CatImage({ id, size, silhouette }: { id: string; size: number; s
   );
 }
 
+// 端末の「視差効果を減らす」がオンか。オンのときは、ずっと続く動き（揺れ・落下・きらめき）を止める（C-03）
+let reduceMotion = false;
+void AccessibilityInfo.isReduceMotionEnabled().then((v) => { reduceMotion = v; }).catch(() => {});
+export function useReduceMotion(): boolean {
+  const [value, setValue] = useState(reduceMotion);
+  useEffect(() => {
+    let alive = true;
+    void AccessibilityInfo.isReduceMotionEnabled().then((v) => { reduceMotion = v; if (alive) setValue(v); }).catch(() => {});
+    const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', (v) => { reduceMotion = v; setValue(v); });
+    return () => { alive = false; sub.remove(); };
+  }, []);
+  return value;
+}
+
 // ふわふわ上下に揺れる（呼吸）
 export function Bobbing({ children, delay = 0, style }: { children: React.ReactNode; delay?: number; style?: StyleProp<ViewStyle> }) {
+  const still = useReduceMotion();
   const v = useRef(new Animated.Value(0)).current;
   useEffect(() => {
+    if (still) return;
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(v, { toValue: 1, duration: 1400, delay, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
@@ -56,7 +73,8 @@ export function Bobbing({ children, delay = 0, style }: { children: React.ReactN
     );
     loop.start();
     return () => loop.stop();
-  }, [v, delay]);
+  }, [v, delay, still]);
+  if (still) return <View style={style}>{children}</View>;
   const translateY = v.interpolate({ inputRange: [0, 1], outputRange: [0, -6] });
   const scaleY = v.interpolate({ inputRange: [0, 1], outputRange: [1, 1.03] });
   return <Animated.View style={[style, { transform: [{ translateY }, { scaleY }] }]}>{children}</Animated.View>;

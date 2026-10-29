@@ -1,12 +1,13 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useMemo, useRef, useState } from 'react';
-import { GestureResponderEvent, Image, PanResponder, ScrollView, StyleSheet, View } from 'react-native';
+import { GestureResponderEvent, Image, Linking, PanResponder, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATS } from '../../data/catalog';
 import { SfxId } from '../../data/audioAssets';
 import { playSfx } from '../../services/audio';
+import { notice } from '../../services/dialog';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
-import { useGame } from '../../core/game';
+import { homeSlotsOf, useGame } from '../../core/game';
 import { CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { ImgButton, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
@@ -25,7 +26,8 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
   const insets = useSafeAreaInsets();
   const [perm, requestPerm] = useCameraPermissions();
   const owned = useMemo(() => CATS.filter((c) => state.owned[c.id]), [state.owned]);
-  const [catId, setCatId] = useState<string | null>(owned[0]?.id ?? null);
+  // 最初は、ホームの1番目に置いている猫。置いていなければ、迎えた猫の先頭
+  const [catId, setCatId] = useState<string | null>(() => homeSlotsOf(state).find((id) => !!id) ?? owned[0]?.id ?? null);
   const [facing, setFacing] = useState<'back' | 'front'>('back');
   const [flash, setFlash] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
@@ -78,25 +80,46 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
     </View>
   );
 
+  // 撮っているあいだは、シャッターを受け付けない（連打で何枚も撮らない）。撮れなかったときは、理由を伝える
+  const shooting = useRef(false);
   const takePhoto = async () => {
+    if (shooting.current) return;
+    shooting.current = true;
     try {
       const pic = await cam.current?.takePictureAsync({ quality: 0.9, exif: false });
       if (pic?.uri) {
         playSfx('sfx_shutter');
         countPhoto();
         setPhoto(pic.uri);
-      }
-    } catch {}
+      } else notice('撮影できませんでした', 'もう一度お試しください');
+    } catch {
+      notice('撮影できませんでした', 'カメラを準備しています。少し待ってから、もう一度お試しください');
+    } finally {
+      shooting.current = false;
+    }
   };
 
   if (!perm?.granted) {
+    // 一度「許可しない」にすると、iOS は許可の確認を二度と出さない。そのときは設定アプリへ案内する
+    const denied = !!perm && !perm.canAskAgain;
     return (
       <View style={[s.fill, { alignItems: 'center', justifyContent: 'center', padding: 24 }]}>
         <Backdrop name="bg/app-cream" />
         <Pic name="button/camera-round" height={96} />
         <T w="x" size={18} style={{ marginTop: 16, textAlign: 'center' }}>にゃこモビーと写真を撮ろう</T>
-        <T w="m" size={13} style={{ marginTop: 8, textAlign: 'center' }}>カメラを使うには許可が必要です。撮った写真は端末の中だけに保存されます</T>
-        <ImgButton label="カメラを使う" height={50} onPress={requestPerm} style={{ marginTop: 20, alignSelf: 'stretch' }} />
+        <T w="m" size={13} style={{ marginTop: 8, textAlign: 'center' }}>
+          {denied ? 'カメラの許可がオフになっています。設定アプリで、にゃっコレのカメラをオンにしてください' : 'カメラの映像に、迎えた猫を重ねて、一緒に写真を撮れます。猫はドラッグで動かし、2本指で大きさと向きを変えられます。写真は、保存か共有を選んだときだけ端末の外に出ます'}
+        </T>
+        {denied ? (
+          <ImgButton
+            label="設定アプリを開く"
+            height={50}
+            onPress={() => Linking.openSettings().catch(() => notice('設定を開けませんでした', '端末の設定アプリから、にゃっコレのカメラの許可を変えてください'))}
+            style={{ marginTop: 20, alignSelf: 'stretch' }}
+          />
+        ) : (
+          <ImgButton label="カメラを使う" height={50} onPress={requestPerm} style={{ marginTop: 20, alignSelf: 'stretch' }} />
+        )}
         <ImgButton skin="ghost-outline" label="もどる" height={44} onPress={onClose} style={{ marginTop: 10, alignSelf: 'stretch' }} />
       </View>
     );
@@ -112,7 +135,6 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
           <CameraView ref={cam} style={StyleSheet.absoluteFill} facing={facing} flash={flash ? 'on' : 'off'} />
         )}
         {cat}
-        {photo && <Pic name="share/watermark" width={120} style={{ position: 'absolute', right: 12, bottom: 12 }} />}
       </View>
 
       <Stretch name="camera/topbar-scrim" style={[s.top, { height: 100 + insets.top }]} />
@@ -137,6 +159,8 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
       <Stretch name="camera/bottombar-scrim" style={[s.bottom, { height: 240 + insets.bottom }]} />
       <View style={[s.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
         {photo ? (
+          <>
+          <T w="b" size={12} color="#fff" style={{ textAlign: 'center' }}>「保存」で写真アプリに入ります。「共有」で友だちに送れます</T>
           <View style={s.actions}>
             <Action icon="camera/btn-retake" label="撮り直す" onPress={() => setPhoto(null)} />
             <Action icon="camera/btn-save" label="保存" sfx="sfx_saved" onPress={() => saveView(shot)} />
@@ -146,8 +170,12 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
               onPress={() => shareView(shot, `${catId ? CAT_BY_ID[catId].name : 'にゃこモビー'}と写真を撮りました ${HASHTAG}`)}
             />
           </View>
+          </>
         ) : (
           <>
+            {owned.length > 0 && (
+              <T w="b" size={12} color="#fff" style={{ textAlign: 'center', marginBottom: 6 }}>下の猫をタップで切りかえ。画面をドラッグ・2本指で動かせます</T>
+            )}
             {owned.length > 0 ? (
               <Slice name="camera/cat-tray" style={s.tray}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: 12, alignItems: 'center' }}>

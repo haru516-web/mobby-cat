@@ -4,7 +4,8 @@ import { cardReason, conditionTotal } from '../../core/conditions';
 import { msUntilNextReveal } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
-import { useGame, visibleCount } from '../../core/game';
+import { matatabiOf, ticketsOf, useGame, visibleCount } from '../../core/game';
+import { notice } from '../../services/dialog';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
 import { Card, Header, ImgButton, RarityBadge, useTabPad, Tap } from '../../ui/kit';
 import { useConfirm } from '../../ui/ConfirmPopup';
@@ -65,33 +66,38 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     if (!hasFree) {
       confirm(`${name}を迎えますか？`, '無料のお迎えは1日1匹です。選んだあとは変えられません。', '無料で迎える', pickSelected, { catId: sel });
     } else {
-      confirm(`${name}を迎えますか？`, `お迎え券を1枚使います（${state.tickets}枚 → ${state.tickets - 1}枚）。`, '券1枚で迎える', pickSelected, { catId: sel });
+      confirm(`${name}を迎えますか？`, `お迎え券を1枚使います（${ticketsOf(state)}枚 → ${ticketsOf(state) - 1}枚）。`, '券1枚で迎える', pickSelected, { catId: sel });
     }
   };
+  // 買った分の券は、サーバーで引く。つながらない・足りないときは、何も引かれない
+  const notEnough = () => notice('お迎えできませんでした', '通信できなかったか、お迎え券が足りません。電波のよいところで、もう一度お試しください。');
   const askLocked = () => {
     if (!hidden[0]) return;
-    if (state.matatabi >= 1) {
+    if (matatabiOf(state) >= 1) {
       confirm(
         'またたびを使いますか？',
-        `またたびを1個使って、隠れている子を1匹見えるようにします（${state.matatabi}個 → ${state.matatabi - 1}個）。無料で迎えられるのは1匹のままです。`,
+        `またたびを1個使って、隠れている子を1匹見えるようにします（${matatabiOf(state)}個 → ${matatabiOf(state) - 1}個）。無料で迎えられるのは1匹のままです。`,
         'またたびを使う',
-        () => { if (g.useMatatabi(day)) playSfx('sfx_matatabi'); },
+        async () => {
+          if (await g.useMatatabi(day)) playSfx('sfx_matatabi');
+          else notice('またたびを使えませんでした', '通信できなかったか、またたびが足りません。電波のよいところで、もう一度お試しください。');
+        },
         { catId: hidden[0], silhouette: true, skin: 'primary-green' },
       );
     } else {
       confirm(
         'またたびがありません',
-        'またたびを使うと、隠れている子に出会えます。またたびパスなら、毎日はじめから全員に会えます。',
+        'またたびを使うと、隠れている子に出会えます。またたびパスなら、条件がそろった子に、毎日はじめから最大6匹まで会えます。',
         'ショップを見る',
         openShop,
         { catId: hidden[0], silhouette: true, skin: 'primary-green', cancelLabel: 'もどる' },
       );
     }
   };
-  const pickSelected = () => {
+  const pickSelected = async () => {
     if (!sel) return;
     if (!hasFree) g.pickFree(day, sel);
-    else if (!g.pickExtra(day, sel)) return;
+    else if (!(await g.pickExtra(day, sel))) return notEnough();
     playSfx(rec.reasons[sel] ? 'sfx_pick_special' : hasFree ? 'sfx_pick_extra' : 'sfx_pick_free');
     hapticSuccess();
     setWelcome(sel);
@@ -115,14 +121,15 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       <TourAnchor id="deai-hero" style={s.hero}>
         <Card skin="white" style={s.heroNote}>
           <T w="x" size={16} style={{ textAlign: 'center' }}>
-            {hasFree ? '無料のお迎えが完了しました' : `${visible.length}匹の中から1匹を無料でお迎え`}
+            {empty ? '今日は出会える子がいません' : hasFree ? '無料のお迎えが完了しました' : `${visible.length}匹の中から1匹を無料でお迎え`}
           </T>
-          <View style={s.heroSub}>
-            <T w="b" size={11} color={C.sub}>あと{Math.floor(mins / 60)}時間{mins % 60}分</T>
-            <Tap onPress={() => openNotice('upcoming')} style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <T w="b" size={11} color={C.accent}>これから会える猫</T>
-              <Pic name="icon/chevron-right" height={11} style={{ marginLeft: 2 }} />
-            </Tap>
+          {/* 次の出会いの準備ができる20時まで、残りの時間を大きく見せる */}
+          <View style={s.countdown}>
+            <T w="b" size={11} color={C.sub} style={{ flex: 1 }}>お迎えの準備が完了するまで</T>
+            <T w="b" size={13} color={C.accent}>あと</T>
+            <T w="x" size={30} color={C.accent} style={{ marginHorizontal: 4 }}>
+              {mins >= 60 ? `${Math.floor(mins / 60)}時間${mins % 60}分` : `${mins}分`}
+            </T>
           </View>
         </Card>
       </TourAnchor>
@@ -225,14 +232,14 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         {hasFree && rest.length > 0 && (
           <View style={{ flexDirection: 'row', gap: 8 }}>
             {/* 券が足りないときは、そのままショップへ。買いたくなる場面なので最短で案内する */}
-            {selCat && state.tickets < 1 ? (
+            {selCat && ticketsOf(state) < 1 ? (
               <ImgButton label="お迎え券を買う" icon="icon/ticket-paw" height={50} onPress={openShop} style={{ flex: 1 }} />
             ) : (
               <ImgButton
                 label={selCat ? '券1枚で迎える' : '迎える子をえらんでね'}
                 disabled={!selCat}
                 height={50}
-                badge={selCat ? `所持${state.tickets}枚` : undefined}
+                badge={selCat ? `所持${ticketsOf(state)}枚` : undefined}
                 onPress={askPick}
                 style={{ flex: 1 }}
               />
@@ -244,17 +251,17 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
                 badge={`${rest.length}枚`}
                 height={50}
                 fontSize={12}
-                disabled={state.tickets < rest.length}
+                disabled={ticketsOf(state) < rest.length}
                 onPress={() => confirm(
                   `残り${rest.length}匹をまとめて迎えますか？`,
-                  `お迎え券を${rest.length}枚使います（${state.tickets}枚 → ${state.tickets - rest.length}枚）。`,
+                  `お迎え券を${rest.length}枚使います（${ticketsOf(state)}枚 → ${ticketsOf(state) - rest.length}枚）。`,
                   `券${rest.length}枚で迎える`,
-                  () => {
-                    if (g.pickExtra(day, rest)) {
+                  async () => {
+                    if (await g.pickExtra(day, rest)) {
                       setWelcome(rest[0]);
                       playSfx('sfx_pick_extra');
                       hapticSuccess();
-                    }
+                    } else notEnough();
                     setSel(null);
                   },
                   { catIds: rest },
@@ -271,7 +278,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             <Pic name="icon/matatabi-bag" height={32} />
             <View style={{ flex: 1 }}>
               <T w="x" size={12}>{state.pass.active ? 'またたびパス加入中' : 'またたびパス'}</T>
-              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹に会える＋毎月お迎え券3枚</T>
+              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日最大6匹に会える＋毎月お迎え券8枚</T>
             </View>
             {!state.pass.active && <T w="x" size={11} color={C.accent}>くわしく</T>}
             <Pic name="icon/chevron-right" height={12} />
@@ -326,7 +333,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
 const s = StyleSheet.create({
   hero: { alignItems: 'stretch', paddingTop: 6, paddingHorizontal: 16 },
   heroNote: { paddingVertical: 8, paddingHorizontal: 14, gap: 2 },
-  heroSub: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  countdown: { flexDirection: 'row', alignItems: 'baseline', marginTop: 2 },
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
   selInfo: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   pass: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },

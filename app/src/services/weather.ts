@@ -22,6 +22,15 @@ export async function hasLocationAccess(): Promise<boolean> {
 
 const cache = new Map<string, WeatherNow | null>();
 
+// 位置と天気の取得が長く止まると、その日の候補が作れない。8秒で諦めて、天気なし（null）で進める（B-07）
+const LIMIT_MS = 8000;
+function within<T>(work: Promise<T>): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error('timeout')), LIMIT_MS);
+    work.then((v) => { clearTimeout(timer); resolve(v); }, (e) => { clearTimeout(timer); reject(e); });
+  });
+}
+
 // MET Norway の symbol_code（例: clearsky_day, lightrain, heavysnowshowers_night）を4種類にまとめる
 export function weatherFromSymbol(code: string): Weather {
   const c = code.replace(/_(day|night|polartwilight)$/, '');
@@ -31,23 +40,24 @@ export function weatherFromSymbol(code: string): Weather {
   return 'cloudy';
 }
 
-// 判定は、その日の 20:00 に近い時刻の予報を使う。過去の日は取れないので、今日以外は null
+// 判定は、その日の 20:00 に近い時刻の予報を使う。20:00 をすぎて開いたとき（翌朝など）は、過去の予報は取れないので、いまの天気を使う。今日以外の日は null
 export async function readWeather(dayKey: string, todayKey: string): Promise<WeatherNow | null> {
   if (dayKey !== todayKey) return null;
   if (cache.has(dayKey)) return cache.get(dayKey) ?? null;
   try {
     if (!(await Location.getForegroundPermissionsAsync()).granted) return null;
-    const pos =
-      (await Location.getLastKnownPositionAsync()) ?? (await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low }));
+    // 古い位置（旅行の前など）は使わない：12時間より前の「最後の位置」は捨てて、いまの位置を取る
+    const last = await within(Location.getLastKnownPositionAsync({ maxAge: 12 * 3600 * 1000 }));
+    const pos = last ?? (await within(Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low })));
     if (!pos) return null;
     const lat = pos.coords.latitude.toFixed(1);
     const lon = pos.coords.longitude.toFixed(1);
-    const res = await fetch(`https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`, {
+    const res = await within(fetch(`https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`, {
       headers: { 'User-Agent': 'nekomobby/1.0 github.com/haru516-web/mobby-cat' },
-    });
+    }));
     if (!res.ok) return null;
     const json = await res.json();
-    const t = new Date(`${dayKey}T20:00:00`).getTime();
+    const t = Math.max(new Date(`${dayKey}T20:00:00`).getTime(), Date.now());
     const series: { time: string; data: { instant?: { details?: { air_temperature?: number } }; next_1_hours?: { summary: { symbol_code: string } }; next_6_hours?: { summary: { symbol_code: string } } } }[] =
       json?.properties?.timeseries ?? [];
     let best = series[0];

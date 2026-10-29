@@ -1,0 +1,86 @@
+{
+  "reason": "アプリ名を「にゃこモビー」から「にゃっコレ」へ変更。猫の呼び名は変更しない。",
+  "tool": "built-in image_gen",
+  "prompt": "Edit the supplied original logo to read exactly にゃっコレ (に・ゃ・っ・コ・レ). Preserve rounded puffy chocolate/clay texture, upper-left light and subtle downward shadow. にゃっ dark chocolate brown, コレ orange; hiragana smaller than katakana, ゃ and っ clearly small. Cat ears on upper left of に; orange paw above transition between ゃ and コ. Same wide composition and tight margins. Transparent background, no additional text or white outline.",
+  "generatedSource": "C:\\Users\\User\\.codex\\generated_images\\01a186ac-acc5-7d32-9b79-dd45a31e3624\\exec-603d17ba-763f-4a9d-aee7-6a24c2695dc7.png",
+  "oldLogoSha256": "a5d459ed9bfe4c1f32413db866e06a5d4f8125a74ed7d0c838b7cbf3511ba247",
+  "derivation": {
+    "brand/logo-nekomobby.png": "Generated alpha preserved; alpha>8 bounding-box trim; proportional Lanczos fit within 752x224 on centered transparent 760x240 canvas.",
+    "brand/splash.png": "Derived from brand/logo-nekomobby.png; Lanczos resize to 1002x316 (85% width), centered on solid RGB #FFF8F0 1179x2556 canvas.",
+    "opening/logo-hero.png": "Derived from brand/logo-nekomobby.png; Lanczos proportional resize to 940x297, centered at (30,61) on transparent 1000x420 canvas.",
+    "share/watermark.png": "Derived from brand/logo-nekomobby.png; proportional Lanczos fit on transparent 360x120 canvas; alpha multiplied by 0.6 with rounding."
+  },
+  "reviewedUnchanged": {
+    "brand/app-icon.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "opening/bg.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "opening/cats-peek.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "opening/paw-trail.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "opening/sparkle.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "opening/tap-pill.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/discovery-card-story.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/discovery-card.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/photo-frame-polaroid.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/photo-frame-stamp.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/photo-frame-travel.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/travel-card-story.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/travel-card.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/video-intro.png": "Visual contact-sheet inspection: no app-name lettering.",
+    "share/video-outro.png": "Visual contact-sheet inspection: no app-name lettering."
+  },
+  "manifestPromptAudit": "Only the four replaced assets contained にゃこモビー in prompt.",
+  "checks": {
+    "brand/logo-nekomobby.png": {
+      "size": [
+        760,
+        240
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "sha256": "a15808a16b199686ae191630aa62952a785502b256d67dee792ce0f00b05dbbc"
+    },
+    "brand/splash.png": {
+      "size": [
+        1179,
+        2556
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "sha256": "bc689a47e80affd2369dc2539963aabb081693c2fef2bacb7255fecec1ad04e4"
+    },
+    "opening/logo-hero.png": {
+      "size": [
+        1000,
+        420
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "sha256": "555751b423bae62a859aaea264048c6ae9abc5c99a0867cd6a6ff3b926cf7acc"
+    },
+    "share/watermark.png": {
+      "size": [
+        360,
+        120
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        153
+      ],
+      "sha256": "37d86a6553e5ed25336aae88f50899684b1e1dd2aa25a9dad618221b22e323ac"
+    }
+  },
+  "validation": {
+    "visual": "Reviewed exact にゃっコレ lettering, small kana, cat ears/paw, old/new comparison, cream/white/light-orange backgrounds; no visible white/black fringe at delivery resolution.",
+    "registry": "tools/build-ui-registry.ps1 completed: 211 entries, 53 slices; generated uiAssets.ts identical to HEAD.",
+    "gitDiffCheck": "passed",
+    "lint": "Unavailable: package.json has no lint script (npm run lint attempted).",
+    "typecheck": "Unavailable: no node_modules/local TypeScript in this worktree.",
+    "devicePreview": "Not run; image-only change."
+  }
+}

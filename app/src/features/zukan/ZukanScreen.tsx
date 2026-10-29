@@ -5,22 +5,25 @@ import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
 import { recipeOf, shownRarity } from '../../core/recipes';
 import { useGame } from '../../core/game';
 import { C, CatImage, FONT, T, catNo } from '../../ui/base';
-import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap } from '../../ui/kit';
+import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 import { ScreenProps } from '../../navigation';
 
-type Filter = 'all' | 'normal' | 'rare' | 'limited';
+type Filter = 'all' | 'normal' | 'rare' | 'limited' | 'fav';
 const FILTERS: { key: Filter; label: string; skin: string; color: string }[] = [
   { key: 'all', label: 'すべて', skin: 'button/tab-all-on', color: '#fff' },
   { key: 'normal', label: 'ノーマル', skin: 'button/tab-normal', color: C.ink },
   { key: 'rare', label: 'レア', skin: 'button/tab-rare', color: '#2F5DA8' },
-  { key: 'limited', label: '限定', skin: 'button/tab-limited', color: '#6A4FB0' },
+  ...(WORLD_ON ? [{ key: 'limited' as Filter, label: '限定', skin: 'button/tab-limited', color: '#6A4FB0' }] : []),
+  { key: 'fav', label: '', skin: 'button/tab-all-on', color: C.accent }, // お気に入りだけ（ハートの絵で見せる）
 ];
 
 // 「限定」= 世界の猫と旅猫。それ以外は、出会う条件の数と難しさで決まるレア度で分ける
 const isLimited = (c: CatDef) => c.kind === 'world' || c.kind === 'travel';
+// 世界を出さないあいだは、世界の猫・旅猫（まだ迎える方法が無い）を図鑑に出さない
+const ZUKAN_CATS = CATS.filter((c) => WORLD_ON || !isLimited(c));
 const match = (c: CatDef, f: Filter) =>
-  f === 'all' ? true : f === 'limited' ? isLimited(c) : f === 'rare' ? !isLimited(c) && shownRarity(c) >= 3 : !isLimited(c) && shownRarity(c) <= 2;
+  f === 'all' || f === 'fav' ? true : f === 'limited' ? isLimited(c) : f === 'rare' ? !isLimited(c) && shownRarity(c) >= 3 : !isLimited(c) && shownRarity(c) <= 2;
 
 function hint(c: CatDef) {
   if (c.kind === 'world') return WORLD_HINT;
@@ -43,10 +46,10 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
   const listRef = useRef<ComponentRef<typeof ScrollView>>(null);
   const [showTop, setShowTop] = useState(false); // 下までスクロールしたら「トップへ」を出す
 
-  const have = CATS.filter((c) => state.owned[c.id]).length;
+  const have = ZUKAN_CATS.filter((c) => state.owned[c.id]).length;
   const list = useMemo(
-    () => CATS.filter((c) => match(c, filter) && (!q || (state.owned[c.id] && c.name.includes(q)))),
-    [filter, q, state.owned],
+    () => ZUKAN_CATS.filter((c) => match(c, filter) && (filter !== 'fav' || state.favorites.includes(c.id)) && (!q || (state.owned[c.id] && c.name.includes(q)))),
+    [filter, q, state.owned, state.favorites],
   );
   const cellW = Math.floor((width - 42 - 3 * 8) / 4);
   const cat = sel ? CATS.find((c) => c.id === sel) : undefined;
@@ -66,10 +69,10 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                 <Pic name="brand/title-collection" height={width < 360 ? 24 : 30} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginLeft: 8 }}>
                   <T w="x" size={26}>{have}</T>
-                  <T w="b" size={14} color={C.sub} style={{ marginBottom: 3 }}>/{CATS.length}</T>
+                  <T w="b" size={14} color={C.sub} style={{ marginBottom: 3 }}>/{ZUKAN_CATS.length}</T>
                 </View>
               </View>
-              <View style={{ marginTop: 6 }}><Gauge value={have} max={CATS.length} /></View>
+              <View style={{ marginTop: 6 }}><Gauge value={have} max={ZUKAN_CATS.length} /></View>
             </View>
             {mascot && <CatImage id={mascot.id} size={width < 360 ? 52 : 72} />}
           </Card>
@@ -89,11 +92,11 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
           <View style={{ flexDirection: 'row', gap: 6 }}>
             {FILTERS.map((f) => {
               const on = filter === f.key;
-              const skin = f.key === 'all' && !on ? 'button/tab-normal' : f.skin;
+              const skin = (f.key === 'all' || f.key === 'fav') && !on ? 'button/tab-normal' : f.skin;
               return (
-                <Tap key={f.key} style={{ flex: 1, opacity: on || f.key === 'all' ? 1 : 0.72, transform: [{ scale: on ? 1.04 : 1 }] }} onPress={() => setFilter(f.key)}>
+                <Tap key={f.key} style={{ flex: 1, opacity: on || f.key === 'all' || f.key === 'fav' ? 1 : 0.72, transform: [{ scale: on ? 1.04 : 1 }] }} onPress={() => setFilter(f.key)}>
                   <Slice name={skin} style={s.filter}>
-                    <T w="x" size={13} color={f.key === 'all' && !on ? C.ink : f.color}>{f.label}</T>
+                    {f.key === 'fav' ? <Icon name="icon/heart-on" size={20} /> : <T w="x" size={13} color={f.key === 'all' && !on ? C.ink : f.color}>{f.label}</T>}
                   </Slice>
                 </Tap>
               );
@@ -130,7 +133,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                 </Tap>
               );
             })}
-            {list.length === 0 && <T w="b" size={13} color={C.sub} style={{ textAlign: 'center', width: '100%', marginTop: 20 }}>見つかりませんでした</T>}
+            {list.length === 0 && <T w="b" size={13} color={C.sub} style={{ textAlign: 'center', width: '100%', marginTop: 20 }}>{filter === 'fav' && !q ? 'お気に入りの子がいません（図鑑の詳細でハートを押すと入ります）' : '見つかりませんでした'}</T>}
             </ScrollView>
             {showTop && (
               <Tap style={s.toTop} onPress={() => listRef.current?.scrollTo({ y: 0, animated: true })} accessibilityLabel="トップにもどる">

@@ -19,14 +19,17 @@ import SettingsScreen from './src/features/settings/SettingsScreen';
 import ShopScreen from './src/features/shop/ShopScreen';
 import { NoticeTab } from './src/navigation';
 import WorldScreen from './src/features/world/WorldScreen';
-import TutorialTour from './src/features/tutorial/TutorialTour';
+import TutorialTour, { TourCoach } from './src/features/tutorial/TutorialTour';
+import { emitTour } from './src/features/tutorial/tourStore';
 import ZukanScreen from './src/features/zukan/ZukanScreen';
+import { AccountProvider } from './src/core/account';
 import { GameProvider, useGame } from './src/core/game';
 import { initAudio, setBgmScene } from './src/services/audio';
 import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
 import { Backdrop } from './src/ui/Slice';
 import { Popup } from './src/ui/Popup';
 import { TourAnchor } from './src/ui/TourAnchor';
+import { ErrorBoundary } from './src/ui/ErrorBoundary';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
 const MAX_W = 430; // iPad や Web の広い画面でもスマホ幅で中央に表示する
@@ -47,10 +50,29 @@ function Root() {
   const { width: winW, height: winH } = useWindowDimensions();
   const width = Math.min(winW, MAX_W);
   const tour = replay || !state.tutorialDone;
+  const go = (t: TabKey) => setTab(t);
+  const closeShop = () => {
+    setShop(false);
+    emitTour('popup-closed');
+  };
+  const closeNotice = () => {
+    setNotice(null);
+    emitTour('popup-closed');
+  };
 
   useEffect(() => {
     initAudio();
   }, []);
+  // 記録を消して最初からやり直したときは、開いていたポップを閉じる（相棒を選んだあとにホームで残らないように）
+  useEffect(() => {
+    if (ready && !state.starterChosen) {
+      setSettings(false);
+      setShop(false);
+      setNotice(null);
+      setLoginRecord(false);
+      setCamera(false);
+    }
+  }, [ready, state.starterChosen]);
   // 場面に合う BGM を伝える（音源が無いあいだは何も起きない）
   const welcome = ready && (!state.starterChosen || tour);
   useEffect(() => {
@@ -89,7 +111,7 @@ function Root() {
         <SafeAreaView edges={['top']} style={s.fill}>
           <TabPadCtx.Provider value={tabH}>
             <Active
-              go={setTab}
+              go={go}
               openShop={() => setShop(true)}
               openSettings={() => setSettings(true)}
               openLoginRecord={() => setLoginRecord(true)}
@@ -100,12 +122,17 @@ function Root() {
           </TabPadCtx.Provider>
         </SafeAreaView>
         <TourAnchor id="tabbar" style={s.tabbar} onLayout={(e) => setTabH(e.nativeEvent.layout.height)}>
-          <TabBar tab={tab} onChange={setTab} bottomInset={insets.bottom} />
+          <TabBar tab={tab} onChange={go} bottomInset={insets.bottom} />
         </TourAnchor>
         {tour && (
           <TutorialTour
             bottomInset={insets.bottom}
             onNavigate={setTab}
+            openPopup={(kind) => (kind === 'shop' ? setShop(true) : setNotice('notice'))}
+            closePopups={() => {
+              setShop(false);
+              setNotice(null);
+            }}
             onClose={() => {
               setReplay(false);
               finishTutorial();
@@ -114,8 +141,9 @@ function Root() {
           />
         )}
       </View>
-      <Popup visible={shop} onClose={() => setShop(false)}>
-        <ShopScreen onClose={() => setShop(false)} />
+      <Popup visible={shop} onClose={closeShop}>
+        <ShopScreen onClose={closeShop} />
+        <TourCoach kind="shop" />
       </Popup>
       <Popup visible={loginRecord} onClose={() => setLoginRecord(false)}>
         <LoginRecordScreen onClose={() => setLoginRecord(false)} width={width} />
@@ -130,8 +158,9 @@ function Root() {
           }}
         />
       </Popup>
-      <Popup visible={!!notice} onClose={() => setNotice(null)}>
-        {notice && <NoticeScreen initialTab={notice} onClose={() => setNotice(null)} />}
+      <Popup visible={!!notice} onClose={closeNotice}>
+        {notice && <NoticeScreen initialTab={notice} onClose={closeNotice} />}
+        <TourCoach kind="notice" />
       </Popup>
       <Modal visible={camera} animationType="fade" onRequestClose={() => setCamera(false)}>
         <View style={[s.fill, { alignItems: 'center' }]}>
@@ -148,10 +177,14 @@ function Root() {
 export default function App() {
   return (
     <SafeAreaProvider>
-      <GameProvider>
-        <StatusBar style="dark" />
-        <Root />
-      </GameProvider>
+      <StatusBar style="dark" />
+      <ErrorBoundary>
+        <GameProvider>
+          <AccountProvider>
+            <Root />
+          </AccountProvider>
+        </GameProvider>
+      </ErrorBoundary>
     </SafeAreaProvider>
   );
 }

@@ -1,12 +1,13 @@
 import { useMemo, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, View } from 'react-native';
-import { CATS } from '../../data/catalog';
-import { msUntilNextReveal } from '../../core/encounter';
-import { useGame } from '../../core/game';
+import { Animated, Easing, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { upcoming } from '../../core/conditions';
+import { daysBetween } from '../../core/dates';
+import { homeSlotsOf, useGame } from '../../core/game';
+import HomeSelect from './HomeSelect';
 import { playSfx } from '../../services/audio';
 import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
-import { Card, Header, InfoPill, useTabPad, Tap } from '../../ui/kit';
+import { Card, Header, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
@@ -68,26 +69,28 @@ function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: 
 }
 
 export default function HomeScreen({ go, openShop, openSettings, openLoginRecord, openNotice, openCamera, width }: ScreenProps) {
-  const { state, now, todayKey, pet } = useGame();
+  const { state, todayKey, pet } = useGame();
   const pad = useTabPad();
 
-  const ownedIds = useMemo(() => CATS.map((c) => c.id).filter((id) => state.owned[id]), [state.owned]);
-  // お気に入り → 最近迎えた順に部屋へ
-  const roomCats = useMemo(() => {
-    const byRecent = [...ownedIds].sort((a, b) => state.owned[b].firstDay.localeCompare(state.owned[a].firstDay));
-    const fav = state.favorites.filter((f) => state.owned[f]);
-    return [...fav, ...byRecent.filter((id) => !fav.includes(id))].slice(0, SLOTS.length);
-  }, [ownedIds, state.owned, state.favorites]);
+  const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [selecting, setSelecting] = useState(false);
+  // 画面の低い端末（iPhone SE など）では、部屋を低くして、下の予告カードとさつえいボタンがスクロールなしで見えるようにする
+  const winH = useWindowDimensions().height;
+  const roomMin = Math.max(300, Math.min(width * 1.25, winH - 340));
 
   // 画面が縦に長いときは、カードの下に余白ができないよう部屋を伸ばす（flex で余りを部屋に回す。背景は cover）
   const [roomH, setRoomH] = useState(width * 1.25);
-  const half = (width - 32 - 10) / 2;
-  const waiting = !!state.days[todayKey]?.candidates.length && !state.days[todayKey].freePick;
-  // 今日の候補に条件を満たした特別な猫がいれば、そのシルエット。いなければふつうの猫のシルエット
-  const today = state.days[todayKey];
-  const special = today?.candidates.find((id) => CAT_BY_ID[id]?.kind !== 'breed');
-  const shownOwned = !!special && !!state.owned[special];
-  const mins = Math.ceil(msUntilNextReveal(now) / 60000);
+  // 通知の「これから」の、いちばん近い予告（暦や月で決まる特別な猫）
+  const next = useMemo(() => upcoming(todayKey, 30, state.birthday)[0], [todayKey, state.birthday]);
+  const nextCat = next?.cats[0];
+  const nextOwned = !!nextCat && !!state.owned[nextCat.id];
+  const nextRare = nextCat ? (CAT_BY_ID[nextCat.id].rarity >= 4 ? 'でんせつの' : CAT_BY_ID[nextCat.id].rarity === 3 ? 'レアな' : '特別な') : '';
+  const nextDay = (() => {
+    if (!next) return '';
+    if (daysBetween(todayKey, next.day) <= 1) return 'あした';
+    const [, m, d] = next.day.split('-').map(Number);
+    return `${m}/${d}`;
+  })();
 
   return (
     <View style={{ flex: 1 }}>
@@ -95,27 +98,41 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 + pad }}>
       <View style={{ zIndex: 2 }}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
-      <View style={s.pills}>
-        <InfoPill style={{ flex: 1 }} icon="icon/cat-head" label="所持" value={`${ownedIds.length}/${CATS.length}`} onPress={() => go('zukan')} />
-        <TourAnchor id="home-deai" style={{ flex: 1.25 }}>
-          <InfoPill
-            icon="icon/calendar-today"
-            label="今日の出会い"
-            value={waiting ? '受け取れます' : `あと${Math.floor(mins / 60)}時間`}
-            onPress={() => go('deai')}
-          />
-        </TourAnchor>
+      <View style={{ paddingHorizontal: 14, flexDirection: 'row', gap: 8, alignItems: 'stretch' }}>
+        {WORLD_ON && (
+        <Tap style={{ flex: 1 }} onPress={() => go('world')} accessibilityLabel="旅するモビーの様子">
+          <Card style={s.travel}>
+            <View>
+              <Pic name="brand/title-travel" height={24} />
+              <T w="m" size={10} color={C.sub} style={{ marginTop: 2 }}>いま、ここにいるよ</T>
+            </View>
+            <T size={28}>{TRAVELER.flag}</T>
+            <View style={{ flex: 1 }}>
+              <T w="x" size={15} numberOfLines={1}>{TRAVELER.country}</T>
+              <T w="m" size={11} color={C.sub} numberOfLines={1}>{TRAVELER.city}・旅{TRAVELER.day}日目</T>
+            </View>
+            <Pic name="icon/chevron-right" height={14} />
+          </Card>
+        </Tap>
+        )}
+        <View style={{ flex: WORLD_ON ? 0 : 1 }} />
+        <Tap onPress={() => setSelecting(true)} accessibilityLabel="ホームに出す子をえらぶ">
+          <Card style={s.pick}>
+            <Pic name="icon/cat-head" height={28} />
+            <T w="x" size={10}>ホームの子</T>
+          </Card>
+        </Tap>
+      </View>
       </View>
 
-      </View>
-
-      <TourAnchor id="home-room" style={{ width, minHeight: width * 1.25, maxHeight: width * 1.6, flexGrow: 1, marginTop: -20, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
-        {roomCats.length === 0 && (
+      <TourAnchor id="home-room" style={{ width, minHeight: roomMin, maxHeight: width * 1.6, flexGrow: 1, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
+        {roomSlots.every((id) => !id) && (
           <View style={s.empty}>
             <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」からにゃこモビーを迎えましょう</T>
           </View>
         )}
-        {roomCats.map((id, i) => {
+        {roomSlots.map((id, i) => {
+          if (!id) return null;
           const slot = SLOTS[i];
           return (
             <View key={id} style={{ position: 'absolute', left: width * slot.x, top: roomH * slot.y, zIndex: Math.round(slot.y * 100 + slot.s * 10) }}>
@@ -127,55 +144,48 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
           <Pic name="button/login-record-round" height={52} />
           <T w="x" size={10} style={s.cameraLabel}>ログイン記録</T>
         </Tap>
+      </TourAnchor>
+
+      <View style={s.bottom}>
+        {/* 通知の「これから」から、いちばん近い予告を1つ。押すと一覧が開く */}
+        <Tap style={{ flex: 1 }} onPress={() => openNotice('upcoming')} accessibilityLabel="これから会えるかもしれない猫">
+          <Slice name="home/upcoming-card" style={s.upcoming}>
+            <Slice name="home/upcoming-well" style={s.upcomingWell}>
+              {nextCat ? <CatImage id={nextCat.id} size={58} silhouette={!nextOwned} /> : <Pic name="cat/silhouette-locked" width={48} />}
+            </Slice>
+            <View style={{ flex: 1 }}>
+              {nextCat ? (
+                <T w="x" size={14} style={{ lineHeight: 20 }}>
+                  {nextOwned ? `${nextDay}に${CAT_BY_ID[nextCat.id].name}に会えるかも！` : `${nextDay}に出会えるかもしれない${nextRare}にゃこモビー！？`}
+                </T>
+              ) : (
+                <T w="b" size={12} color={C.sub}>30日先までは、特別なにゃこモビーの予告はありません</T>
+              )}
+            </View>
+            <Pic name="icon/chevron-right" height={14} />
+          </Slice>
+        </Tap>
         <Tap style={s.camera} onPress={openCamera} accessibilityLabel="さつえい">
           <Pic name="button/camera-round" height={84} />
           <T w="x" size={12} style={s.cameraLabel}>さつえい</T>
         </Tap>
-      </TourAnchor>
-
-      <View style={s.cards}>
-        <Tap style={{ width: half }} onPress={() => go('world')} accessibilityLabel="旅するモビーの様子">
-          <Card style={s.card}>
-            <Pic name="brand/title-travel" height={26} />
-            <T w="m" size={11} color={C.sub} style={{ marginTop: 6 }}>いま、ここにいるよ</T>
-            <View style={s.where}>
-              <T size={30}>{TRAVELER.flag}</T>
-              <View style={{ flex: 1 }}>
-                <T w="x" size={15} numberOfLines={1}>{TRAVELER.country}</T>
-                <T w="m" size={11} color={C.sub} numberOfLines={1}>{TRAVELER.city}・旅{TRAVELER.day}日目</T>
-              </View>
-            </View>
-          </Card>
-        </Tap>
-        <Tap style={{ width: half }} onPress={() => go('deai')} accessibilityLabel="今日出会えるかもしれない猫">
-          <Card style={s.card}>
-            <T w="x" size={14}>今日の出会い</T>
-            <T w="m" size={11} color={special ? C.accent : C.sub} style={{ marginTop: 6 }}>
-              {special ? '✦ とくべつな子が…？' : 'どんな子が来るかな？'}
-            </T>
-            <View style={s.sil}>
-              {special && shownOwned ? <CatImage id={special} size={64} /> : <Pic name="cat/silhouette-locked" width={64} />}
-              {special && <T size={16} color={C.accent} style={s.spark}>✦</T>}
-            </View>
-          </Card>
-        </Tap>
       </View>
     </ScrollView>
+    <HomeSelect visible={selecting} onClose={() => setSelecting(false)} width={width} />
     </View>
   );
 }
 
 const s = StyleSheet.create({
-  pills: { flexDirection: 'row', gap: 10, paddingHorizontal: 14, zIndex: 2 },
   empty: { position: 'absolute', left: 0, right: 0, top: '40%', alignItems: 'center' },
   bubble: { position: 'absolute', top: -40, width: 120, paddingHorizontal: 14, paddingTop: 8, paddingBottom: 16, alignItems: 'center' },
   heart: { position: 'absolute', top: 0 },
-  camera: { position: 'absolute', right: 14, bottom: 20, alignItems: 'center', zIndex: 200 },
+  camera: { alignItems: 'center' },
   loginBtn: { position: 'absolute', right: 14, top: 40, alignItems: 'center', zIndex: 200 },
   cameraLabel: { marginTop: -4, textShadowColor: '#fff', textShadowRadius: 6 },
-  card: { height: 128, alignItems: 'flex-start' },
-  where: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 'auto' },
-  sil: { position: 'absolute', right: 6, bottom: 4 },
-  spark: { position: 'absolute', right: -4, top: -4 },
-  cards: { flexDirection: 'row', gap: 10, paddingHorizontal: 16, marginTop: -6 },
+  pick: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, paddingVertical: 6, paddingHorizontal: 10, minWidth: 72 },
+  travel: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8, paddingHorizontal: 12 },
+  bottom: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, marginTop: 2 },
+  upcomingWell: { width: 64, height: 64, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  upcoming: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 10, paddingHorizontal: 12, minHeight: 96 },
 });
