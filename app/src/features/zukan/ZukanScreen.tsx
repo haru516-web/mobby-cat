@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { CATS, CatDef } from '../../data/catalog';
 import { HINTS, PENDING, TRAVEL_HINT, WORLD_HINT } from '../../core/conditions';
 import { recipeOf, shownRarity } from '../../core/recipes';
-import { useGame } from '../../core/game';
+import { homeSlotsOf, useGame } from '../../core/game';
 import { C, CatImage, FONT, T, catNo } from '../../ui/base';
 import { Card, Gauge, Header, Icon, ImgButton, RarityBadge, Well, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
@@ -41,6 +41,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
   const { state, toggleFavorite } = useGame();
   const pad = useTabPad();
   const [filter, setFilter] = useState<Filter>('all');
+  const [ownedOnly, setOwnedOnly] = useState(false); // 迎えた子だけを出す（ワンタップで切り替え）
   const [q, setQ] = useState('');
   const [sel, setSel] = useState<string | null>(null);
   const listRef = useRef<ComponentRef<typeof ScrollView>>(null);
@@ -48,14 +49,15 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
 
   const have = ZUKAN_CATS.filter((c) => state.owned[c.id]).length;
   const list = useMemo(
-    () => ZUKAN_CATS.filter((c) => match(c, filter) && (filter !== 'fav' || state.favorites.includes(c.id)) && (!q || (state.owned[c.id] && c.name.includes(q)))),
-    [filter, q, state.owned, state.favorites],
+    () => ZUKAN_CATS.filter((c) => match(c, filter) && (!ownedOnly || !!state.owned[c.id]) && (filter !== 'fav' || state.favorites.includes(c.id)) && (!q || (state.owned[c.id] && c.name.includes(q)))),
+    [filter, ownedOnly, q, state.owned, state.favorites],
   );
   const cellW = Math.floor((width - 42 - 3 * 8) / 4);
   const cat = sel ? CATS.find((c) => c.id === sel) : undefined;
   const o = sel ? state.owned[sel] : undefined;
   const fav = !!sel && state.favorites.includes(sel);
-  const mascot = CATS.find((c) => state.owned[c.id]);
+  // 上のカードには、ホームの1番目に出している子（いなければ、ホームのいちばん前の子）
+  const mascot = homeSlotsOf(state).find((id): id is string => !!id);
 
   return (
     <View style={{ flex: 1 }}>
@@ -74,7 +76,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
               </View>
               <View style={{ marginTop: 6 }}><Gauge value={have} max={ZUKAN_CATS.length} /></View>
             </View>
-            {mascot && <CatImage id={mascot.id} size={width < 360 ? 52 : 72} />}
+            {mascot && <CatImage id={mascot} size={width < 360 ? 52 : 72} />}
           </Card>
 
           <Slice name="button/search-bar" style={s.search}>
@@ -101,6 +103,12 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                 </Tap>
               );
             })}
+            {/* 迎えた子だけ：ほかの絞り込みと組み合わせられる。もう一度押すと解除 */}
+            <Tap style={{ flex: 1.2, transform: [{ scale: ownedOnly ? 1.04 : 1 }] }} onPress={() => setOwnedOnly((v) => !v)} accessibilityLabel="迎えた子だけを表示" accessibilityState={{ selected: ownedOnly }}>
+              <Slice name={ownedOnly ? 'button/tab-all-on' : 'button/tab-normal'} style={s.filter}>
+                <T w="x" size={13} color={ownedOnly ? '#fff' : C.ink}>所持中</T>
+              </Slice>
+            </Tap>
           </View>
 
         </View>
@@ -133,7 +141,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                 </Tap>
               );
             })}
-            {list.length === 0 && <T w="b" size={13} color={C.sub} style={{ textAlign: 'center', width: '100%', marginTop: 20 }}>{filter === 'fav' && !q ? 'お気に入りの子がいません（図鑑の詳細でハートを押すと入ります）' : '見つかりませんでした'}</T>}
+            {list.length === 0 && <T w="b" size={13} color={C.sub} style={{ textAlign: 'center', width: '100%', marginTop: 20 }}>{filter === 'fav' && !q ? 'お気に入りの子がいません（コレクションの詳細でハートを押すと入ります）' : '見つかりませんでした'}</T>}
             </ScrollView>
             {showTop && (
               <Tap style={s.toTop} onPress={() => listRef.current?.scrollTo({ y: 0, animated: true })} accessibilityLabel="トップにもどる">

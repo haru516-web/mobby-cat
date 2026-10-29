@@ -188,7 +188,7 @@ export type TabKey = 'home' | 'deai' | 'zukan' | 'world';
 // 世界（旅猫・世界ミッション・世界の猫）は、サーバーが整うまで出さない。サンプル表示のまま審査に出すと、未完成の機能とみなされる
 export const WORLD_ON = false;
 const TABS: { key: TabKey; label: string }[] = [
-  { key: 'home', label: 'ホーム' }, { key: 'deai', label: '出会い' }, { key: 'zukan', label: '図鑑' }, { key: 'world', label: '世界' },
+  { key: 'home', label: 'ホーム' }, { key: 'deai', label: '出会い' }, { key: 'zukan', label: 'コレクション' }, { key: 'world', label: '世界' },
 ].filter((t) => WORLD_ON || t.key !== 'world') as { key: TabKey; label: string }[];
 export const NAV_KEYS: TabKey[] = TABS.map((t) => t.key);
 
@@ -215,7 +215,8 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
               <Pic name={`navbtn/${t.key}-${on ? 'on' : 'off'}`} width={NAV_SIZE} />
               {t.key === 'deai' && waiting && <Pic name="button/bell-badge" height={16} style={k.navDot} />}
             </View>
-            <T w="x" size={11} color={on ? C.accent : C.sub} style={k.navLabel}>{t.label}</T>
+            {/* 選んでいるタブは、ボタンが光って浮くことで見せる。文字はどれも同じ濃い色（オレンジの床の上でも読めるように） */}
+            <T w="x" size={12} color={C.ink} style={k.navLabel}>{t.label}</T>
           </Pressable>
         );
       })}
@@ -240,7 +241,8 @@ const k = StyleSheet.create({
   navBoxOn: { transform: [{ translateY: -4 }, { scale: 1.08 }] },
   navGlow: { position: 'absolute', left: -NAV_SIZE * 0.15, top: -NAV_SIZE * 0.15 },
   navDot: { position: 'absolute', right: 2, top: 2 },
-  navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 5 },
+  // 背景の絵の上でも読めるよう、濃い色の文字に白いふちをつける
+  navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 3, textShadowOffset: { width: 0, height: 0 } },
   gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   bellBadge: { position: 'absolute', right: 2, top: 2 },
 });

@@ -18,7 +18,7 @@ import { playSfx } from '../../services/audio';
 const TIPS = [
   { icon: 'icon/calendar-today', title: '毎日の出会い', text: `毎日${REVEAL_HOUR}時に、その日の条件がそろったにゃこモビー（最大3匹）と出会えます。1匹は無料でお迎え` },
   { icon: 'icon/sun', title: '会える猫が変わる', text: '歩いた日、雨の日、満月の夜、スマホの電池が1%の日…あなたの毎日によって、会える猫が変わります' },
-  { icon: 'icon/book', title: '秘密の条件', text: '条件は世界中のみんなと共通。図鑑のヒントを手がかりに、秘密の条件を見つけよう' },
+  { icon: 'icon/book', title: '秘密の条件', text: '条件は世界中のみんなと共通。コレクションのヒントを手がかりに、秘密の条件を見つけよう' },
   { icon: 'icon/paw', title: '歩数・天気・通知の許可', text: `歩数と位置情報（天気）を許可しないと、ほとんどの猫に会えません。通知を許可すると、毎日${REVEAL_HOUR}時の出会いをお知らせします。次に出る画面で「許可」を選んでね` },
 ];
 
