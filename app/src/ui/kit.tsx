@@ -84,14 +84,14 @@ export function InfoPill({ icon, label, value, onPress, style }: { icon: string;
   );
 }
 
-// 所持品＋ベル＋設定を右にまとめる。いまの画面は下のタブで分かるので、ロゴや画面の名前は出さない
+// 左に所持品、右にベルと設定。いまの画面は下のタブで分かるので、ロゴや画面の名前は出さない
 export function Header({ onShop, onBell, onSettings }: { onShop: () => void; onBell: () => void; onSettings: () => void }) {
   const { state } = useGame();
   // 背景は画面の一番上（ノッチ・時刻の帯の裏）まで広げ、見出しだけをその下に置く
   const top = useSafeAreaInsets().top;
   return (
     <View style={[k.header, { paddingTop: k.header.paddingTop + top }]}>
-      <View style={{ flex: 1 }} />
+      {/* 所持品は左、ベルと設定は右 */}
       <TourAnchor id="header-items">
         <Tap onPress={onShop}>
           <Slice name="panel/pill-currency" style={k.currency}>
@@ -102,7 +102,8 @@ export function Header({ onShop, onBell, onSettings }: { onShop: () => void; onB
           </Slice>
         </Tap>
       </TourAnchor>
-      <TourAnchor id="header-bell" style={{ marginLeft: 6 }}>
+      <View style={{ flex: 1 }} />
+      <TourAnchor id="header-bell">
         <Tap onPress={onBell} accessibilityLabel="お知らせ">
           <Pic name="button/bell-round" height={44} />
           {state.inbox.length > state.inboxRead && <Pic name="button/bell-badge" height={14} style={k.bellBadge} />}
