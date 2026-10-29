@@ -68,6 +68,12 @@
       "expo-secure-store",
       "expo-iap",
       "expo-apple-authentication"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8a487daa-c2cd-4dde-b738-635988ac9a15"
+      }
+    },
+    "owner": "obana.h"
   }
 }
