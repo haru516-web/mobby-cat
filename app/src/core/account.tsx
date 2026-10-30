@@ -105,7 +105,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   const applyCloud = useCallback((from: Pending): boolean => {
     const record = fromRecord(from.data);
     if (!record) return false;
-    gRef.current.replaceState(record);
+    if (!gRef.current.replaceState(record)) return false;
     saveMeta({ version: from.version, hash: fingerprint(from.data), at: Date.now() });
     setPending(null);
     setCloud('synced');
@@ -319,6 +319,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   const stopRetry = () => { if (retryTimer.current) clearTimeout(retryTimer.current); retryTimer.current = null; };
 
   const deleteAccount = useCallback(async (): Promise<DeleteOutcome> => {
+    if (!gRef.current.canReplace()) return 'failed';
     const creds = await server.existing();
     const finish = async (): Promise<DeleteOutcome> => {
       await server.adopt(null);
