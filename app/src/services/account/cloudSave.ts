@@ -12,8 +12,7 @@ import { checkSaved } from '../../core/saveShape';
  *  - 端末の中だけで使うと説明している情報：誕生日（birthday）、歩数の合計（totalSteps）、電池・起動時刻の観測（obs）
  *    （プライバシーポリシーと App Privacy の回答に合わせる。機種変更のあとは、新しい端末で入れ直す）
  */
-const KEEP_DAYS = 180; // 出会いの記録は、新しい方から180日分だけ預ける（サーバーの上限に収めるため）
-const MAX_CHARS = 380_000;
+const KEEP_DAYS = 3; // 出会いの記録（どの猫が候補に出たか）は、直近の3日分だけ預ける（きのうの分を戻せれば足りる。歩数などを推し量れる材料を、サーバーに残さないため）
 
 export function toRecord(state: GameState): string {
   const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, pendingSpend: _pending, ...rest } = state;
@@ -30,7 +29,7 @@ export function toRecord(state: GameState): string {
     return JSON.stringify({ ...rest, owned, days: Object.fromEntries(keys.map((key) => [key, { ...rest.days[key], reasons: {} }])), inbox: [], inboxRead: 0 });
   };
   const full = trim(KEEP_DAYS);
-  return full.length <= MAX_CHARS ? full : trim(60);
+  return full;
 }
 
 /** 預けた記録を読む。読めない・形の合わない項目があるときは null（壊れた記録で、いまの記録を上書きしないため。B-02）。 */

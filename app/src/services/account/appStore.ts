@@ -7,7 +7,7 @@ export interface PurchaseStore {
   /** 購入シートを出し、支払いが終わったら取引を返す。取り消しは 'cancelled'。 */
   purchase(product: Product, accountToken: string): Promise<PurchasedItem | 'cancelled'>;
   /** 支払い済みで、まだ終えていない取引と、いま有効なサブスク（アプリが落ちたあと、購入の復元に使う）。 */
-  unfinished(): Promise<PurchasedItem[]>;
+  unfinished(): Promise<{ items: PurchasedItem[]; incomplete: boolean }>;
   /** App Store が表示する価格（例「¥200」）。読めなければ空。 */
   prices(): Promise<Record<string, string>>;
 }
@@ -86,9 +86,13 @@ export function createAppStore(): PurchaseStore | null {
       // 未完了の取引を読めなかったのに、ほかも空のときは、「購入なし」ではなく、取得の失敗として伝える（B-04）
       if (pendingFailed && available.length === 0) throw new Error('getPendingTransactionsIOS failed');
       const seen = new Set<string>();
-      return [...pending, ...available]
-        .filter((purchase) => !!purchase.purchaseToken && isKnownSku(purchase.productId) && !seen.has(purchase.id) && !!seen.add(purchase.id))
-        .map(item);
+      // 片方だけ読めなかったときは、読めた分を返しつつ、不完全だと伝える（読めなかった側の取引を、黙って見落とさないため）
+      return {
+        items: [...pending, ...available]
+          .filter((purchase) => !!purchase.purchaseToken && isKnownSku(purchase.productId) && !seen.has(purchase.id) && !!seen.add(purchase.id))
+          .map(item),
+        incomplete: pendingFailed,
+      };
     },
     async prices() {
       try {

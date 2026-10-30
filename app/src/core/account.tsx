@@ -305,7 +305,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   }, [refresh, store]);
 
   const restorePurchases = useCallback(async (): Promise<SettleOutcome> => {
-    const outcome = await settle(store, server);
+    const outcome = await settle(store, server, { recover: true });
     await refresh();
     return outcome;
   }, [refresh, store]);

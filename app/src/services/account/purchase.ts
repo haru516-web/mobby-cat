@@ -112,14 +112,17 @@ async function buyOnce(key: ProductKey, store: PurchaseStore, api: Pick<Client, 
 export type SettleOutcome =
   | { kind: 'offline' }
   | { kind: 'store_error' }
-  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean };
+  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean };
 
 type SettleApi = Pick<Client, 'authed' | 'authedIfAny' | 'existing' | 'raw' | 'adopt'>;
+// recover: 購入の証明で、購入したアカウントを、この端末へ引き継いでよいか。ユーザーが「購入を復元」を押したときだけ true（起動時の自動の確認では、鍵を入れ替えない）
+export type SettleOptions = { recover?: boolean };
 
 // この端末のアカウントが空か（何も買っておらず、パスもない）。空でないアカウントを、よそのアカウントで置き換えて見失わないため
+// Apple でサインイン済み（クラウドに記録がありうる）のアカウントは、空とみなさない。Apple でサインインして引き継ぐ
 async function isEmptyAccount(api: Pick<Client, 'authed'>): Promise<boolean> {
-  const [wallet, plan] = await Promise.all([fetchWallet(api), fetchPlan(api)]);
-  return !!wallet && !!plan && wallet.tickets === 0 && wallet.matatabi === 0 && plan.plan === 'none';
+  const [wallet, plan, profile] = await Promise.all([fetchWallet(api), fetchPlan(api), fetchProfile(api)]);
+  return !!wallet && !!plan && !!profile && !profile.appleLinked && wallet.tickets === 0 && wallet.matatabi === 0 && plan.plan === 'none';
 }
 
 // 署名つきの購入を証明にして、購入したアカウントの鍵を、この端末へ移す
@@ -134,10 +137,11 @@ async function recoverAccount(api: Pick<Client, 'raw' | 'adopt'>, jws: string): 
   return 'no';
 }
 
-export async function settle(store: PurchaseStore | null, api: SettleApi): Promise<SettleOutcome> {
+export async function settle(store: PurchaseStore | null, api: SettleApi, options: SettleOptions = {}): Promise<SettleOutcome> {
   // App Store から取れなかったときは「購入なし」と区別する（B-15）
-  const items = store ? await store.unfinished().catch(() => null) : [];
-  if (items === null) return { kind: 'store_error' };
+  const found = store ? await store.unfinished().catch(() => null) : { items: [], incomplete: false };
+  if (found === null) return { kind: 'store_error' };
+  const items = found.items;
   let credited = 0;
   let otherAccount = 0;
   let failedCount = 0;
@@ -147,7 +151,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi): Promi
     const verifyOnce = (): Promise<Reply> => api.authedIfAny('/purchases/verify', { body: { signedTransactionInfo: item.jws } });
     let reply: Reply = hasAccount ? await verifyOnce() : null;
     const mismatch = reply?.status === 403 && reply.data?.error === 'app_account_token_mismatch';
-    if (!recovered && (!hasAccount || mismatch) && (!hasAccount || (await isEmptyAccount(api)))) {
+    if (options.recover && !recovered && (!hasAccount || mismatch) && (!hasAccount || (await isEmptyAccount(api)))) {
       const outcome = await recoverAccount(api, item.jws);
       if (outcome === 'offline') return { kind: 'offline' };
       if (outcome === 'ok') {
@@ -164,7 +168,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi): Promi
     else if (reply.status === 403 && reply.data?.error === 'app_account_token_mismatch') otherAccount += 1;
     else failedCount += 1;
   }
-  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered };
+  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found.incomplete };
 }
 
 /**

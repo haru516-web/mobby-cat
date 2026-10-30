@@ -54,6 +54,7 @@ const FIELDS: { [K in keyof GameState]?: Checker } = {
   tickets: (v) => (isCount(v) ? v : undefined),
   matatabi: (v) => (isCount(v) ? v : undefined),
   installDay: (v) => (isStr(v) ? v : undefined),
+  installLock: (v) => (isBool(v) ? v : undefined),
   debugOffsetDays: (v) => (isNum(v) ? v : undefined),
   notifyEnabled: (v) => (isBool(v) ? v : undefined),
   favorites: (v) => (strList(v) ? v.filter((id) => KNOWN.has(id)) : undefined),

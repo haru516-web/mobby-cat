@@ -492,6 +492,13 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
   assert.equal((await recover((await proof(alice, "tx-pass-4")).slice(0, -4) + "AAAA")).status, 400);
   assert.equal((await recover(await proof(alice, "tx-pass-5", { revocationDate: Date.now() }))).status, 403);
 
+  // an expired subscription's signed data proves nothing, and one signed transaction takes the key at most twice a day
+  assert.equal((await recover(await proof(alice, "tx-old", { expiresDate: Date.now() - 1000 }))).status, 403);
+  const again = await proof(alice, "tx-pass-7");
+  assert.equal((await recover(again)).status, 200);
+  assert.equal((await recover(again)).status, 200);
+  assert.equal((await recover(again)).status, 429);
+
   // an account linked to Apple is taken over by signing in with Apple, not by a purchase
   context.database.prepare("INSERT INTO apple_links (user_id, apple_sub, linked_at) VALUES (?, ?, ?)").run(alice, "apple-sub-1", new Date().toISOString());
   assert.equal((await recover(await proof(alice, "tx-pass-6"))).status, 409);

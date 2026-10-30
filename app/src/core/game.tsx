@@ -4,7 +4,7 @@ import { AppState } from 'react-native';
 import { CATS } from '../data/catalog';
 import { Signals } from './conditions';
 import { daysBetween } from './dates';
-import { MAX_CANDIDATES, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './encounter';
+import { MAX_CANDIDATES, REVEAL_HOUR, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './encounter';
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
@@ -41,6 +41,7 @@ export type GameState = {
   matatabi: number;
   days: Record<string, DayRecord>;
   installDay: string;
+  installLock?: boolean; // 入れた日の20時より前に始めた（最初の出会いは、その日の20時まで作らない）
   debugOffsetDays: number;
   notifyEnabled: boolean;
   favorites: string[];
@@ -120,6 +121,7 @@ function initial(now: Date): GameState {
     matatabi: 2,
     days: {},
     installDay: encounterDayKey(now),
+    installLock: now.getHours() < REVEAL_HOUR,
     debugOffsetDays: 0,
     notifyEnabled: false,
     favorites: [],
@@ -349,7 +351,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const todayKey = encounterDayKey(now);
   const yKey = prevDayKey(todayKey);
   // 入れた日の最初の出会い（その日の20時より前に入れた場合）は、20時までは作らない。1日の様子（歩数など）が出そろってから届ける
-  const firstLocked = (s: GameState, k: string) => k === s.installDay && !s.days[k] && !!s.loginDays?.[0] && s.loginDays[0] !== s.installDay;
+  const firstLocked = (s: GameState, k: string) => k === s.installDay && !s.days[k] && !!s.installLock;
   const yHas = !!state.days[yKey];
   const availableDays = useMemo(
     () => (yKey > state.installDay || (yKey === state.installDay && yHas) ? [todayKey, yKey] : [todayKey]),
@@ -546,7 +548,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         if (intent) {
           stateRef.current = { ...s, pendingSpend: { ...intent, id, currency, fromPaid, fromFree } };
           setState(stateRef.current);
-          await AsyncStorage.setItem(KEY, JSON.stringify(stateRef.current)).catch(() => {});
+          // 書けなければ（容量不足など）、買った分は引かない。書けないまま引くと、落ちたときに、引かれた分だけ失うため
+          const saved = await AsyncStorage.setItem(KEY, JSON.stringify(stateRef.current)).then(() => true, () => false);
+          if (!saved) {
+            stateRef.current = { ...stateRef.current, pendingSpend: undefined };
+            setState(stateRef.current);
+            return null;
+          }
         }
         const result = await spender.current(currency, fromPaid, id);
         if (result === 'ok') return fromFree;
@@ -653,7 +661,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
   const replaceState = useCallback((saved: Partial<GameState>) => {
     // クラウドに預けない（端末の中だけの）情報は、この端末の値を残す
-    setState((s) => ({ ...normalizeSaved(saved), debugOffsetDays: s.debugOffsetDays, paid: s.paid, pass: s.pass, birthday: s.birthday, totalSteps: s.totalSteps, obs: s.obs, clockSkewMs: s.clockSkewMs }));
+    setState((s) => ({ ...normalizeSaved(saved), debugOffsetDays: s.debugOffsetDays, paid: s.paid, pass: s.pass, birthday: s.birthday, totalSteps: s.totalSteps, obs: s.obs, clockSkewMs: s.clockSkewMs, pendingSpend: s.pendingSpend }));
   }, []);
   const setNotify = useCallback((v: boolean) => setState((s) => ({ ...s, notifyEnabled: v })), []);
   const setBirthday = useCallback((b: { m: number; d: number } | null) => setState((s) => ({ ...s, birthday: b })), []);
