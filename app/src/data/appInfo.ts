@@ -42,8 +42,8 @@ export const INFO_BODY: Record<InfoKind, string> = {
   ].join('\n\n'),
   credits: [
     'にゃっコレ',
-    '書体　M PLUS Rounded 1c　Copyright 2021 The M+ FONTS Project Authors (https://github.com/coz-m/MPLUS_FONTS)　SIL Open Font License, Version 1.1 のもとで提供されています。ライセンス全文は https://openfontlicense.org/ でご覧いただけます。',
-    'そのほか、React Native、Expo など、MIT License 等のオープンソースソフトウェアを使用しています。',
+    '書体　M PLUS Rounded 1c　Copyright 2021 The M+ FONTS Project Authors (https://github.com/coz-m/MPLUS_FONTS)　SIL Open Font License, Version 1.1 のもとで提供されています。ライセンス全文は、下の「MIT AND OFL-1.1」から読めます。',
+    'React Native、Expo などのオープンソースを使用しています。下の一覧から通知を読めます。',
     'にゃっコレの絵・UI は、画像生成を使って制作しました。',
   ].join('\n\n'),
 };

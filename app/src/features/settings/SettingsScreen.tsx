@@ -15,6 +15,7 @@ import { Card, ImgButton, Toggle, Tap, withSfx } from '../../ui/kit';
 import { Popup } from '../../ui/Popup';
 import { Pic, Slice } from '../../ui/Slice';
 import { AGE_LABEL, AgePopup } from '../shop/AgePopup';
+import { OssCredits } from './OssCredits';
 import type { AgeGroup } from '../../services/account/purchase';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
@@ -421,6 +422,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               <ImgButton skin="ghost-outline" label="相棒選びからやり直す（記録を消す）" height={44} onPress={() => confirm('相棒選びからやり直しますか？', '記録がすべて消えて、相棒選び（引き直し3回）から始まります。開発用です。', 'やり直す', g.reset, { cancelLabel: 'やめる' })} />
             </View>
           )}
+          {info === 'credits' && <OssCredits />}
         </ScrollView>
       </Popup>
 
