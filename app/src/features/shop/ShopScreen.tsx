@@ -118,6 +118,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       const result = await acc.restorePurchases(transferCode.trim());
       if (result.kind === 'offline') notice('購入の復元', 'つながりませんでした。電波のよいところで、もう一度お試しください。');
       else if (result.kind === 'store_error') notice('購入の復元', 'App Storeにつながりませんでした。しばらくしてから、もう一度お試しください。');
+      else if (result.recovered && result.credited === 0) notice('購入の復元', 'アカウントを、この端末に引き継ぎました。前の端末では、使えなくなります。持っているものは、この画面の表示で確かめてください。');
       else if (result.incomplete) notice('購入の復元', `一部の購入を、App Storeから読み取れませんでした（確認できた購入: ${result.credited}件）。しばらくしてから、もう一度お試しください。`);
       else if (result.credited > 0) notice('購入の復元', result.recovered ? `別の端末で購入した記録を、この端末に引き継ぎました（${result.credited}件の購入を確認）。前の端末では、使えなくなります。` : `${result.credited}件の購入を確認しました。`);
       else if (result.proofUsed) notice('購入の復元', '引継ぎコードが違うか、期限切れ、または別の端末で使用済みです。前の端末でAppleにサインインして連携できる場合は、設定から引き継いでください。できない場合は、サポートへご連絡ください。');

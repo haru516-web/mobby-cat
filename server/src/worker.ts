@@ -225,6 +225,23 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     return json({ userId, secret });
   }
 
+  // The transfer code is itself the proof: an independent 256-bit one-time secret issued on the old device.
+  // Consumable-only buyers (tickets, matatabi) have no purchase Apple would hand back, so this path needs no receipt.
+  if (method === "POST" && path === "/auth/recover-with-code") {
+    const perMinute = await store.hitRateLimit(`recovercode:minute:${ip}`, Math.floor(now.getTime() / 60_000), 60_000);
+    const perDay = await store.hitRateLimit(`recovercode:day:${ip}`, Math.floor(now.getTime() / 86_400_000), 86_400_000);
+    if (perMinute > 10 || perDay > 60) throw new HttpError(429, "rate_limited");
+    const input = await body(request);
+    const code = requireString(input.transferCode, "transfer_code_required", 160);
+    const secret = requireString(input.newSecret, "new_secret_required", 128);
+    if (!/^[A-Za-z0-9_-]{32,128}$/.test(secret)) throw new HttpError(400, "invalid_new_secret");
+    const userId = code.split(".")[0];
+    if (!userId || userId === code) throw new HttpError(409, "invalid_transfer_code");
+    if (await store.appleLinked(userId)) throw new HttpError(409, "apple_linked");
+    if (!(await store.redeemTransferCode(userId, await hashSecret(code), await hashSecret(secret), now.getTime()))) throw new HttpError(409, "invalid_transfer_code");
+    return json({ userId, secret });
+  }
+
   if (method === "POST" && path === "/apple/notifications") {
     const input = await body(request, BODY_BYTES.signed);
     const signedPayload = requireString(input.signedPayload, "missing_signed_payload", 200_000);

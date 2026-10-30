@@ -545,3 +545,32 @@ test("transfer code migration, expiry, replacement, retries and rollback protect
   assert.equal(await store.redeemTransferCode('a', 'second', 'last', 100), true);
   database.close();
 });
+
+test("a transfer code alone recovers an account that only bought tickets, once, and the old key stops working", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const alice = await context.register();
+  const bob = await context.register();
+  assert.equal((await purchase(context, root, alice, TICKET3, "tx-t-1")).status, 200);
+  const issued = await context.call("POST", "/account/transfer-code", { user: alice });
+  const code = issued.data.code;
+  const newSecret = 'm'.repeat(43);
+  let calls = 0;
+  const recover = (extra = {}) => context.call("POST", "/auth/recover-with-code", { body: { transferCode: code, newSecret, ...extra }, ip: "198.51.100." + (++calls) });
+  assert.equal((await recover({ transferCode: undefined })).status, 400);
+  assert.equal((await recover({ newSecret: 'short' })).status, 400);
+  assert.equal((await recover({ transferCode: 'nodot' })).status, 409);
+  assert.equal((await recover({ transferCode: alice + '.' + 'x'.repeat(43) })).status, 409);
+  assert.equal((await recover({ transferCode: bob + '.' + code.split('.')[1] })).status, 409);
+  const old = context.credentials.get(alice);
+  const reply = await recover();
+  assert.equal(reply.status, 200);
+  assert.equal(reply.data.userId, alice);
+  context.credentials.set(alice, old);
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).status, 401);
+  context.credentials.set(alice, `${alice}.${reply.data.secret}`);
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).data.tickets, 3);
+  // a lost response can retry with the same new key, but a different key cannot reuse the code
+  assert.equal((await recover()).status, 200);
+  assert.equal((await recover({ newSecret: 'z'.repeat(43) })).status, 409);
+});

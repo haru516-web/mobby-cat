@@ -125,12 +125,12 @@ async function isEmptyAccount(api: Pick<Client, 'authed'>): Promise<boolean> {
   return !!wallet && !!plan && !!profile && !profile.appleLinked && wallet.tickets === 0 && wallet.matatabi === 0 && plan.plan === 'none';
 }
 
-// 署名つきの購入を証明にして、購入したアカウントの鍵を、この端末へ移す
-async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, jws: string, transferCode: string): Promise<'ok' | 'offline' | 'no' | 'used'> {
+// 前の端末で発行した引継ぎコードを証明にして、そのアカウントの鍵を、この端末へ移す（購入履歴は要らない。またたび・お迎え券だけの人も戻せる）
+async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, transferCode: string): Promise<'ok' | 'offline' | 'no' | 'used'> {
   // account() saves the replacement secret before any key rotation. A lost response can retry the same secret.
   const replacement = await api.account().catch(() => null);
   if (!replacement) return 'offline';
-  const reply = await api.raw('/auth/recover-purchase', { body: { signedTransactionInfo: jws, transferCode, newSecret: replacement.secret } });
+  const reply = await api.raw('/auth/recover-with-code', { body: { transferCode, newSecret: replacement.secret } });
   if (reply === null) return 'offline';
   const data = reply.data;
   if (reply.status === 200 && data && typeof data.userId === 'string' && typeof data.secret === 'string' && data.secret === replacement.secret && data.userId === transferCode.split('.')[0]) {
@@ -143,28 +143,28 @@ async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, jw
 export async function settle(store: PurchaseStore | null, api: SettleApi, options: SettleOptions = {}): Promise<SettleOutcome> {
   // App Store から取れなかったときは「購入なし」と区別する（B-15）
   const found = store ? await store.unfinished().catch(() => null) : { items: [], incomplete: false };
-  if (found === null) return { kind: 'store_error' };
-  const items = found.items;
+  // 引継ぎコードで復元するときは、App Store が読めなくても進める（コードだけで戻せる）
+  if (found === null && !(options.recover && options.transferCode?.trim())) return { kind: 'store_error' };
+  const items = found?.items ?? [];
   let credited = 0;
   let otherAccount = 0;
   let failedCount = 0;
   let recovered = false;
   let proofUsed = false;
   let hasAccount = !!(await api.existing());
+  // ユーザーが「購入を復元」を押し、引継ぎコードを入れたときだけ。この端末のアカウントが無いか、空のときに限る
+  if (options.recover && options.transferCode?.trim() && (!hasAccount || (await isEmptyAccount(api)))) {
+    const outcome = await recoverAccount(api, options.transferCode.trim());
+    if (outcome === 'used') proofUsed = true;
+    if (outcome === 'offline') return { kind: 'offline' };
+    if (outcome === 'ok') {
+      recovered = true;
+      hasAccount = true;
+    }
+  }
   for (const item of items.filter((candidate) => isKnownSku(candidate.sku))) {
     const verifyOnce = (): Promise<Reply> => api.authedIfAny('/purchases/verify', { body: { signedTransactionInfo: item.jws } });
     let reply: Reply = hasAccount ? await verifyOnce() : null;
-    const mismatch = reply?.status === 403 && reply.data?.error === 'app_account_token_mismatch';
-    if (options.recover && options.transferCode?.trim() && !recovered && (!hasAccount || mismatch) && (!hasAccount || (await isEmptyAccount(api)))) {
-      const outcome = await recoverAccount(api, item.jws, options.transferCode.trim());
-      if (outcome === 'used') proofUsed = true;
-      if (outcome === 'offline') return { kind: 'offline' };
-      if (outcome === 'ok') {
-        recovered = true;
-        hasAccount = true;
-        reply = await verifyOnce();
-      }
-    }
     if (reply === null) {
       if (!hasAccount) { otherAccount += 1; continue; } // この端末にはアカウントが無く、引き継げる購入でもない
       return { kind: 'offline' };
@@ -173,7 +173,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
     else if (reply.status === 403 && reply.data?.error === 'app_account_token_mismatch') otherAccount += 1;
     else failedCount += 1;
   }
-  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found.incomplete, proofUsed };
+  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found?.incomplete ?? false, proofUsed };
 }
 
 /**

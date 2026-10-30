@@ -83,3 +83,20 @@ test('failed secure persistence prevents recovery and adoption failure remains r
   assert.deepEqual(await settle(m.store, m.api, options), { kind: 'offline' });
   assert.equal(m.finished(), 0);
 });
+test('a transfer code recovers an account without any App Store purchase, even when the store cannot be read', async () => {
+  const m = mock({ existing: false });
+  const store = { unfinished: async () => { throw new Error('store down'); } };
+  const result = await settle(store, m.api, { recover: true, transferCode: 'b.code' });
+  assert.equal(result.kind, 'done');
+  assert.equal(result.recovered, true);
+  assert.equal(result.credited, 0);
+  assert.equal(m.recoveries(), 1);
+  const without = await settle(store, mock({ existing: false }).api, { recover: true });
+  assert.equal(without.kind, 'store_error');
+});
+test('a transfer code does not replace an account that already holds items', async () => {
+  const m = mock({ existing: true, tickets: 2 });
+  const result = await settle({ unfinished: async () => ({ items: [], incomplete: false }) }, m.api, { recover: true, transferCode: 'b.code' });
+  assert.equal(result.recovered, false);
+  assert.equal(m.recoveries(), 0);
+});

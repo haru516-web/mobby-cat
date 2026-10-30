@@ -12,6 +12,7 @@
 | 購入の検証 | `POST /purchases/verify`（StoreKit 2 の JWS。`appAccountToken` はアカウントの `userId` と一致が必須） |
 | App Store Server Notifications V2 | `POST /apple/notifications`（更新・返金・取り消し） |
 | 匿名購入の引継ぎ | `POST /auth/recover-purchase`（期限内サブスクの署名つき取引。Apple未連携のみ。独立した引継ぎコードと新端末の保存済み鍵が必要。コードの使用先固定と鍵回転を原子的に更新） |
+| 匿名購入の引継ぎ（アプリが使う） | `POST /auth/recover-with-code`（前の端末で発行した引継ぎコードだけが証明。購入履歴は要らない。Apple未連携のみ。コードは使い捨て・30日有効・送信元ごとの制限つき） |
 | 残高 | `GET /wallet`（お迎え券 `tickets`・またたび `matatabi`）、`POST /wallet/consume`（`requestId` ごとに1回だけ消費） |
 | またたびパス | `GET /plan` |
 | 年齢区分と購入上限 | `POST /profile/age-group`（下げるのは可、上げるのは不可）、`GET /limits` |
