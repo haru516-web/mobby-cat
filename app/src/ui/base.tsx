@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AccessibilityInfo, Animated, Easing, StyleProp, Text, TextProps, TextStyle, View, ViewStyle } from 'react-native';
 import { CATS, CatDef } from '../data/catalog';
 
@@ -62,7 +62,7 @@ export function useReduceMotion(): boolean {
 // ふわふわ上下に揺れる（呼吸）
 export function Bobbing({ children, delay = 0, style }: { children: React.ReactNode; delay?: number; style?: StyleProp<ViewStyle> }) {
   const still = useReduceMotion();
-  const v = useRef(new Animated.Value(0)).current;
+  const v = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     if (still) return;
     const loop = Animated.loop(

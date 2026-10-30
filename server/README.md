@@ -9,15 +9,17 @@
 | 匿名アカウント作成 | `POST /auth/register` → `{ userId, secret }`。以降は `Authorization: Bearer <userId>.<secret>`。secret は SHA-256 のハッシュだけを保存 |
 | Apple サインイン | `POST /account/apple/link`（今の端末のアカウントに結ぶ）、`POST /auth/apple`（新しい端末で引き継ぐ。旧端末の secret は無効になる） |
 | クラウドセーブ | `GET/POST /save`（Apple 連携済みのアカウントだけ。`baseVersion` が古いと 409） |
-| 購入の検証 | `POST /purchases/verify`（StoreKit 2 の JWS。`appAccountToken` はアカウントの `userId` と一致が必須） |
-| App Store Server Notifications V2 | `POST /apple/notifications`（更新・返金・取り消し） |
+| 購入の検証 | `POST /purchases/verify`（StoreKit 2 の JWS。`appAccountToken`、移動済みのパスは `plan_owners` の持ち主が、アカウントの `userId` と一致することが必須） |
+| App Store Server Notifications V2 | `POST /apple/notifications`（更新・返金・取り消し・返金の取り消し） |
+| またたびパスの移動 | `POST /purchases/move-plan`（期限内のサブスクの署名つき取引。パスの権利だけを呼び出したアカウントへ移す。残高と鍵は動かない。前の持ち主が Apple 連携済みなら 409。移した期間のお迎え券は再付与しない。以後の更新と返金は `plan_owners` の持ち主に届く） |
+| 匿名購入の引継ぎ | `POST /auth/recover-with-code`（前の端末で発行した引継ぎコードだけが証明。購入履歴は要らない。Apple未連携のみ。コードは使い捨て・30日有効・送信元ごとの制限つき） |
 | 残高 | `GET /wallet`（お迎え券 `tickets`・またたび `matatabi`）、`POST /wallet/consume`（`requestId` ごとに1回だけ消費） |
 | またたびパス | `GET /plan` |
 | 年齢区分と購入上限 | `POST /profile/age-group`（下げるのは可、上げるのは不可）、`GET /limits` |
 | アカウント削除 | `POST /account/delete`（`confirm: "delete"`。Apple 連携済みは先に Apple のトークンを取り消し、できなければ削除しない） |
 | 公開ページ | `GET /privacy` `/support` `/legal`（文面は `src/privacyPolicy.ts` ほか。運営者名・連絡先は `src/operator.ts`） |
 
-「課金の前に Apple 連携を必須にする」のはアプリ側で行います。サーバーは、すでに支払われた購入は連携の有無にかかわらず付与します（お金だけ取られて何も届かない状態を作らないため）。
+購入は匿名アカウントのままでできます。Apple連携は任意です。アプリのアカウント作成・購入・クラウドセーブ・削除画面とKeychain保存は実装済みですが、実機検証は残っています。
 
 ## 商品の設定
 
@@ -56,18 +58,24 @@ npm run dev        # ローカルで起動（先に npm run db:apply）
 
 | ファイル | 内容 | 本番に適用 |
 |---|---|---|
-| `migrations/0002_purchase_price.sql` | 購入した日時と、Apple が請求した金額（円）を記録する（月の購入上限の計算に使う） | 未 |
+| `migrations/0002_purchase_price.sql` | 購入した日時と、Apple が請求した金額（円）を記録する（月の購入上限の計算に使う） | 適用済み |
+| `migrations/0003_purchase_recovery_date.sql` | 旧回復方式の列（0005 で消す） | 適用済み |
+| `migrations/0004_account_transfer_codes.sql` | 独立した期限付き引継ぎコードと使用先の鍵のハッシュ | 適用済み |
+| `migrations/0005_plan_owners.sql` | パスの持ち主の表を足し、0003 の列を消す | 適用済み |
 
 ```bash
-npx wrangler d1 execute nyakomobby --remote --file=./migrations/0002_purchase_price.sql
+npx wrangler d1 execute nyakomobby --remote --file=./migrations/0005_plan_owners.sql
 npx wrangler deploy
 ```
+
+上記は運営者の適用手順です。未適用の移行だけを、番号の順に実行します。アカウント全体の引継ぎには、期限内の独立したコードが必要です。通信応答喪失時は同じ保存済みの新しい鍵で再送できます。購入の証明で移せるのは、加入中のパスの権利だけです。
 
 回数制限：送信元のアドレスごとの制限は Cloudflare の Rate Limiting（`wrangler.toml` の `[[ratelimits]]`。DB には残らない）。アカウントごとの制限（購入の確認、Apple 連携、記録の保存・読み込み、残高の消費、年齢の区分）は DB の `rate_limits`。
 
 ## まだ無いもの
 
-- アプリ側の接続（アカウント作成、Apple 連携画面、購入、クラウドセーブ、アカウント削除の画面）
 - 起動時の App Store Server API による購入状態の再照合（通知の取りこぼし対策）
-- 認証用 secret の Keychain 保存（アプリ側で `expo-secure-store` を使う）
-- 引き継ぎコード（有効期限つき・1回限りのサーバー発行）
+
+## 引継ぎコード（2026-10-30 更新）
+
+従来の購入日時による回復制限は、独立した引継ぎコード方式へ置き換えました。`POST /account/transfer-code`は現在の認証鍵でコードを発行し、サーバーにはハッシュだけを保存します。期限30日、再発行で旧コードは失効します。`POST /auth/recover-purchase`は署名済みの有効な購入に加え、`transferCode`と新端末に保存済みの`newSecret`を要求します。コードの使用先固定と鍵の更新は同じDBバッチです。応答喪失後は同じ新しい鍵で再試行可能ですが、違う鍵への再利用は拒否します。Appleによる鍵回転はコードを失効させます。`0004_account_transfer_codes.sql`をアプリ公開前に適用します。

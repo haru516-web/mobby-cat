@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Modal, ScrollView, StyleSheet, View } from 'react-native';
 import { cardReason, conditionTotal } from '../../core/conditions';
-import { msUntilNextReveal } from '../../core/encounter';
+import { REVEAL_HOUR, prevDayKey } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
-import { matatabiOf, ticketsOf, useGame, visibleCount } from '../../core/game';
+import { WelcomeFx } from './WelcomeFx';
+import { matatabiOf, openLeft, openLimit, openedOf, ticketsOf, useGame } from '../../core/game';
 import { notice } from '../../services/dialog';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
 import { Card, Header, ImgButton, RarityBadge, useTabPad, Tap } from '../../ui/kit';
@@ -14,6 +15,11 @@ import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
 import { playSfx } from '../../services/audio';
 import { hapticSuccess } from '../../services/haptics';
+import { UI } from '../../ui/uiAssets';
+import { RevealOverlay } from './RevealOverlay';
+
+// まだひらいていない候補は、どの子も同じシルエットで見せる（形で誰か分からないように）
+const MYSTERY = UI['deai/mystery-cat'] ? 'deai/mystery-cat' : 'cat/silhouette-locked';
 
 export default function DeaiScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const g = useGame();
@@ -23,13 +29,17 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const [sel, setSel] = useState<string | null>(null);
   const [detail, setDetail] = useState<string | null>(null);
   const [welcome, setWelcome] = useState<string | null>(null); // 迎えた直後に出す発見カード
+  const [reveal, setReveal] = useState<{ ids: string[]; newIds: string[] } | null>(null); // ひらく演出の最中の子たち
+  const [openSel, setOpenSel] = useState<string[]>([]); // ひらく子として選んでいる候補（まだひらいていない）
   const card = useRef<ViewRef>(null);
   const [barH, setBarH] = useState(0);
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 日が変わったら、選択を今日に戻す
     setDay(todayKey);
     setSel(null);
+    setOpenSel([]);
   }, [todayKey]);
 
   const rec = state.days[day];
@@ -37,25 +47,44 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   if (!rec) {
     return (
       <View style={{ flex: 1 }}>
-        <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+        <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={s.preparing}>
           <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
-          <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+          {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR ? (
+            <>
+              <T w="x" size={16} style={{ textAlign: 'center' }}>最初の出会いは、今夜{REVEAL_HOUR}時に届きます</T>
+              <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>{`今日の歩数や電池の様子がそろってから、\n会える猫が決まります。それまでは、ホームで猫と遊んでね`}</T>
+            </>
+          ) : (
+            <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+          )}
         </View>
       </View>
     );
   }
 
-  const visible = rec.candidates.slice(0, visibleCount(rec));
+  // ひらいた子（中身が見える）と、まだの子。並びは候補の順のまま（ひらいても場所が変わらない）
+  const visible = openedOf(rec);
+  // ひらく演出の最中の子は、一覧ではまだシルエットのまま（後ろで先に正体が見えないように）
+  const isOpened = (id: string) => visible.includes(id) && !reveal?.ids.includes(id);
   const isPicked = (id: string) => rec.freePick === id || rec.extraPicks.includes(id);
   const hasFree = !!rec.freePick;
   const rest = visible.filter((id) => !isPicked(id));
-  const mins = Math.ceil(msUntilNextReveal(now) / 60000);
+  const left = openLeft(rec); // あと何匹、無料でひらけるか
+  // またたびで、ひらける数を増やせるか（無料のお迎えの前で、ひらける数を使い切っていて、まだひらいていない子がいる）
+  const canMatatabi = !hasFree && left === 0 && openLimit(rec) < rec.candidates.length;
+  // まとめてひらく数：ひらける数（または、まだひらいていない子の数）。この数ぴったりを選んでから、いっしょにひらく
+  const unopened = rec.candidates.filter((id) => !visible.includes(id));
+  const need = Math.min(left, unopened.length);
+  const picking = !hasFree && need > 0; // ひらく子を選んでいる段階
+  const chosen = openSel.filter((id) => unopened.includes(id));
   const empty = rec.candidates.length === 0;
-  // まだ見えていない候補（またたびで見える）。図鑑の未所持と同じく、その猫の形のシルエットで見せる
-  const hidden = hasFree ? [] : rec.candidates.slice(visible.length);
-  const slots = visible.length + hidden.length;
-  const cols = Math.max(1, Math.min(3, slots));
+  const nextWord = now.getHours() >= REVEAL_HOUR ? 'あす' : '今日';
+  const yKey = prevDayKey(todayKey);
+  const yRec = state.days[yKey];
+  // きのうの子が、まだ迎えられるのに残っている
+  const yWaiting = day === todayKey && availableDays.includes(yKey) && !!yRec?.candidates.length && !yRec.freePick;
+  const cols = Math.max(1, Math.min(3, rec.candidates.length));
   const colW = (width - 32 - (cols - 1) * 8) / cols;
   const selCat = sel ? CAT_BY_ID[sel] : null;
 
@@ -71,26 +100,53 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   };
   // 買った分の券は、サーバーで引く。つながらない・足りないときは、何も引かれない
   const notEnough = () => notice('お迎えできませんでした', '通信できなかったか、お迎え券が足りません。電波のよいところで、もう一度お試しください。');
-  const askLocked = () => {
-    if (!hidden[0]) return;
-    if (matatabiOf(state) >= 1) {
+  // ひらく演出を始める（一覧では、ひらく子はまだシルエットのまま）
+  const startReveal = (ids: string[]) => {
+    setSel(null);
+    setOpenSel([]);
+    setReveal({ ids, newIds: ids.filter((id) => !state.owned[id]) });
+  };
+  // ひらく子を選ぶ（押すと選ぶ、もう一度押すと外す。いっぱいのときは、いちばん前に選んだ子を外して入れかえる）
+  const toggleOpen = (id: string) => {
+    setOpenSel((cur) => {
+      const now = cur.filter((x) => unopened.includes(x));
+      if (now.includes(id)) return now.filter((x) => x !== id);
+      return [...now, id].slice(-need);
+    });
+  };
+  // 選んだ子を、いっしょにひらく。ひらく前に、かならず確認する（ひらく数には限りがあり、取り消せないため）
+  const askOpenAll = () => {
+    if (chosen.length !== need || need < 1) return;
+    confirm(
+      need === 1 ? 'この子をひらきますか？' : `この${need}匹をひらきますか？`,
+      `ひらいた子の中から、1匹を無料で迎えられます。ひらいたあとは、選びなおせません。`,
+      'ひらく',
+      () => { if (g.openCandidates(day, chosen)) startReveal(chosen); },
+      { pic: MYSTERY, picCount: need },
+    );
+  };
+  // ひらける数を使い切ったあとに、まだひらいていない子を押したとき
+  const askExtra = (id: string) => {
+    if (!canMatatabi) {
+      notice('もうひらけません', hasFree ? '無料のお迎えのあとは、新しくひらけません。あしたの出会いを待ってね。' : '今日ひらける数を使い切りました。');
+    } else if (matatabiOf(state) >= 1) {
       confirm(
-        'またたびを使いますか？',
-        `またたびを1個使って、隠れている子を1匹見えるようにします（${matatabiOf(state)}個 → ${matatabiOf(state) - 1}個）。無料で迎えられるのは1匹のままです。`,
-        'またたびを使う',
+        'またたびでひらきますか？',
+        `またたびを1個使って、この子をひらきます（${matatabiOf(state)}個 → ${matatabiOf(state) - 1}個）。無料で迎えられるのは1匹のままです。`,
+        'またたびでひらく',
         async () => {
-          if (await g.useMatatabi(day)) playSfx('sfx_matatabi');
+          if (await g.useMatatabi(day, id)) { playSfx('sfx_matatabi'); startReveal([id]); }
           else notice('またたびを使えませんでした', '通信できなかったか、またたびが足りません。電波のよいところで、もう一度お試しください。');
         },
-        { catId: hidden[0], silhouette: true, skin: 'primary-green' },
+        { pic: MYSTERY, skin: 'primary-green' },
       );
     } else {
       confirm(
         'またたびがありません',
-        'またたびを使うと、隠れている子に出会えます。またたびパスなら、条件がそろった子に、毎日はじめから最大6匹まで会えます。',
+        'またたびがあると、ひらける子を1匹増やせます。またたびパスなら、毎日6匹までひらけます。',
         'ショップを見る',
         openShop,
-        { catId: hidden[0], silhouette: true, skin: 'primary-green', cancelLabel: 'もどる' },
+        { pic: MYSTERY, skin: 'primary-green', cancelLabel: 'もどる' },
       );
     }
   };
@@ -114,49 +170,90 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   return (
     <View style={{ flex: 1 }}>
     <Backdrop name="bg/room-deai-full" />
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
-      <Header title="brand/title-deai" onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+    {/* 見出しと「今日・きのう」の切り替えは固定する（もび道と同じく、中身がノッチの裏に入り込まない）。その下の候補だけスクロールする */}
+    <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+    {/* 「今日・きのう」はいつも出す。きのうの分が無い日（アプリを入れた日など）は、薄く出して、押すと理由を伝える */}
+    <View style={s.dayTabs}>
+        {[todayKey, prevDayKey(todayKey)].map((k) => {
+          const none = !availableDays.includes(k);
+          return (
+          <Tap key={k} style={{ opacity: none ? 0.5 : 1 }} accessibilityState={{ disabled: none }} onPress={() => {
+            if (none) return notice('きのうの出会いはありません', 'アプリを入れる前の日の出会いは届きません。あしたからは、前の日の子も選べます（次の20時まで）。');
+            setDay(k);
+            setSel(null);
+            setOpenSel([]);
+          }}>
+            <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
+              {k !== todayKey && !none && !!state.days[k]?.candidates.length && !state.days[k]?.freePick && <Pic name="button/bell-badge" height={12} style={s.tabDot} />}
+              <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
+                {k === todayKey ? '今日' : none ? 'きのう（ありません）' : state.days[k]?.freePick ? 'きのう' : `きのう（受け取りは${now.getHours() >= REVEAL_HOUR ? 'あす' : '今日'}の20時まで）`}
+              </T>
+            </Slice>
+          </Tap>
+          );
+        })}
+    </View>
+    {/* きのうの子が残っているときは、今日の画面の上で知らせる（押すと、きのうに切り替わる） */}
+    {yWaiting && (
+      <Tap onPress={() => { setDay(yKey); setSel(null); }} accessibilityLabel="きのうの子を見る" style={{ marginHorizontal: 16, marginTop: 8 }}>
+        <Card skin="selected" style={s.yBanner}>
+          <Pic name="icon/paw" height={20} />
+          <T w="x" size={12} style={{ flex: 1 }}>きのうの子が、まだ待っています（{nextWord}の20時まで）</T>
+          <Pic name="icon/chevron-right" height={12} />
+        </Card>
+      </Tap>
+    )}
+    <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
 
-      {/* 見出しは文字で描く。またたび・パスで候補の数が変わるので、いまの数を出す */}
+      {/* いまできることを1行で。ひらける数が残っていれば、それも出す */}
       <TourAnchor id="deai-hero" style={s.hero}>
         <Card skin="white" style={s.heroNote}>
           <T w="x" size={16} style={{ textAlign: 'center' }}>
-            {empty ? '今日は出会える子がいません' : hasFree ? '無料のお迎えが完了しました' : `${visible.length}匹の中から1匹を無料でお迎え`}
+            {empty ? `${day === todayKey ? '今日' : 'きのう'}は出会える子がいません` : hasFree ? '無料のお迎えが完了しました' : '1匹を無料でお迎え'}
           </T>
-          {/* 次の出会いの準備ができる20時まで、残りの時間を大きく見せる */}
-          <View style={s.countdown}>
-            <T w="b" size={11} color={C.sub} style={{ flex: 1 }}>お迎えの準備が完了するまで</T>
-            <T w="b" size={13} color={C.accent}>あと</T>
-            <T w="x" size={30} color={C.accent} style={{ marginHorizontal: 4 }}>
-              {mins >= 60 ? `${Math.floor(mins / 60)}時間${mins % 60}分` : `${mins}分`}
-            </T>
-          </View>
+          {!empty && picking && <T w="b" size={12} color={C.accent} style={{ textAlign: 'center' }}>{`気になる子を${need}匹えらんでね（${chosen.length}/${need}）`}</T>}
+          {/* 迎え終えたら、次にいつ来ればよいかだけ伝える（20時に届くことは、通知と毎日の習慣で分かる） */}
+          {hasFree && day === todayKey && <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>次の出会いは、{nextWord}の20時に届きます</T>}
         </Card>
       </TourAnchor>
 
-      {availableDays.length > 1 && (
-        <View style={s.dayTabs}>
-          {availableDays.map((k) => (
-            <Tap key={k} onPress={() => { setDay(k); setSel(null); }}>
-              <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
-                <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
-                  {k === todayKey ? '今日' : state.days[k]?.freePick ? 'きのう' : 'きのう（受け取りは今日の20時まで）'}
-                </T>
-              </Slice>
-            </Tap>
-          ))}
-        </View>
-      )}
 
       {empty && (
         <Card style={{ marginHorizontal: 16, marginTop: 12 }}>
-          <T w="b" size={13} style={{ textAlign: 'center' }}>今日は、出会いの条件がそろった子がいません</T>
+          <T w="b" size={13} style={{ textAlign: 'center' }}>{day === todayKey ? '今日' : 'きのう'}は、出会いの条件がそろった子がいません</T>
           <T w="m" size={11} color={C.sub} style={{ textAlign: 'center', marginTop: 4 }}>歩いたり、天気や曜日がかわったりすると、あしたは会えるかも。歩数と位置情報を許可していないと、ほとんど会えません（設定で確認できます）</T>
         </Card>
       )}
 
       <TourAnchor id="deai-grid" style={s.grid}>
-        {visible.map((id, i) => {
+        {rec.candidates.map((id, i) => {
+          if (!isOpened(id)) {
+            const mine = picking && chosen.includes(id); // いま、ひらく子として選んでいる
+            const openable = picking || canMatatabi;
+            return (
+              <Tap
+                key={id}
+                style={{ width: colW, opacity: openable ? 1 : 0.55 }}
+                onPress={() => (picking ? toggleOpen(id) : askExtra(id))}
+                accessibilityLabel={picking ? (mine ? 'ひらく子に選んでいる。タップで外す' : 'まだひらいていない子。タップでひらく子に選ぶ') : 'またたびでひらける子'}
+                accessibilityState={{ selected: mine }}
+              >
+                <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
+                  {mine && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', bottom: -colW * 0.08 }} />}
+                  <Bobbing delay={i * 180}>
+                    <Pic name={MYSTERY} width={colW * 0.92} />
+                  </Bobbing>
+                </View>
+                <View style={s.badgeRow}>{!picking && canMatatabi ? <Pic name="icon/matatabi-leaf" height={24} /> : <View style={{ height: 24 }} />}</View>
+                <Card skin={mine ? 'selected' : 'white'} style={s.candCard}>
+                  <T w="x" size={13}>？？？</T>
+                  <Slice name="badge/owned-count" style={s.cost}>
+                    <T w="x" size={11} color={openable ? C.accent : C.sub}>{picking ? (mine ? 'ひらく！' : 'えらぶ') : canMatatabi ? 'またたび1個' : 'ひらけません'}</T>
+                  </Slice>
+                </Card>
+              </Tap>
+            );
+          }
           const cat = CAT_BY_ID[id];
           const picked = isPicked(id);
           return (
@@ -180,22 +277,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             </Tap>
           );
         })}
-        {hidden.map((id, i) => (
-          <Tap key={id} style={{ width: colW }} onPress={askLocked} accessibilityLabel="またたびで会える猫">
-            <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
-              <Bobbing delay={(visible.length + i) * 180}>
-                <CatImage id={id} size={colW * 1.02} silhouette />
-              </Bobbing>
-            </View>
-            <View style={s.badgeRow}><Pic name="icon/matatabi-leaf" height={24} /></View>
-            <Card style={s.candCard}>
-              <T w="x" size={13}>？？？</T>
-              <Slice name="badge/owned-count" style={s.cost}>
-                <T w="x" size={11} color={C.accent}>またたび1個</T>
-              </Slice>
-            </Card>
-          </Tap>
-        ))}
       </TourAnchor>
     </ScrollView>
 
@@ -220,7 +301,16 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           </Card>
         )}
 
-        {!hasFree && (
+        {picking && (
+          <ImgButton
+            label={chosen.length === need ? (need === 1 ? 'この子をひらく' : `この${need}匹をひらく`) : `ひらく子を${need}匹えらんでね（${chosen.length}/${need}）`}
+            disabled={chosen.length !== need}
+            height={50}
+            icon="icon/paw"
+            onPress={askOpenAll}
+          />
+        )}
+        {!hasFree && !picking && (
           <ImgButton
             label={selCat ? '無料でお迎えする' : '迎える子をえらんでね'}
             disabled={!selCat}
@@ -278,7 +368,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             <Pic name="icon/matatabi-bag" height={32} />
             <View style={{ flex: 1 }}>
               <T w="x" size={12}>{state.pass.active ? 'またたびパス加入中' : 'またたびパス'}</T>
-              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日最大6匹に会える＋毎月お迎え券8枚</T>
+              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹までひらける＋毎月お迎え券8枚</T>
             </View>
             {!state.pass.active && <T w="x" size={11} color={C.accent}>くわしく</T>}
             <Pic name="icon/chevron-right" height={12} />
@@ -291,20 +381,37 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
 
       <Modal visible={!!welcome} transparent animationType="fade" onRequestClose={() => setWelcome(null)}>
         <View style={s.overlay}>
-          <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
+          {/* ひらく演出と同じ暗幕（後ろの画面が透けて、光が埋もれないように） */}
+          {UI['deai/reveal-dim'] ? <Stretch name="deai/reveal-dim" style={StyleSheet.absoluteFill} /> : <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />}
           {welcome && (
-            <View style={{ alignItems: 'center', gap: 12 }}>
+            <WelcomeFx
+              key={welcome}
+              id={welcome}
+              width={Math.min(width - 48, 340)}
+              footer={
+                <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
+                  <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
+                  <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1.2 }} />
+                  <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1.2 }} />
+                </View>
+              }
+            >
               <T w="x" size={20} color="#fff">{CAT_BY_ID[welcome].name}をお迎えしました！</T>
               <DiscoveryCard ref={card} id={welcome} day={day} reason={rec.reasons[welcome]} width={Math.min(width - 48, 340)} />
-              <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
-                <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
-                <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1.2 }} />
-                <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1.2 }} />
-              </View>
-            </View>
+            </WelcomeFx>
           )}
         </View>
       </Modal>
+
+      <RevealOverlay
+        ids={reveal?.ids ?? null}
+        reasons={rec.reasons}
+        newIds={reveal?.newIds ?? []}
+        onClose={() => {
+          if (reveal?.ids.length === 1) setSel(reveal.ids[0]); // 1匹だけひらいたときは、その子を選んだ状態で戻る
+          setReveal(null);
+        }}
+      />
 
       <Modal visible={!!detail} transparent animationType="fade" onRequestClose={() => setDetail(null)}>
         <Tap style={s.overlay} onPress={() => setDetail(null)}>
@@ -333,13 +440,14 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
 const s = StyleSheet.create({
   hero: { alignItems: 'stretch', paddingTop: 6, paddingHorizontal: 16 },
   heroNote: { paddingVertical: 8, paddingHorizontal: 14, gap: 2 },
-  countdown: { flexDirection: 'row', alignItems: 'baseline', marginTop: 2 },
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
   selInfo: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   pass: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   bar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 16, gap: 8 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },
   dayTab: { height: 36, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
+  tabDot: { position: 'absolute', right: 4, top: 2 },
+  yBanner: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 12 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, paddingHorizontal: 16, marginTop: 4 },
   badgeRow: { alignItems: 'center', marginTop: -14, marginBottom: -11, zIndex: 3 },
   candCard: { alignItems: 'center', paddingHorizontal: 6, paddingTop: 14, paddingBottom: 8 },

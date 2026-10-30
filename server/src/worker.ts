@@ -24,8 +24,9 @@ function tokyoMonthRange(now: Date): { from: string; to: string } {
 const MAX_SAVE_CHARS = 400_000;
 
 /** Anonymous sign-ups allowed from one source address. */
-const REGISTER_PER_MINUTE = 5;
-const REGISTER_PER_DAY = 30;
+// A mobile carrier can put many players behind one address, so these only stop a flood.
+const REGISTER_PER_MINUTE = 20;
+const REGISTER_PER_DAY = 300;
 
 // Two refunds that came after what they bought was spent, within half a year, stop further purchases.
 const REFUND_RESTRICT_COUNT = 2;
@@ -136,7 +137,28 @@ async function recordPlanPeriod(store: Store, userId: string, transaction: Verif
   // A refund can reach the server before the purchase does: its 券 are not credited afterwards.
   if (await store.isRevoked(transaction.transactionId)) return;
   const expired = transaction.expiresDate <= now.getTime();
-  await store.recordPlanPeriod(userId, product.plan, new Date(transaction.purchaseDate).toISOString(), new Date(transaction.expiresDate).toISOString(), expired ? 0 : product.monthlyTickets ?? 0, transaction.transactionId);
+  // The period a plan moved in was already paid out to the account it came from; moving must not pay it again.
+  const moved = (await ownerOfPlan(store, transaction))?.movedTransactionId === transaction.transactionId;
+  await store.recordPlanPeriod(userId, product.plan, new Date(transaction.purchaseDate).toISOString(), new Date(transaction.expiresDate).toISOString(), expired || moved ? 0 : product.monthlyTickets ?? 0, transaction.transactionId);
+}
+
+const ownerOfPlan = async (store: Store, transaction: VerifiedTransaction) =>
+  transaction.originalTransactionId ? store.planOwner(transaction.originalTransactionId) : null;
+
+/** The account a transaction belongs to: its appAccountToken, unless a plan has moved to another account since. */
+async function holderOf(store: Store, transaction: VerifiedTransaction, product: ProductDefinition | undefined): Promise<string | undefined> {
+  return (product?.plan ? (await ownerOfPlan(store, transaction))?.userId : undefined) ?? transaction.appAccountToken;
+}
+
+/** An Apple identity token is good for one sign-in: one that was seen before is refused, so a leaked token cannot be replayed. */
+async function verifyFreshAppleToken(token: string, env: Env, store: Store, now: Date): Promise<string> {
+  let verified: { sub: string; exp: number };
+  try { verified = await verifyAppleIdentityToken(token, env, now.getTime()); }
+  catch { throw new HttpError(401, "invalid_apple_token"); }
+  const hour = 3_600_000;
+  // Counted in the hour the token expires, whenever it is shown, so its counter outlives the token.
+  if ((await store.hitRateLimit(`apple-token:${await hashSecret(token)}`, Math.floor(verified.exp * 1000 / hour), hour)) > 1) throw new HttpError(401, "invalid_apple_token");
+  return verified.sub;
 }
 
 function requireString(value: unknown, code: string, maxLength = 160): string {
@@ -187,15 +209,30 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     if (perMinute > REGISTER_PER_MINUTE) throw new HttpError(429, "rate_limited");
     const input = await body(request);
     const token = requireString(input.identityToken, "missing_identity_token", 8000);
-    let appleSub: string;
-    try { appleSub = (await verifyAppleIdentityToken(token, env, now.getTime())).sub; }
-    catch { throw new HttpError(401, "invalid_apple_token"); }
+    const appleSub = await verifyFreshAppleToken(token, env, store, now);
     const userId = await store.userByApple(appleSub);
     if (!userId) throw new HttpError(404, "no_linked_account");
     await keepAppleRefreshToken(env, store, userId, input.authorizationCode, now, appleSub);
     // A new device takes the account over: the old device's secret stops working.
     const secret = randomToken(32);
     await store.rotateSecret(userId, await hashSecret(secret));
+    return json({ userId, secret });
+  }
+
+  // The transfer code is itself the proof: an independent 256-bit one-time secret issued on the old device.
+  // Consumable-only buyers (tickets, matatabi) have no purchase Apple would hand back, so this path needs no receipt.
+  if (method === "POST" && path === "/auth/recover-with-code") {
+    const perMinute = await store.hitRateLimit(`recovercode:minute:${ip}`, Math.floor(now.getTime() / 60_000), 60_000);
+    const perDay = await store.hitRateLimit(`recovercode:day:${ip}`, Math.floor(now.getTime() / 86_400_000), 86_400_000);
+    if (perMinute > 10 || perDay > 60) throw new HttpError(429, "rate_limited");
+    const input = await body(request);
+    const code = requireString(input.transferCode, "transfer_code_required", 160);
+    const secret = requireString(input.newSecret, "new_secret_required", 128);
+    if (!/^[A-Za-z0-9_-]{32,128}$/.test(secret)) throw new HttpError(400, "invalid_new_secret");
+    const userId = code.split(".")[0];
+    if (!userId || userId === code) throw new HttpError(409, "invalid_transfer_code");
+    if (await store.appleLinked(userId)) throw new HttpError(409, "apple_linked");
+    if (!(await store.redeemTransferCode(userId, await hashSecret(code), await hashSecret(secret), now.getTime()))) throw new HttpError(409, "invalid_transfer_code");
     return json({ userId, secret });
   }
 
@@ -215,12 +252,16 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
         transaction = await verifySignedTransaction(data.signedTransactionInfo, env);
       } catch { throw new HttpError(400, "invalid_notification_transaction"); }
       const product = configuredProducts(env)[transaction.productId];
-      if (transaction.revocationDate || notification.notificationType === "REFUND" || notification.notificationType === "REVOKE") {
+      const holder = await holderOf(store, transaction, product);
+      if (notification.notificationType === "REFUND_REVERSED") {
+        const plan = planOf(product, transaction);
+        await store.reverseRefund(transaction.transactionId, plan && transaction.expiresDate ? { ...plan, periodEnd: new Date(transaction.expiresDate).toISOString() } : undefined);
+      } else if (transaction.revocationDate || notification.notificationType === "REFUND" || notification.notificationType === "REVOKE") {
         await store.revokePurchase(transaction.transactionId, product, planOf(product, transaction));
-      } else if (transaction.appAccountToken && environmentAccepted(env, transaction)) {
-        if (product && await store.userExists(transaction.appAccountToken)) {
-          await store.recordPurchase(transaction.appAccountToken, transaction, product);
-          await recordPlanPeriod(store, transaction.appAccountToken, transaction, product, now);
+      } else if (holder && environmentAccepted(env, transaction)) {
+        if (product && await store.userExists(holder)) {
+          await store.recordPurchase(holder, transaction, product);
+          await recordPlanPeriod(store, holder, transaction, product, now);
         }
       }
     }
@@ -228,6 +269,16 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   }
 
   const userId = await authenticatedUser(request, store);
+
+  if (method === "POST" && path === "/account/transfer-code") {
+    if (await store.appleLinked(userId)) throw new HttpError(409, "apple_linked");
+    if ((await store.hitRateLimit('transfer:' + userId, Math.floor(now.getTime() / 60_000), 60_000)) > 5) throw new HttpError(429, "rate_limited");
+    const code = userId + "." + randomToken(32);
+    const expiresAt = now.getTime() + 30 * 86_400_000;
+    const currentSecret = (request.headers.get("authorization") ?? "").split(".").slice(1).join(".");
+    if (!(await store.issueTransferCode(userId, await hashSecret(code), expiresAt, await hashSecret(currentSecret)))) throw new HttpError(401, "unauthorized");
+    return json({ code, expiresAt });
+  }
 
   if (method === "GET" && path === "/profile") {
     return json({ appleLinked: await store.appleLinked(userId), ageGroup: await store.ageGroup(userId) });
@@ -237,9 +288,7 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     await limit(store, "link", userId, 3_600_000, 20, now);
     const input = await body(request);
     const token = requireString(input.identityToken, "missing_identity_token", 8000);
-    let appleSub: string;
-    try { appleSub = (await verifyAppleIdentityToken(token, env, now.getTime())).sub; }
-    catch { throw new HttpError(401, "invalid_apple_token"); }
+    const appleSub = await verifyFreshAppleToken(token, env, store, now);
     const result = await store.linkApple(userId, appleSub);
     if (result === "apple_in_use" || result === "account_has_other_apple") throw new HttpError(409, result);
     await keepAppleRefreshToken(env, store, userId, input.authorizationCode, now, appleSub);
@@ -312,7 +361,7 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     if (!product) throw new HttpError(400, "unknown_product");
     if (!environmentAccepted(env, transaction)) throw new HttpError(403, "environment_not_accepted");
     if (!transaction.appAccountToken) throw new HttpError(400, "missing_app_account_token");
-    if (transaction.appAccountToken !== userId) throw new HttpError(403, "app_account_token_mismatch");
+    if ((await holderOf(store, transaction, product)) !== userId) throw new HttpError(403, "app_account_token_mismatch");
     if (transaction.revocationDate) {
       await store.revokePurchase(transaction.transactionId, product, planOf(product, transaction));
       return json({ status: "revoked" });
@@ -322,6 +371,30 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     const granted = await store.recordPurchase(userId, transaction, product);
     await recordPlanPeriod(store, userId, transaction, product, now);
     return json({ status: granted ? "verified" : "already_processed" });
+  }
+
+  // A running subscription is proof enough for the subscription itself, and for nothing else: a leaked proof can move the
+  // pass, never a balance or a key. This is how a subscriber who lost the old device keeps what Apple is still billing for.
+  if (method === "POST" && path === "/purchases/move-plan") {
+    await limit(store, "move-plan", userId, 3_600_000, 10, now);
+    const input = await body(request, BODY_BYTES.signed);
+    const signedTransaction = requireString(input.signedTransactionInfo, "missing_signed_transaction", 200_000);
+    let transaction: VerifiedTransaction;
+    try { transaction = await verifySignedTransaction(signedTransaction, env); }
+    catch { throw new HttpError(400, "invalid_storekit_transaction"); }
+    const product = configuredProducts(env)[transaction.productId];
+    if (!product?.plan || !transaction.originalTransactionId) throw new HttpError(400, "not_a_plan");
+    if (!environmentAccepted(env, transaction)) throw new HttpError(403, "environment_not_accepted");
+    if (transaction.revocationDate || (await store.isRevoked(transaction.transactionId))) throw new HttpError(403, "revoked");
+    if (typeof transaction.expiresDate !== "number" || transaction.expiresDate <= now.getTime()) throw new HttpError(403, "purchase_not_active");
+    const holder = await holderOf(store, transaction, product);
+    if (!holder) throw new HttpError(400, "missing_app_account_token");
+    if (holder === userId) return json({ status: "already_yours" });
+    // An account tied to an Apple ID comes back by signing in, with everything it owns.
+    if (await store.appleLinked(holder)) throw new HttpError(409, "apple_linked");
+    await store.movePlan(userId, transaction, product.plan);
+    await store.recordPurchase(userId, transaction, product);
+    return json({ status: "moved" });
   }
 
   if (method === "GET" && path === "/wallet") return json(await store.wallet(userId));

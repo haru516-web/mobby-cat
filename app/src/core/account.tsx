@@ -7,7 +7,7 @@ import { createAppStore } from '../services/account/appStore';
 import { emptyCloudMeta, fingerprint, fromRecord, isEmptyRecord, normalizeCloudMeta, toRecord, uploadWaitMs, type CloudMeta } from '../services/account/cloudSave';
 import { server } from '../services/account/credentials';
 import type { ProductKey } from '../services/account/products';
-import { buy as buyProduct, fetchPlan, fetchWallet, setAgeGroup, settle, spendPaid, type AgeGroup, type BuyOutcome, type Plan, type SettleOutcome } from '../services/account/purchase';
+import { buy as buyProduct, fetchPlan, fetchWallet, paidHere, setAgeGroup, settle, spendPaid, type AgeGroup, type BuyOutcome, type Plan, type SettleOutcome } from '../services/account/purchase';
 import { ok } from '../services/account/serverClient';
 import { useGame } from './game';
 
@@ -31,7 +31,8 @@ type Pending = { data: string; version: number; updatedAt: string };
 
 // ok_unsaved: サインインはできたが、記録はまだ預けられていない（あとで自動で預ける）
 export type LinkOutcome = 'ok' | 'ok_unsaved' | 'cancelled' | 'unavailable' | 'offline' | 'failed' | 'in_use';
-export type RestoreOutcome = 'restored' | 'choose' | 'nothing' | 'cancelled' | 'unavailable' | 'offline' | 'failed';
+// local_paid: この端末の匿名アカウントに購入したものが残っている（切り替えると失われるので、同意を取ってから force で呼ぶ）
+export type RestoreOutcome = 'restored' | 'choose' | 'nothing' | 'cancelled' | 'unavailable' | 'offline' | 'failed' | 'local_paid';
 export type DeleteOutcome = 'deleted' | 'offline' | 'failed' | 'apple_needed' | 'apple_mismatch' | 'signed_out';
 
 type Ctx = {
@@ -56,10 +57,11 @@ type Ctx = {
   loadPrices: () => Promise<void>;
   refresh: () => Promise<void>;
   linkApple: () => Promise<LinkOutcome>;
-  restoreWithApple: () => Promise<RestoreOutcome>;
+  restoreWithApple: (force?: boolean) => Promise<RestoreOutcome>;
   resolveCloud: (choice: 'local' | 'cloud') => Promise<boolean>;
   buy: (key: ProductKey) => Promise<BuyOutcome>;
-  restorePurchases: () => Promise<SettleOutcome>;
+  restorePurchases: (transferCode?: string) => Promise<SettleOutcome>;
+  createTransferCode: () => Promise<{ code: string; expiresAt: number } | null>;
   setAge: (group: AgeGroup) => Promise<boolean>;
   deleteAccount: () => Promise<DeleteOutcome>;
   /** 受け付けられない鍵を捨てて、新しく始める */
@@ -72,6 +74,7 @@ export const useAccount = () => useContext(AccountCtx);
 export function AccountProvider({ children }: { children: React.ReactNode }) {
   const g = useGame();
   const gRef = useRef(g);
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   gRef.current = g;
   const store = useMemo(() => createAppStore(), []);
 
@@ -105,7 +108,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   const applyCloud = useCallback((from: Pending): boolean => {
     const record = fromRecord(from.data);
     if (!record) return false;
-    gRef.current.replaceState(record);
+    if (!gRef.current.replaceState(record)) return false;
     saveMeta({ version: from.version, hash: fingerprint(from.data), at: Date.now() });
     setPending(null);
     setCloud('synced');
@@ -167,13 +170,15 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     }
   }, [handleConflict]);
   const syncRef = useRef(syncCloud);
+  // eslint-disable-next-line react-hooks/refs, react-hooks/immutability -- タイマーから最新の関数を呼ぶための写し
   syncRef.current = syncCloud;
 
   // サーバーの答えを写す：Apple 連携、買った分の残高、またたびパス
   const refresh = useCallback(async () => {
     lastRefresh.current = Date.now();
     const creds = await server.existing();
-    if (!creds) { setLinked(false); return; }
+    // 鍵が無い（バックアップから戻した端末など）。残高とパスの写しは、もう確かめられないので残さない
+    if (!creds) { setLinked(false); gRef.current.setPaid({ tickets: 0, matatabi: 0 }); gRef.current.setPass(false); return; }
     const profile = await server.raw('/profile', { method: 'GET', auth: creds });
     if (profile === null) return; // つながらない：前回の写しのまま
     if (profile.status === 401) { setSignedOut(true); return; }
@@ -239,9 +244,10 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     gRef.current.registerSpender(async (currency, amount, requestId) => {
       const result = await spendPaid(server, currency, amount, requestId);
-      if (result.kind !== 'ok') return false;
+      if (result.kind === 'signed_out') setSignedOut(true);
+      if (result.kind !== 'ok') return result.kind;
       if (result.wallet) gRef.current.setPaid(result.wallet);
-      return true;
+      return 'ok';
     });
     return () => gRef.current.registerSpender(null);
   }, []);
@@ -265,27 +271,35 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     return 'failed';
   }, [refresh, syncCloud]);
 
-  const restoreWithApple = useCallback(async (): Promise<RestoreOutcome> => {
-    const credential = await appleCredential();
-    if ('reason' in credential) return credential.reason;
-    const reply = await server.raw('/auth/apple', { body: { identityToken: credential.token, authorizationCode: credential.authorizationCode } });
-    if (reply === null) return 'offline';
-    if (reply.status === 404) return 'nothing';
-    const data = reply.data;
-    if (!ok(reply) || !data || typeof data.userId !== 'string' || typeof data.secret !== 'string') return 'failed';
-    // この端末が、そのアカウントを引き継ぐ（前の端末の鍵は使えなくなる）
-    await server.adopt({ userId: data.userId, secret: data.secret });
-    setSignedOut(false);
-    setLinked(true);
-    saveMeta(emptyCloudMeta());
-    const found = await readCloud();
-    await refresh();
-    if (found === 'offline') return 'failed';
-    if (found === 'none') return 'restored'; // 記録は無いが、購入したものは戻る
-    if (isEmptyRecord(gRef.current.state)) return applyCloud(found) ? 'restored' : 'failed';
-    setPending(found);
-    setCloud('conflict');
-    return 'choose';
+  const restoreWithApple = useCallback(async (force = false): Promise<RestoreOutcome> => {
+    return gRef.current.withAccountChange(async () => {
+      // 鍵を置き換えると、匿名アカウントの購入は、この端末から戻せなくなる。黙って捨てない
+      if (!force) {
+        const here = await paidHere(server);
+        if (here === 'offline') return 'offline';
+        if (here) return 'local_paid';
+      }
+      const credential = await appleCredential();
+      if ('reason' in credential) return credential.reason;
+      const reply = await server.raw('/auth/apple', { body: { identityToken: credential.token, authorizationCode: credential.authorizationCode } });
+      if (reply === null) return 'offline';
+      if (reply.status === 404) return 'nothing';
+      const data = reply.data;
+      if (!ok(reply) || !data || typeof data.userId !== 'string' || typeof data.secret !== 'string') return 'failed';
+      // この端末が、そのアカウントを引き継ぐ（前の端末の鍵は使えなくなる）
+      await server.adopt({ userId: data.userId, secret: data.secret });
+      setSignedOut(false);
+      setLinked(true);
+      saveMeta(emptyCloudMeta());
+      const found = await readCloud();
+      await refresh();
+      if (found === 'offline') return 'failed';
+      if (found === 'none') return 'restored'; // 記録は無いが、購入したものは戻る
+      if (isEmptyRecord(gRef.current.state)) return applyCloud(found) ? 'restored' : 'failed';
+      setPending(found);
+      setCloud('conflict');
+      return 'choose';
+    }, 'failed' as RestoreOutcome);
   }, [applyCloud, readCloud, refresh]);
 
   const resolveCloud = useCallback(async (choice: 'local' | 'cloud'): Promise<boolean> => {
@@ -304,10 +318,18 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     return outcome;
   }, [refresh, store]);
 
-  const restorePurchases = useCallback(async (): Promise<SettleOutcome> => {
-    const outcome = await settle(store, server);
-    await refresh();
-    return outcome;
+  const createTransferCode = useCallback(async () => gRef.current.withAccountChange(async () => {
+    const reply = await server.authedIfAny('/account/transfer-code', { body: {} });
+    const data = reply?.data;
+    return ok(reply) && typeof data?.code === 'string' && typeof data?.expiresAt === 'number' ? { code: data.code, expiresAt: data.expiresAt } : null;
+  }, null as { code: string; expiresAt: number } | null), []);
+
+  const restorePurchases = useCallback(async (transferCode?: string): Promise<SettleOutcome> => {
+    return gRef.current.withAccountChange(async () => {
+      const outcome = await settle(store, server, { recover: true, transferCode });
+      await refresh();
+      return outcome;
+    }, { kind: 'store_error' } as SettleOutcome);
   }, [refresh, store]);
 
   const setAge = useCallback(async (group: AgeGroup) => {
@@ -319,46 +341,51 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   const stopRetry = () => { if (retryTimer.current) clearTimeout(retryTimer.current); retryTimer.current = null; };
 
   const deleteAccount = useCallback(async (): Promise<DeleteOutcome> => {
-    const creds = await server.existing();
-    const finish = async (): Promise<DeleteOutcome> => {
-      await server.adopt(null);
-      saveMeta(emptyCloudMeta());
-      setLinked(false);
-      setSignedOut(false);
-      setPlan('none');
-      setCloud('off');
-      setPending(null);
-      setAgeGroupState(null);
-      stopRetry();
-      await disableDailyNotification();
-      gRef.current.reset();
-      return 'deleted';
-    };
-    if (!creds) return finish(); // サーバーにはなにも無い：端末の記録だけ消す
-    let reply = await server.raw('/account/delete', { body: { confirm: 'delete' }, auth: creds });
-    // サーバーが Apple のトークンを持っていない：もう一度 Apple でサインインして、新しい認可コードを渡す
-    if (reply?.status === 409 && reply.data?.error === 'apple_reauth_required') {
-      const credential = await appleCredential();
-      if ('reason' in credential || !credential.authorizationCode) return 'apple_needed';
-      reply = await server.raw('/account/delete', { body: { confirm: 'delete', authorizationCode: credential.authorizationCode }, auth: creds });
-    }
-    if (reply === null) return 'offline';
-    if (reply.status === 409 && (reply.data?.error === 'apple_account_mismatch' || reply.data?.error === 'apple_identity_unverified')) return 'apple_mismatch';
-    if (reply.status === 401) { setSignedOut(true); return 'signed_out'; }
-    return ok(reply) ? finish() : 'failed';
+    return gRef.current.withAccountChange(async () => {
+      if (!gRef.current.canReplace()) return 'failed';
+      const creds = await server.existing();
+      const finish = async (): Promise<DeleteOutcome> => {
+        await server.adopt(null);
+        saveMeta(emptyCloudMeta());
+        setLinked(false);
+        setSignedOut(false);
+        setPlan('none');
+        setCloud('off');
+        setPending(null);
+        setAgeGroupState(null);
+        stopRetry();
+        await disableDailyNotification();
+        gRef.current.reset();
+        return 'deleted';
+      };
+      if (!creds) return finish(); // サーバーにはなにも無い：端末の記録だけ消す
+      let reply = await server.raw('/account/delete', { body: { confirm: 'delete' }, auth: creds });
+      // サーバーが Apple のトークンを持っていない：もう一度 Apple でサインインして、新しい認可コードを渡す
+      if (reply?.status === 409 && reply.data?.error === 'apple_reauth_required') {
+        const credential = await appleCredential();
+        if ('reason' in credential || !credential.authorizationCode) return 'apple_needed';
+        reply = await server.raw('/account/delete', { body: { confirm: 'delete', authorizationCode: credential.authorizationCode }, auth: creds });
+      }
+      if (reply === null) return 'offline';
+      if (reply.status === 409 && (reply.data?.error === 'apple_account_mismatch' || reply.data?.error === 'apple_identity_unverified')) return 'apple_mismatch';
+      if (reply.status === 401) { setSignedOut(true); return 'signed_out'; }
+      return ok(reply) ? finish() : 'failed';
+    }, 'failed' as DeleteOutcome);
   }, []);
 
   const startOver = useCallback(async () => {
-    await server.adopt(null);
-    saveMeta(emptyCloudMeta());
-    setSignedOut(false);
-    setLinked(false);
-    setPlan('none');
-    setCloud('off');
-    setAgeGroupState(null);
-    stopRetry();
-    gRef.current.setPaid({ tickets: 0, matatabi: 0 });
-    gRef.current.setPass(false);
+    return gRef.current.withAccountChange(async () => {
+      await server.adopt(null);
+      saveMeta(emptyCloudMeta());
+      setSignedOut(false);
+      setLinked(false);
+      setPlan('none');
+      setCloud('off');
+      setAgeGroupState(null);
+      stopRetry();
+      gRef.current.setPaid({ tickets: 0, matatabi: 0 });
+      gRef.current.setPass(false);
+    }, undefined);
   }, []);
 
   const loadPrices = useCallback(async () => {
@@ -367,7 +394,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, linked, signedOut, plan, cloud, cloudSavedAt, retryCloud, ageGroup, pendingCloud: pending ? { updatedAt: pending.updatedAt } : null,
-    storeAvailable: !!store, prices, loadPrices, refresh, linkApple, restoreWithApple, resolveCloud, buy, restorePurchases, setAge, deleteAccount, startOver,
+    storeAvailable: !!store, prices, loadPrices, refresh, linkApple, restoreWithApple, resolveCloud, buy, restorePurchases, createTransferCode, setAge, deleteAccount, startOver,
   };
   return <AccountCtx.Provider value={value}>{children}</AccountCtx.Provider>;
 }

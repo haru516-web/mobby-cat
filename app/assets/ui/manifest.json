@@ -2,26 +2,70 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 215,
+  "assetCount": 166,
   "counts": {
-    "badge": 11,
-    "bg": 19,
-    "brand": 17,
-    "button": 29,
-    "camera": 20,
-    "cat": 3,
-    "gauge": 5,
+    "badge": 15,
+    "bg": 15,
+    "brand": 12,
+    "button": 31,
+    "camera": 18,
+    "cat": 2,
+    "deai": 4,
+    "gauge": 3,
     "home": 2,
-    "icon": 28,
-    "illust": 18,
-    "login": 11,
+    "icon": 18,
+    "illust": 10,
+    "login": 10,
     "navbtn": 9,
-    "opening": 6,
-    "panel": 16,
-    "share": 10,
-    "tabbar": 11
+    "opening": 4,
+    "panel": 12,
+    "share": 1
   },
   "assets": [
+    {
+      "path": "badge/label-legend.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. Horizontal rounded pill badge exactly 3:1 shape, fills width. Golden #E5A23B puffy paper plate, fine ivory upper-left edge highlight and gentle glow. White large bold rounded Japanese text exactly 「でんせつ」, precisely two small sparkles, one at each side. Text dominates, readable at 66x22 points. No other text. Target 240x80. Same simple rounded capsule silhouette across badge family.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "6bd2fde955dcfdc89040790a78ad77e34a1821219ca17714875d3b43d130ab02",
+      "bytes": 28505,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "badge/label-normal.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. A horizontal rounded pill badge, exactly 3:1 shape, fills width, cream #FFF8F0 with dark brown #4A3B32 large bold rounded Japanese text exactly 「ノーマル」. Readable at 66x22 points. No other text or decorations. Target 240x80.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "bc7630a214750c0d931b24c23c0586976f91eea60743b7bfc8773bc234978571",
+      "bytes": 21789,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "badge/label-rare.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. Horizontal rounded pill badge exactly 3:1 shape, fills width. Blue #2F5DA8 puffy paper plate with white large bold rounded Japanese text exactly 「レア」, one small sparkle. Readable at 66x22 points. No other text. Target 240x80. Same simple rounded capsule silhouette across badge family.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "d736ee4c17e2e70d0960d6c4502ed2974d2c837aed0c3ee7cabb1ef37f74f03d",
+      "bytes": 25489,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "badge/label-world.png",
+      "width": 240,
+      "height": 80,
+      "prompt": "Use case: stylized-concept. ONE production game UI asset. Cozy warm softly puffy paper texture, rounded shape, upper-left thin ivory highlight, subtle downward shadow. Transparent exterior, no white fringe. Horizontal rounded pill badge exactly 3:1 shape fills width. Pale lavender #E1D4FF puffy paper plate with dark purple-brown large bold rounded Japanese text exactly 「世界」 and one small globe emblem at left, subdued blue/green continents, no lettering inside globe. Text dominates, readable at 66x22 points. No other text or decorations. Target 240x80. Same simple rounded capsule silhouette across badge family.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; normalize rounded badge artwork to 232x72 within a 240x80 transparent canvas with 4px padding; Lanczos; generated lettering and alpha retained; no slice; strip metadata.",
+      "sha256": "0a53f62243ddfe0ec753360597508448d9380c8e508c32792b3a95499e61189c",
+      "bytes": 28080,
+      "alphaMode": "transparent"
+    },
     {
       "path": "badge/linked.png",
       "width": 300,
@@ -321,12 +365,18 @@
       "path": "bg/screen-zukan.png",
       "width": 1179,
       "height": 2556,
-      "prompt": "Match image1 approved room-home style exactly: rounded soft detailed painted storybook mobile game illustration, warm cream beige muted greens pale orange, medium-scale painted decorative details, gentle gradients and highlights, never photoreal, no camera blur/bokeh, no lens flare, no strong dark shadows, no realistic microscopic texture. No cats, humans, animals, UI or logos. Full bleed opaque rectangle. Very tall portrait1179x2556 full-screen background for collection gallery. Pastel cozy study/bookshelves at upper and far side edges only. Rounded cream bookshelves, muted pastel blank books, a few plants. Center and bottom 70% almost plain ivory softly shaded, extremely low contrast for readable overlay cards. All shapes gently painted and legible rather than camera-blurred. Match approved home moderate painted details ONLY at peripheral shelves. No text.",
+      "prompt": "Use case: illustration-story. Create replacement bg/screen-zukan.png, full bleed opaque very tall portrait1179x2556 ratio. Reference image1 is same home's warm cozy painted storybook style, image2 is old study to improve. ONE coherent room from very top to bottom, room corner naturally connected. Upper quarter: cream walls reaching top edge, small arched sunny window left, low cream bookcase right holding pastel blank books and two framed cute cat face pictures (each one lens eye). Floor-wall junction at roughly30% height. Lower70% is a continuous light warm honey-ivory wooden plank floor viewed in correct perspective, subtle but CLEAR unbroken plank seams converging toward back wall, horizontal board joints visible ALL THE WAY to bottom edge. Floor must remain a drawn physical floor at bottom, never fade into blank beige or blur. Keep center/lower area calm low contrast sparse for card overlays. No rug, no objects scattered on floor. Soft upper-left sunlight, warm cream #FFF8F0, muted sage green, gentle peach wood, puffy rounded furnishings. Painterly stylized game illustration not photography, no blur. No text, no UI, no buttons, no logos, no lettering on books. Entire image opaque, draw up to top edge behind notch.",
       "method": "built-in image_gen",
-      "processing": "Lanczos resize to exact canvas; opaque RGB full bleed",
-      "sha256": "0f37022bec492003d8db3582acd312634cff4d826c57d86ad1e8a1bb31aab50b",
-      "bytes": 2629567,
-      "alphaMode": "opaque"
+      "processing": "Lanczos3 resize to exact 1179x2556; opaque RGB full bleed; no painted additions",
+      "sha256": "eee4f2195ab87a7463360af894f7019645f386a2df0a1b46ca58132a5cdc857d",
+      "bytes": 4561306,
+      "alphaMode": "opaque",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
     },
     {
       "path": "bg/stamp-photo-france.png",
@@ -799,6 +849,23 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "button/home-cats-round.png",
+      "width": 168,
+      "height": 168,
+      "prompt": "Use case: precise-object-edit. Replace ONLY calendar icon in reference with two cute cat faces sitting side by side on one tiny orange sofa cushion. One cream cat and one muted orange cat, rounded triangular ears, dark brown outlines, each has one ordinary eye and one small camera-lens eye (Nekomobby). Keep icon simple readable at 52pt. Preserve same circular cream plate fine brown rim bevel upper-left highlight paper texture and low downward shadow as reference, same footprint. Single isolated button for selecting home cats. Transparent exterior. No text letters numbers additional objects. Target168x168.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding crop; Lanczos3 proportionate fit to reference alpha footprint (thumb:3px clearance); preserve generated alpha; no painted additions",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "98de43d6c3c60c5db4bfff8e13f084a7eed40b25742d421f218911ccc4d5c34d",
+      "bytes": 49287,
+      "alphaMode": "transparent"
+    },
+    {
       "path": "button/login-record-round.png",
       "width": 168,
       "height": 168,
@@ -907,6 +974,23 @@
       "stretchAxes": [
         "x"
       ],
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "button/settings-round.png",
+      "width": 168,
+      "height": 168,
+      "prompt": "Use case: precise-object-edit. Create settings-round.png by replacing ONLY the central bell with a simple rounded dark brown #4A3B32 gear with 8 softly rounded teeth and a cream circular hole. Preserve reference cream circular plate, fine brown rim, upper-left highlight, warm paper texture and subtle downward shadow, exact silhouette and framing. Single orthographic button, no lettering or extra motifs. Transparent exterior. Target 168x168.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding crop; Lanczos3 proportionate fit to reference alpha footprint (thumb:3px clearance); preserve generated alpha; no painted additions",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "8ead1b0e204aaa2bcbffa452ee25467299da4641ad51cf8d6c4836ddc787933e",
+      "bytes": 44745,
       "alphaMode": "transparent"
     },
     {
@@ -1197,6 +1281,43 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "camera/zoom-thumb.png",
+      "width": 90,
+      "height": 90,
+      "prompt": "Use case: stylized-concept. ONE isolated camera zoom thumb UI asset target90x90. White cream circular raised paper button containing ONE orange #F28B20 paw print with four toe pads and one large pad. Fine warm taupe outline for contrast on any live camera image, subtle low downward shadow, fine white upper-left highlight. Cozy Nekomobby soft puffy paper style, restrained texture. Straight-on centered whole circle with small transparent clearance, genuinely transparent exterior. No text digits labels, no additional symbols.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding crop; Lanczos3 proportionate fit to reference alpha footprint (thumb:3px clearance); preserve generated alpha; no painted additions",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "ba9c03451932033931da47b4177c33133f8eecc1a55af6fda9dfc994548badb6",
+      "bytes": 15606,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "camera/zoom-track.png",
+      "width": 42,
+      "height": 660,
+      "prompt": "Use case: stylized-concept. ONE isolated camera zoom slider TRACK only, no thumb. Very slender straight vertical capsule groove, target42x660px aspect1:15.714. Pale translucent white-cream channel with thin white highlight rim and subtle dark taupe outer edge for visibility over bright and dark live camera. Uniform constant width and uniform central straight section suitable vertical nine-slice stretch; smooth rounded top/bottom caps occupy only end42px. ONE tiny dark warm taupe circular dot inside bottom cap indicates minimum zoom. No other ticks, no text, no digits, no paw. Straight orthographic, centered on transparent canvas. Cozy softly raised paper game UI low contrast shadow upper-left light. Render tall narrow track filling height with slight clearance; genuinely transparent exterior.",
+      "method": "built-in image_gen",
+      "processing": "Alpha>8 bounding crop; resample generated end caps into fixed 42px bands and center into 576px band; alpha scaled to 72% for translucent channel; no painted additions; generated-alpha-derived soft dark backing for bright-scene contrast",
+      "slice": {
+        "top": 42,
+        "right": 0,
+        "bottom": 42,
+        "left": 0
+      },
+      "sha256": "c06496fddf4100d1be2f6bf978cfab6319e30d6c98aa4b73c0dce8df1b10119e",
+      "bytes": 33723,
+      "alphaMode": "transparent",
+      "stretchAxes": [
+        "y"
+      ]
+    },
+    {
       "path": "cat/halo-select.png",
       "width": 600,
       "height": 600,
@@ -1211,11 +1332,71 @@
       "path": "cat/silhouette-locked.png",
       "width": 512,
       "height": 512,
-      "prompt": "Create ONE isolated production UI graphic: Muted brown fluffy round cat silhouette ears stubby paws NO facial features NO QUESTION MARK NO text. Final target 512x512 aspect512:512. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "93b7d2172ad61fb0f3f02a057d07892de6c1dc33840c0d5f0902d620d92ca110",
-      "bytes": 254710,
+      "prompt": "Use case: style-transfer / stylized-concept. ONE isolated mystery cat silhouette UI icon, transparent background, square512x512 final. Reference sheet bottom row shows existing silhouette-locked: retain its compact rounded squat furry cat body identity with two pointed ears and distinct curved fluffy tail on viewer right and two small feet. Replace muddy brown furry rendering with a clean softly puffy shadow shape in medium-dark muted plum-brown #65516E to #4A3B52, modest upper-left lavender highlight, soft lower depth. Clear readable ear and tail outline, very restrained fur tufts only around contour. Solid simple mysterious silhouette: NO eyes, NO face, NO question mark, NO camera, NO buttons or controls, NO gold outline, NO bright fringe. Not a back-facing detailed animal: a featureless unknown cat shadow for placing over luminous ivory/lavender inset OR over a cream cloth-covered cat. Mid-dark purple stays visible on both cream backgrounds, not black. Entire body and tail contained, 5% clear margin, minimal compact shadow, genuinely transparent outside.",
+      "sha256": "7f1efa01613833b8a66c45439fde98c90ef91449f9528eabc03960676c2ed752",
+      "bytes": 176054,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "processing": "Generated alpha retained. Alpha>8 bounding crop, Lanczos normalization; 4px outer clearance for panels, silhouette aspect-fit within464x464 centered on512x512. Card720x200 and well192x192 unchanged. No recoloring or background reconstruction; metadata stripped.",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "path": "deai/mystery-cat.png",
+      "width": 512,
+      "height": 512,
+      "prompt": "Use case: stylized-concept. ONE isolated production game asset for a cozy Japanese cat collection game. A small round seated cat completely hidden underneath a soft warm caramel-orange and cream cloth, only two triangular ear-shaped bumps under the fabric imply a cat inside. Cute inviting mysterious, soft rounded puffy paper illustration, warm brown #4A3B32 subtle folds and orange #F08A5D shading, upper-left ivory highlights and low contrast downward shadow. Entire face body eyes paws tail all concealed: no visible species, breed, fur pattern, camera eye, buttons or identity clues. Plain cloth without printed motifs. No question marks, text, symbols, sparkles or extra objects. Front view centered single cloth-covered cat-shaped mound occupying most of a square canvas, fully visible with margin. Target 512x512. Genuinely transparent background clean alpha edges no white fringe.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; proportionate Lanczos fit with 12px minimum clearance; generated alpha retained; strip metadata.",
+      "sha256": "21edec9982766400a745fc8abe45f1fab435475910b3a3cd022f22ded30aef72",
+      "bytes": 212957,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "deai/reveal-burst.png",
+      "width": 768,
+      "height": 768,
+      "prompt": "Use case: stylized-concept. ONE production game visual effect sprite, cozy warm Japanese cat collection game. A single perfectly circular expanding ring of light with soft glowing white-cream center and subtle pale golden outer rim. Straight-on face-on circle, centered, no perspective ellipse. Smooth feathered edges and gentle ivory luminosity, warm delicate paper-like softness. One soft ring plus center light, enough transparent space around the ring for scaling animation. No radiating spokes, no sparkles, no stars, no paw marks, no cats, no text, no objects. Genuinely transparent exterior and soft semi-transparent inner glow, no opaque square or black backdrop. Target 768x768.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; proportionate Lanczos fit with 24px minimum clearance; generated alpha retained; strip metadata.",
+      "sha256": "a8b0fdd7b72071017300f506bddcd41f5be03c865359a71f3e8712ae9bb429d9",
+      "bytes": 656587,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "deai/reveal-dim.png",
+      "width": 1179,
+      "height": 2556,
+      "prompt": "Use case: stylized-concept. ONE production full-screen translucent game scrim texture, tall portrait aspect 1179:2556. Absolutely full-bleed deep dark brown #241D21 blending toward midnight navy #111827 at edges, center only very slightly lighter warm dark brown #352C30 like a subtle broad diffused spotlight. Very dark night-like mood, NOT pale gray or white fog. Uniform gently smooth color field, only subtle paper softness. No actual curtain fabric, no folds, no scene, no objects, no stars, no rays, no circle outlines, no text. Fill every pixel to all four edges, no transparent border. Entire field 70-80 percent opacity, genuinely semi-transparent PNG. Target 1179x2556.",
+      "method": "built-in image_gen",
+      "processing": "Resize generated full-bleed scrim to 1179x2556 with Lanczos; normalize generated alpha to 179..204 (70.2..80%); preserve generated RGB; strip metadata.",
+      "sha256": "f911e66ab81516c4fa357e8c7a43af06f110abb41163a1dbe9107188fcea08d7",
+      "bytes": 2317851,
+      "alphaMode": "semi-transparent",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "stretchAxes": [
+        "x",
+        "y"
+      ]
+    },
+    {
+      "path": "deai/reveal-rays.png",
+      "width": 1024,
+      "height": 1024,
+      "prompt": "Use case: stylized-concept. ONE production game visual effect sprite for a cozy warm paper-textured Japanese cat game. A perfectly centered, rotationally balanced radial fan of exactly 16 broad soft luminous rays, alternating slightly wide and narrow, pure ivory white at center flowing into pale warm gold #E5A23B. Central bright glow, each long beam tapers and smoothly fades to completely transparent well before the square canvas edge. Straight-on circular composition, full circle, equal weight top bottom left right for slow rotation. Gentle light, restrained warm paper-like softness, no sharp spiky explosive look. No stars, no paw marks, no cat, no objects, no ring, no text or symbols. Genuinely transparent between and beyond rays, no dark background, no opaque square. Target 1024x1024.",
+      "method": "built-in image_gen",
+      "processing": "Trim alpha>24 bounds; proportionate Lanczos fit with 24px minimum clearance; generated alpha retained; strip metadata.",
+      "sha256": "c4d156cca297f6e71da994ddd83d3e52a3ea1e37822d08f9a6ffb17ffa4ff86a",
+      "bytes": 1266827,
       "alphaMode": "transparent"
     },
     {
@@ -1282,34 +1463,34 @@
       "path": "home/upcoming-card.png",
       "width": 720,
       "height": 200,
-      "prompt": "Use case: stylized-concept. ONE production UI bitmap upcoming encounter card, exact aspect720:200. Front-on horizontal softly rounded cream #FFF8F0 paper board, thin pale gold #E5A23B border inset a little from edge, ivory upper-left highlight, very soft low contrast downward shadow, restrained paper texture. One tiny gold four-point twinkle in upper right corner and one even tinier twinkle in lower left, entirely within70px corner squares at final720x200. Center and all edges middle completely blank uniform cream, no inset well no separate compartments. Nine-slice top70 right70 bottom70 left70, ensure rounded corners and all decoration inside these corner bounds. Near-full canvas with4px outer clearance. Truly transparent exterior. No text no letters no numbers no question mark no cats no logos. Warm softly puffy handcrafted paper UI.",
+      "prompt": "Use case: stylized-concept. Generate ONE transparent production game UI upcoming hint card. Reference sheet shows the existing warm cozy cat game UI: match the gold rim of camera-round, upper-left ivory highlight, soft downward shadow and cream puffy surface. Target final aspect 720:200 (3.6:1), horizontal front-on rounded rectangular plaque, radius about 45px at final size. Substantial rounded golden #E5A23B rim with narrow ivory glint and warm subtle lower bevel; creamy #FFF8F0 blank face, soft puffy depth, restrained almost smooth texture. Tiny four-point golden sparkle at top-right and bottom-left contained entirely within 65px corner regions. All center and middle edge bands uniform and stretchable for nine-slice70. No lettering, no symbols except two tiny sparkles, no inset compartments, no cats. Fill canvas width, transparent exterior, no white background. Keep shadow compact within 6px final perimeter. This is a single isolated asset, not a scene or sheet.",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 bounding trim; corner-preserving nine-slice normalization to720x200 with70px fixed corners; generated alpha preserved; no EXIF.",
+      "processing": "Generated alpha retained. Alpha>8 bounding crop, Lanczos normalization; 4px outer clearance for panels, silhouette aspect-fit within464x464 centered on512x512. Card720x200 and well192x192 unchanged. No recoloring or background reconstruction; metadata stripped.",
       "slice": {
         "top": 70,
         "right": 70,
         "bottom": 70,
         "left": 70
       },
-      "sha256": "39afdb1db58fceb7433ef56b9d65d0d2c0b4da6d642cc7bedf763a0206363518",
-      "bytes": 152894,
+      "sha256": "dd2a47ad4138b8397a07901fe008e99ce927ff813fb6375d9b96324134b5303c",
+      "bytes": 162376,
       "alphaMode": "transparent"
     },
     {
       "path": "home/upcoming-well.png",
       "width": 192,
       "height": 192,
-      "prompt": "Use case: stylized-concept. ONE production UI bitmap square recessed photo well, exact aspect192:192. Cozy Nekomobby softly puffy cream paper rim with rounded corners, gentle inward shading. Very restrained pale lavender #E1D4FF to pale gold soft light bloom contained in rim, hinting an unseen cat. Center is bright blank ivory uniform flat surface with no objects, no sparkle shapes. Nine-slice top56 right56 bottom56 left56 final pixels; all curved corner detail confined to56px corners, edge middles and center stretch cleanly. Upper-left ivory highlight, faint downward outer shadow. Transparent outside the rounded square only; center opaque. Fill canvas with4px clearance. No text letters numerals symbols cat or silhouette.",
+      "prompt": "Use case: stylized-concept. ONE isolated production game UI recessed well, square rounded rectangle, final192x192, nine slice56 all sides. Reference image1 is approved upcoming card: match exactly its warm #E5A23B golden puffy rounded rim, thin ivory upper-left highlights, smooth cream surface, compact soft downward shadow. Reference image2 is existing style context. This well holds an unknown cat icon. Interior is luminous light lavender #E1D4FF blending into warm ivory #FFF8F0, bright center, gentle recessed inner shadow only directly beneath upper rim. Broad corner radius about46px at final size, everything within56px corner boxes, plain stretchable middle edge bands. Gold rim thickness about7px final. No sparkles, no text, no cat, no icons. Front view, no perspective, no rough material. Fill canvas with small 4px clearance, genuinely transparent outside.",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 bounding trim; Lanczos fit to184x184 with4px clearance on192x192; generated alpha preserved; no EXIF.",
+      "processing": "Generated alpha retained. Alpha>8 bounding crop, Lanczos normalization; 4px outer clearance for panels, silhouette aspect-fit within464x464 centered on512x512. Card720x200 and well192x192 unchanged. No recoloring or background reconstruction; metadata stripped.",
       "slice": {
         "top": 56,
         "right": 56,
         "bottom": 56,
         "left": 56
       },
-      "sha256": "fe41a6fde4cc53857621350dffd14c7d0e8bd6b8597961ed48c3dc3eea0aad48",
-      "bytes": 40193,
+      "sha256": "6b9ece8c6ebd40178195bc1f0af6ff90336504f8fbb71bba3ba97d3a995a2693",
+      "bytes": 36694,
       "alphaMode": "transparent"
     },
     {

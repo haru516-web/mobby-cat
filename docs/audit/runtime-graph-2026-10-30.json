@@ -1,0 +1,486 @@
+{
+  "scope": "Metro.buildGraph; dev=false; no bundle serialization, native build or service request",
+  "inputHash": "30b3642dba9d878527090d158120a704e9966116c6fe774b2251f9dfb465865b",
+  "platforms": {
+    "ios": {
+      "moduleCount": 1352,
+      "packages": [
+        {
+          "name": "@babel/runtime",
+          "version": "7.29.10",
+          "path": "app/node_modules/@babel/runtime"
+        },
+        {
+          "name": "@expo-google-fonts/m-plus-rounded-1c",
+          "version": "0.4.4",
+          "path": "app/node_modules/@expo-google-fonts/m-plus-rounded-1c"
+        },
+        {
+          "name": "@react-native-async-storage/async-storage",
+          "version": "2.2.0",
+          "path": "app/node_modules/@react-native-async-storage/async-storage"
+        },
+        {
+          "name": "@react-native/asset-utils",
+          "version": "0.88.1",
+          "path": "app/node_modules/@react-native/asset-utils"
+        },
+        {
+          "name": "@react-native/normalize-colors",
+          "version": "0.88.1",
+          "path": "app/node_modules/@react-native/normalize-colors"
+        },
+        {
+          "name": "@react-native/virtualized-lists",
+          "version": "0.88.1",
+          "path": "app/node_modules/@react-native/virtualized-lists"
+        },
+        {
+          "name": "abort-controller",
+          "version": "3.0.0",
+          "path": "app/node_modules/abort-controller"
+        },
+        {
+          "name": "ansi-styles",
+          "version": "5.2.0",
+          "path": "app/node_modules/pretty-format/node_modules/ansi-styles"
+        },
+        {
+          "name": "base64-js",
+          "version": "1.5.1",
+          "path": "app/node_modules/base64-js"
+        },
+        {
+          "name": "event-target-shim",
+          "version": "5.0.1",
+          "path": "app/node_modules/event-target-shim"
+        },
+        {
+          "name": "expo",
+          "version": "58.0.21",
+          "path": "app/node_modules/expo"
+        },
+        {
+          "name": "expo-apple-authentication",
+          "version": "58.0.2",
+          "path": "app/node_modules/expo-apple-authentication"
+        },
+        {
+          "name": "expo-application",
+          "version": "58.1.2",
+          "path": "app/node_modules/expo-application"
+        },
+        {
+          "name": "expo-asset",
+          "version": "58.0.19",
+          "path": "app/node_modules/expo-asset"
+        },
+        {
+          "name": "expo-audio",
+          "version": "58.0.10",
+          "path": "app/node_modules/expo-audio"
+        },
+        {
+          "name": "expo-battery",
+          "version": "58.0.3",
+          "path": "app/node_modules/expo-battery"
+        },
+        {
+          "name": "expo-camera",
+          "version": "58.0.14",
+          "path": "app/node_modules/expo-camera"
+        },
+        {
+          "name": "expo-constants",
+          "version": "58.0.14",
+          "path": "app/node_modules/expo-constants"
+        },
+        {
+          "name": "expo-font",
+          "version": "58.0.11",
+          "path": "app/node_modules/expo-font"
+        },
+        {
+          "name": "expo-haptics",
+          "version": "58.0.7",
+          "path": "app/node_modules/expo-haptics"
+        },
+        {
+          "name": "expo-iap",
+          "version": "6.3.0",
+          "path": "app/node_modules/expo-iap"
+        },
+        {
+          "name": "expo-image",
+          "version": "58.0.18",
+          "path": "app/node_modules/expo-image"
+        },
+        {
+          "name": "expo-location",
+          "version": "58.0.20",
+          "path": "app/node_modules/expo-location"
+        },
+        {
+          "name": "expo-media-library",
+          "version": "58.0.13",
+          "path": "app/node_modules/expo-media-library"
+        },
+        {
+          "name": "expo-modules-core",
+          "version": "58.0.28",
+          "path": "app/node_modules/expo-modules-core"
+        },
+        {
+          "name": "expo-notifications",
+          "version": "58.1.7",
+          "path": "app/node_modules/expo-notifications"
+        },
+        {
+          "name": "expo-secure-store",
+          "version": "58.0.2",
+          "path": "app/node_modules/expo-secure-store"
+        },
+        {
+          "name": "expo-sensors",
+          "version": "58.0.4",
+          "path": "app/node_modules/expo-sensors"
+        },
+        {
+          "name": "expo-sharing",
+          "version": "58.0.21",
+          "path": "app/node_modules/expo-sharing"
+        },
+        {
+          "name": "expo-status-bar",
+          "version": "58.0.4",
+          "path": "app/node_modules/expo-status-bar"
+        },
+        {
+          "name": "flow-enums-runtime",
+          "version": "0.0.6",
+          "path": "app/node_modules/flow-enums-runtime"
+        },
+        {
+          "name": "invariant",
+          "version": "2.2.4",
+          "path": "app/node_modules/invariant"
+        },
+        {
+          "name": "memoize-one",
+          "version": "5.2.1",
+          "path": "app/node_modules/memoize-one"
+        },
+        {
+          "name": "metro-runtime",
+          "version": "0.87.1",
+          "path": "app/node_modules/metro-runtime"
+        },
+        {
+          "name": "nullthrows",
+          "version": "1.1.1",
+          "path": "app/node_modules/nullthrows"
+        },
+        {
+          "name": "pretty-format",
+          "version": "29.7.0",
+          "path": "app/node_modules/pretty-format"
+        },
+        {
+          "name": "promise",
+          "version": "8.3.0",
+          "path": "app/node_modules/promise"
+        },
+        {
+          "name": "react",
+          "version": "19.3.0",
+          "path": "app/node_modules/react"
+        },
+        {
+          "name": "react-is",
+          "version": "18.3.1",
+          "path": "app/node_modules/react-is"
+        },
+        {
+          "name": "react-native",
+          "version": "0.88.1",
+          "path": "app/node_modules/react-native"
+        },
+        {
+          "name": "react-native-safe-area-context",
+          "version": "5.10.1",
+          "path": "app/node_modules/react-native-safe-area-context"
+        },
+        {
+          "name": "react-native-view-shot",
+          "version": "6.1.1",
+          "path": "app/node_modules/react-native-view-shot"
+        },
+        {
+          "name": "regenerator-runtime",
+          "version": "0.13.11",
+          "path": "app/node_modules/regenerator-runtime"
+        },
+        {
+          "name": "scheduler",
+          "version": "0.28.0",
+          "path": "app/node_modules/scheduler"
+        },
+        {
+          "name": "stacktrace-parser",
+          "version": "0.1.11",
+          "path": "app/node_modules/stacktrace-parser"
+        },
+        {
+          "name": "whatwg-fetch",
+          "version": "3.6.20",
+          "path": "app/node_modules/whatwg-fetch"
+        },
+        {
+          "name": "whatwg-url-minimum",
+          "version": "0.2.0",
+          "path": "app/node_modules/whatwg-url-minimum"
+        }
+      ]
+    },
+    "android": {
+      "moduleCount": 1352,
+      "packages": [
+        {
+          "name": "@babel/runtime",
+          "version": "7.29.10",
+          "path": "app/node_modules/@babel/runtime"
+        },
+        {
+          "name": "@expo-google-fonts/m-plus-rounded-1c",
+          "version": "0.4.4",
+          "path": "app/node_modules/@expo-google-fonts/m-plus-rounded-1c"
+        },
+        {
+          "name": "@react-native-async-storage/async-storage",
+          "version": "2.2.0",
+          "path": "app/node_modules/@react-native-async-storage/async-storage"
+        },
+        {
+          "name": "@react-native/asset-utils",
+          "version": "0.88.1",
+          "path": "app/node_modules/@react-native/asset-utils"
+        },
+        {
+          "name": "@react-native/normalize-colors",
+          "version": "0.88.1",
+          "path": "app/node_modules/@react-native/normalize-colors"
+        },
+        {
+          "name": "@react-native/virtualized-lists",
+          "version": "0.88.1",
+          "path": "app/node_modules/@react-native/virtualized-lists"
+        },
+        {
+          "name": "abort-controller",
+          "version": "3.0.0",
+          "path": "app/node_modules/abort-controller"
+        },
+        {
+          "name": "ansi-styles",
+          "version": "5.2.0",
+          "path": "app/node_modules/pretty-format/node_modules/ansi-styles"
+        },
+        {
+          "name": "base64-js",
+          "version": "1.5.1",
+          "path": "app/node_modules/base64-js"
+        },
+        {
+          "name": "event-target-shim",
+          "version": "5.0.1",
+          "path": "app/node_modules/event-target-shim"
+        },
+        {
+          "name": "expo",
+          "version": "58.0.21",
+          "path": "app/node_modules/expo"
+        },
+        {
+          "name": "expo-apple-authentication",
+          "version": "58.0.2",
+          "path": "app/node_modules/expo-apple-authentication"
+        },
+        {
+          "name": "expo-application",
+          "version": "58.1.2",
+          "path": "app/node_modules/expo-application"
+        },
+        {
+          "name": "expo-asset",
+          "version": "58.0.19",
+          "path": "app/node_modules/expo-asset"
+        },
+        {
+          "name": "expo-audio",
+          "version": "58.0.10",
+          "path": "app/node_modules/expo-audio"
+        },
+        {
+          "name": "expo-battery",
+          "version": "58.0.3",
+          "path": "app/node_modules/expo-battery"
+        },
+        {
+          "name": "expo-camera",
+          "version": "58.0.14",
+          "path": "app/node_modules/expo-camera"
+        },
+        {
+          "name": "expo-constants",
+          "version": "58.0.14",
+          "path": "app/node_modules/expo-constants"
+        },
+        {
+          "name": "expo-font",
+          "version": "58.0.11",
+          "path": "app/node_modules/expo-font"
+        },
+        {
+          "name": "expo-haptics",
+          "version": "58.0.7",
+          "path": "app/node_modules/expo-haptics"
+        },
+        {
+          "name": "expo-iap",
+          "version": "6.3.0",
+          "path": "app/node_modules/expo-iap"
+        },
+        {
+          "name": "expo-image",
+          "version": "58.0.18",
+          "path": "app/node_modules/expo-image"
+        },
+        {
+          "name": "expo-location",
+          "version": "58.0.20",
+          "path": "app/node_modules/expo-location"
+        },
+        {
+          "name": "expo-media-library",
+          "version": "58.0.13",
+          "path": "app/node_modules/expo-media-library"
+        },
+        {
+          "name": "expo-modules-core",
+          "version": "58.0.28",
+          "path": "app/node_modules/expo-modules-core"
+        },
+        {
+          "name": "expo-notifications",
+          "version": "58.1.7",
+          "path": "app/node_modules/expo-notifications"
+        },
+        {
+          "name": "expo-secure-store",
+          "version": "58.0.2",
+          "path": "app/node_modules/expo-secure-store"
+        },
+        {
+          "name": "expo-sensors",
+          "version": "58.0.4",
+          "path": "app/node_modules/expo-sensors"
+        },
+        {
+          "name": "expo-sharing",
+          "version": "58.0.21",
+          "path": "app/node_modules/expo-sharing"
+        },
+        {
+          "name": "expo-status-bar",
+          "version": "58.0.4",
+          "path": "app/node_modules/expo-status-bar"
+        },
+        {
+          "name": "flow-enums-runtime",
+          "version": "0.0.6",
+          "path": "app/node_modules/flow-enums-runtime"
+        },
+        {
+          "name": "invariant",
+          "version": "2.2.4",
+          "path": "app/node_modules/invariant"
+        },
+        {
+          "name": "memoize-one",
+          "version": "5.2.1",
+          "path": "app/node_modules/memoize-one"
+        },
+        {
+          "name": "metro-runtime",
+          "version": "0.87.1",
+          "path": "app/node_modules/metro-runtime"
+        },
+        {
+          "name": "nullthrows",
+          "version": "1.1.1",
+          "path": "app/node_modules/nullthrows"
+        },
+        {
+          "name": "pretty-format",
+          "version": "29.7.0",
+          "path": "app/node_modules/pretty-format"
+        },
+        {
+          "name": "promise",
+          "version": "8.3.0",
+          "path": "app/node_modules/promise"
+        },
+        {
+          "name": "react",
+          "version": "19.3.0",
+          "path": "app/node_modules/react"
+        },
+        {
+          "name": "react-is",
+          "version": "18.3.1",
+          "path": "app/node_modules/react-is"
+        },
+        {
+          "name": "react-native",
+          "version": "0.88.1",
+          "path": "app/node_modules/react-native"
+        },
+        {
+          "name": "react-native-safe-area-context",
+          "version": "5.10.1",
+          "path": "app/node_modules/react-native-safe-area-context"
+        },
+        {
+          "name": "react-native-view-shot",
+          "version": "6.1.1",
+          "path": "app/node_modules/react-native-view-shot"
+        },
+        {
+          "name": "regenerator-runtime",
+          "version": "0.13.11",
+          "path": "app/node_modules/regenerator-runtime"
+        },
+        {
+          "name": "scheduler",
+          "version": "0.28.0",
+          "path": "app/node_modules/scheduler"
+        },
+        {
+          "name": "stacktrace-parser",
+          "version": "0.1.11",
+          "path": "app/node_modules/stacktrace-parser"
+        },
+        {
+          "name": "whatwg-fetch",
+          "version": "3.6.20",
+          "path": "app/node_modules/whatwg-fetch"
+        },
+        {
+          "name": "whatwg-url-minimum",
+          "version": "0.2.0",
+          "path": "app/node_modules/whatwg-url-minimum"
+        }
+      ]
+    }
+  }
+}

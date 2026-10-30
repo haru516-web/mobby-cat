@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { shownRarity } from '../core/recipes';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CatDef } from '../data/catalog';
 import { matatabiOf, ticketsOf, useGame } from '../core/game';
 import { SfxId } from '../data/audioAssets';
@@ -83,16 +84,14 @@ export function InfoPill({ icon, label, value, onPress, style }: { icon: string;
   );
 }
 
-// ロゴ / タイトル画像＋所持品＋ベル
-export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSettings }: { title?: string; onShop: () => void; onBell: () => void; onSettings: () => void }) {
+// 左に所持品、右にベルと設定。いまの画面は下のタブで分かるので、ロゴや画面の名前は出さない
+export function Header({ onShop, onBell, onSettings }: { onShop: () => void; onBell: () => void; onSettings: () => void }) {
   const { state } = useGame();
-  const width = useWindowDimensions().width;
-  const logoH = (title === 'brand/logo-nekomobby' ? 44 : 52) * (width < 390 ? 0.8 : 1);
-  const tight = width < 390; // 設定ボタンが増えたぶん、ロゴを少し小さくする
+  // 背景は画面の一番上（ノッチ・時刻の帯の裏）まで広げ、見出しだけをその下に置く
+  const top = useSafeAreaInsets().top;
   return (
-    <View style={k.header}>
-      <Pic name={title} height={logoH} />
-      <View style={{ flex: 1 }} />
+    <View style={[k.header, { paddingTop: k.header.paddingTop + top }]}>
+      {/* 所持品は左、ベルと設定は右 */}
       <TourAnchor id="header-items">
         <Tap onPress={onShop}>
           <Slice name="panel/pill-currency" style={k.currency}>
@@ -103,7 +102,8 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSetti
           </Slice>
         </Tap>
       </TourAnchor>
-      <TourAnchor id="header-bell" style={{ marginLeft: 6 }}>
+      <View style={{ flex: 1 }} />
+      <TourAnchor id="header-bell">
         <Tap onPress={onBell} accessibilityLabel="お知らせ">
           <Pic name="button/bell-round" height={44} />
           {state.inbox.length > state.inboxRead && <Pic name="button/bell-badge" height={14} style={k.bellBadge} />}
@@ -111,7 +111,7 @@ export function Header({ title = 'brand/logo-nekomobby', onShop, onBell, onSetti
       </TourAnchor>
       <Tap onPress={onSettings} accessibilityLabel="設定" style={{ marginLeft: 6 }}>
         {UI['button/settings-round'] ? (
-          <Pic name="button/settings-round" height={tight ? 38 : 44} />
+          <Pic name="button/settings-round" height={44} />
         ) : (
           // 歯車の画像（button/settings-round）が届くまでの代わり。docs/codex/UI_SETTINGS_PROMPT.md
           <Slice name="button/ghost-outline" style={k.gearFallback}>
@@ -131,6 +131,9 @@ export function RarityBadge({ cat, height = 22 }: { cat: CatDef; height?: number
     : shownRarity(cat) === 4 ? ['rarity-legend', 'でんせつ', '#fff']
     : shownRarity(cat) === 3 ? ['rarity-rare', 'レア', '#2F5DA8']
     : ['rarity-normal', 'ノーマル', C.ink];
+  // 文字まで描いたバッジ（badge/label-*）があれば、それだけを出す
+  const labelPic = `badge/label-${world ? 'world' : name === 'rarity-legend' ? 'legend' : name === 'rarity-rare' ? 'rare' : 'normal'}`;
+  if (UI[labelPic]) return <View accessible accessibilityLabel={label}><Pic name={labelPic} height={height} /></View>;
   return (
     <Slice name={`badge/${name}`} style={[k.badge, { height, minWidth: height * 2.8 }]}>
       <T w="x" size={height * 0.52} color={color} style={world ? { marginLeft: height * 0.6 } : undefined}>{label}</T>
@@ -189,7 +192,7 @@ export type TabKey = 'home' | 'deai' | 'zukan' | 'world';
 // 世界（旅猫・世界ミッション・世界の猫）は、サーバーが整うまで出さない。サンプル表示のまま審査に出すと、未完成の機能とみなされる
 export const WORLD_ON = false;
 const TABS: { key: TabKey; label: string }[] = [
-  { key: 'home', label: 'ホーム' }, { key: 'deai', label: '出会い' }, { key: 'zukan', label: '図鑑' }, { key: 'world', label: '世界' },
+  { key: 'home', label: 'ホーム' }, { key: 'deai', label: '出会い' }, { key: 'zukan', label: 'コレクション' }, { key: 'world', label: '世界' },
 ].filter((t) => WORLD_ON || t.key !== 'world') as { key: TabKey; label: string }[];
 export const NAV_KEYS: TabKey[] = TABS.map((t) => t.key);
 
@@ -198,9 +201,9 @@ export const TabPadCtx = React.createContext(0);
 export const useTabPad = () => React.useContext(TabPadCtx);
 
 export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: (t: TabKey) => void; bottomInset: number }) {
-  const { state, todayKey } = useGame();
-  // 今日の候補がいて、無料のお迎えがまだなら「出会い」に赤い点
-  const waiting = !!state.days[todayKey]?.candidates.length && !state.days[todayKey].freePick;
+  const { state, availableDays } = useGame();
+  // 今日か、まだ受け取れるきのうに、候補がいて無料のお迎えがまだなら「出会い」に赤い点
+  const waiting = availableDays.some((k) => !!state.days[k]?.candidates.length && !state.days[k].freePick);
   // 4つの独立ボタンが画面下に浮かぶ。選択中は光を敷いて、少し大きく上に出す
   return (
     <View pointerEvents="box-none" style={[k.tabbar, { paddingBottom: Math.max(bottomInset, 8) }]}>
@@ -216,7 +219,8 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
               <Pic name={`navbtn/${t.key}-${on ? 'on' : 'off'}`} width={NAV_SIZE} />
               {t.key === 'deai' && waiting && <Pic name="button/bell-badge" height={16} style={k.navDot} />}
             </View>
-            <T w="x" size={11} color={on ? C.accent : C.sub} style={k.navLabel}>{t.label}</T>
+            {/* 選んでいるタブは、ボタンが光って浮くことで見せる。文字はどれも同じ濃い色（オレンジの床の上でも読めるように） */}
+            <T w="x" size={12} color={C.ink} style={k.navLabel}>{t.label}</T>
           </Pressable>
         );
       })}
@@ -241,7 +245,8 @@ const k = StyleSheet.create({
   navBoxOn: { transform: [{ translateY: -4 }, { scale: 1.08 }] },
   navGlow: { position: 'absolute', left: -NAV_SIZE * 0.15, top: -NAV_SIZE * 0.15 },
   navDot: { position: 'absolute', right: 2, top: 2 },
-  navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 5 },
+  // 背景の絵の上でも読めるよう、濃い色の文字に白いふちをつける
+  navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 3, textShadowOffset: { width: 0, height: 0 } },
   gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   bellBadge: { position: 'absolute', right: 2, top: 2 },
 });

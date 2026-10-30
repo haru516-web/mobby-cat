@@ -106,11 +106,17 @@ export interface Store {
   userExists(userId: string): Promise<boolean>;
   /** Replace the account's secret, so a sign-in on a new device takes over. */
   rotateSecret(userId: string, secretHash: string): Promise<void>;
+  issueTransferCode(userId: string, codeHash: string, expiresAt: number, credentialHash: string): Promise<boolean>;
+  redeemTransferCode(userId: string, codeHash: string, secretHash: string, now: number): Promise<boolean>;
   cloudSave(userId: string): Promise<CloudSave | null>;
   /** Store the save if `baseVersion` is the stored version (0 when there is none); returns the new version, or null on a conflict. */
   putCloudSave(userId: string, data: string, baseVersion: number): Promise<number | null>;
   linkApple(userId: string, appleSub: string): Promise<AppleLinkResult>;
   userByApple(appleSub: string): Promise<string | null>;
+  /** Who holds this subscription when it has moved away from its appAccountToken, and the transaction it moved with; null when it never moved. */
+  planOwner(originalTransactionId: string): Promise<{ userId: string; movedTransactionId: string } | null>;
+  /** Give an active subscription to `userId`: the plan, its purchases and its later renewals. Balances and keys are not touched. */
+  movePlan(userId: string, transaction: VerifiedTransaction, plan: string): Promise<void>;
   appleLinked(userId: string): Promise<boolean>;
   /** The Apple ID (its stable `sub`) this account is linked to, or null. */
   appleSubOf(userId: string): Promise<string | null>;
@@ -134,6 +140,8 @@ export interface Store {
   activePlan(userId: string, at: string): Promise<{ plan: string; until: string } | null>;
   /** Apple refunded this purchase: take back what is unspent of it. Safe to repeat. */
   revokePurchase(transactionId: string, product?: ProductDefinition, plan?: { name: string; periodStart: string }): Promise<void>;
+  /** Apple took a refund back: give back what the refund took and end nothing. A second refund of the same purchase takes nothing more. */
+  reverseRefund(transactionId: string, plan?: { name: string; periodStart: string; periodEnd: string }): Promise<void>;
   /** Whether a refund or revocation of this transaction is on record (it may have arrived before the purchase did). */
   isRevoked(transactionId: string): Promise<boolean>;
   /** How many refunds since `since` came after some of what they bought was already spent. */

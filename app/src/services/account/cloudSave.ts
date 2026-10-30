@@ -1,5 +1,6 @@
 import type { GameState } from '../../core/game';
 import { checkSaved } from '../../core/saveShape';
+import { encounterDayKey, prevDayKey } from '../../core/dates';
 
 /*
  * クラウドに預ける「記録」。Apple でサインインしたアカウントだけが使う。
@@ -12,17 +13,27 @@ import { checkSaved } from '../../core/saveShape';
  *  - 端末の中だけで使うと説明している情報：誕生日（birthday）、歩数の合計（totalSteps）、電池・起動時刻の観測（obs）
  *    （プライバシーポリシーと App Privacy の回答に合わせる。機種変更のあとは、新しい端末で入れ直す）
  */
-const KEEP_DAYS = 180; // 出会いの記録は、新しい方から180日分だけ預ける（サーバーの上限に収めるため）
-const MAX_CHARS = 380_000;
+const KEEP_DAYS = 3; // 出会いの記録（どの猫が候補に出たか）は、直近の3日分だけ預ける（きのうの分を戻せれば足りる。歩数などを推し量れる材料を、サーバーに残さないため）
 
-export function toRecord(state: GameState): string {
-  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, ...rest } = state;
-  const trim = (days: number, inbox: number) => {
-    const keys = Object.keys(rest.days).sort().slice(-days);
-    return JSON.stringify({ ...rest, days: Object.fromEntries(keys.map((key) => [key, rest.days[key]])), inbox: rest.inbox.slice(0, inbox) });
+export function toRecord(state: GameState, now = new Date(Date.now() + (state.clockSkewMs ?? 0))): string {
+  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, pendingSpend: _pending, ...rest } = state;
+  // 出会えた条件の文（「1日1万歩」「誕生日」など、歩数・誕生日から分かるもの）と、お知らせの本文は預けない。
+  // 誕生日の猫を迎えた日も、月日から誕生日が分かるので、年だけ残す（戻したあと、迎えた日は年始として出る）
+  const owned = Object.fromEntries(
+    Object.entries(rest.owned).map(([id, o]) => {
+      const birthday = o.firstReason === '誕生日' || Object.values(rest.days).some((d) => d.reasons?.[id] === '誕生日');
+      return [id, { ...o, firstReason: '', firstDay: birthday ? `${o.firstDay.slice(0, 4)}-01-01` : o.firstDay }];
+    }),
+  );
+  const trim = (days: number) => {
+    const latest = encounterDayKey(now);
+    let earliest = latest;
+    for (let i = 1; i < days; i++) earliest = prevDayKey(earliest);
+    const keys = Object.keys(rest.days).filter((key) => key >= earliest && key <= latest).sort();
+    return JSON.stringify({ ...rest, owned, days: Object.fromEntries(keys.map((key) => [key, { ...rest.days[key], reasons: {} }])), inbox: [], inboxRead: 0 });
   };
-  const full = trim(KEEP_DAYS, 50);
-  return full.length <= MAX_CHARS ? full : trim(60, 20);
+  const full = trim(KEEP_DAYS);
+  return full;
 }
 
 /** 預けた記録を読む。読めない・形の合わない項目があるときは null（壊れた記録で、いまの記録を上書きしないため。B-02）。 */

@@ -6,7 +6,7 @@ import { webcrypto } from "node:crypto";
 import { handleWithStore } from "../src/worker.ts";
 import { D1Store } from "../src/store.ts";
 import { hashSecret } from "../src/crypto.ts";
-import { appleFixture, appleIdToken, baseEnv, BUNDLE_ID, selfSignedTestRoot, signedTransaction, signJws } from "./helpers.mjs";
+import { appleFixture, appleIdToken, baseEnv, BUNDLE_ID, PRODUCTS, selfSignedTestRoot, signedTransaction, signJws } from "./helpers.mjs";
 
 const TICKET3 = "com.mobbycat.app.ticket.3";
 const MATATABI5 = "com.mobbycat.app.matatabi.5";
@@ -106,9 +106,9 @@ test("anonymous registration stores only the secret's SHA-256 hash and gives an 
   assert.equal((await context.call("GET", "/wallet")).status, 401);
 });
 
-test("registration is limited per address: five a minute, then 429; another address is unaffected", async () => {
+test("registration is limited per address: twenty a minute, then 429; another address is unaffected", async () => {
   const context = createContext();
-  for (let i = 0; i < 5; i += 1) assert.equal((await context.call("POST", "/auth/register", { body: {}, ip: "203.0.113.5" })).status, 201);
+  for (let i = 0; i < 20; i += 1) assert.equal((await context.call("POST", "/auth/register", { body: {}, ip: "203.0.113.5" })).status, 201);
   assert.equal((await context.call("POST", "/auth/register", { body: {}, ip: "203.0.113.5" })).status, 429);
   assert.equal((await context.call("POST", "/auth/register", { body: {}, ip: "203.0.113.6" })).status, 201);
 });
@@ -154,6 +154,19 @@ test("purchases are credited by environment: Production only unless Sandbox is s
   assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 6, matatabi: 0 });
 });
 
+test("two spends with one request id that cross count as a duplicate, not a short balance", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const user = await context.register();
+  assert.equal((await purchase(context, root, user, TICKET3, "tx-cross")).status, 200);
+  const realFirst = context.store.hasSpent.bind(context.store);
+  let calls = 0;
+  context.store.hasSpent = async (...args) => { calls += 1; return calls === 1 ? false : realFirst(...args); }; // the first look misses the other call's write
+  await context.store.consume(user, "tickets", 1, "cross");
+  calls = 0;
+  assert.equal(await context.store.consume(user, "tickets", 1, "cross"), "duplicate");
+  assert.equal((await context.call("GET", "/wallet", { user })).data.tickets, 2);
+});
 test("spending takes from the balance once per request id, and never below zero", async () => {
   const context = createContext();
   const root = await selfSignedTestRoot();
@@ -464,4 +477,161 @@ test("calls are limited per source address before any work, and per account for 
 
   for (let i = 0; i < 20; i += 1) await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "under16" } });
   assert.equal((await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "under16" } })).status, 429);
+});
+
+test("a running pass moves to a new account with Apple's signed proof, and only the pass moves", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const env = withRoot(root);
+  const alice = await context.register();
+  const bob = await context.register();
+  assert.equal((await purchase(context, root, alice, TICKET3, "tx-keep")).status, 200);
+  assert.equal((await purchase(context, root, alice, PASS, "tx-pass-1")).status, 200);
+  const proof = (id, extra = {}) => signedTransaction(root, { productId: PASS, transactionId: id, originalTransactionId: "tx-pass-1", appAccountToken: alice, ...extra });
+  const move = async (user, jws) => context.call("POST", "/purchases/move-plan", { user, body: { signedTransactionInfo: jws }, envOverride: env });
+  const ticketsOf = async user => (await context.call("GET", "/wallet", { user })).data.tickets;
+  const planOf = async user => (await context.call("GET", "/plan", { user })).data.plan;
+  const aliceTickets = await ticketsOf(alice);
+
+  // nothing but a running, unrefunded, genuinely signed subscription moves
+  assert.equal((await move(bob, await proof("tx-pass-1", { expiresDate: Date.now() - 1000 }))).status, 403);
+  assert.equal((await move(bob, await proof("tx-pass-1", { revocationDate: Date.now() }))).status, 403);
+  assert.equal((await move(bob, (await proof("tx-pass-1")).slice(0, -4) + "AAAA")).status, 400);
+  assert.equal((await move(bob, await signedTransaction(root, { productId: TICKET3, transactionId: "tx-keep", originalTransactionId: "tx-keep", appAccountToken: alice }))).status, 400);
+  assert.equal(await planOf(bob), "none");
+
+  const jws = await proof("tx-pass-1");
+  assert.equal((await move(bob, jws)).data.status, "moved");
+  assert.equal(await planOf(bob), "matatabi_pass");
+  assert.equal(await planOf(alice), "none");
+  assert.equal(await ticketsOf(alice), aliceTickets, "the old account keeps its balance");
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).status, 200, "and its key");
+  assert.equal(await ticketsOf(bob), 0, "the period that moved does not pay its 券 twice");
+  assert.equal((await move(bob, jws)).data.status, "already_yours");
+
+  // the new holder verifies it, and later renewals go to the new holder although they carry the old token
+  const verify = async (user, token) => context.call("POST", "/purchases/verify", { user, body: { signedTransactionInfo: token }, envOverride: env });
+  assert.equal((await verify(bob, jws)).status, 200);
+  assert.equal(await ticketsOf(bob), 0, "verifying the moved transaction pays nothing");
+  assert.equal((await verify(alice, jws)).status, 403);
+  await notify(context, root, "DID_RENEW", { productId: PASS, transactionId: "tx-pass-2", originalTransactionId: "tx-pass-1", appAccountToken: alice, purchaseDate: Date.now(), expiresDate: Date.now() + 30 * 86400000 });
+  assert.equal(await ticketsOf(bob), PRODUCTS[PASS].monthlyTickets);
+  assert.equal(await ticketsOf(alice), aliceTickets);
+
+  // a refund of the renewal reaches the new holder
+  await notify(context, root, "REFUND", { productId: PASS, transactionId: "tx-pass-2", originalTransactionId: "tx-pass-1", appAccountToken: alice, purchaseDate: Date.now(), expiresDate: Date.now() + 30 * 86400000, revocationDate: Date.now() });
+  assert.equal(await ticketsOf(bob), 0);
+});
+test("a pass moves from a deleted account without paying its period again, and never out of an Apple-linked account", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const env = withRoot(root);
+  const alice = await context.register();
+  const bob = await context.register();
+  const carol = await context.register();
+  assert.equal((await purchase(context, root, alice, PASS, "tx-del")).status, 200);
+  const jws = await signedTransaction(root, { productId: PASS, transactionId: "tx-del", originalTransactionId: "tx-del", appAccountToken: alice });
+  assert.equal((await context.call("POST", "/account/delete", { user: alice, body: { confirm: "delete" } })).status, 200);
+  assert.equal((await context.call("POST", "/purchases/move-plan", { user: bob, body: { signedTransactionInfo: jws }, envOverride: env })).data.status, "moved");
+  assert.equal((await context.call("POST", "/purchases/verify", { user: bob, body: { signedTransactionInfo: jws }, envOverride: env })).status, 200);
+  assert.equal((await context.call("GET", "/wallet", { user: bob })).data.tickets, 0);
+
+  context.database.prepare("INSERT INTO apple_links (user_id, apple_sub, linked_at) VALUES (?, ?, ?)").run(bob, "apple-sub-1", new Date().toISOString());
+  assert.equal((await context.call("POST", "/purchases/move-plan", { user: carol, body: { signedTransactionInfo: jws }, envOverride: env })).status, 409);
+  assert.equal(rows(context, "SELECT user_id FROM plan_owners")[0].user_id, bob);
+});
+test("Apple taking a refund back restores what the refund took, the purchase and a plan's period", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const alice = await context.register();
+  assert.equal((await purchase(context, root, alice, TICKET3, "tx-r")).status, 200);
+  const payload = { productId: TICKET3, transactionId: "tx-r", originalTransactionId: "tx-r", appAccountToken: alice, purchaseDate: Date.now() };
+  await notify(context, root, "REFUND", { ...payload, revocationDate: Date.now() });
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).data.tickets, 0);
+  await notify(context, root, "REFUND_REVERSED", payload);
+  await notify(context, root, "REFUND_REVERSED", payload);
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).data.tickets, 3, "given back once");
+  assert.equal(rows(context, "SELECT revoked_at FROM purchases WHERE apple_transaction_id = 'tx-r'")[0].revoked_at, null);
+  assert.equal(await context.store.isRevoked("tx-r"), false);
+
+  const end = Date.now() + 30 * 86400000;
+  const start = Date.now() - 1000;
+  assert.equal((await purchase(context, root, alice, PASS, "tx-rp", { purchaseDate: start, expiresDate: end })).status, 200);
+  const pass = { productId: PASS, transactionId: "tx-rp", originalTransactionId: "tx-rp", appAccountToken: alice, purchaseDate: start, expiresDate: end };
+  await notify(context, root, "REFUND", { ...pass, revocationDate: Date.now() });
+  assert.equal((await context.call("GET", "/plan", { user: alice })).data.plan, "none");
+  await notify(context, root, "REFUND_REVERSED", pass);
+  assert.equal((await context.call("GET", "/plan", { user: alice })).data.plan, "matatabi_pass");
+});
+test("an Apple identity token signs in once; the same token again is refused", async () => {
+  const context = createContext();
+  const { token, appleEnv } = await appleFixture();
+  const user = await context.register();
+  const once = await token();
+  assert.equal((await context.call("POST", "/account/apple/link", { user, body: { identityToken: once }, envOverride: appleEnv })).status, 200);
+  assert.equal((await context.call("POST", "/auth/apple", { body: { identityToken: once }, envOverride: appleEnv })).status, 401);
+  assert.equal((await context.call("POST", "/auth/apple", { body: { identityToken: await token() }, envOverride: appleEnv })).status, 200);
+});
+test("the plan owners migration runs on the live shape and drops the old column", async () => {
+  const database = new DatabaseSync(":memory:");
+  database.exec("CREATE TABLE users (id TEXT PRIMARY KEY, secret_hash TEXT NOT NULL, purchase_recovery_date INTEGER, created_at TEXT NOT NULL);");
+  database.exec(readFileSync(new URL("../migrations/0005_plan_owners.sql", import.meta.url), "utf8"));
+  assert.deepEqual(database.prepare("SELECT name FROM pragma_table_info('users')").all().map(row => row.name), ["id", "secret_hash", "created_at"]);
+  assert.equal(database.prepare("SELECT COUNT(*) AS n FROM plan_owners").get().n, 0);
+  database.close();
+});
+test("transfer code migration, expiry, replacement, retries and rollback protect account keys", async () => {
+  const database = new DatabaseSync(":memory:");
+  database.exec("CREATE TABLE users (id TEXT PRIMARY KEY, secret_hash TEXT NOT NULL, created_at TEXT NOT NULL); INSERT INTO users VALUES ('a', 'old', '2026-10-30');");
+  database.exec(readFileSync(new URL("../migrations/0004_account_transfer_codes.sql", import.meta.url), "utf8"));
+  const store = new D1Store(new SQLiteD1(database));
+  await store.issueTransferCode('a', 'code', 200, 'old');
+  assert.equal(await store.redeemTransferCode('a', 'wrong', 'new', 100), false);
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 200), false);
+  assert.equal(await store.credentialHash('a'), 'old');
+  database.exec("CREATE TRIGGER fail_rotation BEFORE UPDATE ON users BEGIN SELECT RAISE(ABORT, 'disk failure'); END;");
+  await assert.rejects(store.redeemTransferCode('a', 'code', 'new', 100));
+  assert.equal(database.prepare("SELECT used_secret_hash FROM account_transfer_codes").get().used_secret_hash, null);
+  database.exec("DROP TRIGGER fail_rotation");
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 100), true);
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 101), true);
+  assert.equal(await store.redeemTransferCode('a', 'code', 'attacker', 101), false);
+  assert.equal(await store.credentialHash('a'), 'new');
+  await store.rotateSecret('a', 'apple-key');
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 102), false);
+  assert.equal(await store.issueTransferCode('a', 'stale', 200, 'old'), false);
+  await store.issueTransferCode('a', 'first', 200, 'apple-key');
+  await store.issueTransferCode('a', 'second', 200, 'apple-key');
+  assert.equal(await store.redeemTransferCode('a', 'first', 'new', 100), false);
+  assert.equal(await store.redeemTransferCode('a', 'second', 'last', 100), true);
+  database.close();
+});
+
+test("a transfer code alone recovers an account that only bought tickets, once, and the old key stops working", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const alice = await context.register();
+  const bob = await context.register();
+  assert.equal((await purchase(context, root, alice, TICKET3, "tx-t-1")).status, 200);
+  const issued = await context.call("POST", "/account/transfer-code", { user: alice });
+  const code = issued.data.code;
+  const newSecret = 'm'.repeat(43);
+  let calls = 0;
+  const recover = (extra = {}) => context.call("POST", "/auth/recover-with-code", { body: { transferCode: code, newSecret, ...extra }, ip: "198.51.100." + (++calls) });
+  assert.equal((await recover({ transferCode: undefined })).status, 400);
+  assert.equal((await recover({ newSecret: 'short' })).status, 400);
+  assert.equal((await recover({ transferCode: 'nodot' })).status, 409);
+  assert.equal((await recover({ transferCode: alice + '.' + 'x'.repeat(43) })).status, 409);
+  assert.equal((await recover({ transferCode: bob + '.' + code.split('.')[1] })).status, 409);
+  const old = context.credentials.get(alice);
+  const reply = await recover();
+  assert.equal(reply.status, 200);
+  assert.equal(reply.data.userId, alice);
+  context.credentials.set(alice, old);
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).status, 401);
+  context.credentials.set(alice, `${alice}.${reply.data.secret}`);
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).data.tickets, 3);
+  // a lost response can retry with the same new key, but a different key cannot reuse the code
+  assert.equal((await recover()).status, 200);
+  assert.equal((await recover({ newSecret: 'z'.repeat(43) })).status, 409);
 });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { REVEAL_HOUR } from '../../core/encounter';
 import { useAccount } from '../../core/account';
@@ -16,9 +16,9 @@ import { playSfx } from '../../services/audio';
 
 // 相棒を決めたあとに、1項目ずつポップで見せる。最後の「はじめる」で、歩数・位置・通知の許可を求めて始まる
 const TIPS = [
-  { icon: 'icon/calendar-today', title: '毎日の出会い', text: `毎日${REVEAL_HOUR}時に、その日の条件がそろったにゃこモビー（最大3匹）と出会えます。1匹は無料でお迎え` },
+  { icon: 'icon/calendar-today', title: '毎日の出会い', text: `毎日${REVEAL_HOUR}時に、その日の条件がそろったにゃこモビーが届きます。3匹までひらいて、1匹は無料でお迎え。20時より前に始めたときは、最初の出会いが、今夜20時に届きます` },
   { icon: 'icon/sun', title: '会える猫が変わる', text: '歩いた日、雨の日、満月の夜、スマホの電池が1%の日…あなたの毎日によって、会える猫が変わります' },
-  { icon: 'icon/book', title: '秘密の条件', text: '条件は世界中のみんなと共通。図鑑のヒントを手がかりに、秘密の条件を見つけよう' },
+  { icon: 'icon/book', title: '秘密の条件', text: '条件は世界中のみんなと共通。コレクションのヒントを手がかりに、秘密の条件を見つけよう' },
   { icon: 'icon/paw', title: '歩数・天気・通知の許可', text: `歩数と位置情報（天気）を許可しないと、ほとんどの猫に会えません。通知を許可すると、毎日${REVEAL_HOUR}時の出会いをお知らせします。次に出る画面で「許可」を選んでね` },
 ];
 
@@ -37,18 +37,17 @@ export default function OnboardingScreen({ width }: { width: number }) {
       else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
       else if (r === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');
       else if (r === 'failed') notice('引き継げませんでした', 'もう一度お試しください。');
+      else if (r === 'local_paid') notice('この端末に購入したものがあります', '相棒を選んだあと、設定の「アカウント」から、内容を確かめて引き継いでください。');
     } finally {
       setRestoring(false);
     }
   };
-  const offer = state.starterOffer ?? [];
+  const offer = useMemo(() => state.starterOffer ?? [], [state.starterOffer]);
   const left = Math.max(0, STARTER_REROLLS - (state.starterRerolls ?? 0));
   const [confirm, confirmEl] = useConfirm(); // 相棒は、大きく見せるポップで最終決定する
-  const [sel, setSel] = useState<string | null>(null);
+  const [picked, setSel] = useState<string | null>(null);
   // 引き直したら、いま見えていない子の選択は外す
-  useEffect(() => {
-    if (sel && !offer.includes(sel)) setSel(null);
-  }, [offer, sel]);
+  const sel = picked && offer.includes(picked) ? picked : null;
   const [step, setStep] = useState<'pick' | 'how'>('pick');
   const [starting, setStarting] = useState(false);
   const [tip, setTip] = useState(0); // 説明のポップの番号（1項目ずつ、連続して出す）

@@ -31,6 +31,7 @@ function day(v: unknown): DayRecord | null {
   if (!isObj(v) || !strList(v.candidates) || !isObj(v.reasons) || !isCount(v.baseCount) || !isCount(v.matatabiUsed) || !strList(v.extraPicks)) return null;
   if (v.freePick !== undefined && !isStr(v.freePick)) return null;
   if (v.passBonus !== undefined && !isCount(v.passBonus)) return null;
+  if (v.opened !== undefined && !strList(v.opened)) return null;
   const reasons: Record<string, string> = {};
   for (const [id, r] of Object.entries(v.reasons)) if (isStr(r)) reasons[id] = r;
   // 知らない猫は候補から外す（見えている数が変わらないよう、外した分だけ baseCount も減らす）
@@ -44,6 +45,7 @@ function day(v: unknown): DayRecord | null {
     extraPicks: v.extraPicks,
     ...(v.freePick !== undefined ? { freePick: v.freePick } : {}),
     ...(v.passBonus !== undefined ? { passBonus: v.passBonus } : {}),
+    ...(v.opened !== undefined ? { opened: v.opened.filter((id) => KNOWN.has(id)) } : {}),
   };
 }
 
@@ -52,6 +54,7 @@ const FIELDS: { [K in keyof GameState]?: Checker } = {
   tickets: (v) => (isCount(v) ? v : undefined),
   matatabi: (v) => (isCount(v) ? v : undefined),
   installDay: (v) => (isStr(v) ? v : undefined),
+  installLock: (v) => (isBool(v) ? v : undefined),
   debugOffsetDays: (v) => (isNum(v) ? v : undefined),
   notifyEnabled: (v) => (isBool(v) ? v : undefined),
   favorites: (v) => (strList(v) ? v.filter((id) => KNOWN.has(id)) : undefined),
@@ -82,6 +85,7 @@ const FIELDS: { [K in keyof GameState]?: Checker } = {
   inbox: (v) => (Array.isArray(v) && v.every((n) => isObj(n) && isStr(n.day) && isStr(n.text)) ? (v as Notice[]).map((n) => ({ day: n.day, text: n.text })) : undefined),
   inboxRead: (v) => (isCount(v) ? v : undefined),
   pass: (v) => (isObj(v) && isBool(v.active) && isStr(v.lastGrantMonth) ? { active: v.active, lastGrantMonth: v.lastGrantMonth, ...(isNum(v.until) ? { until: v.until } : {}) } : undefined),
+  pendingSpend: (v) => (isObj(v) && (v.kind === 'extra' || v.kind === 'matatabi') && isStr(v.day) && strList(v.ids) && isStr(v.id) && (v.currency === 'tickets' || v.currency === 'matatabi') && isCount(v.fromPaid) && isCount(v.fromFree) ? { kind: v.kind, day: v.day, ids: v.ids, id: v.id, currency: v.currency, fromPaid: v.fromPaid, fromFree: v.fromFree, ...(v.record !== undefined && day(v.record) ? { record: day(v.record)! } : {}), ...(v.applied === true ? { applied: true } : {}) } : undefined),
   spendSalt: (v) => (isStr(v) && v.length > 0 ? v : undefined),
   paid: (v) => (isObj(v) && isCount(v.tickets) && isCount(v.matatabi) ? { tickets: v.tickets, matatabi: v.matatabi } : undefined),
   clockSkewMs: (v) => (isNum(v) ? v : undefined),

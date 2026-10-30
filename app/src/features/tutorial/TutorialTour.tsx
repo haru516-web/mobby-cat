@@ -26,11 +26,14 @@ export default function TutorialTour({ bottomInset, onNavigate, onClose, openPop
   const [cardH, setCardH] = useState(170);
   const frameRef = useRef<ComponentRef<typeof View>>(null);
   const live = useRef({ pos });
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   live.current = { pos };
   // 呼び出し元は毎回新しい関数を渡すので、最新のものを参照だけして、効果は作り直さない
   const closeRef = useRef(onClose);
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   closeRef.current = onClose;
   const popupsRef = useRef({ openPopup, closePopups });
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   popupsRef.current = { openPopup, closePopups };
 
   const goNext = () => {
@@ -56,7 +59,7 @@ export default function TutorialTour({ bottomInset, onNavigate, onClose, openPop
   // ポップの背景などで、利用者がポップを閉じてしまったときは、つぎの段へ進む
   useEffect(() => onTourEvent((e) => {
     if (e === 'popup-closed' && TOUR_STEPS[live.current.pos].popup) goNext();
-  }), []); // eslint-disable-line react-hooks/exhaustive-deps
+  }), []);  
 
   // ポップの中の説明の「もどる」「つぎへ」「スキップ」
   useEffect(() => {
@@ -73,11 +76,12 @@ export default function TutorialTour({ bottomInset, onNavigate, onClose, openPop
       setTourActions(null);
       setTourPopup(null);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);  
 
   // タブが切り替わって描き終わるまで待ってから測る。遅れて出る画面のために数回やり直す
   useEffect(() => {
     let cancelled = false;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 手順が変わったら、測り直すまで前の枠を消す
     setTarget(null);
     const run = async () => {
       frameRef.current?.measureInWindow((x, y, width, height) => {

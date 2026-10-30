@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { HINTS, upcoming } from '../../core/conditions';
-import { useGame, visibleCount } from '../../core/game';
+import { openedOf, useGame } from '../../core/game';
 import { C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Well, Tap } from '../../ui/kit';
 import { Pic, Slice } from '../../ui/Slice';
@@ -64,7 +64,7 @@ export default function NoticeScreen({ onClose, initialTab = 'notice' }: { onClo
           (days.length ? (
             days.map((k) => {
               const r = state.days[k];
-              const seen = r.candidates.slice(0, visibleCount(r));
+              const seen = openedOf(r);
               const picked = [r.freePick, ...r.extraPicks].filter(Boolean) as string[];
               return (
                 <Card key={k} skin="white" style={{ gap: 6 }}>

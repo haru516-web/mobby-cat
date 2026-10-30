@@ -1,0 +1,25 @@
+{
+  "zod": [
+    {
+      "current": "3.25.76",
+      "wanted": "3.25.76",
+      "latest": "4.6.7",
+      "dependent": "@expo/cli",
+      "location": "D:\\mobby-cat\\.worktrees\\prelaunch-fix\\app\\node_modules\\zod"
+    },
+    {
+      "current": "3.25.76",
+      "wanted": "4.6.7",
+      "latest": "4.6.7",
+      "dependent": "eslint-plugin-react-hooks",
+      "location": "D:\\mobby-cat\\.worktrees\\prelaunch-fix\\app\\node_modules\\zod"
+    },
+    {
+      "current": "3.25.76",
+      "wanted": "4.6.7",
+      "latest": "4.6.7",
+      "dependent": "zod-validation-error",
+      "location": "D:\\mobby-cat\\.worktrees\\prelaunch-fix\\app\\node_modules\\zod"
+    }
+  ]
+}

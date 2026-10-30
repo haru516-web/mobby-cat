@@ -1,5 +1,5 @@
-import { useMemo, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { useMemo, useState } from 'react';
+import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
 import { homeSlotsOf, useGame } from '../../core/game';
@@ -10,6 +10,7 @@ import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Header, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
+import { UI } from '../../ui/uiAssets';
 import { ScreenProps } from '../../navigation';
 
 // 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい
@@ -27,13 +28,14 @@ const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！',
 const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン', day: 12 };
 
 function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: number; onPet: () => void }) {
-  const hop = useRef(new Animated.Value(0)).current;
-  const heart = useRef(new Animated.Value(0)).current;
+  const hop = useState(() => new Animated.Value(0))[0];
+  const heart = useState(() => new Animated.Value(0))[0];
   const [line, setLine] = useState<string | null>(null);
   const tap = () => {
     onPet();
     playSfx('sfx_pet');
     hapticLight();
+     
     setLine(MEOW[Math.floor(Math.random() * MEOW.length)]);
     hop.setValue(0);
     heart.setValue(0);
@@ -74,11 +76,8 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
   const [selecting, setSelecting] = useState(false);
-  // 画面の低い端末（iPhone SE など）では、部屋を低くして、下の予告カードとさつえいボタンがスクロールなしで見えるようにする
-  const winH = useWindowDimensions().height;
-  const roomMin = Math.max(300, Math.min(width * 1.25, winH - 340));
-
-  // 画面が縦に長いときは、カードの下に余白ができないよう部屋を伸ばす（flex で余りを部屋に回す。背景は cover）
+  // ホームはスクロールしない（もび道と同じ）。見出しと下のカードの残りの高さを、ぜんぶ部屋に回す（flex）。
+  // 低い端末では部屋が低く、縦に長い端末では高くなる。猫の位置は、部屋の高さ（roomH）に対する割合で決める
   const [roomH, setRoomH] = useState(width * 1.25);
   // 通知の「これから」の、いちばん近い予告（暦や月で決まる特別な猫）
   const next = useMemo(() => upcoming(todayKey, 30, state.birthday)[0], [todayKey, state.birthday]);
@@ -95,11 +94,11 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   return (
     <View style={{ flex: 1 }}>
     <Backdrop name="bg/room-home-full" />
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 + pad }}>
+    <View style={{ flex: 1, paddingBottom: 24 + pad }}>
       <View style={{ zIndex: 2 }}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+      {WORLD_ON && (
       <View style={{ paddingHorizontal: 14, flexDirection: 'row', gap: 8, alignItems: 'stretch' }}>
-        {WORLD_ON && (
         <Tap style={{ flex: 1 }} onPress={() => go('world')} accessibilityLabel="旅するモビーの様子">
           <Card style={s.travel}>
             <View>
@@ -114,18 +113,11 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
             <Pic name="icon/chevron-right" height={14} />
           </Card>
         </Tap>
-        )}
-        <View style={{ flex: WORLD_ON ? 0 : 1 }} />
-        <Tap onPress={() => setSelecting(true)} accessibilityLabel="ホームに出す子をえらぶ">
-          <Card style={s.pick}>
-            <Pic name="icon/cat-head" height={28} />
-            <T w="x" size={10}>ホームの子</T>
-          </Card>
-        </Tap>
       </View>
+      )}
       </View>
 
-      <TourAnchor id="home-room" style={{ width, minHeight: roomMin, maxHeight: width * 1.6, flexGrow: 1, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
+      <TourAnchor id="home-room" style={{ width, flex: 1, maxHeight: width * 1.6, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
         {roomSlots.every((id) => !id) && (
           <View style={s.empty}>
             <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」からにゃこモビーを迎えましょう</T>
@@ -140,10 +132,23 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
             </View>
           );
         })}
-        <Tap style={s.loginBtn} onPress={openLoginRecord} accessibilityLabel="ログイン記録">
-          <Pic name="button/login-record-round" height={52} />
-          <T w="x" size={10} style={s.cameraLabel}>ログイン記録</T>
-        </Tap>
+        {/* 右上の丸いボタン：ホームに出す子を選ぶ、ログイン記録。見出しのベル・設定と同じく、絵だけで見せる（名前は読み上げで伝える） */}
+        <View style={s.sideBtns}>
+          <Tap onPress={() => setSelecting(true)} accessibilityLabel="ホームに出す子をえらぶ">
+            {UI['button/home-cats-round'] ? (
+              <Pic name="button/home-cats-round" height={SIDE_BTN} />
+            ) : (
+              // 専用の丸ボタン（button/home-cats-round）が届くまでの代わり：丸い枠に猫の顔
+              <View style={{ width: SIDE_BTN, height: SIDE_BTN, alignItems: 'center', justifyContent: 'center' }}>
+                <Pic name="button/account-round" height={SIDE_BTN} style={StyleSheet.absoluteFill} />
+                <Pic name="icon/cat-head" height={SIDE_BTN * 0.5} />
+              </View>
+            )}
+          </Tap>
+          <Tap onPress={openLoginRecord} accessibilityLabel="ログイン記録">
+            <Pic name="button/login-record-round" height={SIDE_BTN} />
+          </Tap>
+        </View>
       </TourAnchor>
 
       <View style={s.bottom}>
@@ -167,23 +172,22 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         </Tap>
         <Tap style={s.camera} onPress={openCamera} accessibilityLabel="さつえい">
           <Pic name="button/camera-round" height={84} />
-          <T w="x" size={12} style={s.cameraLabel}>さつえい</T>
         </Tap>
       </View>
-    </ScrollView>
+    </View>
     <HomeSelect visible={selecting} onClose={() => setSelecting(false)} width={width} />
     </View>
   );
 }
+
+const SIDE_BTN = 52; // 右上の丸いボタンの大きさ（2つとも同じ）
 
 const s = StyleSheet.create({
   empty: { position: 'absolute', left: 0, right: 0, top: '40%', alignItems: 'center' },
   bubble: { position: 'absolute', top: -40, width: 120, paddingHorizontal: 14, paddingTop: 8, paddingBottom: 16, alignItems: 'center' },
   heart: { position: 'absolute', top: 0 },
   camera: { alignItems: 'center' },
-  loginBtn: { position: 'absolute', right: 14, top: 40, alignItems: 'center', zIndex: 200 },
-  cameraLabel: { marginTop: -4, textShadowColor: '#fff', textShadowRadius: 6 },
-  pick: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, paddingVertical: 6, paddingHorizontal: 10, minWidth: 72 },
+  sideBtns: { position: 'absolute', right: 14, top: 8, gap: 12, alignItems: 'center', zIndex: 200 },
   travel: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8, paddingHorizontal: 12 },
   bottom: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, marginTop: 2 },
   upcomingWell: { width: 64, height: 64, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },

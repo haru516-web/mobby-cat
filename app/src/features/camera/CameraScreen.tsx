@@ -1,16 +1,19 @@
+import { adjustZoom, zoomValue } from './zoom';
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { GestureResponderEvent, Image, Linking, PanResponder, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATS } from '../../data/catalog';
 import { SfxId } from '../../data/audioAssets';
 import { playSfx } from '../../services/audio';
+import { hapticTap } from '../../services/haptics';
 import { notice } from '../../services/dialog';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { homeSlotsOf, useGame } from '../../core/game';
 import { CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { ImgButton, Tap } from '../../ui/kit';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
+import { UI } from '../../ui/uiAssets';
 
 type Pose = { x: number; y: number; scale: number; rot: number };
 const touchInfo = (e: GestureResponderEvent) => {
@@ -20,7 +23,13 @@ const touchInfo = (e: GestureResponderEvent) => {
   return { dist: Math.hypot(dx, dy), angle: Math.atan2(dy, dx) };
 };
 
-// 撮影（企画書 8.1 のカメラ合成）。猫はドラッグで移動、2本指で拡大・回転
+// 大きさ・向きは、元（等倍・まっすぐ）の近くまで戻したら、ぴったり元に合わせる（戻しやすくする）
+const SNAP_SCALE = 0.08;
+const SNAP_ROT = 0.12; // 約7度
+const snap = (v: number, to: number, within: number) => (Math.abs(v - to) < within ? to : v);
+
+// 撮影（企画書 8.1 のカメラ合成）。猫はドラッグで移動、2本指で拡大・回転。
+// 指は猫の上でなくてもよい（画面のどこでも、猫に効く）。カメラのズームは、右の縦のバーで変える
 export default function CameraScreen({ onClose, width, height }: { onClose: () => void; width: number; height: number }) {
   const { state, countPhoto } = useGame();
   const insets = useSafeAreaInsets();
@@ -32,12 +41,15 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
   const [flash, setFlash] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
   const [pose, setPose] = useState<Pose>({ x: 0, y: height * 0.1, scale: 1, rot: 0 });
+  const [moved, setMoved] = useState(false); // 一度でも動かしたら、操作のヒントを消す
+  const [zoom, setZoom] = useState(0); // 0 = 等倍
   const cam = useRef<CameraView>(null);
   const shot = useRef<ViewRef>(null);
 
   const start = useRef<{ pose: Pose; pinch: ReturnType<typeof touchInfo> }>({ pose, pinch: null });
   const responder = useMemo(
     () =>
+      // eslint-disable-next-line react-hooks/refs -- ref はジェスチャーのハンドラの中でだけ読む
       PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,
@@ -47,27 +59,33 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
         onPanResponderMove: (e, g) => {
           const p = start.current;
           const now = touchInfo(e);
+          setMoved(true);
           if (now) {
             if (!p.pinch) p.pinch = now; // 2本目の指が後から触れたとき
             setPose({
               ...p.pose,
-              scale: Math.max(0.3, Math.min(4, (p.pose.scale * now.dist) / p.pinch.dist)),
-              rot: p.pose.rot + (now.angle - p.pinch.angle),
+              scale: snap(Math.max(0.3, Math.min(4, (p.pose.scale * now.dist) / p.pinch.dist)), 1, SNAP_SCALE),
+              rot: snap(p.pose.rot + (now.angle - p.pinch.angle), 0, SNAP_ROT),
             });
-          } else {
+          } else if (!p.pinch) {
             setPose({ ...p.pose, x: p.pose.x + g.dx, y: p.pose.y + g.dy });
           }
+        },
+        // 2本指から1本に減ったとき、残った指で急に動かないよう、そこから測り直す
+        onPanResponderRelease: () => {
+          start.current = { pose: poseRef.current, pinch: null };
         },
       }),
     [],
   );
   const poseRef = useRef(pose);
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   poseRef.current = pose;
 
   const size = width * 0.55;
   const cat = catId && (
     <View
-      {...(photo ? {} : responder.panHandlers)}
+      pointerEvents="none"
       style={{
         position: 'absolute',
         left: width / 2 - size / 2,
@@ -132,10 +150,13 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
         {photo ? (
           <Image source={{ uri: photo }} style={StyleSheet.absoluteFill} resizeMode="cover" />
         ) : (
-          <CameraView ref={cam} style={StyleSheet.absoluteFill} facing={facing} flash={flash ? 'on' : 'off'} />
+          // ズームは端末の最大の半分まで（それ以上は画質が荒れる）
+          <CameraView ref={cam} style={StyleSheet.absoluteFill} facing={facing} flash={flash ? 'on' : 'off'} zoom={zoom * 0.5} />
         )}
         {cat}
       </View>
+      {/* 猫の移動・大きさ・向きは、画面のどこを触っても効く（上下のボタンとズームのバーは、この上にある） */}
+      {!photo && catId && <View style={StyleSheet.absoluteFill} {...responder.panHandlers} />}
 
       <Stretch name="camera/topbar-scrim" style={[s.top, { height: 100 + insets.top }]} />
       <View style={[s.topBar, { top: insets.top + 8 }]}>
@@ -150,11 +171,13 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
           </>
         )}
       </View>
-      {!photo && catId && pose.scale === 1 && pose.rot === 0 && (
+      {!photo && catId && !moved && (
         <View style={[s.hint, { top: insets.top + 64 }]} pointerEvents="none">
           <Pic name="camera/gesture-hint" width={180} />
         </View>
       )}
+
+      {!photo && <ZoomBar value={zoom} onChange={setZoom} top={insets.top + 130} />}
 
       <Stretch name="camera/bottombar-scrim" style={[s.bottom, { height: 240 + insets.bottom }]} />
       <View style={[s.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
@@ -174,7 +197,7 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
         ) : (
           <>
             {owned.length > 0 && (
-              <T w="b" size={12} color="#fff" style={{ textAlign: 'center', marginBottom: 6 }}>下の猫をタップで切りかえ。画面をドラッグ・2本指で動かせます</T>
+              <T w="b" size={12} color="#fff" style={{ textAlign: 'center', marginBottom: 6 }}>下の猫をタップで切りかえ。ドラッグで移動、2本指で大きさと向き、右のバーでズーム</T>
             )}
             {owned.length > 0 ? (
               <Slice name="camera/cat-tray" style={s.tray}>
@@ -200,6 +223,70 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
   );
 }
 
+// カメラのズーム。画面の右に縦のバー。触るまでは薄く、触っているあいだははっきり見せる。
+// 下の端（等倍）の近くまで下げたら、ぴったり等倍に戻す（ふるえて知らせる）
+const BAR_H = 220;
+const ZOOM_SNAP = 0.06;
+function ZoomBar({ value, onChange, top }: { value: number; onChange: (v: number) => void; top: number }) {
+  const [active, setActive] = useState(false);
+  const valueRef = useRef(value);
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
+  valueRef.current = value;
+  const from = useRef(0);
+  const fade = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const responder = useMemo(
+    () =>
+      // eslint-disable-next-line react-hooks/refs -- ref はジェスチャーのハンドラの中でだけ読む
+      PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onMoveShouldSetPanResponder: () => true,
+        onPanResponderGrant: () => {
+          if (fade.current) clearTimeout(fade.current);
+          from.current = valueRef.current;
+          setActive(true);
+        },
+        onPanResponderMove: (_e, g) => {
+          const raw = Math.max(0, Math.min(1, from.current - g.dy / BAR_H));
+          const next = raw < ZOOM_SNAP ? 0 : raw;
+          if (next === 0 && valueRef.current !== 0) hapticTap();
+          onChange(next);
+        },
+        onPanResponderRelease: () => {
+          fade.current = setTimeout(() => setActive(false), 1200);
+        },
+        onPanResponderTerminate: () => setActive(false),
+      }),
+    [onChange],
+  );
+  useEffect(() => () => { if (fade.current) clearTimeout(fade.current); }, []);
+  const thumb = 30;
+  return (
+    <View {...responder.panHandlers} style={[s.zoom, { top, opacity: active ? 1 : 0.4 }]} accessible accessibilityLabel="ズーム" accessibilityRole="adjustable"
+      accessibilityValue={zoomValue(value)}
+      accessibilityActions={[{ name: 'increment', label: 'ズームを増やす' }, { name: 'decrement', label: 'ズームを減らす' }]}
+      onAccessibilityAction={(event) => {
+        const next = adjustZoom(valueRef.current, event.nativeEvent.actionName);
+        valueRef.current = next;
+        onChange(next);
+      }}>
+      <View style={{ width: 14, height: BAR_H, alignItems: 'center', justifyContent: 'center' }}>
+        {UI['camera/zoom-track'] ? (
+          <Slice name="camera/zoom-track" style={{ width: 14, height: BAR_H }} />
+        ) : (
+          // 縦のバーの画像（camera/zoom-track）が届くまでは、横のゲージを縦に回して使う
+          <Slice name="gauge/track" style={{ width: BAR_H, height: 14, transform: [{ rotate: '-90deg' }] }}>
+            <Slice name="gauge/fill-orange" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: Math.max(value * BAR_H, 14) }} />
+          </Slice>
+        )}
+      </View>
+      <View pointerEvents="none" style={{ position: 'absolute', bottom: 20 + value * (BAR_H - thumb), alignItems: 'center' }}>
+        <Pic name={UI['camera/zoom-thumb'] ? 'camera/zoom-thumb' : 'icon/paw'} height={thumb} />
+      </View>
+      {active && <T w="x" size={11} color="#fff" style={s.zoomLabel}>{value === 0 ? '等倍' : 'ズーム'}</T>}
+    </View>
+  );
+}
+
 function Action({ icon, label, onPress, sfx }: { icon: string; label: string; onPress: () => void; sfx?: SfxId }) {
   return (
     <Tap sfx={sfx} onPress={onPress} style={{ alignItems: 'center', gap: 4 }} accessibilityLabel={label}>
@@ -219,4 +306,7 @@ const s = StyleSheet.create({
   tray: { height: 84, justifyContent: 'center' },
   slotCat: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   actions: { flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 20 },
+  // 指で触りやすいよう、見えているバーより広く受け付ける
+  zoom: { position: 'absolute', right: 4, width: 56, height: BAR_H + 40, paddingVertical: 20, alignItems: 'center' },
+  zoomLabel: { position: 'absolute', bottom: -6, textShadowColor: 'rgba(0,0,0,0.6)', textShadowRadius: 4 },
 });

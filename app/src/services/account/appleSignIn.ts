@@ -7,6 +7,7 @@ export async function appleCredential(): Promise<AppleToken> {
   if (Platform.OS !== 'ios') return { reason: 'unavailable' };
   let apple: typeof import('expo-apple-authentication');
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- ネイティブ部分が無い環境では読み込まない
     apple = require('expo-apple-authentication');
   } catch {
     return { reason: 'unavailable' };
