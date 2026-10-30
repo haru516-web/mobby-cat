@@ -28,8 +28,8 @@ function mulberry32(a: number) {
 
 export type DayCandidates = { candidates: string[]; reasons: Record<string, string>; baseCount: number };
 
-// 先頭 baseCount 匹が最初から見える候補。以降は「またたび」で順に増える（最大 MAX_CANDIDATES 匹）。
-// 候補になるのは、その日に出会いの条件をすべて満たした猫だけ（毎日の抽選はない。条件を飛ばして迎える道を作らないため）。
+// baseCount 匹まで無料でひらける。以降は「またたび」でひらける数が増え、どの候補をひらくか選べる。
+// 候補になるのは、その日に出会いの条件をすべて満たした猫だけ（条件を飛ばして迎える道を作らないため）。
 // 7匹以上そろった日は、均等にシャッフルして MAX_CANDIDATES 匹だけ残す。1匹もそろわない日は候補が空になる
 export function buildDay(dayKey: string, signals: Signals, ctx: Ctx): DayCandidates {
   const rng = mulberry32(hash('mobby:' + dayKey + ':' + Object.keys(ctx.owned).length));

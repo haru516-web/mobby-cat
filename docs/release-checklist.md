@@ -21,15 +21,15 @@ Apple Developer Program は、mobidou で登録済み（同じ Team を使う）
 
 ## A. Apple Developer Program
 
-登録済み（mobidou で使用中）。にゃこモビーも同じ Team で出す。新しく申し込む必要はない。年会費の更新日だけ、Apple Developer のアカウントで確認しておく。
+登録済み（mobidou で使用中）。にゃっコレも同じ Team で出す。新しく申し込む必要はない。年会費の更新日だけ、Apple Developer のアカウントで確認しておく。
 
 ## B. Cloudflare のサーバーとデータベース（2026-10-28 実施済み）
 
 実施結果：D1 `nyakomobby`（ID は `server/wrangler.toml`）を作成し、`schema.sql` を適用し、`nyakomobby-server` をデプロイした。公開 URL は `https://nyakomobby-server.mobidou.workers.dev`。`/health` と公開 3 ページが開くことを確認済み。以下は、作り直すときの手順。
 
 **URL の方針（2026-10-28 決定）**：独自ドメインにはせず、`workers.dev` のまま使う。URL の中の `mobidou` は、Cloudflare アカウントのサブドメインで、mobidou と共有している。`mobby.online` は公式サイト（Vercel）とメールで使われ、DNS は お名前.com にあるため、触らない。
-- アカウントのサブドメインを変えると、**同じアカウントの全 Worker の URL が変わり、古い URL は使えなくなる**とみなす（公式には明記なし）。変えるなら、**公開前に**行い、mobidou とにゃこモビーの両方で、次を更新する：アプリのサーバー URL、App Store Connect の Server Notifications URL、プライバシーポリシー・サポートの URL。
-- にゃこモビーのアプリは、サーバー URL を 1 か所の定数にまとめる。
+- アカウントのサブドメインを変えると、**同じアカウントの全 Worker の URL が変わり、古い URL は使えなくなる**とみなす（公式には明記なし）。変えるなら、**公開前に**行い、mobidou とにゃっコレの両方で、次を更新する：アプリのサーバー URL、App Store Connect の Server Notifications URL、プライバシーポリシー・サポートの URL。
+- にゃっコレのアプリは、サーバー URL を 1 か所の定数にまとめる。
 - 公開ページの運営者名・連絡先（C）が埋まるまでは、アプリからこの URL へリンクしない（今は「【要設定】」の表示が、そのまま見える）。
 
 `wrangler` は、この PC でログイン済み。`server/` の中で、順に実行する。
@@ -64,7 +64,7 @@ Certificates, Identifiers & Profiles → Identifiers で、Bundle ID `com.mobbyc
 - In-App Purchase
 
 ### D3. Sign in with Apple の鍵
-Keys で、「Sign in with Apple」を有効にした鍵を作り（mobidou の鍵とは別に、にゃこモビーの App ID に結びつけた鍵を新しく作る）、`.p8` ファイルをダウンロードする（**ダウンロードは一度だけ**）。控えるもの：Team ID、Key ID、`.p8` の中身。
+Keys で、「Sign in with Apple」を有効にした鍵を作り（mobidou の鍵とは別に、にゃっコレの App ID に結びつけた鍵を新しく作る）、`.p8` ファイルをダウンロードする（**ダウンロードは一度だけ**）。控えるもの：Team ID、Key ID、`.p8` の中身。
 
 ### D4. サーバーのシークレット（あなた）
 `server/` で、次を登録する（`.p8` の中身は、リポジトリに入れない）。
@@ -101,7 +101,7 @@ Users and Access → Sandbox → テスター で、テスト用の Apple Accoun
 
 2026-10-28 に実装（設計は `docs/account-design.md`）。型チェックと Web 表示、サーバーとの通信までは確認済み。**実機（開発ビルド・TestFlight・サンドボックス）での検証は未実施。**
 
-1. アカウント：起動時に匿名アカウントを作る。認証の secret は `expo-secure-store`（Keychain）に保存する。
+1. アカウント：初めて購入するかApple連携するときに匿名アカウントを作る。認証の secret は `expo-secure-store`（Keychain）に保存する。
 2. Apple でサインイン（`expo-apple-authentication`）：連携と、新しい端末での引き継ぎ。
 3. ~~課金の前に、Apple 連携を必須にする。~~ **やめた（2026-10-29）**：Apple 連携は任意。購入は匿名のアカウントのままでき、購入のあとに任意で案内する（ガイドライン 5.1.1）。
 4. 購入（`expo-iap`、StoreKit 2）：`appAccountToken` にアカウントの `userId` を付け、サーバーで検証してから付与する。購入の復元も実装する。
@@ -125,8 +125,8 @@ Users and Access → Sandbox → テスター で、テスト用の Apple Accoun
 
 - 紹介文、キーワード、サブタイトル（日本語。多言語化は公開後）。
 - スクリーンショット（iPhone 6.9 インチ、iPad を対応するなら iPad も）。`marketing/` の素材を使える。
-- App Privacy の回答（`docs/app-store-privacy.md` を、にゃこモビー向けに作る）。
-- 年齢区分：購入した瞬間の抽選は無い（お迎え券は確実に迎えられる。またたびは、決まっている候補をひらける数を増やすだけ）。その旨で回答し、「出会いの仕組み」の開示を、審査メモにも書く。
+- App Privacy の回答（`docs/app-store-privacy.md` を、にゃっコレ向けに作る）。
+- 年齢区分：回答は運営者が決定します。購入時の抽選はなく、候補は20時に確定し、7匹以上の日は同じ確率で6匹を選びます。またたびは開封数を増やし、開く候補を選べますが中身は開くまで見えません。この仕組みに対する質問票回答と審査メモを、提出前に整合させます。
 - 審査用メモ：歩数・位置情報・カメラ・通知の使い道、サンドボックスでの購入手順、審査用のアカウントは不要（匿名で使える）。
 - プライバシーポリシー URL（`/privacy`）、サポート URL（`/support`）。
 

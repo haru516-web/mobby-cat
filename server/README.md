@@ -11,13 +11,14 @@
 | クラウドセーブ | `GET/POST /save`（Apple 連携済みのアカウントだけ。`baseVersion` が古いと 409） |
 | 購入の検証 | `POST /purchases/verify`（StoreKit 2 の JWS。`appAccountToken` はアカウントの `userId` と一致が必須） |
 | App Store Server Notifications V2 | `POST /apple/notifications`（更新・返金・取り消し） |
+| 匿名購入の引継ぎ | `POST /auth/recover-purchase`（期限内サブスクの署名つき取引。Apple未連携のみ。同じ購入日時・以前の証明は拒否し、鍵回転と使用日時記録を原子的に更新） |
 | 残高 | `GET /wallet`（お迎え券 `tickets`・またたび `matatabi`）、`POST /wallet/consume`（`requestId` ごとに1回だけ消費） |
 | またたびパス | `GET /plan` |
 | 年齢区分と購入上限 | `POST /profile/age-group`（下げるのは可、上げるのは不可）、`GET /limits` |
 | アカウント削除 | `POST /account/delete`（`confirm: "delete"`。Apple 連携済みは先に Apple のトークンを取り消し、できなければ削除しない） |
 | 公開ページ | `GET /privacy` `/support` `/legal`（文面は `src/privacyPolicy.ts` ほか。運営者名・連絡先は `src/operator.ts`） |
 
-「課金の前に Apple 連携を必須にする」のはアプリ側で行います。サーバーは、すでに支払われた購入は連携の有無にかかわらず付与します（お金だけ取られて何も届かない状態を作らないため）。
+購入は匿名アカウントのままでできます。Apple連携は任意です。アプリのアカウント作成・購入・クラウドセーブ・削除画面とKeychain保存は実装済みですが、実機検証は残っています。
 
 ## 商品の設定
 
@@ -56,18 +57,20 @@ npm run dev        # ローカルで起動（先に npm run db:apply）
 
 | ファイル | 内容 | 本番に適用 |
 |---|---|---|
+| `migrations/0003_purchase_recovery_date.sql` | 購入の証明の再利用を拒否するため、最後に引き継いだ購入日時を記録 | 未 |
 | `migrations/0002_purchase_price.sql` | 購入した日時と、Apple が請求した金額（円）を記録する（月の購入上限の計算に使う） | 未 |
 
 ```bash
 npx wrangler d1 execute nyakomobby --remote --file=./migrations/0002_purchase_price.sql
+npx wrangler d1 execute nyakomobby --remote --file=./migrations/0003_purchase_recovery_date.sql
 npx wrangler deploy
 ```
+
+上記は運営者の適用手順です。Codexは本番操作を行っていません。0002、0003の順に、未適用の移行だけを実行します。匿名購入の証明は同じ購入日時・以前のものを再利用できないため、再引継ぎと応答喪失時には新しい更新取引またはApple連携の案内が必要です。
 
 回数制限：送信元のアドレスごとの制限は Cloudflare の Rate Limiting（`wrangler.toml` の `[[ratelimits]]`。DB には残らない）。アカウントごとの制限（購入の確認、Apple 連携、記録の保存・読み込み、残高の消費、年齢の区分）は DB の `rate_limits`。
 
 ## まだ無いもの
 
-- アプリ側の接続（アカウント作成、Apple 連携画面、購入、クラウドセーブ、アカウント削除の画面）
 - 起動時の App Store Server API による購入状態の再照合（通知の取りこぼし対策）
-- 認証用 secret の Keychain 保存（アプリ側で `expo-secure-store` を使う）
 - 引き継ぎコード（有効期限つき・1回限りのサーバー発行）
