@@ -1,3 +1,4 @@
+import { adjustZoom, zoomValue } from './zoom';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { GestureResponderEvent, Image, Linking, PanResponder, ScrollView, StyleSheet, View } from 'react-native';
@@ -256,7 +257,14 @@ function ZoomBar({ value, onChange, top }: { value: number; onChange: (v: number
   useEffect(() => () => { if (fade.current) clearTimeout(fade.current); }, []);
   const thumb = 30;
   return (
-    <View {...responder.panHandlers} style={[s.zoom, { top, opacity: active ? 1 : 0.4 }]} accessibilityLabel="ズーム" accessibilityRole="adjustable">
+    <View {...responder.panHandlers} style={[s.zoom, { top, opacity: active ? 1 : 0.4 }]} accessible accessibilityLabel="ズーム" accessibilityRole="adjustable"
+      accessibilityValue={zoomValue(value)}
+      accessibilityActions={[{ name: 'increment', label: 'ズームを増やす' }, { name: 'decrement', label: 'ズームを減らす' }]}
+      onAccessibilityAction={(event) => {
+        const next = adjustZoom(valueRef.current, event.nativeEvent.actionName);
+        valueRef.current = next;
+        onChange(next);
+      }}>
       <View style={{ width: 14, height: BAR_H, alignItems: 'center', justifyContent: 'center' }}>
         {UI['camera/zoom-track'] ? (
           <Slice name="camera/zoom-track" style={{ width: 14, height: BAR_H }} />
