@@ -4,6 +4,7 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,
   secret_hash TEXT NOT NULL,
+  purchase_recovery_date INTEGER,
   created_at TEXT NOT NULL
 );
 

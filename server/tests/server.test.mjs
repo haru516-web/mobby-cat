@@ -473,7 +473,8 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
   const alice = await context.register();
   const bob = await context.register();
   assert.equal((await purchase(context, root, alice, PASS, "tx-pass-1")).status, 200);
-  const proof = (token, id, extra = {}) => signedTransaction(root, { productId: PASS, transactionId: id, originalTransactionId: "tx-pass-1", appAccountToken: token, ...extra });
+  const purchaseDate = Date.now() - 5000;
+  const proof = (token, id, extra = {}) => signedTransaction(root, { productId: PASS, transactionId: id, originalTransactionId: "tx-pass-1", appAccountToken: token, purchaseDate, ...extra });
   const recover = async (jws, ip = "203.0.113.9") => context.call("POST", "/auth/recover-purchase", { body: { signedTransactionInfo: jws }, envOverride: env, ip });
 
   // the renewal (a new transaction id of the same subscription) proves the purchase; the new key works and the old one does not
@@ -492,14 +493,33 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
   assert.equal((await recover((await proof(alice, "tx-pass-4")).slice(0, -4) + "AAAA")).status, 400);
   assert.equal((await recover(await proof(alice, "tx-pass-5", { revocationDate: Date.now() }))).status, 403);
 
-  // an expired subscription's signed data proves nothing, and one signed transaction takes the key at most twice a day
+  // expired, repeated and older proofs cannot rotate the key again
   assert.equal((await recover(await proof(alice, "tx-old", { expiresDate: Date.now() - 1000 }))).status, 403);
-  const again = await proof(alice, "tx-pass-7");
+  const again = await proof(alice, "tx-pass-7", { purchaseDate: purchaseDate + 1000 });
   assert.equal((await recover(again)).status, 200);
-  assert.equal((await recover(again)).status, 200);
-  assert.equal((await recover(again)).status, 429);
+  const hash = await context.store.credentialHash(alice);
+  assert.equal((await recover(again)).status, 409);
+  assert.equal((await recover(again, "198.51.100.8")).status, 409);
+  assert.equal(await context.store.credentialHash(alice), hash);
+  assert.equal((await recover(await proof(alice, "tx-older"))).status, 409);
 
   // an account linked to Apple is taken over by signing in with Apple, not by a purchase
   context.database.prepare("INSERT INTO apple_links (user_id, apple_sub, linked_at) VALUES (?, ?, ?)").run(alice, "apple-sub-1", new Date().toISOString());
   assert.equal((await recover(await proof(alice, "tx-pass-6"))).status, 409);
+});
+
+
+test("purchase recovery migration preserves credentials and claims one date atomically", async () => {
+  const database = new DatabaseSync(":memory:");
+  database.exec("CREATE TABLE users (id TEXT PRIMARY KEY, secret_hash TEXT NOT NULL, created_at TEXT NOT NULL); INSERT INTO users VALUES ('a', 'old', '2026-10-30');");
+  database.exec(readFileSync(new URL("../migrations/0003_purchase_recovery_date.sql", import.meta.url), "utf8"));
+  const store = new D1Store(new SQLiteD1(database));
+  assert.equal(await store.credentialHash('a'), 'old');
+  const results = await Promise.all([store.recoverSecret('a', 'new', 100), store.recoverSecret('a', 'attacker', 100)]);
+  assert.deepEqual(results, [true, false]);
+  assert.equal(await store.credentialHash('a'), 'new');
+  assert.equal(await store.recoverSecret('a', 'older', 99), false);
+  assert.equal(await store.recoverSecret('a', 'renewal', 101), true);
+  assert.equal(await store.credentialHash('a'), 'renewal');
+  database.close();
 });

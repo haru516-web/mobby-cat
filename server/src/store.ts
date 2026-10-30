@@ -32,6 +32,14 @@ export class D1Store implements Store {
     await this.db.prepare("UPDATE users SET secret_hash = ? WHERE id = ?").bind(secretHash, userId).run();
   }
 
+  // A single conditional statement claims this purchase and rotates the key atomically.
+  // The same purchase date and every older proof remain unusable after the first recovery.
+  async recoverSecret(userId: string, secretHash: string, purchaseDate: number): Promise<boolean> {
+    const result = await this.db.prepare("UPDATE users SET secret_hash = ?, purchase_recovery_date = ? WHERE id = ? AND (purchase_recovery_date IS NULL OR purchase_recovery_date < ?)")
+      .bind(secretHash, purchaseDate, userId, purchaseDate).run();
+    return (result.meta?.changes ?? 0) === 1;
+  }
+
   async deleteUser(userId: string): Promise<void> {
     // Every table that refers to a user deletes its rows along with the user (ON DELETE CASCADE).
     await this.db.prepare("DELETE FROM users WHERE id = ?").bind(userId).run();

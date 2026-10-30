@@ -216,14 +216,12 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     if (transaction.revocationDate || (await store.isRevoked(transaction.transactionId))) throw new HttpError(403, "revoked");
     // Only a purchase that is still in force proves the Apple ID is buying here now: an expired subscription's old signed data cannot take the key.
     if (typeof transaction.expiresDate !== "number" || transaction.expiresDate <= now.getTime()) throw new HttpError(403, "purchase_not_active");
-    // One signed transaction can take the key at most twice a day, so a copy of it kept elsewhere cannot keep taking it back.
-    if ((await store.hitRateLimit(`recover:tx:${transaction.transactionId}`, Math.floor(now.getTime() / 86_400_000), 86_400_000)) > 2) throw new HttpError(429, "rate_limited");
     const userId = transaction.appAccountToken;
     if ((await store.userOfPurchase(transaction.transactionId, transaction.originalTransactionId)) !== userId) throw new HttpError(404, "no_matching_purchase");
     if (await store.appleLinked(userId)) throw new HttpError(409, "apple_linked");
     // The old device's key stops working, as when signing in with Apple on a new device.
     const secret = randomToken(32);
-    await store.rotateSecret(userId, await hashSecret(secret));
+    if (!(await store.recoverSecret(userId, await hashSecret(secret), transaction.purchaseDate))) throw new HttpError(409, "purchase_proof_used");
     return json({ userId, secret });
   }
 

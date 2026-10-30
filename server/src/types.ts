@@ -106,6 +106,7 @@ export interface Store {
   userExists(userId: string): Promise<boolean>;
   /** Replace the account's secret, so a sign-in on a new device takes over. */
   rotateSecret(userId: string, secretHash: string): Promise<void>;
+  recoverSecret(userId: string, secretHash: string, purchaseDate: number): Promise<boolean>;
   cloudSave(userId: string): Promise<CloudSave | null>;
   /** Store the save if `baseVersion` is the stored version (0 when there is none); returns the new version, or null on a conflict. */
   putCloudSave(userId: string, data: string, baseVersion: number): Promise<number | null>;
