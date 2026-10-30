@@ -475,7 +475,14 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
   assert.equal((await purchase(context, root, alice, PASS, "tx-pass-1")).status, 200);
   const purchaseDate = Date.now() - 5000;
   const proof = (token, id, extra = {}) => signedTransaction(root, { productId: PASS, transactionId: id, originalTransactionId: "tx-pass-1", appAccountToken: token, purchaseDate, ...extra });
-  const recover = async (jws, ip = "203.0.113.9") => context.call("POST", "/auth/recover-purchase", { body: { signedTransactionInfo: jws }, envOverride: env, ip });
+  const issued = await context.call("POST", "/account/transfer-code", { user: alice });
+  assert.equal(issued.status, 200);
+  const transferCode = issued.data.code;
+  const newSecret = 'n'.repeat(43);
+  let recoveryCalls = 0;
+  const recover = async (jws, ip = "203.0.113." + (++recoveryCalls), extra = {}) => context.call("POST", "/auth/recover-purchase", { body: { signedTransactionInfo: jws, transferCode, newSecret, ...extra }, envOverride: env, ip });
+  assert.equal((await recover(await proof(alice, "tx-copy"), undefined, { transferCode: undefined })).status, 400);
+  assert.equal((await recover(await proof(alice, "tx-copy"), undefined, { transferCode: alice + '.' + 'x'.repeat(43) })).status, 409);
 
   // the renewal (a new transaction id of the same subscription) proves the purchase; the new key works and the old one does not
   const old = context.credentials.get(alice);
@@ -498,10 +505,10 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
   const again = await proof(alice, "tx-pass-7", { purchaseDate: purchaseDate + 1000 });
   assert.equal((await recover(again)).status, 200);
   const hash = await context.store.credentialHash(alice);
-  assert.equal((await recover(again)).status, 409);
-  assert.equal((await recover(again, "198.51.100.8")).status, 409);
+  assert.equal((await recover(again)).status, 200); // identical retry after a lost answer
+  assert.equal((await recover(again, "198.51.100.8", { newSecret: "attacker".repeat(8) })).status, 409);
   assert.equal(await context.store.credentialHash(alice), hash);
-  assert.equal((await recover(await proof(alice, "tx-older"))).status, 409);
+  assert.equal((await recover(await proof(alice, "tx-older"), undefined, { newSecret: "different".repeat(8) })).status, 409);
 
   // an account linked to Apple is taken over by signing in with Apple, not by a purchase
   context.database.prepare("INSERT INTO apple_links (user_id, apple_sub, linked_at) VALUES (?, ?, ?)").run(alice, "apple-sub-1", new Date().toISOString());
@@ -509,17 +516,29 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
 });
 
 
-test("purchase recovery migration preserves credentials and claims one date atomically", async () => {
+test("transfer code migration, expiry, replacement, retries and rollback protect account keys", async () => {
   const database = new DatabaseSync(":memory:");
   database.exec("CREATE TABLE users (id TEXT PRIMARY KEY, secret_hash TEXT NOT NULL, created_at TEXT NOT NULL); INSERT INTO users VALUES ('a', 'old', '2026-10-30');");
-  database.exec(readFileSync(new URL("../migrations/0003_purchase_recovery_date.sql", import.meta.url), "utf8"));
+  database.exec(readFileSync(new URL("../migrations/0004_account_transfer_codes.sql", import.meta.url), "utf8"));
   const store = new D1Store(new SQLiteD1(database));
+  await store.issueTransferCode('a', 'code', 200, 'old');
+  assert.equal(await store.redeemTransferCode('a', 'wrong', 'new', 100), false);
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 200), false);
   assert.equal(await store.credentialHash('a'), 'old');
-  const results = await Promise.all([store.recoverSecret('a', 'new', 100), store.recoverSecret('a', 'attacker', 100)]);
-  assert.deepEqual(results, [true, false]);
+  database.exec("CREATE TRIGGER fail_rotation BEFORE UPDATE ON users BEGIN SELECT RAISE(ABORT, 'disk failure'); END;");
+  await assert.rejects(store.redeemTransferCode('a', 'code', 'new', 100));
+  assert.equal(database.prepare("SELECT used_secret_hash FROM account_transfer_codes").get().used_secret_hash, null);
+  database.exec("DROP TRIGGER fail_rotation");
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 100), true);
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 101), true);
+  assert.equal(await store.redeemTransferCode('a', 'code', 'attacker', 101), false);
   assert.equal(await store.credentialHash('a'), 'new');
-  assert.equal(await store.recoverSecret('a', 'older', 99), false);
-  assert.equal(await store.recoverSecret('a', 'renewal', 101), true);
-  assert.equal(await store.credentialHash('a'), 'renewal');
+  await store.rotateSecret('a', 'apple-key');
+  assert.equal(await store.redeemTransferCode('a', 'code', 'new', 102), false);
+  assert.equal(await store.issueTransferCode('a', 'stale', 200, 'old'), false);
+  await store.issueTransferCode('a', 'first', 200, 'apple-key');
+  await store.issueTransferCode('a', 'second', 200, 'apple-key');
+  assert.equal(await store.redeemTransferCode('a', 'first', 'new', 100), false);
+  assert.equal(await store.redeemTransferCode('a', 'second', 'last', 100), true);
   database.close();
 });

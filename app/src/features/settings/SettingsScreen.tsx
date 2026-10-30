@@ -47,6 +47,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
   const acc = useAccount();
   const [busy, setBusy] = useState(false);
   const [lowerAge, setLowerAge] = useState(false);
+  const [transfer, setTransfer] = useState<{ code: string; expiresAt: number } | null>(null);
 
   // 通信を待つ操作は、続けて押せないようにする
   const run = async (job: () => Promise<void>) => {
@@ -367,6 +368,15 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 </Card>
               )}
 
+              {!acc.signedOut && acc.linked === false && <Card skin="white" style={{ gap: 6 }}>
+                <T w="b" size={13}>購入の引継ぎコード</T>
+                <T w="m" size={11} color={C.sub}>Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。有効期限は30日です。再発行すると前のコードは使えません。遊んだ記録は含まれません。コードと端末を両方失うと、匿名購入を引き継げません。</T>
+                <ImgButton skin="ghost-outline" label="引継ぎコードを発行" height={44} disabled={busy} onPress={() => confirm('引継ぎコードを発行しますか？', '新しいコードを発行すると、前のコードは使えなくなります。コードは他の人に教えず、安全な場所に保管してください。', '発行する', () => { void run(async () => { const result = await acc.createTransferCode(); setTransfer(result); if (!result) notice('発行できませんでした', '購入したアカウントでつながっているかを確認し、もう一度お試しください。'); }); })} />
+                {transfer && <>
+                  <T w="m" size={11} selectable>{transfer.code}</T>
+                  <T w="m" size={11}>有効期限：{new Date(transfer.expiresAt).toLocaleDateString('ja-JP')}</T>
+                </>}
+              </Card>}
               {acc.pendingCloud && (
                 <Card skin="selected" style={{ gap: 6 }}>
                   <T w="x" size={13}>記録が食い違っています</T>

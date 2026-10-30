@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Linking, ScrollView, StyleSheet, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useAccount } from '../../core/account';
 import { matatabiOf, ticketsOf, useGame } from '../../core/game';
 import { EULA_URL, PRIVACY_URL } from '../../data/appInfo';
@@ -110,16 +110,17 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
     void purchase(key);
   };
 
+  const [transferCode, setTransferCode] = useState('');
   const restore = async () => {
     if (busy) return;
     setBusy(true);
     try {
-      const result = await acc.restorePurchases();
+      const result = await acc.restorePurchases(transferCode.trim());
       if (result.kind === 'offline') notice('購入の復元', 'つながりませんでした。電波のよいところで、もう一度お試しください。');
       else if (result.kind === 'store_error') notice('購入の復元', 'App Storeにつながりませんでした。しばらくしてから、もう一度お試しください。');
       else if (result.incomplete) notice('購入の復元', `一部の購入を、App Storeから読み取れませんでした（確認できた購入: ${result.credited}件）。しばらくしてから、もう一度お試しください。`);
       else if (result.credited > 0) notice('購入の復元', result.recovered ? `別の端末で購入した記録を、この端末に引き継ぎました（${result.credited}件の購入を確認）。前の端末では、使えなくなります。` : `${result.credited}件の購入を確認しました。`);
-      else if (result.proofUsed) notice('購入の復元', 'この購入の証明は、すでに引き継ぎに使われています。前の端末でAppleにサインインして連携できる場合は、設定から引き継いでください。できない場合は、サポートへご連絡ください。');
+      else if (result.proofUsed) notice('購入の復元', '引継ぎコードが違うか、期限切れ、または別の端末で使用済みです。前の端末でAppleにサインインして連携できる場合は、設定から引き継いでください。できない場合は、サポートへご連絡ください。');
       else if (result.otherAccount > 0) notice('購入の復元', 'この購入は、別の記録と結びついています。その記録でAppleにサインインしていた場合は、設定の「アカウント」から引き継いでください。');
       else if (result.failed > 0) notice('購入の復元', '購入を確認できませんでした。しばらくしてから、もう一度お試しください。続く場合は、サポートまでご連絡ください。');
       else notice('購入の復元', '復元できる購入は見つかりませんでした。');
@@ -187,8 +188,13 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
 
         <View style={{ flexDirection: 'row', gap: 8 }}>
           <ImgButton skin="ghost-outline" label="出会いの仕組み" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
-          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '別の端末の匿名購入を引き継ぐ場合、前の端末ではそのアカウントを使えなくなります。同じ購入の証明は再び引き継ぎには使えません。遊んだ記録の引き継ぎは、Appleでサインインして行います。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
+          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '別の端末の匿名購入を引き継ぐ場合、前の端末ではそのアカウントを使えなくなります。引継ぎコードが必要です。コードは1台への引継ぎに使えます。遊んだ記録の引き継ぎは、Appleでサインインして行います。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
         </View>
+        <Card skin="white" style={{ gap: 6, marginTop: 8 }}>
+          <T w="b" size={12}>別の端末の購入を引き継ぐ場合</T>
+          <T w="m" size={11} color={C.sub}>前の端末の「設定 → アカウント」で発行した引継ぎコードを入力し、「購入を復元」を押してください。Apple連携済みの記録は、設定からAppleでサインインして引き継ぎます。</T>
+          <TextInput value={transferCode} onChangeText={setTransferCode} accessibilityLabel="引継ぎコード" placeholder="引継ぎコード" autoCapitalize="none" autoCorrect={false} autoComplete="off" secureTextEntry maxLength={160} style={{ color: C.ink, borderWidth: 1, borderColor: C.sub, borderRadius: 8, padding: 12, minHeight: 44 }} />
+        </Card>
         {/* 自動更新のサブスクがあるので、購入の画面に利用規約とプライバシーポリシーを置く */}
         <View style={s.legal}>
           <T w="b" size={12} color={C.accent} style={s.link} onPress={withSfx(() => openLink(EULA_URL))} accessibilityRole="link">利用規約（EULA）</T>

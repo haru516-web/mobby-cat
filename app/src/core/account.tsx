@@ -59,7 +59,8 @@ type Ctx = {
   restoreWithApple: () => Promise<RestoreOutcome>;
   resolveCloud: (choice: 'local' | 'cloud') => Promise<boolean>;
   buy: (key: ProductKey) => Promise<BuyOutcome>;
-  restorePurchases: () => Promise<SettleOutcome>;
+  restorePurchases: (transferCode?: string) => Promise<SettleOutcome>;
+  createTransferCode: () => Promise<{ code: string; expiresAt: number } | null>;
   setAge: (group: AgeGroup) => Promise<boolean>;
   deleteAccount: () => Promise<DeleteOutcome>;
   /** 受け付けられない鍵を捨てて、新しく始める */
@@ -306,9 +307,15 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     return outcome;
   }, [refresh, store]);
 
-  const restorePurchases = useCallback(async (): Promise<SettleOutcome> => {
+  const createTransferCode = useCallback(async () => gRef.current.withAccountChange(async () => {
+    const reply = await server.authedIfAny('/account/transfer-code', { body: {} });
+    const data = reply?.data;
+    return ok(reply) && typeof data?.code === 'string' && typeof data?.expiresAt === 'number' ? { code: data.code, expiresAt: data.expiresAt } : null;
+  }, null as { code: string; expiresAt: number } | null), []);
+
+  const restorePurchases = useCallback(async (transferCode?: string): Promise<SettleOutcome> => {
     return gRef.current.withAccountChange(async () => {
-      const outcome = await settle(store, server, { recover: true });
+      const outcome = await settle(store, server, { recover: true, transferCode });
       await refresh();
       return outcome;
     }, { kind: 'store_error' } as SettleOutcome);
@@ -376,7 +383,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, linked, signedOut, plan, cloud, cloudSavedAt, retryCloud, ageGroup, pendingCloud: pending ? { updatedAt: pending.updatedAt } : null,
-    storeAvailable: !!store, prices, loadPrices, refresh, linkApple, restoreWithApple, resolveCloud, buy, restorePurchases, setAge, deleteAccount, startOver,
+    storeAvailable: !!store, prices, loadPrices, refresh, linkApple, restoreWithApple, resolveCloud, buy, restorePurchases, createTransferCode, setAge, deleteAccount, startOver,
   };
   return <AccountCtx.Provider value={value}>{children}</AccountCtx.Provider>;
 }

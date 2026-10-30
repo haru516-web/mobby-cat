@@ -114,9 +114,9 @@ export type SettleOutcome =
   | { kind: 'store_error' }
   | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean };
 
-type SettleApi = Pick<Client, 'authed' | 'authedIfAny' | 'existing' | 'raw' | 'adopt'>;
+type SettleApi = Pick<Client, 'authed' | 'authedIfAny' | 'existing' | 'raw' | 'adopt' | 'account'>;
 // recover: 購入の証明で、購入したアカウントを、この端末へ引き継いでよいか。ユーザーが「購入を復元」を押したときだけ true（起動時の自動の確認では、鍵を入れ替えない）
-export type SettleOptions = { recover?: boolean };
+export type SettleOptions = { recover?: boolean; transferCode?: string };
 
 // この端末のアカウントが空か（何も買っておらず、パスもない）。空でないアカウントを、よそのアカウントで置き換えて見失わないため
 // Apple でサインイン済み（クラウドに記録がありうる）のアカウントは、空とみなさない。Apple でサインインして引き継ぐ
@@ -126,15 +126,18 @@ async function isEmptyAccount(api: Pick<Client, 'authed'>): Promise<boolean> {
 }
 
 // 署名つきの購入を証明にして、購入したアカウントの鍵を、この端末へ移す
-async function recoverAccount(api: Pick<Client, 'raw' | 'adopt'>, jws: string): Promise<'ok' | 'offline' | 'no' | 'used'> {
-  const reply = await api.raw('/auth/recover-purchase', { body: { signedTransactionInfo: jws } });
+async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, jws: string, transferCode: string): Promise<'ok' | 'offline' | 'no' | 'used'> {
+  // account() saves the replacement secret before any key rotation. A lost response can retry the same secret.
+  const replacement = await api.account();
+  if (!replacement) return 'offline';
+  const reply = await api.raw('/auth/recover-purchase', { body: { signedTransactionInfo: jws, transferCode, newSecret: replacement.secret } });
   if (reply === null) return 'offline';
   const data = reply.data;
-  if (reply.status === 200 && data && typeof data.userId === 'string' && typeof data.secret === 'string') {
+  if (reply.status === 200 && data && typeof data.userId === 'string' && typeof data.secret === 'string' && data.secret === replacement.secret && data.userId === transferCode.split('.')[0]) {
     await api.adopt({ userId: data.userId, secret: data.secret });
     return 'ok';
   }
-  return reply.status === 409 && data?.error === 'purchase_proof_used' ? 'used' : 'no';
+  return reply.status === 409 && data?.error === 'invalid_transfer_code' ? 'used' : 'no';
 }
 
 export async function settle(store: PurchaseStore | null, api: SettleApi, options: SettleOptions = {}): Promise<SettleOutcome> {
@@ -152,8 +155,8 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
     const verifyOnce = (): Promise<Reply> => api.authedIfAny('/purchases/verify', { body: { signedTransactionInfo: item.jws } });
     let reply: Reply = hasAccount ? await verifyOnce() : null;
     const mismatch = reply?.status === 403 && reply.data?.error === 'app_account_token_mismatch';
-    if (options.recover && !recovered && (!hasAccount || mismatch) && (!hasAccount || (await isEmptyAccount(api)))) {
-      const outcome = await recoverAccount(api, item.jws);
+    if (options.recover && options.transferCode?.trim() && !recovered && (!hasAccount || mismatch) && (!hasAccount || (await isEmptyAccount(api)))) {
+      const outcome = await recoverAccount(api, item.jws, options.transferCode.trim());
       if (outcome === 'used') proofUsed = true;
       if (outcome === 'offline') return { kind: 'offline' };
       if (outcome === 'ok') {

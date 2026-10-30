@@ -29,15 +29,26 @@ export class D1Store implements Store {
   }
 
   async rotateSecret(userId: string, secretHash: string): Promise<void> {
-    await this.db.prepare("UPDATE users SET secret_hash = ? WHERE id = ?").bind(secretHash, userId).run();
+    await this.db.batch([
+      this.db.prepare("UPDATE users SET secret_hash = ? WHERE id = ?").bind(secretHash, userId),
+      this.db.prepare("DELETE FROM account_transfer_codes WHERE user_id = ?").bind(userId),
+    ]);
   }
 
-  // A single conditional statement claims this purchase and rotates the key atomically.
-  // The same purchase date and every older proof remain unusable after the first recovery.
-  async recoverSecret(userId: string, secretHash: string, purchaseDate: number): Promise<boolean> {
-    const result = await this.db.prepare("UPDATE users SET secret_hash = ?, purchase_recovery_date = ? WHERE id = ? AND (purchase_recovery_date IS NULL OR purchase_recovery_date < ?)")
-      .bind(secretHash, purchaseDate, userId, purchaseDate).run();
+  async issueTransferCode(userId: string, codeHash: string, expiresAt: number, credentialHash: string): Promise<boolean> {
+    const result = await this.db.prepare("INSERT INTO account_transfer_codes (user_id, code_hash, expires_at) SELECT ?, ?, ? WHERE EXISTS (SELECT 1 FROM users WHERE id = ? AND secret_hash = ?) ON CONFLICT(user_id) DO UPDATE SET code_hash = excluded.code_hash, expires_at = excluded.expires_at, used_secret_hash = NULL")
+      .bind(userId, codeHash, expiresAt, userId, credentialHash).run();
     return (result.meta?.changes ?? 0) === 1;
+  }
+
+  async redeemTransferCode(userId: string, codeHash: string, secretHash: string, now: number): Promise<boolean> {
+    const result = await this.db.batch([
+      this.db.prepare("UPDATE account_transfer_codes SET used_secret_hash = ? WHERE user_id = ? AND code_hash = ? AND expires_at > ? AND used_secret_hash IS NULL")
+        .bind(secretHash, userId, codeHash, now),
+      this.db.prepare("UPDATE users SET secret_hash = ? WHERE id = ? AND EXISTS (SELECT 1 FROM account_transfer_codes WHERE user_id = ? AND code_hash = ? AND expires_at > ? AND used_secret_hash = ?)")
+        .bind(secretHash, userId, userId, codeHash, now, secretHash),
+    ]);
+    return (result[1].meta?.changes ?? 0) === 1;
   }
 
   async deleteUser(userId: string): Promise<void> {

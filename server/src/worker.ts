@@ -199,8 +199,7 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     return json({ userId, secret });
   }
 
-  // A new device with no key (an anonymous account's key stays on its device) takes the account back with proof that the Apple ID
-  // bought there: a purchase signed by Apple, recorded for that account. An account linked to Apple is taken over by signing in with Apple instead.
+  // A purchase alone is replayable. Require an independently issued transfer code as well.
   if (method === "POST" && path === "/auth/recover-purchase") {
     const perMinute = await store.hitRateLimit(`recover:minute:${ip}`, Math.floor(now.getTime() / 60_000), 60_000);
     const perDay = await store.hitRateLimit(`recover:day:${ip}`, Math.floor(now.getTime() / 86_400_000), 86_400_000);
@@ -214,14 +213,15 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     if (!environmentAccepted(env, transaction)) throw new HttpError(403, "environment_not_accepted");
     if (!transaction.appAccountToken) throw new HttpError(400, "missing_app_account_token");
     if (transaction.revocationDate || (await store.isRevoked(transaction.transactionId))) throw new HttpError(403, "revoked");
-    // Only a purchase that is still in force proves the Apple ID is buying here now: an expired subscription's old signed data cannot take the key.
+    // Only accept an unrevoked active subscription in addition to the separate transfer code.
     if (typeof transaction.expiresDate !== "number" || transaction.expiresDate <= now.getTime()) throw new HttpError(403, "purchase_not_active");
     const userId = transaction.appAccountToken;
     if ((await store.userOfPurchase(transaction.transactionId, transaction.originalTransactionId)) !== userId) throw new HttpError(404, "no_matching_purchase");
     if (await store.appleLinked(userId)) throw new HttpError(409, "apple_linked");
-    // The old device's key stops working, as when signing in with Apple on a new device.
-    const secret = randomToken(32);
-    if (!(await store.recoverSecret(userId, await hashSecret(secret), transaction.purchaseDate))) throw new HttpError(409, "purchase_proof_used");
+    const code = requireString(input.transferCode, "transfer_code_required", 160);
+    const secret = requireString(input.newSecret, "new_secret_required", 128);
+    if (!/^[A-Za-z0-9_-]{32,128}$/.test(secret)) throw new HttpError(400, "invalid_new_secret");
+    if (!code.startsWith(userId + ".") || !(await store.redeemTransferCode(userId, await hashSecret(code), await hashSecret(secret), now.getTime()))) throw new HttpError(409, "invalid_transfer_code");
     return json({ userId, secret });
   }
 
@@ -254,6 +254,16 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   }
 
   const userId = await authenticatedUser(request, store);
+
+  if (method === "POST" && path === "/account/transfer-code") {
+    if (await store.appleLinked(userId)) throw new HttpError(409, "apple_linked");
+    if ((await store.hitRateLimit('transfer:' + userId, Math.floor(now.getTime() / 60_000), 60_000)) > 5) throw new HttpError(429, "rate_limited");
+    const code = userId + "." + randomToken(32);
+    const expiresAt = now.getTime() + 30 * 86_400_000;
+    const currentSecret = (request.headers.get("authorization") ?? "").split(".").slice(1).join(".");
+    if (!(await store.issueTransferCode(userId, await hashSecret(code), expiresAt, await hashSecret(currentSecret)))) throw new HttpError(401, "unauthorized");
+    return json({ code, expiresAt });
+  }
 
   if (method === "GET" && path === "/profile") {
     return json({ appleLinked: await store.appleLinked(userId), ageGroup: await store.ageGroup(userId) });
