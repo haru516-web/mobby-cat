@@ -1,0 +1,254 @@
+{
+  "@react-native/asset-utils@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/babel-plugin-codegen@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/codegen@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/community-cli-plugin@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/debugger-frontend@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/debugger-shell@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/dev-middleware@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/gradle-plugin@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/js-polyfills@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/normalize-colors@0.74.89": {
+    "url": "https://raw.githubusercontent.com/facebook/react-native/a2066d730d933126bbf7055f4e47c575936e62f3/LICENSE",
+    "commit": "a2066d730d933126bbf7055f4e47c575936e62f3",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/normalize-colors@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "@react-native/virtualized-lists@0.88.1": {
+    "url": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+    "commit": "c30b7f86850d47422637a64c70508e7411dbd8ea",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "babel-plugin-react-compiler@1.0.0": {
+    "url": "https://raw.githubusercontent.com/facebook/react/5c15c1cd3442f28044217703b5625f98c40042ee/LICENSE",
+    "commit": "5c15c1cd3442f28044217703b5625f98c40042ee",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "bplist-parser@0.3.1": {
+    "url": "https://raw.githubusercontent.com/nearinfinity/node-bplist-parser/3113315a9bdd8fa83e369d29af8cabfc3eee8f43/README.md",
+    "commit": "3113315a9bdd8fa83e369d29af8cabfc3eee8f43",
+    "file": "d3e34d0090678f68f09e82deb45021c9095c1a8d0fc878dfd9cda0ac44196c7a.txt",
+    "sha256": "d3e34d0090678f68f09e82deb45021c9095c1a8d0fc878dfd9cda0ac44196c7a",
+    "scope": "package"
+  },
+  "fb-dotslash@0.5.8": {
+    "url": "https://raw.githubusercontent.com/facebook/dotslash/8060e2dec764bceba5809cf6a15906644aad0078/LICENSE-MIT",
+    "commit": "8060e2dec764bceba5809cf6a15906644aad0078",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "package"
+  },
+  "flow-estree@0.327.0": {
+    "url": "https://raw.githubusercontent.com/facebook/flow/7e2f5914c23c33a72a64c691c8869ad83ef6209f/LICENSE",
+    "commit": "7e2f5914c23c33a72a64c691c8869ad83ef6209f",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "package"
+  },
+  "flow-estree@0.331.0": {
+    "url": "https://raw.githubusercontent.com/facebook/flow/28ebb8819f8f032d469e108ea2458a0442844a47/LICENSE",
+    "commit": "28ebb8819f8f032d469e108ea2458a0442844a47",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "package"
+  },
+  "flow-parser@0.327.0": {
+    "url": "https://raw.githubusercontent.com/facebook/flow/7e2f5914c23c33a72a64c691c8869ad83ef6209f/LICENSE",
+    "commit": "7e2f5914c23c33a72a64c691c8869ad83ef6209f",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "flow-parser@0.331.0": {
+    "url": "https://raw.githubusercontent.com/facebook/flow/28ebb8819f8f032d469e108ea2458a0442844a47/LICENSE",
+    "commit": "28ebb8819f8f032d469e108ea2458a0442844a47",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "hermes-compiler@260318099.0.5": {
+    "url": "https://raw.githubusercontent.com/facebook/hermes/9a115f15785851f4ff2747ebb090ddd066fc8ad2/LICENSE",
+    "commit": "9a115f15785851f4ff2747ebb090ddd066fc8ad2",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "package"
+  },
+  "metro-babel-transformer@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-cache-key@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-cache@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-config@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-core@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-file-map@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-minify-terser@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-resolver@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-runtime@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-source-map@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-symbolicate@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-transform-plugins@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro-transform-worker@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "metro@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "ob1@0.87.1": {
+    "url": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+    "commit": "c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  },
+  "react-devtools-core@6.1.5": {
+    "url": "https://raw.githubusercontent.com/facebook/react/5d87cd224452c68d09bef99656b6261e9772a210/LICENSE",
+    "commit": "5d87cd224452c68d09bef99656b6261e9772a210",
+    "file": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt",
+    "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "scope": "repository-root"
+  }
+}

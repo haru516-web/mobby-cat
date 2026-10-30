@@ -1585,85 +1585,193 @@
       "name": "@react-native/asset-utils",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/babel-plugin-codegen",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/codegen",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/community-cli-plugin",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/debugger-frontend",
       "version": "0.88.1",
       "license": "BSD-3-Clause",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/debugger-shell",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/dev-middleware",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/gradle-plugin",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/js-polyfills",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/normalize-colors",
       "version": "0.74.89",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/react-native/a2066d730d933126bbf7055f4e47c575936e62f3/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/normalize-colors",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@react-native/virtualized-lists",
       "version": "0.88.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/react-native/c30b7f86850d47422637a64c70508e7411dbd8ea/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "@sinclair/typebox",
@@ -2091,8 +2199,17 @@
       "name": "babel-plugin-react-compiler",
       "version": "1.0.0",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/react/5c15c1cd3442f28044217703b5625f98c40042ee/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "babel-plugin-react-native-web",
@@ -2233,8 +2350,17 @@
       "name": "bplist-parser",
       "version": "0.3.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) 2012 Near Infinity Corporation",
+        "The above copyright notice and this permission notice shall be",
+        "NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/nearinfinity/node-bplist-parser/3113315a9bdd8fa83e369d29af8cabfc3eee8f43/README.md",
+          "id": "538c01dfaf5204977200a3ede0322b43d20f9c8e2f896de0c3f0e72580b7d96d"
+        }
+      ]
     },
     {
       "name": "brace-expansion",
@@ -3483,8 +3609,17 @@
       "name": "fb-dotslash",
       "version": "0.5.8",
       "license": "(MIT OR Apache-2.0)",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/dotslash/8060e2dec764bceba5809cf6a15906644aad0078/LICENSE-MIT",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "fb-watchman",
@@ -3598,29 +3733,65 @@
       "name": "flow-estree",
       "version": "0.327.0",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/flow/7e2f5914c23c33a72a64c691c8869ad83ef6209f/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "flow-estree",
       "version": "0.331.0",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/flow/28ebb8819f8f032d469e108ea2458a0442844a47/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "flow-parser",
       "version": "0.327.0",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/flow/7e2f5914c23c33a72a64c691c8869ad83ef6209f/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "flow-parser",
       "version": "0.331.0",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/flow/28ebb8819f8f032d469e108ea2458a0442844a47/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "fresh",
@@ -3759,8 +3930,17 @@
       "name": "hermes-compiler",
       "version": "260318099.0.5",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/hermes/9a115f15785851f4ff2747ebb090ddd066fc8ad2/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "hermes-estree",
@@ -4338,99 +4518,225 @@
       "name": "metro-babel-transformer",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-cache-key",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-cache",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-config",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-core",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-file-map",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-minify-terser",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-resolver",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-runtime",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-source-map",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-symbolicate",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-transform-plugins",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro-transform-worker",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "metro",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "micromatch",
@@ -4761,8 +5067,17 @@
       "name": "ob1",
       "version": "0.87.1",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/react/metro/c7597f88c3e5b2a0d5e5915dfed2413aadcdfcce/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "object-assign",
@@ -5114,8 +5429,17 @@
       "name": "react-devtools-core",
       "version": "6.1.5",
       "license": "MIT",
-      "copyrights": [],
-      "documents": []
+      "copyrights": [
+        "Copyright (c) Meta Platforms, Inc. and affiliates.",
+        "The above copyright notice and this permission notice shall be included in all",
+        "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+      ],
+      "documents": [
+        {
+          "source": "https://raw.githubusercontent.com/facebook/react/5d87cd224452c68d09bef99656b6261e9772a210/LICENSE",
+          "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c"
+        }
+      ]
     },
     {
       "name": "react-dom",
@@ -5730,7 +6054,12 @@
       "version": "2.2.0",
       "license": "Unlicense",
       "copyrights": [],
-      "documents": []
+      "documents": [
+        {
+          "source": "UNLICENSE",
+          "id": "2069c208cba553e43cd0b730df8a0c10bf1b1101b96f661e2f1307c73b9722e3"
+        }
+      ]
     },
     {
       "name": "string-width",
@@ -6515,6 +6844,10 @@
       "text": "MIT License\n\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\n[others]: https://github.com/json5/json5/contributors"
     },
     {
+      "id": "2069c208cba553e43cd0b730df8a0c10bf1b1101b96f661e2f1307c73b9722e3",
+      "text": "This is free and unencumbered software released into the public domain.\n\nAnyone is free to copy, modify, publish, use, compile, sell, or\ndistribute this software, either in source code form or as a compiled\nbinary, for any purpose, commercial or non-commercial, and by any\nmeans.\n\nIn jurisdictions that recognize copyright laws, the author or authors\nof this software dedicate any and all copyright interest in the\nsoftware to the public domain. We make this dedication for the benefit\nof the public at large and to the detriment of our heirs and\nsuccessors. We intend this dedication to be an overt act of\nrelinquishment in perpetuity of all present and future rights to this\nsoftware under copyright law.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR\nOTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\nARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n\nFor more information, please refer to <http://unlicense.org/>"
+    },
+    {
       "id": "22bbdccb3ee2c1a531b6fd6dbf4ccada5ae0ddaa5dd793db09a4464c163387a2",
       "text": "(The MIT License)\n\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software \nand associated documentation files (the 'Software'), to deal in the Software without restriction, \nincluding without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \nand/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial \nportions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \nLIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, \nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
     },
@@ -6569,6 +6902,10 @@
     {
       "id": "51e2f49bfa2d54099d48498a939765cf98bc08ef816eff02a870ba23e00e6adb",
       "text": "MIT License\n\nCopyright (c) Nicolas Gallagher\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+    },
+    {
+      "id": "538c01dfaf5204977200a3ede0322b43d20f9c8e2f896de0c3f0e72580b7d96d",
+      "text": "## License\n\n(The MIT License)\n\nCopyright (c) 2012 Near Infinity Corporation\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
     },
     {
       "id": "5469f0d9b3544f6a3d336b1c229212b4d3f28af300c4e1210d18be6d76fe0d3e",
@@ -6649,6 +6986,10 @@
     {
       "id": "a47b528194eb56fad3a7051c8a25e977005944be3d26741bde6f76a998681965",
       "text": "Licensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n  http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License."
+    },
+    {
+      "id": "aa764659a327a9d33051b8692fe47302fa0c34111bbf0967c95b3954ad9bee7c",
+      "text": "MIT License\n\nCopyright (c) Meta Platforms, Inc. and affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
     },
     {
       "id": "b186fba0e04662e4e1ea8db01fe511182aa3097aad4f58fc727e141732b00eb8",

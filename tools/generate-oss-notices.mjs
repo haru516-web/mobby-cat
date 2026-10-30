@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 export function collectPackage(path) {
   if (path instanceof URL) path = fileURLToPath(path);
   const pkg = JSON.parse(readFileSync(join(path, 'package.json'), 'utf8'));
-  const files = readdirSync(path).filter(name => /^(licen[cs]e|copying|notice|copyright)([._-].*)?$/i.test(name)).sort();
+  const files = readdirSync(path).filter(name => /^(licen[cs]e|unlicense|copying|notice|copyright)([._-].*)?$/i.test(name)).sort();
   const documents = files.flatMap(name => {
     try {
       const text = readFileSync(join(path, name), 'utf8').replace(/\r\n/g, '\n').trim();
@@ -19,6 +19,16 @@ export function collectPackage(path) {
       return [{ source: name, text: body, copyrights, key }];
     } catch { return []; } // LICENSEという名のディレクトリ等
   });
+  const sourceRoot = resolve(dirname(fileURLToPath(import.meta.url)), 'oss-upstream');
+  if (!documents.length && existsSync(join(sourceRoot, 'sources.json'))) {
+    const sources = JSON.parse(readFileSync(join(sourceRoot, 'sources.json'), 'utf8'));
+    const source = sources[`${pkg.name}@${pkg.version}`];
+    if (source) {
+      const text = readFileSync(join(sourceRoot, source.file), 'utf8');
+      if (createHash('sha256').update(text).digest('hex') !== source.sha256) throw Error('Upstream notice hash mismatch');
+      documents.push({ source: source.url, text, copyrights: text.split('\n').filter(line => /copyright|©/i.test(line)), key: createHash('sha256').update(text.replace(/\s+/g, ' ')).digest('hex') });
+    }
+  }
   return { name: pkg.name, version: pkg.version, license: typeof pkg.license === 'string' ? pkg.license : JSON.stringify(pkg.license ?? 'UNKNOWN'), documents };
 }
 
