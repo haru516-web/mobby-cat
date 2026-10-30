@@ -2,7 +2,7 @@
 // 判定に使う材料（電池・歩数・起動の記録など）は Signals としてまとめて渡す。
 import { CATS } from '../data/catalog';
 import { daysBetween, fmtDay } from './dates';
-import { Env, Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf } from './recipes';
+import { type Env, type Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf } from './recipes';
 
 export type Signals = {
   battery: number[]; // その日（出会いの締め切りまで）に観測した残量 %（整数）

@@ -2,7 +2,7 @@
 // - 実在の猫（猫種・毛色）: 簡単な条件を2〜3個。重い猫種は、そのうち1つがやや難しい。
 // - それ以外のモビー: 簡単な条件4個＋その猫らしい難しい条件1個（個性猫は conditions.ts の既存条件が「難しい1個」）。
 // 条件は猫ごとに ID から決まる（端末や日によって変わらない）。レア度は条件の数と難しさから決める。
-import { CATS, CatDef, Rarity } from '../data/catalog';
+import { CATS, type CatDef, type Rarity } from '../data/catalog';
 
 export type Weather = 'sunny' | 'cloudy' | 'rain' | 'snow';
 

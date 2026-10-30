@@ -1,4 +1,4 @@
-import { Ctx, Guaranteed, Signals, guaranteedCats } from './conditions';
+import { type Ctx, type Guaranteed, type Signals, guaranteedCats } from './conditions';
 import { CATS } from '../data/catalog';
 import { recipeOf } from './recipes';
 
