@@ -13,6 +13,6 @@ export function runtimeFingerprint(root) {
   }
   walk(join(root, 'app/src'));
   const hash = createHash('sha256');
-  for (const file of files.sort()) hash.update(file).update('\0').update(readFileSync(join(root, file))).update('\0');
+  for (const file of files.sort()) hash.update(file).update('\0').update(readFileSync(join(root, file), 'utf8').replace(/\r\n/g, '\n')).update('\0');
   return hash.digest('hex');
 }
