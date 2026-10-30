@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
@@ -28,13 +28,14 @@ const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！',
 const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン', day: 12 };
 
 function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: number; onPet: () => void }) {
-  const hop = useRef(new Animated.Value(0)).current;
-  const heart = useRef(new Animated.Value(0)).current;
+  const hop = useState(() => new Animated.Value(0))[0];
+  const heart = useState(() => new Animated.Value(0))[0];
   const [line, setLine] = useState<string | null>(null);
   const tap = () => {
     onPet();
     playSfx('sfx_pet');
     hapticLight();
+     
     setLine(MEOW[Math.floor(Math.random() * MEOW.length)]);
     hop.setValue(0);
     heart.setValue(0);

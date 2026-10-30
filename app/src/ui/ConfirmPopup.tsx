@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { Bobbing, C, CatImage, T } from './base';
 import { ImgButton, Tap } from './kit';
@@ -21,9 +21,9 @@ type Spec = { title: string; message?: string; okLabel: string; onOk: () => void
 // 使う画面の中に element を置く（Modal の入れ子になるので、ポップの上でも重なって出る）
 export function useConfirm() {
   const [spec, setSpec] = useState<Spec | null>(null);
-  const last = useRef<Spec | null>(null);
-  if (spec) last.current = spec; // 閉じるときの暗転のあいだも、文面を保つ
-  const shown = spec ?? last.current;
+  const [last, setLast] = useState<Spec | null>(null);
+  if (spec && spec !== last) setLast(spec); // 閉じるときの暗転のあいだも、文面を保つ
+  const shown = spec ?? last;
   const close = () => setSpec(null);
 
   const confirm = (title: string, message: string | undefined, okLabel: string, onOk: () => void, opts: ConfirmOpts = {}) =>

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange } from '../src/core/spending.ts';
+import { accountChangeBlocked, applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange, withPaid } from '../src/core/spending.ts';
 
 const record = { candidates: ['a', 'b', 'c', 'd'], reasons: { b: '雨' }, baseCount: 3, matatabiUsed: 0, freePick: 'a', extraPicks: [], opened: ['a', 'b', 'c'] };
 const pending = (kind = 'extra') => ({ kind, day: '2026-10-30', ids: [kind === 'extra' ? 'b' : 'd'], id: 'unique-1', currency: kind === 'extra' ? 'tickets' : 'matatabi', fromPaid: 1, fromFree: 0, record: structuredClone(record) });
@@ -96,4 +96,26 @@ test('account changes hold a gate across awaits and reject unresolved consumptio
   assert.equal(await exclusiveAccountChange(gate, () => false, async () => { changes++; return true; }, false), false);
   release(); assert.equal(await first, true); assert.equal(gate.current, false); assert.equal(changes, 1);
   assert.equal(await exclusiveAccountChange(gate, () => true, async () => { throw Error('must not switch'); }, false), false);
+});
+
+test('a lost key keeps the journal and lets the account change go ahead, so the same id can be confirmed afterwards', async () => {
+  const h = harness();
+  const real = h.spend;
+  h.spend = async () => 'signed_out';
+  assert.equal(await runSpend(pending(), h), false);
+  assert.ok(h.get().pendingSpend);
+  assert.equal(accountChangeBlocked(h.get(), false, false), true);
+  assert.equal(accountChangeBlocked(h.get(), false, true), false);
+  assert.equal(accountChangeBlocked(h.get(), true, true), true);
+  h.spend = real;
+  assert.equal(await runSpend(h.get().pendingSpend, h), true);
+  assert.equal(h.get().owned.b.count, 1);
+});
+test('the balance the server returned survives the spend that returned it', async () => {
+  const h = harness();
+  const real = h.spend;
+  h.spend = async (...args) => { const result = await real(...args); h.put(withPaid(h.get(), { tickets: 0, matatabi: 1 })); return result; };
+  assert.equal(await runSpend(pending(), h), true);
+  assert.deepEqual(h.get().paid, { tickets: 0, matatabi: 1 });
+  assert.equal(withPaid(h.get(), { tickets: 0, matatabi: 1 }), h.get(), 'an unchanged balance keeps the same object');
 });

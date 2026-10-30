@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { shownRarity } from '../../core/recipes';
 import { CAT_BY_ID, useReduceMotion } from '../../ui/base';
@@ -15,13 +15,13 @@ import { BURST, FlyingBits, RAYS, makePaws, makeSparks } from './RevealFx';
 export function WelcomeFx({ id, width, children, footer }: { id: string; width: number; children: ReactNode; footer: ReactNode }) {
   const still = useReduceMotion(); // 「視差効果を減らす」：光・飛び散り・はずみを止める
   const rare = !!CAT_BY_ID[id] && shownRarity(CAT_BY_ID[id]) >= 3;
-  const flash = useRef(new Animated.Value(0)).current;
-  const burst = useRef(new Animated.Value(0)).current;
-  const burst2 = useRef(new Animated.Value(0)).current;
-  const pop = useRef(new Animated.Value(0)).current;
-  const rays = useRef(new Animated.Value(0)).current;
-  const spin = useRef(new Animated.Value(0)).current;
-  const foot = useRef(new Animated.Value(0)).current;
+  const flash = useState(() => new Animated.Value(0))[0];
+  const burst = useState(() => new Animated.Value(0))[0];
+  const burst2 = useState(() => new Animated.Value(0))[0];
+  const pop = useState(() => new Animated.Value(0))[0];
+  const rays = useState(() => new Animated.Value(0))[0];
+  const spin = useState(() => new Animated.Value(0))[0];
+  const foot = useState(() => new Animated.Value(0))[0];
 
   const reach = width * 0.8;
   const sparks = useMemo(() => makeSparks(reach, 16), [reach]);

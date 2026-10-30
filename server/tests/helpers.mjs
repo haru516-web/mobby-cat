@@ -104,7 +104,7 @@ export async function appleFixture() {
   const b64 = (value) => Buffer.from(typeof value === "string" ? value : JSON.stringify(value)).toString("base64url");
   const token = async (claims = {}, options = {}) => {
     const header = b64({ alg: options.alg ?? "RS256", kid: options.kid ?? "test-key" });
-    const payload = b64({ iss: "https://appleid.apple.com", aud: BUNDLE_ID, exp: Math.floor(Date.now() / 1000) + 600, sub: "apple-person-1", ...claims });
+    const payload = b64({ iss: "https://appleid.apple.com", aud: BUNDLE_ID, exp: Math.floor(Date.now() / 1000) + 600, sub: "apple-person-1", jti: crypto.randomUUID(), ...claims });
     const signature = Buffer.from(await webcrypto.subtle.sign("RSASSA-PKCS1-v1_5", options.signWith ?? pair.privateKey, Buffer.from(header + "." + payload))).toString("base64url");
     return header + "." + payload + "." + signature;
   };

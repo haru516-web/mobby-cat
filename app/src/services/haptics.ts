@@ -11,6 +11,7 @@ let mod: HapticsMod | null | undefined;
 function lib(): HapticsMod | null {
   if (mod === undefined) {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports -- ネイティブ部分が無い環境では読み込まない
       mod = require('expo-haptics') as HapticsMod;
     } catch {
       mod = null;

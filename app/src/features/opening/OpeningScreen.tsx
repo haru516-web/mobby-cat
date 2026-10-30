@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { playSfx } from '../../services/audio';
 import { C, CatImage, T, useReduceMotion } from '../../ui/base';
@@ -73,7 +73,7 @@ function FallingCat({ id, x, row, rot, spin, delay, drift, w, h }: { id: string;
   const size = w * SIZE;
   const fallDist = h + size * 1.6 + row * size * 0.5; // 画面の上の外から落ちる
   const curve = useMemo(() => dropCurve(fallDist, spin, drift * w), [fallDist, spin, drift, w]);
-  const clock = useRef(new Animated.Value(0)).current;
+  const clock = useState(() => new Animated.Value(0))[0];
   const still = useReduceMotion();
   useEffect(() => {
     // 動きを減らす設定では、落ちずに、はじめから積もった形で見せる
@@ -110,7 +110,7 @@ const SPARKLES = [
 ];
 
 function Sparkle({ x, y, s, d }: { x: number; y: number; s: number; d: number }) {
-  const v = useRef(new Animated.Value(0)).current;
+  const v = useState(() => new Animated.Value(0))[0];
   const still = useReduceMotion();
   useEffect(() => {
     if (still) { v.setValue(0.8); return; }
@@ -138,8 +138,8 @@ export default function OpeningScreen({ onStart }: { onStart: () => void }) {
   const w = Math.min(width, 430);
   const logoW = w * 0.8;
   const logoH = logoW * (420 / 1000);
-  const reveal = useRef(new Animated.Value(0)).current; // ロゴを左から出す（0→1）
-  const blink = useRef(new Animated.Value(0)).current;
+  const reveal = useState(() => new Animated.Value(0))[0]; // ロゴを左から出す（0→1）
+  const blink = useState(() => new Animated.Value(0))[0];
   const still = useReduceMotion();
   useEffect(() => {
     if (still) { reveal.setValue(1); blink.setValue(1); return; }

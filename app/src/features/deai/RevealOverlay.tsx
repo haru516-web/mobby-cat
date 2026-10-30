@@ -29,9 +29,9 @@ type Props = { ids: string[] | null; reasons: Record<string, string>; newIds: st
 
 export function RevealOverlay({ ids, reasons, newIds, onClose }: Props) {
   // 閉じる暗転のあいだも、同じ子たちを見せておく
-  const last = useRef<string[] | null>(null);
-  if (ids) last.current = ids;
-  const shown = ids ?? last.current;
+  const [last, setLast] = useState<string[] | null>(null);
+  if (ids && ids !== last) setLast(ids);
+  const shown = ids ?? last;
   return (
     <Modal visible={!!ids} transparent animationType="fade" onRequestClose={onClose}>
       {shown && <Reveal key={shown.join(',')} ids={shown} reasons={reasons} newIds={newIds} onClose={onClose} />}
@@ -51,15 +51,15 @@ function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Rec
   const cellH = n === 1 ? size * 1.5 : size + 96;
   const burstSize = n === 1 ? size : Math.min(stageW, size * 2.2);
 
-  const intro = useRef(new Animated.Value(0)).current; // シルエットが出る
-  const shake = useRef(new Animated.Value(0)).current; // ふるえ（-1〜1）
-  const swell = useRef(new Animated.Value(0)).current; // ふるえながら大きくなる
-  const flash = useRef(new Animated.Value(0)).current; // 光の輪
-  const burst = useRef(new Animated.Value(0)).current; // 飛び散るきらめき
-  const burst2 = useRef(new Animated.Value(0)).current; // レア以上の2回目
-  const pop = useRef(new Animated.Value(0)).current; // 猫が出る
-  const spin = useRef(new Animated.Value(0)).current; // 後ろの光の回転（ずっと）
-  const info = useRef(new Animated.Value(0)).current; // 名前などの文字
+  const intro = useState(() => new Animated.Value(0))[0]; // シルエットが出る
+  const shake = useState(() => new Animated.Value(0))[0]; // ふるえ（-1〜1）
+  const swell = useState(() => new Animated.Value(0))[0]; // ふるえながら大きくなる
+  const flash = useState(() => new Animated.Value(0))[0]; // 光の輪
+  const burst = useState(() => new Animated.Value(0))[0]; // 飛び散るきらめき
+  const burst2 = useState(() => new Animated.Value(0))[0]; // レア以上の2回目
+  const pop = useState(() => new Animated.Value(0))[0]; // 猫が出る
+  const spin = useState(() => new Animated.Value(0))[0]; // 後ろの光の回転（ずっと）
+  const info = useState(() => new Animated.Value(0))[0]; // 名前などの文字
   const [done, setDone] = useState(false);
   const running = useRef<Animated.CompositeAnimation | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -74,6 +74,7 @@ function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Rec
   useEffect(() => {
     if (still) {
       for (const v of [intro, pop, info]) v.setValue(1);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- 動きを減らす設定では、演出を飛ばして終わりの状態にする
       setDone(true);
       return;
     }

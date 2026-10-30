@@ -4,7 +4,6 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,
   secret_hash TEXT NOT NULL,
-  purchase_recovery_date INTEGER,
   created_at TEXT NOT NULL
 );
 
@@ -111,6 +110,15 @@ CREATE TABLE IF NOT EXISTS rate_limits (
   PRIMARY KEY (key, window)
 );
 CREATE INDEX IF NOT EXISTS rate_limits_expiry ON rate_limits(expires_at);
+
+-- Who holds a subscription now, when it moved away from the account in its appAccountToken.
+CREATE TABLE IF NOT EXISTS plan_owners (
+  original_transaction_id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  -- The transaction the move was made with: its billing period's 券 are not credited again.
+  moved_transaction_id TEXT NOT NULL,
+  moved_at TEXT NOT NULL
+);
 
 -- A transfer code is independent from the account credential and may only choose one new key.
 CREATE TABLE IF NOT EXISTS account_transfer_codes (

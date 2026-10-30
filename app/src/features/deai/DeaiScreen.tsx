@@ -36,6 +36,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 日が変わったら、選択を今日に戻す
     setDay(todayKey);
     setSel(null);
     setOpenSel([]);

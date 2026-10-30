@@ -33,6 +33,7 @@ let mod: AudioMod | null | undefined;
 function lib(): AudioMod | null {
   if (mod === undefined) {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports -- ネイティブ部分が無い環境では読み込まない
       mod = require('expo-audio') as AudioMod;
     } catch {
       mod = null;

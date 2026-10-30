@@ -64,9 +64,10 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
     else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
     else if (r === 'failed') notice('サインインできませんでした', 'もう一度お試しください。');
   });
-  const doRestore = () => run(async () => {
-    const r = await acc.restoreWithApple();
-    if (r === 'restored') notice('引き継ぎました', '預けてあった記録と、購入したものを戻しました。');
+  const doRestore = (force = false) => run(async () => {
+    const r = await acc.restoreWithApple(force);
+    if (r === 'local_paid') confirm('この端末の購入が失われます', `この端末の匿名アカウントに、購入したもの（お迎え券${state.paid.tickets}枚、またたび${state.paid.matatabi}個${state.pass.active ? '、またたびパス' : ''}）が残っています。Appleの記録へ切り替えると、この分はこの端末から戻せません。またたびパスは、切り替えのあとに「購入を復元」で戻せます。先に使い切ることもできます。`, '切り替える', () => void doRestore(true), { cancelLabel: 'やめる' });
+    else if (r === 'restored') notice('引き継ぎました', '預けてあった記録と、購入したものを戻しました。');
     else if (r === 'choose') notice('記録が食い違っています', 'この端末の記録と、クラウドの記録の、どちらを使うか選んでください。');
     else if (r === 'nothing') notice('記録が見つかりません', 'このApple IDで預けた記録はありません。');
     else if (r === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');
@@ -341,7 +342,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 <Card skin="selected" style={{ gap: 6 }}>
                   <T w="x" size={13}>この端末のアカウントが使えません</T>
                   <T w="m" size={11} color={C.sub}>別のiPhoneが引き継いだか、サーバーにアカウントが見つかりません。Appleでサインインし直すと、元の記録に戻れます。</T>
-                  <ImgButton label="Appleでサインインし直す" height={44} disabled={busy} onPress={doRestore} />
+                  <ImgButton label="Appleでサインインし直す" height={44} disabled={busy} onPress={() => void doRestore()} />
                   <ImgButton
                     skin="ghost-outline"
                     label="新しく始める"
@@ -370,11 +371,12 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
 
               {!acc.signedOut && acc.linked === false && <Card skin="white" style={{ gap: 6 }}>
                 <T w="b" size={13}>購入の引継ぎコード</T>
-                <T w="m" size={11} color={C.sub}>Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。有効期限は30日です。再発行すると前のコードは使えません。遊んだ記録は含まれません。コードと端末を両方失うと、匿名購入を引き継げません。</T>
+                <T w="m" size={11} color={C.sub}>Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。お迎え券・またたびを引き継げます。有効期限は30日です。再発行すると前のコードは使えません。遊んだ記録は含まれません。コードと端末を両方失うと、お迎え券・またたびは引き継げません（加入中のまたたびパスは、「購入を復元」で戻せます）。</T>
                 <ImgButton skin="ghost-outline" label="引継ぎコードを発行" height={44} disabled={busy} onPress={() => confirm('引継ぎコードを発行しますか？', '新しいコードを発行すると、前のコードは使えなくなります。コードは他の人に教えず、安全な場所に保管してください。', '発行する', () => { void run(async () => { const result = await acc.createTransferCode(); setTransfer(result); if (!result) notice('発行できませんでした', '購入したアカウントでつながっているかを確認し、もう一度お試しください。'); }); })} />
                 {transfer && <>
                   <T w="m" size={11} selectable>{transfer.code}</T>
                   <T w="m" size={11}>有効期限：{new Date(transfer.expiresAt).toLocaleDateString('ja-JP')}</T>
+                  <ImgButton skin="ghost-outline" label="コードを保存・コピー" height={40} fontSize={12} onPress={() => void Share.share({ message: transfer.code }).catch(() => undefined)} />
                 </>}
               </Card>}
               {acc.pendingCloud && (

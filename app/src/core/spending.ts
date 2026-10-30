@@ -1,6 +1,11 @@
 import type { DayRecord, GameState, PendingSpend, SpendResult } from './game';
 
 export const spendBlocked = (s: Pick<GameState, 'pendingSpend'>, busy: boolean) => busy || !!s.pendingSpend;
+// アカウントを切り替えられるか。鍵が失効した端末では、切り替えないと消費を確かめられないので、未解決の消費があっても止めない
+export const accountChangeBlocked = (s: Pick<GameState, 'pendingSpend'>, busy: boolean, keyLost: boolean) => busy || (!!s.pendingSpend && !keyLost);
+
+export const withPaid = <S extends Pick<GameState, 'paid'>>(s: S, wallet: GameState['paid']): S =>
+  (s.paid?.tickets === wallet.tickets && s.paid?.matatabi === wallet.matatabi ? s : { ...s, paid: { tickets: wallet.tickets, matatabi: wallet.matatabi } });
 
 export async function exclusiveAccountChange<T>(gate: { current: boolean }, blocked: () => boolean, work: () => Promise<T>, unavailable: T): Promise<T> {
   if (gate.current || blocked()) return unavailable;
@@ -56,7 +61,7 @@ export async function runSpend(p: PendingSpend, io: SpendIO): Promise<boolean> {
     if (io.get().pendingSpend?.id !== p.id) return false;
     await io.save(io.get());
     const result = p.applied ? 'ok' : await io.spend(p.currency, p.fromPaid, p.id);
-    if (result === 'offline') return false;
+    if (result === 'offline' || result === 'signed_out') return false;
     if (result === 'short') {
       const next = { ...io.get(), pendingSpend: undefined };
       await io.save(next);

@@ -26,6 +26,7 @@ export function createAppStore(): PurchaseStore | null {
   if (Platform.OS !== 'ios') return null;
   let iap: typeof import('expo-iap');
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- ネイティブ部分が無い環境では読み込まない
     iap = require('expo-iap');
   } catch {
     return null;
@@ -51,6 +52,8 @@ export function createAppStore(): PurchaseStore | null {
           .filter((purchase) => purchase.productId === product.sku)
           .map((purchase) => purchase.id),
       );
+      // 加入中のパスは買い直せない。Apple の画面を出しても、同じ取引が返るだけ
+      if (product.kind === 'subs' && leftOver.size > 0) throw new Error('already_subscribed');
       return new Promise<PurchasedItem | 'cancelled'>((resolve, reject) => {
         const startedAt = Date.now();
         // 支払いの途中でパスワードを入れていることもあるが、2分間なにも返ってこなければ止まっている

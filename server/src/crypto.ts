@@ -367,9 +367,9 @@ async function appleSigningKeys(env: Pick<Env, "APPLE_JWKS_JSON">, now: number):
 
 /**
  * Checks a "Sign in with Apple" identity token: signed by one of Apple's keys (RS256), issued by Apple,
- * addressed to this app, not expired. Returns Apple's stable id for the person (`sub`).
+ * addressed to this app, not expired. Returns Apple's stable id for the person (`sub`) and when the token expires (`exp`, seconds).
  */
-export async function verifyAppleIdentityToken(token: string, env: Pick<Env, "APPLE_JWKS_JSON" | "APPLE_BUNDLE_ID">, now = Date.now()): Promise<{ sub: string }> {
+export async function verifyAppleIdentityToken(token: string, env: Pick<Env, "APPLE_JWKS_JSON" | "APPLE_BUNDLE_ID">, now = Date.now()): Promise<{ sub: string; exp: number }> {
   const parts = token.split(".");
   if (parts.length !== 3) throw new Error("Malformed identity token");
   const header = JSON.parse(new TextDecoder().decode(fromBase64Url(parts[0]))) as { alg?: string; kid?: string };
@@ -384,7 +384,7 @@ export async function verifyAppleIdentityToken(token: string, env: Pick<Env, "AP
   if (!env.APPLE_BUNDLE_ID || payload.aud !== env.APPLE_BUNDLE_ID) throw new Error("Identity token is for another app");
   if (typeof payload.exp !== "number" || payload.exp * 1000 < now - 60_000) throw new Error("Identity token has expired");
   if (typeof payload.sub !== "string" || !payload.sub) throw new Error("Identity token has no subject");
-  return { sub: payload.sub };
+  return { sub: payload.sub, exp: payload.exp };
 }
 
 /** The "client secret" Apple wants for the token and revoke calls: a short-lived ES256 JWT signed with the Sign in with Apple key. */

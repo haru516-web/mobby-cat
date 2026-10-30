@@ -15,7 +15,7 @@ import { checkSaved } from './saveShape';
 import { isRealCat } from './recipes';
 import { worldGifts } from './world';
 import { retainDays } from './history';
-import { applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange } from './spending';
+import { accountChangeBlocked, applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange, withPaid } from './spending';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
 const CATALOG_VERSION = String(CATS.length);
@@ -78,8 +78,9 @@ export const ticketsOf = (s: Pick<GameState, 'tickets' | 'paid'>) => s.tickets +
 export const matatabiOf = (s: Pick<GameState, 'matatabi' | 'paid'>) => s.matatabi + (s.paid?.matatabi ?? 0);
 
 /** 買った分をサーバーの残高から使う（account.tsx が渡す）。使えたら ok、残高が足りない・つながらないときは false。 */
-// 買った分を使った結果。short＝残高が足りない（何も引かれていない）、offline＝分からない（引かれたかもしれない。同じ番号で、もう一度確かめられる）
-export type SpendResult = 'ok' | 'short' | 'offline';
+// 買った分を使った結果。short＝残高が足りない（何も引かれていない）、offline＝分からない（引かれたかもしれない。同じ番号で、もう一度確かめられる）、
+// signed_out＝この端末の鍵が失効した（アカウントを戻すか新しく始めてから、同じ番号で確かめる）
+export type SpendResult = 'ok' | 'short' | 'offline' | 'signed_out';
 export type Spender = (currency: 'tickets' | 'matatabi', amount: number, requestId: string) => Promise<SpendResult>;
 // 買った分を引く前に、端末へ書いておく操作。引けたのに、猫の追加を保存する前に落ちても、次の起動で同じ番号で確かめ、結果を確定する（A-04）
 export type PendingSpend = { kind: 'extra' | 'matatabi'; day: string; ids: string[]; id: string; currency: 'tickets' | 'matatabi'; fromPaid: number; fromFree: number; record?: DayRecord; applied?: boolean };
@@ -271,6 +272,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [saveBlocked, setSaveBlocked] = useState(false);
   const [saveFailed, setSaveFailed] = useState(false);
   const stateRef = useRef(state);
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   stateRef.current = state;
 
   const writeState = useMemo(() => serializedWriter((s: GameState) => AsyncStorage.setItem(KEY, JSON.stringify(s))), []);
@@ -352,6 +354,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const hour = now.getHours();
   useEffect(() => {
     if (!ready) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 暦日が変わったときに一度だけ記録する
     setState((s) => {
       if (s.lastOpenDay === calendarDay) return s;
       const gap = s.lastOpenDay ? daysBetween(s.lastOpenDay, calendarDay) : 0;
@@ -395,6 +398,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // 更新されていれば、次にサーバーを確かめたときに戻る（account.tsx が、期限の時刻にも確かめる）
   const passEnded = !!state.pass.active && passOver(state);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- サーバーの答えを待たず、期限で止める
     if (passEnded) setState((s) => (s.pass.active ? { ...s, pass: { ...s.pass, active: false } } : s));
   }, [passEnded]);
 
@@ -404,6 +408,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const passIdle = !state.pass.active || passEnded;
   useEffect(() => {
     if (!ready || !passIdle) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 変えるものが無ければ同じ状態を返す
     setState((s) => {
       let changed = false;
       const days = Object.fromEntries(
@@ -520,12 +525,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, []);
   const accountChanging = useRef(false);
   const spending = useRef(false); // 通信を待っているあいだは、次の操作を受け付けない（二重に使わないため）
+  const keyLost = useRef(false); // 最後の消費の確認で、この端末の鍵が失効していた
 
   const commitSpend = useCallback(async (p: PendingSpend): Promise<boolean> => runSpend(p, {
     get: () => stateRef.current,
     put: (s) => { stateRef.current = s; setState(s); },
     save: writeState,
-    spend: (currency, amount, id) => spender.current?.(currency, amount, id) ?? Promise.resolve('offline'),
+    spend: async (currency, amount, id) => {
+      const result = await (spender.current?.(currency, amount, id) ?? Promise.resolve<SpendResult>('offline'));
+      keyLost.current = result === 'signed_out';
+      return result;
+    },
   }), [writeState]);
 
   // お迎え券で追加。複数指定時は全員分の券があるときだけまとめて迎える
@@ -596,9 +606,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setState((s) => (what === 'ticket' ? { ...s, tickets: s.tickets + n } : { ...s, matatabi: s.matatabi + n }));
   }, []);
   const setPaid = useCallback((wallet: { tickets: number; matatabi: number }) => {
-    setState((s) => (s.paid?.tickets === wallet.tickets && s.paid?.matatabi === wallet.matatabi ? s : { ...s, paid: { tickets: wallet.tickets, matatabi: wallet.matatabi } }));
+    // 消費の確定は stateRef から次の状態を作るので、描画を待たずに、ここにも写す（古い残高で上書きしないため）
+    stateRef.current = withPaid(stateRef.current, wallet);
+    setState((s) => withPaid(s, wallet));
   }, []);
-  const canReplace = useCallback(() => !spendBlocked(stateRef.current, spending.current), []);
+  const canReplace = useCallback(() => !accountChangeBlocked(stateRef.current, spending.current, keyLost.current), []);
   const withAccountChange = useCallback(async <T,>(work: () => Promise<T>, unavailable: T): Promise<T> => {
     return exclusiveAccountChange(accountChanging, () => !canReplace(), work, unavailable);
   }, [canReplace]);
@@ -624,6 +636,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // 相棒選びの3匹を、まだ決まっていなければ引く（起動のたびに変わらないよう、引いた結果を保存する）
   useEffect(() => {
     if (!ready || saveBlocked) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 読み込みのあとに一度だけ引き、結果を保存する
     setState((s) => (s.starterChosen || s.starterOffer?.length === 3 ? s : { ...s, starterOffer: drawStarters() }));
   }, [ready, saveBlocked, state.starterChosen]);
 

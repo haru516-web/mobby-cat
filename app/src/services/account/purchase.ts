@@ -20,7 +20,7 @@ export type Plan = 'none' | typeof PASS_PLAN;
 
 export type BuyOutcome =
   | { ok: true }
-  | { ok: false; reason: 'cancelled' | 'offline' | 'unavailable' | 'verify_failed' | 'age_needed' | 'restricted'; detail?: string }
+  | { ok: false; reason: 'cancelled' | 'offline' | 'unavailable' | 'verify_failed' | 'age_needed' | 'restricted' | 'already_subscribed'; detail?: string }
   | { ok: false; reason: 'limit'; capYen: number; remainingYen: number };
 
 export async function fetchWallet(api: Pick<Client, 'authed'>): Promise<Wallet | null> {
@@ -63,7 +63,7 @@ export async function setAgeGroup(api: Pick<Client, 'authed'>, group: AgeGroup):
   return ok(await api.authed('/profile/age-group', { body: { ageGroup: group } }));
 }
 
-const verify = async (api: Pick<Client, 'authed'>, jws: string) => ok(await api.authed('/purchases/verify', { body: { signedTransactionInfo: jws } }));
+const isOtherAccount = (reply: Reply) => reply?.status === 403 && reply.data?.error === 'app_account_token_mismatch';
 
 // 購入の画面は、一度に1つだけ開く。上限の確認と支払いのあいだに、別の購入が割り込まないようにする（B-12）。
 // アカウントの鍵は1台の端末にしかない（引き継ぐと前の端末の鍵は使えなくなる）ので、同じアカウントで同時に買えるのは、この端末だけ
@@ -95,10 +95,14 @@ async function buyOnce(key: ProductKey, store: PurchaseStore, api: Pick<Client, 
   try {
     bought = await store.purchase(product, account.userId);
   } catch (error) {
-    return { ok: false, reason: 'unavailable', detail: error instanceof Error ? error.message : String(error) };
+    const detail = error instanceof Error ? error.message : String(error);
+    return { ok: false, reason: detail === 'already_subscribed' ? 'already_subscribed' : 'unavailable', detail };
   }
   if (bought === 'cancelled') return { ok: false, reason: 'cancelled' };
-  if (!(await verify(api, bought.jws))) return { ok: false, reason: 'verify_failed' };
+  const reply = await api.authed('/purchases/verify', { body: { signedTransactionInfo: bought.jws } });
+  // Apple は加入中のパスの取引を返すことがある。前のアカウントのものなら、買い直しではなく「購入を復元」で移す
+  if (isOtherAccount(reply)) return { ok: false, reason: 'already_subscribed' };
+  if (!ok(reply)) return { ok: false, reason: 'verify_failed' };
   await bought.finish().catch(() => undefined);
   return { ok: true };
 }
@@ -106,16 +110,17 @@ async function buyOnce(key: ProductKey, store: PurchaseStore, api: Pick<Client, 
 /**
  * 前回、途中で止まった購入と、いま有効なサブスクを、サーバーに確かめてもらう。起動のたびに呼んでよい。
  * 別のアカウントの購入（appAccountToken が違う）は、数えずに数だけ返す。
- * ただし、この端末のアカウントが空（新しい端末で、まだ何も買っていない）ときは、Apple が署名した購入を証明にして、
- * 購入したアカウントを、この端末に引き継ぐ（Apple 連携なしで買った人が、機種変更しても、パスを復元できるように）。
+ * ユーザーが「購入を復元」を押したときだけ、次の2つを行う。
+ *  - 引継ぎコードがあれば、そのアカウントごと、この端末へ移す（お迎え券・またたびも戻る）
+ *  - コードがなくても、Apple が返した加入中のパスは、パスの権利だけをこの端末のアカウントへ移す（残高と鍵は動かない）
  */
 export type SettleOutcome =
   | { kind: 'offline' }
   | { kind: 'store_error' }
-  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean };
+  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean; planMoved: boolean; localBlocked: boolean };
 
 type SettleApi = Pick<Client, 'authed' | 'authedIfAny' | 'existing' | 'raw' | 'adopt' | 'account'>;
-// recover: 購入の証明で、購入したアカウントを、この端末へ引き継いでよいか。ユーザーが「購入を復元」を押したときだけ true（起動時の自動の確認では、鍵を入れ替えない）
+// recover: 別のアカウントのものを、この端末へ移してよいか。ユーザーが「購入を復元」を押したときだけ true（起動時の自動の確認では、何も移さない）
 export type SettleOptions = { recover?: boolean; transferCode?: string };
 
 // この端末のアカウントが空か（何も買っておらず、パスもない）。空でないアカウントを、よそのアカウントで置き換えて見失わないため
@@ -140,6 +145,19 @@ async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, tr
   return reply.status === 409 && data?.error === 'invalid_transfer_code' ? 'used' : 'no';
 }
 
+/** この端末の匿名アカウントに、購入したものが残っているか。別のアカウントへ切り替える前に確かめる。無ければ null。 */
+export async function paidHere(api: Pick<Client, 'authedIfAny' | 'existing'>): Promise<{ tickets: number; matatabi: number; pass: boolean } | null | 'offline'> {
+  if (!(await api.existing())) return null;
+  const profile = await api.authedIfAny('/profile', { method: 'GET' });
+  if (profile === null) return 'offline';
+  if (profile.status === 401 || !ok(profile) || profile.data?.appleLinked === true) return null; // 鍵が失効している・Apple で戻せるアカウントは失われない
+  const quiet = { authed: api.authedIfAny };
+  const [wallet, plan] = await Promise.all([fetchWallet(quiet), fetchPlan(quiet)]);
+  if (!wallet || !plan) return 'offline';
+  const pass = plan.plan !== 'none';
+  return wallet.tickets > 0 || wallet.matatabi > 0 || pass ? { ...wallet, pass } : null;
+}
+
 export async function settle(store: PurchaseStore | null, api: SettleApi, options: SettleOptions = {}): Promise<SettleOutcome> {
   // App Store から取れなかったときは「購入なし」と区別する（B-15）
   const found = store ? await store.unfinished().catch(() => null) : { items: [], incomplete: false };
@@ -151,36 +169,50 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
   let failedCount = 0;
   let recovered = false;
   let proofUsed = false;
+  let planMoved = false;
+  let localBlocked = false;
+  const code = options.transferCode?.trim();
   let hasAccount = !!(await api.existing());
   // ユーザーが「購入を復元」を押し、引継ぎコードを入れたときだけ。この端末のアカウントが無いか、空のときに限る
-  if (options.recover && options.transferCode?.trim() && (!hasAccount || (await isEmptyAccount(api)))) {
-    const outcome = await recoverAccount(api, options.transferCode.trim());
-    if (outcome === 'used') proofUsed = true;
-    if (outcome === 'offline') return { kind: 'offline' };
-    if (outcome === 'ok') {
-      recovered = true;
-      hasAccount = true;
-    }
+  if (options.recover && code) {
+    if (!hasAccount || (await isEmptyAccount(api))) {
+      const outcome = await recoverAccount(api, code);
+      if (outcome === 'used') proofUsed = true;
+      if (outcome === 'offline') return { kind: 'offline' };
+      if (outcome === 'ok') {
+        recovered = true;
+        hasAccount = true;
+      }
+    } else localBlocked = true;
   }
+  // コードを入れたときは、まずコードの結果を確かめてもらう（入れ間違いのまま、パスだけ移さない）
+  const movePass = async (item: PurchasedItem): Promise<boolean> => {
+    if (!options.recover || code || item.sku !== PRODUCTS.pass.sku) return false;
+    if (!ok(await api.authed('/purchases/move-plan', { body: { signedTransactionInfo: item.jws } }))) return false;
+    planMoved = true;
+    hasAccount = true;
+    await item.finish().catch(() => undefined);
+    return true;
+  };
   for (const item of items.filter((candidate) => isKnownSku(candidate.sku))) {
-    const verifyOnce = (): Promise<Reply> => api.authedIfAny('/purchases/verify', { body: { signedTransactionInfo: item.jws } });
-    let reply: Reply = hasAccount ? await verifyOnce() : null;
+    const reply: Reply = hasAccount ? await api.authedIfAny('/purchases/verify', { body: { signedTransactionInfo: item.jws } }) : null;
     if (reply === null) {
-      if (!hasAccount) { otherAccount += 1; continue; } // この端末にはアカウントが無く、引き継げる購入でもない
-      return { kind: 'offline' };
+      if (hasAccount) return { kind: 'offline' };
+      if (!(await movePass(item))) otherAccount += 1; // この端末にはアカウントが無く、移せる購入でもない
+      continue;
     }
     if (ok(reply)) { credited += 1; await item.finish().catch(() => undefined); }
-    else if (reply.status === 403 && reply.data?.error === 'app_account_token_mismatch') otherAccount += 1;
+    else if (isOtherAccount(reply)) { if (!(await movePass(item))) otherAccount += 1; }
     else failedCount += 1;
   }
-  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found?.incomplete ?? false, proofUsed };
+  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found?.incomplete ?? false, proofUsed, planMoved, localBlocked };
 }
 
 /**
  * 買った分の残高から使う。同じ requestId は一度しか引かれず、もう一度送れば「使えた」と答える（通信が切れても、二重には引かれない）。
  * 使えたときは、サーバーの残高を返す。
  */
-export type SpendOutcome = { kind: 'ok'; wallet: Wallet | null } | { kind: 'short' } | { kind: 'offline' };
+export type SpendOutcome = { kind: 'ok'; wallet: Wallet | null } | { kind: 'short' } | { kind: 'offline' } | { kind: 'signed_out' };
 export async function spendPaid(api: Pick<Client, 'authed'>, currency: 'tickets' | 'matatabi', amount: number, requestId: string): Promise<SpendOutcome> {
   const reply = await api.authed('/wallet/consume', { body: { currency, amount, requestId } });
   if (reply === null) return { kind: 'offline' };
@@ -189,5 +221,6 @@ export async function spendPaid(api: Pick<Client, 'authed'>, currency: 'tickets'
     const wallet = remaining && typeof remaining.tickets === 'number' && typeof remaining.matatabi === 'number' ? { tickets: remaining.tickets, matatabi: remaining.matatabi } : null;
     return { kind: 'ok', wallet };
   }
+  if (reply?.status === 401) return { kind: 'signed_out' }; // この端末の鍵が失効した。引かれたかは、アカウントを戻してから確かめる
   return reply?.status === 409 ? { kind: 'short' } : { kind: 'offline' };
 }

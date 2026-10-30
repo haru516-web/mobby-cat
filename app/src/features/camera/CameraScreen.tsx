@@ -49,6 +49,7 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
   const start = useRef<{ pose: Pose; pinch: ReturnType<typeof touchInfo> }>({ pose, pinch: null });
   const responder = useMemo(
     () =>
+      // eslint-disable-next-line react-hooks/refs -- ref はジェスチャーのハンドラの中でだけ読む
       PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,
@@ -78,6 +79,7 @@ export default function CameraScreen({ onClose, width, height }: { onClose: () =
     [],
   );
   const poseRef = useRef(pose);
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   poseRef.current = pose;
 
   const size = width * 0.55;
@@ -228,11 +230,13 @@ const ZOOM_SNAP = 0.06;
 function ZoomBar({ value, onChange, top }: { value: number; onChange: (v: number) => void; top: number }) {
   const [active, setActive] = useState(false);
   const valueRef = useRef(value);
+  // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   valueRef.current = value;
   const from = useRef(0);
   const fade = useRef<ReturnType<typeof setTimeout> | null>(null);
   const responder = useMemo(
     () =>
+      // eslint-disable-next-line react-hooks/refs -- ref はジェスチャーのハンドラの中でだけ読む
       PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,

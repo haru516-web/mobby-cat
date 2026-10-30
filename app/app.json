@@ -56,10 +56,18 @@
           "isAccessMediaLocationEnabled": false
         }
       ],
-      "expo-audio",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "enableBackgroundPlayback": false
+        }
+      ],
       [
         "expo-location",
         {
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
           "locationWhenInUsePermission": "その日の天気に合わせて、出会えるにゃこモビーが変わります。天気を調べるため、おおまかな位置（約10km）を天気予報サービスに送ります。保存はしません。",
           "isAndroidBackgroundLocationEnabled": false,
           "isIosBackgroundLocationEnabled": false

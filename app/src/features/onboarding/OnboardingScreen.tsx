@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { REVEAL_HOUR } from '../../core/encounter';
 import { useAccount } from '../../core/account';
@@ -37,18 +37,17 @@ export default function OnboardingScreen({ width }: { width: number }) {
       else if (r === 'offline') notice('つながりませんでした', '電波のよいところで、もう一度お試しください。');
       else if (r === 'unavailable') notice('この環境ではサインインできません', 'iPhoneの実機で、Appleにサインインしている状態でお試しください。');
       else if (r === 'failed') notice('引き継げませんでした', 'もう一度お試しください。');
+      else if (r === 'local_paid') notice('この端末に購入したものがあります', '相棒を選んだあと、設定の「アカウント」から、内容を確かめて引き継いでください。');
     } finally {
       setRestoring(false);
     }
   };
-  const offer = state.starterOffer ?? [];
+  const offer = useMemo(() => state.starterOffer ?? [], [state.starterOffer]);
   const left = Math.max(0, STARTER_REROLLS - (state.starterRerolls ?? 0));
   const [confirm, confirmEl] = useConfirm(); // 相棒は、大きく見せるポップで最終決定する
-  const [sel, setSel] = useState<string | null>(null);
+  const [picked, setSel] = useState<string | null>(null);
   // 引き直したら、いま見えていない子の選択は外す
-  useEffect(() => {
-    if (sel && !offer.includes(sel)) setSel(null);
-  }, [offer, sel]);
+  const sel = picked && offer.includes(picked) ? picked : null;
   const [step, setStep] = useState<'pick' | 'how'>('pick');
   const [starting, setStarting] = useState(false);
   const [tip, setTip] = useState(0); // 説明のポップの番号（1項目ずつ、連続して出す）
