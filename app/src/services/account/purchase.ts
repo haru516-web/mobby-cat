@@ -112,7 +112,7 @@ async function buyOnce(key: ProductKey, store: PurchaseStore, api: Pick<Client, 
 export type SettleOutcome =
   | { kind: 'offline' }
   | { kind: 'store_error' }
-  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean };
+  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean };
 
 type SettleApi = Pick<Client, 'authed' | 'authedIfAny' | 'existing' | 'raw' | 'adopt'>;
 // recover: 購入の証明で、購入したアカウントを、この端末へ引き継いでよいか。ユーザーが「購入を復元」を押したときだけ true（起動時の自動の確認では、鍵を入れ替えない）
@@ -126,7 +126,7 @@ async function isEmptyAccount(api: Pick<Client, 'authed'>): Promise<boolean> {
 }
 
 // 署名つきの購入を証明にして、購入したアカウントの鍵を、この端末へ移す
-async function recoverAccount(api: Pick<Client, 'raw' | 'adopt'>, jws: string): Promise<'ok' | 'offline' | 'no'> {
+async function recoverAccount(api: Pick<Client, 'raw' | 'adopt'>, jws: string): Promise<'ok' | 'offline' | 'no' | 'used'> {
   const reply = await api.raw('/auth/recover-purchase', { body: { signedTransactionInfo: jws } });
   if (reply === null) return 'offline';
   const data = reply.data;
@@ -134,7 +134,7 @@ async function recoverAccount(api: Pick<Client, 'raw' | 'adopt'>, jws: string): 
     await api.adopt({ userId: data.userId, secret: data.secret });
     return 'ok';
   }
-  return 'no';
+  return reply.status === 409 && data?.error === 'purchase_proof_used' ? 'used' : 'no';
 }
 
 export async function settle(store: PurchaseStore | null, api: SettleApi, options: SettleOptions = {}): Promise<SettleOutcome> {
@@ -146,6 +146,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
   let otherAccount = 0;
   let failedCount = 0;
   let recovered = false;
+  let proofUsed = false;
   let hasAccount = !!(await api.existing());
   for (const item of items.filter((candidate) => isKnownSku(candidate.sku))) {
     const verifyOnce = (): Promise<Reply> => api.authedIfAny('/purchases/verify', { body: { signedTransactionInfo: item.jws } });
@@ -153,6 +154,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
     const mismatch = reply?.status === 403 && reply.data?.error === 'app_account_token_mismatch';
     if (options.recover && !recovered && (!hasAccount || mismatch) && (!hasAccount || (await isEmptyAccount(api)))) {
       const outcome = await recoverAccount(api, item.jws);
+      if (outcome === 'used') proofUsed = true;
       if (outcome === 'offline') return { kind: 'offline' };
       if (outcome === 'ok') {
         recovered = true;
@@ -168,7 +170,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
     else if (reply.status === 403 && reply.data?.error === 'app_account_token_mismatch') otherAccount += 1;
     else failedCount += 1;
   }
-  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found.incomplete };
+  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found.incomplete, proofUsed };
 }
 
 /**

@@ -45,4 +45,12 @@ test('StoreKit failure and network failure are separate and do not finish purcha
   assert.deepEqual(await settle(m.store, m.api), { kind: 'offline' });
   assert.equal(m.finished(), 0);
 });
+test('a used recovery proof is reported without adopting or finishing it', async () => {
+  const m = mock();
+  m.api.raw = async () => ({ status: 409, data: { error: 'purchase_proof_used' } });
+  const result = await settle(m.store, m.api, { recover: true });
+  assert.equal(result.proofUsed, true);
+  assert.equal(result.recovered, false);
+  assert.equal(m.finished(), 0);
+});
 

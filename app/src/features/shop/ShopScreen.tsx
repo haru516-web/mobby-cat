@@ -119,6 +119,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       else if (result.kind === 'store_error') notice('購入の復元', 'App Storeにつながりませんでした。しばらくしてから、もう一度お試しください。');
       else if (result.incomplete) notice('購入の復元', `一部の購入を、App Storeから読み取れませんでした（確認できた購入: ${result.credited}件）。しばらくしてから、もう一度お試しください。`);
       else if (result.credited > 0) notice('購入の復元', result.recovered ? `別の端末で購入した記録を、この端末に引き継ぎました（${result.credited}件の購入を確認）。前の端末では、使えなくなります。` : `${result.credited}件の購入を確認しました。`);
+      else if (result.proofUsed) notice('購入の復元', 'この購入の証明は、すでに引き継ぎに使われています。前の端末でAppleにサインインして連携できる場合は、設定から引き継いでください。できない場合は、サポートへご連絡ください。');
       else if (result.otherAccount > 0) notice('購入の復元', 'この購入は、別の記録と結びついています。その記録でAppleにサインインしていた場合は、設定の「アカウント」から引き継いでください。');
       else if (result.failed > 0) notice('購入の復元', '購入を確認できませんでした。しばらくしてから、もう一度お試しください。続く場合は、サポートまでご連絡ください。');
       else notice('購入の復元', '復元できる購入は見つかりませんでした。');
@@ -186,7 +187,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
 
         <View style={{ flexDirection: 'row', gap: 8 }}>
           <ImgButton skin="ghost-outline" label="出会いの仕組み" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
-          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={restore} style={{ flex: 1 }} />
+          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '別の端末の匿名購入を引き継ぐ場合、前の端末ではそのアカウントを使えなくなります。同じ購入の証明は再び引き継ぎには使えません。遊んだ記録の引き継ぎは、Appleでサインインして行います。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
         </View>
         {/* 自動更新のサブスクがあるので、購入の画面に利用規約とプライバシーポリシーを置く */}
         <View style={s.legal}>
