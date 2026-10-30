@@ -1,4 +1,4 @@
-// 全ユーザー共通の出現条件（docs/appearance-catalog.md）。成立した猫はその日の候補に確定で入る。
+// 全ユーザー共通の出現条件（docs/appearance-catalog.md）。成立した猫だけをその日の候補選びの対象にする。
 // 判定に使う材料（電池・歩数・起動の記録など）は Signals としてまとめて渡す。
 import { isBirthdayOn } from './birthday';
 import { CATS } from '../data/catalog';
@@ -23,6 +23,7 @@ export type Signals = {
 };
 
 export type Ctx = {
+  encounterMisses?: Record<string, number>;
   owned: Record<string, { count: number }>;
   appearCounts: Record<string, number>; // 候補に現れた回数
 };
@@ -220,7 +221,7 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   return out;
 }
 
-// その日に出会える猫。個性条件がある猫は「個性条件＋簡単な条件」、それ以外は猫ごとのレシピを満たしたときに確定で入る。
+// その日に出会える猫。個性条件がある猫は「個性条件＋簡単な条件」、それ以外は猫ごとのレシピを満たしたときに候補選びの対象になる。
 // forecast（日付だけの予告）のときは、端末の状態に依存する簡単な条件を無視する
 export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = false): Guaranteed[] {
   const [y, m, d] = dayKey.split('-').map(Number);

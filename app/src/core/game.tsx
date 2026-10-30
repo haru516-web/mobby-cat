@@ -4,7 +4,7 @@ import { AppState } from 'react-native';
 import { CATS } from '../data/catalog';
 import { Signals } from './conditions';
 import { daysBetween } from './dates';
-import { MAX_CANDIDATES, REVEAL_HOUR, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './encounter';
+import { MAX_CANDIDATES, REVEAL_HOUR, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons, isRareEncounter } from './encounter';
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
@@ -26,6 +26,7 @@ type Obs = { battery: number[]; charging: boolean; hours: number[] };
 
 export type Owned = { count: number; firstDay: string; firstReason: string };
 export type DayRecord = {
+  eligible?: string[]; // 新方式の条件達成猫。過去の日は変更しない。
   candidates: string[];
   reasons: Record<string, string>;
   baseCount: number;
@@ -52,6 +53,7 @@ export type GameState = {
   lastOpenDay: string; // 最後に起動した暦日
   lastGap: number; // その起動が前回から何日空いていたか
   streak: number; // 連続起動日数
+  encounterMisses: Record<string, number>;
   appearCounts: Record<string, number>; // 候補に現れた回数
   catalogVersion: string;
   birthday: { m: number; d: number } | null;
@@ -134,6 +136,7 @@ function initial(now: Date): GameState {
     lastGap: 0,
     streak: 0,
     appearCounts: {},
+    encounterMisses: {},
     catalogVersion: CATALOG_VERSION,
     birthday: null,
     starterChosen: false,
@@ -470,19 +473,20 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
               cats: Object.values(s.owned).reduce((n, o) => n + o.count, 0),
             },
           };
-          const d = buildDay(k, signals, { owned: s.owned, appearCounts: s.appearCounts });
+          const { encounterMisses, ...d } = buildDay(k, signals, { owned: s.owned, appearCounts: s.appearCounts, encounterMisses: s.encounterMisses });
           const appearCounts = { ...s.appearCounts };
           for (const id of d.candidates.slice(0, d.baseCount)) appearCounts[id] = (appearCounts[id] ?? 0) + 1;
           let next: GameState = {
             ...s,
             totalSteps: (s.totalSteps ?? 0) + (steps ?? 0),
             appearCounts,
+            encounterMisses,
             catalogVersion: CATALOG_VERSION,
             days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], opened: [], passBonus: s.pass.active && !passOver(s) ? PASS_BONUS : 0 } },
           };
           // 実在の猫の簡単な条件は通知しない。個性のある猫（特別な猫）が来た日だけ知らせる
-          const special = [...new Set(d.candidates.filter((id) => CATS.find((c) => c.id === id)?.kind !== 'breed').map((id) => d.reasons[id]))];
-          if (special.length) next = notify(next, k, `「${special.join('」「')}」の条件がそろって、特別な猫が来ています`);
+          const special = d.candidates.some(isRareEncounter);
+          if (special) next = notify(next, k, '珍しい猫の気配がする……');
           return retainDays(next);
         });
         building.current.delete(k);

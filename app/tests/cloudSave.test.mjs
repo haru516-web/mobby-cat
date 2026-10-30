@@ -26,3 +26,11 @@ test('cloud rejects malformed JSON and repaired saves', () => {
   assert.equal(fromRecord(JSON.stringify({ owned: {}, tickets: -1 })), null);
   assert.equal(fromRecord(JSON.stringify({ owned: null })), null);
 });
+
+test('fairness history stays on device while candidate records remain restorable', () => {
+ const saved = JSON.parse(toRecord({ ...state, encounterMisses: { cat: 3 }, days: { '2026-10-30': { ...rec, eligible: [cat] } } }, new Date(2026, 9, 30, 20)));
+ assert.equal('encounterMisses' in saved, false);
+ assert.equal('eligible' in saved.days['2026-10-30'], false);
+ assert.deepEqual(saved.days['2026-10-30'].candidates, [cat]);
+ assert.ok(fromRecord(JSON.stringify(saved)));
+});

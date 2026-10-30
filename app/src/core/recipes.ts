@@ -1,5 +1,5 @@
 // 猫ごとの出会いの条件（レシピ）。
-// - 実在の猫（猫種・毛色）: 簡単な条件を2〜3個。重い猫種は、そのうち1つがやや難しい。
+// - 実在の猫（猫種・毛色）: 簡単な条件を3〜4個。重い猫種は、そのうち1つがやや難しい。
 // - それ以外のモビー: 簡単な条件4個＋その猫らしい難しい条件1個（個性猫は conditions.ts の既存条件が「難しい1個」）。
 // 条件は猫ごとに ID から決まる（端末や日によって変わらない）。レア度は条件の数と難しさから決める。
 import { CATS, type CatDef, type Rarity } from '../data/catalog';
@@ -47,6 +47,7 @@ export const ATOMS: Atom[] = [
   { id: 'noon', group: 'time', hard: false, p: 0.5, label: '昼（10〜16時）に起動', test: openIn(10, 16) },
   { id: 'evening', group: 'time', hard: false, p: 0.4, label: '夕方（16〜19時）に起動', test: openIn(16, 19) },
   { id: 'battery-half', group: 'battery', hard: false, p: 0.6, label: 'バッテリーが50%以下になった', test: (e) => e.battery.some((v) => v <= 50) },
+  { id: 'battery-ready', group: 'battery', hard: false, p: 0.5, label: 'バッテリーが50%以上', test: (e) => e.battery.some((v) => v >= 50) },
   { id: 'battery-high', group: 'battery', hard: false, p: 0.6, label: 'バッテリーが80%以上', test: (e) => e.battery.some((v) => v >= 80) },
   { id: 'charging', group: 'battery', hard: false, p: 0.5, label: '充電した', test: (e) => e.charging },
   { id: 'streak3', group: 'streak', hard: false, p: 0.5, label: '3日連続で起動', test: (e) => e.streak >= 3 },
@@ -178,7 +179,7 @@ const pickAtoms = (id: string, easy: number, hard: number, skip: Group[], minP =
       out.push(a);
     }
   };
-  draw(ATOMS.filter((a) => !a.hard && a.p >= minP), easy);
+  draw(ATOMS.filter((a) => !a.hard && a.p >= minP && a.id !== 'battery-ready'), easy);
   // 難しい条件は、系統（歩数・連続起動・所持数・電池・月）をまず選んでから条件を選ぶ（月の条件が多くても月に偏らないように）
   for (let n = 0; n < hard; n++) {
     const groups = [...new Set(ATOMS.filter((a) => a.hard && !taken.has(a.group)).map((a) => a.group))];
@@ -219,11 +220,18 @@ export function recipeOf(c: CatDef): Recipe | null {
   if (c.kind === 'world' || c.kind === 'travel' || NO_RECIPE.has(c.id)) {
     rec = null;
   } else if (isRealCat(c)) {
-    // 実在の猫: 簡単2〜3個。重い猫種（元のレア度3以上）は簡単2＋難しい1
+    // 実在の猫: 簡単3〜4個。重い猫種は簡単3＋難しい1
     const heavy = c.rarity >= 3;
-    const easy = heavy ? 2 : 2 + (hash(c.id) % 2);
+    const easy = heavy ? 3 : 3 + (hash(c.id) % 3 === 0 ? 1 : 0);
     // 簡単な条件は、ふつうに生活していて半分近い日にそろうものだけ（祝日・所持数など、人によって差が大きいものは入れない）
     let atoms = pickAtoms(c.id, easy, heavy ? 1 : 0, ['owned'], 0.25);
+    // 歩数が少ない日にも、季節・曜日・電池で会える猫を用意する。
+    const everyday = CATS.filter(isRealCat).slice(0, 24).findIndex((cat) => cat.id === c.id);
+    if (everyday >= 0) atoms = [
+      ATOM_BY_ID[['spring', 'summer', 'autumn', 'winter'][Math.floor(everyday / 6)]],
+      ATOM_BY_ID[['weekday', 'weekend', 'holiday'][Math.floor(everyday / 2) % 3]],
+      ATOM_BY_ID[everyday % 2 ? 'battery-ready' : 'battery-half'],
+    ];
     let rarity = rarityFromChance(atoms);
     if (rarity >= 2) {
       atoms = raiseSteps(atoms);

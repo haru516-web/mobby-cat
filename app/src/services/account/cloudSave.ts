@@ -16,7 +16,7 @@ import { encounterDayKey, prevDayKey } from '../../core/dates';
 const KEEP_DAYS = 3; // 出会いの記録（どの猫が候補に出たか）は、直近の3日分だけ預ける（きのうの分を戻せれば足りる。歩数などを推し量れる材料を、サーバーに残さないため）
 
 export function toRecord(state: GameState, now = new Date(Date.now() + (state.clockSkewMs ?? 0))): string {
-  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, pendingSpend: _pending, ...rest } = state;
+  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, pendingSpend: _pending, encounterMisses: _misses, ...rest } = state;
   // 出会えた条件の文（「1日1万歩」「誕生日」など、歩数・誕生日から分かるもの）と、お知らせの本文は預けない。
   // 誕生日の猫を迎えた日も、月日から誕生日が分かるので、年だけ残す（戻したあと、迎えた日は年始として出る）
   const owned = Object.fromEntries(
@@ -30,7 +30,7 @@ export function toRecord(state: GameState, now = new Date(Date.now() + (state.cl
     let earliest = latest;
     for (let i = 1; i < days; i++) earliest = prevDayKey(earliest);
     const keys = Object.keys(rest.days).filter((key) => key >= earliest && key <= latest).sort();
-    return JSON.stringify({ ...rest, owned, days: Object.fromEntries(keys.map((key) => [key, { ...rest.days[key], reasons: {} }])), inbox: [], inboxRead: 0 });
+    return JSON.stringify({ ...rest, owned, days: Object.fromEntries(keys.map((key) => [key, { ...Object.fromEntries(Object.entries(rest.days[key]).filter(([field]) => field !== 'eligible')), reasons: {} }])), inbox: [], inboxRead: 0 });
   };
   const full = trim(KEEP_DAYS);
   return full;

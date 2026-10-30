@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { cardReason, conditionTotal } from '../../core/conditions';
-import { REVEAL_HOUR, prevDayKey } from '../../core/encounter';
+import { REVEAL_HOUR, prevDayKey, encounterComposition, hasRarePresence } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
 import { WelcomeFx } from './WelcomeFx';
@@ -207,6 +207,14 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       </Tap>
     )}
     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
+
+      <Card skin="white" style={{ marginHorizontal: 16, marginTop: 8, gap: 4 }}>
+        <T w="b" size={12}>候補 {encounterComposition(visible)}</T>
+        <T w="b" size={12}>非表示 {encounterComposition(unopened)}</T>
+        {hasRarePresence(rec.eligible ?? rec.candidates, visible) && (
+          <T w="b" size={12} color={C.accent}>珍しい猫の気配がする……</T>
+        )}
+      </Card>
 
       {/* いまできることを1行で。ひらける数が残っていれば、それも出す */}
       <TourAnchor id="deai-hero" style={s.hero}>
