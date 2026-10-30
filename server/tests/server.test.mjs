@@ -465,3 +465,34 @@ test("calls are limited per source address before any work, and per account for 
   for (let i = 0; i < 20; i += 1) await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "under16" } });
   assert.equal((await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "under16" } })).status, 429);
 });
+
+test("an anonymous account is taken back on a new device with Apple's signed proof of its purchase, and only then", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const env = withRoot(root);
+  const alice = await context.register();
+  const bob = await context.register();
+  assert.equal((await purchase(context, root, alice, PASS, "tx-pass-1")).status, 200);
+  const proof = (token, id, extra = {}) => signedTransaction(root, { productId: PASS, transactionId: id, originalTransactionId: "tx-pass-1", appAccountToken: token, ...extra });
+  const recover = async (jws, ip = "203.0.113.9") => context.call("POST", "/auth/recover-purchase", { body: { signedTransactionInfo: jws }, envOverride: env, ip });
+
+  // the renewal (a new transaction id of the same subscription) proves the purchase; the new key works and the old one does not
+  const old = context.credentials.get(alice);
+  const reply = await recover(await proof(alice, "tx-pass-2"));
+  assert.equal(reply.status, 200);
+  assert.equal(reply.data.userId, alice);
+  assert.notEqual(reply.data.secret, old.split(".").slice(1).join("."));
+  context.credentials.set(alice, `${alice}.${reply.data.secret}`);
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).status, 200);
+  assert.equal((await context.call("GET", "/wallet", { user: alice, envOverride: env })).status, 200);
+
+  // a proof for a purchase the account never made, someone else's token, a tampered signature, and a refunded purchase get nothing
+  assert.equal((await recover(await proof(bob, "tx-pass-3"))).status, 404);
+  assert.equal((await recover(await proof(alice, "tx-x", { originalTransactionId: "never-seen" }))).status, 404);
+  assert.equal((await recover((await proof(alice, "tx-pass-4")).slice(0, -4) + "AAAA")).status, 400);
+  assert.equal((await recover(await proof(alice, "tx-pass-5", { revocationDate: Date.now() }))).status, 403);
+
+  // an account linked to Apple is taken over by signing in with Apple, not by a purchase
+  context.database.prepare("INSERT INTO apple_links (user_id, apple_sub, linked_at) VALUES (?, ?, ?)").run(alice, "apple-sub-1", new Date().toISOString());
+  assert.equal((await recover(await proof(alice, "tx-pass-6"))).status, 409);
+});

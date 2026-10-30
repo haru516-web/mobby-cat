@@ -16,13 +16,21 @@ const KEEP_DAYS = 180; // 出会いの記録は、新しい方から180日分だ
 const MAX_CHARS = 380_000;
 
 export function toRecord(state: GameState): string {
-  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, ...rest } = state;
-  const trim = (days: number, inbox: number) => {
+  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, pendingSpend: _pending, ...rest } = state;
+  // 出会えた条件の文（「1日1万歩」「誕生日」など、歩数・誕生日から分かるもの）と、お知らせの本文は預けない。
+  // 誕生日の猫を迎えた日も、月日から誕生日が分かるので、年だけ残す（戻したあと、迎えた日は年始として出る）
+  const owned = Object.fromEntries(
+    Object.entries(rest.owned).map(([id, o]) => {
+      const birthday = o.firstReason === '誕生日' || Object.values(rest.days).some((d) => d.reasons?.[id] === '誕生日');
+      return [id, { ...o, firstReason: '', firstDay: birthday ? `${o.firstDay.slice(0, 4)}-01-01` : o.firstDay }];
+    }),
+  );
+  const trim = (days: number) => {
     const keys = Object.keys(rest.days).sort().slice(-days);
-    return JSON.stringify({ ...rest, days: Object.fromEntries(keys.map((key) => [key, rest.days[key]])), inbox: rest.inbox.slice(0, inbox) });
+    return JSON.stringify({ ...rest, owned, days: Object.fromEntries(keys.map((key) => [key, { ...rest.days[key], reasons: {} }])), inbox: [], inboxRead: 0 });
   };
-  const full = trim(KEEP_DAYS, 50);
-  return full.length <= MAX_CHARS ? full : trim(60, 20);
+  const full = trim(KEEP_DAYS);
+  return full.length <= MAX_CHARS ? full : trim(60);
 }
 
 /** 預けた記録を読む。読めない・形の合わない項目があるときは null（壊れた記録で、いまの記録を上書きしないため。B-02）。 */

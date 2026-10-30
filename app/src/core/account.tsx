@@ -239,9 +239,9 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     gRef.current.registerSpender(async (currency, amount, requestId) => {
       const result = await spendPaid(server, currency, amount, requestId);
-      if (result.kind !== 'ok') return false;
+      if (result.kind !== 'ok') return result.kind === 'short' ? 'short' : 'offline';
       if (result.wallet) gRef.current.setPaid(result.wallet);
-      return true;
+      return 'ok';
     });
     return () => gRef.current.registerSpender(null);
   }, []);

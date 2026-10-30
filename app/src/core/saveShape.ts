@@ -84,6 +84,7 @@ const FIELDS: { [K in keyof GameState]?: Checker } = {
   inbox: (v) => (Array.isArray(v) && v.every((n) => isObj(n) && isStr(n.day) && isStr(n.text)) ? (v as Notice[]).map((n) => ({ day: n.day, text: n.text })) : undefined),
   inboxRead: (v) => (isCount(v) ? v : undefined),
   pass: (v) => (isObj(v) && isBool(v.active) && isStr(v.lastGrantMonth) ? { active: v.active, lastGrantMonth: v.lastGrantMonth, ...(isNum(v.until) ? { until: v.until } : {}) } : undefined),
+  pendingSpend: (v) => (isObj(v) && (v.kind === 'extra' || v.kind === 'matatabi') && isStr(v.day) && strList(v.ids) && isStr(v.id) && (v.currency === 'tickets' || v.currency === 'matatabi') && isCount(v.fromPaid) && isCount(v.fromFree) ? { kind: v.kind, day: v.day, ids: v.ids, id: v.id, currency: v.currency, fromPaid: v.fromPaid, fromFree: v.fromFree } : undefined),
   spendSalt: (v) => (isStr(v) && v.length > 0 ? v : undefined),
   paid: (v) => (isObj(v) && isCount(v.tickets) && isCount(v.matatabi) ? { tickets: v.tickets, matatabi: v.matatabi } : undefined),
   clockSkewMs: (v) => (isNum(v) ? v : undefined),

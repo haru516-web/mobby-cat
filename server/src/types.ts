@@ -111,6 +111,8 @@ export interface Store {
   putCloudSave(userId: string, data: string, baseVersion: number): Promise<number | null>;
   linkApple(userId: string, appleSub: string): Promise<AppleLinkResult>;
   userByApple(appleSub: string): Promise<string | null>;
+  /** The account a recorded purchase belongs to (by its transaction id, or the original one of a subscription), or null. */
+  userOfPurchase(transactionId: string, originalTransactionId?: string): Promise<string | null>;
   appleLinked(userId: string): Promise<boolean>;
   /** The Apple ID (its stable `sub`) this account is linked to, or null. */
   appleSubOf(userId: string): Promise<string | null>;

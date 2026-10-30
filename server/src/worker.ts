@@ -199,6 +199,30 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     return json({ userId, secret });
   }
 
+  // A new device with no key (an anonymous account's key stays on its device) takes the account back with proof that the Apple ID
+  // bought there: a purchase signed by Apple, recorded for that account. An account linked to Apple is taken over by signing in with Apple instead.
+  if (method === "POST" && path === "/auth/recover-purchase") {
+    const perMinute = await store.hitRateLimit(`recover:minute:${ip}`, Math.floor(now.getTime() / 60_000), 60_000);
+    const perDay = await store.hitRateLimit(`recover:day:${ip}`, Math.floor(now.getTime() / 86_400_000), 86_400_000);
+    if (perMinute > 10 || perDay > 60) throw new HttpError(429, "rate_limited");
+    const input = await body(request, BODY_BYTES.signed);
+    const signedTransaction = requireString(input.signedTransactionInfo, "missing_signed_transaction", 200_000);
+    let transaction: VerifiedTransaction;
+    try { transaction = await verifySignedTransaction(signedTransaction, env); }
+    catch { throw new HttpError(400, "invalid_storekit_transaction"); }
+    if (!configuredProducts(env)[transaction.productId]) throw new HttpError(400, "unknown_product");
+    if (!environmentAccepted(env, transaction)) throw new HttpError(403, "environment_not_accepted");
+    if (!transaction.appAccountToken) throw new HttpError(400, "missing_app_account_token");
+    if (transaction.revocationDate || (await store.isRevoked(transaction.transactionId))) throw new HttpError(403, "revoked");
+    const userId = transaction.appAccountToken;
+    if ((await store.userOfPurchase(transaction.transactionId, transaction.originalTransactionId)) !== userId) throw new HttpError(404, "no_matching_purchase");
+    if (await store.appleLinked(userId)) throw new HttpError(409, "apple_linked");
+    // The old device's key stops working, as when signing in with Apple on a new device.
+    const secret = randomToken(32);
+    await store.rotateSecret(userId, await hashSecret(secret));
+    return json({ userId, secret });
+  }
+
   if (method === "POST" && path === "/apple/notifications") {
     const input = await body(request, BODY_BYTES.signed);
     const signedPayload = requireString(input.signedPayload, "missing_signed_payload", 200_000);

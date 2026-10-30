@@ -64,6 +64,7 @@ export type GameState = {
   inbox: Notice[]; // お知らせ（新しい順）
   inboxRead: number; // 既読にした時点のお知らせ件数
   pass: { active: boolean; lastGrantMonth: string; until?: number }; // またたびパス（active と until（いまの期間の終わり、ms）はサーバーの答えの写し。毎月のお迎え券もサーバーが届ける）
+  pendingSpend?: PendingSpend; // 買った分を引く途中の操作（終わると消える。クラウドには預けない）
   spendSalt: string; // 買った分を使う操作の番号に混ぜる、この記録だけの値（記録を消すと変わる。クラウドから戻すと同じ）
   paid: { tickets: number; matatabi: number }; // 買った分の残高の写し（正しい値はサーバー。表示と、使う前の確認に使う。クラウドには預けない）
   clockSkewMs: number; // 端末の時計とサーバーの時計の差（端末の時刻を進めて先の日の猫に会えないよう、サーバーの時刻で日を決める。クラウドには預けない）
@@ -74,7 +75,11 @@ export const ticketsOf = (s: Pick<GameState, 'tickets' | 'paid'>) => s.tickets +
 export const matatabiOf = (s: Pick<GameState, 'matatabi' | 'paid'>) => s.matatabi + (s.paid?.matatabi ?? 0);
 
 /** 買った分をサーバーの残高から使う（account.tsx が渡す）。使えたら ok、残高が足りない・つながらないときは false。 */
-export type Spender = (currency: 'tickets' | 'matatabi', amount: number, requestId: string) => Promise<boolean>;
+// 買った分を使った結果。short＝残高が足りない（何も引かれていない）、offline＝分からない（引かれたかもしれない。同じ番号で、もう一度確かめられる）
+export type SpendResult = 'ok' | 'short' | 'offline';
+export type Spender = (currency: 'tickets' | 'matatabi', amount: number, requestId: string) => Promise<SpendResult>;
+// 買った分を引く前に、端末へ書いておく操作。引けたのに、猫の追加を保存する前に落ちても、次の起動で同じ番号で確かめ、結果を確定する（A-04）
+export type PendingSpend = { kind: 'extra' | 'matatabi'; day: string; ids: string[]; id: string; currency: 'tickets' | 'matatabi'; fromPaid: number; fromFree: number };
 const newSalt = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`;
 // 買った分を使う操作の番号。同じ操作（同じ日・同じ猫、同じ日の何個目のまたたび）なら同じ番号になる。
 // 通信が切れて結果が分からないまま、もう一度同じ操作をすると、サーバーは二重に引かず「使えた」と答える（A-04）
@@ -252,6 +257,23 @@ function addCat(s: GameState, id: string, day: string, reason: string): GameStat
   return { ...s, owned };
 }
 
+// 買った分を引けたあとの、端末の中の変更（お迎え券で追加で迎える／またたびでひらく）。すでに反映済みの分は、二重にしない
+function applyExtra(s: GameState, p: PendingSpend): GameState {
+  const r = s.days[p.day];
+  if (!r) return { ...s, pendingSpend: undefined };
+  const ids = p.ids.filter((id) => !r.extraPicks.includes(id));
+  let next: GameState = { ...s, tickets: Math.max(0, s.tickets - p.fromFree), pendingSpend: undefined };
+  for (const id of ids) next = addCat(next, id, p.day, r.reasons[id] ?? '');
+  return { ...next, days: { ...next.days, [p.day]: { ...r, extraPicks: [...r.extraPicks, ...ids] } } };
+}
+function applyMatatabi(s: GameState, p: PendingSpend): GameState {
+  const r = s.days[p.day];
+  if (!r) return { ...s, pendingSpend: undefined };
+  const opened = openedOf(r);
+  const open = opened.includes(p.ids[0]) ? opened : [...opened, p.ids[0]];
+  return { ...s, matatabi: Math.max(0, s.matatabi - p.fromFree), pendingSpend: undefined, days: { ...s.days, [p.day]: { ...r, matatabiUsed: r.matatabiUsed + 1, opened: open } } };
+}
+
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState>(() => initial(new Date()));
   const [ready, setReady] = useState(false);
@@ -326,9 +348,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   );
   const todayKey = encounterDayKey(now);
   const yKey = prevDayKey(todayKey);
+  // 入れた日の最初の出会い（その日の20時より前に入れた場合）は、20時までは作らない。1日の様子（歩数など）が出そろってから届ける
+  const firstLocked = (s: GameState, k: string) => k === s.installDay && !s.days[k] && !!s.loginDays?.[0] && s.loginDays[0] !== s.installDay;
+  const yHas = !!state.days[yKey];
   const availableDays = useMemo(
-    () => (yKey >= state.installDay ? [todayKey, yKey] : [todayKey]),
-    [todayKey, yKey, state.installDay],
+    () => (yKey > state.installDay || (yKey === state.installDay && yHas) ? [todayKey, yKey] : [todayKey]),
+    [todayKey, yKey, state.installDay, yHas],
   );
 
   // 起動の記録（連続日数・空いた日数）と、起動時刻・電池の観測
@@ -388,7 +413,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!ready || !state.starterChosen) return;
     for (const k of availableDays) {
-      if (stateRef.current.days[k] || building.current.has(k)) continue;
+      if (stateRef.current.days[k] || building.current.has(k) || firstLocked(stateRef.current, k)) continue;
       building.current.add(k);
       (async () => {
         const [steps, battery, wx] = await Promise.all([readSteps(k, now), readBattery(), readWeather(k, todayKey)]);
@@ -475,8 +500,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   // 買った分は、サーバーの残高から引く。引けたあとで、端末の中の記録を変える
   const spender = useRef<Spender | null>(null);
+  const [spenderTick, setSpenderTick] = useState(0); // 買った分を引く窓口がつながったら、途中の操作を確かめ直す
   const registerSpender = useCallback((fn: Spender | null) => {
     spender.current = fn;
+    if (fn) setSpenderTick((x) => x + 1);
   }, []);
   const spending = useRef(false); // 通信を待っているあいだは、次の操作を受け付けない（二重に使わないため）
 
@@ -484,17 +511,34 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * お迎え券・またたびを n 個使う。まず端末内の無料分から、足りない分を買った分（サーバー）から。
    * 使えたら、無料分の引き算を済ませた状態を返す。使えなければ null（何も引かない）。
    */
-  const spendCurrency = useCallback(async (currency: 'tickets' | 'matatabi', n: number, what: string): Promise<number | null> => {
-    const s = stateRef.current;
-    const free = currency === 'tickets' ? s.tickets : s.matatabi;
-    const fromFree = Math.min(free, n);
-    const fromPaid = n - fromFree;
-    if (fromPaid > 0) {
-      if (fromPaid > (s.paid?.[currency] ?? 0) || !spender.current) return null;
-      if (!(await spender.current(currency, fromPaid, spendId(s.spendSalt, what)))) return null;
-    }
-    return fromFree;
-  }, []);
+  const spendCurrency = useCallback(
+    async (currency: 'tickets' | 'matatabi', n: number, what: string, intent?: Pick<PendingSpend, 'kind' | 'day' | 'ids'>): Promise<number | null> => {
+      const s = stateRef.current;
+      const free = currency === 'tickets' ? s.tickets : s.matatabi;
+      const fromFree = Math.min(free, n);
+      const fromPaid = n - fromFree;
+      if (fromPaid > 0) {
+        if (fromPaid > (s.paid?.[currency] ?? 0) || !spender.current) return null;
+        const id = spendId(s.spendSalt, what);
+        // 引く前に、操作を端末へ書いておく。引けたあとで落ちても、次の起動で同じ番号で確かめて、猫の追加を確定できる
+        if (intent) {
+          stateRef.current = { ...s, pendingSpend: { ...intent, id, currency, fromPaid, fromFree } };
+          setState(stateRef.current);
+          await AsyncStorage.setItem(KEY, JSON.stringify(stateRef.current)).catch(() => {});
+        }
+        const result = await spender.current(currency, fromPaid, id);
+        if (result === 'ok') return fromFree;
+        // 足りない＝何も引かれていない。つながらない＝引かれたか分からないので、書いた操作を残して、あとで確かめる
+        if (result === 'short') {
+          stateRef.current = { ...stateRef.current, pendingSpend: undefined };
+          setState(stateRef.current);
+        }
+        return null;
+      }
+      return fromFree;
+    },
+    [],
+  );
 
   // お迎え券で追加。複数指定時は全員分の券があるときだけまとめて迎える
   const pickExtra = useCallback(async (day: string, ids: string | string[]) => {
@@ -509,15 +553,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (spending.current || !check(stateRef.current)) return false;
     spending.current = true;
     try {
-      const fromFree = await spendCurrency('tickets', list.length, `extra:${day}:${list.join(',')}`);
+      const fromFree = await spendCurrency('tickets', list.length, `extra:${day}:${list.join(',')}`, { kind: 'extra', day, ids: list });
       if (fromFree === null) return false;
-      // 通信を待っているあいだに記録が変わっていないか、もう一度見る（買った分はすでに引かれているので、猫は必ず迎える）
-      const s = stateRef.current;
-      const r = s.days[day];
-      if (!r) return false;
-      let next: GameState = { ...s, tickets: s.tickets - fromFree };
-      for (const id of list) next = addCat(next, id, day, r.reasons[id] ?? '');
-      next = { ...next, days: { ...next.days, [day]: { ...r, extraPicks: [...r.extraPicks, ...list] } } };
+      // 買った分はすでに引かれているので、猫は必ず迎える（通信を待つあいだに記録が変わっていても、残りの分だけ反映する）
+      if (!stateRef.current.days[day]) return false;
+      const next = applyExtra(stateRef.current, { kind: 'extra', day, ids: list, id: '', currency: 'tickets', fromPaid: list.length - fromFree, fromFree });
       stateRef.current = next;
       setState(next);
       return true;
@@ -545,14 +585,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (spending.current || !ok(stateRef.current)) return false;
     spending.current = true;
     try {
-      const fromFree = await spendCurrency('matatabi', 1, `matatabi:${day}:${(stateRef.current.days[day]?.matatabiUsed ?? 0) + 1}`);
+      const fromFree = await spendCurrency('matatabi', 1, `matatabi:${day}:${(stateRef.current.days[day]?.matatabiUsed ?? 0) + 1}`, { kind: 'matatabi', day, ids: [openId] });
       if (fromFree === null) return false;
-      const s = stateRef.current;
-      const r = s.days[day];
-      if (!r) return false;
-      // 買った分はすでに引かれているので、ひらく子が変わっていても、ひらける数は必ず増やす
-      const opened = openedOf(r).includes(openId) ? openedOf(r) : [...openedOf(r), openId];
-      const next: GameState = { ...s, matatabi: s.matatabi - fromFree, days: { ...s.days, [day]: { ...r, matatabiUsed: r.matatabiUsed + 1, opened } } };
+      // 買った分はすでに引かれているので、ひらける数は必ず増やす
+      if (!stateRef.current.days[day]) return false;
+      const next = applyMatatabi(stateRef.current, { kind: 'matatabi', day, ids: [openId], id: '', currency: 'matatabi', fromPaid: 1 - fromFree, fromFree });
       stateRef.current = next;
       setState(next);
       return true;
@@ -560,6 +597,30 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       spending.current = false;
     }
   }, [spendCurrency]);
+
+  // 引く途中で落ちた操作（pendingSpend）を、起動したとき・つながったときに、同じ番号で確かめて確定する。
+  // 引けていれば、猫の追加（またはひらける数）を反映する。残高が足りなければ（引かれていない）、捨てる。つながらなければ、あとでもう一度
+  useEffect(() => {
+    const p = state.pendingSpend;
+    if (!ready || !p || !spender.current || spending.current) return;
+    spending.current = true;
+    let alive = true;
+    void spender.current(p.currency, p.fromPaid, p.id)
+      .then((result) => {
+        if (!alive || result === 'offline') return;
+        const s = stateRef.current;
+        if (s.pendingSpend?.id !== p.id) return;
+        const next = result === 'ok' ? (p.kind === 'extra' ? applyExtra(s, p) : applyMatatabi(s, p)) : { ...s, pendingSpend: undefined };
+        stateRef.current = next;
+        setState(next);
+      })
+      .finally(() => {
+        spending.current = false;
+      });
+    return () => {
+      alive = false;
+    };
+  }, [ready, state.pendingSpend, spenderTick, tick]);
 
   // 開発用：無料で足す。製品の購入は、サーバーが検証してから残高に足す（account.tsx）
   const grant = useCallback((what: 'ticket' | 'matatabi', n: number) => {

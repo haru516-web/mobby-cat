@@ -77,6 +77,12 @@ export class D1Store implements Store {
     return row?.user_id ?? null;
   }
 
+  async userOfPurchase(transactionId: string, originalTransactionId?: string): Promise<string | null> {
+    const row = await this.db.prepare("SELECT user_id FROM purchases WHERE apple_transaction_id = ? OR (? IS NOT NULL AND original_transaction_id = ?) ORDER BY granted_at DESC LIMIT 1")
+      .bind(transactionId, originalTransactionId ?? null, originalTransactionId ?? null).first<{ user_id: string }>();
+    return row?.user_id ?? null;
+  }
+
   async appleLinked(userId: string): Promise<boolean> {
     return !!(await this.db.prepare("SELECT 1 AS found FROM apple_links WHERE user_id = ?").bind(userId).first());
   }

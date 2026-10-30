@@ -117,8 +117,8 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       const result = await acc.restorePurchases();
       if (result.kind === 'offline') notice('購入の復元', 'つながりませんでした。電波のよいところで、もう一度お試しください。');
       else if (result.kind === 'store_error') notice('購入の復元', 'App Storeにつながりませんでした。しばらくしてから、もう一度お試しください。');
-      else if (result.credited > 0) notice('購入の復元', `${result.credited}件の購入を確認しました。`);
-      else if (result.otherAccount > 0) notice('購入の復元', 'この購入は、別の記録と結びついています。設定の「アカウント」から、その記録を引き継いでください。');
+      else if (result.credited > 0) notice('購入の復元', result.recovered ? `別の端末で購入した記録を、この端末に引き継ぎました（${result.credited}件の購入を確認）。前の端末では、使えなくなります。` : `${result.credited}件の購入を確認しました。`);
+      else if (result.otherAccount > 0) notice('購入の復元', 'この購入は、別の記録と結びついています。その記録でAppleにサインインしていた場合は、設定の「アカウント」から引き継いでください。');
       else if (result.failed > 0) notice('購入の復元', '購入を確認できませんでした。しばらくしてから、もう一度お試しください。続く場合は、サポートまでご連絡ください。');
       else notice('購入の復元', '復元できる購入は見つかりませんでした。');
     } finally {
@@ -196,7 +196,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
           <Card skin="white" style={{ marginTop: 8, gap: 6 }}>
             <T w="x" size={13}>またたびで増える候補について</T>
             <T w="m" size={11} color={C.sub}>
-              今日の候補は、その日に出会いの条件がすべてそろった猫だけです。またたびやお迎え券で、条件を飛ばして猫を迎えることはできません。またたびは、条件がそろった猫が多い日に、ひらける数を増やします（最大6匹）。
+              今日の候補は、その日の20時に、出会いの条件がすべてそろった猫です。条件がそろった猫が7匹以上いる日は、そろった猫の中から、同じ確率で6匹が選ばれます。候補と、ひらく順番は、届いた時点で決まっていて、購入では変わりません。またたびは、ひらける数を1匹ずつ増やします（最大6匹）。何が出るかは、ひらくまで分かりません。お迎え券は、ひらいた猫の中から、迎える猫を選べる券です。条件を飛ばして猫を迎えることはできません。
             </T>
             <T w="b" size={11} color={C.accent} onPress={withSfx(() => setOdds(false))}>閉じる</T>
           </Card>
