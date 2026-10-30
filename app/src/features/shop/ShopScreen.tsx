@@ -80,7 +80,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       if (acc.linked === true) return notice('購入しました', thanks);
       confirm(
         '購入しました',
-        `${thanks}機種変更をしても、購入したものと記録を引き継げるよう、Appleでサインインしておくと安心です（任意です）。名前やメールアドレスは受け取りません。サインインしない場合は、設定の「アカウント」で引継ぎコードを発行して、控えておいてください。コードがないと、機種変更のあとに、購入したまたたびやお迎え券を戻せないことがあります。`,
+        `${thanks}機種変更やアプリの削除に備えて、Appleでサインインしておくと安心です（任意です）。迎えた猫と遊んだ記録も、購入したものも、新しいiPhoneで戻せます。名前やメールアドレスは受け取りません。サインインしない場合、迎えた猫と記録は端末の中だけにあるので、機種変更やアプリの削除で消えます。購入したお迎え券・またたびは、設定の「アカウント」で発行する引継ぎコードで戻せますが、コードでは猫は戻りません。`,
         'Appleでサインイン',
         async () => {
           const result = await acc.linkApple();
@@ -197,7 +197,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         </View>
         <Card skin="white" style={{ gap: 6, marginTop: 8 }}>
           <T w="b" size={12}>別の端末の購入を引き継ぐ場合</T>
-          <T w="m" size={11} color={C.sub}>またたびパスは、コードなしで「購入を復元」を押すと戻せます。お迎え券・またたびは、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。Apple連携済みの記録は、設定からAppleでサインインして引き継ぎます。</T>
+          <T w="m" size={11} color={C.sub}>またたびパスは、コードなしで「購入を復元」を押すと戻せます。お迎え券・またたびは、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。コードで戻るのは購入したものだけで、迎えた猫と遊んだ記録は戻りません。猫も引き継ぐには、設定からAppleでサインインします。</T>
           <TextInput value={transferCode} onChangeText={setTransferCode} accessibilityLabel="引継ぎコード" placeholder="引継ぎコード" autoCapitalize="none" autoCorrect={false} autoComplete="off" maxLength={160} style={{ color: C.ink, borderWidth: 1, borderColor: C.sub, borderRadius: 8, padding: 12, minHeight: 44 }} />
         </Card>
         {/* 自動更新のサブスクがあるので、購入の画面に利用規約とプライバシーポリシーを置く */}

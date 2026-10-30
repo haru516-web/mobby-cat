@@ -655,7 +655,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setState((s) => {
         if (s.starterChosen) return s;
         const next = addCat({ ...s, starterChosen: true }, id, encounterDayKey(clockNow(s)), '最初の相棒');
-        return notify(next, next.owned[id].firstDay, 'ようこそ！毎日20時に、新しいにゃこモビーとの出会いが届きます');
+        const day = next.owned[id].firstDay;
+        // 記録は端末の中だけにある。機種変更やアプリの削除で消えないよう、早めに伝える（購入しない人にも届く）
+        const saved = notify(next, day, '迎えた猫と記録は、いまこの端末の中だけにあります。機種変更やアプリの削除で消えないよう、設定の「アカウント」でAppleにサインインしておくと安心です（任意）');
+        return notify(saved, day, 'ようこそ！毎日20時に、新しいにゃこモビーとの出会いが届きます');
       }),
     [],
   );

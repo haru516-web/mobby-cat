@@ -364,14 +364,14 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               ) : (
                 <Card skin="white" style={{ gap: 6 }}>
                   <T w="x" size={13}>Appleでサインインしていません</T>
-                  <T w="m" size={11} color={C.sub}>サインインすると、記録をクラウドに預けて、機種変更でも引き継げます。サインインは任意で、しなくても購入できます。名前やメールアドレスは受け取りません。</T>
+                  <T w="m" size={11} color={C.sub}>迎えた猫と遊んだ記録は、いまこの端末の中だけにあります。機種変更やアプリの削除をすると、消えてしまいます。サインインすると、記録をクラウドに預けて、新しいiPhoneでも引き継げます。サインインは任意で、しなくても購入できます。名前やメールアドレスは受け取りません。</T>
                   <ImgButton label="Appleでサインイン" height={44} disabled={busy} onPress={doLink} />
                 </Card>
               )}
 
               {!acc.signedOut && acc.linked === false && <Card skin="white" style={{ gap: 6 }}>
                 <T w="b" size={13}>購入の引継ぎコード</T>
-                <T w="m" size={11} color={C.sub}>Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。お迎え券・またたびを引き継げます。有効期限は30日です。再発行すると前のコードは使えません。遊んだ記録は含まれません。コードと端末を両方失うと、お迎え券・またたびは引き継げません（加入中のまたたびパスは、「購入を復元」で戻せます）。</T>
+                <T w="m" size={11} color={C.sub}>Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。お迎え券・またたびを引き継げます。有効期限は30日です。再発行すると前のコードは使えません。迎えた猫と遊んだ記録は戻りません。猫も残したい場合は、上の「Appleでサインイン」を使ってください。コードと端末を両方失うと、お迎え券・またたびは引き継げません（加入中のまたたびパスは、「購入を復元」で戻せます）。</T>
                 <ImgButton skin="ghost-outline" label="引継ぎコードを発行" height={44} disabled={busy} onPress={() => confirm('引継ぎコードを発行しますか？', '新しいコードを発行すると、前のコードは使えなくなります。コードは他の人に教えず、安全な場所に保管してください。', '発行する', () => { void run(async () => { const result = await acc.createTransferCode(); setTransfer(result); if (!result) notice('発行できませんでした', '購入したアカウントでつながっているかを確認し、もう一度お試しください。'); }); })} />
                 {transfer && <>
                   <T w="m" size={11} selectable>{transfer.code}</T>
@@ -417,7 +417,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
             <Card skin="white" style={{ marginTop: 8, gap: 4 }}>
               <T w="x" size={13}>データについて</T>
               <T w="m" size={11} color={C.sub}>
-                記録は、この端末の中に保存されます。Appleでサインインすると、クラウドにも預けて、機種変更で引き継げます（「アカウント」から）。
+                迎えた猫と記録は、この端末の中に保存されます。Appleでサインインしていないと、アプリを削除したり機種変更をしたりしたときに、消えてしまいます。Appleでサインインすると、クラウドにも預けて、機種変更で引き継げます（「アカウント」から）。
               </T>
               <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('すべての記録を消しますか？', '迎えた猫・お迎え券・設定がすべて消えます。元に戻せません。', 'すべて消す', () => { void disableDailyNotification(); g.reset(); }, { cancelLabel: 'やめておく' }))}>
                 すべての記録を消して、はじめから
