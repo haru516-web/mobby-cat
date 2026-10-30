@@ -80,7 +80,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       if (acc.linked === true) return notice('購入しました', thanks);
       confirm(
         '購入しました',
-        `${thanks}機種変更やアプリの削除に備えて、Appleでサインインしておくと安心です（任意です）。迎えた猫と遊んだ記録も、購入したものも、新しいiPhoneで戻せます。名前やメールアドレスは受け取りません。サインインしない場合、迎えた猫と記録は端末の中だけにあるので、機種変更やアプリの削除で消えます。購入したお迎え券・またたびは、設定の「アカウント」で発行する引継ぎコードで戻せますが、コードでは猫は戻りません。`,
+        `${thanks}機種変更やアプリの削除に備えて、Appleでサインインしておくと安心です（任意です）。迎えた猫と遊んだ記録も、購入したものも、新しいiPhoneで戻せます。名前やメールアドレスは受け取りません。サインインしない場合、迎えた猫と記録は端末の中だけにあるので、機種変更やアプリの削除で消えます。購入したお迎え券・またたびは、設定の「アカウント」で発行する引継ぎコードで戻せますが、引き継げるのは課金したアイテムだけで、所持しているにゃこモビーは引き継がれません。`,
         'Appleでサインイン',
         async () => {
           const result = await acc.linkApple();
@@ -193,11 +193,11 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
 
         <View style={{ flexDirection: 'row', gap: 8 }}>
           <ImgButton skin="ghost-outline" label="出会いの仕組み" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
-          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '加入中のまたたびパスは、そのまま復元できます。お迎え券・またたびを別の端末から引き継ぐには、引継ぎコードが必要で、前の端末ではそのアカウントを使えなくなります。遊んだ記録の引き継ぎは、Appleでサインインして行います。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
+          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '加入中のまたたびパスは、そのまま復元できます。お迎え券・またたびを別の端末から引き継ぐには、引継ぎコードが必要で、前の端末ではそのアカウントを使えなくなります。所持しているにゃこモビーと遊んだ記録は、コードでは引き継がれません。引き継ぐには、Appleでサインインします。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
         </View>
         <Card skin="white" style={{ gap: 6, marginTop: 8 }}>
           <T w="b" size={12}>別の端末の購入を引き継ぐ場合</T>
-          <T w="m" size={11} color={C.sub}>またたびパスは、コードなしで「購入を復元」を押すと戻せます。お迎え券・またたびは、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。コードで戻るのは購入したものだけで、迎えた猫と遊んだ記録は戻りません。猫も引き継ぐには、設定からAppleでサインインします。</T>
+          <T w="m" size={11} color={C.sub}>またたびパスは、コードなしで「購入を復元」を押すと戻せます。お迎え券・またたびは、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。コードで引き継げるのは、課金したアイテム（お迎え券・またたび）だけです。所持しているにゃこモビーと遊んだ記録は、引き継がれません。猫も引き継ぐには、設定からAppleでサインインします。</T>
           <TextInput value={transferCode} onChangeText={setTransferCode} accessibilityLabel="引継ぎコード" placeholder="引継ぎコード" autoCapitalize="none" autoCorrect={false} autoComplete="off" maxLength={160} style={{ color: C.ink, borderWidth: 1, borderColor: C.sub, borderRadius: 8, padding: 12, minHeight: 44 }} />
         </Card>
         {/* 自動更新のサブスクがあるので、購入の画面に利用規約とプライバシーポリシーを置く */}

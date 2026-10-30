@@ -371,11 +371,12 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
 
               {!acc.signedOut && acc.linked === false && <Card skin="white" style={{ gap: 6 }}>
                 <T w="b" size={13}>購入の引継ぎコード</T>
-                <T w="m" size={11} color={C.sub}>Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。お迎え券・またたびを引き継げます。有効期限は30日です。再発行すると前のコードは使えません。迎えた猫と遊んだ記録は戻りません。猫も残したい場合は、上の「Appleでサインイン」を使ってください。コードと端末を両方失うと、お迎え券・またたびは引き継げません（加入中のまたたびパスは、「購入を復元」で戻せます）。</T>
-                <ImgButton skin="ghost-outline" label="引継ぎコードを発行" height={44} disabled={busy} onPress={() => confirm('引継ぎコードを発行しますか？', '新しいコードを発行すると、前のコードは使えなくなります。コードは他の人に教えず、安全な場所に保管してください。', '発行する', () => { void run(async () => { const result = await acc.createTransferCode(); setTransfer(result); if (!result) notice('発行できませんでした', '購入したアカウントでつながっているかを確認し、もう一度お試しください。'); }); })} />
+                <T w="m" size={11} color={C.sub}>引継ぎコードで引き継げるのは、課金したアイテム（お迎え券・またたび）だけです。所持しているにゃこモビーと遊んだ記録は、引き継がれません。猫も引き継ぎたい場合は、上の「Appleでサインイン」を使ってください。Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。有効期限は30日です。再発行すると前のコードは使えません。コードと端末を両方失うと、お迎え券・またたびは引き継げません（加入中のまたたびパスは、「購入を復元」で戻せます）。</T>
+                <ImgButton skin="ghost-outline" label="引継ぎコードを発行" height={44} disabled={busy} onPress={() => confirm('引継ぎコードを発行しますか？', 'コードで引き継げるのは、課金したアイテムだけです。所持しているにゃこモビーは、引き継がれません。新しいコードを発行すると、前のコードは使えなくなります。コードは他の人に教えず、安全な場所に保管してください。', '発行する', () => { void run(async () => { const result = await acc.createTransferCode(); setTransfer(result); if (!result) notice('発行できませんでした', '購入したアカウントでつながっているかを確認し、もう一度お試しください。'); }); })} />
                 {transfer && <>
                   <T w="m" size={11} selectable>{transfer.code}</T>
                   <T w="m" size={11}>有効期限：{new Date(transfer.expiresAt).toLocaleDateString('ja-JP')}</T>
+                  <T w="m" size={11} color={C.accent}>※ 引き継げるのは課金したアイテムだけです。所持しているにゃこモビーは、引き継がれません。</T>
                   <ImgButton skin="ghost-outline" label="コードを保存・コピー" height={40} fontSize={12} onPress={() => void Share.share({ message: transfer.code }).catch(() => undefined)} />
                 </>}
               </Card>}
