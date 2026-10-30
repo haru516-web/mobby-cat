@@ -1,0 +1,114 @@
+[
+  {
+    "path": "badge/label-normal.png",
+    "size": [
+      240,
+      80
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "sha256": "bc7630a214750c0d931b24c23c0586976f91eea60743b7bfc8773bc234978571",
+    "bytes": 21789,
+    "sourceSha256": "fcf542417f6ba980893503a9d0f0d9f55336c50a684de35109f55acbf77bbf1f"
+  },
+  {
+    "path": "badge/label-rare.png",
+    "size": [
+      240,
+      80
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "sha256": "d736ee4c17e2e70d0960d6c4502ed2974d2c837aed0c3ee7cabb1ef37f74f03d",
+    "bytes": 25489,
+    "sourceSha256": "f7e2ef6b6a6d1d00d27dda844bb91bf61d01505bf681eb5640dbfc202f8954e6"
+  },
+  {
+    "path": "badge/label-legend.png",
+    "size": [
+      240,
+      80
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "sha256": "6bd2fde955dcfdc89040790a78ad77e34a1821219ca17714875d3b43d130ab02",
+    "bytes": 28505,
+    "sourceSha256": "5e5651fa69402d736cc5c83ab31a073313c99d158b3df0e8ae11577232c8f228"
+  },
+  {
+    "path": "badge/label-world.png",
+    "size": [
+      240,
+      80
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "sha256": "0a53f62243ddfe0ec753360597508448d9380c8e508c32792b3a95499e61189c",
+    "bytes": 28080,
+    "sourceSha256": "c1b41deac3b29a8cf44d3f8fa37babf45aa48dee7c684129329dd32f2618a1cd"
+  },
+  {
+    "path": "deai/mystery-cat.png",
+    "size": [
+      512,
+      512
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "sha256": "21edec9982766400a745fc8abe45f1fab435475910b3a3cd022f22ded30aef72",
+    "bytes": 212957,
+    "sourceSha256": "e2abd7da8472f593abe0e740edb52a996e731c527311272a2c4e52b86c1eec3a"
+  },
+  {
+    "path": "deai/reveal-rays.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "alphaExtrema": [
+      0,
+      253
+    ],
+    "sha256": "c4d156cca297f6e71da994ddd83d3e52a3ea1e37822d08f9a6ffb17ffa4ff86a",
+    "bytes": 1266827,
+    "sourceSha256": "eab1ccebc0b12ccf352e02d736737d95ca1d06f9bf37c4b30700385fdc86b694"
+  },
+  {
+    "path": "deai/reveal-burst.png",
+    "size": [
+      768,
+      768
+    ],
+    "alphaExtrema": [
+      0,
+      253
+    ],
+    "sha256": "a8b0fdd7b72071017300f506bddcd41f5be03c865359a71f3e8712ae9bb429d9",
+    "bytes": 656587,
+    "sourceSha256": "e628c026029e002f8248556e7155cf7f17aad33da2bbbb8d67de2c816261c339"
+  },
+  {
+    "path": "deai/reveal-dim.png",
+    "size": [
+      1179,
+      2556
+    ],
+    "alphaExtrema": [
+      200,
+      203
+    ],
+    "sha256": "f911e66ab81516c4fa357e8c7a43af06f110abb41163a1dbe9107188fcea08d7",
+    "bytes": 2317851,
+    "sourceSha256": "aae094de91ba8a305ac7373b3752302e340ee50cd74c8c4b07bda00777dd7dce"
+  }
+]

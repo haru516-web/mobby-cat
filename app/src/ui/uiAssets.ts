@@ -162,4 +162,12 @@ export const UI: Record<string, UIAsset | undefined> = {
   'button/home-cats-round': { src: require('../../assets/ui/button/home-cats-round.png'), w: 168, h: 168, slice: { t: 0, r: 0, b: 0, l: 0 } },
   'camera/zoom-track': { src: require('../../assets/ui/camera/zoom-track.png'), w: 42, h: 660, slice: { t: 42, r: 0, b: 42, l: 0 } },
   'camera/zoom-thumb': { src: require('../../assets/ui/camera/zoom-thumb.png'), w: 90, h: 90, slice: { t: 0, r: 0, b: 0, l: 0 } },
+  'badge/label-legend': { src: require('../../assets/ui/badge/label-legend.png'), w: 240, h: 80 },
+  'badge/label-normal': { src: require('../../assets/ui/badge/label-normal.png'), w: 240, h: 80 },
+  'badge/label-rare': { src: require('../../assets/ui/badge/label-rare.png'), w: 240, h: 80 },
+  'badge/label-world': { src: require('../../assets/ui/badge/label-world.png'), w: 240, h: 80 },
+  'deai/mystery-cat': { src: require('../../assets/ui/deai/mystery-cat.png'), w: 512, h: 512 },
+  'deai/reveal-burst': { src: require('../../assets/ui/deai/reveal-burst.png'), w: 768, h: 768 },
+  'deai/reveal-dim': { src: require('../../assets/ui/deai/reveal-dim.png'), w: 1179, h: 2556, slice: { t: 0, r: 0, b: 0, l: 0 } },
+  'deai/reveal-rays': { src: require('../../assets/ui/deai/reveal-rays.png'), w: 1024, h: 1024 },
 };
