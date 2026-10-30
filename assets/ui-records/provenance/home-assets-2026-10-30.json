@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-30",
+  "reason": "部品ごとの絵柄のばらつきをそろえる。予告カードの厚み、金の縁、光源をカメラボタンに合わせ、くぼみとシルエットのコントラストを改善する。",
+  "method": "built-in image_gen",
+  "prompts": {
+    "card": "Use case: stylized-concept. Generate ONE transparent production game UI upcoming hint card. Reference sheet shows the existing warm cozy cat game UI: match the gold rim of camera-round, upper-left ivory highlight, soft downward shadow and cream puffy surface. Target final aspect 720:200 (3.6:1), horizontal front-on rounded rectangular plaque, radius about 45px at final size. Substantial rounded golden #E5A23B rim with narrow ivory glint and warm subtle lower bevel; creamy #FFF8F0 blank face, soft puffy depth, restrained almost smooth texture. Tiny four-point golden sparkle at top-right and bottom-left contained entirely within 65px corner regions. All center and middle edge bands uniform and stretchable for nine-slice70. No lettering, no symbols except two tiny sparkles, no inset compartments, no cats. Fill canvas width, transparent exterior, no white background. Keep shadow compact within 6px final perimeter. This is a single isolated asset, not a scene or sheet.",
+    "well": "Use case: stylized-concept. ONE isolated production game UI recessed well, square rounded rectangle, final192x192, nine slice56 all sides. Reference image1 is approved upcoming card: match exactly its warm #E5A23B golden puffy rounded rim, thin ivory upper-left highlights, smooth cream surface, compact soft downward shadow. Reference image2 is existing style context. This well holds an unknown cat icon. Interior is luminous light lavender #E1D4FF blending into warm ivory #FFF8F0, bright center, gentle recessed inner shadow only directly beneath upper rim. Broad corner radius about46px at final size, everything within56px corner boxes, plain stretchable middle edge bands. Gold rim thickness about7px final. No sparkles, no text, no cat, no icons. Front view, no perspective, no rough material. Fill canvas with small 4px clearance, genuinely transparent outside.",
+    "cat": "Use case: style-transfer / stylized-concept. ONE isolated mystery cat silhouette UI icon, transparent background, square512x512 final. Reference sheet bottom row shows existing silhouette-locked: retain its compact rounded squat furry cat body identity with two pointed ears and distinct curved fluffy tail on viewer right and two small feet. Replace muddy brown furry rendering with a clean softly puffy shadow shape in medium-dark muted plum-brown #65516E to #4A3B52, modest upper-left lavender highlight, soft lower depth. Clear readable ear and tail outline, very restrained fur tufts only around contour. Solid simple mysterious silhouette: NO eyes, NO face, NO question mark, NO camera, NO buttons or controls, NO gold outline, NO bright fringe. Not a back-facing detailed animal: a featureless unknown cat shadow for placing over luminous ivory/lavender inset OR over a cream cloth-covered cat. Mid-dark purple stays visible on both cream backgrounds, not black. Entire body and tail contained, 5% clear margin, minimal compact shadow, genuinely transparent outside."
+  },
+  "assets": [
+    {
+      "path": "cat/silhouette-locked.png",
+      "width": 512,
+      "height": 512,
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "sha256": "7f1efa01613833b8a66c45439fde98c90ef91449f9528eabc03960676c2ed752",
+      "bytes": 176054
+    },
+    {
+      "path": "home/upcoming-card.png",
+      "width": 720,
+      "height": 200,
+      "slice": {
+        "top": 70,
+        "right": 70,
+        "bottom": 70,
+        "left": 70
+      },
+      "sha256": "dd2a47ad4138b8397a07901fe008e99ce927ff813fb6375d9b96324134b5303c",
+      "bytes": 162376
+    },
+    {
+      "path": "home/upcoming-well.png",
+      "width": 192,
+      "height": 192,
+      "slice": {
+        "top": 56,
+        "right": 56,
+        "bottom": 56,
+        "left": 56
+      },
+      "sha256": "6b9ece8c6ebd40178195bc1f0af6ff90336504f8fbb71bba3ba97d3a995a2693",
+      "bytes": 36694
+    }
+  ],
+  "normalization": "Alpha>8 bounding crop; Lanczos; preserve native generated alpha. Panels normalized inside4px clearance; silhouette aspect-fit within464px and centered. Same filenames, dimensions and runtime slice values.",
+  "unchanged": {
+    "button/home-cats-round.png": "Matches bell/settings warm brown-gold rim, upper-left cream highlight and lower shadow; preserve icon identity.",
+    "button/login-record-round.png": "Same established round-button treatment as settings; no inconsistency requiring replacement.",
+    "panel/pill-currency.png": "Existing warm gold inset rim and upper-left highlight already coordinate; botanical decorations retained.",
+    "panel/speech-bubble.png": "Quieter warm-brown outline suits speech content; cream face and soft lower depth match existing header family."
+  },
+  "omittedOptional": {
+    "home/upcoming-spark.png": "Two corner sparkles already integrated into card; no additional symbol needed, and avoid introducing a text-like question mark asset.",
+    "home/travel-card.png": "Existing shared cream card is a quiet supporting panel; dedicated replacement would require app-side selection, outside this image-only change."
+  },
+  "previews": {
+    "home-bottom-375pt.png": "3x375pt. Top row card281x98pt (near requested290), well64, silhouette58, camera84. Bottom row actual249pt card with16pt margins and10pt gap. Nine-slice corners retain source pixels as Slice.tsx does. Dummy text14pt bold #4A3B32 in2 lines.",
+    "home-top-375pt.png": "3x375pt header and56pt right-side round buttons; existing assets unchanged.",
+    "home-silhouette-contrast.png": "Existing cream cloth mystery-cat with purple silhouette overlay as a contrast study; not an application screenshot."
+  },
+  "validation": {
+    "dimensions": "720x200,192x192,512x512 retained",
+    "slice": "70,56,none(0); registry unchanged",
+    "alpha": "RGBA with transparent outer pixels and opaque interior",
+    "runtime": "Static9slice composites only; no device or app render executed",
+    "lintTypecheck": "Unavailable: this worktree has no node_modules. No dependency installation or code modifications.",
+    "visualReview": "Reviewed both375pt composites and cloth-overlay contrast study. Text14pt bold readable; ear/tail outline clear; card and well share camera gold rim; no visible9slice seams. Existing header family remains quieter brown-gold."
+  },
+  "generatedSources": {
+    "card": "exec-8c3cc194-e4d0-45ea-9dd4-77ab27bd7c25.png",
+    "well": "exec-c612cefe-ef92-4d83-a311-4590ac92fbc2.png",
+    "cat": "exec-b2ae5256-f62b-4d33-9b03-e14c5a7c42b1.png"
+  }
+}

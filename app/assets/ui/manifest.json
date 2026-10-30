@@ -1332,12 +1332,18 @@
       "path": "cat/silhouette-locked.png",
       "width": 512,
       "height": 512,
-      "prompt": "Create ONE isolated production UI graphic: Muted brown fluffy round cat silhouette ears stubby paws NO facial features NO QUESTION MARK NO text. Final target 512x512 aspect512:512. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "93b7d2172ad61fb0f3f02a057d07892de6c1dc33840c0d5f0902d620d92ca110",
-      "bytes": 254710,
+      "prompt": "Use case: style-transfer / stylized-concept. ONE isolated mystery cat silhouette UI icon, transparent background, square512x512 final. Reference sheet bottom row shows existing silhouette-locked: retain its compact rounded squat furry cat body identity with two pointed ears and distinct curved fluffy tail on viewer right and two small feet. Replace muddy brown furry rendering with a clean softly puffy shadow shape in medium-dark muted plum-brown #65516E to #4A3B52, modest upper-left lavender highlight, soft lower depth. Clear readable ear and tail outline, very restrained fur tufts only around contour. Solid simple mysterious silhouette: NO eyes, NO face, NO question mark, NO camera, NO buttons or controls, NO gold outline, NO bright fringe. Not a back-facing detailed animal: a featureless unknown cat shadow for placing over luminous ivory/lavender inset OR over a cream cloth-covered cat. Mid-dark purple stays visible on both cream backgrounds, not black. Entire body and tail contained, 5% clear margin, minimal compact shadow, genuinely transparent outside.",
+      "sha256": "7f1efa01613833b8a66c45439fde98c90ef91449f9528eabc03960676c2ed752",
+      "bytes": 176054,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
+      "processing": "Generated alpha retained. Alpha>8 bounding crop, Lanczos normalization; 4px outer clearance for panels, silhouette aspect-fit within464x464 centered on512x512. Card720x200 and well192x192 unchanged. No recoloring or background reconstruction; metadata stripped.",
+      "alphaMode": "transparent",
+      "slice": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
     },
     {
       "path": "deai/mystery-cat.png",
@@ -1457,34 +1463,34 @@
       "path": "home/upcoming-card.png",
       "width": 720,
       "height": 200,
-      "prompt": "Use case: stylized-concept. ONE production UI bitmap upcoming encounter card, exact aspect720:200. Front-on horizontal softly rounded cream #FFF8F0 paper board, thin pale gold #E5A23B border inset a little from edge, ivory upper-left highlight, very soft low contrast downward shadow, restrained paper texture. One tiny gold four-point twinkle in upper right corner and one even tinier twinkle in lower left, entirely within70px corner squares at final720x200. Center and all edges middle completely blank uniform cream, no inset well no separate compartments. Nine-slice top70 right70 bottom70 left70, ensure rounded corners and all decoration inside these corner bounds. Near-full canvas with4px outer clearance. Truly transparent exterior. No text no letters no numbers no question mark no cats no logos. Warm softly puffy handcrafted paper UI.",
+      "prompt": "Use case: stylized-concept. Generate ONE transparent production game UI upcoming hint card. Reference sheet shows the existing warm cozy cat game UI: match the gold rim of camera-round, upper-left ivory highlight, soft downward shadow and cream puffy surface. Target final aspect 720:200 (3.6:1), horizontal front-on rounded rectangular plaque, radius about 45px at final size. Substantial rounded golden #E5A23B rim with narrow ivory glint and warm subtle lower bevel; creamy #FFF8F0 blank face, soft puffy depth, restrained almost smooth texture. Tiny four-point golden sparkle at top-right and bottom-left contained entirely within 65px corner regions. All center and middle edge bands uniform and stretchable for nine-slice70. No lettering, no symbols except two tiny sparkles, no inset compartments, no cats. Fill canvas width, transparent exterior, no white background. Keep shadow compact within 6px final perimeter. This is a single isolated asset, not a scene or sheet.",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 bounding trim; corner-preserving nine-slice normalization to720x200 with70px fixed corners; generated alpha preserved; no EXIF.",
+      "processing": "Generated alpha retained. Alpha>8 bounding crop, Lanczos normalization; 4px outer clearance for panels, silhouette aspect-fit within464x464 centered on512x512. Card720x200 and well192x192 unchanged. No recoloring or background reconstruction; metadata stripped.",
       "slice": {
         "top": 70,
         "right": 70,
         "bottom": 70,
         "left": 70
       },
-      "sha256": "39afdb1db58fceb7433ef56b9d65d0d2c0b4da6d642cc7bedf763a0206363518",
-      "bytes": 152894,
+      "sha256": "dd2a47ad4138b8397a07901fe008e99ce927ff813fb6375d9b96324134b5303c",
+      "bytes": 162376,
       "alphaMode": "transparent"
     },
     {
       "path": "home/upcoming-well.png",
       "width": 192,
       "height": 192,
-      "prompt": "Use case: stylized-concept. ONE production UI bitmap square recessed photo well, exact aspect192:192. Cozy Nekomobby softly puffy cream paper rim with rounded corners, gentle inward shading. Very restrained pale lavender #E1D4FF to pale gold soft light bloom contained in rim, hinting an unseen cat. Center is bright blank ivory uniform flat surface with no objects, no sparkle shapes. Nine-slice top56 right56 bottom56 left56 final pixels; all curved corner detail confined to56px corners, edge middles and center stretch cleanly. Upper-left ivory highlight, faint downward outer shadow. Transparent outside the rounded square only; center opaque. Fill canvas with4px clearance. No text letters numerals symbols cat or silhouette.",
+      "prompt": "Use case: stylized-concept. ONE isolated production game UI recessed well, square rounded rectangle, final192x192, nine slice56 all sides. Reference image1 is approved upcoming card: match exactly its warm #E5A23B golden puffy rounded rim, thin ivory upper-left highlights, smooth cream surface, compact soft downward shadow. Reference image2 is existing style context. This well holds an unknown cat icon. Interior is luminous light lavender #E1D4FF blending into warm ivory #FFF8F0, bright center, gentle recessed inner shadow only directly beneath upper rim. Broad corner radius about46px at final size, everything within56px corner boxes, plain stretchable middle edge bands. Gold rim thickness about7px final. No sparkles, no text, no cat, no icons. Front view, no perspective, no rough material. Fill canvas with small 4px clearance, genuinely transparent outside.",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 bounding trim; Lanczos fit to184x184 with4px clearance on192x192; generated alpha preserved; no EXIF.",
+      "processing": "Generated alpha retained. Alpha>8 bounding crop, Lanczos normalization; 4px outer clearance for panels, silhouette aspect-fit within464x464 centered on512x512. Card720x200 and well192x192 unchanged. No recoloring or background reconstruction; metadata stripped.",
       "slice": {
         "top": 56,
         "right": 56,
         "bottom": 56,
         "left": 56
       },
-      "sha256": "fe41a6fde4cc53857621350dffd14c7d0e8bd6b8597961ed48c3dc3eea0aad48",
-      "bytes": 40193,
+      "sha256": "6b9ece8c6ebd40178195bc1f0af6ff90336504f8fbb71bba3ba97d3a995a2693",
+      "bytes": 36694,
       "alphaMode": "transparent"
     },
     {
