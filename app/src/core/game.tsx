@@ -407,6 +407,28 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (passEnded) setState((s) => (s.pass.active ? { ...s, pass: { ...s.pass, active: false } } : s));
   }, [passEnded]);
 
+  // パスが切れている（期限・返金・クラウドから戻した記録）のに、記録の日に残っているパスの枠は、すでにひらいた分だけ残して取り除く。
+  // 未使用の枠が、期限のあとも使えてしまわないように（ひらいた猫・使ったまたたびは、そのまま）
+  const passDays = state.days;
+  const passIdle = !state.pass.active || passEnded;
+  useEffect(() => {
+    if (!ready || !passIdle) return;
+    setState((s) => {
+      let changed = false;
+      const days = Object.fromEntries(
+        Object.entries(s.days).map(([k, d]) => {
+          if (!d.passBonus) return [k, d];
+          const used = Math.max(0, openedOf(d).length - d.baseCount - d.matatabiUsed);
+          const bonus = Math.min(d.passBonus, used);
+          if (bonus === d.passBonus) return [k, d];
+          changed = true;
+          return [k, { ...d, opened: openedOf(d), passBonus: bonus }];
+        }),
+      );
+      return changed ? { ...s, days } : s;
+    });
+  }, [ready, passIdle, passDays]);
+
   // その日の候補を（未生成なら）確定させる。歩数・電池は非同期で読むので、生成中の日は記録しておく
   const building = useRef(new Set<string>());
   // 相棒を選ぶまでは作らない（所持猫の数で抽選が変わるのと、お知らせの順番を「ようこそ」が先になるようにするため）

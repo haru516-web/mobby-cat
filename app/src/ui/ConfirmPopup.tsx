@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Bobbing, C, CatImage, T } from './base';
 import { ImgButton, Tap } from './kit';
 import { Popup } from './Popup';
@@ -33,7 +33,7 @@ export function useConfirm() {
   const big = cats.length === 1;
   const hasPic = !!shown?.pic && !cats.length;
   const element = (
-    <Popup visible={!!spec} onClose={close} maxWidth={340} heightRatio={cats.length || hasPic ? 0.64 : 0.4}>
+    <Popup visible={!!spec} onClose={close} maxWidth={340} heightRatio={cats.length || hasPic ? 0.64 : 0.5}>
       {shown && (
         <View style={{ flex: 1, padding: 18, alignItems: 'center', justifyContent: 'center', gap: 8 }}>
           <Tap onPress={close} accessibilityLabel="閉じる" style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
@@ -58,7 +58,12 @@ export function useConfirm() {
             </View>
           )}
           <T w="x" size={18} style={{ textAlign: 'center' }}>{shown.title}</T>
-          {!!shown.message && <T w="m" size={12} color={C.sub} style={{ textAlign: 'center', lineHeight: 18 }}>{shown.message}</T>}
+          {!!shown.message && (
+            // 長い説明（自動更新の案内など）は、中でスクロールできる。ボタンは、いつも見える
+            <ScrollView style={{ flexShrink: 1, alignSelf: 'stretch' }} showsVerticalScrollIndicator={false}>
+              <T w="m" size={12} color={C.sub} style={{ textAlign: 'center', lineHeight: 18 }}>{shown.message}</T>
+            </ScrollView>
+          )}
           <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch', marginTop: 10 }}>
             <ImgButton skin="ghost-outline" label={shown.cancelLabel ?? 'やめる'} height={48} fontSize={13} onPress={close} style={{ flex: 1 }} />
             <ImgButton

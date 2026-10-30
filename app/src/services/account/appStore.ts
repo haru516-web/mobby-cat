@@ -75,10 +75,16 @@ export function createAppStore(): PurchaseStore | null {
       await connect();
       // 支払い済みで、まだ終えていない取引（お迎え券・またたびの消耗型を含む）は getPendingTransactionsIOS でしか取れない。
       // いま有効なサブスクは getAvailablePurchases から取る。同じ取引が両方に出たときは1つにまとめる
+      let pendingFailed = false;
       const [pending, available] = await Promise.all([
-        withTimeout(iap.getPendingTransactionsIOS(), 10000, 'getPendingTransactionsIOS').catch(() => [] as import('expo-iap').Purchase[]),
+        withTimeout(iap.getPendingTransactionsIOS(), 10000, 'getPendingTransactionsIOS').catch(() => {
+          pendingFailed = true;
+          return [] as import('expo-iap').Purchase[];
+        }),
         withTimeout(iap.getAvailablePurchases(), 10000, 'getAvailablePurchases'),
       ]);
+      // 未完了の取引を読めなかったのに、ほかも空のときは、「購入なし」ではなく、取得の失敗として伝える（B-04）
+      if (pendingFailed && available.length === 0) throw new Error('getPendingTransactionsIOS failed');
       const seen = new Set<string>();
       return [...pending, ...available]
         .filter((purchase) => !!purchase.purchaseToken && isKnownSku(purchase.productId) && !seen.has(purchase.id) && !!seen.add(purchase.id))
