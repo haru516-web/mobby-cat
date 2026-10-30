@@ -149,8 +149,9 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
 
   const contact = () => {
     if (!SUPPORT_EMAIL) return notice('お問い合わせ', '窓口は準備中です');
+    // メールアプリが無い・開けないときも、アドレスは下の表示から控えられる
     Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`にゃっコレ ${APP_VERSION}`)}`).catch(() =>
-      notice('メールを開けませんでした', SUPPORT_EMAIL),
+      notice('メールを開けませんでした', `${SUPPORT_EMAIL} 宛に、メールをお送りください。アドレスは、このお問い合わせの下に表示しています。`),
     );
   };
   // 外のページを開く。開けないときは、アドレスを伝える
@@ -331,6 +332,8 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 <View style={{ flex: 1 }}>
                   <T w="x" size={14}>お問い合わせ</T>
                   <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>不具合やご意見をお送りください</T>
+                  {/* メールアプリを使わない人も、アドレスを選んでコピーできるように、いつも出しておく */}
+                  {!!SUPPORT_EMAIL && <T w="b" size={11} color={C.accent} selectable style={{ marginTop: 2 }}>{SUPPORT_EMAIL}</T>}
                 </View>
                 <ImgButton skin="ghost-outline" label="送る" height={36} fontSize={12} onPress={contact} style={{ width: 100 }} />
               </Card>
