@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { applySpend, runSpend, serializedWriter, spendBlocked } from '../src/core/spending.ts';
+import { applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange } from '../src/core/spending.ts';
 
 const record = { candidates: ['a', 'b', 'c', 'd'], reasons: { b: '雨' }, baseCount: 3, matatabiUsed: 0, freePick: 'a', extraPicks: [], opened: ['a', 'b', 'c'] };
 const pending = (kind = 'extra') => ({ kind, day: '2026-10-30', ids: [kind === 'extra' ? 'b' : 'd'], id: 'unique-1', currency: kind === 'extra' ? 'tickets' : 'matatabi', fromPaid: 1, fromFree: 0, record: structuredClone(record) });
@@ -71,4 +71,13 @@ test('serialized writes preserve order after a slow write and a failure', async 
   await Promise.resolve(); assert.deepEqual(seen, []);
   release(); await Promise.all([first, second, third]);
   assert.deepEqual(seen, [1, 2, 3]);
+});
+test('account changes hold a gate across awaits and reject unresolved consumption', async () => {
+  const gate = { current: false }; let release, changes = 0;
+  const work = new Promise(r => { release = r; });
+  const first = exclusiveAccountChange(gate, () => false, async () => { changes++; await work; return true; }, false);
+  assert.equal(spendBlocked(state(), gate.current), true);
+  assert.equal(await exclusiveAccountChange(gate, () => false, async () => { changes++; return true; }, false), false);
+  release(); assert.equal(await first, true); assert.equal(gate.current, false); assert.equal(changes, 1);
+  assert.equal(await exclusiveAccountChange(gate, () => true, async () => { throw Error('must not switch'); }, false), false);
 });

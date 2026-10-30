@@ -15,7 +15,7 @@ import { checkSaved } from './saveShape';
 import { isRealCat } from './recipes';
 import { worldGifts } from './world';
 import { retainDays } from './history';
-import { applySpend, runSpend, serializedWriter, spendBlocked } from './spending';
+import { applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange } from './spending';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
 const CATALOG_VERSION = String(CATS.length);
@@ -217,6 +217,7 @@ type Ctx = {
   /** クラウドから戻した記録で、いまの記録を置き換える */
   replaceState: (saved: Partial<GameState>) => boolean;
   canReplace: () => boolean;
+  withAccountChange: <T>(work: () => Promise<T>, unavailable: T) => Promise<T>;
   setNotify: (v: boolean) => void;
   setBirthday: (b: { m: number; d: number } | null) => void;
   toggleFavorite: (id: string) => void;
@@ -517,6 +518,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     spender.current = fn;
     if (fn) setSpenderTick((x) => x + 1);
   }, []);
+  const accountChanging = useRef(false);
   const spending = useRef(false); // 通信を待っているあいだは、次の操作を受け付けない（二重に使わないため）
 
   const commitSpend = useCallback(async (p: PendingSpend): Promise<boolean> => runSpend(p, {
@@ -536,7 +538,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (list.some((id) => r.freePick === id || r.extraPicks.includes(id) || !visible.includes(id))) return null;
       return r;
     };
-    if (saveBlocked || spendBlocked(stateRef.current, spending.current) || !check(stateRef.current)) return false;
+    if (saveBlocked || spendBlocked(stateRef.current, spending.current || accountChanging.current) || !check(stateRef.current)) return false;
     spending.current = true;
     try {
       const s = stateRef.current;
@@ -566,7 +568,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       const r = s.days[day];
       return !!r && !r.freePick && matatabiOf(s) >= 1 && openLeft(r) === 0 && openLimit(r) < r.candidates.length && r.candidates.includes(openId) && !openedOf(r).includes(openId);
     };
-    if (saveBlocked || spendBlocked(stateRef.current, spending.current) || !ok(stateRef.current)) return false;
+    if (saveBlocked || spendBlocked(stateRef.current, spending.current || accountChanging.current) || !ok(stateRef.current)) return false;
     spending.current = true;
     try {
       const s = stateRef.current;
@@ -584,7 +586,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // 引けていれば、猫の追加（またはひらける数）を反映する。残高が足りなければ（引かれていない）、捨てる。つながらなければ、あとでもう一度
   useEffect(() => {
     const p = state.pendingSpend;
-    if (!ready || saveBlocked || !p || !spender.current || spending.current) return;
+    if (!ready || saveBlocked || !p || !spender.current || spending.current || accountChanging.current) return;
     spending.current = true;
     void commitSpend(p).finally(() => { spending.current = false; });
   }, [ready, saveBlocked, state.pendingSpend, spenderTick, tick, commitSpend]);
@@ -597,6 +599,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setState((s) => (s.paid?.tickets === wallet.tickets && s.paid?.matatabi === wallet.matatabi ? s : { ...s, paid: { tickets: wallet.tickets, matatabi: wallet.matatabi } }));
   }, []);
   const canReplace = useCallback(() => !spendBlocked(stateRef.current, spending.current), []);
+  const withAccountChange = useCallback(async <T,>(work: () => Promise<T>, unavailable: T): Promise<T> => {
+    return exclusiveAccountChange(accountChanging, () => !canReplace(), work, unavailable);
+  }, [canReplace]);
   const replaceState = useCallback((saved: Partial<GameState>) => {
     if (!canReplace()) { notice('操作を確認しています', '使ったアイテムの確認が終わってから、もう一度お試しください。'); return false; }
     // クラウドに預けない（端末の中だけの）情報は、この端末の値を残す
@@ -693,7 +698,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const value: Ctx = {
     ready, state, now, todayKey, availableDays,
-    pickFree, pickExtra, openCandidates, useMatatabi, grant, setPaid, registerSpender, replaceState, canReplace, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, devFillToday, reset,
+    pickFree, pickExtra, openCandidates, useMatatabi, grant, setPaid, registerSpender, replaceState, canReplace, withAccountChange, setNotify, setBirthday, toggleFavorite, chooseStarter, rerollStarter, setHomeSlots, finishTutorial, pet, countPhoto, markInboxRead, setPass, shiftDays, unlockAll, devFillToday, reset,
     corruptBackup, discardBackup, saveBlocked, saveFailed,
   };
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;

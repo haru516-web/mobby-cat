@@ -2,6 +2,12 @@ import type { DayRecord, GameState, PendingSpend, SpendResult } from './game';
 
 export const spendBlocked = (s: Pick<GameState, 'pendingSpend'>, busy: boolean) => busy || !!s.pendingSpend;
 
+export async function exclusiveAccountChange<T>(gate: { current: boolean }, blocked: () => boolean, work: () => Promise<T>, unavailable: T): Promise<T> {
+  if (gate.current || blocked()) return unavailable;
+  gate.current = true;
+  try { return await work(); } finally { gate.current = false; }
+}
+
 // 通常保存もジャーナルも、呼んだ順に書く。前の保存が失敗しても、次の保存は試す。
 export function serializedWriter<T>(write: (value: T) => Promise<void>) {
   let tail = Promise.resolve();
