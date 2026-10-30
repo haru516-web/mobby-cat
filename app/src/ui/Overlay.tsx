@@ -44,9 +44,11 @@ export function OverlayHost() {
     return () => sub.remove();
   }, []);
   return (
-    <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
+    // ポップが出ているあいだは、後ろの画面を VoiceOver に読ませない（Modal が自動でしていたこと）。
+    // 重なったポップは、いちばん上だけを読ませる（最後の兄弟が優先される）
+    <View style={StyleSheet.absoluteFill} pointerEvents="box-none" accessibilityViewIsModal={list.length > 0}>
       {list.map((entry) => (
-        <View key={entry.key} style={StyleSheet.absoluteFill} pointerEvents="box-none">
+        <View key={entry.key} style={StyleSheet.absoluteFill} pointerEvents="box-none" accessibilityViewIsModal>
           {entry.node}
         </View>
       ))}

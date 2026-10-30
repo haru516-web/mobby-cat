@@ -120,6 +120,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       const result = await acc.restorePurchases(transferCode.trim());
       if (result.kind === 'offline') notice('購入の復元', 'つながりませんでした。電波のよいところで、もう一度お試しください。');
       else if (result.kind === 'store_error') notice('購入の復元', 'App Storeにつながりませんでした。しばらくしてから、もう一度お試しください。');
+      else if (result.familyShared) notice('購入の復元', 'このパスは、ファミリー共有で見えているものです。パスを購入した方のApple IDで、その方のiPhoneから、復元してください。');
       else if (result.planMoved) notice('購入の復元', 'またたびパスを、この端末で使えるようにしました。次の更新からも、この端末に届きます。お迎え券・またたびの残高を戻すには、前の端末で発行した引継ぎコードが必要です。');
       else if (result.localBlocked) notice('購入の復元', 'この端末のアカウントに購入したものがあるため、引継ぎコードは使いませんでした。コードは、まだ使えます。アカウントをまとめたい場合は、サポートまでご連絡ください。');
       else if (result.recovered && result.credited === 0) notice('購入の復元', 'アカウントを、この端末に引き継ぎました。前の端末では、使えなくなります。持っているものは、この画面の表示で確かめてください。');

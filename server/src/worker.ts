@@ -387,6 +387,8 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     if (!environmentAccepted(env, transaction)) throw new HttpError(403, "environment_not_accepted");
     if (transaction.revocationDate || (await store.isRevoked(transaction.transactionId))) throw new HttpError(403, "revoked");
     if (typeof transaction.expiresDate !== "number" || transaction.expiresDate <= now.getTime()) throw new HttpError(403, "purchase_not_active");
+    // A family member sees the buyer's transaction too: only the buyer's own may take the pass over.
+    if (transaction.ownershipType === "FAMILY_SHARED") throw new HttpError(403, "family_shared");
     const holder = await holderOf(store, transaction, product);
     if (!holder) throw new HttpError(400, "missing_app_account_token");
     if (holder === userId) return json({ status: "already_yours" });

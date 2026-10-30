@@ -1,5 +1,6 @@
 // 全ユーザー共通の出現条件（docs/appearance-catalog.md）。成立した猫はその日の候補に確定で入る。
 // 判定に使う材料（電池・歩数・起動の記録など）は Signals としてまとめて渡す。
+import { isBirthdayOn } from './birthday';
 import { CATS } from '../data/catalog';
 import { daysBetween, fmtDay } from './dates';
 import { type Env, type Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf } from './recipes';
@@ -162,7 +163,7 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   add(ymd === [...ymd].reverse().join(''), 'sakasama', '回文の日付');
   const digits = `${y % 100}${m}${d}`;
   add(/^(\d)\1*$/.test(digits), 'pittari', '年・月・日がゾロ目');
-  add(!!s.birthday && s.birthday.m === m && s.birthday.d === d, 'tanjoubi', '誕生日');
+  add(isBirthdayOn(s.birthday, y, m, d), 'tanjoubi', '誕生日');
   const seasons = seasonKeys(y);
   add(dayKey === seasons[0] || dayKey === seasons[2], 'hiruyoru', dayKey === seasons[0] ? '春分' : '秋分');
   add(dayKey === seasons[1] || dayKey === seasons[3], 'taiyou', dayKey === seasons[1] ? '夏至' : '冬至');

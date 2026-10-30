@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { clearOverlays, overlayEntries, removeOverlay, setOverlay, subscribeOverlays, topOverlay } from '../src/ui/overlayStore.ts';
-import { DAYS_IN, canRegisterBirthday, daysInMonth, isValidBirthday } from '../src/core/birthday.ts';
+import { DAYS_IN, canRegisterBirthday, daysInMonth, isBirthdayOn, isValidBirthday } from '../src/core/birthday.ts';
 
 test('popups stack in the order they were opened, and only the top one is the top', () => {
   clearOverlays();
@@ -58,4 +58,18 @@ test('a birthday can be registered once, with a real date, and never changed', (
   assert.equal(canRegisterBirthday(null, { m: 10, d: 30 }), true);
   assert.equal(canRegisterBirthday({ m: 1, d: 1 }, { m: 10, d: 30 }), false, 'a registered birthday is final');
   assert.equal(canRegisterBirthday(null, { m: 4, d: 31 }), false);
+});
+
+test('a birthday on 29 February is celebrated on 28 February in years without one', () => {
+  const leap = { m: 2, d: 29 };
+  assert.equal(isBirthdayOn(leap, 2028, 2, 29), true);
+  assert.equal(isBirthdayOn(leap, 2028, 2, 28), false, 'in a leap year only the real day counts');
+  for (const year of [2026, 2027, 2029, 2100]) {
+    assert.equal(isBirthdayOn(leap, year, 2, 28), true, String(year));
+    assert.equal(isBirthdayOn(leap, year, 3, 1), false, String(year));
+  }
+  assert.equal(isBirthdayOn(leap, 2000, 2, 29), true, '2000 is a leap year');
+  assert.equal(isBirthdayOn({ m: 10, d: 30 }, 2026, 10, 30), true);
+  assert.equal(isBirthdayOn({ m: 2, d: 28 }, 2026, 2, 28), true, 'a 28 February birthday is unaffected');
+  assert.equal(isBirthdayOn(null, 2026, 2, 28), false);
 });

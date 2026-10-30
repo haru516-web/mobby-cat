@@ -117,7 +117,7 @@ async function buyOnce(key: ProductKey, store: PurchaseStore, api: Pick<Client, 
 export type SettleOutcome =
   | { kind: 'offline' }
   | { kind: 'store_error' }
-  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean; planMoved: boolean; localBlocked: boolean };
+  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean; planMoved: boolean; localBlocked: boolean; familyShared: boolean };
 
 type SettleApi = Pick<Client, 'authed' | 'authedIfAny' | 'existing' | 'raw' | 'adopt' | 'account'>;
 // recover: 別のアカウントのものを、この端末へ移してよいか。ユーザーが「購入を復元」を押したときだけ true（起動時の自動の確認では、何も移さない）
@@ -170,6 +170,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
   let recovered = false;
   let proofUsed = false;
   let planMoved = false;
+  let familyShared = false;
   let localBlocked = false;
   const code = options.transferCode?.trim();
   let hasAccount = !!(await api.existing());
@@ -188,7 +189,9 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
   // コードを入れたときは、まずコードの結果を確かめてもらう（入れ間違いのまま、パスだけ移さない）
   const movePass = async (item: PurchasedItem): Promise<boolean> => {
     if (!options.recover || code || item.sku !== PRODUCTS.pass.sku) return false;
-    if (!ok(await api.authed('/purchases/move-plan', { body: { signedTransactionInfo: item.jws } }))) return false;
+    const moved = await api.authed('/purchases/move-plan', { body: { signedTransactionInfo: item.jws } });
+    if (moved?.status === 403 && moved.data?.error === 'family_shared') familyShared = true;
+    if (!ok(moved)) return false;
     planMoved = true;
     hasAccount = true;
     await item.finish().catch(() => undefined);
@@ -205,7 +208,7 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
     else if (isOtherAccount(reply)) { if (!(await movePass(item))) otherAccount += 1; }
     else failedCount += 1;
   }
-  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found?.incomplete ?? false, proofUsed, planMoved, localBlocked };
+  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found?.incomplete ?? false, proofUsed, planMoved, localBlocked, familyShared };
 }
 
 /**

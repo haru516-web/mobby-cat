@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { cardReason, conditionTotal } from '../../core/conditions';
 import { REVEAL_HOUR, prevDayKey } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
@@ -40,6 +40,8 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const card = useRef<ViewRef>(null);
   const [barH, setBarH] = useState(0);
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
+  // 背の低い端末（iPhone SE など）では、下の操作エリアを小さくする（2段目の猫が隠れすぎないように）
+  const compact = useWindowDimensions().height < 740;
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- 日が変わったら、選択を今日に戻す
@@ -156,6 +158,32 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       );
     }
   };
+  // 残りの子を、券でまとめて迎える（ひらいて迎えていない子が2匹以上いるとき）
+  const bulkButton = hasFree && rest.length > 1 ? (
+    <ImgButton
+      skin="ghost-outline"
+      label={compact ? 'まとめて迎える' : `残り${rest.length}匹をまとめて迎える`}
+      badge={`券${rest.length}枚`}
+      height={compact ? 44 : 46}
+      fontSize={compact ? 13 : 14}
+      disabled={ticketsOf(state) < rest.length}
+      onPress={() => confirm(
+        `残り${rest.length}匹をまとめて迎えますか？`,
+        `お迎え券を${rest.length}枚使います（${ticketsOf(state)}枚 → ${ticketsOf(state) - rest.length}枚）。`,
+        `券${rest.length}枚で迎える`,
+        async () => {
+          const all = [...rest];
+          if (await g.pickExtra(day, all)) {
+            showWelcome(all);
+            playSfx('sfx_pick_extra');
+            hapticSuccess();
+          } else notEnough();
+          setSel(null);
+        },
+        { catIds: rest },
+      )}
+    />
+  ) : null;
   const pickSelected = async () => {
     if (!sel) return;
     if (!hasFree) g.pickFree(day, sel);
@@ -290,7 +318,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     {!empty && (
       <View style={[s.bar, { bottom: pad }]} onLayout={(e) => setBarH(e.nativeEvent.layout.height)} pointerEvents="box-none">
         {selCat && (
-          <Card skin="white" style={s.selInfo}>
+          <Card skin="white" style={[s.selInfo, compact && s.selInfoCompact]}>
             <View style={{ flex: 1 }}>
               <T w="x" size={13}>{selCat.name}</T>
               <T w="b" size={11} color={sel && rec.reasons[sel] ? '#C9822B' : C.sub}>
@@ -311,7 +339,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           <ImgButton
             label={chosen.length === need ? (need === 1 ? 'この子をひらく' : `この${need}匹をひらく`) : `ひらく子を${need}匹えらんでね（${chosen.length}/${need}）`}
             disabled={chosen.length !== need}
-            height={50}
+            height={compact ? 44 : 50}
             icon="icon/paw"
             onPress={askOpenAll}
           />
@@ -320,7 +348,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           <ImgButton
             label={selCat ? '無料でお迎えする' : '迎える子をえらんでね'}
             disabled={!selCat}
-            height={50}
+            height={compact ? 44 : 50}
             icon="icon/paw"
             onPress={askPick}
           />
@@ -329,48 +357,27 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           <View style={{ gap: 8 }}>
             {/* 券が足りないときは、そのままショップへ。買いたくなる場面なので最短で案内する */}
             {selCat && ticketsOf(state) < 1 ? (
-              <ImgButton label="お迎え券を買う" icon="icon/ticket-paw" height={50} fontSize={14} onPress={openShop} />
+              <ImgButton label="お迎え券を買う" icon="icon/ticket-paw" height={compact ? 44 : 50} fontSize={14} onPress={openShop} />
             ) : (
               <ImgButton
                 label={selCat ? '券1枚で迎える' : '迎える子をえらぶ'}
                 disabled={!selCat}
-                height={50}
+                height={compact ? 44 : 50}
                 fontSize={14}
                 badge={selCat ? `所持${ticketsOf(state)}枚` : undefined}
                 onPress={askPick}
               />
             )}
-            {rest.length > 1 && (
-              <ImgButton
-                skin="ghost-outline"
-                label={`残り${rest.length}匹をまとめて迎える`}
-                badge={`券${rest.length}枚`}
-                height={46}
-                fontSize={14}
-                disabled={ticketsOf(state) < rest.length}
-                onPress={() => confirm(
-                  `残り${rest.length}匹をまとめて迎えますか？`,
-                  `お迎え券を${rest.length}枚使います（${ticketsOf(state)}枚 → ${ticketsOf(state) - rest.length}枚）。`,
-                  `券${rest.length}枚で迎える`,
-                  async () => {
-                    const all = [...rest];
-                    if (await g.pickExtra(day, all)) {
-                      showWelcome(all);
-                      playSfx('sfx_pick_extra');
-                      hapticSuccess();
-                    } else notEnough();
-                    setSel(null);
-                  },
-                  { catIds: rest },
-                )}
-              />
-            )}
+            {!compact && bulkButton}
           </View>
         )}
 
         {/* 下の行：またたびパスの状態と、ショップへの入口。加入中の人に、パスの説明は出さない */}
         <View style={s.shopRow}>
-          {state.pass.active ? (
+          {compact && bulkButton ? (
+            // 小さい画面では、まとめて迎えるボタンをショップの隣に置いて、1行ぶん低くする
+            <View style={{ flex: 1 }}>{bulkButton}</View>
+          ) : state.pass.active ? (
             <Card style={[s.pass, { flex: 1 }]}>
               <Pic name="icon/matatabi-bag" height={32} />
               <T w="x" size={13} style={{ flex: 1 }} numberOfLines={1}>またたびパス加入中</T>
@@ -388,7 +395,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             </Tap>
           )}
           {/* お迎え券・またたびを買いたい人が、ここから直接ショップへ行ける */}
-          <ImgButton label="ショップ" icon="icon/ticket-paw" height={46} fontSize={14} onPress={openShop} style={{ width: 124 }} />
+          <ImgButton label="ショップ" icon={compact ? undefined : 'icon/ticket-paw'} height={compact ? 44 : 46} fontSize={14} onPress={openShop} style={{ width: compact ? 116 : 124 }} />
         </View>
       </View>
     )}
@@ -475,6 +482,7 @@ const s = StyleSheet.create({
   heroNote: { paddingVertical: 8, paddingHorizontal: 14, gap: 2 },
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
   selInfo: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
+  selInfoCompact: { paddingVertical: 3 },
   pass: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   shopRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   bar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 16, gap: 8 },
