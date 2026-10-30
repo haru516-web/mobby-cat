@@ -1,9 +1,9 @@
 {
   "scope": "Metro.buildGraph; dev=false; no bundle serialization, native build or service request",
-  "inputHash": "eb9365450e2a042106661eaaccec07239557d937b74555839a0d85c090356cc6",
+  "inputHash": "ead8679b7844c1945d6a0a97d7a71b2a2e233382a1b5fae69c86b0678a923256",
   "platforms": {
     "ios": {
-      "moduleCount": 1356,
+      "moduleCount": 1358,
       "packages": [
         {
           "name": "@babel/runtime",
@@ -243,7 +243,7 @@
       ]
     },
     "android": {
-      "moduleCount": 1356,
+      "moduleCount": 1358,
       "packages": [
         {
           "name": "@babel/runtime",

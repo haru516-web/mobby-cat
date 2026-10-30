@@ -3,7 +3,7 @@
 import { isBirthdayOn } from './birthday';
 import { CATS } from '../data/catalog';
 import { daysBetween, fmtDay } from './dates';
-import { type Env, type Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf } from './recipes';
+import { type Env, type Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf, shownRarity } from './recipes';
 
 export type Signals = {
   battery: number[]; // その日（出会いの締め切りまで）に観測した残量 %（整数）
@@ -17,6 +17,7 @@ export type Signals = {
   weather?: Weather | null; // その日の天気。取れないときは null
   temp?: number | null; // その日の気温（℃）。取れないときは null
   favorites?: string[]; // お気に入りの猫
+  homeConfigured?: boolean;
   installDay?: string; // 遊びはじめた日
   // 端末の中で数えている累計（歩数は出会いの候補を作った日の分から）
   totals?: { steps: number; photos: number; pets: number; openDays: number; cats: number };
@@ -227,6 +228,13 @@ export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = 
   const [y, m, d] = dayKey.split('-').map(Number);
   const day = new Date(y, m - 1, d, 20, 0, 0);
   const env: Env = {
+    favorites: new Set(s.favorites ?? []).size,
+    normalKinds: CATS.filter((c) => !!ctx.owned[c.id]?.count && c.kind !== 'world' && c.kind !== 'travel' && shownRarity(c) <= 2).length,
+    rareKinds: CATS.filter((c) => !!ctx.owned[c.id]?.count && c.kind !== 'world' && c.kind !== 'travel' && shownRarity(c) >= 3).length,
+    gapDays: s.gapDays,
+    pets: s.totals?.pets ?? 0,
+    homeConfigured: s.homeConfigured ?? false,
+    birthdaySet: s.birthday != null,
     steps: s.steps,
     battery: s.battery,
     charging: s.charging,

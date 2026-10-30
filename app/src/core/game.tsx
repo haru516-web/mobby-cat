@@ -464,6 +464,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             weather: wx?.weather ?? null,
             temp: wx?.temp ?? null,
             favorites: s.favorites,
+            homeConfigured: s.homeSlots !== null,
             installDay: s.installDay,
             totals: {
               steps: (s.totalSteps ?? 0) + (steps ?? 0),

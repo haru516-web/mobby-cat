@@ -3,11 +3,20 @@
 // - それ以外のモビー: 簡単な条件4個＋その猫らしい難しい条件1個（個性猫は conditions.ts の既存条件が「難しい1個」）。
 // 条件は猫ごとに ID から決まる（端末や日によって変わらない）。レア度は条件の数と難しさから決める。
 import { CATS, type CatDef, type Rarity } from '../data/catalog';
+import { NORMAL_RECIPES } from './normalRecipes';
+import { EXTRA_NORMAL_ATOMS } from './normalAtoms';
 
 export type Weather = 'sunny' | 'cloudy' | 'rain' | 'snow';
 
 // 条件の判定に渡す、その日の材料
 export type Env = {
+  favorites?: number;
+  normalKinds?: number;
+  rareKinds?: number;
+  gapDays?: number;
+  pets?: number;
+  homeConfigured?: boolean;
+  birthdaySet?: boolean;
   steps: number | null;
   battery: number[];
   charging: boolean;
@@ -24,7 +33,7 @@ export type Env = {
   newMoon: boolean;
 };
 
-type Group = 'steps' | 'weather' | 'week' | 'time' | 'battery' | 'streak' | 'owned' | 'season' | 'moon';
+type Group = 'steps' | 'weather' | 'week' | 'time' | 'battery' | 'streak' | 'owned' | 'season' | 'moon' | 'favorites' | 'normalKinds' | 'rareKinds' | 'gap' | 'pets' | 'home' | 'birthday';
 // p は、ふつうの人がその日にこの条件を満たす確率の目安（レア度の計算に使う）
 export type Atom = { id: string; group: Group; hard: boolean; p: number; label: string; test: (e: Env) => boolean };
 
@@ -73,6 +82,14 @@ export const ATOMS: Atom[] = [
   { id: 'fullmoon', group: 'moon', hard: true, p: 0.035, label: '満月の夜', test: (e) => e.fullMoon },
   { id: 'newmoon', group: 'moon', hard: true, p: 0.035, label: '新月の夜', test: (e) => e.newMoon },
 ];
+// ノーマルの時間帯・電池は、その出会いの1日で最初に記録した値を使う。
+// 起動回数だけで複数の時間帯・電池帯を同時達成しない。既存レア猫の判定は変えない。
+export const NORMAL_ATOMS: Atom[] = [...ATOMS.filter((a) => !a.hard), ...EXTRA_NORMAL_ATOMS].map((atom) => {
+  if (atom.group === 'time') return { ...atom, label: '最初に記録した起動が' + atom.label.replace('に起動', ''), test: (e: Env) => atom.test({ ...e, openHours: e.openHours.slice(0, 1) }) };
+  if (atom.group === 'battery' && atom.id !== 'charging') return { ...atom, label: '最初に記録した電池：' + atom.label, test: (e: Env) => atom.test({ ...e, battery: e.battery.slice(0, 1) }) };
+  return atom;
+});
+export const NORMAL_ATOM_BY_ID: Record<string, Atom> = Object.fromEntries(NORMAL_ATOMS.map((a) => [a.id, a]));
 const ATOM_BY_ID: Record<string, Atom> = Object.fromEntries(ATOMS.map((a) => [a.id, a]));
 
 // ---- 日本の祝日 -------------------------------------------------------------
@@ -220,24 +237,15 @@ export function recipeOf(c: CatDef): Recipe | null {
   if (c.kind === 'world' || c.kind === 'travel' || NO_RECIPE.has(c.id)) {
     rec = null;
   } else if (isRealCat(c)) {
-    // 実在の猫: 簡単3〜4個。重い猫種は簡単3＋難しい1
-    const heavy = c.rarity >= 3;
-    const easy = heavy ? 3 : 3 + (hash(c.id) % 3 === 0 ? 1 : 0);
-    // 簡単な条件は、ふつうに生活していて半分近い日にそろうものだけ（祝日・所持数など、人によって差が大きいものは入れない）
-    let atoms = pickAtoms(c.id, easy, heavy ? 1 : 0, ['owned'], 0.25);
-    // 歩数が少ない日にも、季節・曜日・電池で会える猫を用意する。
-    const everyday = CATS.filter(isRealCat).slice(0, 24).findIndex((cat) => cat.id === c.id);
-    if (everyday >= 0) atoms = [
-      ATOM_BY_ID[['spring', 'summer', 'autumn', 'winter'][Math.floor(everyday / 6)]],
-      ATOM_BY_ID[['weekday', 'weekend', 'holiday'][Math.floor(everyday / 2) % 3]],
-      ATOM_BY_ID[everyday % 2 ? 'battery-ready' : 'battery-half'],
-    ];
-    let rarity = rarityFromChance(atoms);
-    if (rarity >= 2) {
-      atoms = raiseSteps(atoms);
-      rarity = Math.max(rarity, rarityFromChance(atoms)) as Rarity;
-    }
-    rec = { atoms, signature: false, rarity };
+    // 猫IDごとの固定条件表。カタログの並びや抽選で条件を変えない。
+    const ids = NORMAL_RECIPES[c.id];
+    if (!ids) throw new Error('Normal recipe missing: ' + c.id);
+    const atoms = ids.map((id) => {
+      const atom = NORMAL_ATOM_BY_ID[id];
+      if (!atom) throw new Error('Normal atom missing: ' + id);
+      return atom;
+    });
+    rec = { atoms, signature: false, rarity: rarityFromChance(atoms) };
   } else {
     // 個性のあるモビー: 簡単4個＋難しい1個（個性条件がある猫はそれが難しい1個）
     const skip = SIGNATURE_GROUPS[c.id] ?? [];
