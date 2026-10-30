@@ -4,6 +4,7 @@ import { cardReason, conditionTotal } from '../../core/conditions';
 import { REVEAL_HOUR, prevDayKey } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
+import { WelcomeFx } from './WelcomeFx';
 import { matatabiOf, openLeft, openLimit, openedOf, ticketsOf, useGame } from '../../core/game';
 import { notice } from '../../services/dialog';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
@@ -48,7 +49,14 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={s.preparing}>
           <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
-          <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+          {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR ? (
+            <>
+              <T w="x" size={16} style={{ textAlign: 'center' }}>最初の出会いは、今夜{REVEAL_HOUR}時に届きます</T>
+              <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>{`今日の歩数や電池の様子がそろってから、\n会える猫が決まります。それまでは、ホームで猫と遊んでね`}</T>
+            </>
+          ) : (
+            <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+          )}
         </View>
       </View>
     );
@@ -372,17 +380,24 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
 
       <Modal visible={!!welcome} transparent animationType="fade" onRequestClose={() => setWelcome(null)}>
         <View style={s.overlay}>
-          <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
+          {/* ひらく演出と同じ暗幕（後ろの画面が透けて、光が埋もれないように） */}
+          {UI['deai/reveal-dim'] ? <Stretch name="deai/reveal-dim" style={StyleSheet.absoluteFill} /> : <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />}
           {welcome && (
-            <View style={{ alignItems: 'center', gap: 12 }}>
+            <WelcomeFx
+              key={welcome}
+              id={welcome}
+              width={Math.min(width - 48, 340)}
+              footer={
+                <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
+                  <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
+                  <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1.2 }} />
+                  <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1.2 }} />
+                </View>
+              }
+            >
               <T w="x" size={20} color="#fff">{CAT_BY_ID[welcome].name}をお迎えしました！</T>
               <DiscoveryCard ref={card} id={welcome} day={day} reason={rec.reasons[welcome]} width={Math.min(width - 48, 340)} />
-              <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
-                <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
-                <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1.2 }} />
-                <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1.2 }} />
-              </View>
-            </View>
+            </WelcomeFx>
           )}
         </View>
       </Modal>

@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, Modal, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { shownRarity } from '../../core/recipes';
-import { CAT_BY_ID, CatImage, T } from '../../ui/base';
+import { CAT_BY_ID, CatImage, T, useReduceMotion } from '../../ui/base';
 import { ImgButton, RarityBadge, Tap } from '../../ui/kit';
+import { FlyingBits, MYSTERY, RAYS, BURST, makePaws, makeSparks } from './RevealFx';
 import { Pic, Stretch } from '../../ui/Slice';
 import { UI } from '../../ui/uiAssets';
 import { playSfx } from '../../services/audio';
@@ -19,12 +20,9 @@ import { hapticLight, hapticSuccess } from '../../services/haptics';
  * 画像だけで作る（色や形はコードで描かない）。専用の画像（deai/*）が届くまでは、ある素材で代わりにする。
  */
 
-const MYSTERY = UI['deai/mystery-cat'] ? 'deai/mystery-cat' : 'cat/silhouette-locked';
-const RAYS = UI['deai/reveal-rays'] ? 'deai/reveal-rays' : 'navbtn/glow';
-const BURST = UI['deai/reveal-burst'] ? 'deai/reveal-burst' : 'cat/halo-select';
-
-const SPARKS = 14;
-const PAWS = 8;
+// 控えめにする（お迎えの演出のほうを、はなやかにする）
+const SPARKS = 8;
+const PAWS = 4;
 const PER_ROW = 3;
 
 type Props = { ids: string[] | null; reasons: Record<string, string>; newIds: string[]; onClose: () => void };
@@ -43,6 +41,7 @@ export function RevealOverlay({ ids, reasons, newIds, onClose }: Props) {
 
 function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Record<string, string>; newIds: string[]; onClose: () => void }) {
   const { width } = useWindowDimensions();
+  const still = useReduceMotion(); // 「視差効果を減らす」：ふるえ・光・飛び散りを止めて、猫を出す
   const n = ids.length;
   const rare = ids.some((id) => !!CAT_BY_ID[id] && shownRarity(CAT_BY_ID[id]) >= 3);
   // 1匹はおおきく、2匹・3匹以上は小さく並べる（1行に最大3匹）
@@ -67,18 +66,17 @@ function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Rec
 
   // 飛び散る向きと距離は、毎回少しずつ変える（同じ演出に見えないように）
   const reach = Math.max(size, burstSize * 0.9);
-  const sparks = useMemo(
-    () => Array.from({ length: SPARKS }, (_, i) => ({ a: (i / SPARKS) * Math.PI * 2 + Math.random() * 0.4, r: reach * (0.62 + Math.random() * 0.45), s: 18 + Math.random() * 20 })),
-    [reach],
-  );
-  const paws = useMemo(
-    () => Array.from({ length: PAWS }, (_, i) => ({ a: (i / PAWS) * Math.PI * 2 + 0.3 + Math.random() * 0.5, r: reach * (0.5 + Math.random() * 0.35), s: 16 + Math.random() * 10, turn: (Math.random() - 0.5) * 120 })),
-    [reach],
-  );
+  const sparks = useMemo(() => makeSparks(reach, SPARKS), [reach]);
+  const paws = useMemo(() => makePaws(reach, PAWS), [reach]);
 
   const later = (ms: number, fn: () => void) => timers.current.push(setTimeout(fn, ms));
 
   useEffect(() => {
+    if (still) {
+      for (const v of [intro, pop, info]) v.setValue(1);
+      setDone(true);
+      return;
+    }
     const ease = Easing.out(Easing.cubic);
     const wiggle = (amp: number, ms: number) =>
       Animated.sequence([
@@ -108,8 +106,7 @@ function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Rec
     seq.start(({ finished }) => { if (finished) setDone(true); });
     // ふるえと光に合わせて、触感と音
     later(0, () => playSfx('sfx_tap'));
-    later(420, () => hapticLight());
-    later(800, () => hapticLight());
+    
     later(1130, () => hapticLight());
     later(1420, () => { hapticSuccess(); playSfx(rare ? 'sfx_pick_special' : 'sfx_gift'); });
     const loop = Animated.loop(Animated.timing(spin, { toValue: 1, duration: 9000, easing: Easing.linear, useNativeDriver: true }));
@@ -120,7 +117,7 @@ function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Rec
       timers.current.forEach(clearTimeout);
       timers.current = [];
     };
-  }, [intro, shake, swell, flash, burst, burst2, pop, spin, info, rare, n]);
+  }, [intro, shake, swell, flash, burst, burst2, pop, spin, info, rare, n, still]);
 
   // 途中で押すと、猫が出たところまで飛ばす
   const skip = () => {
@@ -139,40 +136,18 @@ function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Rec
   const mysteryOpacity = pop.interpolate({ inputRange: [0, 0.15], outputRange: [1, 0], extrapolate: 'clamp' });
   const mysteryScale = Animated.multiply(
     intro.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }),
-    swell.interpolate({ inputRange: [0, 1], outputRange: [1, 1.14] }),
+    swell.interpolate({ inputRange: [0, 1], outputRange: [1, 1.07] }),
   );
   const spinDeg = spin.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] });
-  const raysOpacity = pop.interpolate({ inputRange: [0, 1], outputRange: [0, rare ? 1 : 0.85] });
+  const raysOpacity = pop.interpolate({ inputRange: [0, 1], outputRange: [0, rare ? 0.7 : 0.45] });
   const stageH = rows.length * cellH;
-
-  const flying = (v: Animated.Value, list: { a: number; r: number; s: number; turn?: number }[], name: string, key: string) =>
-    list.map((p, i) => (
-      <Animated.View
-        key={`${key}${i}`}
-        pointerEvents="none"
-        style={[
-          s.center,
-          {
-            opacity: v.interpolate({ inputRange: [0, 0.15, 0.7, 1], outputRange: [0, 1, 1, 0] }),
-            transform: [
-              { translateX: v.interpolate({ inputRange: [0, 1], outputRange: [0, Math.cos(p.a) * p.r] }) },
-              { translateY: v.interpolate({ inputRange: [0, 1], outputRange: [0, Math.sin(p.a) * p.r] }) },
-              { rotate: v.interpolate({ inputRange: [0, 1], outputRange: ['0deg', `${p.turn ?? 90}deg`] }) },
-              { scale: v.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0.3, 1.1, 0.7] }) },
-            ],
-          },
-        ]}
-      >
-        <Pic name={name} width={p.s * 2} />
-      </Animated.View>
-    ));
 
   // 1匹ぶんの場所：ひらく前のシルエットと、出てきた猫を重ね、下に名前などを置く
   const cell = (id: string, index: number) => {
     const cat = CAT_BY_ID[id];
     const reason = reasons[id];
     const sign = index % 2 ? -1 : 1;
-    const rotate = shake.interpolate({ inputRange: [-1, 1], outputRange: [`${-9 * sign}deg`, `${9 * sign}deg`] });
+    const rotate = shake.interpolate({ inputRange: [-1, 1], outputRange: [`${-5 * sign}deg`, `${5 * sign}deg`] });
     // 出てくるのは、左から順に少しずつずらす
     const start = Math.min(0.5, index * 0.12);
     const catScale = pop.interpolate({ inputRange: [0, start, 1], outputRange: [0.2, 0.2, 1] });
@@ -214,13 +189,13 @@ function Reveal({ ids, reasons, newIds, onClose }: { ids: string[]; reasons: Rec
         {/* 広がる光の輪 */}
         <Animated.View
           pointerEvents="none"
-          style={[s.center, { opacity: flash.interpolate({ inputRange: [0, 0.2, 1], outputRange: [0, 1, 0] }), transform: [{ scale: flash.interpolate({ inputRange: [0, 1], outputRange: [0.3, 2.6] }) }] }]}
+          style={[s.center, { opacity: flash.interpolate({ inputRange: [0, 0.2, 1], outputRange: [0, 1, 0] }), transform: [{ scale: flash.interpolate({ inputRange: [0, 1], outputRange: [0.3, 1.9] }) }] }]}
         >
           <Pic name={BURST} width={burstSize} />
         </Animated.View>
-        {flying(burst, sparks, 'opening/sparkle', 's')}
-        {flying(burst, paws, 'icon/paw', 'p')}
-        {rare && flying(burst2, sparks.map((p) => ({ ...p, a: p.a + 0.26, r: p.r * 1.15 })), 'opening/sparkle', 'r')}
+        <FlyingBits v={burst} list={sparks} name="opening/sparkle" />
+        <FlyingBits v={burst} list={paws} name="icon/paw" />
+        {rare && <FlyingBits v={burst2} list={sparks.map((p) => ({ ...p, a: p.a + 0.26, r: p.r * 1.15 }))} name="opening/sparkle" />}
         {rows.map((row, r) => (
           <View key={r} style={[s.row, { height: cellH }]}>
             {row.map((id, c) => cell(id, r * PER_ROW + c))}

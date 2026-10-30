@@ -171,7 +171,6 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         </Tap>
         <Tap style={s.camera} onPress={openCamera} accessibilityLabel="さつえい">
           <Pic name="button/camera-round" height={84} />
-          <T w="x" size={12} style={s.cameraLabel}>さつえい</T>
         </Tap>
       </View>
     </View>
@@ -188,7 +187,6 @@ const s = StyleSheet.create({
   heart: { position: 'absolute', top: 0 },
   camera: { alignItems: 'center' },
   sideBtns: { position: 'absolute', right: 14, top: 8, gap: 12, alignItems: 'center', zIndex: 200 },
-  cameraLabel: { marginTop: -4, textShadowColor: '#fff', textShadowRadius: 6 },
   travel: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8, paddingHorizontal: 12 },
   bottom: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, marginTop: 2 },
   upcomingWell: { width: 64, height: 64, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
