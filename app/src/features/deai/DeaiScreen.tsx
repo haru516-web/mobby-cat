@@ -28,7 +28,12 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const [day, setDay] = useState(todayKey);
   const [sel, setSel] = useState<string | null>(null);
   const [detail, setDetail] = useState<string | null>(null);
-  const [welcome, setWelcome] = useState<string | null>(null); // 迎えた直後に出す発見カード
+  // 迎えた直後に出す発見カード。まとめて迎えたときは、全員分を順に見せる
+  const [welcomeList, setWelcomeList] = useState<string[]>([]);
+  const [welcomeAt, setWelcomeAt] = useState(0);
+  const welcome: string | null = welcomeList[welcomeAt] ?? null;
+  const showWelcome = (ids: string[]) => { setWelcomeList(ids); setWelcomeAt(0); };
+  const closeWelcome = () => { setWelcomeList([]); setWelcomeAt(0); };
   const [reveal, setReveal] = useState<{ ids: string[]; newIds: string[] } | null>(null); // ひらく演出の最中の子たち
   const [openSel, setOpenSel] = useState<string[]>([]); // ひらく子として選んでいる候補（まだひらいていない）
   const card = useRef<ViewRef>(null);
@@ -156,7 +161,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     else if (!(await g.pickExtra(day, sel))) return notEnough();
     playSfx(rec.reasons[sel] ? 'sfx_pick_special' : hasFree ? 'sfx_pick_extra' : 'sfx_pick_free');
     hapticSuccess();
-    setWelcome(sel);
+    showWelcome([sel]);
     setSel(null);
   };
   const shareCard = (id: string) => {
@@ -320,35 +325,36 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           />
         )}
         {hasFree && rest.length > 0 && (
-          <View style={{ flexDirection: 'row', gap: 8 }}>
+          <View style={{ gap: 8 }}>
             {/* 券が足りないときは、そのままショップへ。買いたくなる場面なので最短で案内する */}
             {selCat && ticketsOf(state) < 1 ? (
-              <ImgButton label="お迎え券を買う" icon="icon/ticket-paw" height={50} onPress={openShop} style={{ flex: 1 }} />
+              <ImgButton label="お迎え券を買う" icon="icon/ticket-paw" height={50} fontSize={14} onPress={openShop} />
             ) : (
               <ImgButton
-                label={selCat ? '券1枚で迎える' : '迎える子をえらんでね'}
+                label={selCat ? '券1枚で迎える' : '迎える子をえらぶ'}
                 disabled={!selCat}
                 height={50}
+                fontSize={14}
                 badge={selCat ? `所持${ticketsOf(state)}枚` : undefined}
                 onPress={askPick}
-                style={{ flex: 1 }}
               />
             )}
             {rest.length > 1 && (
               <ImgButton
                 skin="ghost-outline"
-                label="まとめて"
-                badge={`${rest.length}枚`}
-                height={50}
-                fontSize={12}
+                label={`残り${rest.length}匹をまとめて迎える`}
+                badge={`券${rest.length}枚`}
+                height={46}
+                fontSize={14}
                 disabled={ticketsOf(state) < rest.length}
                 onPress={() => confirm(
                   `残り${rest.length}匹をまとめて迎えますか？`,
                   `お迎え券を${rest.length}枚使います（${ticketsOf(state)}枚 → ${ticketsOf(state) - rest.length}枚）。`,
                   `券${rest.length}枚で迎える`,
                   async () => {
-                    if (await g.pickExtra(day, rest)) {
-                      setWelcome(rest[0]);
+                    const all = [...rest];
+                    if (await g.pickExtra(day, all)) {
+                      showWelcome(all);
                       playSfx('sfx_pick_extra');
                       hapticSuccess();
                     } else notEnough();
@@ -356,7 +362,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
                   },
                   { catIds: rest },
                 )}
-                style={{ width: 140 }}
               />
             )}
           </View>
@@ -379,7 +384,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
 
     {confirmEl}
 
-      <Modal visible={!!welcome} transparent animationType="fade" onRequestClose={() => setWelcome(null)}>
+      <Modal visible={!!welcome} transparent animationType="fade" onRequestClose={closeWelcome}>
         <View style={s.overlay}>
           {/* ひらく演出と同じ暗幕（後ろの画面が透けて、光が埋もれないように） */}
           {UI['deai/reveal-dim'] ? <Stretch name="deai/reveal-dim" style={StyleSheet.absoluteFill} /> : <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />}
@@ -389,14 +394,31 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
               id={welcome}
               width={Math.min(width - 48, 340)}
               footer={
-                <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
-                  <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={() => setWelcome(null)} style={{ flex: 1 }} />
-                  <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1.2 }} />
-                  <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1.2 }} />
-                </View>
+                welcomeList.length > 1 ? (
+                  // まとめて迎えたときは、1匹ずつ共有できるよう、次の子へ進める
+                  <View style={{ gap: 8, alignSelf: 'stretch' }}>
+                    <View style={{ flexDirection: 'row', gap: 8 }}>
+                      <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1 }} />
+                      <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1 }} />
+                    </View>
+                    <View style={{ flexDirection: 'row', gap: 8 }}>
+                      <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={closeWelcome} style={{ flex: 1 }} />
+                      {welcomeAt < welcomeList.length - 1 && (
+                        <ImgButton label={`つぎの子へ（${welcomeAt + 1}/${welcomeList.length}）`} height={46} fontSize={13} onPress={() => setWelcomeAt(welcomeAt + 1)} style={{ flex: 1.6 }} />
+                      )}
+                    </View>
+                  </View>
+                ) : (
+                  <View style={{ flexDirection: 'row', gap: 8, alignSelf: 'stretch' }}>
+                    <ImgButton skin="ghost-outline" label="閉じる" height={46} fontSize={13} onPress={closeWelcome} style={{ flex: 1 }} />
+                    <ImgButton skin="ghost-outline" label="画像を保存" height={46} fontSize={13} onPress={() => saveView(card)} style={{ flex: 1.2 }} />
+                    <ImgButton label="共有する" icon="icon/camera" height={46} fontSize={13} onPress={() => shareCard(welcome)} style={{ flex: 1.2 }} />
+                  </View>
+                )
               }
             >
               <T w="x" size={20} color="#fff">{CAT_BY_ID[welcome].name}をお迎えしました！</T>
+              {welcomeList.length > 1 && <T w="b" size={12} color="#fff">{`${welcomeAt + 1}匹目 / 全${welcomeList.length}匹`}</T>}
               <DiscoveryCard ref={card} id={welcome} day={day} reason={rec.reasons[welcome]} width={Math.min(width - 48, 340)} />
             </WelcomeFx>
           )}
