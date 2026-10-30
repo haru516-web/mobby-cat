@@ -11,4 +11,3 @@
 [Zodのadvisory](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5) は大きな制約付きコレクションの検証によるメモリ消費、[deepmergeのadvisory](https://github.com/advisories/GHSA-gcqx-w48m-w2h4) は戻り値のprototype poisoningです。前者はCLIのスキーマ検証、後者は設定のマージを使う経路にあります。今回調べた範囲で、アプリの購入API等からこれらを直接呼ぶ経路はありません。
 
 **残件**：ビルドは禁止されているため、最終配布物から除外されることは実証していません。ネイティブ側・Metroの条件付き解決を含む最終バンドル確認と、上流のSDK58対応修正版の追跡が必要です。「highが消えた」「アプリへの影響がないことを証明した」とは扱いません。
-
