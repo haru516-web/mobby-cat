@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { AppState, Linking, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { cardReason, conditionTotal } from '../../core/conditions';
 import { REVEAL_HOUR, prevDayKey, encounterComposition, hasRarePresence } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
@@ -15,6 +15,8 @@ import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
 import { playSfx } from '../../services/audio';
+import { hasStepAccess } from '../../services/signals';
+import { hasLocationAccess } from '../../services/weather';
 import { hapticSuccess } from '../../services/haptics';
 import { UI } from '../../ui/uiAssets';
 import { RevealOverlay } from './RevealOverlay';
@@ -37,6 +39,15 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
   // 背の低い端末（iPhone SE など）では、下の操作エリアを小さくする（2段目の猫が隠れすぎないように）
   const compact = useWindowDimensions().height < 740;
+
+  // 歩数・位置情報（天気）の許可。どちらかが無いと、ほとんど会えないので、出会い画面でいつも知らせる
+  const [permOk, setPermOk] = useState(true);
+  useEffect(() => {
+    const check = () => { void Promise.all([hasStepAccess(), hasLocationAccess()]).then(([a, b]) => setPermOk(a && b)); };
+    check();
+    const sub = AppState.addEventListener('change', (next) => { if (next === 'active') check(); });
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- 日が変わったら、選択を今日に戻す
@@ -196,6 +207,17 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           );
         })}
     </View>
+    {!permOk && (
+      <Tap
+        style={s.permBanner}
+        accessibilityRole="button"
+        accessibilityLabel="歩数と位置情報を許可しないと、ほとんど会えません。設定を開く"
+        onPress={() => Linking.openSettings().catch(() => openSettings())}
+      >
+        <T w="x" size={12} color="#fff" style={{ textAlign: 'center' }}>歩数と位置情報（天気）をオンにしてね</T>
+        <T w="m" size={11} color="#fff" style={{ textAlign: 'center', marginTop: 2 }}>許可しないと、ほとんど会えません（押すと設定へ）</T>
+      </Tap>
+    )}
     {/* きのうの子が残っているときは、今日の画面の上で知らせる（押すと、きのうに切り替わる） */}
     {yWaiting && (
       <Tap onPress={() => { setDay(yKey); setSel(null); }} accessibilityLabel="きのうの子を見る" style={{ marginHorizontal: 16, marginTop: 8 }}>
@@ -443,6 +465,7 @@ const s = StyleSheet.create({
   shopRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   bar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 16, gap: 8 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },
+  permBanner: { marginHorizontal: 16, marginTop: 8, paddingVertical: 8, paddingHorizontal: 12, borderRadius: 14, backgroundColor: C.accent },
   dayTab: { height: 36, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   tabDot: { position: 'absolute', right: 4, top: 2 },
   yBanner: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 12 },
