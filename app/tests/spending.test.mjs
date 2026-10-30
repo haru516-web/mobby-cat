@@ -63,6 +63,22 @@ test('legacy missing day compensates only the paid portion', () => {
   const s = { ...state(), tickets: 1 };
   assert.equal(applySpend(s, p).tickets, 3);
 });
+test('a definitive insufficient balance clears the journal without granting or consuming free items', async () => {
+  const h = harness({ ...state(), tickets: 1 });
+  h.spend = async () => 'short';
+  assert.equal(await runSpend({ ...pending(), fromFree: 1 }, h), false);
+  assert.equal(h.get().tickets, 1);
+  assert.deepEqual(h.get().owned, {});
+  assert.equal(h.get().pendingSpend, undefined);
+});
+test('an applied matatabi journal survives restart without another opening or debit', async () => {
+  const p = pending('matatabi');
+  const applied = applySpend(state(), p);
+  const h = harness({ ...applied, pendingSpend: { ...p, applied: true } });
+  assert.equal(await runSpend(h.get().pendingSpend, h), true);
+  assert.equal(h.get().days[p.day].matatabiUsed, 1);
+  assert.equal(h.calls(), 0);
+});
 test('serialized writes preserve order after a slow write and a failure', async () => {
   const seen = []; let release;
   const gate = new Promise(r => { release = r; });

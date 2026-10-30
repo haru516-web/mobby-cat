@@ -26,4 +26,3 @@ test('cloud rejects malformed JSON and repaired saves', () => {
   assert.equal(fromRecord(JSON.stringify({ owned: {}, tickets: -1 })), null);
   assert.equal(fromRecord(JSON.stringify({ owned: null })), null);
 });
-

@@ -53,4 +53,3 @@ test('a used recovery proof is reported without adopting or finishing it', async
   assert.equal(result.recovered, false);
   assert.equal(m.finished(), 0);
 });
-
