@@ -478,6 +478,7 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
   const issued = await context.call("POST", "/account/transfer-code", { user: alice });
   assert.equal(issued.status, 200);
   const transferCode = issued.data.code;
+  assert.notEqual(context.database.prepare("SELECT code_hash FROM account_transfer_codes WHERE user_id = ?").get(alice).code_hash, transferCode);
   const newSecret = 'n'.repeat(43);
   let recoveryCalls = 0;
   const recover = async (jws, ip = "203.0.113." + (++recoveryCalls), extra = {}) => context.call("POST", "/auth/recover-purchase", { body: { signedTransactionInfo: jws, transferCode, newSecret, ...extra }, envOverride: env, ip });
@@ -490,6 +491,8 @@ test("an anonymous account is taken back on a new device with Apple's signed pro
   assert.equal(reply.status, 200);
   assert.equal(reply.data.userId, alice);
   assert.notEqual(reply.data.secret, old.split(".").slice(1).join("."));
+  context.credentials.set(alice, old);
+  assert.equal((await context.call("GET", "/wallet", { user: alice })).status, 401);
   context.credentials.set(alice, `${alice}.${reply.data.secret}`);
   assert.equal((await context.call("GET", "/wallet", { user: alice })).status, 200);
   assert.equal((await context.call("GET", "/wallet", { user: alice, envOverride: env })).status, 200);

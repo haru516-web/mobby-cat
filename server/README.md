@@ -11,7 +11,7 @@
 | クラウドセーブ | `GET/POST /save`（Apple 連携済みのアカウントだけ。`baseVersion` が古いと 409） |
 | 購入の検証 | `POST /purchases/verify`（StoreKit 2 の JWS。`appAccountToken` はアカウントの `userId` と一致が必須） |
 | App Store Server Notifications V2 | `POST /apple/notifications`（更新・返金・取り消し） |
-| 匿名購入の引継ぎ | `POST /auth/recover-purchase`（期限内サブスクの署名つき取引。Apple未連携のみ。同じ購入日時・以前の証明は拒否し、鍵回転と使用日時記録を原子的に更新） |
+| 匿名購入の引継ぎ | `POST /auth/recover-purchase`（期限内サブスクの署名つき取引。Apple未連携のみ。独立した引継ぎコードと新端末の保存済み鍵が必要。コードの使用先固定と鍵回転を原子的に更新） |
 | 残高 | `GET /wallet`（お迎え券 `tickets`・またたび `matatabi`）、`POST /wallet/consume`（`requestId` ごとに1回だけ消費） |
 | またたびパス | `GET /plan` |
 | 年齢区分と購入上限 | `POST /profile/age-group`（下げるのは可、上げるのは不可）、`GET /limits` |
@@ -57,16 +57,18 @@ npm run dev        # ローカルで起動（先に npm run db:apply）
 
 | ファイル | 内容 | 本番に適用 |
 |---|---|---|
-| `migrations/0003_purchase_recovery_date.sql` | 購入の証明の再利用を拒否するため、最後に引き継いだ購入日時を記録 | 未 |
+| `migrations/0003_purchase_recovery_date.sql` | 旧回復方式の互換列（現行は未使用） | 未 |
+| `migrations/0004_account_transfer_codes.sql` | 独立した期限付き引継ぎコードと使用先の鍵のハッシュ | 未 |
 | `migrations/0002_purchase_price.sql` | 購入した日時と、Apple が請求した金額（円）を記録する（月の購入上限の計算に使う） | 未 |
 
 ```bash
 npx wrangler d1 execute nyakomobby --remote --file=./migrations/0002_purchase_price.sql
 npx wrangler d1 execute nyakomobby --remote --file=./migrations/0003_purchase_recovery_date.sql
+npx wrangler d1 execute nyakomobby --remote --file=./migrations/0004_account_transfer_codes.sql
 npx wrangler deploy
 ```
 
-上記は運営者の適用手順です。Codexは本番操作を行っていません。0002、0003の順に、未適用の移行だけを実行します。匿名購入の証明は同じ購入日時・以前のものを再利用できないため、再引継ぎと応答喪失時には新しい更新取引またはApple連携の案内が必要です。
+上記は運営者の適用手順です。Codexは本番操作を行っていません。0002、0003、0004の順に、未適用の移行だけを実行します。匿名購入の回復には購入証明だけでなく、期限内の独立したコードが必要です。通信応答喪失時は同じ保存済みの新しい鍵で再送できます。
 
 回数制限：送信元のアドレスごとの制限は Cloudflare の Rate Limiting（`wrangler.toml` の `[[ratelimits]]`。DB には残らない）。アカウントごとの制限（購入の確認、Apple 連携、記録の保存・読み込み、残高の消費、年齢の区分）は DB の `rate_limits`。
 

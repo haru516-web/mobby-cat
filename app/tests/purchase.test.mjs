@@ -72,3 +72,14 @@ test('a lost recovery response retries the securely saved replacement key', asyn
   assert.equal(sent[0].newSecret, 'persisted-replacement');
   assert.deepEqual(sent[0], sent[1]);
 });
+test('failed secure persistence prevents recovery and adoption failure remains retryable', async () => {
+  const m = mock();
+  m.api.account = async () => { throw Error('secure storage full'); };
+  const options = { recover: true, transferCode: 'b.code' };
+  assert.deepEqual(await settle(m.store, m.api, options), { kind: 'offline' });
+  assert.equal(m.recoveries(), 0);
+  m.api.account = async () => ({ userId: 'empty', secret: 'persisted-replacement' });
+  m.api.adopt = async () => { throw Error('secure storage full'); };
+  assert.deepEqual(await settle(m.store, m.api, options), { kind: 'offline' });
+  assert.equal(m.finished(), 0);
+});

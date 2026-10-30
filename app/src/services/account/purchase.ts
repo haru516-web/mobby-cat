@@ -128,13 +128,13 @@ async function isEmptyAccount(api: Pick<Client, 'authed'>): Promise<boolean> {
 // 署名つきの購入を証明にして、購入したアカウントの鍵を、この端末へ移す
 async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, jws: string, transferCode: string): Promise<'ok' | 'offline' | 'no' | 'used'> {
   // account() saves the replacement secret before any key rotation. A lost response can retry the same secret.
-  const replacement = await api.account();
+  const replacement = await api.account().catch(() => null);
   if (!replacement) return 'offline';
   const reply = await api.raw('/auth/recover-purchase', { body: { signedTransactionInfo: jws, transferCode, newSecret: replacement.secret } });
   if (reply === null) return 'offline';
   const data = reply.data;
   if (reply.status === 200 && data && typeof data.userId === 'string' && typeof data.secret === 'string' && data.secret === replacement.secret && data.userId === transferCode.split('.')[0]) {
-    await api.adopt({ userId: data.userId, secret: data.secret });
+    try { await api.adopt({ userId: data.userId, secret: data.secret }); } catch { return 'offline'; }
     return 'ok';
   }
   return reply.status === 409 && data?.error === 'invalid_transfer_code' ? 'used' : 'no';
