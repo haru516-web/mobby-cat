@@ -14,6 +14,7 @@ import { readServerClockOffset } from '../services/clock';
 import { checkSaved } from './saveShape';
 import { isRealCat } from './recipes';
 import { worldGifts } from './world';
+import { retainDays } from './history';
 import { applySpend, runSpend, serializedWriter, spendBlocked } from './spending';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
@@ -159,7 +160,7 @@ export function normalizeSaved(saved: Partial<GameState>, now: Date = new Date()
   // チュートリアルの導入前から遊んでいた人には出さない
   const tutorialDone = saved.tutorialDone ?? starterChosen;
   if (saved.days) singleReasons(saved.days);
-  return { ...initial(now), ...saved, starterChosen, tutorialDone, paid: saved.paid ?? initial(now).paid };
+  return retainDays({ ...initial(now), ...saved, starterChosen, tutorialDone, paid: saved.paid ?? initial(now).paid });
 }
 
 const INBOX_MAX = 50;
@@ -474,7 +475,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           // 実在の猫の簡単な条件は通知しない。個性のある猫（特別な猫）が来た日だけ知らせる
           const special = [...new Set(d.candidates.filter((id) => CATS.find((c) => c.id === id)?.kind !== 'breed').map((id) => d.reasons[id]))];
           if (special.length) next = notify(next, k, `「${special.join('」「')}」の条件がそろって、特別な猫が来ています`);
-          return next;
+          return retainDays(next);
         });
         building.current.delete(k);
       })();
