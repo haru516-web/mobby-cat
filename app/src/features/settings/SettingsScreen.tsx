@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { AppState, Linking, ScrollView, Share, StyleSheet, View } from 'react-native';
 import { useAccount } from '../../core/account';
 import { useGame } from '../../core/game';
-import { INFO_BODY, INFO_TITLE, InfoKind, PRIVACY_URL, SUPPORT_EMAIL, TERMS_URL } from '../../data/appInfo';
+import { LEGAL_URL, INFO_BODY, INFO_TITLE, InfoKind, PRIVACY_URL, SUPPORT_EMAIL, SUPPORT_URL, TERMS_URL } from '../../data/appInfo';
 import { setAudioSettings, useAudioSettings } from '../../services/audio';
 import { notice } from '../../services/dialog';
 import { useConfirm } from '../../ui/ConfirmPopup';
@@ -11,15 +11,15 @@ import { hasStepAccess } from '../../services/signals';
 import { hasLocationAccess } from '../../services/weather';
 import { disableDailyNotification, enableDailyNotification, hasNotifyAccess } from '../../services/notify';
 import { C, T } from '../../ui/base';
-import { Card, ImgButton, Toggle, Tap, withSfx } from '../../ui/kit';
+import { Card, ImgButton, Toggle, Tap } from '../../ui/kit';
 import { Popup } from '../../ui/Popup';
 import { Pic, Slice } from '../../ui/Slice';
 import { AGE_LABEL, AgePopup } from '../shop/AgePopup';
+import { BirthdayPopup } from './BirthdayPopup';
 import { OssCredits } from './OssCredits';
 import type { AgeGroup } from '../../services/account/purchase';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
-const DAYS_IN = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 type Category = 'permission' | 'notify' | 'sound' | 'support' | 'about' | 'account' | 'data' | 'dev';
 // 内容の量に合わせたポップの高さ（画面の高さに対する割合）
@@ -118,14 +118,19 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
     }
   };
 
-  // 誕生日は月・日だけを端末内に保存する（年は持たない）
-  const stepBirthday = (part: 'm' | 'd', delta: number) => {
-    const cur = bd ?? { m: 1, d: 1 };
-    let m = cur.m, d = cur.d;
-    if (part === 'm') m = ((m - 1 + delta + 12) % 12) + 1;
-    else d = ((d - 1 + delta + DAYS_IN[m - 1]) % DAYS_IN[m - 1]) + 1;
-    g.setBirthday({ m, d: Math.min(d, DAYS_IN[m - 1]) });
-  };
+  // 誕生日は月・日だけを端末内に保存する（年は持たない）。選んで「登録する」を押し、確認のあとに決まる。一度決めたら変えられない
+  const [pickBirthday, setPickBirthday] = useState(false);
+  const askBirthday = (m: number, d: number) =>
+    confirm(
+      `${m}月${d}日を誕生日にしますか？`,
+      '一度登録すると、あとから変更できません。間違いがないか、もう一度確かめてください。',
+      '登録する',
+      () => {
+        if (g.setBirthday({ m, d })) setPickBirthday(false);
+        else notice('登録できませんでした', 'すでに誕生日が登録されています。');
+      },
+      { cancelLabel: 'もどる' },
+    );
 
   const [perm, setPerm] = useState({ steps: false, location: false });
   // 開いたときと、設定アプリから戻ったときに、許可を確かめ直す。通知を端末の設定で切っていたら、こちらもオフにする
@@ -147,6 +152,10 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
     Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`にゃっコレ ${APP_VERSION}`)}`).catch(() =>
       notice('メールを開けませんでした', SUPPORT_EMAIL),
     );
+  };
+  // 外のページを開く。開けないときは、アドレスを伝える
+  const openUrl = (url: string) => {
+    Linking.openURL(url).catch(() => notice('ページを開けませんでした', url));
   };
   const openLegal = (kind: 'privacy' | 'terms') => {
     const url = kind === 'privacy' ? PRIVACY_URL : TERMS_URL;
@@ -252,15 +261,16 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 <View style={{ flex: 1 }}>
                   <T w="x" size={14}>誕生日</T>
                   <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>誕生日の出会いに、特別な猫が来ることがあります。候補は20時にできるので、その前に登録してください。端末の中だけに保存します</T>
+                  <T w="x" size={11} color={C.accent} style={{ marginTop: 4 }}>
+                    {bd ? '登録ずみです。あとから変更できません。' : '誕生日は、一度登録すると、あとから変更できません。'}
+                  </T>
                 </View>
                 {bd ? (
-                  <View style={{ alignItems: 'flex-end', gap: 4 }}>
-                    <Stepper label={`${bd.m}月`} onMinus={() => stepBirthday('m', -1)} onPlus={() => stepBirthday('m', 1)} />
-                    <Stepper label={`${bd.d}日`} onMinus={() => stepBirthday('d', -1)} onPlus={() => stepBirthday('d', 1)} />
-                    <T w="b" size={11} color={C.sub} onPress={withSfx(() => g.setBirthday(null))}>登録をやめる</T>
+                  <View style={s.bdDone}>
+                    <T w="x" size={16}>{`${bd.m}月${bd.d}日`}</T>
                   </View>
                 ) : (
-                  <ImgButton skin="ghost-outline" label="登録する" height={36} fontSize={12} onPress={() => g.setBirthday({ m: 1, d: 1 })} style={{ width: 100 }} />
+                  <ImgButton skin="ghost-outline" label="登録する" height={36} fontSize={12} onPress={() => setPickBirthday(true)} style={{ width: 100 }} />
                 )}
               </Card>
             </View>
@@ -324,6 +334,13 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 </View>
                 <ImgButton skin="ghost-outline" label="送る" height={36} fontSize={12} onPress={contact} style={{ width: 100 }} />
               </Card>
+              <Card style={s.item}>
+                <View style={{ flex: 1 }}>
+                  <T w="x" size={14}>サポートページ</T>
+                  <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>よくある質問と、引き継ぎ・返金・解約のしかた</T>
+                </View>
+                <ImgButton skin="ghost-outline" label="開く" height={36} fontSize={12} onPress={() => openUrl(SUPPORT_URL)} style={{ width: 100 }} />
+              </Card>
             </View>
           )}
 
@@ -331,6 +348,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
             <View style={{ gap: 8, marginTop: 8 }}>
               <ImgButton skin="ghost-outline" label="プライバシーポリシー" height={44} onPress={() => openLegal('privacy')} />
               <ImgButton skin="ghost-outline" label="利用規約" height={44} onPress={() => openLegal('terms')} />
+              <ImgButton skin="ghost-outline" label="特定商取引法に基づく表記" height={44} onPress={() => openUrl(LEGAL_URL)} />
               <ImgButton skin="ghost-outline" label="クレジット" height={44} onPress={() => setInfo('credits')} />
               <T w="m" size={10} color={C.sub} style={{ textAlign: 'center', marginTop: 4 }}>バージョン {APP_VERSION}</T>
             </View>
@@ -407,9 +425,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               <Card skin="white" style={{ gap: 4 }}>
                   <T w="x" size={13}>アカウントの削除</T>
                   <T w="m" size={11} color={C.sub}>アカウントと、サーバーに預けた記録・購入の記録を、すべて削除します。残っているお迎え券とまたたびは、失われます。またたびパスは、自動では解約されません。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から行ってください。</T>
-                  <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('アカウントを削除しますか？', 'サーバーの記録と購入の記録を削除し、この端末の記録も消します。元に戻せません。', '削除する', () => void doDelete(), { cancelLabel: 'やめる' }))}>
-                    アカウントを削除する
-                  </T>
+                  <ImgButton skin="ghost-outline" label="アカウントを削除する" height={42} fontSize={13} disabled={busy} onPress={() => confirm('アカウントを削除しますか？', 'サーバーの記録と購入の記録を削除し、この端末の記録も消します。元に戻せません。', '削除する', () => void doDelete(), { cancelLabel: 'やめる' })} style={{ marginTop: 4 }} />
                 </Card>
             </View>
           )}
@@ -420,9 +436,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               <T w="m" size={11} color={C.sub}>
                 迎えた猫と記録は、この端末の中に保存されます。Appleでサインインしていないと、アプリを削除したり機種変更をしたりしたときに、消えてしまいます。Appleでサインインすると、クラウドにも預けて、機種変更で引き継げます（「アカウント」から）。
               </T>
-              <T w="b" size={11} color={C.accent} style={{ marginTop: 4 }} onPress={withSfx(() => confirm('すべての記録を消しますか？', '迎えた猫・お迎え券・設定がすべて消えます。元に戻せません。', 'すべて消す', () => { void disableDailyNotification(); g.reset(); }, { cancelLabel: 'やめておく' }))}>
-                すべての記録を消して、はじめから
-              </T>
+              <ImgButton skin="ghost-outline" label="すべての記録を消して、はじめから" height={42} fontSize={13} onPress={() => confirm('すべての記録を消しますか？', '迎えた猫・お迎え券・設定がすべて消えます。元に戻せません。', 'すべて消す', () => { void disableDailyNotification(); g.reset(); }, { cancelLabel: 'やめておく' })} style={{ marginTop: 6 }} />
             </Card>
           )}
 
@@ -438,6 +452,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
         </ScrollView>
       </Popup>
 
+      <BirthdayPopup visible={pickBirthday} onClose={() => setPickBirthday(false)} onRegister={askBirthday} />
       {confirmEl}
       <AgePopup visible={lowerAge} below={acc.ageGroup ?? undefined} onPick={pickLowerAge} onClose={() => setLowerAge(false)} />
 
@@ -475,4 +490,5 @@ const s = StyleSheet.create({
   cat: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
   item: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 8 },
   stepValue: { height: 28, minWidth: 56, alignItems: 'center', justifyContent: 'center' },
+  bdDone: { minWidth: 100, alignItems: 'center', justifyContent: 'center' },
 });

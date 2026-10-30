@@ -15,6 +15,7 @@ import { checkSaved } from './saveShape';
 import { isRealCat } from './recipes';
 import { worldGifts } from './world';
 import { retainDays } from './history';
+import { canRegisterBirthday } from './birthday';
 import { accountChangeBlocked, applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange, withPaid } from './spending';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
@@ -220,7 +221,8 @@ type Ctx = {
   canReplace: () => boolean;
   withAccountChange: <T>(work: () => Promise<T>, unavailable: T) => Promise<T>;
   setNotify: (v: boolean) => void;
-  setBirthday: (b: { m: number; d: number } | null) => void;
+  /** 誕生日を登録する。すでに登録してあるとき、日が正しくないときは、何もせず false（一度登録したら変えられない） */
+  setBirthday: (b: { m: number; d: number }) => boolean;
   toggleFavorite: (id: string) => void;
   chooseStarter: (id: string) => void;
   rerollStarter: () => void;
@@ -624,7 +626,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     return true;
   }, [canReplace]);
   const setNotify = useCallback((v: boolean) => setState((s) => ({ ...s, notifyEnabled: v })), []);
-  const setBirthday = useCallback((b: { m: number; d: number } | null) => setState((s) => ({ ...s, birthday: b })), []);
+  const setBirthday = useCallback((b: { m: number; d: number }): boolean => {
+    if (!canRegisterBirthday(stateRef.current.birthday, b)) return false;
+    const next = { ...stateRef.current, birthday: { m: b.m, d: b.d } };
+    stateRef.current = next;
+    setState(next);
+    return true;
+  }, []);
   const toggleFavorite = useCallback(
     (id: string) =>
       setState((s) => ({

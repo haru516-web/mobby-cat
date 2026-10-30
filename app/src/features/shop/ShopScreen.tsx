@@ -138,7 +138,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap} automaticallyAdjustKeyboardInsets keyboardShouldPersistTaps="handled">
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Pic name="brand/title-shop" height={40} />
           <View style={{ flex: 1 }} />

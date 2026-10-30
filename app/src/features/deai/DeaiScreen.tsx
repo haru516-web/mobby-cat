@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Modal, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { cardReason, conditionTotal } from '../../core/conditions';
 import { REVEAL_HOUR, prevDayKey } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
@@ -10,6 +10,7 @@ import { notice } from '../../services/dialog';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
 import { Card, Header, ImgButton, RarityBadge, useTabPad, Tap } from '../../ui/kit';
 import { useConfirm } from '../../ui/ConfirmPopup';
+import { Overlay } from '../../ui/Overlay';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
@@ -367,24 +368,34 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           </View>
         )}
 
-        {/* またたびパスの案内。加入前も加入中も出して、何が得かを常に見せる */}
-        <Tap onPress={openShop} accessibilityLabel="またたびパス">
-          <Card style={s.pass}>
-            <Pic name="icon/matatabi-bag" height={32} />
-            <View style={{ flex: 1 }}>
-              <T w="x" size={12}>{state.pass.active ? 'またたびパス加入中' : 'またたびパス'}</T>
-              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹までひらける＋毎月お迎え券8枚</T>
-            </View>
-            {!state.pass.active && <T w="x" size={11} color={C.accent}>くわしく</T>}
-            <Pic name="icon/chevron-right" height={12} />
-          </Card>
-        </Tap>
+        {/* 下の行：またたびパスの状態と、ショップへの入口。加入中の人に、パスの説明は出さない */}
+        <View style={s.shopRow}>
+          {state.pass.active ? (
+            <Card style={[s.pass, { flex: 1 }]}>
+              <Pic name="icon/matatabi-bag" height={32} />
+              <T w="x" size={13} style={{ flex: 1 }} numberOfLines={1}>またたびパス加入中</T>
+            </Card>
+          ) : (
+            <Tap onPress={openShop} accessibilityLabel="またたびパスのくわしい説明" style={{ flex: 1 }}>
+              <Card style={s.pass}>
+                <Pic name="icon/matatabi-bag" height={32} />
+                <View style={{ flex: 1 }}>
+                  <T w="x" size={12}>またたびパス</T>
+                  <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹までひらける</T>
+                </View>
+                <Pic name="icon/chevron-right" height={12} />
+              </Card>
+            </Tap>
+          )}
+          {/* お迎え券・またたびを買いたい人が、ここから直接ショップへ行ける */}
+          <ImgButton label="ショップ" icon="icon/ticket-paw" height={46} fontSize={14} onPress={openShop} style={{ width: 124 }} />
+        </View>
       </View>
     )}
 
     {confirmEl}
 
-      <Modal visible={!!welcome} transparent animationType="fade" onRequestClose={closeWelcome}>
+      <Overlay visible={!!welcome} onRequestClose={closeWelcome}>
         <View style={s.overlay}>
           {/* ひらく演出と同じ暗幕（後ろの画面が透けて、光が埋もれないように） */}
           {UI['deai/reveal-dim'] ? <Stretch name="deai/reveal-dim" style={StyleSheet.absoluteFill} /> : <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />}
@@ -423,7 +434,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             </WelcomeFx>
           )}
         </View>
-      </Modal>
+      </Overlay>
 
       <RevealOverlay
         ids={reveal?.ids ?? null}
@@ -435,7 +446,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         }}
       />
 
-      <Modal visible={!!detail} transparent animationType="fade" onRequestClose={() => setDetail(null)}>
+      <Overlay visible={!!detail} onRequestClose={() => setDetail(null)}>
         <Tap style={s.overlay} onPress={() => setDetail(null)}>
           <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
           {detail && (
@@ -454,7 +465,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             </Card>
           )}
         </Tap>
-      </Modal>
+      </Overlay>
     </View>
   );
 }
@@ -465,6 +476,7 @@ const s = StyleSheet.create({
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
   selInfo: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   pass: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
+  shopRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   bar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 16, gap: 8 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },
   dayTab: { height: 36, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },

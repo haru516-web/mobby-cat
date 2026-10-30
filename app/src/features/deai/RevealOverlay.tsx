@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Modal, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Animated, Easing, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Overlay } from '../../ui/Overlay';
 import { shownRarity } from '../../core/recipes';
 import { CAT_BY_ID, CatImage, T, useReduceMotion } from '../../ui/base';
 import { ImgButton, RarityBadge, Tap } from '../../ui/kit';
@@ -33,9 +34,9 @@ export function RevealOverlay({ ids, reasons, newIds, onClose }: Props) {
   if (ids && ids !== last) setLast(ids);
   const shown = ids ?? last;
   return (
-    <Modal visible={!!ids} transparent animationType="fade" onRequestClose={onClose}>
+    <Overlay visible={!!ids} onRequestClose={onClose}>
       {shown && <Reveal key={shown.join(',')} ids={shown} reasons={reasons} newIds={newIds} onClose={onClose} />}
-    </Modal>
+    </Overlay>
   );
 }
 

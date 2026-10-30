@@ -18,7 +18,7 @@ export type ConfirmOpts = {
 };
 type Spec = { title: string; message?: string; okLabel: string; onOk: () => void } & ConfirmOpts;
 
-// 使う画面の中に element を置く（Modal の入れ子になるので、ポップの上でも重なって出る）
+// 使う画面の中に element を置く。ポップは OverlayHost に、開いた順に重なって出る（ほかのポップの上にも出る）
 export function useConfirm() {
   const [spec, setSpec] = useState<Spec | null>(null);
   const [last, setLast] = useState<Spec | null>(null);
