@@ -432,7 +432,6 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               <ImgButton skin="ghost-outline" label="相棒選びからやり直す（記録を消す）" height={44} onPress={() => confirm('相棒選びからやり直しますか？', '記録がすべて消えて、相棒選び（引き直し3回）から始まります。開発用です。', 'やり直す', g.reset, { cancelLabel: 'やめる' })} />
             </View>
           )}
-          {info === 'credits' && <OssCredits />}
         </ScrollView>
       </Popup>
 
@@ -451,6 +450,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               {__DEV__ && info !== 'credits' && <T w="m" size={10} color={C.sub}>※ 開発ビルドのみ表示：公開前に文面を見直します</T>}
             </Card>
           )}
+          {info === 'credits' && <OssCredits />}
         </ScrollView>
       </Popup>
     </View>
