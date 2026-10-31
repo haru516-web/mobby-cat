@@ -99,6 +99,8 @@ export function Header({ onShop, onBell, onSettings }: { onShop: () => void; onB
             <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{ticketsOf(state)}</T>
             <Icon name="icon/matatabi-leaf" size={20} />
             <T w="x" size={14} style={{ marginLeft: 3 }}>{matatabiOf(state)}</T>
+            {/* 押すとショップが開くことを伝える */}
+            <Icon name="icon/plus-round" size={22} style={{ marginLeft: 8 }} />
           </Slice>
         </Tap>
       </TourAnchor>

@@ -370,28 +370,13 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           </View>
         )}
 
-        {/* 下の行：またたびパスの状態と、ショップへの入口。加入中の人に、パスの説明は出さない */}
-        <View style={s.shopRow}>
-          {state.pass.active ? (
-            <Card style={[s.pass, { flex: 1 }]}>
-              <Pic name="icon/matatabi-bag" height={32} />
-              <T w="x" size={13} style={{ flex: 1 }} numberOfLines={1}>またたびパス加入中</T>
-            </Card>
-          ) : (
-            <Tap onPress={openShop} accessibilityLabel="またたびパスのくわしい説明" style={{ flex: 1 }}>
-              <Card style={s.pass}>
-                <Pic name="icon/matatabi-bag" height={32} />
-                <View style={{ flex: 1 }}>
-                  <T w="x" size={12}>またたびパス</T>
-                  <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹までひらける</T>
-                </View>
-                <Pic name="icon/chevron-right" height={12} />
-              </Card>
-            </Tap>
-          )}
-          {/* お迎え券・またたびを買いたい人が、ここから直接ショップへ行ける */}
-          <ImgButton label="ショップ" icon={compact ? undefined : 'icon/ticket-paw'} height={compact ? 44 : 46} fontSize={14} onPress={openShop} style={{ width: compact ? 116 : 124 }} />
-        </View>
+        {/* またたびパスの契約中表示。持っていない人には何も出さない（ショップへの入口は、上の所持品の表示） */}
+        {state.pass.active && (
+          <Card style={s.pass}>
+            <Pic name="icon/matatabi-bag" height={32} />
+            <T w="x" size={13} style={{ flex: 1 }} numberOfLines={1}>またたびパス契約中</T>
+          </Card>
+        )}
       </View>
     )}
 

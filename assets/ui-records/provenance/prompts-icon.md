@@ -296,3 +296,15 @@ Source: C:\Users\User\.codex\generated_images\01a17849-0ce3-7933-8ae2-427904148e
 A simple account key settings icon, 150x150 transparent. Match the existing icon family's warm chocolate-brown outline and muted brass/orange details, rounded puffy paper-clay style, soft upper-left highlight. One clear old-fashioned key angled gently upward-right, large round bow and two small teeth. No text, letters, numbers, logos, extra objects or background.
 
 Finishing: Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF
+
+## icon/plus-round.png
+
+Final: 150x150 PNG, transparent.
+
+Prompt: One cute, flat, centered round cream (#FFF8F0) button with a fine soft dark-brown (#4A3B32) outline, a barely visible low-contrast warm-brown shadow softly offset downward, and a clean solid soft-orange (#F08A5D) plus with rounded line ends. Gentle upper-left highlight, minimal bevel, flat vector-like style. Single symmetrical circle with a small even transparent margin. No checkerboard, thick dark rim, gold rim, heavy shadow, gradients or texture in the plus, text, letters, extra symbols, objects, or watermark.
+
+Method: built-in image_gen. Three generations; the first was rejected for a heavy rim and shadow, the second for an opaque checkerboard background, and the third was selected.
+
+Source: C:/Users/User/.codex/generated_images/01a1901a-d634-7903-b0a1-aa52a2272f4e/exec-c3768b51-c588-4120-9f7c-68e278aa0b11.png
+
+Processing: High-quality bicubic downsample from 1254x1254 to 150x150 with the generated alpha preserved. The new bitmap omits embedded metadata.

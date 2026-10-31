@@ -107,6 +107,7 @@ export const UI: Record<string, UIAsset | undefined> = {
   'icon/megaphone': { src: require('../../assets/ui/icon/megaphone.png'), w: 150, h: 150 },
   'icon/paw': { src: require('../../assets/ui/icon/paw.png'), w: 150, h: 150 },
   'icon/pin': { src: require('../../assets/ui/icon/pin.png'), w: 150, h: 150 },
+  'icon/plus-round': { src: require('../../assets/ui/icon/plus-round.png'), w: 150, h: 150 },
   'icon/shield-check': { src: require('../../assets/ui/icon/shield-check.png'), w: 150, h: 150 },
   'icon/sun': { src: require('../../assets/ui/icon/sun.png'), w: 150, h: 150 },
   'icon/ticket-paw': { src: require('../../assets/ui/icon/ticket-paw.png'), w: 150, h: 150 },
