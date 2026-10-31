@@ -14,13 +14,14 @@ import { UI } from '../../ui/uiAssets';
 import { ScreenProps } from '../../navigation';
 
 // 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい
+// 手前の3匹は、下のヒントカードの手前まで床を使う（上に寄せると、カードとのあいだが空いてしまう）
 const SLOTS = [
-  { x: 0.3, y: 0.52, s: 0.4 }, // ラグの上（手前中央）
-  { x: 0.62, y: 0.5, s: 0.32 },
-  { x: 0.02, y: 0.56, s: 0.34 },
-  { x: 0.42, y: 0.3, s: 0.24 }, // ソファ
-  { x: 0.08, y: 0.32, s: 0.26 },
-  { x: 0.72, y: 0.18, s: 0.22 }, // キャットタワー
+  { x: 0.3, y: 0.62, s: 0.42 }, // ラグの上〜手前中央
+  { x: 0.62, y: 0.6, s: 0.34 },
+  { x: 0.02, y: 0.66, s: 0.36 },
+  { x: 0.42, y: 0.32, s: 0.24 }, // ソファ
+  { x: 0.08, y: 0.34, s: 0.26 },
+  { x: 0.72, y: 0.25, s: 0.22 }, // キャットタワー
 ];
 const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！', 'にゃーん', 'もっと！'];
 
@@ -126,8 +127,15 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         {roomSlots.map((id, i) => {
           if (!id) return null;
           const slot = SLOTS[i];
+          const size = width * slot.s;
+          const left = width * slot.x;
+          let top = roomH * slot.y;
+          // 右上の丸いボタン（SIDE_BTN の2つ）の下に置く。猫の絵がボタンに重ならないように
+          if (left + size > width - SIDE_RIGHT - SIDE_BTN - 4 && top < SIDE_BOTTOM) top = SIDE_BOTTOM;
+          // 背の低い端末でも、足が部屋の下端で切れないように
+          top = Math.max(0, Math.min(top, roomH - size - 6));
           return (
-            <View key={id} style={{ position: 'absolute', left: width * slot.x, top: roomH * slot.y, zIndex: Math.round(slot.y * 100 + slot.s * 10) }}>
+            <View key={id} style={{ position: 'absolute', left, top, zIndex: Math.round(slot.y * 100 + slot.s * 10) }}>
               <RoomCat id={id} size={width * slot.s} delay={i * 260} onPet={pet} />
             </View>
           );
@@ -181,13 +189,15 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 }
 
 const SIDE_BTN = 52; // 右上の丸いボタンの大きさ（2つとも同じ）
+const SIDE_RIGHT = 14;
+const SIDE_BOTTOM = 8 + SIDE_BTN * 2 + 12 + 8; // 2つのボタンの下端（上の余白8、ボタンの間12）に、余白8
 
 const s = StyleSheet.create({
   empty: { position: 'absolute', left: 0, right: 0, top: '40%', alignItems: 'center' },
   bubble: { position: 'absolute', top: -40, width: 120, paddingHorizontal: 14, paddingTop: 8, paddingBottom: 16, alignItems: 'center' },
   heart: { position: 'absolute', top: 0 },
   camera: { alignItems: 'center' },
-  sideBtns: { position: 'absolute', right: 14, top: 8, gap: 12, alignItems: 'center', zIndex: 200 },
+  sideBtns: { position: 'absolute', right: SIDE_RIGHT, top: 8, gap: 12, alignItems: 'center', zIndex: 200 },
   travel: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8, paddingHorizontal: 12 },
   bottom: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, marginTop: 2 },
   upcomingWell: { width: 64, height: 64, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },

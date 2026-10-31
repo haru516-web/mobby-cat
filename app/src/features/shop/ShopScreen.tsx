@@ -17,7 +17,7 @@ import { AgePopup } from './AgePopup';
 const ITEMS: { key: ProductKey; icon: string; name: string; yen: string; desc: string }[] = [
   { key: 'ticket1', icon: 'icon/ticket-paw', name: 'お迎え券 1枚', yen: '¥200', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
   { key: 'ticket6', icon: 'icon/ticket-paw', name: 'お迎え券 6枚', yen: '¥1,000', desc: 'まとめ買い（5枚＋おまけ1枚）' },
-  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '1個で、今日の候補をもう1匹ひらけます（条件がそろった子が4匹以上いる日。最大6匹）' },
+  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '1個で、今日の候補をもう1匹ひらけます（条件がそろった子が4匹以上いる日。候補の数まで）' },
 ];
 
 const PASS_BONUS_LABEL = 3;
@@ -80,7 +80,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       if (acc.linked === true) return notice('購入しました', thanks);
       confirm(
         '購入しました',
-        `${thanks}機種変更をしても、購入したものと記録を引き継げるよう、Appleでサインインしておくと安心です（任意です）。名前やメールアドレスは受け取りません。サインインしない場合は、設定の「アカウント」で引継ぎコードを発行して、控えておいてください。コードがないと、機種変更のあとに、購入したまたたびやお迎え券を戻せないことがあります。`,
+        `${thanks}機種変更やアプリの削除に備えて、Appleでサインインしておくと安心です（任意です）。迎えた猫と遊んだ記録も、購入したものも、新しいiPhoneで戻せます。名前やメールアドレスは受け取りません。サインインしない場合、迎えた猫と記録は端末の中だけにあるので、機種変更やアプリの削除で消えます。購入したお迎え券・またたびは、設定の「アカウント」で発行する引継ぎコードで戻せますが、引き継げるのは課金したアイテムだけで、所持しているにゃこモビーは引き継がれません。`,
         'Appleでサインイン',
         async () => {
           const result = await acc.linkApple();
@@ -120,6 +120,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       const result = await acc.restorePurchases(transferCode.trim());
       if (result.kind === 'offline') notice('購入の復元', 'つながりませんでした。電波のよいところで、もう一度お試しください。');
       else if (result.kind === 'store_error') notice('購入の復元', 'App Storeにつながりませんでした。しばらくしてから、もう一度お試しください。');
+      else if (result.familyShared) notice('購入の復元', 'このパスは、ファミリー共有で見えているものです。パスを購入した方のApple IDで、その方のiPhoneから、復元してください。');
       else if (result.planMoved) notice('購入の復元', 'またたびパスを、この端末で使えるようにしました。次の更新からも、この端末に届きます。お迎え券・またたびの残高を戻すには、前の端末で発行した引継ぎコードが必要です。');
       else if (result.localBlocked) notice('購入の復元', 'この端末のアカウントに購入したものがあるため、引継ぎコードは使いませんでした。コードは、まだ使えます。アカウントをまとめたい場合は、サポートまでご連絡ください。');
       else if (result.recovered && result.credited === 0) notice('購入の復元', 'アカウントを、この端末に引き継ぎました。前の端末では、使えなくなります。持っているものは、この画面の表示で確かめてください。');
@@ -138,7 +139,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap} automaticallyAdjustKeyboardInsets keyboardShouldPersistTaps="handled">
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Pic name="brand/title-shop" height={40} />
           <View style={{ flex: 1 }} />
@@ -193,11 +194,11 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
 
         <View style={{ flexDirection: 'row', gap: 8 }}>
           <ImgButton skin="ghost-outline" label="出会いの仕組み" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
-          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '加入中のまたたびパスは、そのまま復元できます。お迎え券・またたびを別の端末から引き継ぐには、引継ぎコードが必要で、前の端末ではそのアカウントを使えなくなります。遊んだ記録の引き継ぎは、Appleでサインインして行います。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
+          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '加入中のまたたびパスは、そのまま復元できます。お迎え券・またたびを別の端末から引き継ぐには、引継ぎコードが必要で、前の端末ではそのアカウントを使えなくなります。所持しているにゃこモビーと遊んだ記録は、コードでは引き継がれません。引き継ぐには、Appleでサインインします。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
         </View>
         <Card skin="white" style={{ gap: 6, marginTop: 8 }}>
           <T w="b" size={12}>別の端末の購入を引き継ぐ場合</T>
-          <T w="m" size={11} color={C.sub}>またたびパスは、コードなしで「購入を復元」を押すと戻せます。お迎え券・またたびは、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。Apple連携済みの記録は、設定からAppleでサインインして引き継ぎます。</T>
+          <T w="m" size={11} color={C.sub}>またたびパスは、コードなしで「購入を復元」を押すと戻せます。お迎え券・またたびは、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。コードで引き継げるのは、課金したアイテム（お迎え券・またたび）だけです。所持しているにゃこモビーと遊んだ記録は、引き継がれません。猫も引き継ぐには、設定からAppleでサインインします。</T>
           <TextInput value={transferCode} onChangeText={setTransferCode} accessibilityLabel="引継ぎコード" placeholder="引継ぎコード" autoCapitalize="none" autoCorrect={false} autoComplete="off" maxLength={160} style={{ color: C.ink, borderWidth: 1, borderColor: C.sub, borderRadius: 8, padding: 12, minHeight: 44 }} />
         </Card>
         {/* 自動更新のサブスクがあるので、購入の画面に利用規約とプライバシーポリシーを置く */}
@@ -210,10 +211,10 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             <T w="x" size={13}>またたびで増える候補について</T>
             <T w="m" size={11} color={C.sub}>
               毎晩20時に、その日の出会いの条件がすべてそろった猫の中から、候補が決まります。{'\n'}
-              ・そろった猫が6匹以下の日は、全員が候補になります。{'\n'}
-              ・7匹以上の日は、同じ確率で6匹が選ばれます（たとえば10匹なら、どの猫も60%）。猫ごとの重みづけはありません。{'\n'}
-              候補は、届いた時点で決まっていて、購入では変わりません。候補は、ひらくまで中身が見えません。ひらく候補は自分で選べます。ひらいた猫は、その日の候補の別々の猫で、はずれはありません。{'\n'}
-              またたびは、ひらける数を1匹ずつ増やします（最大6匹）。出る猫の確率は変わりません。お迎え券は、ひらいた猫の中から、迎える猫を選べる券です。条件を飛ばして猫を迎えることはできません。
+              ・条件がそろったレア・でんせつ・世界の猫は候補に残ります。レア以上だけで6匹を超える日は、候補の枠を広げます。{'\n'}
+              ・ふだんは6匹まで。残りはノーマルから選び、1枠はまだ迎えていない子を優先します。条件がそろっても候補から外れた子は、次に条件がそろった日に少し出やすくなります（外れた回数ごとに重み+0.5、最大11倍。候補に入ると元に戻ります）。{'\n'}
+              候補は、届いた時点で決まっていて、購入では変わりません。候補は、ひらくまで中身が見えません。ひらいた候補と非表示の子のレア度ごとの数を表示します。珍しい猫がまだひらかれていない日は、気配を知らせます。ひらく候補は自分で選べます。ひらいた猫は、その日の候補の別々の猫で、はずれはありません。{'\n'}
+              またたびは、ひらける数を1匹ずつ増やします（候補の数まで）。出る猫の確率は変わりません。お迎え券は、ひらいた猫の中から、迎える猫を選べる券です。条件を飛ばして猫を迎えることはできません。
             </T>
             <T w="b" size={11} color={C.accent} onPress={withSfx(() => setOdds(false))}>閉じる</T>
           </Card>

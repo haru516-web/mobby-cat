@@ -4,7 +4,7 @@ import { AppState } from 'react-native';
 import { CATS } from '../data/catalog';
 import { Signals } from './conditions';
 import { daysBetween } from './dates';
-import { MAX_CANDIDATES, REVEAL_HOUR, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons } from './encounter';
+import { MAX_CANDIDATES, REVEAL_HOUR, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons, isRareEncounter } from './encounter';
 import { readBattery, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
@@ -15,6 +15,7 @@ import { checkSaved } from './saveShape';
 import { isRealCat } from './recipes';
 import { worldGifts } from './world';
 import { retainDays } from './history';
+import { canRegisterBirthday } from './birthday';
 import { accountChangeBlocked, applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange, withPaid } from './spending';
 
 // アプリ更新で猫が増えたかの判定に使う（増えた最初の日に「しんいりモビー」が来る）
@@ -25,6 +26,7 @@ type Obs = { battery: number[]; charging: boolean; hours: number[] };
 
 export type Owned = { count: number; firstDay: string; firstReason: string };
 export type DayRecord = {
+  eligible?: string[]; // 新方式の条件達成猫。過去の日は変更しない。
   candidates: string[];
   reasons: Record<string, string>;
   baseCount: number;
@@ -51,6 +53,7 @@ export type GameState = {
   lastOpenDay: string; // 最後に起動した暦日
   lastGap: number; // その起動が前回から何日空いていたか
   streak: number; // 連続起動日数
+  encounterMisses: Record<string, number>;
   appearCounts: Record<string, number>; // 候補に現れた回数
   catalogVersion: string;
   birthday: { m: number; d: number } | null;
@@ -133,6 +136,7 @@ function initial(now: Date): GameState {
     lastGap: 0,
     streak: 0,
     appearCounts: {},
+    encounterMisses: {},
     catalogVersion: CATALOG_VERSION,
     birthday: null,
     starterChosen: false,
@@ -220,7 +224,8 @@ type Ctx = {
   canReplace: () => boolean;
   withAccountChange: <T>(work: () => Promise<T>, unavailable: T) => Promise<T>;
   setNotify: (v: boolean) => void;
-  setBirthday: (b: { m: number; d: number } | null) => void;
+  /** 誕生日を登録する。すでに登録してあるとき、日が正しくないときは、何もせず false（一度登録したら変えられない） */
+  setBirthday: (b: { m: number; d: number }) => boolean;
   toggleFavorite: (id: string) => void;
   chooseStarter: (id: string) => void;
   rerollStarter: () => void;
@@ -459,6 +464,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             weather: wx?.weather ?? null,
             temp: wx?.temp ?? null,
             favorites: s.favorites,
+            homeConfigured: s.homeSlots !== null,
             installDay: s.installDay,
             totals: {
               steps: (s.totalSteps ?? 0) + (steps ?? 0),
@@ -468,19 +474,20 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
               cats: Object.values(s.owned).reduce((n, o) => n + o.count, 0),
             },
           };
-          const d = buildDay(k, signals, { owned: s.owned, appearCounts: s.appearCounts });
+          const { encounterMisses, ...d } = buildDay(k, signals, { owned: s.owned, appearCounts: s.appearCounts, encounterMisses: s.encounterMisses });
           const appearCounts = { ...s.appearCounts };
           for (const id of d.candidates.slice(0, d.baseCount)) appearCounts[id] = (appearCounts[id] ?? 0) + 1;
           let next: GameState = {
             ...s,
             totalSteps: (s.totalSteps ?? 0) + (steps ?? 0),
             appearCounts,
+            encounterMisses,
             catalogVersion: CATALOG_VERSION,
             days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], opened: [], passBonus: s.pass.active && !passOver(s) ? PASS_BONUS : 0 } },
           };
           // 実在の猫の簡単な条件は通知しない。個性のある猫（特別な猫）が来た日だけ知らせる
-          const special = [...new Set(d.candidates.filter((id) => CATS.find((c) => c.id === id)?.kind !== 'breed').map((id) => d.reasons[id]))];
-          if (special.length) next = notify(next, k, `「${special.join('」「')}」の条件がそろって、特別な猫が来ています`);
+          const special = d.candidates.some(isRareEncounter);
+          if (special) next = notify(next, k, '珍しい猫の気配がする……');
           return retainDays(next);
         });
         building.current.delete(k);
@@ -624,7 +631,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     return true;
   }, [canReplace]);
   const setNotify = useCallback((v: boolean) => setState((s) => ({ ...s, notifyEnabled: v })), []);
-  const setBirthday = useCallback((b: { m: number; d: number } | null) => setState((s) => ({ ...s, birthday: b })), []);
+  const setBirthday = useCallback((b: { m: number; d: number }): boolean => {
+    if (!canRegisterBirthday(stateRef.current.birthday, b)) return false;
+    const next = { ...stateRef.current, birthday: { m: b.m, d: b.d } };
+    stateRef.current = next;
+    setState(next);
+    return true;
+  }, []);
   const toggleFavorite = useCallback(
     (id: string) =>
       setState((s) => ({
@@ -655,7 +668,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setState((s) => {
         if (s.starterChosen) return s;
         const next = addCat({ ...s, starterChosen: true }, id, encounterDayKey(clockNow(s)), '最初の相棒');
-        return notify(next, next.owned[id].firstDay, 'ようこそ！毎日20時に、新しいにゃこモビーとの出会いが届きます');
+        const day = next.owned[id].firstDay;
+        // 記録は端末の中だけにある。機種変更やアプリの削除で消えないよう、早めに伝える（購入しない人にも届く）
+        const saved = notify(next, day, '迎えた猫と記録は、いまこの端末の中だけにあります。機種変更やアプリの削除で消えないよう、設定の「アカウント」でAppleにサインインしておくと安心です（任意）');
+        return notify(saved, day, 'ようこそ！毎日20時に、新しいにゃこモビーとの出会いが届きます');
       }),
     [],
   );

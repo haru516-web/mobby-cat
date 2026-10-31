@@ -1,25 +1,34 @@
 import { useEffect, useRef, useState } from 'react';
-import { Modal, ScrollView, StyleSheet, View } from 'react-native';
+import { AppState, Linking, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { cardReason, conditionTotal } from '../../core/conditions';
-import { REVEAL_HOUR, prevDayKey } from '../../core/encounter';
+import { REVEAL_HOUR, prevDayKey, encounterComposition, hasRarePresence } from '../../core/encounter';
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
 import { WelcomeFx } from './WelcomeFx';
-import { matatabiOf, openLeft, openLimit, openedOf, ticketsOf, useGame } from '../../core/game';
+import { homeSlotsOf, matatabiOf, openLeft, openLimit, openedOf, ticketsOf, useGame } from '../../core/game';
 import { notice } from '../../services/dialog';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
 import { Card, Header, ImgButton, RarityBadge, useTabPad, Tap } from '../../ui/kit';
 import { useConfirm } from '../../ui/ConfirmPopup';
+import { Overlay } from '../../ui/Overlay';
 import { Backdrop, Pic, Slice, Stretch } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { ScreenProps } from '../../navigation';
 import { playSfx } from '../../services/audio';
+import { hasStepAccess } from '../../services/signals';
+import { hasLocationAccess } from '../../services/weather';
 import { hapticSuccess } from '../../services/haptics';
 import { UI } from '../../ui/uiAssets';
 import { RevealOverlay } from './RevealOverlay';
 
 // まだひらいていない候補は、どの子も同じシルエットで見せる（形で誰か分からないように）
 const MYSTERY = UI['deai/mystery-cat'] ? 'deai/mystery-cat' : 'cat/silhouette-locked';
+
+// 「最初の出会い」待ちの画面に散らす、共通のシルエット（候補の「まだひらいていない子」と同じ絵）。上3匹・下3匹
+const SHADOW_POS = [
+  { top: 14, left: '3%' }, { top: 50, left: '38%' }, { top: 10, left: '68%' },
+  { bottom: 150, left: '6%' }, { bottom: 112, left: '40%' }, { bottom: 156, left: '66%' },
+] as const;
 
 export default function DeaiScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const g = useGame();
@@ -34,6 +43,17 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const card = useRef<ViewRef>(null);
   const [barH, setBarH] = useState(0);
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
+  // 背の低い端末（iPhone SE など）では、下の操作エリアを小さくする（2段目の猫が隠れすぎないように）
+  const compact = useWindowDimensions().height < 740;
+
+  // 歩数・位置情報（天気）の許可。どちらかが無いと、ほとんど会えないので、出会い画面でいつも知らせる
+  const [permOk, setPermOk] = useState(true);
+  useEffect(() => {
+    const check = () => { void Promise.all([hasStepAccess(), hasLocationAccess()]).then(([a, b]) => setPermOk(a && b)); };
+    check();
+    const sub = AppState.addEventListener('change', (next) => { if (next === 'active') check(); });
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- 日が変わったら、選択を今日に戻す
@@ -43,20 +63,35 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   }, [todayKey]);
 
   const rec = state.days[day];
+  const partner = homeSlotsOf(state).find((id) => !!id) ?? null; // 最初に選んだ相棒（ホームに出ている猫）
   // 20時の切り替わり直後などで、その日の候補をまだ作っている間
   if (!rec) {
     return (
       <View style={{ flex: 1 }}>
+        <Backdrop name="bg/room-deai-full" />
         <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={s.preparing}>
-          <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
           {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR ? (
+            // 最初に選んだ相棒が、最初の出会いのことを教えてくれる
             <>
-              <T w="x" size={16} style={{ textAlign: 'center' }}>最初の出会いは、今夜{REVEAL_HOUR}時に届きます</T>
-              <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>{`今日の歩数や電池の様子がそろってから、\n会える猫が決まります。それまでは、ホームで猫と遊んでね`}</T>
+              {/* まだ会えていない、ふつうの猫たちのシルエット。上と下に3匹ずつ、ゆらゆらさせる */}
+              {SHADOW_POS.map((pos, i) => (
+                <Bobbing key={i} delay={i * 260} style={[s.shadow, pos]}>
+                  <Pic name={MYSTERY} height={104} />
+                </Bobbing>
+              ))}
+              <View style={s.bubble}>
+                <T w="x" size={16} style={{ textAlign: 'center' }}>最初の出会いは、今夜{REVEAL_HOUR}時に届くよ</T>
+                <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>{`今日の歩数や電池の様子がそろってから、\n会える猫が決まるんだ。それまでは、ホームで一緒に遊ぼうね`}</T>
+                <View style={s.bubbleTail} />
+              </View>
+              {partner && <Bobbing><CatImage id={partner} size={190} /></Bobbing>}
             </>
           ) : (
-            <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+            <>
+              <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
+              <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+            </>
           )}
         </View>
       </View>
@@ -193,6 +228,17 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           );
         })}
     </View>
+    {!permOk && (
+      <Tap
+        style={s.permBanner}
+        accessibilityRole="button"
+        accessibilityLabel="歩数と位置情報を許可しないと、ほとんど会えません。設定を開く"
+        onPress={() => Linking.openSettings().catch(() => openSettings())}
+      >
+        <T w="x" size={12} color="#fff" style={{ textAlign: 'center' }}>歩数と位置情報（天気）をオンにしてね</T>
+        <T w="m" size={11} color="#fff" style={{ textAlign: 'center', marginTop: 2 }}>許可しないと、ほとんど会えません（押すと設定へ）</T>
+      </Tap>
+    )}
     {/* きのうの子が残っているときは、今日の画面の上で知らせる（押すと、きのうに切り替わる） */}
     {yWaiting && (
       <Tap onPress={() => { setDay(yKey); setSel(null); }} accessibilityLabel="きのうの子を見る" style={{ marginHorizontal: 16, marginTop: 8 }}>
@@ -204,6 +250,14 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       </Tap>
     )}
     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
+
+      <Card skin="white" style={{ marginHorizontal: 16, marginTop: 8, gap: 4 }}>
+        <T w="b" size={12}>候補 {encounterComposition(visible)}</T>
+        <T w="b" size={12}>非表示 {encounterComposition(unopened)}</T>
+        {hasRarePresence(rec.eligible ?? rec.candidates, visible) && (
+          <T w="b" size={12} color={C.accent}>珍しい猫の気配がする……</T>
+        )}
+      </Card>
 
       {/* いまできることを1行で。ひらける数が残っていれば、それも出す */}
       <TourAnchor id="deai-hero" style={s.hero}>
@@ -284,7 +338,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     {!empty && (
       <View style={[s.bar, { bottom: pad }]} onLayout={(e) => setBarH(e.nativeEvent.layout.height)} pointerEvents="box-none">
         {selCat && (
-          <Card skin="white" style={s.selInfo}>
+          <Card skin="white" style={[s.selInfo, compact && s.selInfoCompact]}>
             <View style={{ flex: 1 }}>
               <T w="x" size={13}>{selCat.name}</T>
               <T w="b" size={11} color={sel && rec.reasons[sel] ? '#C9822B' : C.sub}>
@@ -305,7 +359,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           <ImgButton
             label={chosen.length === need ? (need === 1 ? 'この子をひらく' : `この${need}匹をひらく`) : `ひらく子を${need}匹えらんでね（${chosen.length}/${need}）`}
             disabled={chosen.length !== need}
-            height={50}
+            height={compact ? 44 : 50}
             icon="icon/paw"
             onPress={askOpenAll}
           />
@@ -314,72 +368,42 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           <ImgButton
             label={selCat ? '無料でお迎えする' : '迎える子をえらんでね'}
             disabled={!selCat}
-            height={50}
+            height={compact ? 44 : 50}
             icon="icon/paw"
             onPress={askPick}
           />
         )}
         {hasFree && rest.length > 0 && (
-          <View style={{ flexDirection: 'row', gap: 8 }}>
+          <View style={{ gap: 8 }}>
             {/* 券が足りないときは、そのままショップへ。買いたくなる場面なので最短で案内する */}
             {selCat && ticketsOf(state) < 1 ? (
-              <ImgButton label="お迎え券を買う" icon="icon/ticket-paw" height={50} onPress={openShop} style={{ flex: 1 }} />
+              <ImgButton label="お迎え券を買う" icon="icon/ticket-paw" height={compact ? 44 : 50} fontSize={14} onPress={openShop} />
             ) : (
               <ImgButton
-                label={selCat ? '券1枚で迎える' : '迎える子をえらんでね'}
+                label={selCat ? '券1枚で迎える' : '迎える子をえらぶ'}
                 disabled={!selCat}
-                height={50}
+                height={compact ? 44 : 50}
+                fontSize={14}
                 badge={selCat ? `所持${ticketsOf(state)}枚` : undefined}
                 onPress={askPick}
-                style={{ flex: 1 }}
-              />
-            )}
-            {rest.length > 1 && (
-              <ImgButton
-                skin="ghost-outline"
-                label="まとめて"
-                badge={`${rest.length}枚`}
-                height={50}
-                fontSize={12}
-                disabled={ticketsOf(state) < rest.length}
-                onPress={() => confirm(
-                  `残り${rest.length}匹をまとめて迎えますか？`,
-                  `お迎え券を${rest.length}枚使います（${ticketsOf(state)}枚 → ${ticketsOf(state) - rest.length}枚）。`,
-                  `券${rest.length}枚で迎える`,
-                  async () => {
-                    if (await g.pickExtra(day, rest)) {
-                      setWelcome(rest[0]);
-                      playSfx('sfx_pick_extra');
-                      hapticSuccess();
-                    } else notEnough();
-                    setSel(null);
-                  },
-                  { catIds: rest },
-                )}
-                style={{ width: 140 }}
               />
             )}
           </View>
         )}
 
-        {/* またたびパスの案内。加入前も加入中も出して、何が得かを常に見せる */}
-        <Tap onPress={openShop} accessibilityLabel="またたびパス">
+        {/* またたびパスの契約中表示。持っていない人には何も出さない（ショップへの入口は、上の所持品の表示） */}
+        {state.pass.active && (
           <Card style={s.pass}>
             <Pic name="icon/matatabi-bag" height={32} />
-            <View style={{ flex: 1 }}>
-              <T w="x" size={12}>{state.pass.active ? 'またたびパス加入中' : 'またたびパス'}</T>
-              <T w="m" size={10} color={C.sub} numberOfLines={1}>毎日6匹までひらける＋毎月お迎え券8枚</T>
-            </View>
-            {!state.pass.active && <T w="x" size={11} color={C.accent}>くわしく</T>}
-            <Pic name="icon/chevron-right" height={12} />
+            <T w="x" size={13} style={{ flex: 1 }} numberOfLines={1}>またたびパス契約中</T>
           </Card>
-        </Tap>
+        )}
       </View>
     )}
 
     {confirmEl}
 
-      <Modal visible={!!welcome} transparent animationType="fade" onRequestClose={() => setWelcome(null)}>
+      <Overlay visible={!!welcome} onRequestClose={() => setWelcome(null)}>
         <View style={s.overlay}>
           {/* ひらく演出と同じ暗幕（後ろの画面が透けて、光が埋もれないように） */}
           {UI['deai/reveal-dim'] ? <Stretch name="deai/reveal-dim" style={StyleSheet.absoluteFill} /> : <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />}
@@ -401,7 +425,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             </WelcomeFx>
           )}
         </View>
-      </Modal>
+      </Overlay>
 
       <RevealOverlay
         ids={reveal?.ids ?? null}
@@ -413,7 +437,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         }}
       />
 
-      <Modal visible={!!detail} transparent animationType="fade" onRequestClose={() => setDetail(null)}>
+      <Overlay visible={!!detail} onRequestClose={() => setDetail(null)}>
         <Tap style={s.overlay} onPress={() => setDetail(null)}>
           <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
           {detail && (
@@ -432,7 +456,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             </Card>
           )}
         </Tap>
-      </Modal>
+      </Overlay>
     </View>
   );
 }
@@ -442,9 +466,12 @@ const s = StyleSheet.create({
   heroNote: { paddingVertical: 8, paddingHorizontal: 14, gap: 2 },
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
   selInfo: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
+  selInfoCompact: { paddingVertical: 3 },
   pass: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
+  shopRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   bar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 16, gap: 8 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },
+  permBanner: { marginHorizontal: 16, marginTop: 8, paddingVertical: 8, paddingHorizontal: 12, borderRadius: 14, backgroundColor: C.accent },
   dayTab: { height: 36, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   tabDot: { position: 'absolute', right: 4, top: 2 },
   yBanner: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 12 },
@@ -454,4 +481,7 @@ const s = StyleSheet.create({
   chip: { height: 30, alignItems: 'center', justifyContent: 'center' },
   overlay: { flex: 1, justifyContent: 'center', padding: 24 },
   preparing: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12, paddingBottom: 120 },
+  shadow: { position: 'absolute' },
+  bubble: { marginHorizontal: 24, paddingVertical: 16, paddingHorizontal: 18, borderRadius: 22, backgroundColor: 'rgba(255,250,240,0.95)', alignItems: 'center', gap: 8 },
+  bubbleTail: { position: 'absolute', bottom: -9, alignSelf: 'center', width: 18, height: 18, backgroundColor: 'rgba(255,250,240,0.95)', transform: [{ rotate: '45deg' }] },
 });

@@ -65,6 +65,8 @@ export interface VerifiedTransaction {
   appAccountToken?: string;
   /** "Production" or "Sandbox" (TestFlight and App Review buy in the Sandbox). */
   environment?: string;
+  /** "PURCHASED" for the buyer, "FAMILY_SHARED" for a family member who can see the same transaction. */
+  ownershipType?: string;
   /** What Apple charged, in thousandths of the currency unit, and its ISO currency code. */
   price?: number;
   currency?: string;

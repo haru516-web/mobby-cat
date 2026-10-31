@@ -18,7 +18,7 @@ export type ConfirmOpts = {
 };
 type Spec = { title: string; message?: string; okLabel: string; onOk: () => void } & ConfirmOpts;
 
-// 使う画面の中に element を置く（Modal の入れ子になるので、ポップの上でも重なって出る）
+// 使う画面の中に element を置く。ポップは OverlayHost に、開いた順に重なって出る（ほかのポップの上にも出る）
 export function useConfirm() {
   const [spec, setSpec] = useState<Spec | null>(null);
   const [last, setLast] = useState<Spec | null>(null);
@@ -31,34 +31,48 @@ export function useConfirm() {
 
   const cats = shown?.catIds?.slice(0, 3) ?? (shown?.catId ? [shown.catId] : []);
   const big = cats.length === 1;
-  const hasPic = !!shown?.pic && !cats.length;
+  const pic = shown?.pic && !cats.length ? shown.pic : undefined;
+  const hasPic = !!pic;
+  const withArt = !!cats.length || hasPic;
+  const art = shown && (
+    <>
+      {!!cats.length && (
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          {cats.map((id, i) => (
+            <Bobbing key={id} delay={i * 200} style={{ marginLeft: i ? -14 : 0 }}>
+              <CatImage id={id} size={big ? 190 : 104} silhouette={shown.silhouette} />
+            </Bobbing>
+          ))}
+        </View>
+      )}
+      {pic && (
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          {Array.from({ length: Math.min(3, shown.picCount ?? 1) }, (_, i) => (
+            <Bobbing key={i} delay={i * 200} style={{ marginLeft: i ? -18 : 0 }}>
+              <Pic name={pic} height={(shown.picCount ?? 1) > 1 ? 112 : 170} />
+            </Bobbing>
+          ))}
+        </View>
+      )}
+    </>
+  );
   const element = (
     <Popup visible={!!spec} onClose={close} maxWidth={340} heightRatio={cats.length || hasPic ? 0.64 : 0.5}>
       {shown && (
-        <View style={{ flex: 1, padding: 18, alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+        <View style={{ flex: 1, padding: 18, alignItems: 'center', justifyContent: withArt ? 'flex-start' : 'center', gap: 8 }}>
           <Tap onPress={close} accessibilityLabel="閉じる" style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
             <Pic name="button/close-round" height={36} />
           </Tap>
-          {!!cats.length && (
-            <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 4 }}>
-              {cats.map((id, i) => (
-                <Bobbing key={id} delay={i * 200} style={{ marginLeft: i ? -14 : 0 }}>
-                  <CatImage id={id} size={big ? 190 : 104} silhouette={shown.silhouette} />
-                </Bobbing>
-              ))}
-            </View>
+          {/* 猫（や画像）は、見出しとボタンのあいだの空きの中央に置く。カード全体の中央に見える */}
+          {withArt && <T w="x" size={18} style={{ textAlign: 'center', marginTop: 22 }}>{shown.title}</T>}
+          {withArt && <View style={{ flex: 1, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center' }}>{art}</View>}
+          {withArt && !!shown.message && (
+            <ScrollView style={{ flexGrow: 0, flexShrink: 1, maxHeight: 96, alignSelf: 'stretch' }} showsVerticalScrollIndicator={false}>
+              <T w="m" size={12} color={C.sub} style={{ textAlign: 'center', lineHeight: 18 }}>{shown.message}</T>
+            </ScrollView>
           )}
-          {hasPic && (
-            <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 4 }}>
-              {Array.from({ length: Math.min(3, shown.picCount ?? 1) }, (_, i) => (
-                <Bobbing key={i} delay={i * 200} style={{ marginLeft: i ? -18 : 0 }}>
-                  <Pic name={shown.pic!} height={(shown.picCount ?? 1) > 1 ? 112 : 170} />
-                </Bobbing>
-              ))}
-            </View>
-          )}
-          <T w="x" size={18} style={{ textAlign: 'center' }}>{shown.title}</T>
-          {!!shown.message && (
+          {!withArt && <T w="x" size={18} style={{ textAlign: 'center' }}>{shown.title}</T>}
+          {!withArt && !!shown.message && (
             // 長い説明（自動更新の案内など）は、中でスクロールできる。ボタンは、いつも見える
             <ScrollView style={{ flexShrink: 1, alignSelf: 'stretch' }} showsVerticalScrollIndicator={false}>
               <T w="m" size={12} color={C.sub} style={{ textAlign: 'center', lineHeight: 18 }}>{shown.message}</T>

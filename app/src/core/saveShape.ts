@@ -39,6 +39,7 @@ function day(v: unknown): DayRecord | null {
   const droppedVisible = v.candidates.slice(0, v.baseCount).filter((id) => !KNOWN.has(id)).length;
   return {
     candidates: known,
+    ...(strList(v.eligible) ? { eligible: v.eligible.filter((id) => KNOWN.has(id)) } : {}),
     reasons,
     baseCount: Math.max(0, v.baseCount - droppedVisible),
     matatabiUsed: v.matatabiUsed,
@@ -69,6 +70,7 @@ const FIELDS: { [K in keyof GameState]?: Checker } = {
   lastOpenDay: (v) => (isStr(v) ? v : undefined),
   lastGap: (v) => (isCount(v) ? v : undefined),
   streak: (v) => (isCount(v) ? v : undefined),
+  encounterMisses: (v) => (isObj(v) && Object.values(v).every(isCount) ? Object.fromEntries(Object.entries(v).map(([id, n]) => [id, Math.min(20, n as number)])) : undefined),
   appearCounts: (v) => (isObj(v) && Object.values(v).every(isCount) ? v : undefined),
   catalogVersion: (v) => (isStr(v) ? v : undefined),
   birthday: (v) => (v === null ? null : isObj(v) && isCount(v.m) && isCount(v.d) && v.m >= 1 && v.m <= 12 && v.d >= 1 && v.d <= 31 ? { m: v.m, d: v.d } : undefined),

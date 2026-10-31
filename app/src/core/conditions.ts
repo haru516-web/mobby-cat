@@ -1,8 +1,9 @@
-// 全ユーザー共通の出現条件（docs/appearance-catalog.md）。成立した猫はその日の候補に確定で入る。
+// 全ユーザー共通の出現条件（docs/appearance-catalog.md）。成立した猫だけをその日の候補選びの対象にする。
 // 判定に使う材料（電池・歩数・起動の記録など）は Signals としてまとめて渡す。
+import { isBirthdayOn } from './birthday';
 import { CATS } from '../data/catalog';
 import { daysBetween, fmtDay } from './dates';
-import { type Env, type Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf } from './recipes';
+import { type Env, type Weather, evalAtoms, isJapaneseHoliday, isRealCat, recipeOf, shownRarity } from './recipes';
 
 export type Signals = {
   battery: number[]; // その日（出会いの締め切りまで）に観測した残量 %（整数）
@@ -16,12 +17,14 @@ export type Signals = {
   weather?: Weather | null; // その日の天気。取れないときは null
   temp?: number | null; // その日の気温（℃）。取れないときは null
   favorites?: string[]; // お気に入りの猫
+  homeConfigured?: boolean;
   installDay?: string; // 遊びはじめた日
   // 端末の中で数えている累計（歩数は出会いの候補を作った日の分から）
   totals?: { steps: number; photos: number; pets: number; openDays: number; cats: number };
 };
 
 export type Ctx = {
+  encounterMisses?: Record<string, number>;
   owned: Record<string, { count: number }>;
   appearCounts: Record<string, number>; // 候補に現れた回数
 };
@@ -162,7 +165,7 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   add(ymd === [...ymd].reverse().join(''), 'sakasama', '回文の日付');
   const digits = `${y % 100}${m}${d}`;
   add(/^(\d)\1*$/.test(digits), 'pittari', '年・月・日がゾロ目');
-  add(!!s.birthday && s.birthday.m === m && s.birthday.d === d, 'tanjoubi', '誕生日');
+  add(isBirthdayOn(s.birthday, y, m, d), 'tanjoubi', '誕生日');
   const seasons = seasonKeys(y);
   add(dayKey === seasons[0] || dayKey === seasons[2], 'hiruyoru', dayKey === seasons[0] ? '春分' : '秋分');
   add(dayKey === seasons[1] || dayKey === seasons[3], 'taiyou', dayKey === seasons[1] ? '夏至' : '冬至');
@@ -219,12 +222,19 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   return out;
 }
 
-// その日に出会える猫。個性条件がある猫は「個性条件＋簡単な条件」、それ以外は猫ごとのレシピを満たしたときに確定で入る。
+// その日に出会える猫。個性条件がある猫は「個性条件＋簡単な条件」、それ以外は猫ごとのレシピを満たしたときに候補選びの対象になる。
 // forecast（日付だけの予告）のときは、端末の状態に依存する簡単な条件を無視する
 export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = false): Guaranteed[] {
   const [y, m, d] = dayKey.split('-').map(Number);
   const day = new Date(y, m - 1, d, 20, 0, 0);
   const env: Env = {
+    favorites: new Set(s.favorites ?? []).size,
+    normalKinds: CATS.filter((c) => !!ctx.owned[c.id]?.count && c.kind !== 'world' && c.kind !== 'travel' && shownRarity(c) <= 2).length,
+    rareKinds: CATS.filter((c) => !!ctx.owned[c.id]?.count && c.kind !== 'world' && c.kind !== 'travel' && shownRarity(c) >= 3).length,
+    gapDays: s.gapDays,
+    pets: s.totals?.pets ?? 0,
+    homeConfigured: s.homeConfigured ?? false,
+    birthdaySet: s.birthday != null,
     steps: s.steps,
     battery: s.battery,
     charging: s.charging,

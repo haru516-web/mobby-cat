@@ -6,7 +6,7 @@ import {
 } from '@expo-google-fonts/m-plus-rounded-1c';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Modal, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import CameraScreen from './src/features/camera/CameraScreen';
 import DeaiScreen from './src/features/deai/DeaiScreen';
@@ -27,6 +27,7 @@ import { GameProvider, useGame } from './src/core/game';
 import { initAudio, setBgmScene } from './src/services/audio';
 import { TabBar, TabKey, TabPadCtx } from './src/ui/kit';
 import { Backdrop } from './src/ui/Slice';
+import { Overlay, OverlayHost } from './src/ui/Overlay';
 import { Popup } from './src/ui/Popup';
 import { TourAnchor } from './src/ui/TourAnchor';
 import { ErrorBoundary } from './src/ui/ErrorBoundary';
@@ -162,14 +163,14 @@ function Root() {
         {notice && <NoticeScreen initialTab={notice} onClose={closeNotice} />}
         <TourCoach kind="notice" />
       </Popup>
-      <Modal visible={camera} animationType="fade" onRequestClose={() => setCamera(false)}>
+      <Overlay visible={camera} onRequestClose={() => setCamera(false)}>
         <View style={[s.fill, { alignItems: 'center' }]}>
           <Backdrop name="bg/app-cream" />
           <View style={[s.fill, { width }]}>
             {camera && <CameraScreen onClose={() => setCamera(false)} width={width} height={winH} />}
           </View>
         </View>
-      </Modal>
+      </Overlay>
     </View>
   );
 }
@@ -181,7 +182,11 @@ export default function App() {
       <ErrorBoundary>
         <GameProvider>
           <AccountProvider>
-            <Root />
+            <View style={s.fill}>
+              <Root />
+              {/* ポップは、ここにまとめて重ねる（Modal は使わない。順序のきまりは src/ui/overlayStore.ts） */}
+              <OverlayHost />
+            </View>
           </AccountProvider>
         </GameProvider>
       </ErrorBoundary>

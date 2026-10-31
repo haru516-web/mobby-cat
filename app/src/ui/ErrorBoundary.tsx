@@ -29,6 +29,7 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode }
             記録はそのまま残っています。もう一度ひらいても続くときは、アプリを閉じて開き直すか、お問い合わせください。
           </T>
           <ImgButton label="もう一度ひらく" height={46} onPress={() => this.setState((v) => ({ failed: false, key: v.key + 1 }))} style={{ alignSelf: 'stretch' }} />
+          {!!SUPPORT_EMAIL && <T w="b" size={12} color={C.accent} selectable style={s.center}>{SUPPORT_EMAIL}</T>}
           {!!SUPPORT_EMAIL && (
             <ImgButton skin="ghost-outline" label="お問い合わせ" height={42} fontSize={13} onPress={() => Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('にゃっコレ 表示の不具合')}`).catch(() => {})} style={{ alignSelf: 'stretch' }} />
           )}

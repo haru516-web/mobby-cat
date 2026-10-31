@@ -1,8 +1,10 @@
 import React from 'react';
-import { Modal, Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Overlay } from './Overlay';
 import { Backdrop, Stretch } from './Slice';
 
-// 画面の中央に出るポップ。暗幕のタップか onClose で閉じる。ポップの上にさらにポップを重ねられる（Modal を入れ子にする）。
+// 画面の中央に出るポップ。暗幕のタップか onClose で閉じる。ポップの上にさらにポップを重ねられる。
+// ネイティブの Modal は使わず、アプリの一番外側（OverlayHost）に、開いた順に重ねる（順序のきまりは overlayStore.ts）。
 // 中身は高さいっぱい（flex: 1）で受け取るので、長いものは中で ScrollView にする。背景は画像（bg/app-cream）
 export function Popup({ visible, onClose, children, maxWidth = 400, heightRatio = 0.82 }: {
   visible: boolean;
@@ -15,7 +17,7 @@ export function Popup({ visible, onClose, children, maxWidth = 400, heightRatio 
   const w = Math.min(width - 24, maxWidth);
   const h = Math.min(height * heightRatio, 760);
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+    <Overlay visible={visible} onRequestClose={onClose}>
       <View style={s.fill}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityLabel="閉じる">
           <Stretch name="bg/overlay-dim" style={StyleSheet.absoluteFill} />
@@ -26,7 +28,7 @@ export function Popup({ visible, onClose, children, maxWidth = 400, heightRatio 
           {children}
         </View>
       </View>
-    </Modal>
+    </Overlay>
   );
 }
 

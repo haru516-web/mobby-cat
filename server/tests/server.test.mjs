@@ -522,6 +522,22 @@ test("a running pass moves to a new account with Apple's signed proof, and only 
   await notify(context, root, "REFUND", { productId: PASS, transactionId: "tx-pass-2", originalTransactionId: "tx-pass-1", appAccountToken: alice, purchaseDate: Date.now(), expiresDate: Date.now() + 30 * 86400000, revocationDate: Date.now() });
   assert.equal(await ticketsOf(bob), 0);
 });
+test("a family member's view of the pass cannot move it away from the buyer", async () => {
+  const context = createContext();
+  const root = await selfSignedTestRoot();
+  const env = withRoot(root);
+  const buyer = await context.register();
+  const relative = await context.register();
+  assert.equal((await purchase(context, root, buyer, PASS, "tx-fam")).status, 200);
+  const view = (inAppOwnershipType) => signedTransaction(root, { productId: PASS, transactionId: "tx-fam", originalTransactionId: "tx-fam", appAccountToken: buyer, inAppOwnershipType });
+  const move = async (user, jws) => context.call("POST", "/purchases/move-plan", { user, body: { signedTransactionInfo: jws }, envOverride: env });
+  const shared = await move(relative, await view("FAMILY_SHARED"));
+  assert.equal(shared.status, 403);
+  assert.equal(shared.data.error, "family_shared");
+  assert.equal((await context.call("GET", "/plan", { user: buyer })).data.plan, "matatabi_pass", "the buyer keeps the pass");
+  assert.equal((await context.call("GET", "/plan", { user: relative })).data.plan, "none");
+  assert.equal((await move(relative, await view("PURCHASED"))).data.status, "moved", "the buyer's own transaction still moves");
+});
 test("a pass moves from a deleted account without paying its period again, and never out of an Apple-linked account", async () => {
   const context = createContext();
   const root = await selfSignedTestRoot();

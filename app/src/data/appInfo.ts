@@ -6,6 +6,8 @@ export const SERVER_URL = (process.env.EXPO_PUBLIC_SERVER_URL ?? 'https://nyakom
 
 export const SUPPORT_EMAIL = 'info@mobby.online';
 export const PRIVACY_URL = SERVER_URL + '/privacy'; // App Store Connect に入れる公開 URL（Web 版）
+export const SUPPORT_URL = SERVER_URL + '/support'; // よくある質問・お問い合わせ
+export const LEGAL_URL = SERVER_URL + '/legal'; // 特定商取引法に基づく表記
 export const TERMS_URL = '';
 // アプリ内課金の利用規約は、Apple 標準の使用許諾契約（EULA）。ショップの購入の近くに、ポリシーと並べて出す（ガイドライン 3.1.2）
 export const EULA_URL = 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/';

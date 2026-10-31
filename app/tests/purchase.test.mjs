@@ -131,6 +131,11 @@ test('a pass held by an Apple-linked account stays there and is reported', async
   const result = await settle(m.store, m.api, { recover: true });
   assert.equal(result.planMoved, false); assert.equal(result.otherAccount, 1); assert.equal(m.finished(), 0);
 });
+test('a family-shared pass is refused by the server and explained, not moved', async () => {
+  const m = moveMock({ status: 403, data: { error: 'family_shared' } });
+  const result = await settle(m.store, m.api, { recover: true });
+  assert.equal(result.familyShared, true); assert.equal(result.planMoved, false); assert.equal(m.finished(), 0);
+});
 test('a code on a device whose account owns something is reported, not silently ignored', async () => {
   const m = mock({ tickets: 1 });
   const result = await settle(m.store, m.api, { recover: true, transferCode: 'b.code' });

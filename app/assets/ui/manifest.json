@@ -2,7 +2,7 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 166,
+  "assetCount": 167,
   "counts": {
     "badge": 15,
     "bg": 15,
@@ -13,7 +13,7 @@
     "deai": 4,
     "gauge": 3,
     "home": 2,
-    "icon": 18,
+    "icon": 19,
     "illust": 10,
     "login": 10,
     "navbtn": 9,
@@ -1656,6 +1656,17 @@
       "bytes": 22014,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/plus-round.png",
+      "width": 150,
+      "height": 150,
+      "prompt": "Use case: game-ui-icon. Nekomobby game UI icon, final 150x150 transparent PNG. One cute, flat, centered round cream #FFF8F0 button with a fine soft dark-brown #4A3B32 outline about 1-2 px wide at final size, a barely visible low-contrast warm-brown shadow softly offset downward, and a clean solid soft-orange #F08A5D plus with rounded line ends, approximately half the button's diameter. Gentle upper-left highlight, minimal bevel, flat vector-like style. Single symmetrical circle nearly filling the square with a small even transparent margin. Preserve actual transparent alpha. No checkerboard, thick dark rim, gold rim, heavy shadow, plus gradients or texture, text, letters, extra symbols, objects, or watermark.",
+      "sha256": "d84f21a1e83ce9957ac8bdf0a40f26faf70146c15d63d2c0a33a116deb890526",
+      "bytes": 17332,
+      "method": "built-in image_gen",
+      "processing": "High-quality bicubic downsample from 1254x1254 to 150x150; generated alpha preserved; metadata omitted",
       "alphaMode": "transparent"
     },
     {

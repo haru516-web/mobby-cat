@@ -1,0 +1,779 @@
+{
+  "british-shorthair": [
+    "rain",
+    "battery-high",
+    "noon"
+  ],
+  "siamese-seal-point": [
+    "weekday",
+    "steps100",
+    "battery-half"
+  ],
+  "bengal": [
+    "steps3000",
+    "summer",
+    "crescent"
+  ],
+  "ragdoll": [
+    "spring",
+    "streak3"
+  ],
+  "american-shorthair": [
+    "weekday",
+    "steps5000"
+  ],
+  "scottish-fold": [
+    "rain",
+    "spring"
+  ],
+  "maine-coon": [
+    "evening",
+    "battery-high",
+    "spring"
+  ],
+  "norwegian-forest": [
+    "summer",
+    "steps3000",
+    "battery-half"
+  ],
+  "persian": [
+    "cloudy",
+    "spring",
+    "morning"
+  ],
+  "balinese": [
+    "steps100",
+    "streak3"
+  ],
+  "russian-blue": [
+    "steps3000",
+    "winter",
+    "evening"
+  ],
+  "abyssinian": [
+    "rain",
+    "battery-half"
+  ],
+  "somali": [
+    "evening",
+    "summer"
+  ],
+  "turkish-angora": [
+    "battery-high",
+    "cloudy"
+  ],
+  "turkish-van": [
+    "spring",
+    "weekend",
+    "streak14"
+  ],
+  "siberian": [
+    "steps100",
+    "charging"
+  ],
+  "tonkinese": [
+    "steps3000",
+    "rain",
+    "summer"
+  ],
+  "exotic-shorthair": [
+    "sunny",
+    "winter"
+  ],
+  "birman": [
+    "weekend",
+    "battery-half"
+  ],
+  "ragamuffin": [
+    "cloudy",
+    "charging",
+    "steps3000"
+  ],
+  "american-curl": [
+    "spring",
+    "steps1000"
+  ],
+  "selkirk-rex": [
+    "evening",
+    "steps3000",
+    "lastquarter"
+  ],
+  "devon-rex": [
+    "battery-half",
+    "evening",
+    "streak30"
+  ],
+  "cornish-rex": [
+    "charging",
+    "spring",
+    "steps12000"
+  ],
+  "japanese-bobtail": [
+    "sunny",
+    "morning"
+  ],
+  "manx": [
+    "steps3000",
+    "evening",
+    "spring"
+  ],
+  "egyptian-mau": [
+    "autumn",
+    "weekday",
+    "streak30"
+  ],
+  "ocicat": [
+    "steps3000",
+    "cloudy",
+    "battery-low"
+  ],
+  "toyger": [
+    "charging",
+    "summer",
+    "firstquarter"
+  ],
+  "singapura": [
+    "spring",
+    "steps3000",
+    "streak30"
+  ],
+  "burmese": [
+    "evening",
+    "battery-half"
+  ],
+  "bombay": [
+    "battery-half",
+    "steps3000",
+    "fullmoon"
+  ],
+  "havana-brown": [
+    "spring",
+    "steps3000",
+    "waning"
+  ],
+  "snowshoe": [
+    "steps5000",
+    "weekday",
+    "rain"
+  ],
+  "burmilla": [
+    "weekday",
+    "winter",
+    "steps3000"
+  ],
+  "chartreux": [
+    "steps5000",
+    "spring",
+    "evening"
+  ],
+  "colorpoint-shorthair": [
+    "battery-high",
+    "steps3000",
+    "streak3"
+  ],
+  "himalayan": [
+    "morning",
+    "steps3000",
+    "battery-high"
+  ],
+  "javanese": [
+    "steps3000",
+    "weekday"
+  ],
+  "korat": [
+    "sunny",
+    "streak3"
+  ],
+  "nebelung": [
+    "steps3000",
+    "evening",
+    "battery-high"
+  ],
+  "oriental-longhair": [
+    "morning",
+    "steps1000"
+  ],
+  "oriental-shorthair": [
+    "rain",
+    "morning"
+  ],
+  "thai": [
+    "steps5000",
+    "weekend",
+    "autumn"
+  ],
+  "bambino": [
+    "noon",
+    "steps5000",
+    "autumn"
+  ],
+  "british-longhair": [
+    "sunny",
+    "steps3000",
+    "summer"
+  ],
+  "european-burmese": [
+    "sunny",
+    "steps100"
+  ],
+  "european-shorthair": [
+    "battery-half",
+    "noon",
+    "steps5000"
+  ],
+  "highland-fold": [
+    "noon",
+    "steps5000"
+  ],
+  "highland-straight": [
+    "streak3",
+    "battery-high",
+    "steps100"
+  ],
+  "minskin": [
+    "steps3000",
+    "morning",
+    "battery-low"
+  ],
+  "munchkin": [
+    "steps100",
+    "streak3"
+  ],
+  "napoleon": [
+    "battery-half",
+    "steps3000",
+    "firstquarter"
+  ],
+  "scottish-straight": [
+    "summer",
+    "charging",
+    "evening"
+  ],
+  "american-wirehair": [
+    "autumn",
+    "rain",
+    "evening"
+  ],
+  "donskoy": [
+    "rain",
+    "summer",
+    "steps8000"
+  ],
+  "german-rex": [
+    "summer",
+    "rain",
+    "evening"
+  ],
+  "laperm": [
+    "evening",
+    "weekday"
+  ],
+  "lykoi": [
+    "battery-high",
+    "steps5000",
+    "streak14"
+  ],
+  "peterbald": [
+    "steps3000",
+    "winter",
+    "gibbous"
+  ],
+  "selkirk-rex-longhair": [
+    "steps100",
+    "noon",
+    "sunny"
+  ],
+  "skookum": [
+    "weekend",
+    "steps3000",
+    "battery-low"
+  ],
+  "sphynx": [
+    "evening",
+    "battery-high",
+    "steps8000"
+  ],
+  "ural-rex": [
+    "steps100",
+    "battery-half",
+    "streak3"
+  ],
+  "american-bobtail": [
+    "rain",
+    "battery-high",
+    "steps3000"
+  ],
+  "chausie": [
+    "steps3000",
+    "weekday",
+    "streak14"
+  ],
+  "cymric": [
+    "steps3000",
+    "rain"
+  ],
+  "japanese-bobtail-longhair": [
+    "streak3",
+    "evening",
+    "cloudy"
+  ],
+  "karelian-bobtail": [
+    "steps100",
+    "battery-half"
+  ],
+  "kurilian-bobtail": [
+    "summer",
+    "steps100"
+  ],
+  "mekong-bobtail": [
+    "battery-high",
+    "morning"
+  ],
+  "pixie-bob": [
+    "cloudy",
+    "steps100"
+  ],
+  "savannah": [
+    "autumn",
+    "cloudy",
+    "firstquarter"
+  ],
+  "serengeti": [
+    "battery-half",
+    "noon",
+    "streak3"
+  ],
+  "aegean": [
+    "evening",
+    "steps100"
+  ],
+  "arabian-mau": [
+    "evening",
+    "winter",
+    "cloudy"
+  ],
+  "australian-mist": [
+    "morning",
+    "winter",
+    "steps3000"
+  ],
+  "dragon-li": [
+    "steps3000",
+    "streak3",
+    "battery-low"
+  ],
+  "khao-manee": [
+    "streak3",
+    "sunny",
+    "waning"
+  ],
+  "neva-masquerade": [
+    "autumn",
+    "cloudy"
+  ],
+  "sokoke": [
+    "steps3000",
+    "weekday",
+    "lastquarter"
+  ],
+  "suphalak": [
+    "weekend",
+    "steps100"
+  ],
+  "toybob": [
+    "battery-half",
+    "weekend",
+    "streak14"
+  ],
+  "ukrainian-levkoy": [
+    "charging",
+    "evening"
+  ],
+  "persian-black-smoke": [
+    "rain",
+    "steps3000",
+    "summer"
+  ],
+  "persian-blue-cream": [
+    "weekday",
+    "winter",
+    "battery-half"
+  ],
+  "persian-chinchilla-silver": [
+    "winter",
+    "battery-high",
+    "steps3000"
+  ],
+  "persian-red-tabby": [
+    "weekend",
+    "steps5000"
+  ],
+  "ragdoll-blue-colorpoint": [
+    "steps3000",
+    "cloudy",
+    "noon"
+  ],
+  "ragdoll-lilac-bicolor": [
+    "steps3000",
+    "streak3",
+    "spring"
+  ],
+  "ragdoll-seal-mitted": [
+    "evening",
+    "battery-high"
+  ],
+  "siamese-blue-point": [
+    "steps100",
+    "battery-half"
+  ],
+  "siamese-chocolate-point": [
+    "steps1000",
+    "weekend"
+  ],
+  "siamese-flame-point": [
+    "evening",
+    "summer",
+    "steps3000"
+  ],
+  "american-shorthair-brown-tabby": [
+    "steps100",
+    "winter"
+  ],
+  "american-shorthair-calico": [
+    "autumn",
+    "steps3000"
+  ],
+  "british-bicolor": [
+    "cloudy",
+    "noon",
+    "streak3"
+  ],
+  "british-black": [
+    "steps3000",
+    "noon"
+  ],
+  "british-golden-shaded": [
+    "cloudy",
+    "steps3000"
+  ],
+  "british-lilac": [
+    "autumn",
+    "steps1000"
+  ],
+  "british-silver-tabby": [
+    "steps5000",
+    "weekday",
+    "battery-high"
+  ],
+  "scottish-fold-bicolor": [
+    "steps3000",
+    "cloudy",
+    "summer"
+  ],
+  "scottish-fold-silver-tabby": [
+    "morning",
+    "steps3000",
+    "streak3"
+  ],
+  "scottish-fold-white": [
+    "sunny",
+    "spring"
+  ],
+  "abyssinian-blue": [
+    "steps5000",
+    "winter",
+    "weekday"
+  ],
+  "abyssinian-fawn": [
+    "steps3000",
+    "cloudy",
+    "winter"
+  ],
+  "birman-blue-point": [
+    "steps1000",
+    "weekday"
+  ],
+  "birman-chocolate-point": [
+    "streak3",
+    "rain"
+  ],
+  "maine-coon-black": [
+    "weekday",
+    "steps5000",
+    "autumn"
+  ],
+  "maine-coon-red-tabby": [
+    "autumn",
+    "steps3000"
+  ],
+  "maine-coon-silver-tabby": [
+    "evening",
+    "charging"
+  ],
+  "norwegian-forest-black-white": [
+    "sunny",
+    "battery-high",
+    "steps1000"
+  ],
+  "norwegian-forest-silver-tabby": [
+    "battery-half",
+    "winter"
+  ],
+  "siberian-blue": [
+    "charging",
+    "spring",
+    "steps3000"
+  ],
+  "bengal-marble": [
+    "autumn",
+    "steps100"
+  ],
+  "bengal-silver": [
+    "morning",
+    "summer",
+    "streak14"
+  ],
+  "bengal-snow-lynx": [
+    "rain",
+    "steps3000",
+    "streak14"
+  ],
+  "egyptian-mau-bronze": [
+    "rain",
+    "weekend",
+    "steps5000"
+  ],
+  "mike-neko": [
+    "steps3000",
+    "spring",
+    "streak30"
+  ],
+  "egyptian-mau-smoke": [
+    "steps100",
+    "weekday"
+  ],
+  "ocicat-silver": [
+    "rain",
+    "steps3000"
+  ],
+  "burmese-blue": [
+    "steps3000",
+    "summer",
+    "cloudy"
+  ],
+  "burmese-champagne": [
+    "steps5000",
+    "autumn",
+    "evening"
+  ],
+  "kijitora": [
+    "steps100",
+    "evening"
+  ],
+  "saba-tora": [
+    "cloudy",
+    "winter",
+    "steps3000"
+  ],
+  "chatora": [
+    "rain",
+    "streak3",
+    "battery-half"
+  ],
+  "sabi-neko": [
+    "noon",
+    "steps100"
+  ],
+  "russian-white": [
+    "charging",
+    "streak3"
+  ],
+  "russian-black": [
+    "battery-half",
+    "noon"
+  ],
+  "kuro-neko": [
+    "steps3000",
+    "winter"
+  ],
+  "shiro-neko": [
+    "battery-half",
+    "cloudy"
+  ],
+  "hachiware": [
+    "battery-half",
+    "winter",
+    "rain"
+  ],
+  "haiiro-neko": [
+    "weekend",
+    "winter",
+    "charging"
+  ],
+  "kijishiro": [
+    "weekday",
+    "steps5000",
+    "noon"
+  ],
+  "highlander": [
+    "steps3000",
+    "battery-high",
+    "spring"
+  ],
+  "suffolk-lilac": [
+    "summer",
+    "steps5000",
+    "charging"
+  ],
+  "tennessee-rex": [
+    "sunny",
+    "steps3000",
+    "winter"
+  ],
+  "asian-ticked-tabby": [
+    "steps3000",
+    "summer",
+    "battery-half"
+  ],
+  "asian-black-smoke": [
+    "sunny",
+    "battery-high",
+    "steps5000"
+  ],
+  "burmilla-longhair": [
+    "battery-high",
+    "spring"
+  ],
+  "laperm-black": [
+    "charging",
+    "steps3000"
+  ],
+  "laperm-red-white": [
+    "streak3",
+    "charging"
+  ],
+  "american-curl-red-tabby": [
+    "charging",
+    "evening",
+    "streak3"
+  ],
+  "american-curl-blue-white": [
+    "steps3000",
+    "sunny",
+    "streak3"
+  ],
+  "devon-rex-chocolate": [
+    "steps5000",
+    "rain"
+  ],
+  "devon-rex-white": [
+    "sunny",
+    "weekend",
+    "steps5000"
+  ],
+  "cornish-rex-black-white": [
+    "autumn",
+    "steps5000",
+    "sunny"
+  ],
+  "cornish-rex-red": [
+    "sunny",
+    "steps5000",
+    "autumn"
+  ],
+  "somali-blue": [
+    "steps5000",
+    "rain",
+    "noon"
+  ],
+  "somali-fawn": [
+    "rain",
+    "charging",
+    "weekday"
+  ],
+  "turkish-angora-black-smoke": [
+    "cloudy",
+    "charging"
+  ],
+  "turkish-angora-red-tabby": [
+    "steps3000",
+    "charging",
+    "weekend"
+  ],
+  "turkish-van-cream": [
+    "steps5000",
+    "cloudy"
+  ],
+  "turkish-van-black": [
+    "steps3000",
+    "spring",
+    "cloudy"
+  ],
+  "manx-blue-white": [
+    "weekday",
+    "battery-half"
+  ],
+  "manx-red-tabby": [
+    "evening",
+    "weekend"
+  ],
+  "exotic-shorthair-chocolate": [
+    "sunny",
+    "morning",
+    "battery-high"
+  ],
+  "exotic-shorthair-cream": [
+    "steps3000",
+    "battery-high",
+    "weekday"
+  ],
+  "tonkinese-platinum-mink": [
+    "steps5000",
+    "weekday"
+  ],
+  "tonkinese-champagne-mink": [
+    "weekday",
+    "battery-half"
+  ],
+  "balinese-chocolate-point": [
+    "steps5000",
+    "streak3"
+  ],
+  "balinese-lilac-point": [
+    "weekday",
+    "sunny",
+    "steps100"
+  ],
+  "ragamuffin-tortie-white": [
+    "cloudy",
+    "noon",
+    "streak3"
+  ],
+  "ragamuffin-cream-white": [
+    "steps5000",
+    "weekday"
+  ],
+  "selkirk-rex-chocolate": [
+    "steps100",
+    "streak3",
+    "weekday"
+  ],
+  "selkirk-rex-cream": [
+    "sunny",
+    "steps5000",
+    "winter"
+  ],
+  "siberian-golden-tabby": [
+    "weekday",
+    "noon",
+    "autumn"
+  ],
+  "siberian-tortie-white": [
+    "winter",
+    "steps5000"
+  ],
+  "japanese-bobtail-red-white": [
+    "steps1000",
+    "sunny"
+  ]
+}
