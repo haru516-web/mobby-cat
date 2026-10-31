@@ -5,7 +5,7 @@ import { REVEAL_HOUR, prevDayKey, encounterComposition, hasRarePresence } from '
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
 import { WelcomeFx } from './WelcomeFx';
-import { matatabiOf, openLeft, openLimit, openedOf, ticketsOf, useGame } from '../../core/game';
+import { homeSlotsOf, matatabiOf, openLeft, openLimit, openedOf, ticketsOf, useGame } from '../../core/game';
 import { notice } from '../../services/dialog';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
 import { Card, Header, ImgButton, RarityBadge, useTabPad, Tap } from '../../ui/kit';
@@ -23,6 +23,12 @@ import { RevealOverlay } from './RevealOverlay';
 
 // まだひらいていない候補は、どの子も同じシルエットで見せる（形で誰か分からないように）
 const MYSTERY = UI['deai/mystery-cat'] ? 'deai/mystery-cat' : 'cat/silhouette-locked';
+
+// 「最初の出会い」待ちの画面に散らす、共通のシルエット（候補の「まだひらいていない子」と同じ絵）。上3匹・下3匹
+const SHADOW_POS = [
+  { top: 14, left: '3%' }, { top: 50, left: '38%' }, { top: 10, left: '68%' },
+  { bottom: 150, left: '6%' }, { bottom: 112, left: '40%' }, { bottom: 156, left: '66%' },
+] as const;
 
 export default function DeaiScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const g = useGame();
@@ -57,20 +63,35 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   }, [todayKey]);
 
   const rec = state.days[day];
+  const partner = homeSlotsOf(state).find((id) => !!id) ?? null; // 最初に選んだ相棒（ホームに出ている猫）
   // 20時の切り替わり直後などで、その日の候補をまだ作っている間
   if (!rec) {
     return (
       <View style={{ flex: 1 }}>
+        <Backdrop name="bg/room-deai-full" />
         <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={s.preparing}>
-          <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
           {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR ? (
+            // 最初に選んだ相棒が、最初の出会いのことを教えてくれる
             <>
-              <T w="x" size={16} style={{ textAlign: 'center' }}>最初の出会いは、今夜{REVEAL_HOUR}時に届きます</T>
-              <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>{`今日の歩数や電池の様子がそろってから、\n会える猫が決まります。それまでは、ホームで猫と遊んでね`}</T>
+              {/* まだ会えていない、ふつうの猫たちのシルエット。上と下に3匹ずつ、ゆらゆらさせる */}
+              {SHADOW_POS.map((pos, i) => (
+                <Bobbing key={i} delay={i * 260} style={[s.shadow, pos]}>
+                  <Pic name={MYSTERY} height={104} />
+                </Bobbing>
+              ))}
+              <View style={s.bubble}>
+                <T w="x" size={16} style={{ textAlign: 'center' }}>最初の出会いは、今夜{REVEAL_HOUR}時に届くよ</T>
+                <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>{`今日の歩数や電池の様子がそろってから、\n会える猫が決まるんだ。それまでは、ホームで一緒に遊ぼうね`}</T>
+                <View style={s.bubbleTail} />
+              </View>
+              {partner && <Bobbing><CatImage id={partner} size={190} /></Bobbing>}
             </>
           ) : (
-            <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+            <>
+              <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
+              <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+            </>
           )}
         </View>
       </View>
@@ -460,4 +481,7 @@ const s = StyleSheet.create({
   chip: { height: 30, alignItems: 'center', justifyContent: 'center' },
   overlay: { flex: 1, justifyContent: 'center', padding: 24 },
   preparing: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12, paddingBottom: 120 },
+  shadow: { position: 'absolute' },
+  bubble: { marginHorizontal: 24, paddingVertical: 16, paddingHorizontal: 18, borderRadius: 22, backgroundColor: 'rgba(255,250,240,0.95)', alignItems: 'center', gap: 8 },
+  bubbleTail: { position: 'absolute', bottom: -9, alignSelf: 'center', width: 18, height: 18, backgroundColor: 'rgba(255,250,240,0.95)', transform: [{ rotate: '45deg' }] },
 });
