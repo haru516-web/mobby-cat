@@ -108,7 +108,8 @@ function Root() {
   return (
     <View style={[s.fill, { alignItems: 'center' }]}>
       <Backdrop name="bg/app-cream" />
-      <View style={[s.fill, { width }]}>
+      {/* 撮影中は、後ろの画面（ホームの見出しや丸ボタンなど）を丸ごと見えなくする。実機でカメラの上に漏れて見えたため */}
+      <View style={[s.fill, { width, opacity: camera ? 0 : 1 }]} pointerEvents={camera ? 'none' : 'auto'}>
         <View style={s.fill}>
           <TabPadCtx.Provider value={tabH}>
             <Active

@@ -9,6 +9,7 @@ import { PRODUCTS, type ProductKey } from '../../services/account/products';
 import { C, T } from '../../ui/base';
 import { useConfirm } from '../../ui/ConfirmPopup';
 import { Card, Icon, ImgButton, Tap, withSfx } from '../../ui/kit';
+import { Popup } from '../../ui/Popup';
 import { Pic } from '../../ui/Slice';
 import { AgePopup } from './AgePopup';
 
@@ -206,19 +207,22 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
           <T w="b" size={12} color={C.accent} style={s.link} onPress={withSfx(() => openLink(EULA_URL))} accessibilityRole="link">利用規約（EULA）</T>
           <T w="b" size={12} color={C.accent} style={s.link} onPress={withSfx(() => openLink(PRIVACY_URL))} accessibilityRole="link">プライバシーポリシー</T>
         </View>
-        {odds && (
-          <Card skin="white" style={{ marginTop: 8, gap: 6 }}>
-            <T w="x" size={13}>またたびで増える候補について</T>
-            <T w="m" size={11} color={C.sub}>
+        {/* 購入を復元の確認と同じく、ポップで見せる（ポップは OverlayHost に出るので、ここに置いてよい） */}
+        <Popup visible={odds} onClose={() => setOdds(false)} maxWidth={340} heightRatio={0.7}>
+          <View style={{ flex: 1, padding: 18, gap: 8 }}>
+            <T w="x" size={16} style={{ textAlign: 'center', marginTop: 4 }}>またたびで増える候補について</T>
+            <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+              <T w="m" size={12} color={C.sub} style={{ lineHeight: 18 }}>
               毎晩20時に、その日の出会いの条件がすべてそろった猫の中から、候補が決まります。{'\n'}
               ・条件がそろったレア・でんせつ・世界の猫は候補に残ります。レア以上だけで6匹を超える日は、候補の枠を広げます。{'\n'}
               ・ふだんは6匹まで。残りはノーマルから選び、1枠はまだ迎えていない子を優先します。条件がそろっても候補から外れた子は、次に条件がそろった日に少し出やすくなります（外れた回数ごとに重み+0.5、最大11倍。候補に入ると元に戻ります）。{'\n'}
               候補は、届いた時点で決まっていて、購入では変わりません。候補は、ひらくまで中身が見えません。ひらいた候補と非表示の子のレア度ごとの数を表示します。珍しい猫がまだひらかれていない日は、気配を知らせます。ひらく候補は自分で選べます。ひらいた猫は、その日の候補の別々の猫で、はずれはありません。{'\n'}
               またたびは、ひらける数を1匹ずつ増やします（候補の数まで）。出る猫の確率は変わりません。お迎え券は、ひらいた猫の中から、迎える猫を選べる券です。条件を飛ばして猫を迎えることはできません。
-            </T>
-            <T w="b" size={11} color={C.accent} onPress={withSfx(() => setOdds(false))}>閉じる</T>
-          </Card>
-        )}
+              </T>
+            </ScrollView>
+            <ImgButton skin="ghost-outline" label="閉じる" height={48} fontSize={13} onPress={() => setOdds(false)} />
+          </View>
+        </Popup>
         {!acc.storeAvailable && (
           <T w="m" size={11} color={C.sub} style={{ marginTop: 8 }}>※ この環境（Webや開発用）では、購入できません。iPhoneの実機で、ご利用ください。</T>
         )}

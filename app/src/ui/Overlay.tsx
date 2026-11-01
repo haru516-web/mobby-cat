@@ -46,7 +46,8 @@ export function OverlayHost() {
   return (
     // ポップが出ているあいだは、後ろの画面を VoiceOver に読ませない（Modal が自動でしていたこと）。
     // 重なったポップは、いちばん上だけを読ませる（最後の兄弟が優先される）
-    <View style={StyleSheet.absoluteFill} pointerEvents="box-none" accessibilityViewIsModal={list.length > 0}>
+    // 画面側の zIndex（ホームの見出しや右上の丸ボタンなど）より必ず上に描く。これが無いと、ポップやカメラの上にそれらが透けて見える
+    <View style={[StyleSheet.absoluteFill, { zIndex: 10000, elevation: 10000 }]} pointerEvents="box-none" accessibilityViewIsModal={list.length > 0}>
       {list.map((entry) => (
         <View key={entry.key} style={StyleSheet.absoluteFill} pointerEvents="box-none" accessibilityViewIsModal>
           {entry.node}
