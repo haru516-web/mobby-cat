@@ -54,24 +54,25 @@ export function RollSprite({ id, size, onReady, onDone }: { id: string; size: nu
 // 猫ごとに「しばらく待つ→1周ごろごろ→また待つ」を別々のランダムな間隔でくり返す。
 // 重なって同時に動くこともあれば、一緒に始まることもある。だれも動かない間ができそうなときは、
 // すぐ別の子が始める（開いている間は常にどれか1匹は動く）
-export function useRollDirector(ids: string[]): { active: Set<string>; done: (id: string) => void } {
+export function useRollDirector(ids: string[]): { active: Map<string, number>; done: (id: string) => void } {
   // Webは開発用の確認画面なので、端末の「視差効果を減らす」に関係なく動かす（実機ではこの設定に従う）
   const reduce = useReduceMotion();
   const still = reduce && Platform.OS !== 'web';
-  const [active, setActive] = useState<Set<string>>(new Set());
+  const [active, setActive] = useState<Map<string, number>>(new Map());
   const finish = useRef<(id: string) => void>(() => {});
   const key = ids.filter(hasRoll).join('|');
 
   useEffect(() => {
     const pool = key ? key.split('|') : [];
-    const running = new Set<string>();
+    const running = new Map<string, number>(); // 猫id → 何回目の再生か（同じ猫がすぐ続けて始まっても、再生をやりなおせるように）
+    let seq = 0;
     const timers = new Set<ReturnType<typeof setTimeout>>();
     let dead = false;
     const rnd = (a: number, b: number) => a + Math.random() * (b - a);
     const start = (id: string) => {
       if (dead || running.has(id)) return;
-      running.add(id);
-      setActive(new Set(running));
+      running.set(id, (seq += 1));
+      setActive(new Map(running));
     };
     const wait = (id: string, ms: number) => {
       const t = setTimeout(() => { timers.delete(t); start(id); }, ms);
@@ -79,7 +80,7 @@ export function useRollDirector(ids: string[]): { active: Set<string>; done: (id
     };
     finish.current = (id) => {
       if (dead || !running.delete(id)) return;
-      setActive(new Set(running));
+      setActive(new Map(running));
       if (running.size === 0) {
         const others = pool.length > 1 ? pool.filter((p) => p !== id) : pool;
         start(others[Math.floor(Math.random() * others.length)]);
@@ -94,7 +95,7 @@ export function useRollDirector(ids: string[]): { active: Set<string>; done: (id
     return () => {
       dead = true;
       timers.forEach(clearTimeout);
-      setActive(new Set());
+      setActive(new Map());
     };
   }, [key, still]);
 

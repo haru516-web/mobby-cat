@@ -29,7 +29,7 @@ const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！',
 // 旅猫の今いる場所（仮）。あとで「全員共通の静的JSON」を1日1回読む形に置き換える
 const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン', day: 12 };
 
-function RoomCat({ id, size, delay, rolling, onRollDone, onPet }: { id: string; size: number; delay: number; rolling: boolean; onRollDone: () => void; onPet: () => void }) {
+function RoomCat({ id, size, delay, rollRun, onRollDone, onPet }: { id: string; size: number; delay: number; rollRun: number | undefined; onRollDone: () => void; onPet: () => void }) {
   const [rollReady, setRollReady] = useState(false);
   const hop = useState(() => new Animated.Value(0))[0];
   const heart = useState(() => new Animated.Value(0))[0];
@@ -57,11 +57,11 @@ function RoomCat({ id, size, delay, rolling, onRollDone, onPet }: { id: string; 
         <Bobbing delay={delay}>
           <View style={{ width: size, height: size }}>
             {/* ごろごろの最初のコマが描けるまで静止画を残す（つなぎ目で一瞬消えないように） */}
-            <View style={{ opacity: rolling && rollReady ? 0 : 1 }}>
+            <View style={{ opacity: rollRun !== undefined && rollReady ? 0 : 1 }}>
               <CatImage id={id} size={size} />
             </View>
-            {rolling && (
-              <RollSprite id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
+            {rollRun !== undefined && (
+              <RollSprite key={rollRun} id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
             )}
           </View>
         </Bobbing>
@@ -147,7 +147,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
           top = Math.max(0, Math.min(top, roomH - size - 6));
           return (
             <View key={id} style={{ position: 'absolute', left, top, zIndex: Math.round(slot.y * 100 + slot.s * 10) }}>
-              <RoomCat id={id} size={width * slot.s} delay={i * 260} rolling={roll.active.has(id)} onRollDone={() => roll.done(id)} onPet={pet} />
+              <RoomCat id={id} size={width * slot.s} delay={i * 260} rollRun={roll.active.get(id)} onRollDone={() => roll.done(id)} onPet={pet} />
             </View>
           );
         })}
