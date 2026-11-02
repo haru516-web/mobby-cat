@@ -8,6 +8,7 @@ import { playSfx } from '../../services/audio';
 import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Header, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
+import { RollSprite, useRollDirector } from '../../ui/CatRoll';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { UI } from '../../ui/uiAssets';
@@ -28,7 +29,8 @@ const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！',
 // 旅猫の今いる場所（仮）。あとで「全員共通の静的JSON」を1日1回読む形に置き換える
 const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン', day: 12 };
 
-function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: number; onPet: () => void }) {
+function RoomCat({ id, size, delay, rolling, onRollDone, onPet }: { id: string; size: number; delay: number; rolling: boolean; onRollDone: () => void; onPet: () => void }) {
+  const [rollReady, setRollReady] = useState(false);
   const hop = useState(() => new Animated.Value(0))[0];
   const heart = useState(() => new Animated.Value(0))[0];
   const [line, setLine] = useState<string | null>(null);
@@ -53,7 +55,15 @@ function RoomCat({ id, size, delay, onPet }: { id: string; size: number; delay: 
       <Pic name="camera/shadow-soft" width={size * 0.9} style={{ position: 'absolute', left: size * 0.05, top: size * 0.82 }} />
       <Animated.View style={{ transform: [{ translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.18] }) }] }}>
         <Bobbing delay={delay}>
-          <CatImage id={id} size={size} />
+          <View style={{ width: size, height: size }}>
+            {/* ごろごろの最初のコマが描けるまで静止画を残す（つなぎ目で一瞬消えないように） */}
+            <View style={{ opacity: rolling && rollReady ? 0 : 1 }}>
+              <CatImage id={id} size={size} />
+            </View>
+            {rolling && (
+              <RollSprite id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
+            )}
+          </View>
         </Bobbing>
       </Animated.View>
       <Animated.View
@@ -77,6 +87,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
   const [selecting, setSelecting] = useState(false);
+  const roll = useRollDirector(roomSlots.filter((id): id is string => !!id));
   // ホームはスクロールしない（もび道と同じ）。見出しと下のカードの残りの高さを、ぜんぶ部屋に回す（flex）。
   // 低い端末では部屋が低く、縦に長い端末では高くなる。猫の位置は、部屋の高さ（roomH）に対する割合で決める
   const [roomH, setRoomH] = useState(width * 1.25);
@@ -136,7 +147,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
           top = Math.max(0, Math.min(top, roomH - size - 6));
           return (
             <View key={id} style={{ position: 'absolute', left, top, zIndex: Math.round(slot.y * 100 + slot.s * 10) }}>
-              <RoomCat id={id} size={width * slot.s} delay={i * 260} onPet={pet} />
+              <RoomCat id={id} size={width * slot.s} delay={i * 260} rolling={roll.active.has(id)} onRollDone={() => roll.done(id)} onPet={pet} />
             </View>
           );
         })}
