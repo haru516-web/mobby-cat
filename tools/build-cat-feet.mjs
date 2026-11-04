@@ -1,5 +1,6 @@
 // ホームの猫の影を足元に合わせるための、足の位置の表を作る（app/src/data/catFeet.json）。
-// 画像の透明でない部分（alpha）を調べて、足元の下端（y）・足元の中心（cx）・足元の幅（w）を、1コマ（または画像）に対する割合で出す。
+// 画像の透明でない部分（alpha）を調べて、[足元の下端 y, 足元の中心 cx, 足元の幅 w, 頭の上端 top, 左端 left, 右端 right] を、1コマ（または画像）に対する割合で出す。
+// 足元は影の位置合わせに、top/left/right は猫どうしが（アニメーション中も）重ならない配置に使う。
 // 使い方: node tools/build-cat-feet.mjs   （ffmpeg が必要。素材を差し替えたら、もう一度実行する）
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -23,13 +24,15 @@ function feet(buf, stride, x0, y0, cw, ch) {
     rows.push(n >= 3 ? [lo, hi] : null);
   }
   const ys = rows.map((r, i) => (r ? i : -1)).filter((i) => i >= 0);
-  if (!ys.length) return [0.9, 0.5, 0.5];
+  if (!ys.length) return [0.9, 0.5, 0.5, 0.1, 0.1, 0.9];
   const top = ys[0], bottom = ys[ys.length - 1];
   const band = Math.max(1, Math.round((bottom - top) * 0.2));
   let lo = cw, hi = -1;
   for (let y = bottom - band; y <= bottom; y++) if (rows[y]) { lo = Math.min(lo, rows[y][0]); hi = Math.max(hi, rows[y][1]); }
   const r3 = (v) => Math.round(v * 1000) / 1000;
-  return [r3((bottom + 1) / ch), r3((lo + hi + 1) / 2 / cw), r3((hi - lo + 1) / cw)];
+  let L = cw, R = -1;
+  for (const r of rows) if (r) { L = Math.min(L, r[0]); R = Math.max(R, r[1]); }
+  return [r3((bottom + 1) / ch), r3((lo + hi + 1) / 2 / cw), r3((hi - lo + 1) / cw), r3(top / ch), r3(L / cw), r3((R + 1) / cw)];
 }
 const sheet = (file) => {
   const W = 1024, H = 512, buf = alphaOf(file, W, H);

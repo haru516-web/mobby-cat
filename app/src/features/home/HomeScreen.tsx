@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Animated, Easing, Image, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useHomeBg } from '../../core/homeBg';
-import { footAct, footRoll, footStill, Foot } from '../../data/catFeet';
-import { HomeBg } from '../../data/homeBg';
+import { actShift, extentOf, footAct, footRoll, footStill, Foot, rollShift } from '../../data/catFeet';
+import { layoutHome } from '../../ui/homeLayout';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
 import { homeSlotsOf, useGame } from '../../core/game';
@@ -17,17 +17,7 @@ import { TourAnchor } from '../../ui/TourAnchor';
 import { UI } from '../../ui/uiAssets';
 import { ScreenProps } from '../../navigation';
 
-// 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい。縦位置は背景ごと（data/homeBg.ts）に決める：
-// 奥の列が、背景の奥の人や像に重ならないように。手前の3匹は、下のヒントカードの手前まで床を使う
-const SLOT_BASE = [
-  { x: 0.3, s: 0.42 }, // 手前中央
-  { x: 0.62, s: 0.34 },
-  { x: 0.02, s: 0.36 },
-  { x: 0.42, s: 0.24 }, // 奥の列
-  { x: 0.08, s: 0.26 },
-  { x: 0.72, s: 0.22 },
-];
-const slotsOf = (bg: HomeBg) => SLOT_BASE.map((b, i) => ({ ...b, y: i < 3 ? bg.front[i] : bg.back[i - 3] }));
+// 猫の置き場所は ui/homeLayout.ts が、遠近（手前ほど大きく）と、動きの途中でも重ならないことを考えて決める
 const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！', 'にゃーん', 'もっと！'];
 
 // 旅猫の今いる場所（仮）。あとで「全員共通の静的JSON」を1日1回読む形に置き換える
@@ -38,7 +28,11 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
   const [rollReady, setRollReady] = useState(false);
   // 影は、いまの絵（立ち姿・ごろごろ・動きの各コマ）の足元に合わせる
   const [pose, setPose] = useState<number | null>(null);
-  const foot: Foot = rollRun !== undefined && rollReady && pose !== null ? (act!.kind === 'roll' ? footRoll(id, pose) : footAct(id, act!.kind, pose)) : footStill(id);
+  const playing = rollRun !== undefined && rollReady && pose !== null;
+  const foot: Foot = playing ? (act!.kind === 'roll' ? footRoll(id, pose) : footAct(id, act!.kind, pose)) : footStill(id);
+  // 動きの絵は、立ち姿と足元の高さがずれていることがある。地面についているように、立ち姿の足元に合わせてずらす（影も立ち姿の足元に置く）
+  const ground = footStill(id)[0];
+  const lift = rollRun !== undefined && rollReady ? (act!.kind === 'roll' ? rollShift(id) : actShift(id, act!.kind)) * size : 0;
   const shadowW = Math.min(size * 1.0, Math.max(size * 0.4, size * foot[2] * 1.2));
   const shadowH = shadowW * (150 / 480);
   const hop = useState(() => new Animated.Value(0))[0];
@@ -62,7 +56,7 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
   };
   return (
     <Tap sfx={null} onPress={tap} accessibilityLabel={`${CAT_BY_ID[id].name}をなでる`}>
-      <Pic name="camera/shadow-soft" width={shadowW} style={{ position: 'absolute', left: size * foot[1] - shadowW / 2, top: size * foot[0] - shadowH * 0.55 }} />
+      <Pic name="camera/shadow-soft" width={shadowW} style={{ position: 'absolute', left: size * foot[1] - shadowW / 2, top: size * ground - shadowH * 0.55 }} />
       <Animated.View style={{ transform: [{ translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.18] }) }] }}>
         <Bobbing delay={delay}>
           <View style={{ width: size, height: size }}>
@@ -70,12 +64,14 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
             <View style={{ opacity: rollRun !== undefined && rollReady ? 0 : 1 }}>
               <CatImage id={id} size={size} />
             </View>
+            <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, transform: [{ translateY: lift }] }}>
             {act && act.kind === 'roll' && (
               <RollSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onPose={setPose} onDone={() => { setRollReady(false); setPose(null); onRollDone(); }} />
             )}
             {act && act.kind !== 'roll' && (
               <ActSprite key={act.run} id={id} kind={act.kind} size={size} onReady={() => setRollReady(true)} onPose={setPose} onDone={() => { setRollReady(false); setPose(null); onRollDone(); }} />
             )}
+            </View>
           </View>
         </Bobbing>
       </Animated.View>
@@ -99,7 +95,6 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   const pad = useTabPad();
   const bg = useHomeBg();
   const bleed = Math.max(0, (useWindowDimensions().width - width) / 2); // 画面が幅の上限より広いとき、背景だけは端まで敷く
-  const slots = useMemo(() => slotsOf(bg), [bg]);
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
   const [selecting, setSelecting] = useState(false);
@@ -107,6 +102,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   // ホームはスクロールしない（もび道と同じ）。見出しと下のカードの残りの高さを、ぜんぶ部屋に回す（flex）。
   // 低い端末では部屋が低く、縦に長い端末では高くなる。猫の位置は、部屋の高さ（roomH）に対する割合で決める
   const [roomH, setRoomH] = useState(width * 1.25);
+  const placed = useMemo(() => layoutHome(roomSlots, width, roomH, Math.max(bg.top, SIDE_BOTTOM / roomH), extentOf, (id) => footStill(id)[0]), [roomSlots, width, roomH, bg.top]);
   // 通知の「これから」の、いちばん近い予告（暦や月で決まる特別な猫）
   const next = useMemo(() => upcoming(todayKey, 30, state.birthday)[0], [todayKey, state.birthday]);
   const nextCat = next?.cats[0];
@@ -155,17 +151,10 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         )}
         {roomSlots.map((id, i) => {
           if (!id) return null;
-          const slot = slots[i];
-          const size = width * slot.s;
-          const left = width * slot.x;
-          let top = roomH * slot.y;
-          // 右上の丸いボタン（SIDE_BTN の2つ）の下に置く。猫の絵がボタンに重ならないように
-          if (left + size > width - SIDE_RIGHT - SIDE_BTN - 4 && top < SIDE_BOTTOM) top = SIDE_BOTTOM;
-          // 背の低い端末でも、足が部屋の下端で切れないように
-          top = Math.max(0, Math.min(top, roomH - size - 6));
+          const pl = placed[i];
           return (
-            <View key={id} style={{ position: 'absolute', left, top, zIndex: Math.round(slot.y * 100 + slot.s * 10) }}>
-              <RoomCat id={id} size={width * slot.s} delay={i * 260} act={roll.active.get(id)} onRollDone={() => roll.done(id)} onPet={pet} />
+            <View key={id} style={{ position: 'absolute', left: pl.left, top: pl.top, zIndex: Math.round(pl.foot) }}>
+              <RoomCat id={id} size={pl.size} delay={i * 260} act={roll.active.get(id)} onRollDone={() => roll.done(id)} onPet={pet} />
             </View>
           );
         })}
