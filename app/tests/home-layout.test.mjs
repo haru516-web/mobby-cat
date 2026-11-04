@@ -34,3 +34,11 @@ test('with fewer cats the remaining ones still do not overlap', () => {
   const live = some.map((id, i) => (id ? box(placed[i], id) : null));
   for (let i = 0; i < live.length; i++) for (let j = i + 1; j < live.length; j++) if (live[i] && live[j]) assert.ok(!overlap(live[i], live[j]));
 });
+
+test('cats are scattered, not lined up in rows, and the same cat stays in the same spot', () => {
+  const placed = layoutHome(ids, 393, 573, 0.4, extent, foot);
+  const feet = placed.map((p) => Math.round(p.foot / 14));
+  assert.ok(new Set(feet).size >= 5, 'feet are at (almost) all different depths, so no row of cats');
+  const again = layoutHome(ids, 393, 573, 0.4, extent, foot);
+  assert.deepEqual(again, placed);
+});
