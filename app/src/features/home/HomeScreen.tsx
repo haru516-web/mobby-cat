@@ -121,7 +121,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   return (
     <View style={{ flex: 1 }}>
-    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { left: -bleed, right: -bleed }]}>
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { left: -bleed - 2, right: -bleed - 2, top: -2, bottom: -2 }]}>
       <Image source={bg.src} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
     </View>
     <View style={{ flex: 1, paddingBottom: 24 + pad }}>

@@ -73,14 +73,16 @@ export function Pic({ name, height, width, style }: PicProps) {
 }
 
 // 画面全体を覆う背景（不透明の bg/ 素材）。縦横比を保って全面を埋める
+const OVERSCAN = 2;
 // bleed: 画面がアプリの幅の上限より広いとき、背景だけ左右の端まで敷く（中身は今の幅のまま）
 export function Backdrop({ name, style, bleed }: { name: string; style?: StyleProp<ViewStyle>; bleed?: boolean }) {
   const winW = useWindowDimensions().width;
   const a = asset(name);
   if (!a) return null;
-  const side = bleed ? -Math.max(0, (winW - MAX_W) / 2) : 0;
+  // 少しだけ外にはみ出させる（端数の大きさのとき、ぴったりだと後ろの色が1pxの線に見えるため）
+  const side = bleed ? -Math.max(0, (winW - MAX_W) / 2) - OVERSCAN : 0;
   return (
-    <View pointerEvents="none" style={[{ position: 'absolute', left: side, top: 0, right: side, bottom: 0, overflow: 'hidden' }, style]}>
+    <View pointerEvents="none" style={[{ position: 'absolute', left: side, top: bleed ? -OVERSCAN : 0, right: side, bottom: bleed ? -OVERSCAN : 0, overflow: 'hidden' }, style]}>
       <Image source={a.src} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
     </View>
   );
