@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 import { HOME_SLOTS, homeSlotsOf, useGame } from '../../core/game';
+import { setHomeBg, useHomeBg } from '../../core/homeBg';
+import { HOME_BGS } from '../../data/homeBg';
 import { C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { ImgButton, Tap } from '../../ui/kit';
 import { Popup } from '../../ui/Popup';
@@ -16,6 +18,8 @@ export default function HomeSelect({ visible, onClose, width }: { visible: boole
   const cell = Math.floor((Math.min(width - 24, 400) - 28 - 3 * 8) / 4);
   const slotW = Math.floor((Math.min(width - 24, 400) - 28 - 5 * 6) / 6);
   const auto = state.homeSlots === null;
+  const bg = useHomeBg();
+  const bgW = Math.floor((Math.min(width - 24, 400) - 28 - 4 * 6) / 5);
 
   const assign = (id: string) => {
     const next = [...slots];
@@ -44,6 +48,19 @@ export default function HomeSelect({ visible, onClose, width }: { visible: boole
         <T w="m" size={11} color={C.sub}>
           場所の番号を選んで、下の子をタップします。1番は手前の大きい場所です。{auto ? '（いまは、入手した順に出しています）' : ''}
         </T>
+
+        {/* ホームの背景 */}
+        <T w="x" size={13}>背景</T>
+        <View style={{ flexDirection: 'row', gap: 6 }}>
+          {HOME_BGS.map((b) => (
+            <Tap key={b.id} style={{ width: bgW, alignItems: 'center' }} onPress={() => setHomeBg(b.id)} accessibilityLabel={`背景：${b.name}`}>
+              <View style={{ width: bgW, height: bgW * 1.3, borderRadius: 8, overflow: 'hidden', borderWidth: 2, borderColor: bg.id === b.id ? C.accent : 'transparent' }}>
+                <Image source={b.src} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
+              </View>
+              <T w="m" size={10} color={bg.id === b.id ? C.accent : C.sub} numberOfLines={1}>{b.name}</T>
+            </Tap>
+          ))}
+        </View>
 
         {/* 1〜6番目の場所 */}
         <View style={{ flexDirection: 'row', gap: 6 }}>

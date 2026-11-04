@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { Animated, Easing, Image, StyleSheet, View } from 'react-native';
+import { useHomeBg } from '../../core/homeBg';
+import { HomeBg } from '../../data/homeBg';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
 import { homeSlotsOf, useGame } from '../../core/game';
@@ -9,22 +11,22 @@ import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Header, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { ActSprite, RollSprite, useRollDirector, CatAction } from '../../ui/CatRoll';
-import { Backdrop, Pic, Slice } from '../../ui/Slice';
+import { Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { UI } from '../../ui/uiAssets';
 import { ScreenProps } from '../../navigation';
 
-// 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい。
-// 背景（大仏の部屋）では、奥の列も大仏の本体（画面の上から約4割）に重ならないように、床〜祭壇の前に置く
-// 手前の3匹は、下のヒントカードの手前まで床を使う（上に寄せると、カードとのあいだが空いてしまう）
-const SLOTS = [
-  { x: 0.3, y: 0.68, s: 0.42 }, // 手前中央
-  { x: 0.62, y: 0.66, s: 0.34 },
-  { x: 0.02, y: 0.7, s: 0.36 },
-  { x: 0.42, y: 0.48, s: 0.24 }, // 奥の列（祭壇の前。大仏の膝より下に収める）
-  { x: 0.08, y: 0.49, s: 0.26 },
-  { x: 0.72, y: 0.47, s: 0.22 },
+// 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい。縦位置は背景ごと（data/homeBg.ts）に決める：
+// 奥の列が、背景の奥の人や像に重ならないように。手前の3匹は、下のヒントカードの手前まで床を使う
+const SLOT_BASE = [
+  { x: 0.3, s: 0.42 }, // 手前中央
+  { x: 0.62, s: 0.34 },
+  { x: 0.02, s: 0.36 },
+  { x: 0.42, s: 0.24 }, // 奥の列
+  { x: 0.08, s: 0.26 },
+  { x: 0.72, s: 0.22 },
 ];
+const slotsOf = (bg: HomeBg) => SLOT_BASE.map((b, i) => ({ ...b, y: i < 3 ? bg.front[i] : bg.back[i - 3] }));
 const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！', 'にゃーん', 'もっと！'];
 
 // 旅猫の今いる場所（仮）。あとで「全員共通の静的JSON」を1日1回読む形に置き換える
@@ -89,6 +91,8 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
 export default function HomeScreen({ go, openShop, openSettings, openLoginRecord, openNotice, openCamera, width }: ScreenProps) {
   const { state, todayKey, pet } = useGame();
   const pad = useTabPad();
+  const bg = useHomeBg();
+  const slots = useMemo(() => slotsOf(bg), [bg]);
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
   const [selecting, setSelecting] = useState(false);
@@ -110,7 +114,9 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   return (
     <View style={{ flex: 1 }}>
-    <Backdrop name="bg/room-home-temple" />
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <Image source={bg.src} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
+    </View>
     <View style={{ flex: 1, paddingBottom: 24 + pad }}>
       <View style={{ zIndex: 2 }}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
@@ -142,7 +148,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         )}
         {roomSlots.map((id, i) => {
           if (!id) return null;
-          const slot = SLOTS[i];
+          const slot = slots[i];
           const size = width * slot.s;
           const left = width * slot.x;
           let top = roomH * slot.y;
