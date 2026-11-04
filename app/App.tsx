@@ -33,7 +33,7 @@ import { TourAnchor } from './src/ui/TourAnchor';
 import { ErrorBoundary } from './src/ui/ErrorBoundary';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
-const MAX_W = 430; // iPad や Web の広い画面でもスマホ幅で中央に表示する
+const MAX_W = 440; // iPad や Web の広い画面でもスマホ幅で中央に表示する（440 は iPhone Pro Max 系の画面幅）
 
 function Root() {
   const { ready, state, finishTutorial } = useGame();

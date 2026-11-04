@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Animated, Easing, Image, StyleSheet, View } from 'react-native';
+import { Animated, Easing, Image, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useHomeBg } from '../../core/homeBg';
 import { footAct, footRoll, footStill, Foot } from '../../data/catFeet';
 import { HomeBg } from '../../data/homeBg';
@@ -98,6 +98,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   const { state, todayKey, pet } = useGame();
   const pad = useTabPad();
   const bg = useHomeBg();
+  const bleed = Math.max(0, (useWindowDimensions().width - width) / 2); // 画面が幅の上限より広いとき、背景だけは端まで敷く
   const slots = useMemo(() => slotsOf(bg), [bg]);
 
   const roomSlots = useMemo(() => homeSlotsOf(state), [state.owned, state.homeSlots]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -120,7 +121,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   return (
     <View style={{ flex: 1 }}>
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { left: -bleed, right: -bleed }]}>
       <Image source={bg.src} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
     </View>
     <View style={{ flex: 1, paddingBottom: 24 + pad }}>
