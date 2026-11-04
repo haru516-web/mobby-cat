@@ -41,7 +41,7 @@ export function layoutHome(ids: (string | null)[], width: number, roomH: number,
   const sizeAt = (foot: number, k: number) => width * (FAR + (NEAR - FAR) * Math.max(0, Math.min(1, (foot - limit) / Math.max(1, floor - limit)))) * k;
 
   // 手前の猫から順に置く（手前の猫が先に場所をとる）
-  const order = ids.map((id, i) => i).filter((i) => ids[i]).sort((a, b) => ANCHORS[b].depth - ANCHORS[a].depth);
+  const order = ids.map((_, i) => i).filter((i) => ids[i]).sort((a, b) => ANCHORS[b].depth - ANCHORS[a].depth);
   let k = 1; // 全体の縮み具合。置けない猫がいたら小さくして、やり直す
   for (let attempt = 0; attempt < 16; attempt++) {
     const placed: Box[] = [];
