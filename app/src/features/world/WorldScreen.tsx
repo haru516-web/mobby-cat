@@ -43,7 +43,7 @@ export default function WorldScreen({ openShop, openSettings, openNotice, width 
   const soon = () => setSheet('travel');
   return (
     <View style={{ flex: 1 }}>
-      <Backdrop name="bg/screen-world" />
+      <Backdrop name="bg/screen-world" bleed />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 + pad }}>
         <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={{ paddingHorizontal: 16, gap: 12 }}>

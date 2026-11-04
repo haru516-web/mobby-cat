@@ -7,6 +7,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { MAX_W } from './src/ui/layout';
 import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import CameraScreen from './src/features/camera/CameraScreen';
 import DeaiScreen from './src/features/deai/DeaiScreen';
@@ -33,7 +34,6 @@ import { TourAnchor } from './src/ui/TourAnchor';
 import { ErrorBoundary } from './src/ui/ErrorBoundary';
 
 const SCREENS = { home: HomeScreen, deai: DeaiScreen, zukan: ZukanScreen, world: WorldScreen };
-const MAX_W = 440; // iPad や Web の広い画面でもスマホ幅で中央に表示する（440 は iPhone Pro Max 系の画面幅）
 
 function Root() {
   const { ready, state, finishTutorial } = useGame();

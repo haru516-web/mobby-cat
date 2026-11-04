@@ -61,7 +61,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
 
   return (
     <View style={{ flex: 1 }}>
-      <Backdrop name="bg/screen-zukan" />
+      <Backdrop name="bg/screen-zukan" bleed />
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
       {/* 上の集計・検索・絞り込みは固定して、猫の一覧だけスクロールする */}
       <View style={{ paddingHorizontal: 16, gap: 10 }}>

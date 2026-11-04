@@ -68,7 +68,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   if (!rec) {
     return (
       <View style={{ flex: 1 }}>
-        <Backdrop name="bg/room-deai-full" />
+        <Backdrop name="bg/room-deai-full" bleed />
         <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <View style={s.preparing}>
           {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR ? (
@@ -204,7 +204,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
 
   return (
     <View style={{ flex: 1 }}>
-    <Backdrop name="bg/room-deai-full" />
+    <Backdrop name="bg/room-deai-full" bleed />
     {/* 見出しと「今日・きのう」の切り替えは固定する（もび道と同じく、中身がノッチの裏に入り込まない）。その下の候補だけスクロールする */}
     <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
     {/* 「今日・きのう」はいつも出す。きのうの分が無い日（アプリを入れた日など）は、薄く出して、押すと理由を伝える */}
