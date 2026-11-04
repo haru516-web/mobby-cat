@@ -8,6 +8,7 @@ export const HOME_BGS: HomeBg[] = [
   { id: 'street', name: '商店街', src: require('../../assets/ui/bg/room-home-street.webp'), front: [0.68, 0.66, 0.7], back: [0.4, 0.41, 0.39] },
   { id: 'golden', name: '金の本堂', src: require('../../assets/ui/bg/room-home-golden.webp'), front: [0.68, 0.66, 0.7], back: [0.42, 0.43, 0.41] },
   { id: 'monk', name: 'おつとめ', src: require('../../assets/ui/bg/room-home-monk.webp'), front: [0.68, 0.66, 0.7], back: [0.42, 0.43, 0.41] },
+  { id: 'engawa', name: '秋の縁側', src: require('../../assets/ui/bg/room-home-engawa.webp'), front: [0.68, 0.66, 0.7], back: [0.4, 0.41, 0.39] },
   { id: 'shrine', name: '桜の神社', src: require('../../assets/ui/bg/room-home-shrine.webp'), front: [0.68, 0.66, 0.7], back: [0.44, 0.45, 0.43] },
 ];
 export const DEFAULT_HOME_BG = HOME_BGS[0];

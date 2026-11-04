@@ -19,7 +19,7 @@ export default function HomeSelect({ visible, onClose, width }: { visible: boole
   const slotW = Math.floor((Math.min(width - 24, 400) - 28 - 5 * 6) / 6);
   const auto = state.homeSlots === null;
   const bg = useHomeBg();
-  const bgW = Math.floor((Math.min(width - 24, 400) - 28 - 4 * 6) / 5);
+  const bgW = Math.floor((Math.min(width - 24, 400) - 28 - (HOME_BGS.length - 1) * 6) / HOME_BGS.length);
 
   const assign = (id: string) => {
     const next = [...slots];
