@@ -29,14 +29,15 @@ const ACT_PLAY: Record<ActKind, { stepMs: number; cycle: number[] }> = {
 export const actionsOf = (id: string): CatAction[] => (hasRoll(id) ? ['roll', ...(Object.keys(CAT_ACT[id] ?? {}) as ActKind[])] : []);
 
 // スプライトシートを cycle の順に1回だけ再生して onDone。onReady は最初のコマが描けたとき（それまでは静止画を残せるように）
-function SheetSprite({ src, cycle, stepMs, size, onReady, onDone }: { src: number; cycle: number[]; stepMs: number; size: number; onReady?: () => void; onDone: () => void }) {
+function SheetSprite({ src, cycle, stepMs, size, onReady, onPose, onDone }: { src: number; cycle: number[]; stepMs: number; size: number; onReady?: () => void; onPose?: (pose: number) => void; onDone: () => void }) {
   const [step, setStep] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const cb = useRef({ onReady, onDone });
-  useEffect(() => { cb.current = { onReady, onDone }; });
+  const cb = useRef({ onReady, onPose, onDone });
+  useEffect(() => { cb.current = { onReady, onPose, onDone }; });
   useEffect(() => {
     if (!loaded) return;
     cb.current.onReady?.();
+    cb.current.onPose?.(cycle[0]);
     let i = 0;
     const t = setInterval(() => {
       i += 1;
@@ -46,9 +47,10 @@ function SheetSprite({ src, cycle, stepMs, size, onReady, onDone }: { src: numbe
         return;
       }
       setStep(i);
+      cb.current.onPose?.(cycle[i]);
     }, stepMs);
     return () => clearInterval(t);
-  }, [loaded, cycle.length, stepMs]);
+  }, [loaded, cycle, stepMs]);
   const pose = cycle[step];
   return (
     <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, overflow: 'hidden' }}>
@@ -63,17 +65,17 @@ function SheetSprite({ src, cycle, stepMs, size, onReady, onDone }: { src: numbe
 }
 
 // 1周ぶんだけ再生して onDone
-export function RollSprite({ id, size, onReady, onDone }: { id: string; size: number; onReady?: () => void; onDone: () => void }) {
+export function RollSprite({ id, size, onReady, onPose, onDone }: { id: string; size: number; onReady?: () => void; onPose?: (pose: number) => void; onDone: () => void }) {
   const src = CAT_ROLL[id];
   if (!src) return null;
-  return <SheetSprite src={src} cycle={CYCLE} stepMs={ROLL_STEP_MS} size={size} onReady={onReady} onDone={onDone} />;
+  return <SheetSprite src={src} cycle={CYCLE} stepMs={ROLL_STEP_MS} size={size} onReady={onReady} onPose={onPose} onDone={onDone} />;
 }
 
 // ごろごろ以外の動き。素材のない猫には何も描かない
-export function ActSprite({ id, kind, size, onReady, onDone }: { id: string; kind: ActKind; size: number; onReady?: () => void; onDone: () => void }) {
+export function ActSprite({ id, kind, size, onReady, onPose, onDone }: { id: string; kind: ActKind; size: number; onReady?: () => void; onPose?: (pose: number) => void; onDone: () => void }) {
   const src = CAT_ACT[id]?.[kind];
   if (!src) return null;
-  return <SheetSprite src={src} cycle={ACT_PLAY[kind].cycle} stepMs={ACT_PLAY[kind].stepMs} size={size} onReady={onReady} onDone={onDone} />;
+  return <SheetSprite src={src} cycle={ACT_PLAY[kind].cycle} stepMs={ACT_PLAY[kind].stepMs} size={size} onReady={onReady} onPose={onPose} onDone={onDone} />;
 }
 
 // ホームの猫たちのごろごろの出番を決める。

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Animated, Easing, Image, StyleSheet, View } from 'react-native';
 import { useHomeBg } from '../../core/homeBg';
+import { footAct, footRoll, footStill, Foot } from '../../data/catFeet';
 import { HomeBg } from '../../data/homeBg';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
@@ -35,6 +36,11 @@ const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン
 function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size: number; delay: number; act: { run: number; kind: CatAction } | undefined; onRollDone: () => void; onPet: () => void }) {
   const rollRun = act?.run;
   const [rollReady, setRollReady] = useState(false);
+  // 影は、いまの絵（立ち姿・ごろごろ・動きの各コマ）の足元に合わせる
+  const [pose, setPose] = useState<number | null>(null);
+  const foot: Foot = rollRun !== undefined && rollReady && pose !== null ? (act!.kind === 'roll' ? footRoll(id, pose) : footAct(id, act!.kind, pose)) : footStill(id);
+  const shadowW = Math.min(size * 1.0, Math.max(size * 0.4, size * foot[2] * 1.2));
+  const shadowH = shadowW * (150 / 480);
   const hop = useState(() => new Animated.Value(0))[0];
   const heart = useState(() => new Animated.Value(0))[0];
   const [line, setLine] = useState<string | null>(null);
@@ -56,7 +62,7 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
   };
   return (
     <Tap sfx={null} onPress={tap} accessibilityLabel={`${CAT_BY_ID[id].name}をなでる`}>
-      <Pic name="camera/shadow-soft" width={size * 0.9} style={{ position: 'absolute', left: size * 0.05, top: size * 0.82 }} />
+      <Pic name="camera/shadow-soft" width={shadowW} style={{ position: 'absolute', left: size * foot[1] - shadowW / 2, top: size * foot[0] - shadowH * 0.55 }} />
       <Animated.View style={{ transform: [{ translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.18] }) }] }}>
         <Bobbing delay={delay}>
           <View style={{ width: size, height: size }}>
@@ -65,10 +71,10 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
               <CatImage id={id} size={size} />
             </View>
             {act && act.kind === 'roll' && (
-              <RollSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
+              <RollSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onPose={setPose} onDone={() => { setRollReady(false); setPose(null); onRollDone(); }} />
             )}
             {act && act.kind !== 'roll' && (
-              <ActSprite key={act.run} id={id} kind={act.kind} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
+              <ActSprite key={act.run} id={id} kind={act.kind} size={size} onReady={() => setRollReady(true)} onPose={setPose} onDone={() => { setRollReady(false); setPose(null); onRollDone(); }} />
             )}
           </View>
         </Bobbing>
