@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Animated, Easing, Image, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useHomeBg } from '../../core/homeBg';
-import { actShift, extentOf, footAct, footRoll, footStill, Foot, rollShift } from '../../data/catFeet';
+import { extentOf, fitOf, footAct, footRoll, footStill, Foot } from '../../data/catFeet';
 import { layoutHome } from '../../ui/homeLayout';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
@@ -30,10 +30,16 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
   const [pose, setPose] = useState<number | null>(null);
   const playing = rollRun !== undefined && rollReady && pose !== null;
   const foot: Foot = playing ? (act!.kind === 'roll' ? footRoll(id, pose) : footAct(id, act!.kind, pose)) : footStill(id);
-  // 動きの絵は、立ち姿と足元の高さがずれていることがある。地面についているように、立ち姿の足元に合わせてずらす（影も立ち姿の足元に置く）
+  // 動きの絵は、立ち姿より小さく（大きく）描かれていたり、足元の高さがずれていたりする。
+  // 立ち姿と同じ大きさ・同じ地面の高さに見えるよう、足元を中心に拡大・縮小してずらす（影も立ち姿の足元に置く）
   const ground = footStill(id)[0];
-  const lift = rollRun !== undefined && rollReady ? (act!.kind === 'roll' ? rollShift(id) : actShift(id, act!.kind)) * size : 0;
-  const shadowW = Math.min(size * 1.0, Math.max(size * 0.4, size * foot[2] * 1.2));
+  const fit = fitOf(id, act?.kind ?? 'roll');
+  const on = rollRun !== undefined && rollReady;
+  const sc = on ? fit.scale : 1;
+  const tx = on ? (1 - sc) * (fit.px - 0.5) * size : 0;
+  const ty = on ? (1 - sc) * (fit.py - 0.5) * size + fit.lift * size : 0;
+  const shadowW = Math.min(size * 1.0, Math.max(size * 0.4, size * foot[2] * sc * 1.2));
+  const shadowX = size * (playing ? fit.px + sc * (foot[1] - fit.px) : foot[1]); // 動きの絵は拡大・縮小されるので、足元の中心もそれに合わせる
   const shadowH = shadowW * (150 / 480);
   const hop = useState(() => new Animated.Value(0))[0];
   const heart = useState(() => new Animated.Value(0))[0];
@@ -56,7 +62,7 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
   };
   return (
     <Tap sfx={null} onPress={tap} accessibilityLabel={`${CAT_BY_ID[id].name}をなでる`}>
-      <Pic name="camera/shadow-soft" width={shadowW} style={{ position: 'absolute', left: size * foot[1] - shadowW / 2, top: size * ground - shadowH * 0.55 }} />
+      <Pic name="camera/shadow-soft" width={shadowW} style={{ position: 'absolute', left: shadowX - shadowW / 2, top: size * ground - shadowH * 0.55 }} />
       <Animated.View style={{ transform: [{ translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.18] }) }] }}>
         <Bobbing delay={delay}>
           <View style={{ width: size, height: size }}>
@@ -64,7 +70,7 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
             <View style={{ opacity: rollRun !== undefined && rollReady ? 0 : 1 }}>
               <CatImage id={id} size={size} />
             </View>
-            <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, transform: [{ translateY: lift }] }}>
+            <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, transform: [{ translateX: tx }, { translateY: ty }, { scale: sc }] }}>
             {act && act.kind === 'roll' && (
               <RollSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onPose={setPose} onDone={() => { setRollReady(false); setPose(null); onRollDone(); }} />
             )}
