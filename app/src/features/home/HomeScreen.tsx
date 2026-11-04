@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { upcoming } from '../../core/conditions';
 import { daysBetween } from '../../core/dates';
@@ -8,7 +8,7 @@ import { playSfx } from '../../services/audio';
 import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Header, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
-import { ActSprite, RollSprite, useRollDirector, CatAction, WALK_MS } from '../../ui/CatRoll';
+import { ActSprite, RollSprite, useRollDirector, CatAction } from '../../ui/CatRoll';
 import { Backdrop, Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { UI } from '../../ui/uiAssets';
@@ -29,26 +29,12 @@ const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！',
 // 旅猫の今いる場所（仮）。あとで「全員共通の静的JSON」を1日1回読む形に置き換える
 const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン', day: 12 };
 
-function RoomCat({ id, size, delay, act, room, onRollDone, onPet }: { id: string; size: number; delay: number; act: { run: number; kind: CatAction } | undefined; room: { left: number; right: number }; onRollDone: () => void; onPet: () => void }) {
+function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size: number; delay: number; act: { run: number; kind: CatAction } | undefined; onRollDone: () => void; onPet: () => void }) {
   const rollRun = act?.run;
-  const walkX = useState(() => new Animated.Value(0))[0];
   const [rollReady, setRollReady] = useState(false);
   const hop = useState(() => new Animated.Value(0))[0];
   const heart = useState(() => new Animated.Value(0))[0];
   const [line, setLine] = useState<string | null>(null);
-  // 歩くときは、部屋に余白の多い側へ行って、また戻ってくる（コマ送りと動きの長さを合わせる）
-  useEffect(() => {
-    if (act?.kind !== 'walk') return;
-    const dist = Math.min(size * 0.7, Math.max(room.left, room.right) - 4);
-    if (dist <= 0) return;
-    const dir = room.right >= room.left ? 1 : -1;
-    const anim = Animated.sequence([
-      Animated.timing(walkX, { toValue: dir * dist, duration: WALK_MS / 2, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-      Animated.timing(walkX, { toValue: 0, duration: WALK_MS / 2, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-    ]);
-    anim.start();
-    return () => { anim.stop(); walkX.setValue(0); };
-  }, [act?.run]); // eslint-disable-line react-hooks/exhaustive-deps
   const tap = () => {
     onPet();
     playSfx('sfx_pet');
@@ -66,7 +52,6 @@ function RoomCat({ id, size, delay, act, room, onRollDone, onPet }: { id: string
     ]).start(() => setLine(null));
   };
   return (
-    <Animated.View style={{ transform: [{ translateX: walkX }] }}>
     <Tap sfx={null} onPress={tap} accessibilityLabel={`${CAT_BY_ID[id].name}をなでる`}>
       <Pic name="camera/shadow-soft" width={size * 0.9} style={{ position: 'absolute', left: size * 0.05, top: size * 0.82 }} />
       <Animated.View style={{ transform: [{ translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.18] }) }] }}>
@@ -79,8 +64,8 @@ function RoomCat({ id, size, delay, act, room, onRollDone, onPet }: { id: string
             {act && act.kind === 'roll' && (
               <RollSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
             )}
-            {act && act.kind !== 'roll' && (
-              <ActSprite key={act.run} id={id} kind={act.kind} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
+            {act && act.kind === 'sleep' && (
+              <ActSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
             )}
           </View>
         </Bobbing>
@@ -97,7 +82,6 @@ function RoomCat({ id, size, delay, act, room, onRollDone, onPet }: { id: string
         </Slice>
       )}
     </Tap>
-    </Animated.View>
   );
 }
 
@@ -167,7 +151,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
           top = Math.max(0, Math.min(top, roomH - size - 6));
           return (
             <View key={id} style={{ position: 'absolute', left, top, zIndex: Math.round(slot.y * 100 + slot.s * 10) }}>
-              <RoomCat id={id} size={width * slot.s} delay={i * 260} act={roll.active.get(id)} room={{ left, right: width - left - size }} onRollDone={() => roll.done(id)} onPet={pet} />
+              <RoomCat id={id} size={width * slot.s} delay={i * 260} act={roll.active.get(id)} onRollDone={() => roll.done(id)} onPet={pet} />
             </View>
           );
         })}
