@@ -1,6 +1,7 @@
 import { Image } from 'expo-image';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, View } from 'react-native';
+import { CAT_ACT } from '../data/catAct';
 import { CAT_ROLL } from '../data/catRoll';
 import { useReduceMotion } from './base';
 
@@ -14,8 +15,21 @@ export const ROLL_CYCLE_MS = CYCLE.length * ROLL_STEP_MS;
 
 export const hasRoll = (id: string) => !!CAT_ROLL[id];
 
-// 1周ぶんだけ再生して onDone。onReady は最初のコマが描けたとき（それまでは静止画を残せるように）
-export function RollSprite({ id, size, onReady, onDone }: { id: string; size: number; onReady?: () => void; onDone: () => void }) {
+export type CatAction = 'roll' | 'walk' | 'sleep';
+export const WALK_STEP_MS = 130;
+export const WALK_STEPS = 24; // 8コマを3周
+export const SLEEP_STEP_MS = 420;
+export const SLEEP_STEPS = 16; // 8コマを2周
+export const WALK_MS = WALK_STEPS * WALK_STEP_MS;
+
+const WALK_CYCLE = Array.from({ length: WALK_STEPS }, (_, i) => i % POSES);
+const SLEEP_CYCLE = Array.from({ length: SLEEP_STEPS }, (_, i) => i % POSES);
+
+// どの動きが使えるか。ごろごろは全員、歩く・寝るは素材のある猫だけ
+export const actionsOf = (id: string): CatAction[] => (CAT_ACT[id] ? ['roll', 'walk', 'sleep'] : hasRoll(id) ? ['roll'] : []);
+
+// スプライトシートを cycle の順に1回だけ再生して onDone。onReady は最初のコマが描けたとき（それまでは静止画を残せるように）
+function SheetSprite({ src, cycle, stepMs, size, onReady, onDone }: { src: number; cycle: number[]; stepMs: number; size: number; onReady?: () => void; onDone: () => void }) {
   const [step, setStep] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const cb = useRef({ onReady, onDone });
@@ -26,18 +40,16 @@ export function RollSprite({ id, size, onReady, onDone }: { id: string; size: nu
     let i = 0;
     const t = setInterval(() => {
       i += 1;
-      if (i >= CYCLE.length) {
+      if (i >= cycle.length) {
         clearInterval(t);
         cb.current.onDone();
         return;
       }
       setStep(i);
-    }, ROLL_STEP_MS);
+    }, stepMs);
     return () => clearInterval(t);
-  }, [loaded]);
-  const src = CAT_ROLL[id];
-  if (!src) return null;
-  const pose = CYCLE[step];
+  }, [loaded, cycle.length, stepMs]);
+  const pose = cycle[step];
   return (
     <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, overflow: 'hidden' }}>
       <Image
@@ -50,28 +62,46 @@ export function RollSprite({ id, size, onReady, onDone }: { id: string; size: nu
   );
 }
 
+// 1周ぶんだけ再生して onDone
+export function RollSprite({ id, size, onReady, onDone }: { id: string; size: number; onReady?: () => void; onDone: () => void }) {
+  const src = CAT_ROLL[id];
+  if (!src) return null;
+  return <SheetSprite src={src} cycle={CYCLE} stepMs={ROLL_STEP_MS} size={size} onReady={onReady} onDone={onDone} />;
+}
+
+// 歩く／鼻ちょうちんで寝る。素材のない猫には何も描かない
+export function ActSprite({ id, kind, size, onReady, onDone }: { id: string; kind: 'walk' | 'sleep'; size: number; onReady?: () => void; onDone: () => void }) {
+  const src = CAT_ACT[id]?.[kind];
+  if (!src) return null;
+  return <SheetSprite src={src} cycle={kind === 'walk' ? WALK_CYCLE : SLEEP_CYCLE} stepMs={kind === 'walk' ? WALK_STEP_MS : SLEEP_STEP_MS} size={size} onReady={onReady} onDone={onDone} />;
+}
+
 // ホームの猫たちのごろごろの出番を決める。
 // 猫ごとに「しばらく待つ→1周ごろごろ→また待つ」を別々のランダムな間隔でくり返す。
 // 重なって同時に動くこともあれば、一緒に始まることもある。だれも動かない間ができそうなときは、
 // すぐ別の子が始める（開いている間は常にどれか1匹は動く）
-export function useRollDirector(ids: string[]): { active: Map<string, number>; done: (id: string) => void } {
+export function useRollDirector(ids: string[]): { active: Map<string, { run: number; kind: CatAction }>; done: (id: string) => void } {
   // Webは開発用の確認画面なので、端末の「視差効果を減らす」に関係なく動かす（実機ではこの設定に従う）
   const reduce = useReduceMotion();
   const still = reduce && Platform.OS !== 'web';
-  const [active, setActive] = useState<Map<string, number>>(new Map());
+  const [active, setActive] = useState<Map<string, { run: number; kind: CatAction }>>(new Map());
   const finish = useRef<(id: string) => void>(() => {});
   const key = ids.filter(hasRoll).join('|');
 
   useEffect(() => {
     const pool = key ? key.split('|') : [];
-    const running = new Map<string, number>(); // 猫id → 何回目の再生か（同じ猫がすぐ続けて始まっても、再生をやりなおせるように）
+    const running = new Map<string, { run: number; kind: CatAction }>(); // 猫id → 何回目の再生か、何をするか（同じ猫がすぐ続けて始まっても、再生をやりなおせるように）
     let seq = 0;
     const timers = new Set<ReturnType<typeof setTimeout>>();
     let dead = false;
     const rnd = (a: number, b: number) => a + Math.random() * (b - a);
     const start = (id: string) => {
       if (dead || running.has(id)) return;
-      running.set(id, (seq += 1));
+      const acts = actionsOf(id);
+      // ごろごろ半分、歩く・寝るが4分の1ずつ（素材のある猫だけ）
+      const r = Math.random();
+      const kind: CatAction = acts.length > 1 ? (r < 0.5 ? 'roll' : r < 0.75 ? 'walk' : 'sleep') : 'roll';
+      running.set(id, { run: (seq += 1), kind });
       setActive(new Map(running));
     };
     const wait = (id: string, ms: number) => {
