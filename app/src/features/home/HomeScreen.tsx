@@ -14,15 +14,16 @@ import { TourAnchor } from '../../ui/TourAnchor';
 import { UI } from '../../ui/uiAssets';
 import { ScreenProps } from '../../navigation';
 
-// 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい
+// 部屋の中の猫の置き場所（部屋に対する割合）。手前ほど大きい。
+// 背景（大仏の部屋）では、奥の列も大仏の本体（画面の上から約4割）に重ならないように、床〜祭壇の前に置く
 // 手前の3匹は、下のヒントカードの手前まで床を使う（上に寄せると、カードとのあいだが空いてしまう）
 const SLOTS = [
-  { x: 0.3, y: 0.62, s: 0.42 }, // ラグの上〜手前中央
-  { x: 0.62, y: 0.6, s: 0.34 },
-  { x: 0.02, y: 0.66, s: 0.36 },
-  { x: 0.42, y: 0.32, s: 0.24 }, // ソファ
-  { x: 0.08, y: 0.34, s: 0.26 },
-  { x: 0.72, y: 0.25, s: 0.22 }, // キャットタワー
+  { x: 0.3, y: 0.68, s: 0.42 }, // 手前中央
+  { x: 0.62, y: 0.66, s: 0.34 },
+  { x: 0.02, y: 0.7, s: 0.36 },
+  { x: 0.42, y: 0.48, s: 0.24 }, // 奥の列（祭壇の前。大仏の膝より下に収める）
+  { x: 0.08, y: 0.49, s: 0.26 },
+  { x: 0.72, y: 0.47, s: 0.22 },
 ];
 const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！', 'にゃーん', 'もっと！'];
 
@@ -64,8 +65,8 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
             {act && act.kind === 'roll' && (
               <RollSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
             )}
-            {act && act.kind === 'sleep' && (
-              <ActSprite key={act.run} id={id} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
+            {act && act.kind !== 'roll' && (
+              <ActSprite key={act.run} id={id} kind={act.kind} size={size} onReady={() => setRollReady(true)} onDone={() => { setRollReady(false); onRollDone(); }} />
             )}
           </View>
         </Bobbing>
@@ -109,7 +110,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
 
   return (
     <View style={{ flex: 1 }}>
-    <Backdrop name="bg/room-home-full" />
+    <Backdrop name="bg/room-home-temple" />
     <View style={{ flex: 1, paddingBottom: 24 + pad }}>
       <View style={{ zIndex: 2 }}>
       <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />

@@ -23,6 +23,7 @@ export const UI: Record<string, UIAsset | undefined> = {
   'bg/photo-japan': { src: require('../../assets/ui/bg/photo-japan.png'), w: 600, h: 460 },
   'bg/room-deai-full': { src: require('../../assets/ui/bg/room-deai-full.png'), w: 1179, h: 2556 },
   'bg/room-home-full': { src: require('../../assets/ui/bg/room-home-full.png'), w: 1179, h: 2556 },
+  'bg/room-home-temple': { src: require('../../assets/ui/bg/room-home-temple.webp'), w: 941, h: 1672 },
   'bg/screen-world': { src: require('../../assets/ui/bg/screen-world.png'), w: 1179, h: 2556 },
   'bg/screen-zukan': { src: require('../../assets/ui/bg/screen-zukan.png'), w: 1179, h: 2556, slice: { t: 0, r: 0, b: 0, l: 0 } },
   'bg/stamp-photo-france': { src: require('../../assets/ui/bg/stamp-photo-france.png'), w: 360, h: 280 },

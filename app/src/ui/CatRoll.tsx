@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, View } from 'react-native';
-import { CAT_ACT } from '../data/catAct';
+import { ActKind, CAT_ACT } from '../data/catAct';
 import { CAT_ROLL } from '../data/catRoll';
 import { useReduceMotion } from './base';
 
@@ -15,14 +15,18 @@ export const ROLL_CYCLE_MS = CYCLE.length * ROLL_STEP_MS;
 
 export const hasRoll = (id: string) => !!CAT_ROLL[id];
 
-export type CatAction = 'roll' | 'sleep';
-export const SLEEP_STEP_MS = 420;
-export const SLEEP_STEPS = 16; // 8コマを2周
+export type CatAction = 'roll' | ActKind;
 
-const SLEEP_CYCLE = Array.from({ length: SLEEP_STEPS }, (_, i) => i % POSES);
+// どの動きが使えるか。ごろごろは全員、そのほかは素材のある猫だけ
+// 動きごとの、コマ送りの間隔とコマの並び（寝るは2周ループ、ほかは8コマを1回）
+const ACT_PLAY: Record<ActKind, { stepMs: number; cycle: number[] }> = {
+  sleep: { stepMs: 420, cycle: Array.from({ length: 16 }, (_, i) => i % POSES) },
+  peekaboo: { stepMs: 250, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約2.0秒
+  fall: { stepMs: 234, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約1.9秒
+  angry: { stepMs: 200, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約1.6秒
+};
 
-// どの動きが使えるか。ごろごろは全員、寝るは素材のある猫だけ
-export const actionsOf = (id: string): CatAction[] => (CAT_ACT[id] ? ['roll', 'sleep'] : hasRoll(id) ? ['roll'] : []);
+export const actionsOf = (id: string): CatAction[] => (hasRoll(id) ? ['roll', ...(Object.keys(CAT_ACT[id] ?? {}) as ActKind[])] : []);
 
 // スプライトシートを cycle の順に1回だけ再生して onDone。onReady は最初のコマが描けたとき（それまでは静止画を残せるように）
 function SheetSprite({ src, cycle, stepMs, size, onReady, onDone }: { src: number; cycle: number[]; stepMs: number; size: number; onReady?: () => void; onDone: () => void }) {
@@ -65,11 +69,11 @@ export function RollSprite({ id, size, onReady, onDone }: { id: string; size: nu
   return <SheetSprite src={src} cycle={CYCLE} stepMs={ROLL_STEP_MS} size={size} onReady={onReady} onDone={onDone} />;
 }
 
-// 鼻ちょうちんで寝る。素材のない猫には何も描かない
-export function ActSprite({ id, size, onReady, onDone }: { id: string; size: number; onReady?: () => void; onDone: () => void }) {
-  const src = CAT_ACT[id]?.sleep;
+// ごろごろ以外の動き。素材のない猫には何も描かない
+export function ActSprite({ id, kind, size, onReady, onDone }: { id: string; kind: ActKind; size: number; onReady?: () => void; onDone: () => void }) {
+  const src = CAT_ACT[id]?.[kind];
   if (!src) return null;
-  return <SheetSprite src={src} cycle={SLEEP_CYCLE} stepMs={SLEEP_STEP_MS} size={size} onReady={onReady} onDone={onDone} />;
+  return <SheetSprite src={src} cycle={ACT_PLAY[kind].cycle} stepMs={ACT_PLAY[kind].stepMs} size={size} onReady={onReady} onDone={onDone} />;
 }
 
 // ホームの猫たちのごろごろの出番を決める。
@@ -94,8 +98,8 @@ export function useRollDirector(ids: string[]): { active: Map<string, { run: num
     const start = (id: string) => {
       if (dead || running.has(id)) return;
       const acts = actionsOf(id);
-      // ごろごろと寝るを半々（寝る素材のある猫だけ）
-      const kind: CatAction = acts.length > 1 && Math.random() < 0.5 ? 'sleep' : 'roll';
+      // ごろごろを半分、残りはその猫が持っている動きからランダムに
+      const kind: CatAction = acts.length > 1 && Math.random() < 0.5 ? acts[1 + Math.floor(Math.random() * (acts.length - 1))] : 'roll';
       running.set(id, { run: (seq += 1), kind });
       setActive(new Map(running));
     };
