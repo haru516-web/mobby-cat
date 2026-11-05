@@ -1,0 +1,33 @@
+ffconcat version 1.0
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/01-ceiling-empty.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/02-upper-left-tilt.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/03-upside-down-top-right.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/04-right-edge-side-peek.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/05-lower-left-curl.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/06-bottom-right-paws-first.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/07-top-center-sneak.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/08-left-edge-wave.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/09-bottom-center-stretch.png'
+option framerate 60
+duration 0.750
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/10-nose-first-top-left.png'
+option framerate 60
+duration 0.850
+file 'C:/Users/harui/Documents/Codex/mobby-cat/assets/video-inputs/nyako-mobby-summer-night/images/10-nose-first-top-left.png'
+option framerate 60
