@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 const { CATS } = await import('../src/data/catalog.ts');
 const { buildDay, selectCandidates, nextEncounterMisses, isRareEncounter, encounterComposition, hasRarePresence } = await import('../src/core/encounter.ts');
-const { guaranteedCats } = await import('../src/core/conditions.ts');
+const { guaranteedCats, reachedStepLines } = await import('../src/core/conditions.ts');
 const { checkSaved } = await import('../src/core/saveShape.ts');
 const g = ids => ids.map(id=>({id,reason:'test'}));
 const normal=CATS.filter(c=>!isRareEncounter(c.id)).slice(0,10).map(c=>c.id);
@@ -20,6 +20,11 @@ test('every eligible cat becomes a candidate, with no cap and no lottery',()=>{
  assert.equal(selectCandidates(g(normal),c,()=>0.7).length,normal.length);
  assert.deepEqual(selectCandidates(g(normal),c,()=>0.7),selectCandidates(g(normal),c,()=>0.7));
  assert.deepEqual(nextEncounterMisses({a:2,b:3,c:20},['a','b','c'],['a','b','c']),{});
+});
+test('step milestones are cumulative and return every reached threshold',()=>{
+ assert.deepEqual(reachedStepLines(4000).map(([,id])=>id),['zorome','hodohodo','lucky','chokotto','nyanpo']);
+ assert.deepEqual(reachedStepLines(1000).map(([,id])=>id),['hodohodo','lucky','chokotto','nyanpo']);
+ assert.deepEqual(reachedStepLines(null),[]);
 });
 test('days are deterministic, include every eligible cat, and guarantee one on empty days',()=>{
  const signals={steps:6000,battery:[30,90],charging:true,streak:7,openHours:[6,14,18],weather:'sunny',gapDays:1,catalogUpdated:false,birthday:null};

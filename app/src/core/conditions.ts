@@ -95,16 +95,20 @@ const SEASONS: { id: string; reason: string; from: [number, number]; to: [number
   { id: 'tsuyu', reason: '梅雨の季節', from: [6, 10], to: [7, 10] },
   { id: 'halloween', reason: 'ハロウィン', from: [10, 25], to: [10, 31] },
 ];
-// 歩数は「その日の最高到達ライン」の猫を1匹だけ確定させる（全部出すと候補があふれるため）
+// 歩数ラインは累積し、届いたラインの条件を満たす猫はそれぞれ候補にする。
 const STEP_LINES: [number, string, string][] = [
-  [10000, 'tekuteku', '1日10,000歩'],
-  [5000, 'osanpo', '1日5,000歩'],
-  [2222, 'zorome', '1日2,222歩'],
-  [1000, 'hodohodo', '1日1,000歩'],
-  [777, 'lucky', '1日777歩'],
-  [500, 'chokotto', '1日500歩'],
-  [222, 'nyanpo', '1日222歩'],
+  [10000, 'tekuteku', '1日10,000歩以上'],
+  [5000, 'osanpo', '1日5,000歩以上'],
+  [2222, 'zorome', '1日2,222歩以上'],
+  [1000, 'hodohodo', '1日1,000歩以上'],
+  [777, 'lucky', '1日777歩以上'],
+  [500, 'chokotto', '1日500歩以上'],
+  [222, 'nyanpo', '1日222歩以上'],
 ];
+
+export function reachedStepLines(steps: number | null): [number, string, string][] {
+  return steps == null ? [] : STEP_LINES.filter(([line]) => steps >= line);
+}
 
 // 個性のある猫ごとの条件（そのまま「難しい1個」になる）。簡単な条件は guaranteedCats で重ねる
 function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean): Guaranteed[] {
@@ -131,11 +135,7 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   add(s.charging, 'juuden', '充電中');
 
   // 歩数
-  if (s.steps != null) {
-    const reached = STEP_LINES.filter(([n]) => s.steps! >= n);
-    const pick = reached.find(([, id]) => !owns(id)) ?? reached[0];
-    if (pick) add(true, pick[1], pick[2]);
-  }
+  for (const [, id, reason] of reachedStepLines(s.steps)) add(true, id, reason);
   add(lv.includes(22) && (s.steps ?? 0) >= 2222, 'kiseki', 'バッテリー22%と2,222歩');
 
   // アプリの利用
