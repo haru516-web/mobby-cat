@@ -2,26 +2,38 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 167,
+  "assetCount": 201,
   "counts": {
-    "badge": 15,
+    "badge": 16,
     "bg": 15,
     "brand": 12,
-    "button": 31,
+    "button": 35,
     "camera": 18,
     "cat": 2,
-    "deai": 4,
+    "deai": 7,
     "gauge": 3,
     "home": 2,
-    "icon": 19,
-    "illust": 10,
+    "icon": 35,
+    "illust": 11,
     "login": 10,
     "navbtn": 9,
     "opening": 4,
-    "panel": 12,
+    "panel": 21,
     "share": 1
   },
   "assets": [
+    {
+      "path": "badge/complete-ribbon.png",
+      "width": 480,
+      "height": 150,
+      "prompt": "文字をコード描画するため中央が空白の橙金色コンプリート用リボン。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで480x150へ調整。生成アルファ保持。",
+      "slice": null,
+      "sha256": "4dada436b5a7a6b0135c1c331b5c975fedfbc21c2c9594c021dfa585f21e0796",
+      "bytes": 105079,
+      "alphaMode": "transparent"
+    },
     {
       "path": "badge/label-legend.png",
       "width": 240,
@@ -332,12 +344,13 @@
       "path": "bg/room-deai-full.png",
       "width": 1179,
       "height": 2556,
-      "sha256": "022d4cb3b4ee8fb07e7e43d753819ed9bdc7ee015a4ab6d59e434c3d0a00ad63",
-      "bytes": 2268704,
-      "prompt": "Use case: stylized-concept, full-bleed mobile game background. Portrait1179x2556 opaque illustration extending same cozy room as image reference. Preserve warm illustrated room palette, softly painted shapes, cream/beige wall, pale orange floor, muted sage green accents; no photorealism. Top0-30% is bright gentle low-detail wall for UI heading. 30-62% is calm simple low-contrast wall and floor behind three cat overlays. Lower38% is quiet flat warm orange floor continuing to bottom with no seams, bands, furniture, text or objects. A window with curtain, simple bookcase and one plant may frame far outer sides only in upper 40%, but keep central overlay areas plain. No cats, no people, no letters, no logos. Soft game-storybook illustration with flat colors and gentle gradients, no lens blur, no strong shadow, no fiber texture. Full bleed.",
+      "sha256": "d9bd03ad1b814041ce9862217cc75994c52ec046cc7aac270775be93cd94ae53",
+      "bytes": 3299308,
+      "prompt": "夕暮れの和風屋台の全面背景。桜、肉球のれん、左右の提灯、木の壁と床。中央はUI用に静か。看板・猫・袋なし。",
       "method": "built-in image_gen",
-      "processing": "Lanczos cover resize, opaque RGB, no EXIF",
-      "alphaMode": "opaque"
+      "processing": "Lanczosで1179x2556へ全体を再サンプル。RGB全面不透明、生成透過部なし、メタデータ除去。",
+      "alphaMode": "opaque",
+      "slice": null
     },
     {
       "path": "bg/room-home-full.png",
@@ -365,18 +378,13 @@
       "path": "bg/screen-zukan.png",
       "width": 1179,
       "height": 2556,
-      "prompt": "Use case: illustration-story. Create replacement bg/screen-zukan.png, full bleed opaque very tall portrait1179x2556 ratio. Reference image1 is same home's warm cozy painted storybook style, image2 is old study to improve. ONE coherent room from very top to bottom, room corner naturally connected. Upper quarter: cream walls reaching top edge, small arched sunny window left, low cream bookcase right holding pastel blank books and two framed cute cat face pictures (each one lens eye). Floor-wall junction at roughly30% height. Lower70% is a continuous light warm honey-ivory wooden plank floor viewed in correct perspective, subtle but CLEAR unbroken plank seams converging toward back wall, horizontal board joints visible ALL THE WAY to bottom edge. Floor must remain a drawn physical floor at bottom, never fade into blank beige or blur. Keep center/lower area calm low contrast sparse for card overlays. No rug, no objects scattered on floor. Soft upper-left sunlight, warm cream #FFF8F0, muted sage green, gentle peach wood, puffy rounded furnishings. Painterly stylized game illustration not photography, no blur. No text, no UI, no buttons, no logos, no lettering on books. Entire image opaque, draw up to top edge behind notch.",
+      "prompt": "提灯と格子窓のある和風店内の全面背景。下3/4は明るく模様を抑えた木壁と床。看板・UI・猫なし。",
       "method": "built-in image_gen",
-      "processing": "Lanczos3 resize to exact 1179x2556; opaque RGB full bleed; no painted additions",
-      "sha256": "eee4f2195ab87a7463360af894f7019645f386a2df0a1b46ca58132a5cdc857d",
-      "bytes": 4561306,
+      "processing": "Lanczosで1179x2556へ全体を再サンプル。RGB全面不透明、生成透過部なし、メタデータ除去。",
+      "sha256": "f8fe265f80520f177465b2b2029a62b52eb21c8b94d09a54e17d2e5b6e9dfd5f",
+      "bytes": 2697173,
       "alphaMode": "opaque",
-      "slice": {
-        "top": 0,
-        "right": 0,
-        "bottom": 0,
-        "left": 0
-      }
+      "slice": null
     },
     {
       "path": "bg/stamp-photo-france.png",
@@ -468,25 +476,27 @@
     },
     {
       "path": "brand/title-collection.png",
-      "width": 560,
-      "height": 110,
-      "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text コレクション with book. File brand/title-collection.png. Target aspect 560:110, final exact 560x110px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Exact requested Japanese lettering only, chunky friendly rounded brown/orange typography. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
-      "sha256": "98d4b03e936d7416ee055dbb77c489969b2016a34bd97fd128ba1aeaf58b49ae",
-      "bytes": 86554,
+      "width": 1080,
+      "height": 360,
+      "prompt": "眠る灰色のテック猫が乗る透過木製アーチ看板。中央は文字をコード描画するため空白。",
+      "sha256": "3ae0805cdca8e8548bdae81c292c05ab0c418c9dd4bff27289a1710ff100da28",
+      "bytes": 534412,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
+      "processing": "alpha>8境界で切り出し、Lanczosで1080x360へ調整。生成アルファを保持しメタデータ除去。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "brand/title-deai.png",
-      "width": 560,
-      "height": 240,
-      "prompt": "Create ONE production raster UI asset for Nekomobby cozy Japanese iOS collection game: Exact text 出会い with paw, brown and orange. Target aspect 560:240, final exact 560x240px. Style matches the six approved internal style studies: warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20, restrained soft paper texture, friendly thick rounded shapes, subtle upper-left highlight and very low contrast downward shadow. Reduce glossy plastic thickness. Brand lettering chunky friendly rounded Japanese, brown and orange, no extra subtitle. Orthographic straight-on. All artwork fits canvas. True transparent background, smooth clean alpha edge no white fringe no scattered flecks. This is a standalone asset not a screen mockup.",
-      "sha256": "3e62b841e69bfc6d7181b4892306915c513141e571403222e6f838035b5cfed3",
-      "bytes": 161430,
+      "width": 1080,
+      "height": 360,
+      "prompt": "透過背景の浅い屋根型の木製見出し看板。中央は文字をコード描画するため空白、上部に肉球彫刻。",
+      "sha256": "4d75f3a5891940ad5f5f5b419a9127e048ac56576ddde4dd1201454b3dd02f68",
+      "bytes": 536671,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
+      "processing": "alpha>8境界で切り出し、Lanczosで1080x360へ調整。生成アルファを保持しメタデータ除去。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "brand/title-login-record.png",
@@ -625,12 +635,13 @@
       "path": "button/bell-round.png",
       "width": 168,
       "height": 168,
-      "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Circular cream button dark brown bell symbol. File button/bell-round.png. Target aspect 168:168, final exact 168x168px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
-      "sha256": "f7e102924c1174cc9eba701f4ee96bb5f1380721f517ce81cf3ec8d774596c69",
-      "bytes": 38623,
+      "prompt": "丸い和紙ボタンに濃茶の提灯風ベルアイコン。透過背景。",
+      "sha256": "5e32a41055f24e92cbb9565a13ff7b2bba52c813aaa546a8594b02f1035d5f77",
+      "bytes": 55708,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
+      "processing": "alpha>8境界で切り出し、Lanczosで168x168へ調整。生成アルファを保持。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "button/camera-round.png",
@@ -701,6 +712,40 @@
       "stretchAxes": [
         "x"
       ],
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "button/chip-on.png",
+      "width": 360,
+      "height": 132,
+      "prompt": "ラベルをコードで重ねる、橙色の選択状態和紙チップ。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで360x132へ調整。生成アルファを保持。",
+      "slice": {
+        "top": 0,
+        "right": 60,
+        "bottom": 0,
+        "left": 60
+      },
+      "sha256": "4cd32f5644e0e11c7511d27990807721cffecd25bf5da0532a835f7f6ecf08b9",
+      "bytes": 78435,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "button/chip.png",
+      "width": 360,
+      "height": 132,
+      "prompt": "ラベルをコードで重ねる、未選択状態の生成り和紙チップ。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで360x132へ調整。生成アルファを保持。",
+      "slice": {
+        "top": 0,
+        "right": 60,
+        "bottom": 0,
+        "left": 60
+      },
+      "sha256": "f8630cf9b9ef7c0352b8dba52ea89236b50f6c617582ec7d3bedbe4346162c6a",
+      "bytes": 66998,
       "alphaMode": "transparent"
     },
     {
@@ -866,6 +911,18 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "button/layout-toggle.png",
+      "width": 180,
+      "height": 180,
+      "prompt": "4つの四角い格子アイコンを含む角丸の和紙レイアウトボタン。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って180x180内にLanczos縮小。生成アルファを保持。",
+      "slice": null,
+      "sha256": "88b44797f57b765373927c1303ca7bed5707d789cd719f02a6ddcadfa68a955e",
+      "bytes": 59242,
+      "alphaMode": "transparent"
+    },
+    {
       "path": "button/login-record-round.png",
       "width": 168,
       "height": 168,
@@ -960,11 +1017,11 @@
       "path": "button/search-bar.png",
       "width": 1100,
       "height": 150,
-      "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank long cream search pill radius75 with brown magnifier at LEFT. File button/search-bar.png. Target aspect 1100:150, final exact 1100x150px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
-      "sha256": "32aa68fa1aca7bf908c3bc0eeb3a0016813fa064af9408783b6e53ef0b0444e4",
-      "bytes": 194326,
+      "prompt": "左端に虫めがねを含む空の横長和紙検索欄。9スライス。透過背景。",
+      "sha256": "9f7e1ebd75c562afa118ba550464505e4168d11e2759336797a290ff503343a8",
+      "bytes": 261720,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin",
+      "processing": "alpha>8境界で切り出し、Lanczosで1100x150へ調整。生成アルファを保持。左の虫めがね側を180px固定。",
       "slice": {
         "top": 0,
         "right": 84,
@@ -980,17 +1037,29 @@
       "path": "button/settings-round.png",
       "width": 168,
       "height": 168,
-      "prompt": "Use case: precise-object-edit. Create settings-round.png by replacing ONLY the central bell with a simple rounded dark brown #4A3B32 gear with 8 softly rounded teeth and a cream circular hole. Preserve reference cream circular plate, fine brown rim, upper-left highlight, warm paper texture and subtle downward shadow, exact silhouette and framing. Single orthographic button, no lettering or extra motifs. Transparent exterior. Target 168x168.",
+      "prompt": "丸い和紙ボタンに濃茶の歯車アイコン。透過背景。",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 bounding crop; Lanczos3 proportionate fit to reference alpha footprint (thumb:3px clearance); preserve generated alpha; no painted additions",
+      "processing": "alpha>8境界で切り出し、Lanczosで168x168へ調整。生成アルファを保持。",
+      "slice": null,
+      "sha256": "b1d0837342e07fedbc1a7024d14c19985e5e9a4990f89f8c5a1ce180756aec52",
+      "bytes": 53277,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "button/sort-pill.png",
+      "width": 540,
+      "height": 144,
+      "prompt": "右端に下向き矢印を含む空の和紙ソートピル。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで540x144へ調整。生成アルファを保持。右端矢印部分を固定。",
       "slice": {
         "top": 0,
-        "right": 0,
+        "right": 150,
         "bottom": 0,
-        "left": 0
+        "left": 60
       },
-      "sha256": "8ead1b0e204aaa2bcbffa452ee25467299da4641ad51cf8d6c4836ddc787933e",
-      "bytes": 44745,
+      "sha256": "ec92c3bec799ad4d871269b4131dab423d8800622db9cf3c9166f2c29a1beb74",
+      "bytes": 120167,
       "alphaMode": "transparent"
     },
     {
@@ -1346,6 +1415,42 @@
       }
     },
     {
+      "path": "deai/counter-front.png",
+      "width": 1179,
+      "height": 210,
+      "prompt": "相棒の猫の下半身を隠す横長の木製カウンター前板。左右に小さな肉球彫刻、中央は無地。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "元画像の横幅を維持してy=360から高さ360pxを切り出し、Lanczosで1179x210へ調整。生成アルファを保持。",
+      "slice": null,
+      "sha256": "1baf9da2c360b71bf00fd8bdfc6e9791f2cc0d2fa0cf45ceb60978abcf43b13d",
+      "bytes": 305951,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "deai/fukuro-picked.png",
+      "width": 480,
+      "height": 520,
+      "prompt": "桜柄の生成り布巾着袋。金色の縁と小さな光で選択状態を示す。空白の肉球札。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで480x520へ調整。生成アルファを保持しメタデータ除去。",
+      "slice": null,
+      "sha256": "3fb1020ccc4a12e614c344931a5c829030243cbd9304f6d9170fd1b4bb26c91c",
+      "bytes": 406434,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "deai/fukuro.png",
+      "width": 480,
+      "height": 520,
+      "prompt": "桜柄の生成り布の巾着袋。橙色のひもと空白の肉球型木札。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで480x520へ調整。生成アルファを保持しメタデータ除去。",
+      "slice": null,
+      "sha256": "68b43980ee8c409f7a64c2abdca099353fbd74c1927f394fc66ca89bb6d8cdf5",
+      "bytes": 468603,
+      "alphaMode": "transparent"
+    },
+    {
       "path": "deai/mystery-cat.png",
       "width": 512,
       "height": 512,
@@ -1403,11 +1508,11 @@
       "path": "gauge/fill-orange.png",
       "width": 900,
       "height": 60,
-      "prompt": "ONE isolated solid orange #F28B20 full progress FILL strip. Entire capsule is filled orange from left edge to right edge. No empty section no dark trough no frame no container no percentage. Very long thin horizontal capsule aspect900:60 with subtle upper-left highlight. Plain stretch-safe central band. Transparent outside capsule. NO extra elements.",
-      "sha256": "fa76e0228eb86dc482e35bef9376f1edd182aeef6a8d426282ca1d75f9f586c9",
-      "bytes": 51410,
+      "prompt": "橙色の細いゲージ中身。長さをコードで変える9スライス画像。透過背景。",
+      "sha256": "4aae223ac045fa24f0b02cc502070cfb0aab29d0ef39f644a51b222f5483d911",
+      "bytes": 78956,
       "method": "built-in image_gen",
-      "processing": "Height-normalized generated strip; preserve end caps, resize only middle to target width",
+      "processing": "alpha>8境界で切り出し、Lanczosで900x60へ調整。生成アルファ保持。",
       "slice": {
         "top": 0,
         "right": 40,
@@ -1443,11 +1548,11 @@
       "path": "gauge/track.png",
       "width": 900,
       "height": 60,
-      "prompt": "Create ONE isolated production UI graphic: Blank beige progress trough horizontal9slice. Final target 900x60 aspect900:60. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "1856a93551704d273945b352fbfe1e751bcaaecf1eab5203c564f090ed6c1a46",
-      "bytes": 44446,
+      "prompt": "空の細い生成り和紙ゲージ溝。両端の丸みを固定する9スライス画像。透過背景。",
+      "sha256": "029e9378bda7fea5daf9bae83b5729bfbcb75630fab81182db7149cce701f267",
+      "bytes": 88825,
       "method": "built-in image_gen",
-      "processing": "Height-normalized generated strip; preserve end caps, resize only middle to target width",
+      "processing": "alpha>8境界で切り出し、Lanczosで900x60へ調整。生成アルファ保持。",
       "slice": {
         "top": 0,
         "right": 40,
@@ -1513,6 +1618,18 @@
       "bytes": 28930,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/calendar-note.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "空欄の小さな木枠カレンダー。日付や数字なし。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って120x120へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "02dd9f9c3f75627e6a1d5640ddf7f4e16333e594d9f592d1686e88633bca62e5",
+      "bytes": 24112,
       "alphaMode": "transparent"
     },
     {
@@ -1582,14 +1699,39 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "icon/heart-on.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Coral filled heart. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "9280553d2919c40cc7a798f3c6c7d6c87c4dd4905b2ea8f9cf0f724b0b523925",
-      "bytes": 23598,
+      "path": "icon/heart-off.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "未選択状態を示す濃茶縁の生成りハート。透過背景。",
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "processing": "alpha>8境界で切り出し、縦横比を保って120x120へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "a849b1dfbe90f62b10b129bccebf59cca804244c8a1c972ae717eec112626abd",
+      "bytes": 18563,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/heart-on.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "選択状態を示す橙色のハート。透過背景。",
+      "sha256": "e7f55dfca5b0904610dd3cd8c618065a8b292b485ceed54e15487ac46f7f33f1",
+      "bytes": 19914,
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って120x120へLanczos縮小。生成アルファ保持。",
+      "alphaMode": "transparent",
+      "slice": null
+    },
+    {
+      "path": "icon/hourglass.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "木枠と琥珀色の砂を持つ砂時計。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って120x120へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "91550d1749b0d12dcea6b5ac907a5be2a4fc32edc811dddfd5cc033170edeed6",
+      "bytes": 20058,
       "alphaMode": "transparent"
     },
     {
@@ -1601,6 +1743,42 @@
       "prompt": "A simple account key settings icon, 150x150 transparent. Match the existing icon family's warm chocolate-brown outline and muted brass/orange details, rounded puffy paper-clay style, soft upper-left highlight. One clear old-fashioned key angled gently upward-right, large round bow and two small teeth. No text, letters, numbers, logos, extra objects or background.",
       "method": "built-in image_gen",
       "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/laurel-left.png",
+      "width": 150,
+      "height": 240,
+      "prompt": "月桂樹の左枝。落ち着いた金色、透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って150x240へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "c9a4f7b7485ee288473ccb8b99f98aace8cfa472c3a5bd4135c00384bc1ddaf1",
+      "bytes": 38093,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/laurel-right.png",
+      "width": 150,
+      "height": 240,
+      "prompt": "月桂樹の右枝。左枝を水平反転して対にする。透過背景。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "icon/laurel-left.pngを水平反転して150x240で保存。",
+      "slice": null,
+      "sha256": "f94d49867fb3917e56bd3c9ccc277776ca0695798c0cc6e8b986162a5de9bbca",
+      "bytes": 38258,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/maple.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "橙赤色の葉脈入りカエデの葉。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って120x120へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "3ffbf9a20a5490c8147a65cc7089f49477cead89c849806d1ca6917cea766b17",
+      "bytes": 19212,
       "alphaMode": "transparent"
     },
     {
@@ -1637,6 +1815,54 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "icon/nav-deai.png",
+      "width": 100,
+      "height": 100,
+      "prompt": "独立した濃茶の猫顔アイコン。右目に小さなカメラレンズ表現。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って100x100へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "058eec896ae1e0d5a1f64a51a98135baa4820874e09e493da4f2fcd87d991b66",
+      "bytes": 20195,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/nav-home.png",
+      "width": 100,
+      "height": 100,
+      "prompt": "独立した濃茶の丸みある家アイコン。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って100x100へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "93e3fa8b039dcfb92b6db2dbdab77703c8622c97c6fb2b8c151a1c3477a8d881",
+      "bytes": 17624,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/nav-world.png",
+      "width": 100,
+      "height": 100,
+      "prompt": "独立した経緯線のある地球アイコン。濃茶。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って100x100へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "3568f878d035258c4a1cb16327a62ccbf065799b28ee4fd8d29c1f77568118da",
+      "bytes": 20986,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/nav-zukan.png",
+      "width": 100,
+      "height": 100,
+      "prompt": "独立した開いた本のアイコン。濃茶と生成り。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って100x100へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "a40cc8f0d17e43814993afc06c10e98c305d5112c8e7e17ad26b3f6f2a4db595",
+      "bytes": 13626,
+      "alphaMode": "transparent"
+    },
+    {
       "path": "icon/paw.png",
       "width": 150,
       "height": 150,
@@ -1670,6 +1896,42 @@
       "alphaMode": "transparent"
     },
     {
+      "path": "icon/record-wood-maple.png",
+      "width": 120,
+      "height": 120,
+      "slice": null,
+      "prompt": "One transparent sprite atlas of three separate small carved warm brown wooden game icons in a single horizontal row, centered exactly in the left, middle and right thirds respectively: a cat paw print, a Japanese maple leaf, and two four-point sparkles. All cut from walnut with distinct readable silhouettes and subtle light bevels. Equal size, lots of separation, no text, no extra objects, transparent background, 3:1 horizontal canvas.",
+      "processing": "Isolated atlas cell 2; Lanczos resize to 120×120; preserved alpha.",
+      "method": "built-in image_gen",
+      "alphaMode": "transparent",
+      "bytes": 14957,
+      "sha256": "5d54daba3b544da5a4479d14d6b6ef5f5a46904e492e409580ffdaa24a5eb638"
+    },
+    {
+      "path": "icon/record-wood-paw.png",
+      "width": 120,
+      "height": 120,
+      "slice": null,
+      "prompt": "One transparent sprite atlas of three separate small carved warm brown wooden game icons in a single horizontal row, centered exactly in the left, middle and right thirds respectively: a cat paw print, a Japanese maple leaf, and two four-point sparkles. All cut from walnut with distinct readable silhouettes and subtle light bevels. Equal size, lots of separation, no text, no extra objects, transparent background, 3:1 horizontal canvas.",
+      "processing": "Isolated atlas cell 1; Lanczos resize to 120×120; preserved alpha.",
+      "method": "built-in image_gen",
+      "alphaMode": "transparent",
+      "bytes": 14917,
+      "sha256": "2f54db733015655f0c8e4c2ec34c96fb8baef845c14266fc3968282d1e116e3f"
+    },
+    {
+      "path": "icon/record-wood-sparkles.png",
+      "width": 120,
+      "height": 120,
+      "slice": null,
+      "prompt": "One transparent sprite atlas of three separate small carved warm brown wooden game icons in a single horizontal row, centered exactly in the left, middle and right thirds respectively: a cat paw print, a Japanese maple leaf, and two four-point sparkles. All cut from walnut with distinct readable silhouettes and subtle light bevels. Equal size, lots of separation, no text, no extra objects, transparent background, 3:1 horizontal canvas.",
+      "processing": "Isolated atlas cell 3; Lanczos resize to 120×120; preserved alpha.",
+      "method": "built-in image_gen",
+      "alphaMode": "transparent",
+      "bytes": 9116,
+      "sha256": "888bb4e9c53869734b4963f41f343ba257d3f99513cc4feb50a64ff57f6676d3"
+    },
+    {
       "path": "icon/shield-check.png",
       "width": 150,
       "height": 150,
@@ -1678,6 +1940,42 @@
       "prompt": "A simple shield-with-check settings icon, 150x150 transparent. Match the existing icon family's rounded 3D paper-clay style, warm brown outlines, pale cream highlights and small sage-green accent. Center one clear rounded shield with a simple dark brown checkmark. No words, letters, numbers, logos, extra objects or background.",
       "method": "built-in image_gen",
       "processing": "Alpha>8 trim; proportionate Lanczos fit, 4px minimum clearance, generated alpha preserved; no EXIF",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/sparkle-rare.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "大きな金色の四芒星と小さなきらめき二つ。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って120x120へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "f91c4f0bc44c60f85ff44ed27ab06520b2dcc7b7a9bb733ec94989172bc207dd",
+      "bytes": 18712,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/sparkles.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "気配表示用の金色きらめき。icon/sparkle-rare.pngと同一画像。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "icon/sparkle-rare.pngをバイト同一で複製。",
+      "slice": null,
+      "sha256": "f91c4f0bc44c60f85ff44ed27ab06520b2dcc7b7a9bb733ec94989172bc207dd",
+      "bytes": 18712,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "icon/star-fav.png",
+      "width": 120,
+      "height": 120,
+      "prompt": "お気に入り表示用の琥珀色五芒星。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って120x120へLanczos縮小。生成アルファ保持。",
+      "slice": null,
+      "sha256": "88f1eb9097c9201e2053e3095d72bebe2d54753b8c09252d096c9ffd7d760270",
+      "bytes": 19514,
       "alphaMode": "transparent"
     },
     {
@@ -1788,6 +2086,18 @@
       "bytes": 23132,
       "method": "built-in image_gen",
       "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "illust/maneki-neko.png",
+      "width": 420,
+      "height": 540,
+      "prompt": "右上の飾り用、手を招くクリーム色の招き猫。赤橙の前掛けと控えめな金色。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、縦横比を保って420x540内にLanczos縮小。生成アルファを保持しメタデータ除去。",
+      "slice": null,
+      "sha256": "2f96c1195cbe43ec3bab15ecc727177533f6c315b604d1c6a44218bfb99e765e",
+      "bytes": 362444,
       "alphaMode": "transparent"
     },
     {
@@ -1941,23 +2251,25 @@
       "path": "navbtn/deai-off.png",
       "width": 240,
       "height": 240,
-      "sha256": "a30f6b52b4acf28b7ea9ce6a6d70ec4f0de9f26756ff72d6e8c4fa1184191c14",
-      "bytes": 70888,
-      "prompt": "Edit only the center cat face icon in the cream standalone squircle button. Keep button shape, outer brown border, highlight, shadow and size exactly. Make the icon an unmistakable simple brown cat face with TWO small round cream eyes, a small cream inverted-triangle nose and short curved cream mouth whisker lines, and two pointed ears, all centered, no body. Face silhouette remains warm chocolate brown. Same flat front-on puffy paper-cut style. Preserve transparent surroundings. No text.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "sha256": "892370cce3039a80d8ee2c5faf23dd823a7f0d05b9fac23cbbd4c39e6b33812c",
+      "bytes": 91704,
+      "prompt": "通常ナビ用の空の生成り角丸和紙ボタン背景。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "home-off.pngと同一画像をバイト同一で複製。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "navbtn/deai-on.png",
       "width": 240,
       "height": 240,
-      "sha256": "907e0027c66d66e02e8f38c9e4665f3d6de24f3b1403ccef0ac8f5c579ca4cd5",
-      "bytes": 70724,
-      "prompt": "Refine the selected-state image into a single navigation DEAI button. Preserve exact cream transparent canvas, squircle shape, brown outline, highlight and shadow. Keep orange center face, but use a dark chocolate cat-face silhouette in the center, same size and position as cream face in the reference. Add two small warm ivory circular eyes, small ivory triangular nose and short curved ivory mouth. Two pointed ears. Match the companion off-state reference's cat face silhouette and face layout while preserving selected orange face. No extra icons or text, transparent outside. 240x240.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "sha256": "4db52a9e75d853bafa86d10e97338a01511d703ce5a184e25b3d30d98e75b417",
+      "bytes": 103280,
+      "prompt": "選択中ナビ用の空の橙色角丸和紙ボタン背景。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "home-on.pngと同一画像をバイト同一で複製。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "navbtn/glow.png",
@@ -1974,67 +2286,73 @@
       "path": "navbtn/home-off.png",
       "width": 240,
       "height": 240,
-      "sha256": "8665a0d38332d6b487da65ef135fb50226b0fd034da26cdba0bfd16f38329918",
-      "bytes": 66229,
-      "prompt": "Create ONE independent navigation button HOME off state, final240x240. Reference image is existing round button style. Use a rounded SQUIRCLE button, warm cream ivory face, medium warm taupe-brown outline, narrow upper-left ivory highlight and soft downward shadow entirely inside canvas, minimal clearance only shadow. Center one simple HOUSE icon in brown-gray, no labels. Puffy layered paper-cut game UI, gently dimensional, matte simplified shading, not photo, no real fibers. Entire button silhouette approx224x224 centered with8px shadow clearance. This is one standalone button, no bar, no connecting ornament, no surrounding objects, transparent background, no text letters numbers.",
+      "sha256": "892370cce3039a80d8ee2c5faf23dd823a7f0d05b9fac23cbbd4c39e6b33812c",
+      "bytes": 91704,
+      "prompt": "通常ナビ用の空の生成り角丸和紙ボタン背景。アイコンは個別画像を重ねる。",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "processing": "alpha>8境界で切り出し、Lanczosで240x240へ調整。生成アルファを保持。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "navbtn/home-on.png",
       "width": 240,
       "height": 240,
-      "sha256": "8713fb0cd2ccd1d3d670051a69465bac5f26b81e7981c8b20e3a20fa400bd6a7",
-      "bytes": 67485,
-      "prompt": "Edit reference image into ONE standalone HOME navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with HOUSE, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
+      "sha256": "4db52a9e75d853bafa86d10e97338a01511d703ce5a184e25b3d30d98e75b417",
+      "bytes": 103280,
+      "prompt": "選択中ナビ用の空の橙色角丸和紙ボタン背景。アイコンは個別画像を重ねる。",
       "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "processing": "alpha>8境界で切り出し、Lanczosで240x240へ調整。生成アルファを保持。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "navbtn/world-off.png",
       "width": 240,
       "height": 240,
-      "sha256": "cae8013654990c49219c9f4b77f8b4caf49226114309c3bd0634209e349bb325",
-      "bytes": 78377,
-      "prompt": "Edit reference image into ONE standalone WORLD navigation button off state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with GLOBE with clear continents and simple longitude latitude, centered at same visual size as original house. Keep cream ivory button face; icon is warm brown-gray. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "sha256": "892370cce3039a80d8ee2c5faf23dd823a7f0d05b9fac23cbbd4c39e6b33812c",
+      "bytes": 91704,
+      "prompt": "通常ナビ用の空の生成り角丸和紙ボタン背景。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "home-off.pngと同一画像をバイト同一で複製。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "navbtn/world-on.png",
       "width": 240,
       "height": 240,
-      "sha256": "621de494e9a2c78f3373008afe71d7f39caa089d96ff3d51a084ac210b6c54fa",
-      "bytes": 80864,
-      "prompt": "Edit reference image into ONE standalone WORLD navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with GLOBE with clear continents and simple longitude latitude, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "sha256": "4db52a9e75d853bafa86d10e97338a01511d703ce5a184e25b3d30d98e75b417",
+      "bytes": 103280,
+      "prompt": "選択中ナビ用の空の橙色角丸和紙ボタン背景。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "home-on.pngと同一画像をバイト同一で複製。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "navbtn/zukan-off.png",
       "width": 240,
       "height": 240,
-      "sha256": "1e09725da7ca9b91c906e45a206cd5fab94256233c8c5718d8b8bd6dafbf51aa",
-      "bytes": 64319,
-      "prompt": "Edit reference image into ONE standalone ZUKAN navigation button off state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with OPEN BOOK, centered at same visual size as original house. Keep cream ivory button face; icon is warm brown-gray. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "sha256": "892370cce3039a80d8ee2c5faf23dd823a7f0d05b9fac23cbbd4c39e6b33812c",
+      "bytes": 91704,
+      "prompt": "通常ナビ用の空の生成り角丸和紙ボタン背景。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "home-off.pngと同一画像をバイト同一で複製。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "navbtn/zukan-on.png",
       "width": 240,
       "height": 240,
-      "sha256": "737136a3fbd44a3c26281bb9cf31370f9bfa6621b578e6e5cbd8c8ad370f5c18",
-      "bytes": 66456,
-      "prompt": "Edit reference image into ONE standalone ZUKAN navigation button on state, final240x240. Preserve EXACT reference squircle outline, border thickness, highlight, position, scale and shadow. Replace center icon with OPEN BOOK, centered at same visual size as original house. Change cream button face to warm orange #F28B20; icon is ivory cream-white; retain brown outline and ivory top-left highlight. Puffy soft paper-cut game UI, matte simple shading, no photograph. Entire shadow fits canvas, minimal clearance. No bar, no surrounding objects, no labels, no text letters numerals. Genuinely transparent outside button. Same geometry as reference, front-on flat component.",
-      "method": "built-in image_gen",
-      "processing": "Alpha>8 trim; proportionate Lanczos fit, 6px minimum clearance, generated alpha preserved; no EXIF",
-      "alphaMode": "transparent"
+      "sha256": "4db52a9e75d853bafa86d10e97338a01511d703ce5a184e25b3d30d98e75b417",
+      "bytes": 103280,
+      "prompt": "選択中ナビ用の空の橙色角丸和紙ボタン背景。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "home-on.pngと同一画像をバイト同一で複製。",
+      "alphaMode": "transparent",
+      "slice": null
     },
     {
       "path": "opening/bg.png",
@@ -2087,19 +2405,104 @@
       }
     },
     {
-      "path": "panel/card-cream.png",
-      "width": 192,
-      "height": 192,
-      "prompt": "Create one empty cream square UI card asset, final192x192, rounded radius48 corners, target iOS cozy cat collection UI. Warm #FFF8F0 lightly textured paper, very subtle puffy edge upper-left ivory highlight, soft low contrast downward shadow. Straight-on, no perspective, no text, no icons, no decoration. Plain stretch-safe center and edge middle bands24px minimum for9slice. Card fills canvas except tiny shadow clearance. Real transparent background clean alpha no matte. Match reference app cream cards.",
-      "sha256": "f81371f084d1d03a7646656fd7d1322cbf4c80e9d55bf30cee0c481231813d27",
-      "bytes": 36649,
+      "path": "panel/bar-wood.png",
+      "width": 1200,
+      "height": 210,
+      "prompt": "左右端に肉球彫刻のある横長木製バー。中央は文字やボタン用に空白、横伸縮対応。透過背景。",
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "processing": "元画像のy=210から高さ300pxを切り出し、Lanczosで1200x210へ調整。生成アルファを保持。",
       "slice": {
-        "top": 64,
-        "right": 64,
-        "bottom": 64,
-        "left": 64
+        "top": 0,
+        "right": 100,
+        "bottom": 0,
+        "left": 100
+      },
+      "sha256": "fd44e6222b378e3d8011a596a987d9d6ffdd312748ae4b3961f0be5e3885b70b",
+      "bytes": 320590,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/board-hint.png",
+      "width": 1080,
+      "height": 432,
+      "slice": {
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48
+      },
+      "prompt": "A single isolated wide horizontal rectangular wooden sign panel UI asset for a cozy Japanese cat game, about 2.5:1. The ENTIRE interior is light honey-colored smooth cedar wood with very subtle wood grain, even and light enough for dark text. Thin darker beveled wooden frame, small rounded corners. No paper, no metal, no text, no symbols, no horizontal divisions, no handle. Transparent exterior, fill the canvas tightly.",
+      "processing": "Lanczos resize to 1080×432; preserved alpha.",
+      "method": "built-in image_gen",
+      "alphaMode": "transparent",
+      "bytes": 701543,
+      "sha256": "cd9f165739092edbe670ee9c4edfa2e1fe95475cc1991e38467d4e19fa40c2b2"
+    },
+    {
+      "path": "panel/card-cat-locked.png",
+      "width": 480,
+      "height": 570,
+      "prompt": "写真くぼみと下部空白帯を持つ未所持状態の縦型和紙カード。落ち着いた生成り色。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで480x570へ調整。生成アルファを保持。",
+      "slice": {
+        "top": 54,
+        "right": 60,
+        "bottom": 70,
+        "left": 60
+      },
+      "sha256": "d86d3dd79a61f2b53ac3c82d99b6fde5ef5434b007acad1dda6a8baa03db6d8b",
+      "bytes": 420394,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/card-cat-selected.png",
+      "width": 480,
+      "height": 570,
+      "prompt": "写真くぼみと下部空白帯を持つ選択状態の縦型和紙カード。薄い橙金色の縁。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで480x570へ調整。生成アルファを保持。",
+      "slice": {
+        "top": 54,
+        "right": 60,
+        "bottom": 70,
+        "left": 60
+      },
+      "sha256": "fb0fb603d6b1667fdba893179db1b52490c593fb453fd554cd343f2471526937",
+      "bytes": 416081,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/card-cat.png",
+      "width": 480,
+      "height": 570,
+      "prompt": "上半分に正方形の空の写真くぼみ、下部に文字用の空白帯がある縦型和紙カード。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで480x570へ調整。生成アルファを保持。",
+      "slice": {
+        "top": 54,
+        "right": 60,
+        "bottom": 70,
+        "left": 60
+      },
+      "sha256": "b7560bd1e1b57dee2d092bc51fdb49b3b57228357f16f7843f0ebea245e3782f",
+      "bytes": 416704,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/card-cream.png",
+      "width": 1080,
+      "height": 780,
+      "prompt": "和紙の共通カード背景。panel/card-parchment.pngと同一の生成素材を共通カードskin用に再利用。",
+      "sha256": "3f526375476a91d8a35adadce3f846fe838d847e89072714e66b5f5634613d99",
+      "bytes": 1284217,
+      "method": "derived from built-in image_gen asset",
+      "processing": "生成済みpanel/card-parchment.pngをバイト同一で複製。",
+      "slice": {
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
       },
       "stretchAxes": [
         "x",
@@ -2129,19 +2532,53 @@
       "alphaMode": "transparent"
     },
     {
-      "path": "panel/card-selected.png",
-      "width": 192,
-      "height": 192,
-      "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank cream card orange border radius48 9slice. File panel/card-selected.png. Target aspect 192:192, final exact 192x192px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
-      "sha256": "f5f580396faf4698000751dfda8c4dcd1c780c37ce4f80ccdeb72be9d41cf805",
-      "bytes": 46620,
+      "path": "panel/card-parchment-selected.png",
+      "width": 1080,
+      "height": 780,
+      "prompt": "空の長方形和紙カード。薄い木枠と控えめな橙金色の選択縁。透過背景。",
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "processing": "alpha>8境界で切り出し、Lanczosで1080x780へ調整。生成アルファを保持。",
       "slice": {
-        "top": 64,
-        "right": 64,
-        "bottom": 64,
-        "left": 64
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
+      },
+      "sha256": "1c800b4cad268a74116a7f0a4488f269860eb6a20b88aa02ea207f0ec5950629",
+      "bytes": 1236944,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/card-parchment.png",
+      "width": 1080,
+      "height": 780,
+      "prompt": "空の長方形和紙カード。薄い蜂蜜色木枠、伸縮に耐える縁。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで1080x780へ調整。生成アルファを保持、外側の余分な発光を除いた版。",
+      "slice": {
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
+      },
+      "sha256": "3f526375476a91d8a35adadce3f846fe838d847e89072714e66b5f5634613d99",
+      "bytes": 1284217,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/card-selected.png",
+      "width": 1080,
+      "height": 780,
+      "prompt": "橙金縁の選択カード背景。panel/card-parchment-selected.pngと同一の生成素材を共通カードskin用に再利用。",
+      "sha256": "1c800b4cad268a74116a7f0a4488f269860eb6a20b88aa02ea207f0ec5950629",
+      "bytes": 1236944,
+      "method": "derived from built-in image_gen asset",
+      "processing": "生成済みpanel/card-parchment-selected.pngをバイト同一で複製。",
+      "slice": {
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
       },
       "stretchAxes": [
         "x",
@@ -2151,18 +2588,18 @@
     },
     {
       "path": "panel/card-white.png",
-      "width": 192,
-      "height": 192,
-      "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank white card radius48 9slice. File panel/card-white.png. Target aspect 192:192, final exact 192x192px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
-      "sha256": "49d346b36bcb74ae013bf06bf2c3ec6ca06f7dd5213f647282a8980504594b5b",
-      "bytes": 39653,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
+      "width": 1080,
+      "height": 780,
+      "prompt": "和紙の共通カード背景。panel/card-parchment.pngと同一の生成素材を共通カードskin用に再利用。",
+      "sha256": "3f526375476a91d8a35adadce3f846fe838d847e89072714e66b5f5634613d99",
+      "bytes": 1284217,
+      "method": "derived from built-in image_gen asset",
+      "processing": "生成済みpanel/card-parchment.pngをバイト同一で複製。",
       "slice": {
-        "top": 64,
-        "right": 64,
-        "bottom": 64,
-        "left": 64
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
       },
       "stretchAxes": [
         "x",
@@ -2174,9 +2611,9 @@
       "path": "panel/divider-h.png",
       "width": 600,
       "height": 12,
-      "prompt": "Fine warm brown dotted horizontal line,3px dots at12px pitch, alpha90, center y6; transparent outside.",
-      "method": "procedural raster",
-      "processing": "Exact numeric RGBA bitmap, no app code changes",
+      "prompt": "木目と金縁の細い水平区切り画像。panel/bar-wood.pngを細幅へ変換。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "生成済みpanel/bar-wood.pngをLanczosで600x12へ縮小し、生成アルファを保持。",
       "slice": {
         "top": 0,
         "right": 12,
@@ -2188,29 +2625,29 @@
       ],
       "centerMode": "tile",
       "tilePeriodPx": 12,
-      "sha256": "d9f10990f318d2b0557bdfe7c00cf611472b0ba877a70fea31778b5b9feed888",
-      "bytes": 173,
+      "sha256": "70804c3428800a43bc73a1a1b83683eacc5647981b6a64851a427e51ca08d162",
+      "bytes": 9452,
       "alphaMode": "transparent"
     },
     {
       "path": "panel/info-table.png",
-      "width": 300,
-      "height": 150,
-      "prompt": "Create ONE production UI bitmap asset: Empty warm cream rounded rectangular information table frame, radius30 target pixels, fine dark warm brown hairline border. NO rows NO text NO icons. Flat undecorated middle and edge bands for9slice. About6px transparent outer shadow clearance.. Final canvas 300x150, requested aspect 300:150. Cozy Nekomobby UI family, warm cream #FFF8F0 brown #4A3B32 orange #F28B20 green #5E9B3F, softly rounded forms and restrained paper texture with upper-left light, very subtle downward shadow. Genuinely transparent outside artwork, smooth clean alpha edges without white fringe. Straight-on orthographic component, not a UI mockup. Absolutely NO text NO letters NO numerals NO labels. NO extra flowers NO extra leaves NO extra objects.",
-      "method": "built-in image_gen",
-      "processing": "Trim source alpha margin and proportionally fit exact canvas with6px minimum clearance; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin",
+      "width": 1080,
+      "height": 780,
+      "prompt": "和紙の情報パネル。共通のpanel/card-parchment.pngを再利用。",
+      "method": "derived from built-in image_gen asset",
+      "processing": "生成済みpanel/card-parchment.pngをバイト同一で複製。",
       "slice": {
-        "top": 42,
-        "right": 42,
-        "bottom": 42,
-        "left": 42
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60
       },
       "stretchAxes": [
         "x",
         "y"
       ],
-      "sha256": "0a509f17400d2f589359108412415bb26d5adc65decb06df71adb78efba62e5e",
-      "bytes": 43005,
+      "sha256": "3f526375476a91d8a35adadce3f846fe838d847e89072714e66b5f5634613d99",
+      "bytes": 1284217,
       "alphaMode": "transparent"
     },
     {
@@ -2238,11 +2675,11 @@
       "path": "panel/pill-currency.png",
       "width": 420,
       "height": 132,
-      "prompt": "Create ONE standalone production raster UI asset for Nekomobby cozy Japanese iOS collection game: Blank cream currency pill radius66 9slice. File panel/pill-currency.png. Target aspect 420:132, final exact 420x132px. Warm cream #FFF8F0 dark brown #4A3B32 orange #F28B20 green #5E9B3F. Restrained warm paper texture, thick rounded shapes, subtle upper-left illumination and very low contrast downward shadow. Minimal bevel, avoid thick glossy plastic. Absolutely NO text letters numbers labels or watermark. Orthographic straight-on isolated graphic, clean simple silhouette, centered with small clearance. True transparent background, smooth clean alpha no white matte no stray flecks. Not a screen mockup. Match docs/ui-reference cozy style.",
-      "sha256": "7cdc85ffabbd204677bb909841610379445c44e13d6957581659e2d3b5b9ffb2",
-      "bytes": 70728,
+      "prompt": "小さな通貨アイコンと数字を重ねる空の横長生成りピル。9スライス。",
+      "sha256": "18e5fe991b0bcc1b1e7b487657bc60ed65fe3a47af5dda408604237176d57f07",
+      "bytes": 89460,
       "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching; crop visible alpha>8 boundary, preserve cap patches, resize only stretch bands into6px outer shadow margin",
+      "processing": "alpha>8境界で切り出し、Lanczosで420x132へ調整。生成アルファを保持。",
       "slice": {
         "top": 0,
         "right": 78,
@@ -2303,18 +2740,52 @@
       "path": "panel/sheet-detail.png",
       "width": 1179,
       "height": 600,
-      "sha256": "c37b618edce5943e5552bceb67c4d66ecea5b3595d348b11737fcc7b0850e4d2",
-      "bytes": 459462,
-      "prompt": "Create ONE production blank bottom detail sheet UI panel, landscape1179x600. Reference image is style/color only: warm cream ivory paper, puffy soft shape, thin warm taupe brown outer stroke and very subtle top highlight. Top corners large rounded (fit90px horizontal,120px vertical caps). Small short rounded muted warm taupe grab HANDLE centered near top within first80px. Rest completely blank. Panel extends all the way through bottom canvas, SQUARE BOTTOM CORNERS, NO horizontal bottom border, NO bottom shadow, NO bottom highlight. Vertical side borders end cut at canvas bottom. True transparent outside top rounded corners and faint low-contrast upward shadow. Main cream panel opaque. NO white rectangular backdrop, NO checkerboard, NO labels, text, cats or icons. Front-on flat UI component, not a perspective mockup. Keep top decoration within top120px.",
+      "sha256": "313476e2a11be9feadbbb3c671b1c6869f3710f856caf37fe743f61542f6f62f",
+      "bytes": 816999,
+      "prompt": "Detail sheet based on the generated parchment card style: preserve a centered wooden handle, rounded upper corners and side rails; the bottom has no horizontal frame or bottom corner ornaments and fades to transparent for a screen-edge sheet. No text or icons.",
       "method": "built-in image_gen",
       "alphaMode": "transparent",
-      "processing": "Lanczos resize to exact dimensions; preserve generated alpha; extend clean interior row to bottom edge; normalize corner geometry into required slice caps",
+      "processing": "Generated from the card-parchment style reference, resized with Lanczos to 1179x600; alpha below the sheet rails (y>=545) cleared to remove stray generated pixels.",
       "slice": {
         "top": 120,
         "right": 90,
         "bottom": 0,
         "left": 90
       }
+    },
+    {
+      "path": "panel/sign-info.png",
+      "width": 1080,
+      "height": 510,
+      "prompt": "屋根付きの空白の木製案内板。上の屋根を固定し中央は伸縮可能。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで1080x510へ調整。生成アルファを保持。屋根高さ150pxを上スライスに指定。",
+      "slice": {
+        "top": 150,
+        "right": 72,
+        "bottom": 48,
+        "left": 72
+      },
+      "sha256": "4f9a693ca6a5a9d3b3943753a2f51082f930eba3ccb096ca62882b4ef650dd89",
+      "bytes": 739248,
+      "alphaMode": "transparent"
+    },
+    {
+      "path": "panel/speech-bubble-up.png",
+      "width": 900,
+      "height": 420,
+      "prompt": "上向きの短いしっぽを持つ空のクリーム色吹き出し。9スライス対応。透過背景。",
+      "method": "built-in image_gen",
+      "processing": "alpha>8境界で切り出し、Lanczosで900x420へ調整。生成アルファを保持。上端100pxはしっぽと角を固定。",
+      "slice": {
+        "top": 100,
+        "right": 70,
+        "bottom": 70,
+        "left": 70
+      },
+      "sha256": "a7eb7ceeab6e6a4a08bd08dc81e4c5fe7c5c2066c5f78117bd0c8701b3526db5",
+      "bytes": 302213,
+      "alphaMode": "transparent"
     },
     {
       "path": "panel/speech-bubble.png",

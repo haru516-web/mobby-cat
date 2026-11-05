@@ -219,6 +219,7 @@ export function TabBar({ tab, onChange, bottomInset }: { tab: TabKey; onChange: 
             <View style={[k.navBox, on && k.navBoxOn]}>
               {on && <Pic name="navbtn/glow" width={NAV_SIZE * 1.3} style={k.navGlow} />}
               <Pic name={`navbtn/${t.key}-${on ? 'on' : 'off'}`} width={NAV_SIZE} />
+              <Pic name={`icon/nav-${t.key}`} height={26} style={k.navIcon} />
               {t.key === 'deai' && waiting && <Pic name="button/bell-badge" height={16} style={k.navDot} />}
             </View>
             {/* 選んでいるタブは、ボタンが光って浮くことで見せる。文字はどれも同じ濃い色（オレンジの床の上でも読めるように） */}
@@ -246,9 +247,9 @@ const k = StyleSheet.create({
   navBox: { width: NAV_SIZE, height: NAV_SIZE, alignItems: 'center', justifyContent: 'center' },
   navBoxOn: { transform: [{ translateY: -4 }, { scale: 1.08 }] },
   navGlow: { position: 'absolute', left: -NAV_SIZE * 0.15, top: -NAV_SIZE * 0.15 },
+  navIcon: { position: 'absolute' },
   navDot: { position: 'absolute', right: 2, top: 2 },
-  // 背景の絵の上でも読めるよう、濃い色の文字に白いふちをつける
-  navLabel: { marginTop: 1, textShadowColor: '#fff', textShadowRadius: 3, textShadowOffset: { width: 0, height: 0 } },
+  navLabel: { marginTop: 1 },
   gearFallback: { height: 36, minWidth: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   bellBadge: { position: 'absolute', right: 2, top: 2 },
 });

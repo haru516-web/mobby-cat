@@ -3,7 +3,7 @@ import { Pic } from '../../ui/Slice';
 import { UI } from '../../ui/uiAssets';
 
 // ひらく演出とお迎えの演出で共通の、光と飛び散るきらめき。画像だけで作る（deai/* が無いときは、ある素材で代わりにする）
-export const MYSTERY = UI['deai/mystery-cat'] ? 'deai/mystery-cat' : 'cat/silhouette-locked';
+export const MYSTERY = 'deai/fukuro';
 export const RAYS = UI['deai/reveal-rays'] ? 'deai/reveal-rays' : 'navbtn/glow';
 export const BURST = UI['deai/reveal-burst'] ? 'deai/reveal-burst' : 'cat/halo-select';
 

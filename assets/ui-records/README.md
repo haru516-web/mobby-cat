@@ -128,3 +128,8 @@ Seventeen final assets used built-in image_gen. Five assets were redrawn once af
 Manifest totals: 211 UI assets and 3 system icons. Category counts: badge 11, bg 19, brand 17, button 29, camera 20, cat 3, gauge 5, icon 28, illust 18, login 9, navbtn 9, opening 6, panel 16, share 10, tabbar 11. The UI v3 audit covers all 54 planned paths with zero pending assets and zero metadata/hash errors.
 
 Registry generated with `tools/build-ui-registry.ps1`: 211 entries, 53 sliced assets. It updated only generated `app/src/ui/uiAssets.ts`; no app build was run. The complete added/modified path inventory is `provenance/ui-v3-files.md`.
+
+
+## 2026-11-04 出会い・コレクション UI
+
+新規31点・再作成25点を追加。生成目的、素材一覧、寸法、slice、処理は provenance/prompts-deai-zukan-ui.md に記録。全プロンプト、SHA-256、バイト数は app/assets/ui/manifest.json を参照。

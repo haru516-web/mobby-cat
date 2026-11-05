@@ -21,14 +21,8 @@ import { hapticSuccess } from '../../services/haptics';
 import { UI } from '../../ui/uiAssets';
 import { RevealOverlay } from './RevealOverlay';
 
-// まだひらいていない候補は、どの子も同じシルエットで見せる（形で誰か分からないように）
-const MYSTERY = UI['deai/mystery-cat'] ? 'deai/mystery-cat' : 'cat/silhouette-locked';
-
-// 「最初の出会い」待ちの画面に散らす、共通のシルエット（候補の「まだひらいていない子」と同じ絵）。上3匹・下3匹
-const SHADOW_POS = [
-  { top: 14, left: '3%' }, { top: 50, left: '38%' }, { top: 10, left: '68%' },
-  { bottom: 150, left: '6%' }, { bottom: 112, left: '40%' }, { bottom: 156, left: '66%' },
-] as const;
+// 候補の正体が見える前は、すべて同じ巾着袋で表す。
+const MYSTERY = 'deai/fukuro';
 
 export default function DeaiScreen({ openShop, openSettings, openNotice, width }: ScreenProps) {
   const g = useGame();
@@ -45,6 +39,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
   // 背の低い端末（iPhone SE など）では、下の操作エリアを小さくする（2段目の猫が隠れすぎないように）
   const compact = useWindowDimensions().height < 740;
+  const countdown = revealCountdown(now, REVEAL_HOUR);
 
   // 歩数・位置情報（天気）の許可。どちらかが無いと、ほとんど会えないので、出会い画面でいつも知らせる
   const [permOk, setPermOk] = useState(true);
@@ -70,27 +65,44 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
       <View style={{ flex: 1 }}>
         <Backdrop name="bg/room-deai-full" bleed />
         <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+        <EncounterTitle width={width} />
+        {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR && (
+          <Slice name="panel/sign-info" style={[s.signInfo, { marginHorizontal: 18 }]}>
+            <View style={s.signLine}>
+              <Pic name="icon/calendar-note" height={18} />
+              <T w="x" size={11} numberOfLines={1} style={s.signText}>今日の出会いは今夜{REVEAL_HOUR}:00に届くよ</T>
+            </View>
+            <View style={s.signLine}>
+              <Pic name="icon/hourglass" height={18} />
+              <T w="b" size={11} style={s.signText}>あと {countdown}</T>
+            </View>
+          </Slice>
+        )}
         <View style={s.preparing}>
           {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR ? (
-            // 最初に選んだ相棒が、最初の出会いのことを教えてくれる
             <>
-              {/* まだ会えていない、ふつうの猫たちのシルエット。上と下に3匹ずつ、ゆらゆらさせる */}
-              {SHADOW_POS.map((pos, i) => (
-                <Bobbing key={i} delay={i * 260} style={[s.shadow, pos]}>
-                  <Pic name={MYSTERY} height={104} />
-                </Bobbing>
-              ))}
-              <View style={s.bubble}>
-                <T w="x" size={16} style={{ textAlign: 'center' }}>最初の出会いは、今夜{REVEAL_HOUR}時に届くよ</T>
-                <T w="b" size={12} color={C.sub} style={{ textAlign: 'center' }}>{`今日の歩数や電池の様子がそろってから、\n会える猫が決まるんだ。それまでは、ホームで一緒に遊ぼうね`}</T>
-                <View style={s.bubbleTail} />
+              <View style={s.waitStage}>
+                <View style={s.bagRow}>
+                  {[0, 1, 2].map((i) => (
+                    <Bobbing key={i} delay={i * 180} style={s.waitBag}>
+                      <Pic name="deai/fukuro" height={70} />
+                    </Bobbing>
+                  ))}
+                </View>
+                <Slice name="panel/speech-bubble-up" style={s.speechBubble}>
+                  <T w="x" size={14} style={s.speechText}>どの子に会えるかな…</T>
+                  <T w="b" size={11} color={C.sub} style={s.speechText}>少しだけ、気配がしてるよ。</T>
+                </Slice>
               </View>
-              {partner && <Bobbing><CatImage id={partner} size={190} /></Bobbing>}
+              {partner && <View style={[s.counterCat, { bottom: pad + 28 }]}><Bobbing><CatImage id={partner} size={142} /></Bobbing></View>}
+              <Pic name="deai/counter-front" width={width} style={[s.counterFront, { bottom: pad }]} />
             </>
           ) : (
             <>
-              <Bobbing><Pic name="icon/paw" height={44} /></Bobbing>
-              <T w="b" size={14} color={C.sub}>今日の出会いを準備しています…</T>
+              <Slice name="panel/card-parchment" style={s.preparingCard}>
+                <Bobbing><Pic name="icon/paw" height={36} /></Bobbing>
+                <T w="b" size={13} color={C.sub}>今日の出会いを準備しています…</T>
+              </Slice>
             </>
           )}
         </View>
@@ -122,6 +134,11 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const cols = Math.max(1, Math.min(3, rec.candidates.length));
   const colW = (width - 32 - (cols - 1) * 8) / cols;
   const selCat = sel ? CAT_BY_ID[sel] : null;
+  const hintRows = [
+    { icon: 'icon/record-wood-paw', text: `候補 ${encounterComposition(visible)}　非表示 ${encounterComposition(unopened)}` },
+    ...(hasRarePresence(rec.eligible ?? rec.candidates, visible) ? [{ icon: 'icon/record-wood-maple', text: '珍しい猫の気配がする……' }] : []),
+    ...(!permOk ? [{ icon: 'icon/record-wood-sparkles', text: '歩数と位置情報をオンにしてね' }] : []),
+  ];
 
   // お迎え・またたびは取り消せないので、かならず確認してから行う
   const askPick = () => {
@@ -207,6 +224,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     <Backdrop name="bg/room-deai-full" bleed />
     {/* 見出しと「今日・きのう」の切り替えは固定する（もび道と同じく、中身がノッチの裏に入り込まない）。その下の候補だけスクロールする */}
     <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
+    <EncounterTitle width={width} />
     {/* 「今日・きのう」はいつも出す。きのうの分が無い日（アプリを入れた日など）は、薄く出して、押すと理由を伝える */}
     <View style={s.dayTabs}>
         {[todayKey, prevDayKey(todayKey)].map((k) => {
@@ -218,7 +236,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
             setSel(null);
             setOpenSel([]);
           }}>
-            <Slice name={day === k ? 'button/tab-all-on' : 'button/tab-normal'} style={s.dayTab}>
+            <Slice name={day === k ? 'button/chip-on' : 'button/chip'} style={s.dayTab}>
               {k !== todayKey && !none && !!state.days[k]?.candidates.length && !state.days[k]?.freePick && <Pic name="button/bell-badge" height={12} style={s.tabDot} />}
               <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
                 {k === todayKey ? '今日' : none ? 'きのう（ありません）' : state.days[k]?.freePick ? 'きのう' : `きのう（受け取りは${now.getHours() >= REVEAL_HOUR ? 'あす' : '今日'}の20時まで）`}
@@ -230,13 +248,14 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     </View>
     {!permOk && (
       <Tap
-        style={s.permBanner}
         accessibilityRole="button"
         accessibilityLabel="歩数と位置情報を許可しないと、ほとんど会えません。設定を開く"
         onPress={() => Linking.openSettings().catch(() => openSettings())}
       >
-        <T w="x" size={12} color="#fff" style={{ textAlign: 'center' }}>歩数と位置情報（天気）をオンにしてね</T>
-        <T w="m" size={11} color="#fff" style={{ textAlign: 'center', marginTop: 2 }}>許可しないと、ほとんど会えません（押すと設定へ）</T>
+        <Slice name="panel/card-parchment" style={s.permBanner}>
+          <T w="x" size={11} style={s.centerText}>歩数と位置情報（天気）をオンにしてね</T>
+          <T w="m" size={10} color={C.sub} style={s.centerText}>許可しないと、ほとんど会えません（押すと設定へ）</T>
+        </Slice>
       </Tap>
     )}
     {/* きのうの子が残っているときは、今日の画面の上で知らせる（押すと、きのうに切り替わる） */}
@@ -249,15 +268,19 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         </Card>
       </Tap>
     )}
-    <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 + pad + barH }}>
+    <ScrollView style={{ flex: 1, marginBottom: pad + (empty ? 0 : barH) }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 }}>
 
-      <Card skin="white" style={{ marginHorizontal: 16, marginTop: 8, gap: 4 }}>
-        <T w="b" size={12}>候補 {encounterComposition(visible)}</T>
-        <T w="b" size={12}>非表示 {encounterComposition(unopened)}</T>
-        {hasRarePresence(rec.eligible ?? rec.candidates, visible) && (
-          <T w="b" size={12} color={C.accent}>珍しい猫の気配がする……</T>
-        )}
-      </Card>
+      {hintRows.length > 0 && (
+        <Slice name="panel/board-hint" style={s.hintBoard}>
+          <T w="x" size={15} style={s.hintTitle}>今日の出会いの記録</T>
+          {hintRows.map((item) => (
+            <View key={item.text} style={s.hintRow}>
+              <Pic name={item.icon} height={15} />
+              <T w="b" size={13} style={s.hintText}>{item.text}</T>
+            </View>
+          ))}
+        </Slice>
+      )}
 
       {/* いまできることを1行で。ひらける数が残っていれば、それも出す */}
       <TourAnchor id="deai-hero" style={s.hero}>
@@ -295,7 +318,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
                 <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
                   {mine && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', bottom: -colW * 0.08 }} />}
                   <Bobbing delay={i * 180}>
-                    <Pic name={MYSTERY} width={colW * 0.92} />
+                  <Pic name={mine ? 'deai/fukuro-picked' : MYSTERY} width={colW * 0.82} />
                   </Bobbing>
                 </View>
                 <View style={s.badgeRow}>{!picking && canMatatabi ? <Pic name="icon/matatabi-leaf" height={24} /> : <View style={{ height: 24 }} />}</View>
@@ -461,7 +484,48 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   );
 }
 
+function revealCountdown(now: Date, hour: number) {
+  const target = new Date(now);
+  target.setHours(hour, 0, 0, 0);
+  if (target.getTime() <= now.getTime()) target.setDate(target.getDate() + 1);
+  const seconds = Math.floor((target.getTime() - now.getTime()) / 1000);
+  const hh = String(Math.floor(seconds / 3600)).padStart(2, '0');
+  const mm = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+  const ss = String(seconds % 60).padStart(2, '0');
+  return `${hh}:${mm}:${ss}`;
+}
+
+function EncounterTitle({ width }: { width: number }) {
+  const boardWidth = Math.min(width * 0.75, 310);
+  return (
+    <View style={[s.titleWrap, { height: boardWidth / 3 }]}>
+      <Pic name="brand/title-deai" width={boardWidth} style={s.titleImage} />
+      <View pointerEvents="none" style={s.titleText}>
+        <T w="x" size={25} color="#422511" style={s.titleMain}>出会い</T>
+        <T w="b" size={12} color="#422511" style={s.titleSub}>今日のにゃこモビー</T>
+      </View>
+    </View>
+  );
+}
+
 const s = StyleSheet.create({
+  titleWrap: { alignItems: 'center', justifyContent: 'center', marginHorizontal: 12 },
+  titleImage: { position: 'absolute', alignSelf: 'center' },
+  titleText: { alignItems: 'center', justifyContent: 'center', marginTop: 21 },
+  titleMain: { textAlign: 'center' },
+  titleSub: { textAlign: 'center', marginTop: -1 },
+  signInfo: { height: 76, justifyContent: 'center', paddingTop: 24, paddingHorizontal: 22, gap: 1 },
+  signLine: { flexDirection: 'row', alignItems: 'center', gap: 7, height: 20 },
+  signText: { flex: 1 },
+  waitStage: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 8 },
+  bagRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 18 },
+  waitBag: { alignItems: 'center' },
+  speechBubble: { width: '88%', height: 112, alignItems: 'center', justifyContent: 'center', paddingTop: 22, gap: 3 },
+  speechText: { textAlign: 'center' },
+  counterCat: { position: 'absolute', left: 0, right: 0, alignItems: 'center', justifyContent: 'flex-end', height: 148 },
+  counterFront: { position: 'absolute', left: 0 },
+  preparingCard: { minHeight: 104, alignItems: 'center', justifyContent: 'center', gap: 8, marginHorizontal: 18 },
+  centerText: { textAlign: 'center' },
   hero: { alignItems: 'stretch', paddingTop: 6, paddingHorizontal: 16 },
   heroNote: { paddingVertical: 8, paddingHorizontal: 14, gap: 2 },
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
@@ -471,17 +535,18 @@ const s = StyleSheet.create({
   shopRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   bar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 16, gap: 8 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },
-  permBanner: { marginHorizontal: 16, marginTop: 8, paddingVertical: 8, paddingHorizontal: 12, borderRadius: 14, backgroundColor: C.accent },
+  permBanner: { minHeight: 54, marginHorizontal: 16, marginTop: 8, paddingVertical: 8, paddingHorizontal: 14, alignItems: 'center', justifyContent: 'center', gap: 2 },
   dayTab: { height: 36, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   tabDot: { position: 'absolute', right: 4, top: 2 },
   yBanner: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 12 },
+  hintBoard: { minHeight: 102, marginHorizontal: 16, marginTop: 8, paddingHorizontal: 24, paddingTop: 16, paddingBottom: 16, gap: 5 },
+  hintTitle: { textAlign: 'center', marginBottom: 1 },
+  hintRow: { flexDirection: 'row', alignItems: 'center', gap: 7, minHeight: 24 },
+  hintText: { flex: 1, lineHeight: 19 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, paddingHorizontal: 16, marginTop: 4 },
   badgeRow: { alignItems: 'center', marginTop: -14, marginBottom: -11, zIndex: 3 },
   candCard: { alignItems: 'center', paddingHorizontal: 6, paddingTop: 14, paddingBottom: 8 },
   chip: { height: 30, alignItems: 'center', justifyContent: 'center' },
   overlay: { flex: 1, justifyContent: 'center', padding: 24 },
   preparing: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12, paddingBottom: 120 },
-  shadow: { position: 'absolute' },
-  bubble: { marginHorizontal: 24, paddingVertical: 16, paddingHorizontal: 18, borderRadius: 22, backgroundColor: 'rgba(255,250,240,0.95)', alignItems: 'center', gap: 8 },
-  bubbleTail: { position: 'absolute', bottom: -9, alignSelf: 'center', width: 18, height: 18, backgroundColor: 'rgba(255,250,240,0.95)', transform: [{ rotate: '45deg' }] },
 });
