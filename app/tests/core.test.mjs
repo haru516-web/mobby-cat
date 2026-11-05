@@ -41,7 +41,7 @@ test('candidate generation uses the supplied day and signals, with no purchase o
   const signals = { battery: [1, 50], charging: true, steps: 20000, gapDays: 1, streak: 7, openHours: [6, 12, 20], catalogUpdated: false, birthday: { m: 10, d: 30 }, weather: 'rain', totals: { steps: 50000, photos: 10, pets: 10, openDays: 10, cats: 3 } };
   const ctx = { owned: {}, appearCounts: {} };
   const day = buildDay('2026-10-30', signals, ctx);
-  assert.ok(day.candidates.length > 0 && day.candidates.length <= 6);
+  assert.ok(day.candidates.length > 0);
   assert.equal(new Set(day.candidates).size, day.candidates.length);
   assert.deepEqual(buildDay('2026-10-30', { ...signals }, { ...ctx, paid: { matatabi: 100 } }), day);
   const original = Math.random;

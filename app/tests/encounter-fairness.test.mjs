@@ -9,32 +9,24 @@ const g = ids => ids.map(id=>({id,reason:'test'}));
 const normal=CATS.filter(c=>!isRareEncounter(c.id)).slice(0,10).map(c=>c.id);
 const rare=CATS.filter(c=>isRareEncounter(c.id)).slice(0,8).map(c=>c.id);
 const ctx={owned:{},appearCounts:{}};
-test('eligible rare cats survive overflow beyond six',()=>{
- for(const n of [1,6,8]){
-  const picked=selectCandidates(g([...normal,...rare.slice(0,n)]),ctx,()=>0.4).map(x=>x.id);
-  assert.ok(rare.slice(0,n).every(id=>picked.includes(id)));
-  assert.equal(picked.length,Math.max(6,n));assert.equal(new Set(picked).size,picked.length);
+test('every eligible cat becomes a candidate, with no cap and no lottery',()=>{
+ for(const n of [0,1,6,8]){
+  const input=[...normal,...rare.slice(0,n)];
+  const picked=selectCandidates(g(input),ctx,()=>0.4).map(x=>x.id);
+  assert.equal(picked.length,input.length);assert.equal(new Set(picked).size,picked.length);
+  assert.ok(input.every(id=>picked.includes(id)));
  }
-});
-test('one normal slot prefers unowned and falls back if all owned',()=>{
- const owned=Object.fromEntries(normal.slice(0,9).map(id=>[id,{count:1}]));
- assert.ok(selectCandidates(g(normal),{...ctx,owned},()=>0).some(x=>x.id===normal[9]));
- owned[normal[9]]={count:1};assert.equal(selectCandidates(g(normal),{...ctx,owned},()=>0).length,6);
-});
-test('miss weights help eligible cats only and selection is pure',()=>{
- const owned=Object.fromEntries(normal.map(id=>[id,{count:1}]));
- const c={...ctx,owned,encounterMisses:{[normal[9]]:20,[rare[0]]:20}},source=JSON.stringify(c);
- const weighted=selectCandidates(g(normal),c,()=>0.7).map(x=>x.id);
- const plain=selectCandidates(g(normal),{...c,encounterMisses:{}},()=>0.7).map(x=>x.id);
- assert.ok(weighted.includes(normal[9]));assert.ok(!plain.includes(normal[9]));assert.ok(!weighted.includes(rare[0]));assert.equal(JSON.stringify(c),source);
- assert.deepEqual(nextEncounterMisses({a:2,b:3,c:20},['a','b','c'],['b']),{a:3,c:20});
+ const owned=Object.fromEntries(normal.map(id=>[id,{count:1}])),c={...ctx,owned,encounterMisses:{[normal[9]]:20}};
+ assert.equal(selectCandidates(g(normal),c,()=>0.7).length,normal.length);
+ assert.deepEqual(selectCandidates(g(normal),c,()=>0.7),selectCandidates(g(normal),c,()=>0.7));
+ assert.deepEqual(nextEncounterMisses({a:2,b:3,c:20},['a','b','c'],['a','b','c']),{});
 });
 test('days are deterministic, eligible only, and empty when no conditions match',()=>{
  const signals={steps:6000,battery:[30,90],charging:true,streak:7,openHours:[6,14,18],weather:'sunny',gapDays:1,catalogUpdated:false,birthday:null};
  const day=buildDay('2026-10-31',signals,ctx);
- assert.equal(day.baseCount,3);assert.deepEqual(day,buildDay('2026-10-31',signals,ctx));
+ assert.equal(day.baseCount,day.candidates.length);assert.deepEqual(day,buildDay('2026-10-31',signals,ctx));
  const eligible=guaranteedCats('2026-10-31',signals,ctx).map(x=>x.id);
- assert.ok(day.candidates.every(id=>eligible.includes(id)));assert.ok(eligible.filter(isRareEncounter).every(id=>day.candidates.includes(id)));
+ assert.ok(day.candidates.every(id=>eligible.includes(id)));assert.deepEqual([...day.candidates].sort(),[...eligible].sort());
  const empty=buildDay('2026-10-31',{...signals,steps:null,battery:[],charging:false,streak:0,openHours:[],weather:null},ctx);
  assert.deepEqual(empty.candidates,[]);
 });

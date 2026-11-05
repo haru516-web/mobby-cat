@@ -39,7 +39,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const [confirm, confirmEl] = useConfirm(); // 迎える・使うは、対象を大きく見せるポップで最終決定する
   // 背の低い端末（iPhone SE など）では、下の操作エリアを小さくする（2段目の猫が隠れすぎないように）
   const compact = useWindowDimensions().height < 740;
-  const countdown = revealCountdown(now, REVEAL_HOUR);
 
   // 歩数・位置情報（天気）の許可。どちらかが無いと、ほとんど会えないので、出会い画面でいつも知らせる
   const [permOk, setPermOk] = useState(true);
@@ -58,6 +57,41 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   }, [todayKey]);
 
   const rec = state.days[day];
+  // 「今日・きのう」の切り替えと、許可のお願い。初日の「届くのを待っている間」の画面でも、同じものを出す
+  const dayTabsEl = (
+    <View style={s.dayTabs}>
+      {[todayKey, prevDayKey(todayKey)].map((k) => {
+        const none = !availableDays.includes(k);
+        return (
+          <Tap key={k} style={{ opacity: none ? 0.5 : 1 }} accessibilityState={{ disabled: none }} onPress={() => {
+            if (none) return notice('きのうの出会いはありません', 'アプリを入れる前の日の出会いは届きません。あしたからは、前の日の子も選べます（次の20時まで）。');
+            setDay(k);
+            setSel(null);
+            setOpenSel([]);
+          }}>
+            <Slice name={day === k ? 'button/chip-on' : 'button/chip'} style={s.dayTab}>
+              {k !== todayKey && !none && !!state.days[k]?.candidates.length && !state.days[k]?.freePick && <Pic name="button/bell-badge" height={12} style={s.tabDot} />}
+              <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
+                {k === todayKey ? '今日' : none ? 'きのう（ありません）' : state.days[k]?.freePick ? 'きのう' : `きのう（受け取りは${now.getHours() >= REVEAL_HOUR ? 'あす' : '今日'}の20時まで）`}
+              </T>
+            </Slice>
+          </Tap>
+        );
+      })}
+    </View>
+  );
+  const permBannerEl = !permOk ? (
+    <Tap
+      accessibilityRole="button"
+      accessibilityLabel="歩数と位置情報を許可しないと、ほとんど会えません。設定を開く"
+      onPress={() => Linking.openSettings().catch(() => openSettings())}
+    >
+      <Slice name="panel/card-parchment" style={s.permBanner}>
+        <T w="x" size={11} style={s.centerText}>歩数と位置情報（天気）をオンにしてね</T>
+        <T w="m" size={10} color={C.sub} style={s.centerText}>許可しないと、ほとんど会えません（押すと設定へ）</T>
+      </Slice>
+    </Tap>
+  ) : null;
   const partner = homeSlotsOf(state).find((id) => !!id) ?? null; // 最初に選んだ相棒（ホームに出ている猫）
   // 20時の切り替わり直後などで、その日の候補をまだ作っている間
   if (!rec) {
@@ -66,18 +100,8 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         <Backdrop name="bg/room-deai-full" bleed />
         <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
         <EncounterTitle width={width} />
-        {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR && (
-          <Slice name="panel/sign-info" style={[s.signInfo, { marginHorizontal: 18 }]}>
-            <View style={s.signLine}>
-              <Pic name="icon/calendar-note" height={18} />
-              <T w="x" size={11} numberOfLines={1} style={s.signText}>今日の出会いは今夜{REVEAL_HOUR}:00に届くよ</T>
-            </View>
-            <View style={s.signLine}>
-              <Pic name="icon/hourglass" height={18} />
-              <T w="b" size={11} style={s.signText}>あと {countdown}</T>
-            </View>
-          </Slice>
-        )}
+        {dayTabsEl}
+        {permBannerEl}
         <View style={s.preparing}>
           {day === todayKey && todayKey === state.installDay && now.getHours() < REVEAL_HOUR ? (
             <>
@@ -226,38 +250,8 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     <Header onShop={openShop} onBell={() => openNotice()} onSettings={openSettings} />
     <EncounterTitle width={width} />
     {/* 「今日・きのう」はいつも出す。きのうの分が無い日（アプリを入れた日など）は、薄く出して、押すと理由を伝える */}
-    <View style={s.dayTabs}>
-        {[todayKey, prevDayKey(todayKey)].map((k) => {
-          const none = !availableDays.includes(k);
-          return (
-          <Tap key={k} style={{ opacity: none ? 0.5 : 1 }} accessibilityState={{ disabled: none }} onPress={() => {
-            if (none) return notice('きのうの出会いはありません', 'アプリを入れる前の日の出会いは届きません。あしたからは、前の日の子も選べます（次の20時まで）。');
-            setDay(k);
-            setSel(null);
-            setOpenSel([]);
-          }}>
-            <Slice name={day === k ? 'button/chip-on' : 'button/chip'} style={s.dayTab}>
-              {k !== todayKey && !none && !!state.days[k]?.candidates.length && !state.days[k]?.freePick && <Pic name="button/bell-badge" height={12} style={s.tabDot} />}
-              <T w="x" size={12} color={day === k ? '#fff' : C.ink}>
-                {k === todayKey ? '今日' : none ? 'きのう（ありません）' : state.days[k]?.freePick ? 'きのう' : `きのう（受け取りは${now.getHours() >= REVEAL_HOUR ? 'あす' : '今日'}の20時まで）`}
-              </T>
-            </Slice>
-          </Tap>
-          );
-        })}
-    </View>
-    {!permOk && (
-      <Tap
-        accessibilityRole="button"
-        accessibilityLabel="歩数と位置情報を許可しないと、ほとんど会えません。設定を開く"
-        onPress={() => Linking.openSettings().catch(() => openSettings())}
-      >
-        <Slice name="panel/card-parchment" style={s.permBanner}>
-          <T w="x" size={11} style={s.centerText}>歩数と位置情報（天気）をオンにしてね</T>
-          <T w="m" size={10} color={C.sub} style={s.centerText}>許可しないと、ほとんど会えません（押すと設定へ）</T>
-        </Slice>
-      </Tap>
-    )}
+    {dayTabsEl}
+    {permBannerEl}
     {/* きのうの子が残っているときは、今日の画面の上で知らせる（押すと、きのうに切り替わる） */}
     {yWaiting && (
       <Tap onPress={() => { setDay(yKey); setSel(null); }} accessibilityLabel="きのうの子を見る" style={{ marginHorizontal: 16, marginTop: 8 }}>
@@ -318,7 +312,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
                 <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
                   {mine && <Pic name="cat/halo-select" width={colW * 1.1} style={{ position: 'absolute', bottom: -colW * 0.08 }} />}
                   <Bobbing delay={i * 180}>
-                  <Pic name={mine ? 'deai/fukuro-picked' : MYSTERY} width={colW * 0.82} />
+                    <Pic name={mine ? 'deai/fukuro-picked' : MYSTERY} width={colW * 0.82} />
                   </Bobbing>
                 </View>
                 <View style={s.badgeRow}>{!picking && canMatatabi ? <Pic name="icon/matatabi-leaf" height={24} /> : <View style={{ height: 24 }} />}</View>
@@ -484,17 +478,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   );
 }
 
-function revealCountdown(now: Date, hour: number) {
-  const target = new Date(now);
-  target.setHours(hour, 0, 0, 0);
-  if (target.getTime() <= now.getTime()) target.setDate(target.getDate() + 1);
-  const seconds = Math.floor((target.getTime() - now.getTime()) / 1000);
-  const hh = String(Math.floor(seconds / 3600)).padStart(2, '0');
-  const mm = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-  const ss = String(seconds % 60).padStart(2, '0');
-  return `${hh}:${mm}:${ss}`;
-}
-
 function EncounterTitle({ width }: { width: number }) {
   const boardWidth = Math.min(width * 0.75, 310);
   return (
@@ -514,9 +497,6 @@ const s = StyleSheet.create({
   titleText: { alignItems: 'center', justifyContent: 'center', marginTop: 21 },
   titleMain: { textAlign: 'center' },
   titleSub: { textAlign: 'center', marginTop: -1 },
-  signInfo: { height: 76, justifyContent: 'center', paddingTop: 24, paddingHorizontal: 22, gap: 1 },
-  signLine: { flexDirection: 'row', alignItems: 'center', gap: 7, height: 20 },
-  signText: { flex: 1 },
   waitStage: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 8 },
   bagRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 18 },
   waitBag: { alignItems: 'center' },

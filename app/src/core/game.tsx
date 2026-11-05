@@ -483,7 +483,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             appearCounts,
             encounterMisses,
             catalogVersion: CATALOG_VERSION,
-            days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], opened: [], passBonus: s.pass.active && !passOver(s) ? PASS_BONUS : 0 } },
+            days: { ...s.days, [k]: { ...d, matatabiUsed: 0, extraPicks: [], opened: d.candidates, passBonus: 0 } },
           };
           // 実在の猫の簡単な条件は通知しない。個性のある猫（特別な猫）が来た日だけ知らせる
           const special = d.candidates.some(isRareEncounter);

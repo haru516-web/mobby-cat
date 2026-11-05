@@ -4,8 +4,7 @@ import { recipeOf, shownRarity } from './recipes';
 
 export { REVEAL_HOUR, encounterDayKey, fmtDay, msUntilNextReveal, prevDayKey } from './dates';
 
-const BASE_CANDIDATES = 3;
-export const MAX_CANDIDATES = 6;
+export const MAX_CANDIDATES = 6; // 開発用の候補づくりだけで使う（本番の候補は数で絞らない）
 
 function hash(str: string): number {
   let h = 2166136261;
@@ -28,28 +27,14 @@ function mulberry32(a: number) {
 
 export type DayCandidates = { candidates: string[]; reasons: Record<string, string>; baseCount: number };
 
-// 条件を満たしたレア以上は6匹を超えても候補に残す。
 export const isRareEncounter = (id: string) => {
   const c = CATS.find((cat) => cat.id === id);
   return !!c && (c.kind === 'world' || c.kind === 'travel' || shownRarity(c) >= 3);
 };
 
-export function selectCandidates(g: Guaranteed[], ctx: Ctx, rng: () => number): Guaranteed[] {
-  const picked = g.filter((x) => isRareEncounter(x.id));
-  const normal = g.filter((x) => !isRareEncounter(x.id));
-  const draw = (pool: Guaranteed[]) => {
-    const weight = (x: Guaranteed) => 1 + Math.min(20, ctx.encounterMisses?.[x.id] ?? 0) * 0.5;
-    let roll = rng() * pool.reduce((n, x) => n + weight(x), 0);
-    const chosen = pool.find((x) => (roll -= weight(x)) < 0) ?? pool[pool.length - 1];
-    picked.push(chosen);
-    normal.splice(normal.indexOf(chosen), 1);
-  };
-  if (picked.length < MAX_CANDIDATES) {
-    const fresh = normal.filter((x) => !ctx.owned[x.id]?.count);
-    if (fresh.length) draw(fresh);
-  }
-  while (picked.length < MAX_CANDIDATES && normal.length) draw(normal);
-  // 位置からレア度が分からないよう、最後に混ぜる。
+// 条件をすべて満たした猫は、全員を候補にする（数で絞らない・抽選しない）。位置からレア度が分からないよう、日付から決まる順で混ぜるだけ。
+export function selectCandidates(g: Guaranteed[], _ctx: Ctx, rng: () => number): Guaranteed[] {
+  const picked = [...g];
   for (let i = picked.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
     [picked[i], picked[j]] = [picked[j], picked[i]];
@@ -87,7 +72,7 @@ export function buildDay(dayKey: string, signals: Signals, ctx: Ctx): DayCandida
   for (const x of picked) reasons[x.id] = x.parts?.length ? x.parts[Math.floor(rng() * x.parts.length)] : x.reason;
   const candidates = picked.map((x) => x.id);
   const eligible = g.map((x) => x.id);
-  return { candidates, reasons, baseCount: BASE_CANDIDATES, eligible, encounterMisses: nextEncounterMisses(ctx.encounterMisses ?? {}, eligible, candidates) };
+  return { candidates, reasons, baseCount: candidates.length, eligible, encounterMisses: nextEncounterMisses(ctx.encounterMisses ?? {}, eligible, candidates) };
 }
 
 // 以前の記録は、複数の条件を「・」でつないだ文のまま保存されている。読み込み時に1つだけへ直す（日と猫から決まるので毎回同じ）

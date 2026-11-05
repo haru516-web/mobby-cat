@@ -41,6 +41,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
   const pad = useTabPad();
   const [filter, setFilter] = useState<Filter>('normal');
   const [q, setQ] = useState('');
+  const [searchFocus, setSearchFocus] = useState(false);
   const [sel, setSel] = useState<string | null>(null);
   const listRef = useRef<ComponentRef<typeof ScrollView>>(null);
   const [showTop, setShowTop] = useState(false);
@@ -51,9 +52,9 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
     return ZUKAN_CATS.filter((cat) => {
       if (filter === 'fav' && !state.favorites.includes(cat.id)) return false;
       if (!query) return filter === 'fav' || (shownRarity(cat) >= 3) === (filter === 'rare');
-      return searchKey(cat.name).includes(query);
+      return !!state.owned[cat.id] && searchKey(cat.name).includes(query); // 未所持の名前は、検索で分からないようにする
     });
-  }, [filter, q, state.favorites]);
+  }, [filter, q, state.favorites, state.owned]);
 
   const cellW = Math.floor((width - 54) / 4);
   const cellH = cellW * (570 / 480);
@@ -116,8 +117,13 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
             placeholderTextColor="#705B49"
             accessibilityLabel="にゃこモビーを検索"
             returnKeyType="search"
+            onFocus={() => setSearchFocus(true)}
+            onBlur={() => setSearchFocus(false)}
+            selectionColor={C.accent}
+            cursorColor={C.accent}
             style={[s.searchInput, { fontFamily: FONT.b }]}
           />
+          {searchFocus && <View pointerEvents="none" style={s.searchFocus} />}
         </Slice>
 
         <View style={s.filters}>
@@ -177,6 +183,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                     </View>
                   </Slice>
                 </Tap>
+                {own && (
                 <Tap
                   onPress={() => toggleFavorite(c.id)}
                   accessibilityRole="button"
@@ -186,6 +193,7 @@ export default function ZukanScreen({ openShop, openSettings, openNotice, width 
                 >
                   <Icon name={isFav ? 'icon/heart-on' : 'icon/heart-off'} size={18} />
                 </Tap>
+                )}
               </View>
             );
           })}
@@ -269,7 +277,8 @@ const s = StyleSheet.create({
   completeRibbon: { position: 'absolute', bottom: -2, alignItems: 'center', justifyContent: 'center' },
   completeText: { position: 'absolute', top: 2, color: '#fff', fontSize: 8 },
   search: { height: 42, justifyContent: 'center' },
-  searchInput: { marginLeft: 56, marginRight: 20, fontSize: 15, color: C.ink, height: 38, paddingVertical: 0 } as never,
+  searchFocus: { position: 'absolute', left: 1, right: 1, top: 1, bottom: 1, borderRadius: 21, borderWidth: 2.5, borderColor: C.accent },
+  searchInput: { zIndex: 1, marginLeft: 56, marginRight: 20, fontSize: 15, color: C.ink, height: 38, paddingVertical: 0 } as never,
   filters: { flexDirection: 'row', gap: 5, paddingRight: 2 },
   filterChip: { height: 34, minWidth: 58, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center' },
   chipIcon: { position: 'absolute', left: 8 },
