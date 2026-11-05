@@ -6,14 +6,14 @@ const {CATS}=await import('../src/data/catalog.ts');
 const {recipeOf,isRealCat,NORMAL_ATOM_BY_ID,evalAtoms}=await import('../src/core/recipes.ts');
 const {guaranteedCats}=await import('../src/core/conditions.ts');
 const normals=CATS.filter(isRealCat);
-test('every normal cat has a unique fixed 3-4 group recipe with a changing daily condition',()=>{
+test('every normal cat has a unique fixed 3-condition recipe with weather and a 6-hour time window',()=>{
  const keys=new Set();
- for(const c of normals){const atoms=recipeOf(c).atoms;assert.ok(atoms.length>=3&&atoms.length<=4);assert.equal(new Set(atoms.map(a=>a.group)).size,atoms.length);const key=atoms.map(a=>a.id).sort().join('|');assert.ok(!keys.has(key),c.id);keys.add(key);assert.ok(atoms.some(a=>['time','weather','steps','battery','moon','week','season'].includes(a.group)));}
+  for(const c of normals){const atoms=recipeOf(c).atoms;assert.equal(atoms.length,3,c.id);const groups=atoms.map(a=>a.group);assert.equal(new Set(groups).size,3,c.id);assert.equal(groups.filter(g=>g==='weather').length,1,c.id);assert.equal(groups.filter(g=>g==='time').length,1,c.id);const key=atoms.map(a=>a.id).sort().join('|');assert.ok(!keys.has(key),c.id);keys.add(key);}
  assert.equal(keys.size,169);
 });
-test('rare and limited recipes are unchanged from 8f1e5d4',()=>{
+test('non-normal recipes keep their deterministic weather, time, and week gates',()=>{
  const data=CATS.filter(c=>!isRealCat(c)).map(c=>[c.id,recipeOf(c)?.atoms.map(a=>a.id)??null,recipeOf(c)?.rarity??null]);
- assert.equal(createHash('sha256').update(JSON.stringify(data)).digest('hex'),'16e01f11323d6fc1d6ee5935e9643532660fcab970bf793de5ffd62340b819da');
+  assert.equal(createHash('sha256').update(JSON.stringify(data)).digest('hex'),'53eee5a36c003f2256dc2ce11ddd9bcfd5e8229838e3e4b47d3bba3762271f2c');
 });
 const e={steps:null,battery:[],charging:false,streak:1,openHours:[],weather:null,kinds:1,m:1,d:1,dow:4,holiday:true,moonAge:1,fullMoon:false,newMoon:false};
 test('missing progression never grants its conditions; thresholds include the exact boundary',()=>{

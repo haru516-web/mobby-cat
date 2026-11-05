@@ -14,14 +14,12 @@ import { Pic } from '../../ui/Slice';
 import { AgePopup } from './AgePopup';
 
 // 売る商品。価格は設計書（docs/game-design.md 4.3）のとおり。実際に請求される金額は、App Store が表示する価格。
-// またたびは5個セットだけを売る。
+// またたびの商品情報は残す。新しい出会いの仕組みに合わせて、ショップでは一時的に非表示にする。
 const ITEMS: { key: ProductKey; icon: string; name: string; yen: string; desc: string }[] = [
   { key: 'ticket1', icon: 'icon/ticket-paw', name: 'お迎え券 1枚', yen: '¥200', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
   { key: 'ticket6', icon: 'icon/ticket-paw', name: 'お迎え券 6枚', yen: '¥1,000', desc: 'まとめ買い（5枚＋おまけ1枚）' },
-  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '1個で、今日の候補をもう1匹ひらけます（条件がそろった子が4匹以上いる日。候補の数まで）' },
+  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '準備中です。所持中のまたたびは、そのまま残ります。' },
 ];
-
-const PASS_BONUS_LABEL = 3;
 
 const openLink = (url: string) => Linking.openURL(url).catch(() => notice('ページを開けませんでした', url));
 
@@ -150,7 +148,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         </View>
         <T w="b" size={13} color={C.sub} style={{ marginTop: 4, marginBottom: 12 }}>お迎え券 {ticketsOf(state)}枚 ／ またたび {matatabiOf(state)}個</T>
 
-        {ITEMS.map((it) => (
+        {ITEMS.filter((it) => it.key !== 'matatabi5').map((it) => (
           <Card key={it.key} style={s.item}>
             <Icon name={it.icon} size={40} />
             <View style={{ flex: 1 }}>
@@ -169,25 +167,14 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         <Card style={[s.item, { alignItems: 'flex-start' }]}>
           <Icon name="icon/matatabi-bag" size={44} />
           <View style={{ flex: 1 }}>
-            <T w="x" size={14}>またたびパス（月額 {passPrice}）</T>
+            <T w="x" size={14}>{state.pass.active ? `またたびパス（月額 ${passPrice}）` : 'またたびパス'}</T>
             <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>
-              加入中は、毎日{3 + PASS_BONUS_LABEL}匹までひらけて（ふだんは3匹）、毎月お迎え券が8枚届きます。1か月ごとに自動で更新され、いつでも解約できます。解約後も迎えた猫はそのまま残ります
+              {state.pass.active
+                ? '加入中です。毎月お迎え券が8枚届きます。解約はiPhoneの「設定」→ 上部の名前 →「サブスクリプション」から行えます。'
+                : '準備中です。新しい出会いの仕組みに合わせて内容を見直しています。新規加入は一時的に停止しています。'}
             </T>
           </View>
-          <ImgButton
-            skin={state.pass.active ? 'ghost-outline' : 'primary-green'}
-            label={state.pass.active ? '加入中' : passPrice}
-            height={40}
-            disabled={busy || state.pass.active}
-            onPress={() => confirm(
-              'またたびパスに加入しますか？',
-              `月額 ${passPrice}です。毎日${3 + PASS_BONUS_LABEL}匹までひらけて、毎月お迎え券が8枚届きます。ひらける数は、その日にそろった子の数までです。期間が終わる24時間前までに解約しない限り、1か月ごとに自動で更新され、Apple Accountに請求されます。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から、いつでもできます。`,
-              '加入する',
-              () => void purchase('pass'),
-              { skin: 'primary-green' },
-            )}
-            style={{ width: 100 }}
-          />
+          {state.pass.active && <T w="x" size={12} color={C.green}>加入中</T>}
         </Card>
         {state.pass.active && (
           <T w="m" size={11} color={C.sub} style={{ marginBottom: 8 }}>解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から行えます。</T>
@@ -210,14 +197,13 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         {/* 購入を復元の確認と同じく、ポップで見せる（ポップは OverlayHost に出るので、ここに置いてよい） */}
         <Popup visible={odds} onClose={() => setOdds(false)} maxWidth={340} heightRatio={0.7}>
           <View style={{ flex: 1, padding: 18, gap: 8 }}>
-            <T w="x" size={16} style={{ textAlign: 'center', marginTop: 4 }}>またたびで増える候補について</T>
+            <T w="x" size={16} style={{ textAlign: 'center', marginTop: 4 }}>出会いの仕組み</T>
             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
               <T w="m" size={12} color={C.sub} style={{ lineHeight: 18 }}>
-              毎晩20時に、その日の出会いの条件がすべてそろった猫の中から、候補が決まります。{'\n'}
-              ・条件がそろったレア・でんせつ・世界の猫は候補に残ります。レア以上だけで6匹を超える日は、候補の枠を広げます。{'\n'}
-              ・ふだんは6匹まで。残りはノーマルから選び、1枠はまだ迎えていない子を優先します。条件がそろっても候補から外れた子は、次に条件がそろった日に少し出やすくなります（外れた回数ごとに重み+0.5、最大11倍。候補に入ると元に戻ります）。{'\n'}
-              候補は、届いた時点で決まっていて、購入では変わりません。候補は、ひらくまで中身が見えません。ひらいた候補と非表示の子のレア度ごとの数を表示します。珍しい猫がまだひらかれていない日は、気配を知らせます。ひらく候補は自分で選べます。ひらいた猫は、その日の候補の別々の猫で、はずれはありません。{'\n'}
-              またたびは、ひらける数を1匹ずつ増やします（候補の数まで）。出る猫の確率は変わりません。お迎え券は、ひらいた猫の中から、迎える猫を選べる券です。条件を飛ばして猫を迎えることはできません。
+              毎晩20時に、その日の出会いの条件をすべて満たした猫が候補に並びます。{'\n'}
+              条件をすべて満たしたら、その日の候補に必ず出ます。候補の数を抽選でしぼることはありません。候補は届いた時点ですべて見え、同じ日・同じ状態なら顔ぶれも同じです。{'\n'}
+              ノーマルの猫には、歩数・天気・起動した時間帯・月の状態・曜日・電池・コレクションなど、その日の自分に合わせた条件があります。毎日1匹のノーマルは、日付で決まる軽い条件を満たして候補に加わります。そのため、候補が0匹の日はありません。{'\n'}
+              お迎え券を使うと、候補の中からもう1匹を選んで迎えられます。条件を満たした猫は、みんな候補に出ます。
               </T>
             </ScrollView>
             <ImgButton skin="ghost-outline" label="閉じる" height={48} fontSize={13} onPress={() => setOdds(false)} />

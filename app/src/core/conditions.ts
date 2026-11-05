@@ -79,6 +79,9 @@ const SANBIKI_SET = ['british-shorthair', 'siamese-seal-point', 'bengal'];
 // 「ひみつ」: お気に入りにこの3匹を入れて部屋に並べると会える
 const HIMITSU_SET = ['rea-mobby', 'uyu-mobby', 'mike-neko'];
 const AMAYADORI_SET = ['egyptian-mau', 'sphynx', 'savannah'];
+// 条件がそろう猫がいない日も、日付で決まる軽い条件を満たすノーマルを1匹用意する。
+// ID順に固定しておくことで、端末やカタログの並びに依存せず同じ日なら同じ猫になる。
+const DAILY_NORMAL_CATS = CATS.filter(isRealCat).sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
 // 日食（皆既・金環・ハイブリッド）の日付。部分日食は含めない。世界のどこかで起きる日で、日付は UTC。2035年まで
 // 月食の猫は別に追加する予定なので、ここには入れない
 const SOLAR_ECLIPSES = [
@@ -251,6 +254,9 @@ export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = 
     newMoon: isNewMoon(dayKey, day),
   };
   const sig = signatureCats(dayKey, s, ctx, forecast);
+  const epochDay = Math.floor(Date.UTC(y, m - 1, d) / 86400000);
+  const dailyIndex = ((epochDay % DAILY_NORMAL_CATS.length) + DAILY_NORMAL_CATS.length) % DAILY_NORMAL_CATS.length;
+  const dailyNormalId = DAILY_NORMAL_CATS[dailyIndex]?.id;
   const out: Guaranteed[] = [];
   const sigIds = new Set(sig.map((g) => g.id));
   for (const c of CATS) {
@@ -259,9 +265,13 @@ export function guaranteedCats(dayKey: string, s: Signals, ctx: Ctx, forecast = 
     if (c.kind === 'condition') {
       const g = sig.find((x) => x.id === c.id);
       if (g && (forecast || evalAtoms(rec.atoms, env))) out.push(g);
-    } else if (!forecast && !sigIds.has(c.id) && evalAtoms(rec.atoms, env)) {
-      const parts = rec.atoms.map((a) => a.label);
-      out.push({ id: c.id, reason: parts.join('・'), parts });
+    } else if (!forecast && !sigIds.has(c.id)) {
+      const recipeMet = evalAtoms(rec.atoms, env);
+      const dailyMet = c.id === dailyNormalId;
+      if (recipeMet || dailyMet) {
+        const parts = recipeMet ? rec.atoms.map((a) => a.label) : ['今日の日付で決まる毎日の出会い'];
+        out.push({ id: c.id, reason: parts.join('・'), parts });
+      }
     }
   }
   return out;

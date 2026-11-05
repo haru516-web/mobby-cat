@@ -1,40 +1,72 @@
-// 条件表を設計するときだけ実行する。アプリ実行中に条件を抽選しない。
+// 全ノーマルの固定レシピに、天気・時間帯とその猫ごとの条件を割り当てる。
+// アプリ実行中に条件を抽選しない。ID順・固定表で決める。
 import '../app/tests/pure-loader.mjs';
-import {writeFileSync} from 'node:fs';
-const {CATS}=await import('../app/src/data/catalog.ts');
-const times=['morning','noon','evening','night'];
-const battery=['battery-half','battery-ready','battery-high','charging','battery-middle'];
-const weather=['sunny','cloudy','rain'];
-const moon=['moon-growing','moon-waning'];
-const steps=['steps100','steps1000','steps3000','steps5000','steps-rest','steps-walk','steps-active'];
-const week=['weekday','weekend'];
-const season=['spring','summer','autumn','winter'];
-const themes=[
- ['散歩', [steps,weather,times]],
- ['月と暮らす', [moon,times,battery]],
- ['季節の散歩', [season,steps,battery]],
- ['お気に入りの仲間', [['favorites1','favorites3','favorites6'],weather,times]],
- ['ノーマルの仲間', [['normal5','normal15','normal30'],moon,times]],
- ['珍しい仲間', [['rare1','rare3'],battery,times]],
- ['なでる暮らし', [['pets5','pets30','pets100'],battery,times]],
- ['部屋の模様替え', [['home-set'],weather,battery]],
- ['誕生日の登録', [['birthday-set'],season,times]],
- ['起動の習慣', [['streak-first','streak-week','streak7'],battery,week]],
- ['久しぶり', [['gap3'],times,battery]],
- ['空と電池', [weather,moon,battery]],
- ['一日のリズム', [times,moon,week]],
- ['仲間との暮らし', [['owned3','owned10','owned20'],steps,times]],
-];
-const hash=s=>{let h=2166136261;for(const ch of s)h=Math.imul(h^ch.charCodeAt(0),16777619);return h>>>0;};
-const fourthByTheme={ 'お気に入りの仲間': moon, 'ノーマルの仲間': weather, '珍しい仲間': week, 'なでる暮らし': weather, '部屋の模様替え': moon, '誕生日の登録': battery, '仲間との暮らし': moon };
-const used=new Set();
-let out='// ノーマル猫の固定条件表。各行は異なる3〜4条件。設計用スクリプト: tools/design-normal-recipes.mjs\nexport const NORMAL_RECIPES: Record<string, string[]> = {\n';
-let index=0;
-for(const c of CATS.filter(c=>c.kind==='breed'&&!['rea-mobby','uyu-mobby'].includes(c.id)).sort((a,b)=>a.id.localeCompare(b.id))){
- const [theme,pools]=themes[index++%themes.length];
- const allPools=fourthByTheme[theme] ? [...pools, fourthByTheme[theme]] : pools;
- const options=allPools.reduce((rows,pool)=>rows.flatMap(row=>pool.map(id=>[...row,id])),[[]]).sort((a,b)=>hash(c.id+':'+a.join(':'))-hash(c.id+':'+b.join(':')));
- const ids=options.find(xs=>!used.has([...xs].sort().join('|')));if(!ids)throw Error('exhausted '+theme);used.add([...ids].sort().join('|'));
- out+=`  '${c.id}': [${ids.map(id=>`'${id}'`).join(', ')}], // ${theme}\n`;
+import { readFileSync, writeFileSync } from 'node:fs';
+
+const { CATS } = await import('../app/src/data/catalog.ts');
+const { NORMAL_RECIPES } = await import('../app/src/core/normalRecipes.ts');
+const { NORMAL_ATOM_BY_ID, isRealCat, recipeOf } = await import('../app/src/core/recipes.ts');
+
+const weather = ['sunny', 'cloudy', 'rain', 'snow'];
+const times = ['time-00-06', 'time-06-12', 'time-12-18', 'time-18-24'];
+const replaceableGroups = new Set(['steps', 'time', 'battery', 'week', 'season', 'moon']);
+const source = readFileSync(new URL('../app/src/core/normalRecipes.ts', import.meta.url), 'utf8');
+const comments = new Map([...source.matchAll(/^\s*'([^']+)':\s*\[[^\]]*\],\s*\/\/\s*(.*)$/gm)].map((match) => [match[1], match[2]]));
+const cats = CATS.filter(isRealCat).sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+const cellCounts = new Map();
+const usedRecipes = new Set();
+
+let output = '// ノーマル猫の固定条件表。天気・時間帯に、猫ごとの条件を組み合わせる。\nexport const NORMAL_RECIPES: Record<string, string[]> = {\n';
+for (const [index, cat] of cats.entries()) {
+  const recipe = recipeOf(cat);
+  if (!recipe) throw new Error(`Recipe missing: ${cat.id}`);
+  const atoms = [...recipe.atoms];
+  const replaceWith = (group) => {
+    const existing = atoms.find((atom) => atom.group === group);
+    if (existing) {
+      atoms.splice(atoms.indexOf(existing), 1);
+      return;
+    }
+    const remove = atoms
+      .filter((atom) => replaceableGroups.has(atom.group) && atom.group !== 'weather' && atom.group !== 'time')
+      .sort((a, b) => b.p - a.p || (a.id < b.id ? -1 : 1))[0];
+    if (!remove) throw new Error(`No general condition to replace with ${group}: ${cat.id}`);
+    atoms.splice(atoms.indexOf(remove), 1);
+  };
+  replaceWith('weather');
+  replaceWith('time');
+  if (atoms.length > 1) {
+    const remove = atoms.sort((a, b) => b.p - a.p || (a.id < b.id ? -1 : 1))[0];
+    atoms.splice(atoms.indexOf(remove), 1);
+  }
+  const preferredPersonal = atoms[0];
+  if (!preferredPersonal) throw new Error(`Personal condition missing: ${cat.id}`);
+  const preferredCell = index % (weather.length * times.length);
+  const cells = weather.flatMap((weatherId) => times.map((timeId) => ({ weatherId, timeId })))
+    .sort((a, b) => (cellCounts.get(`${a.weatherId}|${a.timeId}`) ?? 0) - (cellCounts.get(`${b.weatherId}|${b.timeId}`) ?? 0)
+      || (weather.indexOf(a.weatherId) * times.length + times.indexOf(a.timeId) - preferredCell + weather.length * times.length) % (weather.length * times.length)
+      - (weather.indexOf(b.weatherId) * times.length + times.indexOf(b.timeId) - preferredCell + weather.length * times.length) % (weather.length * times.length));
+  const alternatives = Object.values(NORMAL_ATOM_BY_ID)
+    .filter((atom) => atom.group !== 'weather' && atom.group !== 'time')
+    .sort((a, b) => Number(b.id === preferredPersonal.id) - Number(a.id === preferredPersonal.id)
+      || Number(b.group === preferredPersonal.group) - Number(a.group === preferredPersonal.group)
+      || Math.abs(a.p - preferredPersonal.p) - Math.abs(b.p - preferredPersonal.p)
+      || (a.id < b.id ? -1 : 1));
+  let selected;
+  for (const personal of alternatives) {
+    const cell = cells.find(({ weatherId, timeId }) => !usedRecipes.has(`${personal.id}|${weatherId}|${timeId}`));
+    if (cell) {
+      selected = { personal, ...cell };
+      break;
+    }
+  }
+  if (!selected) throw new Error(`Could not make a unique recipe: ${cat.id}`);
+  const { personal, weatherId, timeId } = selected;
+  const ids = [personal.id, weatherId, timeId];
+  usedRecipes.add(ids.join('|'));
+  const cellKey = `${weatherId}|${timeId}`;
+  cellCounts.set(cellKey, (cellCounts.get(cellKey) ?? 0) + 1);
+  output += `  '${cat.id}': [${ids.map((id) => `'${id}'`).join(', ')}], // ${comments.get(cat.id) ?? '出会いの条件'}\n`;
 }
-out+='};\n';writeFileSync(new URL('../app/src/core/normalRecipes.ts',import.meta.url),out);
+output += '};\n';
+writeFileSync(new URL('../app/src/core/normalRecipes.ts', import.meta.url), output);

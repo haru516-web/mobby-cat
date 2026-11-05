@@ -21,14 +21,15 @@ test('every eligible cat becomes a candidate, with no cap and no lottery',()=>{
  assert.deepEqual(selectCandidates(g(normal),c,()=>0.7),selectCandidates(g(normal),c,()=>0.7));
  assert.deepEqual(nextEncounterMisses({a:2,b:3,c:20},['a','b','c'],['a','b','c']),{});
 });
-test('days are deterministic, eligible only, and empty when no conditions match',()=>{
+test('days are deterministic, include every eligible cat, and guarantee one on empty days',()=>{
  const signals={steps:6000,battery:[30,90],charging:true,streak:7,openHours:[6,14,18],weather:'sunny',gapDays:1,catalogUpdated:false,birthday:null};
  const day=buildDay('2026-10-31',signals,ctx);
  assert.equal(day.baseCount,day.candidates.length);assert.deepEqual(day,buildDay('2026-10-31',signals,ctx));
  const eligible=guaranteedCats('2026-10-31',signals,ctx).map(x=>x.id);
  assert.ok(day.candidates.every(id=>eligible.includes(id)));assert.deepEqual([...day.candidates].sort(),[...eligible].sort());
  const empty=buildDay('2026-10-31',{...signals,steps:null,battery:[],charging:false,streak:0,openHours:[],weather:null},ctx);
- assert.deepEqual(empty.candidates,[]);
+  assert.equal(empty.candidates.length,1);
+  assert.deepEqual(empty.candidates,guaranteedCats('2026-10-31',{...signals,steps:null,battery:[],charging:false,streak:0,openHours:[],weather:null},ctx).map(x=>x.id));
 });
 test('old records survive and new fairness metadata round trips',()=>{
  const record={candidates:[normal[0]],reasons:{[normal[0]]:'昔の理由'},baseCount:3,matatabiUsed:0,extraPicks:[]};

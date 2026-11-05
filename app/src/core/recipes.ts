@@ -49,12 +49,14 @@ export const ATOMS: Atom[] = [
   { id: 'sunny', group: 'weather', hard: false, p: 0.4, label: '天気が晴れ', test: (e) => e.weather === 'sunny' },
   { id: 'cloudy', group: 'weather', hard: false, p: 0.3, label: '天気がくもり', test: (e) => e.weather === 'cloudy' },
   { id: 'rain', group: 'weather', hard: false, p: 0.25, label: '天気が雨', test: (e) => e.weather === 'rain' },
+  { id: 'snow', group: 'weather', hard: false, p: 0.1, label: '天気が雪', test: (e) => e.weather === 'snow' },
   { id: 'weekday', group: 'week', hard: false, p: 0.65, label: '平日', test: (e) => !e.holiday && e.dow >= 1 && e.dow <= 5 },
   { id: 'weekend', group: 'week', hard: false, p: 0.29, label: '土日', test: (e) => e.dow === 0 || e.dow === 6 },
   { id: 'holiday', group: 'week', hard: false, p: 0.04, label: '祝日', test: (e) => e.holiday },
   { id: 'morning', group: 'time', hard: false, p: 0.4, label: '朝（5〜10時）に起動', test: openIn(5, 10) },
   { id: 'noon', group: 'time', hard: false, p: 0.5, label: '昼（10〜16時）に起動', test: openIn(10, 16) },
   { id: 'evening', group: 'time', hard: false, p: 0.4, label: '夕方（16〜19時）に起動', test: openIn(16, 19) },
+  { id: 'night', group: 'time', hard: false, p: 0.45, label: '夜（19〜翌5時）に起動', test: (e) => e.openHours.some((h) => h >= 19 || h < 5) },
   { id: 'battery-half', group: 'battery', hard: false, p: 0.6, label: 'バッテリーが50%以下になった', test: (e) => e.battery.some((v) => v <= 50) },
   { id: 'battery-ready', group: 'battery', hard: false, p: 0.5, label: 'バッテリーが50%以上', test: (e) => e.battery.some((v) => v >= 50) },
   { id: 'battery-high', group: 'battery', hard: false, p: 0.6, label: 'バッテリーが80%以上', test: (e) => e.battery.some((v) => v >= 80) },
@@ -184,10 +186,18 @@ const LEGEND = new Set(['maboroshi-kuroneko', 'ousama', 'kiseki', 'pittari', 'ao
 
 export type Recipe = { atoms: Atom[]; signature: boolean; rarity: Rarity };
 
-const pickAtoms = (id: string, easy: number, hard: number, skip: Group[], minP = 0): Atom[] => {
+const pickAtoms = (id: string, easy: number, hard: number, skip: Group[], minP = 0, required: Group[] = []): Atom[] => {
   const r = rng(hash(`recipe:${id}`));
   const taken = new Set<Group>(skip);
   const out: Atom[] = [];
+  for (const group of required) {
+    if (taken.has(group)) continue;
+    const pool = ATOMS.filter((a) => !a.hard && a.group === group);
+    if (!pool.length) continue;
+    const atom = pool[Math.floor(r() * pool.length)];
+    taken.add(atom.group);
+    out.push(atom);
+  }
   const draw = (pool: Atom[], n: number) => {
     const shuffled = [...pool].sort(() => r() - 0.5);
     for (const a of shuffled) {
@@ -249,7 +259,7 @@ export function recipeOf(c: CatDef): Recipe | null {
   } else {
     // 個性のあるモビー: 簡単4個＋難しい1個（個性条件がある猫はそれが難しい1個）
     const skip = SIGNATURE_GROUPS[c.id] ?? [];
-    const atoms = raiseSteps(pickAtoms(c.id, 4, hasSignature ? 0 : 1, skip, 0.4));
+    const atoms = raiseSteps(pickAtoms(c.id, 4, hasSignature ? 0 : 1, skip, 0.4, ['weather', 'time', 'week']));
     const hardCount = (hasSignature ? (LEGEND.has(c.id) ? 2 : 1) : 0) + atoms.filter((a) => a.hard).length;
     rec = { atoms, signature: hasSignature, rarity: rarityFromConditions(atoms.length + (hasSignature ? 1 : 0), hardCount) };
   }
