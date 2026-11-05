@@ -5,7 +5,7 @@ import { CATS } from '../data/catalog';
 import { Signals } from './conditions';
 import { daysBetween } from './dates';
 import { MAX_CANDIDATES, REVEAL_HOUR, buildDay, encounterDayKey, fmtDay, prevDayKey, singleReasons, isRareEncounter } from './encounter';
-import { readBattery, readSteps } from '../services/signals';
+import { readBattery, readLaunchSteps, readSteps } from '../services/signals';
 import { readWeather } from '../services/weather';
 import { readWorldStats } from '../services/world';
 import { ensureDailyNotification } from '../services/notify';
@@ -22,7 +22,8 @@ import { accountChangeBlocked, applySpend, runSpend, serializedWriter, spendBloc
 const CATALOG_VERSION = String(CATS.length);
 
 // 出会いの日（encounterDayKey）ごとに、起動時に観測した端末の様子
-type Obs = { battery: number[]; charging: boolean; hours: number[] };
+type LaunchSample = NonNullable<Signals['launches']>[number];
+type Obs = { battery: number[]; charging: boolean; hours: number[]; launches?: LaunchSample[] };
 
 export type Owned = { count: number; firstDay: string; firstReason: string };
 export type DayRecord = {
@@ -177,13 +178,26 @@ const notify = (s: GameState, day: string, text: string): GameState => {
 };
 
 function observe(s: GameState, key: string, hour: number, battery: { level: number; charging: boolean } | null): GameState {
-  const o = s.obs[key] ?? { battery: [], charging: false, hours: [] };
+  const o = s.obs[key] ?? { battery: [], charging: false, hours: [], launches: [] };
   const next: Obs = {
     battery: battery && !o.battery.includes(battery.level) ? [...o.battery, battery.level] : o.battery,
     charging: o.charging || !!battery?.charging,
     hours: o.hours.includes(hour) ? o.hours : [...o.hours, hour],
+    launches: o.launches ?? [],
   };
   // 3日より前の記録は捨てる
+  const keep = prevDayKey(prevDayKey(key));
+  const obs = Object.fromEntries(Object.entries({ ...s.obs, [key]: next }).filter(([k]) => k >= keep));
+  return { ...s, obs };
+}
+
+function observeStepLaunch(s: GameState, key: string, sample: LaunchSample): GameState {
+  // ぞろめ条件に関係する起動だけを保存する。起動時の歩数は候補を作る20時の観測期間にひも付ける。
+  if (sample.steps !== 2222) return s;
+  const o = s.obs[key] ?? { battery: [], charging: false, hours: [], launches: [] };
+  const launches = o.launches ?? [];
+  if (launches.some((item) => item.steps === sample.steps && item.battery === sample.battery)) return s;
+  const next: Obs = { ...o, launches: [...launches, sample] };
   const keep = prevDayKey(prevDayKey(key));
   const obs = Object.fromEntries(Object.entries({ ...s.obs, [key]: next }).filter(([k]) => k >= keep));
   return { ...s, obs };
@@ -279,6 +293,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const stateRef = useRef(state);
   // eslint-disable-next-line react-hooks/refs -- 非同期の途中で最新の値を読むための写し。描画のたびに必ず更新する
   stateRef.current = state;
+  const launchSampleCapture = useRef<Promise<void>>(Promise.resolve());
 
   const writeState = useMemo(() => serializedWriter((s: GameState) => AsyncStorage.setItem(KEY, JSON.stringify(s))), []);
 
@@ -389,10 +404,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // つながらないときは、前回のずれのまま（電波を切って時刻を進めた場合までは防げない）
   useEffect(() => {
     if (!ready) return;
+    const captureLaunchSample = () => {
+      const launchNow = clockNow(stateRef.current);
+      const day = encounterDayKey(launchNow);
+      const sample = Promise.all([readLaunchSteps(launchNow), readBattery()]).then(([steps, battery]) => {
+        if (steps === 2222) setState((s) => observeStepLaunch(s, day, { steps, battery: battery?.level ?? null }));
+      });
+      launchSampleCapture.current = Promise.all([launchSampleCapture.current, sample]).then(() => undefined);
+    };
     const check = () => {
       void readServerClockOffset().then((offset) => {
         if (offset !== null) setState((s) => (s.clockSkewMs === offset ? s : { ...s, clockSkewMs: offset }));
       });
+      captureLaunchSample();
     };
     check();
     const sub = AppState.addEventListener('change', (next) => { if (next === 'active') check(); });
@@ -439,6 +463,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (stateRef.current.days[k] || building.current.has(k) || firstLocked(stateRef.current, k)) continue;
       building.current.add(k);
       (async () => {
+        await launchSampleCapture.current;
         const [steps, battery, wx] = await Promise.all([readSteps(k, now), readBattery(), readWeather(k, todayKey)]);
         setState((s) => {
           if (s.days[k]) return s;
@@ -446,7 +471,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           // 歩数も同じ24時間（readSteps）。きょうの候補を作るときだけ、いまの電池と時刻も1回分として足す
           // （20時を過ぎて初めて開いた日にも、その日の様子が入るように）。きのうの分を遅れて作るときは、いまの値を足さない
           const w = s.obs[prevDayKey(k)];
-          const o: Obs = { battery: [...(w?.battery ?? [])], charging: !!w?.charging, hours: [...(w?.hours ?? [])] };
+          const o: Obs = { battery: [...(w?.battery ?? [])], charging: !!w?.charging, hours: [...(w?.hours ?? [])], launches: [...(w?.launches ?? [])] };
           if (k === todayKey) {
             if (battery && !o.battery.includes(battery.level)) o.battery.push(battery.level);
             if (battery?.charging) o.charging = true;
@@ -459,6 +484,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             gapDays: s.lastGap,
             streak: s.streak,
             openHours: o.hours,
+            launches: o.launches,
             catalogUpdated: s.catalogVersion !== CATALOG_VERSION,
             birthday: s.birthday,
             weather: wx?.weather ?? null,

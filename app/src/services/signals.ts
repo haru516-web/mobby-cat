@@ -43,6 +43,20 @@ export async function readSteps(dayKey: string, now: Date): Promise<number | nul
   }
 }
 
+// 起動時点の当日歩数（暦日の0時から起動時刻まで）。2,222歩の瞬間を逃さないための判定用。
+export async function readLaunchSteps(now: Date): Promise<number | null> {
+  try {
+    if (!(await Pedometer.isAvailableAsync())) return null;
+    if (!(await Pedometer.getPermissionsAsync()).granted) return null;
+    const start = new Date(now);
+    start.setHours(0, 0, 0, 0);
+    const res = await Pedometer.getStepCountAsync(start, now);
+    return res.steps;
+  } catch {
+    return null;
+  }
+}
+
 // 歩数の許可が出ているか（設定画面の案内用）
 export async function hasStepAccess(): Promise<boolean> {
   try {

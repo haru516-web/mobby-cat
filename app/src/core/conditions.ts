@@ -12,6 +12,7 @@ export type Signals = {
   gapDays: number; // 前回起動から何日空いたか（0=同じ日、1=前日）
   streak: number; // 連続で起動した日数
   openHours: number[]; // その日に起動した時刻（時）
+  launches?: { steps: number; battery: number | null }[]; // 起動時点の当日歩数と電池。対象の数値だけ保存する
   catalogUpdated: boolean; // アプリ更新で新しい猫が増えたか
   birthday: { m: number; d: number } | null;
   weather?: Weather | null; // その日の天気。取れないときは null
@@ -95,19 +96,22 @@ const SEASONS: { id: string; reason: string; from: [number, number]; to: [number
   { id: 'tsuyu', reason: '梅雨の季節', from: [6, 10], to: [7, 10] },
   { id: 'halloween', reason: 'ハロウィン', from: [10, 25], to: [10, 31] },
 ];
-// 歩数ラインは累積し、届いたラインの条件を満たす猫はそれぞれ候補にする。
+// 歩数ラインは累積。ぞろめモビーだけは、起動時点で当日2,222歩ちょうどを条件にする。
 const STEP_LINES: [number, string, string][] = [
   [10000, 'tekuteku', '1日10,000歩以上'],
   [5000, 'osanpo', '1日5,000歩以上'],
-  [2222, 'zorome', '1日2,222歩以上'],
   [1000, 'hodohodo', '1日1,000歩以上'],
   [777, 'lucky', '1日777歩以上'],
   [500, 'chokotto', '1日500歩以上'],
   [222, 'nyanpo', '1日222歩以上'],
 ];
 
-export function reachedStepLines(steps: number | null): [number, string, string][] {
-  return steps == null ? [] : STEP_LINES.filter(([line]) => steps >= line);
+const LAUNCH_STEP_LINES: [number, string, string][] = [[2222, 'zorome', '起動時に当日2,222歩ちょうど']];
+
+export function reachedStepLines(steps: number | null, launches: Signals['launches'] = []): [number, string, string][] {
+  const reached = steps == null ? [] : STEP_LINES.filter(([line]) => steps >= line);
+  reached.push(...LAUNCH_STEP_LINES.filter(([line]) => launches?.some((launch) => launch.steps === line)));
+  return reached;
 }
 
 // 個性のある猫ごとの条件（そのまま「難しい1個」になる）。簡単な条件は guaranteedCats で重ねる
@@ -135,8 +139,8 @@ function signatureCats(dayKey: string, s: Signals, ctx: Ctx, forecast: boolean):
   add(s.charging, 'juuden', '充電中');
 
   // 歩数
-  for (const [, id, reason] of reachedStepLines(s.steps)) add(true, id, reason);
-  add(lv.includes(22) && (s.steps ?? 0) >= 2222, 'kiseki', 'バッテリー22%と2,222歩');
+  for (const [, id, reason] of reachedStepLines(s.steps, s.launches)) add(true, id, reason);
+  add(s.launches?.some((launch) => launch.steps === 2222 && launch.battery === 22) ?? false, 'kiseki', '起動時にバッテリー22%・当日2,222歩');
 
   // アプリの利用
   add(s.gapDays === 2, 'nebosuke', 'ひと晩お休みした翌日');
@@ -312,7 +316,7 @@ export const HINTS: Record<string, string> = {
   chokotto: 'ちょこっと歩いた日に…',
   lucky: '縁起のいい数だけ歩いた日に…',
   hodohodo: 'ほどほどに歩いた日に…',
-  zorome: '2がそろうほど歩いた日に…',
+  zorome: '起動したとき、2がそろっていたら…',
   osanpo: 'お散歩した日に…',
   tekuteku: 'たくさん歩いた日に…',
   kiseki: 'スマホと歩数の「2」がそろったとき…',

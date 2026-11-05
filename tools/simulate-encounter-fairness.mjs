@@ -43,12 +43,15 @@ function runProfile(profile) {
     const date = new Date(START.getFullYear(), START.getMonth(), START.getDate() + i);
     const day = [date.getFullYear(), String(date.getMonth() + 1).padStart(2, '0'), String(date.getDate()).padStart(2, '0')].join('-');
     const gapDays = pick([1, 1, 1, 1, 1, 1, 1, 3, 7]);
+    const steps = pick([0, 500, 1500, 3500, 6000, 9000, 13000]);
+    const launchBattery = Math.floor(random() * 101);
     const signals = {
-      steps: pick([0, 500, 1500, 3500, 6000, 9000, 13000]),
-      battery: [Math.floor(random() * 101)],
+      steps,
+      battery: [launchBattery],
       charging: random() < 0.5,
       streak: gapDays >= 3 ? 1 : pick(profile.streak),
       openHours: [pick([6, 8, 11, 14, 17, 18, 21, 23])],
+      launches: [{ steps: Math.floor(random() * (steps + 1)), battery: launchBattery }],
       weather: pick(['sunny', 'sunny', 'sunny', 'sunny', 'cloudy', 'cloudy', 'cloudy', 'rain', 'rain', 'snow']),
       gapDays,
       catalogUpdated: false,
@@ -62,7 +65,7 @@ function runProfile(profile) {
       signals.openHours.push(pick([6, 8, 11, 14, 17, 18, 21, 23]));
     }
     if (process.argv.includes('--no-sensors')) {
-      Object.assign(signals, { steps: null, battery: [], charging: false, weather: null });
+      Object.assign(signals, { steps: null, battery: [], charging: false, weather: null, launches: [] });
     }
 
     const eligible = guaranteedCats(day, signals, context);

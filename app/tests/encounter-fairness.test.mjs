@@ -21,10 +21,25 @@ test('every eligible cat becomes a candidate, with no cap and no lottery',()=>{
  assert.deepEqual(selectCandidates(g(normal),c,()=>0.7),selectCandidates(g(normal),c,()=>0.7));
  assert.deepEqual(nextEncounterMisses({a:2,b:3,c:20},['a','b','c'],['a','b','c']),{});
 });
-test('step milestones are cumulative and return every reached threshold',()=>{
- assert.deepEqual(reachedStepLines(4000).map(([,id])=>id),['zorome','hodohodo','lucky','chokotto','nyanpo']);
+test('step milestones stay cumulative except zorome, which requires opening at exactly 2,222 steps',()=>{
+ assert.deepEqual(reachedStepLines(4000).map(([,id])=>id),['hodohodo','lucky','chokotto','nyanpo']);
  assert.deepEqual(reachedStepLines(1000).map(([,id])=>id),['hodohodo','lucky','chokotto','nyanpo']);
  assert.deepEqual(reachedStepLines(null),[]);
+ assert.deepEqual(reachedStepLines(4000,[{steps:2222,battery:40}]).map(([,id])=>id),['hodohodo','lucky','chokotto','nyanpo','zorome']);
+ assert.deepEqual(reachedStepLines(null,[{steps:2222,battery:22}]).map(([,id])=>id),['zorome']);
+});
+test('zorome is not unlocked by a 2,222-step daily total without a matching launch',()=>{
+ const base={steps:4000,battery:[],charging:true,streak:1,openHours:[8],weather:'snow',gapDays:0,catalogUpdated:false,birthday:null};
+ const day='2026-01-01';
+ assert.ok(!guaranteedCats(day,base,ctx).some(({id})=>id==='zorome'));
+ assert.ok(guaranteedCats(day,{...base,launches:[{steps:2222,battery:22}]},ctx).some(({id})=>id==='zorome'));
+});
+test('kiseki requires 2,222 steps and 22% battery in the same launch sample',()=>{
+ const base={steps:4000,battery:[22],charging:false,streak:3,openHours:[17],weather:'snow',gapDays:0,catalogUpdated:false,birthday:null};
+ const day='2026-11-05';
+ assert.ok(!guaranteedCats(day,{...base,launches:[]},ctx).some(({id})=>id==='kiseki'));
+ assert.ok(!guaranteedCats(day,{...base,launches:[{steps:2222,battery:21}]},ctx).some(({id})=>id==='kiseki'));
+ assert.ok(guaranteedCats(day,{...base,launches:[{steps:2222,battery:22}]},ctx).some(({id})=>id==='kiseki'));
 });
 test('days are deterministic, include every eligible cat, and guarantee one on empty days',()=>{
  const signals={steps:6000,battery:[30,90],charging:true,streak:7,openHours:[6,14,18],weather:'sunny',gapDays:1,catalogUpdated:false,birthday:null};
@@ -42,6 +57,10 @@ test('old records survive and new fairness metadata round trips',()=>{
  const saved=checkSaved({owned:{},days:{day:{...record,eligible:[normal[0],rare[0]]}},encounterMisses:{[normal[0]]:4}});
  assert.equal(saved.repaired,false);assert.equal(saved.saved.encounterMisses[normal[0]],4);assert.deepEqual(saved.saved.days.day.eligible,[normal[0],rare[0]]);
  assert.equal(checkSaved({owned:{},encounterMisses:{cat:-1}}).repaired,true);
+ const obs=checkSaved({owned:{},obs:{'2026-11-05':{battery:[22],charging:false,hours:[23],launches:[{steps:2222,battery:22}]}}}).saved.obs;
+ assert.deepEqual(obs['2026-11-05'].launches,[{steps:2222,battery:22}]);
+ const oldObs=checkSaved({owned:{},obs:{'2026-11-05':{battery:[22],charging:false,hours:[23]}}}).saved.obs;
+ assert.deepEqual(oldObs['2026-11-05'].launches,[]);
 });
 test('composition uses counts with existing rarity labels',()=>{
  assert.equal(encounterComposition([]),'なし');assert.equal(encounterComposition([normal[0],normal[1],rare[0]]),'ノーマル2/3・レア1/3');

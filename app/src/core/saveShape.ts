@@ -63,7 +63,14 @@ const FIELDS: { [K in keyof GameState]?: Checker } = {
     if (!isObj(v)) return undefined;
     const out: GameState['obs'] = {};
     for (const [k, o] of Object.entries(v)) {
-      if (isObj(o) && numList(o.battery) && isBool(o.charging) && numList(o.hours)) out[k] = { battery: o.battery, charging: o.charging, hours: o.hours };
+      if (isObj(o) && numList(o.battery) && isBool(o.charging) && numList(o.hours)) {
+        const launches = Array.isArray(o.launches)
+          ? o.launches.filter((sample): sample is { steps: number; battery: number | null } =>
+              isObj(sample) && sample.steps === 2222 && (sample.battery === null || (isCount(sample.battery) && sample.battery <= 100)),
+            )
+          : [];
+        out[k] = { battery: o.battery, charging: o.charging, hours: o.hours, launches };
+      }
     }
     return out;
   },
