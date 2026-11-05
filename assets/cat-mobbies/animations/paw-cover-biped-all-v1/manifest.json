@@ -1,0 +1,1892 @@
+[
+  {
+    "id": "british-shorthair",
+    "name": "ブリティッシュショートヘア",
+    "source": "assets\\cat-mobbies\\characters\\british-shorthair.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-shorthair"
+  },
+  {
+    "id": "siamese-seal-point",
+    "name": "シャム（シールポイント）",
+    "source": "assets\\cat-mobbies\\characters\\siamese-seal-point.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siamese-seal-point"
+  },
+  {
+    "id": "bengal",
+    "name": "ベンガル",
+    "source": "assets\\cat-mobbies\\characters\\bengal.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bengal"
+  },
+  {
+    "id": "ragdoll",
+    "name": "ラグドール",
+    "source": "assets\\cat-mobbies\\characters\\ragdoll.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragdoll"
+  },
+  {
+    "id": "american-shorthair",
+    "name": "アメリカンショートヘア",
+    "source": "assets\\cat-mobbies\\characters\\american-shorthair.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-shorthair"
+  },
+  {
+    "id": "scottish-fold",
+    "name": "スコティッシュフォールド",
+    "source": "assets\\cat-mobbies\\characters\\scottish-fold.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-fold"
+  },
+  {
+    "id": "maine-coon",
+    "name": "メインクーン",
+    "source": "assets\\cat-mobbies\\characters\\maine-coon.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maine-coon"
+  },
+  {
+    "id": "norwegian-forest",
+    "name": "ノルウェージャンフォレストキャット",
+    "source": "assets\\cat-mobbies\\characters\\norwegian-forest.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\norwegian-forest"
+  },
+  {
+    "id": "persian",
+    "name": "ペルシャ",
+    "source": "assets\\cat-mobbies\\characters\\persian.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian"
+  },
+  {
+    "id": "balinese",
+    "name": "バリニーズ",
+    "source": "assets\\cat-mobbies\\characters\\balinese.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\balinese"
+  },
+  {
+    "id": "russian-blue",
+    "name": "ロシアンブルー",
+    "source": "assets\\cat-mobbies\\characters\\russian-blue.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\russian-blue"
+  },
+  {
+    "id": "abyssinian",
+    "name": "アビシニアン",
+    "source": "assets\\cat-mobbies\\characters\\abyssinian.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\abyssinian"
+  },
+  {
+    "id": "somali",
+    "name": "ソマリ",
+    "source": "assets\\cat-mobbies\\characters\\somali.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\somali"
+  },
+  {
+    "id": "turkish-angora",
+    "name": "ターキッシュアンゴラ",
+    "source": "assets\\cat-mobbies\\characters\\turkish-angora.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-angora"
+  },
+  {
+    "id": "turkish-van",
+    "name": "ターキッシュバン",
+    "source": "assets\\cat-mobbies\\characters\\turkish-van.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-van"
+  },
+  {
+    "id": "siberian",
+    "name": "サイベリアン",
+    "source": "assets\\cat-mobbies\\characters\\siberian.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siberian"
+  },
+  {
+    "id": "tonkinese",
+    "name": "トンキニーズ",
+    "source": "assets\\cat-mobbies\\characters\\tonkinese.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tonkinese"
+  },
+  {
+    "id": "exotic-shorthair",
+    "name": "エキゾチックショートヘア",
+    "source": "assets\\cat-mobbies\\characters\\exotic-shorthair.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\exotic-shorthair"
+  },
+  {
+    "id": "birman",
+    "name": "バーマン",
+    "source": "assets\\cat-mobbies\\characters\\birman.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\birman"
+  },
+  {
+    "id": "ragamuffin",
+    "name": "ラガマフィン",
+    "source": "assets\\cat-mobbies\\characters\\ragamuffin.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragamuffin"
+  },
+  {
+    "id": "american-curl",
+    "name": "アメリカンカール",
+    "source": "assets\\cat-mobbies\\characters\\american-curl.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-curl"
+  },
+  {
+    "id": "selkirk-rex",
+    "name": "セルカークレックス",
+    "source": "assets\\cat-mobbies\\characters\\selkirk-rex.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\selkirk-rex"
+  },
+  {
+    "id": "devon-rex",
+    "name": "デボンレックス",
+    "source": "assets\\cat-mobbies\\characters\\devon-rex.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\devon-rex"
+  },
+  {
+    "id": "cornish-rex",
+    "name": "コーニッシュレックス",
+    "source": "assets\\cat-mobbies\\characters\\cornish-rex.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cornish-rex"
+  },
+  {
+    "id": "japanese-bobtail",
+    "name": "ジャパニーズボブテイル",
+    "source": "assets\\cat-mobbies\\characters\\japanese-bobtail.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\japanese-bobtail"
+  },
+  {
+    "id": "manx",
+    "name": "マンクス",
+    "source": "assets\\cat-mobbies\\characters\\manx.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\manx"
+  },
+  {
+    "id": "egyptian-mau",
+    "name": "エジプシャンマウ",
+    "source": "assets\\cat-mobbies\\characters\\egyptian-mau.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\egyptian-mau"
+  },
+  {
+    "id": "ocicat",
+    "name": "オシキャット",
+    "source": "assets\\cat-mobbies\\characters\\ocicat.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ocicat"
+  },
+  {
+    "id": "toyger",
+    "name": "トイガー",
+    "source": "assets\\cat-mobbies\\characters\\toyger.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\toyger"
+  },
+  {
+    "id": "singapura",
+    "name": "シンガプーラ",
+    "source": "assets\\cat-mobbies\\characters\\singapura.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\singapura"
+  },
+  {
+    "id": "burmese",
+    "name": "バーミーズ",
+    "source": "assets\\cat-mobbies\\characters\\burmese.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmese"
+  },
+  {
+    "id": "bombay",
+    "name": "ボンベイ",
+    "source": "assets\\cat-mobbies\\characters\\bombay.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bombay"
+  },
+  {
+    "id": "havana-brown",
+    "name": "ハバナブラウン",
+    "source": "assets\\cat-mobbies\\characters\\havana-brown.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\havana-brown"
+  },
+  {
+    "id": "snowshoe",
+    "name": "スノーシュー",
+    "source": "assets\\cat-mobbies\\characters\\snowshoe.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\snowshoe"
+  },
+  {
+    "id": "rea-mobby",
+    "name": "れあもびー",
+    "source": "assets\\cat-mobbies\\characters\\rea-mobby.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\rea-mobby"
+  },
+  {
+    "id": "uyu-mobby",
+    "name": "うゆもびー",
+    "source": "assets\\cat-mobbies\\characters\\uyu-mobby.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\uyu-mobby"
+  },
+  {
+    "id": "genkai",
+    "name": "げんかいモビー",
+    "source": "assets/cat-mobbies/new/a/genkai.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\genkai"
+  },
+  {
+    "id": "denchigire",
+    "name": "でんちぎれモビー",
+    "source": "assets/cat-mobbies/new/a/denchigire.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\denchigire"
+  },
+  {
+    "id": "nyannyan",
+    "name": "にゃんにゃんモビー",
+    "source": "assets/cat-mobbies/new/a/nyannyan.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nyannyan"
+  },
+  {
+    "id": "hanbun",
+    "name": "はんぶんモビー",
+    "source": "assets/cat-mobbies/new/a/hanbun.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hanbun"
+  },
+  {
+    "id": "mantan",
+    "name": "まんたんモビー",
+    "source": "assets/cat-mobbies/new/a/mantan.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mantan"
+  },
+  {
+    "id": "juuden",
+    "name": "じゅうでんモビー",
+    "source": "assets/cat-mobbies/new/a/juuden.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\juuden"
+  },
+  {
+    "id": "nyanpo",
+    "name": "にゃんぽモビー",
+    "source": "assets/cat-mobbies/new/a/nyanpo.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nyanpo"
+  },
+  {
+    "id": "lucky",
+    "name": "ラッキーモビー",
+    "source": "assets/cat-mobbies/new/a/lucky.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\lucky"
+  },
+  {
+    "id": "zorome",
+    "name": "ぞろめモビー",
+    "source": "assets/cat-mobbies/new/a/zorome.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\zorome"
+  },
+  {
+    "id": "osanpo",
+    "name": "おさんぽモビー",
+    "source": "assets/cat-mobbies/new/a/osanpo.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\osanpo"
+  },
+  {
+    "id": "tekuteku",
+    "name": "てくてくモビー",
+    "source": "assets/cat-mobbies/new/a/tekuteku.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tekuteku"
+  },
+  {
+    "id": "ijike",
+    "name": "いじけモビー",
+    "source": "assets/cat-mobbies/new/a/ijike.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ijike"
+  },
+  {
+    "id": "hisashiburi",
+    "name": "ひさしぶりモビー",
+    "source": "assets/cat-mobbies/new/a/hisashiburi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hisashiburi"
+  },
+  {
+    "id": "samishigari",
+    "name": "さみしがりモビー",
+    "source": "assets/cat-mobbies/new/a/samishigari.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\samishigari"
+  },
+  {
+    "id": "mainichi",
+    "name": "まいにちモビー",
+    "source": "assets/cat-mobbies/new/a/mainichi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mainichi"
+  },
+  {
+    "id": "kikan",
+    "name": "きかんモビー",
+    "source": "assets/cat-mobbies/new/a/kikan.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kikan"
+  },
+  {
+    "id": "asa",
+    "name": "あさモビー",
+    "source": "assets/cat-mobbies/new/a/asa.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\asa"
+  },
+  {
+    "id": "yofukashi",
+    "name": "よふかしモビー",
+    "source": "assets/cat-mobbies/new/a/yofukashi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\yofukashi"
+  },
+  {
+    "id": "yuugure",
+    "name": "ゆうぐれモビー",
+    "source": "assets/cat-mobbies/new/a/yuugure.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\yuugure"
+  },
+  {
+    "id": "hanakin",
+    "name": "はなきんモビー",
+    "source": "assets/cat-mobbies/new/b/hanakin.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hanakin"
+  },
+  {
+    "id": "noroware",
+    "name": "のろわれモビー",
+    "source": "assets/cat-mobbies/new/b/noroware.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\noroware"
+  },
+  {
+    "id": "nekonohi",
+    "name": "ねこのひモビー",
+    "source": "assets/cat-mobbies/new/b/nekonohi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nekonohi"
+  },
+  {
+    "id": "uruu",
+    "name": "うるうモビー",
+    "source": "assets/cat-mobbies/new/b/uruu.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\uruu"
+  },
+  {
+    "id": "usotsuki",
+    "name": "うそつきモビー",
+    "source": "assets/cat-mobbies/new/b/usotsuki.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\usotsuki"
+  },
+  {
+    "id": "tanabata",
+    "name": "たなばたモビー",
+    "source": "assets/cat-mobbies/new/b/tanabata.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tanabata"
+  },
+  {
+    "id": "ichiichi",
+    "name": "いちいちモビー",
+    "source": "assets/cat-mobbies/new/b/ichiichi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ichiichi"
+  },
+  {
+    "id": "santa",
+    "name": "さんたモビー",
+    "source": "assets/cat-mobbies/new/b/santa.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\santa"
+  },
+  {
+    "id": "toshikoshi",
+    "name": "としこしモビー",
+    "source": "assets/cat-mobbies/new/b/toshikoshi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\toshikoshi"
+  },
+  {
+    "id": "hatsuhinode",
+    "name": "はつひのでモビー",
+    "source": "assets/cat-mobbies/new/b/hatsuhinode.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hatsuhinode"
+  },
+  {
+    "id": "nikukyuu",
+    "name": "にくきゅうモビー",
+    "source": "assets/cat-mobbies/new/b/nikukyuu.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nikukyuu"
+  },
+  {
+    "id": "hiruyoru",
+    "name": "ひるよるモビー",
+    "source": "assets/cat-mobbies/new/b/hiruyoru.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hiruyoru"
+  },
+  {
+    "id": "taiyou",
+    "name": "たいようモビー",
+    "source": "assets/cat-mobbies/new/b/taiyou.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\taiyou"
+  },
+  {
+    "id": "sakasama",
+    "name": "さかさまモビー",
+    "source": "assets/cat-mobbies/new/b/sakasama.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sakasama"
+  },
+  {
+    "id": "pittari",
+    "name": "ぴったりモビー",
+    "source": "assets/cat-mobbies/new/b/pittari.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\pittari"
+  },
+  {
+    "id": "tanjoubi",
+    "name": "たんじょうびモビー",
+    "source": "assets/cat-mobbies/new/b/tanjoubi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tanjoubi"
+  },
+  {
+    "id": "mangetsu",
+    "name": "まんげつモビー",
+    "source": "assets/cat-mobbies/new/c/mangetsu.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mangetsu"
+  },
+  {
+    "id": "shingetsu",
+    "name": "しんげつモビー",
+    "source": "assets/cat-mobbies/new/c/shingetsu.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shingetsu"
+  },
+  {
+    "id": "aotsuki",
+    "name": "あおつきモビー",
+    "source": "assets/cat-mobbies/new/c/aotsuki.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\aotsuki"
+  },
+  {
+    "id": "shoku",
+    "name": "しょくモビー",
+    "source": "assets/cat-mobbies/new/c/shoku.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shoku"
+  },
+  {
+    "id": "hoshizora",
+    "name": "ほしぞらモビー",
+    "source": "assets/cat-mobbies/new/c/hoshizora.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hoshizora"
+  },
+  {
+    "id": "bishonure",
+    "name": "びしょぬれモビー",
+    "source": "assets/cat-mobbies/new/c/bishonure.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bishonure"
+  },
+  {
+    "id": "yukidaruma",
+    "name": "ゆきだるまモビー",
+    "source": "assets/cat-mobbies/new/c/yukidaruma.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\yukidaruma"
+  },
+  {
+    "id": "hatsuyuki",
+    "name": "はつゆきモビー",
+    "source": "assets/cat-mobbies/new/c/hatsuyuki.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hatsuyuki"
+  },
+  {
+    "id": "hinata",
+    "name": "ひなたぼっこモビー",
+    "source": "assets/cat-mobbies/new/c/hinata.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hinata"
+  },
+  {
+    "id": "ondo",
+    "name": "おんどモビー",
+    "source": "assets/cat-mobbies/new/c/ondo.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ondo"
+  },
+  {
+    "id": "mayonaka",
+    "name": "まよなかモビー",
+    "source": "assets/cat-mobbies/new/c/mayonaka.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mayonaka"
+  },
+  {
+    "id": "maboroshi-kuroneko",
+    "name": "まぼろし黒猫",
+    "source": "assets/cat-mobbies/new/c/maboroshi-kuroneko.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maboroshi-kuroneko"
+  },
+  {
+    "id": "yami",
+    "name": "やみモビー",
+    "source": "assets/cat-mobbies/new/c/yami.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\yami"
+  },
+  {
+    "id": "juunyan",
+    "name": "じゅうにゃんモビー",
+    "source": "assets/cat-mobbies/new/d/juunyan.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\juunyan"
+  },
+  {
+    "id": "collector",
+    "name": "コレクターモビー",
+    "source": "assets/cat-mobbies/new/d/collector.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\collector"
+  },
+  {
+    "id": "shirokuro",
+    "name": "しろくろモビー",
+    "source": "assets/cat-mobbies/new/d/shirokuro.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shirokuro"
+  },
+  {
+    "id": "bunshin",
+    "name": "ぶんしんモビー",
+    "source": "assets/cat-mobbies/new/d/bunshin.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bunshin"
+  },
+  {
+    "id": "sanbiki",
+    "name": "さんびきモビー",
+    "source": "assets/cat-mobbies/new/d/sanbiki.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sanbiki"
+  },
+  {
+    "id": "himitsu",
+    "name": "ひみつモビー",
+    "source": "assets/cat-mobbies/new/d/himitsu.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\himitsu"
+  },
+  {
+    "id": "shitsukoi",
+    "name": "しつこいモビー",
+    "source": "assets/cat-mobbies/new/d/shitsukoi.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shitsukoi"
+  },
+  {
+    "id": "kiseki",
+    "name": "きせきモビー",
+    "source": "assets/cat-mobbies/new/d/kiseki.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kiseki"
+  },
+  {
+    "id": "ousama",
+    "name": "おうさまモビー",
+    "source": "assets/cat-mobbies/new/d/ousama.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ousama"
+  },
+  {
+    "id": "amayadori",
+    "name": "あまやどりモビー",
+    "source": "assets/cat-mobbies/new/d/amayadori.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\amayadori"
+  },
+  {
+    "id": "tomodachizure",
+    "name": "ともだちづれモビー",
+    "source": "assets/cat-mobbies/new/d/tomodachizure.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tomodachizure"
+  },
+  {
+    "id": "nebosuke",
+    "name": "ねぼすけモビー",
+    "source": "assets/cat-mobbies/new/d/nebosuke.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nebosuke"
+  },
+  {
+    "id": "country-01",
+    "name": "はじまりモビー",
+    "source": "assets/cat-mobbies/new/e/country-01.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-01"
+  },
+  {
+    "id": "country-02",
+    "name": "ふたつのくにモビー",
+    "source": "assets/cat-mobbies/new/e/country-02.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-02"
+  },
+  {
+    "id": "country-03",
+    "name": "さんかくモビー",
+    "source": "assets/cat-mobbies/new/e/country-03.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-03"
+  },
+  {
+    "id": "country-04",
+    "name": "よつばモビー",
+    "source": "assets/cat-mobbies/new/e/country-04.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-04"
+  },
+  {
+    "id": "country-05",
+    "name": "ごたいりくモビー",
+    "source": "assets/cat-mobbies/new/e/country-05.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-05"
+  },
+  {
+    "id": "country-06",
+    "name": "ろくぼうせいモビー",
+    "source": "assets/cat-mobbies/new/e/country-06.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-06"
+  },
+  {
+    "id": "country-07",
+    "name": "なないろモビー",
+    "source": "assets/cat-mobbies/new/e/country-07.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-07"
+  },
+  {
+    "id": "country-08",
+    "name": "はちわれモビー",
+    "source": "assets/cat-mobbies/new/e/country-08.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-08"
+  },
+  {
+    "id": "country-09",
+    "name": "きゅうせいしゅモビー",
+    "source": "assets/cat-mobbies/new/e/country-09.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-09"
+  },
+  {
+    "id": "country-10",
+    "name": "せかいモビー",
+    "source": "assets/cat-mobbies/new/e/country-10.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-10"
+  },
+  {
+    "id": "country-30",
+    "name": "たびびとモビー",
+    "source": "assets/cat-mobbies/new/e/country-30.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-30"
+  },
+  {
+    "id": "country-100",
+    "name": "ちきゅうモビー",
+    "source": "assets/cat-mobbies/new/e/country-100.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-100"
+  },
+  {
+    "id": "world-marathon",
+    "name": "マラソンモビー",
+    "source": "assets/cat-mobbies/new/f/world-marathon.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\world-marathon"
+  },
+  {
+    "id": "pyonpyon",
+    "name": "ぴょんぴょんモビー",
+    "source": "assets/cat-mobbies/new/f/pyonpyon.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\pyonpyon"
+  },
+  {
+    "id": "omatsuri",
+    "name": "おまつりモビー",
+    "source": "assets/cat-mobbies/new/f/omatsuri.png",
+    "status": "complete",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\omatsuri"
+  },
+  {
+    "id": "cameraman",
+    "name": "カメラマンモビー",
+    "source": "assets/cat-mobbies/new/f/cameraman.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cameraman"
+  },
+  {
+    "id": "gorogoro",
+    "name": "ごろごろモビー",
+    "source": "assets/cat-mobbies/new/f/gorogoro.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\gorogoro"
+  },
+  {
+    "id": "nemurio",
+    "name": "ねむりおうモビー",
+    "source": "assets/cat-mobbies/new/f/nemurio.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nemurio"
+  },
+  {
+    "id": "bouken-ou",
+    "name": "ぼうけんおうモビー",
+    "source": "assets/cat-mobbies/new/f/bouken-ou.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bouken-ou"
+  },
+  {
+    "id": "hyakunin",
+    "name": "ひゃくにんモビー",
+    "source": "assets/cat-mobbies/new/f/hyakunin.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hyakunin"
+  },
+  {
+    "id": "oiwai",
+    "name": "おいわいモビー",
+    "source": "assets/cat-mobbies/new/f/oiwai.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\oiwai"
+  },
+  {
+    "id": "hakubutsukan",
+    "name": "はくぶつかんモビー",
+    "source": "assets/cat-mobbies/new/f/hakubutsukan.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hakubutsukan"
+  },
+  {
+    "id": "traveling-mobby",
+    "name": "旅するモビー",
+    "source": "assets/cat-mobbies/new/g/traveling-mobby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\traveling-mobby"
+  },
+  {
+    "id": "shinirimobby",
+    "name": "しんいりモビー",
+    "source": "assets/cat-mobbies/new/g/shinirimobby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shinirimobby"
+  },
+  {
+    "id": "ouji",
+    "name": "王子モビー",
+    "source": "assets/cat-mobbies/new/h/ouji.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ouji"
+  },
+  {
+    "id": "uchuu",
+    "name": "宇宙モビー",
+    "source": "assets/cat-mobbies/new/h/uchuu.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\uchuu"
+  },
+  {
+    "id": "toumei",
+    "name": "透明モビー",
+    "source": "assets/cat-mobbies/new/h/toumei.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\toumei"
+  },
+  {
+    "id": "shikaku",
+    "name": "四角モビー",
+    "source": "assets/cat-mobbies/new/h/shikaku.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shikaku"
+  },
+  {
+    "id": "shachou",
+    "name": "社長モビー",
+    "source": "assets/cat-mobbies/new/h/shachou.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shachou"
+  },
+  {
+    "id": "mushoku",
+    "name": "無職モビー",
+    "source": "assets/cat-mobbies/new/h/mushoku.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mushoku"
+  },
+  {
+    "id": "chokotto",
+    "name": "ちょこっとモビー",
+    "source": "assets/cat-mobbies/new/i/chokotto.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chokotto"
+  },
+  {
+    "id": "hodohodo",
+    "name": "ほどほどモビー",
+    "source": "assets/cat-mobbies/new/i/hodohodo.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hodohodo"
+  },
+  {
+    "id": "country-20",
+    "name": "はれぎモビー",
+    "source": "assets/cat-mobbies/new/i/country-20.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-20"
+  },
+  {
+    "id": "country-50",
+    "name": "ゴールデンモビー",
+    "source": "assets/cat-mobbies/new/i/country-50.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-50"
+  },
+  {
+    "id": "country-75",
+    "name": "ダイヤモンドモビー",
+    "source": "assets/cat-mobbies/new/i/country-75.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-75"
+  },
+  {
+    "id": "world-traveler",
+    "name": "せかいいっしゅうモビー",
+    "source": "assets/cat-mobbies/new/i/world-traveler.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\world-traveler"
+  },
+  {
+    "id": "sakura",
+    "name": "さくらモビー",
+    "source": "assets/cat-mobbies/new/i/sakura.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sakura"
+  },
+  {
+    "id": "tsuyu",
+    "name": "つゆモビー",
+    "source": "assets/cat-mobbies/new/i/tsuyu.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tsuyu"
+  },
+  {
+    "id": "halloween",
+    "name": "ハロウィンモビー",
+    "source": "assets/cat-mobbies/new/i/halloween.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\halloween"
+  },
+  {
+    "id": "burmilla",
+    "name": "バーミラ",
+    "source": "assets/cat-mobbies/breeds2/a/burmilla.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmilla"
+  },
+  {
+    "id": "chartreux",
+    "name": "シャルトリュー",
+    "source": "assets/cat-mobbies/breeds2/a/chartreux.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chartreux"
+  },
+  {
+    "id": "colorpoint-shorthair",
+    "name": "カラーポイントショートヘア",
+    "source": "assets/cat-mobbies/breeds2/a/colorpoint-shorthair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\colorpoint-shorthair"
+  },
+  {
+    "id": "himalayan",
+    "name": "ヒマラヤン",
+    "source": "assets/cat-mobbies/breeds2/a/himalayan.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\himalayan"
+  },
+  {
+    "id": "javanese",
+    "name": "ジャバニーズ",
+    "source": "assets/cat-mobbies/breeds2/a/javanese.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\javanese"
+  },
+  {
+    "id": "korat",
+    "name": "コラット",
+    "source": "assets/cat-mobbies/breeds2/a/korat.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\korat"
+  },
+  {
+    "id": "nebelung",
+    "name": "ネベルング",
+    "source": "assets/cat-mobbies/breeds2/a/nebelung.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nebelung"
+  },
+  {
+    "id": "oriental-longhair",
+    "name": "オリエンタルロングヘア",
+    "source": "assets/cat-mobbies/breeds2/a/oriental-longhair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\oriental-longhair"
+  },
+  {
+    "id": "oriental-shorthair",
+    "name": "オリエンタルショートヘア",
+    "source": "assets/cat-mobbies/breeds2/a/oriental-shorthair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\oriental-shorthair"
+  },
+  {
+    "id": "thai",
+    "name": "タイ",
+    "source": "assets/cat-mobbies/breeds2/a/thai.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\thai"
+  },
+  {
+    "id": "bambino",
+    "name": "バンビーノ",
+    "source": "assets/cat-mobbies/breeds2/b/bambino.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bambino"
+  },
+  {
+    "id": "british-longhair",
+    "name": "ブリティッシュロングヘア",
+    "source": "assets/cat-mobbies/breeds2/b/british-longhair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-longhair"
+  },
+  {
+    "id": "european-burmese",
+    "name": "ヨーロピアンバーミーズ",
+    "source": "assets/cat-mobbies/breeds2/b/european-burmese.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\european-burmese"
+  },
+  {
+    "id": "european-shorthair",
+    "name": "ヨーロピアンショートヘア",
+    "source": "assets/cat-mobbies/breeds2/b/european-shorthair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\european-shorthair"
+  },
+  {
+    "id": "highland-fold",
+    "name": "ハイランドフォールド",
+    "source": "assets/cat-mobbies/breeds2/b/highland-fold.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\highland-fold"
+  },
+  {
+    "id": "highland-straight",
+    "name": "ハイランドストレート",
+    "source": "assets/cat-mobbies/breeds2/b/highland-straight.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\highland-straight"
+  },
+  {
+    "id": "minskin",
+    "name": "ミンスキン",
+    "source": "assets/cat-mobbies/breeds2/b/minskin.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\minskin"
+  },
+  {
+    "id": "munchkin",
+    "name": "マンチカン",
+    "source": "assets/cat-mobbies/breeds2/b/munchkin.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\munchkin"
+  },
+  {
+    "id": "napoleon",
+    "name": "ナポレオン",
+    "source": "assets/cat-mobbies/breeds2/b/napoleon.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\napoleon"
+  },
+  {
+    "id": "scottish-straight",
+    "name": "スコティッシュストレート",
+    "source": "assets/cat-mobbies/breeds2/b/scottish-straight.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-straight"
+  },
+  {
+    "id": "american-wirehair",
+    "name": "アメリカンワイヤーヘア",
+    "source": "assets/cat-mobbies/breeds2/c/american-wirehair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-wirehair"
+  },
+  {
+    "id": "donskoy",
+    "name": "ドンスコイ",
+    "source": "assets/cat-mobbies/breeds2/c/donskoy.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\donskoy"
+  },
+  {
+    "id": "german-rex",
+    "name": "ジャーマンレックス",
+    "source": "assets/cat-mobbies/breeds2/c/german-rex.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\german-rex"
+  },
+  {
+    "id": "laperm",
+    "name": "ラパーム",
+    "source": "assets/cat-mobbies/breeds2/c/laperm.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\laperm"
+  },
+  {
+    "id": "lykoi",
+    "name": "ライコイ",
+    "source": "assets/cat-mobbies/breeds2/c/lykoi.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\lykoi"
+  },
+  {
+    "id": "peterbald",
+    "name": "ピーターボールド",
+    "source": "assets/cat-mobbies/breeds2/c/peterbald.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\peterbald"
+  },
+  {
+    "id": "selkirk-rex-longhair",
+    "name": "セルカークレックス（ロングヘア）",
+    "source": "assets/cat-mobbies/breeds2/c/selkirk-rex-longhair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\selkirk-rex-longhair"
+  },
+  {
+    "id": "skookum",
+    "name": "スクーカム",
+    "source": "assets/cat-mobbies/breeds2/c/skookum.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\skookum"
+  },
+  {
+    "id": "sphynx",
+    "name": "スフィンクス",
+    "source": "assets/cat-mobbies/breeds2/c/sphynx.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sphynx"
+  },
+  {
+    "id": "ural-rex",
+    "name": "ウラルレックス",
+    "source": "assets/cat-mobbies/breeds2/c/ural-rex.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ural-rex"
+  },
+  {
+    "id": "american-bobtail",
+    "name": "アメリカンボブテイル",
+    "source": "assets/cat-mobbies/breeds2/d/american-bobtail.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-bobtail"
+  },
+  {
+    "id": "chausie",
+    "name": "チャウシー",
+    "source": "assets/cat-mobbies/breeds2/d/chausie.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chausie"
+  },
+  {
+    "id": "cymric",
+    "name": "シンリック",
+    "source": "assets/cat-mobbies/breeds2/d/cymric.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cymric"
+  },
+  {
+    "id": "japanese-bobtail-longhair",
+    "name": "ジャパニーズボブテイル（ロングヘア）",
+    "source": "assets/cat-mobbies/breeds2/d/japanese-bobtail-longhair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\japanese-bobtail-longhair"
+  },
+  {
+    "id": "karelian-bobtail",
+    "name": "カレリアンボブテイル",
+    "source": "assets/cat-mobbies/breeds2/d/karelian-bobtail.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\karelian-bobtail"
+  },
+  {
+    "id": "kurilian-bobtail",
+    "name": "クリリアンボブテイル",
+    "source": "assets/cat-mobbies/breeds2/d/kurilian-bobtail.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kurilian-bobtail"
+  },
+  {
+    "id": "mekong-bobtail",
+    "name": "メコンボブテイル",
+    "source": "assets/cat-mobbies/breeds2/d/mekong-bobtail.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mekong-bobtail"
+  },
+  {
+    "id": "pixie-bob",
+    "name": "ピクシーボブ",
+    "source": "assets/cat-mobbies/breeds2/d/pixie-bob.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\pixie-bob"
+  },
+  {
+    "id": "savannah",
+    "name": "サバンナ",
+    "source": "assets/cat-mobbies/breeds2/d/savannah.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\savannah"
+  },
+  {
+    "id": "serengeti",
+    "name": "セレンゲティ",
+    "source": "assets/cat-mobbies/breeds2/d/serengeti.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\serengeti"
+  },
+  {
+    "id": "aegean",
+    "name": "エーゲ",
+    "source": "assets/cat-mobbies/breeds2/e/aegean.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\aegean"
+  },
+  {
+    "id": "arabian-mau",
+    "name": "アラビアンマウ",
+    "source": "assets/cat-mobbies/breeds2/e/arabian-mau.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\arabian-mau"
+  },
+  {
+    "id": "australian-mist",
+    "name": "オーストラリアンミスト",
+    "source": "assets/cat-mobbies/breeds2/e/australian-mist.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\australian-mist"
+  },
+  {
+    "id": "dragon-li",
+    "name": "ドラゴンリー",
+    "source": "assets/cat-mobbies/breeds2/e/dragon-li.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\dragon-li"
+  },
+  {
+    "id": "khao-manee",
+    "name": "カオマニー",
+    "source": "assets/cat-mobbies/breeds2/e/khao-manee.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\khao-manee"
+  },
+  {
+    "id": "neva-masquerade",
+    "name": "ネヴァマスカレード",
+    "source": "assets/cat-mobbies/breeds2/e/neva-masquerade.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\neva-masquerade"
+  },
+  {
+    "id": "sokoke",
+    "name": "ソコケ",
+    "source": "assets/cat-mobbies/breeds2/e/sokoke.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sokoke"
+  },
+  {
+    "id": "suphalak",
+    "name": "スパラック",
+    "source": "assets/cat-mobbies/breeds2/e/suphalak.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\suphalak"
+  },
+  {
+    "id": "toybob",
+    "name": "トイボブ",
+    "source": "assets/cat-mobbies/breeds2/e/toybob.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\toybob"
+  },
+  {
+    "id": "ukrainian-levkoy",
+    "name": "ウクライナ・レフコイ",
+    "source": "assets/cat-mobbies/breeds2/e/ukrainian-levkoy.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ukrainian-levkoy"
+  },
+  {
+    "id": "persian-black-smoke",
+    "name": "ペルシャ（ブラックスモーク）",
+    "source": "assets/cat-mobbies/breeds2/f/persian-black-smoke.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-black-smoke"
+  },
+  {
+    "id": "persian-blue-cream",
+    "name": "ペルシャ（ブルークリーム）",
+    "source": "assets/cat-mobbies/breeds2/f/persian-blue-cream.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-blue-cream"
+  },
+  {
+    "id": "persian-chinchilla-silver",
+    "name": "ペルシャ（チンチラシルバー）",
+    "source": "assets/cat-mobbies/breeds2/f/persian-chinchilla-silver.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-chinchilla-silver"
+  },
+  {
+    "id": "persian-red-tabby",
+    "name": "ペルシャ（レッドタビー）",
+    "source": "assets/cat-mobbies/breeds2/f/persian-red-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-red-tabby"
+  },
+  {
+    "id": "ragdoll-blue-colorpoint",
+    "name": "ラグドール（ブルーカラーポイント）",
+    "source": "assets/cat-mobbies/breeds2/f/ragdoll-blue-colorpoint.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragdoll-blue-colorpoint"
+  },
+  {
+    "id": "ragdoll-lilac-bicolor",
+    "name": "ラグドール（リラックスバイカラー）",
+    "source": "assets/cat-mobbies/breeds2/f/ragdoll-lilac-bicolor.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragdoll-lilac-bicolor"
+  },
+  {
+    "id": "ragdoll-seal-mitted",
+    "name": "ラグドール（シールミテッド）",
+    "source": "assets/cat-mobbies/breeds2/f/ragdoll-seal-mitted.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragdoll-seal-mitted"
+  },
+  {
+    "id": "siamese-blue-point",
+    "name": "シャム（ブルーポイント）",
+    "source": "assets/cat-mobbies/breeds2/f/siamese-blue-point.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siamese-blue-point"
+  },
+  {
+    "id": "siamese-chocolate-point",
+    "name": "シャム（チョコレートポイント）",
+    "source": "assets/cat-mobbies/breeds2/f/siamese-chocolate-point.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siamese-chocolate-point"
+  },
+  {
+    "id": "siamese-flame-point",
+    "name": "シャム（フレームポイント）",
+    "source": "assets/cat-mobbies/breeds2/f/siamese-flame-point.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siamese-flame-point"
+  },
+  {
+    "id": "american-shorthair-brown-tabby",
+    "name": "アメリカンショートヘア（ブラウンタビー）",
+    "source": "assets/cat-mobbies/breeds2/g/american-shorthair-brown-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-shorthair-brown-tabby"
+  },
+  {
+    "id": "american-shorthair-calico",
+    "name": "アメリカンショートヘア（キャリコ）",
+    "source": "assets/cat-mobbies/breeds2/g/american-shorthair-calico.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-shorthair-calico"
+  },
+  {
+    "id": "british-bicolor",
+    "name": "ブリティッシュ（バイカラー）",
+    "source": "assets/cat-mobbies/breeds2/g/british-bicolor.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-bicolor"
+  },
+  {
+    "id": "british-black",
+    "name": "ブリティッシュ（ブラック）",
+    "source": "assets/cat-mobbies/breeds2/g/british-black.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-black"
+  },
+  {
+    "id": "british-golden-shaded",
+    "name": "ブリティッシュ（ゴールデンシェーデッド）",
+    "source": "assets/cat-mobbies/breeds2/g/british-golden-shaded.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-golden-shaded"
+  },
+  {
+    "id": "british-lilac",
+    "name": "ブリティッシュ（ライラック）",
+    "source": "assets/cat-mobbies/breeds2/g/british-lilac.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-lilac"
+  },
+  {
+    "id": "british-silver-tabby",
+    "name": "ブリティッシュ（シルバータビー）",
+    "source": "assets/cat-mobbies/breeds2/g/british-silver-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-silver-tabby"
+  },
+  {
+    "id": "scottish-fold-bicolor",
+    "name": "スコティッシュフォールド（バイカラー）",
+    "source": "assets/cat-mobbies/breeds2/g/scottish-fold-bicolor.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-fold-bicolor"
+  },
+  {
+    "id": "scottish-fold-silver-tabby",
+    "name": "スコティッシュフォールド（シルバータビー）",
+    "source": "assets/cat-mobbies/breeds2/g/scottish-fold-silver-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-fold-silver-tabby"
+  },
+  {
+    "id": "scottish-fold-white",
+    "name": "スコティッシュフォールド（ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/g/scottish-fold-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-fold-white"
+  },
+  {
+    "id": "abyssinian-blue",
+    "name": "アビシニアン（ブルー）",
+    "source": "assets/cat-mobbies/breeds2/h/abyssinian-blue.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\abyssinian-blue"
+  },
+  {
+    "id": "abyssinian-fawn",
+    "name": "アビシニアン（フォーン）",
+    "source": "assets/cat-mobbies/breeds2/h/abyssinian-fawn.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\abyssinian-fawn"
+  },
+  {
+    "id": "birman-blue-point",
+    "name": "バーマン（ブルーポイント）",
+    "source": "assets/cat-mobbies/breeds2/h/birman-blue-point.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\birman-blue-point"
+  },
+  {
+    "id": "birman-chocolate-point",
+    "name": "バーマン（チョコレートポイント）",
+    "source": "assets/cat-mobbies/breeds2/h/birman-chocolate-point.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\birman-chocolate-point"
+  },
+  {
+    "id": "maine-coon-black",
+    "name": "メインクーン（ブラック）",
+    "source": "assets/cat-mobbies/breeds2/h/maine-coon-black.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maine-coon-black"
+  },
+  {
+    "id": "maine-coon-red-tabby",
+    "name": "メインクーン（レッドタビー）",
+    "source": "assets/cat-mobbies/breeds2/h/maine-coon-red-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maine-coon-red-tabby"
+  },
+  {
+    "id": "maine-coon-silver-tabby",
+    "name": "メインクーン（シルバータビー）",
+    "source": "assets/cat-mobbies/breeds2/h/maine-coon-silver-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maine-coon-silver-tabby"
+  },
+  {
+    "id": "norwegian-forest-black-white",
+    "name": "ノルウェージャンフォレスト（ブラック＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/h/norwegian-forest-black-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\norwegian-forest-black-white"
+  },
+  {
+    "id": "norwegian-forest-silver-tabby",
+    "name": "ノルウェージャンフォレスト（シルバータビー）",
+    "source": "assets/cat-mobbies/breeds2/h/norwegian-forest-silver-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\norwegian-forest-silver-tabby"
+  },
+  {
+    "id": "siberian-blue",
+    "name": "サイベリアン（ブルー）",
+    "source": "assets/cat-mobbies/breeds2/h/siberian-blue.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siberian-blue"
+  },
+  {
+    "id": "bengal-marble",
+    "name": "ベンガル（マーブル）",
+    "source": "assets/cat-mobbies/breeds2/i/bengal-marble.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bengal-marble"
+  },
+  {
+    "id": "bengal-silver",
+    "name": "ベンガル（シルバー）",
+    "source": "assets/cat-mobbies/breeds2/i/bengal-silver.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bengal-silver"
+  },
+  {
+    "id": "bengal-snow-lynx",
+    "name": "ベンガル（スノーリンクス）",
+    "source": "assets/cat-mobbies/breeds2/i/bengal-snow-lynx.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bengal-snow-lynx"
+  },
+  {
+    "id": "egyptian-mau-bronze",
+    "name": "エジプシャンマウ（ブロンズ）",
+    "source": "assets/cat-mobbies/breeds2/i/egyptian-mau-bronze.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\egyptian-mau-bronze"
+  },
+  {
+    "id": "mike-neko",
+    "name": "三毛猫",
+    "source": "assets/cat-mobbies/breeds2/j/mike-neko.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mike-neko"
+  },
+  {
+    "id": "egyptian-mau-smoke",
+    "name": "エジプシャンマウ（スモーク）",
+    "source": "assets/cat-mobbies/breeds2/j/egyptian-mau-smoke.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\egyptian-mau-smoke"
+  },
+  {
+    "id": "ocicat-silver",
+    "name": "オシキャット（シルバー）",
+    "source": "assets/cat-mobbies/breeds2/j/ocicat-silver.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ocicat-silver"
+  },
+  {
+    "id": "burmese-blue",
+    "name": "バーミーズ（ブルー）",
+    "source": "assets/cat-mobbies/breeds2/j/burmese-blue.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmese-blue"
+  },
+  {
+    "id": "burmese-champagne",
+    "name": "バーミーズ（シャンパン）",
+    "source": "assets/cat-mobbies/breeds2/j/burmese-champagne.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmese-champagne"
+  },
+  {
+    "id": "kijitora",
+    "name": "キジトラ",
+    "source": "assets/cat-mobbies/breeds2/j/kijitora.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kijitora"
+  },
+  {
+    "id": "saba-tora",
+    "name": "サバトラ",
+    "source": "assets/cat-mobbies/breeds2/j/saba-tora.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\saba-tora"
+  },
+  {
+    "id": "chatora",
+    "name": "茶トラ",
+    "source": "assets/cat-mobbies/breeds2/j/chatora.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chatora"
+  },
+  {
+    "id": "sabi-neko",
+    "name": "サビ猫",
+    "source": "assets/cat-mobbies/breeds2/j/sabi-neko.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sabi-neko"
+  },
+  {
+    "id": "russian-white",
+    "name": "ロシアンホワイト",
+    "source": "assets/cat-mobbies/breeds2/j/russian-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\russian-white"
+  },
+  {
+    "id": "russian-black",
+    "name": "ロシアンブラック",
+    "source": "assets/cat-mobbies/breeds2/j/russian-black.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\russian-black"
+  },
+  {
+    "id": "kuro-neko",
+    "name": "黒猫",
+    "source": "assets/cat-mobbies/breeds2/k/kuro-neko.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kuro-neko"
+  },
+  {
+    "id": "shiro-neko",
+    "name": "白猫",
+    "source": "assets/cat-mobbies/breeds2/k/shiro-neko.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shiro-neko"
+  },
+  {
+    "id": "hachiware",
+    "name": "ハチワレ",
+    "source": "assets/cat-mobbies/breeds2/k/hachiware.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hachiware"
+  },
+  {
+    "id": "haiiro-neko",
+    "name": "グレーの猫",
+    "source": "assets/cat-mobbies/breeds2/k/haiiro-neko.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\haiiro-neko"
+  },
+  {
+    "id": "kijishiro",
+    "name": "キジシロ",
+    "source": "assets/cat-mobbies/breeds2/k/kijishiro.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kijishiro"
+  },
+  {
+    "id": "highlander",
+    "name": "ハイランダー",
+    "source": "assets/cat-mobbies/breeds2/k/highlander.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\highlander"
+  },
+  {
+    "id": "suffolk-lilac",
+    "name": "サフォーク（ライラック）",
+    "source": "assets/cat-mobbies/breeds2/k/suffolk-lilac.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\suffolk-lilac"
+  },
+  {
+    "id": "tennessee-rex",
+    "name": "テネシーレックス",
+    "source": "assets/cat-mobbies/breeds2/k/tennessee-rex.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tennessee-rex"
+  },
+  {
+    "id": "asian-ticked-tabby",
+    "name": "エイジアン（ティックドタビー）",
+    "source": "assets/cat-mobbies/breeds2/k/asian-ticked-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\asian-ticked-tabby"
+  },
+  {
+    "id": "asian-black-smoke",
+    "name": "エイジアン（ブラックスモーク）",
+    "source": "assets/cat-mobbies/breeds2/k/asian-black-smoke.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\asian-black-smoke"
+  },
+  {
+    "id": "burmilla-longhair",
+    "name": "バーミラ（ロングヘア）",
+    "source": "assets/cat-mobbies/breeds2/l/burmilla-longhair.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmilla-longhair"
+  },
+  {
+    "id": "laperm-black",
+    "name": "ラパーム（ブラック）",
+    "source": "assets/cat-mobbies/breeds2/l/laperm-black.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\laperm-black"
+  },
+  {
+    "id": "laperm-red-white",
+    "name": "ラパーム（レッド＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/l/laperm-red-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\laperm-red-white"
+  },
+  {
+    "id": "american-curl-red-tabby",
+    "name": "アメリカンカール（レッドタビー）",
+    "source": "assets/cat-mobbies/breeds2/l/american-curl-red-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-curl-red-tabby"
+  },
+  {
+    "id": "american-curl-blue-white",
+    "name": "アメリカンカール（ブルー＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/l/american-curl-blue-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-curl-blue-white"
+  },
+  {
+    "id": "devon-rex-chocolate",
+    "name": "デボンレックス（チョコレート）",
+    "source": "assets/cat-mobbies/breeds2/l/devon-rex-chocolate.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\devon-rex-chocolate"
+  },
+  {
+    "id": "devon-rex-white",
+    "name": "デボンレックス（ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/l/devon-rex-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\devon-rex-white"
+  },
+  {
+    "id": "cornish-rex-black-white",
+    "name": "コーニッシュレックス（ブラック＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/l/cornish-rex-black-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cornish-rex-black-white"
+  },
+  {
+    "id": "cornish-rex-red",
+    "name": "コーニッシュレックス（レッド）",
+    "source": "assets/cat-mobbies/breeds2/l/cornish-rex-red.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cornish-rex-red"
+  },
+  {
+    "id": "somali-blue",
+    "name": "ソマリ（ブルー）",
+    "source": "assets/cat-mobbies/breeds2/l/somali-blue.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\somali-blue"
+  },
+  {
+    "id": "somali-fawn",
+    "name": "ソマリ（フォーン）",
+    "source": "assets/cat-mobbies/breeds2/m/somali-fawn.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\somali-fawn"
+  },
+  {
+    "id": "turkish-angora-black-smoke",
+    "name": "ターキッシュアンゴラ（ブラックスモーク）",
+    "source": "assets/cat-mobbies/breeds2/m/turkish-angora-black-smoke.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-angora-black-smoke"
+  },
+  {
+    "id": "turkish-angora-red-tabby",
+    "name": "ターキッシュアンゴラ（レッドタビー）",
+    "source": "assets/cat-mobbies/breeds2/m/turkish-angora-red-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-angora-red-tabby"
+  },
+  {
+    "id": "turkish-van-cream",
+    "name": "ターキッシュバン（クリーム）",
+    "source": "assets/cat-mobbies/breeds2/m/turkish-van-cream.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-van-cream"
+  },
+  {
+    "id": "turkish-van-black",
+    "name": "ターキッシュバン（ブラック）",
+    "source": "assets/cat-mobbies/breeds2/m/turkish-van-black.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-van-black"
+  },
+  {
+    "id": "manx-blue-white",
+    "name": "マンクス（ブルー＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/m/manx-blue-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\manx-blue-white"
+  },
+  {
+    "id": "manx-red-tabby",
+    "name": "マンクス（レッドタビー）",
+    "source": "assets/cat-mobbies/breeds2/m/manx-red-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\manx-red-tabby"
+  },
+  {
+    "id": "exotic-shorthair-chocolate",
+    "name": "エキゾチックショートヘア（チョコレート）",
+    "source": "assets/cat-mobbies/breeds2/m/exotic-shorthair-chocolate.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\exotic-shorthair-chocolate"
+  },
+  {
+    "id": "exotic-shorthair-cream",
+    "name": "エキゾチックショートヘア（クリーム）",
+    "source": "assets/cat-mobbies/breeds2/m/exotic-shorthair-cream.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\exotic-shorthair-cream"
+  },
+  {
+    "id": "tonkinese-platinum-mink",
+    "name": "トンキニーズ（プラチナミンク）",
+    "source": "assets/cat-mobbies/breeds2/m/tonkinese-platinum-mink.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tonkinese-platinum-mink"
+  },
+  {
+    "id": "tonkinese-champagne-mink",
+    "name": "トンキニーズ（シャンパンミンク）",
+    "source": "assets/cat-mobbies/breeds2/n/tonkinese-champagne-mink.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tonkinese-champagne-mink"
+  },
+  {
+    "id": "balinese-chocolate-point",
+    "name": "バリニーズ（チョコレートポイント）",
+    "source": "assets/cat-mobbies/breeds2/n/balinese-chocolate-point.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\balinese-chocolate-point"
+  },
+  {
+    "id": "balinese-lilac-point",
+    "name": "バリニーズ（ライラックポイント）",
+    "source": "assets/cat-mobbies/breeds2/n/balinese-lilac-point.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\balinese-lilac-point"
+  },
+  {
+    "id": "ragamuffin-tortie-white",
+    "name": "ラガマフィン（トーティ＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/n/ragamuffin-tortie-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragamuffin-tortie-white"
+  },
+  {
+    "id": "ragamuffin-cream-white",
+    "name": "ラガマフィン（クリーム＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/n/ragamuffin-cream-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragamuffin-cream-white"
+  },
+  {
+    "id": "selkirk-rex-chocolate",
+    "name": "セルカークレックス（チョコレート）",
+    "source": "assets/cat-mobbies/breeds2/n/selkirk-rex-chocolate.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\selkirk-rex-chocolate"
+  },
+  {
+    "id": "selkirk-rex-cream",
+    "name": "セルカークレックス（クリーム）",
+    "source": "assets/cat-mobbies/breeds2/n/selkirk-rex-cream.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\selkirk-rex-cream"
+  },
+  {
+    "id": "siberian-golden-tabby",
+    "name": "サイベリアン（ゴールデンタビー）",
+    "source": "assets/cat-mobbies/breeds2/n/siberian-golden-tabby.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siberian-golden-tabby"
+  },
+  {
+    "id": "siberian-tortie-white",
+    "name": "サイベリアン（トーティ＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/n/siberian-tortie-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siberian-tortie-white"
+  },
+  {
+    "id": "japanese-bobtail-red-white",
+    "name": "ジャパニーズボブテイル（レッド＆ホワイト）",
+    "source": "assets/cat-mobbies/breeds2/n/japanese-bobtail-red-white.png",
+    "status": "pending",
+    "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\japanese-bobtail-red-white"
+  }
+]
