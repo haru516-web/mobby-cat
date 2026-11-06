@@ -1025,189 +1025,189 @@
     "id": "british-longhair",
     "name": "ブリティッシュロングヘア",
     "source": "assets/cat-mobbies/breeds2/b/british-longhair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-longhair"
   },
   {
     "id": "european-burmese",
     "name": "ヨーロピアンバーミーズ",
     "source": "assets/cat-mobbies/breeds2/b/european-burmese.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\european-burmese"
   },
   {
     "id": "european-shorthair",
     "name": "ヨーロピアンショートヘア",
     "source": "assets/cat-mobbies/breeds2/b/european-shorthair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\european-shorthair"
   },
   {
     "id": "highland-fold",
     "name": "ハイランドフォールド",
     "source": "assets/cat-mobbies/breeds2/b/highland-fold.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\highland-fold"
   },
   {
     "id": "highland-straight",
     "name": "ハイランドストレート",
     "source": "assets/cat-mobbies/breeds2/b/highland-straight.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\highland-straight"
   },
   {
     "id": "minskin",
     "name": "ミンスキン",
     "source": "assets/cat-mobbies/breeds2/b/minskin.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\minskin"
   },
   {
     "id": "munchkin",
     "name": "マンチカン",
     "source": "assets/cat-mobbies/breeds2/b/munchkin.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\munchkin"
   },
   {
     "id": "napoleon",
     "name": "ナポレオン",
     "source": "assets/cat-mobbies/breeds2/b/napoleon.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\napoleon"
   },
   {
     "id": "scottish-straight",
     "name": "スコティッシュストレート",
     "source": "assets/cat-mobbies/breeds2/b/scottish-straight.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-straight"
   },
   {
     "id": "american-wirehair",
     "name": "アメリカンワイヤーヘア",
     "source": "assets/cat-mobbies/breeds2/c/american-wirehair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-wirehair"
   },
   {
     "id": "donskoy",
     "name": "ドンスコイ",
     "source": "assets/cat-mobbies/breeds2/c/donskoy.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\donskoy"
   },
   {
     "id": "german-rex",
     "name": "ジャーマンレックス",
     "source": "assets/cat-mobbies/breeds2/c/german-rex.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\german-rex"
   },
   {
     "id": "laperm",
     "name": "ラパーム",
     "source": "assets/cat-mobbies/breeds2/c/laperm.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\laperm"
   },
   {
     "id": "lykoi",
     "name": "ライコイ",
     "source": "assets/cat-mobbies/breeds2/c/lykoi.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\lykoi"
   },
   {
     "id": "peterbald",
     "name": "ピーターボールド",
     "source": "assets/cat-mobbies/breeds2/c/peterbald.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\peterbald"
   },
   {
     "id": "selkirk-rex-longhair",
     "name": "セルカークレックス（ロングヘア）",
     "source": "assets/cat-mobbies/breeds2/c/selkirk-rex-longhair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\selkirk-rex-longhair"
   },
   {
     "id": "skookum",
     "name": "スクーカム",
     "source": "assets/cat-mobbies/breeds2/c/skookum.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\skookum"
   },
   {
     "id": "sphynx",
     "name": "スフィンクス",
     "source": "assets/cat-mobbies/breeds2/c/sphynx.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sphynx"
   },
   {
     "id": "ural-rex",
     "name": "ウラルレックス",
     "source": "assets/cat-mobbies/breeds2/c/ural-rex.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ural-rex"
   },
   {
     "id": "american-bobtail",
     "name": "アメリカンボブテイル",
     "source": "assets/cat-mobbies/breeds2/d/american-bobtail.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-bobtail"
   },
   {
     "id": "chausie",
     "name": "チャウシー",
     "source": "assets/cat-mobbies/breeds2/d/chausie.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chausie"
   },
   {
     "id": "cymric",
     "name": "シンリック",
     "source": "assets/cat-mobbies/breeds2/d/cymric.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cymric"
   },
   {
     "id": "japanese-bobtail-longhair",
     "name": "ジャパニーズボブテイル（ロングヘア）",
     "source": "assets/cat-mobbies/breeds2/d/japanese-bobtail-longhair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\japanese-bobtail-longhair"
   },
   {
     "id": "karelian-bobtail",
     "name": "カレリアンボブテイル",
     "source": "assets/cat-mobbies/breeds2/d/karelian-bobtail.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\karelian-bobtail"
   },
   {
     "id": "kurilian-bobtail",
     "name": "クリリアンボブテイル",
     "source": "assets/cat-mobbies/breeds2/d/kurilian-bobtail.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kurilian-bobtail"
   },
   {
     "id": "mekong-bobtail",
     "name": "メコンボブテイル",
     "source": "assets/cat-mobbies/breeds2/d/mekong-bobtail.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mekong-bobtail"
   },
   {
     "id": "pixie-bob",
     "name": "ピクシーボブ",
     "source": "assets/cat-mobbies/breeds2/d/pixie-bob.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\pixie-bob"
   },
   {
