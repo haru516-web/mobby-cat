@@ -3,6 +3,7 @@
 export type HomeBg = { id: string; name: string; src: number; top: number };
 
 export const HOME_BGS: HomeBg[] = [
+  { id: 'lantern', name: '提灯の座敷', src: require('../../assets/ui/bg/room-home-lantern.webp'), top: 0.41 },
   { id: 'room', name: 'おへや', src: require('../../assets/ui/bg/room-home-full.png'), top: 0.27 },
   { id: 'street', name: '商店街', src: require('../../assets/ui/bg/room-home-street.webp'), top: 0.4 },
   { id: 'golden', name: '金の本堂', src: require('../../assets/ui/bg/room-home-golden.webp'), top: 0.42 },

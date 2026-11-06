@@ -2,10 +2,10 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 201,
+  "assetCount": 202,
   "counts": {
     "badge": 16,
-    "bg": 15,
+    "bg": 16,
     "brand": 12,
     "button": 35,
     "camera": 18,
@@ -361,6 +361,18 @@
       "prompt": "Use case: stylized-concept. Create a full portrait room background 1179x2556. Image1 is room-home style/composition reference only. Preserve cozy painted game-illustration room with arch window and curtains left, cream sofa, bookshelf and greenery in top half; soft oval woven rug centered and fully inside side edges around vertical45-60%, empty rug center for a cat. Orange wooden floor continues seamlessly to the bottom edge. Keep right wall open at 12-30% for a button. The upper area through 62% should retain room scene and furniture; the lower 38% must be a flat, quiet, low-contrast orange floor for two large UI cards and four floating navigation buttons, no seams, objects, shadows, bands or color breaks. Floor is a broad gentle orange plane, lower two thirds simple. Illustrative storybook game background, rounded forms, flat painted colors, soft gradients, moderate detail, no photo, no depth blur, no lens effects, no text, no cats or people, opaque full-bleed.",
       "method": "built-in image_gen",
       "processing": "Lanczos cover resize, opaque RGB, no EXIF",
+      "alphaMode": "opaque"
+    },
+    {
+      "path": "bg/room-home-lantern.webp",
+      "width": 858,
+      "height": 1830,
+      "size": "858x1830",
+      "prompt": "Opaque vertical Japanese home zashiki at dusk, matching the warm amber wood, lantern light, shoji, cherry blossoms, paw-print noren and soft painted game-art finish of room-deai-full.png and screen-zukan.png. Dark quiet beam band at top, wall details confined above 41%, broad clear medium-light wooden floor below. No cats, text, logos or watermark.",
+      "method": "built-in image_gen",
+      "processing": "Generated from the approved room-deai-full.png and screen-zukan.png style references. Source 860x1829 RGB art was divided at y=219 and y=845; the dark beam strip was kept 219px, the rear-wall band scaled to 531px, and the empty floor scaled to 1080px, then stacked at 858px width. Encoded as opaque WebP quality 91. Floor boundary is y=750/1830=0.4098, registered top 0.41.",
+      "sha256": "e861fdca93b44b27c13f90d594d25f6cdcc0e5ded44c4a286211633afa64b7b5",
+      "bytes": 143266,
       "alphaMode": "opaque"
     },
     {
