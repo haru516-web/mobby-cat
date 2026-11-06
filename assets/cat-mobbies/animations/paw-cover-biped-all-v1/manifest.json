@@ -1403,21 +1403,21 @@
     "id": "british-lilac",
     "name": "ブリティッシュ（ライラック）",
     "source": "assets/cat-mobbies/breeds2/g/british-lilac.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-lilac"
   },
   {
     "id": "british-silver-tabby",
     "name": "ブリティッシュ（シルバータビー）",
     "source": "assets/cat-mobbies/breeds2/g/british-silver-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-silver-tabby"
   },
   {
     "id": "scottish-fold-bicolor",
     "name": "スコティッシュフォールド（バイカラー）",
     "source": "assets/cat-mobbies/breeds2/g/scottish-fold-bicolor.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-fold-bicolor"
   },
   {
