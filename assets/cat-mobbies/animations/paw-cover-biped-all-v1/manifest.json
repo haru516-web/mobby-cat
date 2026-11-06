@@ -1214,189 +1214,189 @@
     "id": "savannah",
     "name": "サバンナ",
     "source": "assets/cat-mobbies/breeds2/d/savannah.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\savannah"
   },
   {
     "id": "serengeti",
     "name": "セレンゲティ",
     "source": "assets/cat-mobbies/breeds2/d/serengeti.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\serengeti"
   },
   {
     "id": "aegean",
     "name": "エーゲ",
     "source": "assets/cat-mobbies/breeds2/e/aegean.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\aegean"
   },
   {
     "id": "arabian-mau",
     "name": "アラビアンマウ",
     "source": "assets/cat-mobbies/breeds2/e/arabian-mau.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\arabian-mau"
   },
   {
     "id": "australian-mist",
     "name": "オーストラリアンミスト",
     "source": "assets/cat-mobbies/breeds2/e/australian-mist.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\australian-mist"
   },
   {
     "id": "dragon-li",
     "name": "ドラゴンリー",
     "source": "assets/cat-mobbies/breeds2/e/dragon-li.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\dragon-li"
   },
   {
     "id": "khao-manee",
     "name": "カオマニー",
     "source": "assets/cat-mobbies/breeds2/e/khao-manee.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\khao-manee"
   },
   {
     "id": "neva-masquerade",
     "name": "ネヴァマスカレード",
     "source": "assets/cat-mobbies/breeds2/e/neva-masquerade.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\neva-masquerade"
   },
   {
     "id": "sokoke",
     "name": "ソコケ",
     "source": "assets/cat-mobbies/breeds2/e/sokoke.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sokoke"
   },
   {
     "id": "suphalak",
     "name": "スパラック",
     "source": "assets/cat-mobbies/breeds2/e/suphalak.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\suphalak"
   },
   {
     "id": "toybob",
     "name": "トイボブ",
     "source": "assets/cat-mobbies/breeds2/e/toybob.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\toybob"
   },
   {
     "id": "ukrainian-levkoy",
     "name": "ウクライナ・レフコイ",
     "source": "assets/cat-mobbies/breeds2/e/ukrainian-levkoy.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ukrainian-levkoy"
   },
   {
     "id": "persian-black-smoke",
     "name": "ペルシャ（ブラックスモーク）",
     "source": "assets/cat-mobbies/breeds2/f/persian-black-smoke.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-black-smoke"
   },
   {
     "id": "persian-blue-cream",
     "name": "ペルシャ（ブルークリーム）",
     "source": "assets/cat-mobbies/breeds2/f/persian-blue-cream.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-blue-cream"
   },
   {
     "id": "persian-chinchilla-silver",
     "name": "ペルシャ（チンチラシルバー）",
     "source": "assets/cat-mobbies/breeds2/f/persian-chinchilla-silver.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-chinchilla-silver"
   },
   {
     "id": "persian-red-tabby",
     "name": "ペルシャ（レッドタビー）",
     "source": "assets/cat-mobbies/breeds2/f/persian-red-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\persian-red-tabby"
   },
   {
     "id": "ragdoll-blue-colorpoint",
     "name": "ラグドール（ブルーカラーポイント）",
     "source": "assets/cat-mobbies/breeds2/f/ragdoll-blue-colorpoint.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragdoll-blue-colorpoint"
   },
   {
     "id": "ragdoll-lilac-bicolor",
     "name": "ラグドール（リラックスバイカラー）",
     "source": "assets/cat-mobbies/breeds2/f/ragdoll-lilac-bicolor.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragdoll-lilac-bicolor"
   },
   {
     "id": "ragdoll-seal-mitted",
     "name": "ラグドール（シールミテッド）",
     "source": "assets/cat-mobbies/breeds2/f/ragdoll-seal-mitted.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragdoll-seal-mitted"
   },
   {
     "id": "siamese-blue-point",
     "name": "シャム（ブルーポイント）",
     "source": "assets/cat-mobbies/breeds2/f/siamese-blue-point.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siamese-blue-point"
   },
   {
     "id": "siamese-chocolate-point",
     "name": "シャム（チョコレートポイント）",
     "source": "assets/cat-mobbies/breeds2/f/siamese-chocolate-point.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siamese-chocolate-point"
   },
   {
     "id": "siamese-flame-point",
     "name": "シャム（フレームポイント）",
     "source": "assets/cat-mobbies/breeds2/f/siamese-flame-point.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siamese-flame-point"
   },
   {
     "id": "american-shorthair-brown-tabby",
     "name": "アメリカンショートヘア（ブラウンタビー）",
     "source": "assets/cat-mobbies/breeds2/g/american-shorthair-brown-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-shorthair-brown-tabby"
   },
   {
     "id": "american-shorthair-calico",
     "name": "アメリカンショートヘア（キャリコ）",
     "source": "assets/cat-mobbies/breeds2/g/american-shorthair-calico.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-shorthair-calico"
   },
   {
     "id": "british-bicolor",
     "name": "ブリティッシュ（バイカラー）",
     "source": "assets/cat-mobbies/breeds2/g/british-bicolor.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-bicolor"
   },
   {
     "id": "british-black",
     "name": "ブリティッシュ（ブラック）",
     "source": "assets/cat-mobbies/breeds2/g/british-black.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-black"
   },
   {
     "id": "british-golden-shaded",
     "name": "ブリティッシュ（ゴールデンシェーデッド）",
     "source": "assets/cat-mobbies/breeds2/g/british-golden-shaded.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\british-golden-shaded"
   },
   {
