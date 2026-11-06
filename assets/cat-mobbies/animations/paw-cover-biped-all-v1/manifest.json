@@ -962,63 +962,63 @@
     "id": "colorpoint-shorthair",
     "name": "カラーポイントショートヘア",
     "source": "assets/cat-mobbies/breeds2/a/colorpoint-shorthair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\colorpoint-shorthair"
   },
   {
     "id": "himalayan",
     "name": "ヒマラヤン",
     "source": "assets/cat-mobbies/breeds2/a/himalayan.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\himalayan"
   },
   {
     "id": "javanese",
     "name": "ジャバニーズ",
     "source": "assets/cat-mobbies/breeds2/a/javanese.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\javanese"
   },
   {
     "id": "korat",
     "name": "コラット",
     "source": "assets/cat-mobbies/breeds2/a/korat.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\korat"
   },
   {
     "id": "nebelung",
     "name": "ネベルング",
     "source": "assets/cat-mobbies/breeds2/a/nebelung.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nebelung"
   },
   {
     "id": "oriental-longhair",
     "name": "オリエンタルロングヘア",
     "source": "assets/cat-mobbies/breeds2/a/oriental-longhair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\oriental-longhair"
   },
   {
     "id": "oriental-shorthair",
     "name": "オリエンタルショートヘア",
     "source": "assets/cat-mobbies/breeds2/a/oriental-shorthair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\oriental-shorthair"
   },
   {
     "id": "thai",
     "name": "タイ",
     "source": "assets/cat-mobbies/breeds2/a/thai.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\thai"
   },
   {
     "id": "bambino",
     "name": "バンビーノ",
     "source": "assets/cat-mobbies/breeds2/b/bambino.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bambino"
   },
   {
