@@ -1802,91 +1802,91 @@
     "id": "exotic-shorthair-chocolate",
     "name": "エキゾチックショートヘア（チョコレート）",
     "source": "assets/cat-mobbies/breeds2/m/exotic-shorthair-chocolate.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\exotic-shorthair-chocolate"
   },
   {
     "id": "exotic-shorthair-cream",
     "name": "エキゾチックショートヘア（クリーム）",
     "source": "assets/cat-mobbies/breeds2/m/exotic-shorthair-cream.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\exotic-shorthair-cream"
   },
   {
     "id": "tonkinese-platinum-mink",
     "name": "トンキニーズ（プラチナミンク）",
     "source": "assets/cat-mobbies/breeds2/m/tonkinese-platinum-mink.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tonkinese-platinum-mink"
   },
   {
     "id": "tonkinese-champagne-mink",
     "name": "トンキニーズ（シャンパンミンク）",
     "source": "assets/cat-mobbies/breeds2/n/tonkinese-champagne-mink.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tonkinese-champagne-mink"
   },
   {
     "id": "balinese-chocolate-point",
     "name": "バリニーズ（チョコレートポイント）",
     "source": "assets/cat-mobbies/breeds2/n/balinese-chocolate-point.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\balinese-chocolate-point"
   },
   {
     "id": "balinese-lilac-point",
     "name": "バリニーズ（ライラックポイント）",
     "source": "assets/cat-mobbies/breeds2/n/balinese-lilac-point.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\balinese-lilac-point"
   },
   {
     "id": "ragamuffin-tortie-white",
     "name": "ラガマフィン（トーティ＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/n/ragamuffin-tortie-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragamuffin-tortie-white"
   },
   {
     "id": "ragamuffin-cream-white",
     "name": "ラガマフィン（クリーム＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/n/ragamuffin-cream-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ragamuffin-cream-white"
   },
   {
     "id": "selkirk-rex-chocolate",
     "name": "セルカークレックス（チョコレート）",
     "source": "assets/cat-mobbies/breeds2/n/selkirk-rex-chocolate.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\selkirk-rex-chocolate"
   },
   {
     "id": "selkirk-rex-cream",
     "name": "セルカークレックス（クリーム）",
     "source": "assets/cat-mobbies/breeds2/n/selkirk-rex-cream.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\selkirk-rex-cream"
   },
   {
     "id": "siberian-golden-tabby",
     "name": "サイベリアン（ゴールデンタビー）",
     "source": "assets/cat-mobbies/breeds2/n/siberian-golden-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siberian-golden-tabby"
   },
   {
     "id": "siberian-tortie-white",
     "name": "サイベリアン（トーティ＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/n/siberian-tortie-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siberian-tortie-white"
   },
   {
     "id": "japanese-bobtail-red-white",
     "name": "ジャパニーズボブテイル（レッド＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/n/japanese-bobtail-red-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\japanese-bobtail-red-white"
   }
 ]
