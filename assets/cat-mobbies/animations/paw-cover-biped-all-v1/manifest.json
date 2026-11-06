@@ -1613,189 +1613,189 @@
     "id": "kuro-neko",
     "name": "黒猫",
     "source": "assets/cat-mobbies/breeds2/k/kuro-neko.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kuro-neko"
   },
   {
     "id": "shiro-neko",
     "name": "白猫",
     "source": "assets/cat-mobbies/breeds2/k/shiro-neko.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shiro-neko"
   },
   {
     "id": "hachiware",
     "name": "ハチワレ",
     "source": "assets/cat-mobbies/breeds2/k/hachiware.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hachiware"
   },
   {
     "id": "haiiro-neko",
     "name": "グレーの猫",
     "source": "assets/cat-mobbies/breeds2/k/haiiro-neko.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\haiiro-neko"
   },
   {
     "id": "kijishiro",
     "name": "キジシロ",
     "source": "assets/cat-mobbies/breeds2/k/kijishiro.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kijishiro"
   },
   {
     "id": "highlander",
     "name": "ハイランダー",
     "source": "assets/cat-mobbies/breeds2/k/highlander.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\highlander"
   },
   {
     "id": "suffolk-lilac",
     "name": "サフォーク（ライラック）",
     "source": "assets/cat-mobbies/breeds2/k/suffolk-lilac.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\suffolk-lilac"
   },
   {
     "id": "tennessee-rex",
     "name": "テネシーレックス",
     "source": "assets/cat-mobbies/breeds2/k/tennessee-rex.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tennessee-rex"
   },
   {
     "id": "asian-ticked-tabby",
     "name": "エイジアン（ティックドタビー）",
     "source": "assets/cat-mobbies/breeds2/k/asian-ticked-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\asian-ticked-tabby"
   },
   {
     "id": "asian-black-smoke",
     "name": "エイジアン（ブラックスモーク）",
     "source": "assets/cat-mobbies/breeds2/k/asian-black-smoke.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\asian-black-smoke"
   },
   {
     "id": "burmilla-longhair",
     "name": "バーミラ（ロングヘア）",
     "source": "assets/cat-mobbies/breeds2/l/burmilla-longhair.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmilla-longhair"
   },
   {
     "id": "laperm-black",
     "name": "ラパーム（ブラック）",
     "source": "assets/cat-mobbies/breeds2/l/laperm-black.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\laperm-black"
   },
   {
     "id": "laperm-red-white",
     "name": "ラパーム（レッド＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/l/laperm-red-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\laperm-red-white"
   },
   {
     "id": "american-curl-red-tabby",
     "name": "アメリカンカール（レッドタビー）",
     "source": "assets/cat-mobbies/breeds2/l/american-curl-red-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-curl-red-tabby"
   },
   {
     "id": "american-curl-blue-white",
     "name": "アメリカンカール（ブルー＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/l/american-curl-blue-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\american-curl-blue-white"
   },
   {
     "id": "devon-rex-chocolate",
     "name": "デボンレックス（チョコレート）",
     "source": "assets/cat-mobbies/breeds2/l/devon-rex-chocolate.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\devon-rex-chocolate"
   },
   {
     "id": "devon-rex-white",
     "name": "デボンレックス（ホワイト）",
     "source": "assets/cat-mobbies/breeds2/l/devon-rex-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\devon-rex-white"
   },
   {
     "id": "cornish-rex-black-white",
     "name": "コーニッシュレックス（ブラック＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/l/cornish-rex-black-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cornish-rex-black-white"
   },
   {
     "id": "cornish-rex-red",
     "name": "コーニッシュレックス（レッド）",
     "source": "assets/cat-mobbies/breeds2/l/cornish-rex-red.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cornish-rex-red"
   },
   {
     "id": "somali-blue",
     "name": "ソマリ（ブルー）",
     "source": "assets/cat-mobbies/breeds2/l/somali-blue.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\somali-blue"
   },
   {
     "id": "somali-fawn",
     "name": "ソマリ（フォーン）",
     "source": "assets/cat-mobbies/breeds2/m/somali-fawn.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\somali-fawn"
   },
   {
     "id": "turkish-angora-black-smoke",
     "name": "ターキッシュアンゴラ（ブラックスモーク）",
     "source": "assets/cat-mobbies/breeds2/m/turkish-angora-black-smoke.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-angora-black-smoke"
   },
   {
     "id": "turkish-angora-red-tabby",
     "name": "ターキッシュアンゴラ（レッドタビー）",
     "source": "assets/cat-mobbies/breeds2/m/turkish-angora-red-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-angora-red-tabby"
   },
   {
     "id": "turkish-van-cream",
     "name": "ターキッシュバン（クリーム）",
     "source": "assets/cat-mobbies/breeds2/m/turkish-van-cream.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-van-cream"
   },
   {
     "id": "turkish-van-black",
     "name": "ターキッシュバン（ブラック）",
     "source": "assets/cat-mobbies/breeds2/m/turkish-van-black.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\turkish-van-black"
   },
   {
     "id": "manx-blue-white",
     "name": "マンクス（ブルー＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/m/manx-blue-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\manx-blue-white"
   },
   {
     "id": "manx-red-tabby",
     "name": "マンクス（レッドタビー）",
     "source": "assets/cat-mobbies/breeds2/m/manx-red-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\manx-red-tabby"
   },
   {
