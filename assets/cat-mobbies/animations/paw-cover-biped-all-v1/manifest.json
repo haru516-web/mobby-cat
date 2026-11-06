@@ -1424,189 +1424,189 @@
     "id": "scottish-fold-silver-tabby",
     "name": "スコティッシュフォールド（シルバータビー）",
     "source": "assets/cat-mobbies/breeds2/g/scottish-fold-silver-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-fold-silver-tabby"
   },
   {
     "id": "scottish-fold-white",
     "name": "スコティッシュフォールド（ホワイト）",
     "source": "assets/cat-mobbies/breeds2/g/scottish-fold-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\scottish-fold-white"
   },
   {
     "id": "abyssinian-blue",
     "name": "アビシニアン（ブルー）",
     "source": "assets/cat-mobbies/breeds2/h/abyssinian-blue.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\abyssinian-blue"
   },
   {
     "id": "abyssinian-fawn",
     "name": "アビシニアン（フォーン）",
     "source": "assets/cat-mobbies/breeds2/h/abyssinian-fawn.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\abyssinian-fawn"
   },
   {
     "id": "birman-blue-point",
     "name": "バーマン（ブルーポイント）",
     "source": "assets/cat-mobbies/breeds2/h/birman-blue-point.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\birman-blue-point"
   },
   {
     "id": "birman-chocolate-point",
     "name": "バーマン（チョコレートポイント）",
     "source": "assets/cat-mobbies/breeds2/h/birman-chocolate-point.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\birman-chocolate-point"
   },
   {
     "id": "maine-coon-black",
     "name": "メインクーン（ブラック）",
     "source": "assets/cat-mobbies/breeds2/h/maine-coon-black.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maine-coon-black"
   },
   {
     "id": "maine-coon-red-tabby",
     "name": "メインクーン（レッドタビー）",
     "source": "assets/cat-mobbies/breeds2/h/maine-coon-red-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maine-coon-red-tabby"
   },
   {
     "id": "maine-coon-silver-tabby",
     "name": "メインクーン（シルバータビー）",
     "source": "assets/cat-mobbies/breeds2/h/maine-coon-silver-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\maine-coon-silver-tabby"
   },
   {
     "id": "norwegian-forest-black-white",
     "name": "ノルウェージャンフォレスト（ブラック＆ホワイト）",
     "source": "assets/cat-mobbies/breeds2/h/norwegian-forest-black-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\norwegian-forest-black-white"
   },
   {
     "id": "norwegian-forest-silver-tabby",
     "name": "ノルウェージャンフォレスト（シルバータビー）",
     "source": "assets/cat-mobbies/breeds2/h/norwegian-forest-silver-tabby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\norwegian-forest-silver-tabby"
   },
   {
     "id": "siberian-blue",
     "name": "サイベリアン（ブルー）",
     "source": "assets/cat-mobbies/breeds2/h/siberian-blue.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\siberian-blue"
   },
   {
     "id": "bengal-marble",
     "name": "ベンガル（マーブル）",
     "source": "assets/cat-mobbies/breeds2/i/bengal-marble.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bengal-marble"
   },
   {
     "id": "bengal-silver",
     "name": "ベンガル（シルバー）",
     "source": "assets/cat-mobbies/breeds2/i/bengal-silver.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bengal-silver"
   },
   {
     "id": "bengal-snow-lynx",
     "name": "ベンガル（スノーリンクス）",
     "source": "assets/cat-mobbies/breeds2/i/bengal-snow-lynx.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bengal-snow-lynx"
   },
   {
     "id": "egyptian-mau-bronze",
     "name": "エジプシャンマウ（ブロンズ）",
     "source": "assets/cat-mobbies/breeds2/i/egyptian-mau-bronze.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\egyptian-mau-bronze"
   },
   {
     "id": "mike-neko",
     "name": "三毛猫",
     "source": "assets/cat-mobbies/breeds2/j/mike-neko.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mike-neko"
   },
   {
     "id": "egyptian-mau-smoke",
     "name": "エジプシャンマウ（スモーク）",
     "source": "assets/cat-mobbies/breeds2/j/egyptian-mau-smoke.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\egyptian-mau-smoke"
   },
   {
     "id": "ocicat-silver",
     "name": "オシキャット（シルバー）",
     "source": "assets/cat-mobbies/breeds2/j/ocicat-silver.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ocicat-silver"
   },
   {
     "id": "burmese-blue",
     "name": "バーミーズ（ブルー）",
     "source": "assets/cat-mobbies/breeds2/j/burmese-blue.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmese-blue"
   },
   {
     "id": "burmese-champagne",
     "name": "バーミーズ（シャンパン）",
     "source": "assets/cat-mobbies/breeds2/j/burmese-champagne.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmese-champagne"
   },
   {
     "id": "kijitora",
     "name": "キジトラ",
     "source": "assets/cat-mobbies/breeds2/j/kijitora.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\kijitora"
   },
   {
     "id": "saba-tora",
     "name": "サバトラ",
     "source": "assets/cat-mobbies/breeds2/j/saba-tora.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\saba-tora"
   },
   {
     "id": "chatora",
     "name": "茶トラ",
     "source": "assets/cat-mobbies/breeds2/j/chatora.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chatora"
   },
   {
     "id": "sabi-neko",
     "name": "サビ猫",
     "source": "assets/cat-mobbies/breeds2/j/sabi-neko.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sabi-neko"
   },
   {
     "id": "russian-white",
     "name": "ロシアンホワイト",
     "source": "assets/cat-mobbies/breeds2/j/russian-white.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\russian-white"
   },
   {
     "id": "russian-black",
     "name": "ロシアンブラック",
     "source": "assets/cat-mobbies/breeds2/j/russian-black.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\russian-black"
   },
   {
