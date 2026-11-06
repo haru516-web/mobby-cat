@@ -780,182 +780,182 @@
     "id": "cameraman",
     "name": "カメラマンモビー",
     "source": "assets/cat-mobbies/new/f/cameraman.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\cameraman"
   },
   {
     "id": "gorogoro",
     "name": "ごろごろモビー",
     "source": "assets/cat-mobbies/new/f/gorogoro.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\gorogoro"
   },
   {
     "id": "nemurio",
     "name": "ねむりおうモビー",
     "source": "assets/cat-mobbies/new/f/nemurio.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\nemurio"
   },
   {
     "id": "bouken-ou",
     "name": "ぼうけんおうモビー",
     "source": "assets/cat-mobbies/new/f/bouken-ou.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\bouken-ou"
   },
   {
     "id": "hyakunin",
     "name": "ひゃくにんモビー",
     "source": "assets/cat-mobbies/new/f/hyakunin.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hyakunin"
   },
   {
     "id": "oiwai",
     "name": "おいわいモビー",
     "source": "assets/cat-mobbies/new/f/oiwai.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\oiwai"
   },
   {
     "id": "hakubutsukan",
     "name": "はくぶつかんモビー",
     "source": "assets/cat-mobbies/new/f/hakubutsukan.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hakubutsukan"
   },
   {
     "id": "traveling-mobby",
     "name": "旅するモビー",
     "source": "assets/cat-mobbies/new/g/traveling-mobby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\traveling-mobby"
   },
   {
     "id": "shinirimobby",
     "name": "しんいりモビー",
     "source": "assets/cat-mobbies/new/g/shinirimobby.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shinirimobby"
   },
   {
     "id": "ouji",
     "name": "王子モビー",
     "source": "assets/cat-mobbies/new/h/ouji.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\ouji"
   },
   {
     "id": "uchuu",
     "name": "宇宙モビー",
     "source": "assets/cat-mobbies/new/h/uchuu.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\uchuu"
   },
   {
     "id": "toumei",
     "name": "透明モビー",
     "source": "assets/cat-mobbies/new/h/toumei.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\toumei"
   },
   {
     "id": "shikaku",
     "name": "四角モビー",
     "source": "assets/cat-mobbies/new/h/shikaku.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shikaku"
   },
   {
     "id": "shachou",
     "name": "社長モビー",
     "source": "assets/cat-mobbies/new/h/shachou.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\shachou"
   },
   {
     "id": "mushoku",
     "name": "無職モビー",
     "source": "assets/cat-mobbies/new/h/mushoku.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\mushoku"
   },
   {
     "id": "chokotto",
     "name": "ちょこっとモビー",
     "source": "assets/cat-mobbies/new/i/chokotto.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chokotto"
   },
   {
     "id": "hodohodo",
     "name": "ほどほどモビー",
     "source": "assets/cat-mobbies/new/i/hodohodo.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\hodohodo"
   },
   {
     "id": "country-20",
     "name": "はれぎモビー",
     "source": "assets/cat-mobbies/new/i/country-20.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-20"
   },
   {
     "id": "country-50",
     "name": "ゴールデンモビー",
     "source": "assets/cat-mobbies/new/i/country-50.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-50"
   },
   {
     "id": "country-75",
     "name": "ダイヤモンドモビー",
     "source": "assets/cat-mobbies/new/i/country-75.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\country-75"
   },
   {
     "id": "world-traveler",
     "name": "せかいいっしゅうモビー",
     "source": "assets/cat-mobbies/new/i/world-traveler.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\world-traveler"
   },
   {
     "id": "sakura",
     "name": "さくらモビー",
     "source": "assets/cat-mobbies/new/i/sakura.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\sakura"
   },
   {
     "id": "tsuyu",
     "name": "つゆモビー",
     "source": "assets/cat-mobbies/new/i/tsuyu.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\tsuyu"
   },
   {
     "id": "halloween",
     "name": "ハロウィンモビー",
     "source": "assets/cat-mobbies/new/i/halloween.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\halloween"
   },
   {
     "id": "burmilla",
     "name": "バーミラ",
     "source": "assets/cat-mobbies/breeds2/a/burmilla.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\burmilla"
   },
   {
     "id": "chartreux",
     "name": "シャルトリュー",
     "source": "assets/cat-mobbies/breeds2/a/chartreux.png",
-    "status": "pending",
+    "status": "complete",
     "output": "assets\\cat-mobbies\\animations\\paw-cover-biped-all-v1\\chartreux"
   },
   {
