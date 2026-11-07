@@ -27,8 +27,10 @@ const ACT_PLAY: Record<ActKind, { stepMs: number; cycle: number[] }> = {
   cover: { stepMs: 250, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 二足で構える→飛ぶ→肉球でレンズを覆う。約2.0秒
 };
 
-const COVER_CHANCE = 0.05; // 猫が動き出すたびに、肉球カバーを選ぶ確率
-const COVER_COOLDOWN_MS = 120000; // 肉球カバーの次まで、最低でもこれだけあける
+// 「肉球で画面を覆う」は画面いっぱいになるので、くじではなく専用の予定で出す：
+// ホームを開いて最初の30秒以内に必ず1回、そのあとは1〜2分に1回（出た時刻から数える）
+const COVER_FIRST_MS: [number, number] = [8000, 28000];
+const COVER_NEXT_MS: [number, number] = [60000, 120000];
 
 export const actionsOf = (id: string): CatAction[] => (hasRoll(id) ? ['roll', ...(Object.keys(CAT_ACT[id] ?? {}) as ActKind[])] : []);
 
@@ -98,30 +100,36 @@ export function useRollDirector(ids: string[]): { active: Map<string, { run: num
     const pool = key ? key.split('|') : [];
     const running = new Map<string, { run: number; kind: CatAction }>(); // 猫id → 何回目の再生か、何をするか（同じ猫がすぐ続けて始まっても、再生をやりなおせるように）
     let seq = 0;
-    let lastCover = Date.now(); // 開いた直後には出さない
     const timers = new Set<ReturnType<typeof setTimeout>>();
     let dead = false;
     const rnd = (a: number, b: number) => a + Math.random() * (b - a);
-    const start = (id: string) => {
+    const start = (id: string, forced?: CatAction) => {
       if (dead || running.has(id)) return;
       const acts = actionsOf(id);
-      // ごろごろを半分、残りはその猫が持っている動きからランダムに。
-      // 「肉球で画面を覆う」は画面いっぱいになるので、たまにだけ（ほかが動き出すたびの小さなくじ＋前から時間をあける。同時には1つだけ）
+      // ごろごろを半分、残りはその猫が持っている動きからランダムに（肉球カバーは別の予定で出すので、ここでは選ばない）
       const others = acts.slice(1).filter((k) => k !== 'cover');
-      const coverNow = [...running.values()].some((r) => r.kind === 'cover');
-      const now = Date.now();
-      let kind: CatAction = 'roll';
-      if (acts.includes('cover') && !coverNow && now - lastCover > COVER_COOLDOWN_MS && Math.random() < COVER_CHANCE) {
-        kind = 'cover';
-        lastCover = now;
-      } else if (others.length > 0 && Math.random() < 0.5) {
-        kind = others[Math.floor(Math.random() * others.length)];
-      }
+      const kind: CatAction = forced ?? (others.length > 0 && Math.random() < 0.5 ? others[Math.floor(Math.random() * others.length)] : 'roll');
       running.set(id, { run: (seq += 1), kind });
       setActive(new Map(running));
     };
     const wait = (id: string, ms: number) => {
       const t = setTimeout(() => { timers.delete(t); start(id); }, ms);
+      timers.add(t);
+    };
+    // 肉球カバー：いま動いていない猫（カバーのある子）から1匹選んで始める。みんな動いていたら1秒待つ。次の予定もここで立てる
+    const scheduleCover = (ms: number) => {
+      const t = setTimeout(function fire() {
+        timers.delete(t);
+        if (dead) return;
+        const free = pool.filter((id) => !running.has(id) && !!CAT_ACT[id]?.cover);
+        if (free.length === 0) {
+          const r = setTimeout(() => { timers.delete(r); fire(); }, 1000);
+          timers.add(r);
+          return;
+        }
+        start(free[Math.floor(Math.random() * free.length)], 'cover');
+        scheduleCover(rnd(...COVER_NEXT_MS));
+      }, ms);
       timers.add(t);
     };
     finish.current = (id) => {
@@ -137,6 +145,7 @@ export function useRollDirector(ids: string[]): { active: Map<string, { run: num
       const first = pool[Math.floor(Math.random() * pool.length)];
       start(first);
       for (const id of pool) if (id !== first) wait(id, Math.random() < 0.2 ? rnd(0, 600) : rnd(3000, 20000));
+      if (pool.some((id) => !!CAT_ACT[id]?.cover)) scheduleCover(rnd(...COVER_FIRST_MS));
     }
     return () => {
       dead = true;
