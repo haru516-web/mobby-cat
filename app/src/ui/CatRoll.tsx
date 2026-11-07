@@ -24,7 +24,11 @@ const ACT_PLAY: Record<ActKind, { stepMs: number; cycle: number[] }> = {
   peekaboo: { stepMs: 250, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約2.0秒
   fall: { stepMs: 234, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約1.9秒
   angry: { stepMs: 200, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約1.6秒
+  cover: { stepMs: 250, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 二足で構える→飛ぶ→肉球でレンズを覆う。約2.0秒
 };
+
+const COVER_CHANCE = 0.05; // 猫が動き出すたびに、肉球カバーを選ぶ確率
+const COVER_COOLDOWN_MS = 120000; // 肉球カバーの次まで、最低でもこれだけあける
 
 export const actionsOf = (id: string): CatAction[] => (hasRoll(id) ? ['roll', ...(Object.keys(CAT_ACT[id] ?? {}) as ActKind[])] : []);
 
@@ -94,14 +98,25 @@ export function useRollDirector(ids: string[]): { active: Map<string, { run: num
     const pool = key ? key.split('|') : [];
     const running = new Map<string, { run: number; kind: CatAction }>(); // 猫id → 何回目の再生か、何をするか（同じ猫がすぐ続けて始まっても、再生をやりなおせるように）
     let seq = 0;
+    let lastCover = Date.now(); // 開いた直後には出さない
     const timers = new Set<ReturnType<typeof setTimeout>>();
     let dead = false;
     const rnd = (a: number, b: number) => a + Math.random() * (b - a);
     const start = (id: string) => {
       if (dead || running.has(id)) return;
       const acts = actionsOf(id);
-      // ごろごろを半分、残りはその猫が持っている動きからランダムに
-      const kind: CatAction = acts.length > 1 && Math.random() < 0.5 ? acts[1 + Math.floor(Math.random() * (acts.length - 1))] : 'roll';
+      // ごろごろを半分、残りはその猫が持っている動きからランダムに。
+      // 「肉球で画面を覆う」は画面いっぱいになるので、たまにだけ（ほかが動き出すたびの小さなくじ＋前から時間をあける。同時には1つだけ）
+      const others = acts.slice(1).filter((k) => k !== 'cover');
+      const coverNow = [...running.values()].some((r) => r.kind === 'cover');
+      const now = Date.now();
+      let kind: CatAction = 'roll';
+      if (acts.includes('cover') && !coverNow && now - lastCover > COVER_COOLDOWN_MS && Math.random() < COVER_CHANCE) {
+        kind = 'cover';
+        lastCover = now;
+      } else if (others.length > 0 && Math.random() < 0.5) {
+        kind = others[Math.floor(Math.random() * others.length)];
+      }
       running.set(id, { run: (seq += 1), kind });
       setActive(new Map(running));
     };

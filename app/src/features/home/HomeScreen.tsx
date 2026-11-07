@@ -12,6 +12,7 @@ import { hapticLight } from '../../services/haptics';
 import { Bobbing, C, CAT_BY_ID, CatImage, T } from '../../ui/base';
 import { Card, Header, useTabPad, Tap, WORLD_ON } from '../../ui/kit';
 import { ActSprite, RollSprite, useRollDirector, CatAction } from '../../ui/CatRoll';
+import { PawCover } from '../../ui/PawCover';
 import { Pic, Slice } from '../../ui/Slice';
 import { TourAnchor } from '../../ui/TourAnchor';
 import { UI } from '../../ui/uiAssets';
@@ -23,7 +24,9 @@ const MEOW = ['にゃ！', 'ごろごろ…', 'なでて〜', 'うれしい！',
 // 旅猫の今いる場所（仮）。あとで「全員共通の静的JSON」を1日1回読む形に置き換える
 const TRAVELER = { flag: '📍', country: 'ポルトガル', city: 'リスボン', day: 12 };
 
-function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size: number; delay: number; act: { run: number; kind: CatAction } | undefined; onRollDone: () => void; onPet: () => void }) {
+function RoomCat({ id, size, delay, act: actIn, covered, onRollDone, onPet }: { id: string; size: number; delay: number; act: { run: number; kind: CatAction } | undefined; covered: boolean; onRollDone: () => void; onPet: () => void }) {
+  // 肉球カバーは画面いっぱいに描くので、ここでは描かない（HomeScreen の PawCover が描く）
+  const act = actIn?.kind === 'cover' ? undefined : actIn;
   const rollRun = act?.run;
   const [rollReady, setRollReady] = useState(false);
   // 影は、いまの絵（立ち姿・ごろごろ・動きの各コマ）の足元に合わせる
@@ -67,7 +70,7 @@ function RoomCat({ id, size, delay, act, onRollDone, onPet }: { id: string; size
         <Bobbing delay={delay}>
           <View style={{ width: size, height: size }}>
             {/* ごろごろの最初のコマが描けるまで静止画を残す（つなぎ目で一瞬消えないように） */}
-            <View style={{ opacity: rollRun !== undefined && rollReady ? 0 : 1 }}>
+            <View style={{ opacity: covered || (rollRun !== undefined && rollReady) ? 0 : 1 }}>
               <CatImage id={id} size={size} />
             </View>
             <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, transform: [{ translateX: tx }, { translateY: ty }, { scale: sc }] }}>
@@ -108,6 +111,13 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   // ホームはスクロールしない（もび道と同じ）。見出しと下のカードの残りの高さを、ぜんぶ部屋に回す（flex）。
   // 低い端末では部屋が低く、縦に長い端末では高くなる。猫の位置は、部屋の高さ（roomH）に対する割合で決める
   const [roomH, setRoomH] = useState(width * 1.25);
+  const [roomPos, setRoomPos] = useState({ x: 0, y: 0 });
+  const [rootSize, setRootSize] = useState({ w: width, h: 0 });
+  // たまに出る「肉球で画面を覆う」：動いている猫のうち cover の子（同時に1匹だけ）を、画面全体に重ねて描く
+  const [coverReady, setCoverReady] = useState(false);
+  const coverEntry = [...roll.active].find(([, a]) => a.kind === 'cover');
+  const cover = coverEntry ? { id: coverEntry[0], run: coverEntry[1].run } : undefined;
+  const coverIdx = cover ? roomSlots.indexOf(cover.id) : -1;
   const placed = useMemo(() => layoutHome(roomSlots, width, roomH, Math.max(bg.top, SIDE_BOTTOM / roomH), extentOf, (id) => footStill(id)[0]), [roomSlots, width, roomH, bg.top]);
   // 通知の「これから」の、いちばん近い予告（暦や月で決まる特別な猫）
   const next = useMemo(() => upcoming(todayKey, 30, state.birthday)[0], [todayKey, state.birthday]);
@@ -122,7 +132,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
   })();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, overflow: 'hidden' }} onLayout={(e) => setRootSize({ w: e.nativeEvent.layout.width, h: e.nativeEvent.layout.height })}>
     <View pointerEvents="none" style={[StyleSheet.absoluteFill, { left: -bleed - 2, right: -bleed - 2, top: -2, bottom: -2 }]}>
       <Image source={bg.src} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
     </View>
@@ -149,7 +159,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
       )}
       </View>
 
-      <TourAnchor id="home-room" style={{ width, flex: 1, maxHeight: width * 1.6, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => setRoomH(e.nativeEvent.layout.height)}>
+      <TourAnchor id="home-room" style={{ width, flex: 1, maxHeight: width * 1.6, marginTop: 4, overflow: 'hidden' }} onLayout={(e) => { setRoomH(e.nativeEvent.layout.height); setRoomPos({ x: e.nativeEvent.layout.x, y: e.nativeEvent.layout.y }); }}>
         {roomSlots.every((id) => !id) && (
           <View style={s.empty}>
             <T w="b" size={14} style={{ textAlign: 'center' }}>まだ誰もいません{'\n'}「出会い」からにゃこモビーを迎えましょう</T>
@@ -160,7 +170,7 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
           const pl = placed[i];
           return (
             <View key={id} style={{ position: 'absolute', left: pl.left, top: pl.top, zIndex: Math.round(pl.foot) }}>
-              <RoomCat id={id} size={pl.size} delay={i * 260} act={roll.active.get(id)} onRollDone={() => roll.done(id)} onPet={pet} />
+              <RoomCat id={id} size={pl.size} delay={i * 260} act={roll.active.get(id)} covered={coverReady && cover?.id === id} onRollDone={() => roll.done(id)} onPet={pet} />
             </View>
           );
         })}
@@ -207,6 +217,19 @@ export default function HomeScreen({ go, openShop, openSettings, openLoginRecord
         </Tap>
       </View>
     </View>
+    {cover && coverIdx >= 0 && rootSize.h > 0 && (
+      <PawCover
+        key={cover.run}
+        id={cover.id}
+        size={placed[coverIdx].size}
+        left={roomPos.x + placed[coverIdx].left}
+        top={roomPos.y + placed[coverIdx].top}
+        rootW={rootSize.w}
+        rootH={rootSize.h}
+        onReady={() => setCoverReady(true)}
+        onDone={() => { setCoverReady(false); roll.done(cover.id); }}
+      />
+    )}
     <HomeSelect visible={selecting} onClose={() => setSelecting(false)} width={width} />
     </View>
   );
