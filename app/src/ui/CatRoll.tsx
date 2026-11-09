@@ -24,6 +24,7 @@ const ACT_PLAY: Record<ActKind, { stepMs: number; cycle: number[] }> = {
   peekaboo: { stepMs: 250, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約2.0秒
   fall: { stepMs: 234, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約1.9秒
   angry: { stepMs: 200, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 約1.6秒
+  hiss: { stepMs: 220, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 右向きで威嚇。約1.8秒
   cover: { stepMs: 250, cycle: Array.from({ length: POSES }, (_, i) => i) }, // 二足で構える→飛ぶ→肉球でレンズを覆う。約2.0秒
 };
 

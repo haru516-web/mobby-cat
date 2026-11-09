@@ -22,6 +22,7 @@ const ALPHA_MAX = 250; // 体の毛は alpha がほぼ最大。にじみは半�
 const MIN_MID = 0.18; // 半透明（alpha 9〜245）の画素が、絵の面積のこの割合以上あるコマだけ直す。きれいな素材は 0.07〜0.10、にじみのある素材は 0.2〜0.5
 const MAX_LOST = 0.025; // 体（不透明な部分）をこれ以上削ってしまった素材は、直したことにしない
 const MIN_WIDTH = 2.5; // にじみの平均の幅がこれ未満なら、ふつうの縁として触らない
+const CLEAR_ALPHA_BELOW = new Map([['act/munchkin-sleep.webp', 230]]); // 各コマの外周につながる低アルファのピンクマット
 
 const run = (cmd, args, input) => new Promise((resolve, reject) => {
   const p = spawn(cmd, args);
@@ -127,6 +128,29 @@ function fixCell(buf, stride, x0, y0, cw, ch) {
   return { width, changed: true, lost, residual };
 }
 
+function clearBorderConnectedLowAlpha(buf, stride, x0, y0, cw, ch, maxAlpha) {
+  const N = cw * ch, seen = new Uint8Array(N), queue = new Int32Array(N);
+  let head = 0, tail = 0;
+  const offset = (x, y) => ((y0 + y) * stride + x0 + x) * 4;
+  const seed = (x, y) => {
+    const k = y * cw + x;
+    if (seen[k] || buf[offset(x, y) + 3] > maxAlpha) return;
+    seen[k] = 1; queue[tail++] = k;
+  };
+  for (let y = 0; y < ch; y++) for (let x = 0; x < cw; x++) {
+    if (x === 0 || y === 0 || x === cw - 1 || y === ch - 1 || buf[offset(x, y) + 3] === 0) seed(x, y);
+  }
+  while (head < tail) {
+    const k = queue[head++], x = k % cw, y = (k - x) / cw;
+    if (x > 0) seed(x - 1, y);
+    if (x < cw - 1) seed(x + 1, y);
+    if (y > 0) seed(x, y - 1);
+    if (y < ch - 1) seed(x, y + 1);
+  }
+  for (let k = 0; k < N; k++) if (seen[k]) buf[offset(k % cw, Math.floor(k / cw)) + 3] = 0;
+  return tail;
+}
+
 const jobs = [];
 for (const [kind, dir, W, H, cells] of [['still', 'cats', 512, 512, 1], ['roll', 'cat-roll', 1024, 512, 8], ['act', 'cat-act', 768, 384, 8]]) {
   for (const f of fs.readdirSync(path.join(app, 'assets', dir))) if (f.endsWith('.webp') && !f.endsWith('-cover.webp') && f.includes(ONLY)) jobs.push({ kind, dir, f, W, H, cells });
@@ -139,17 +163,27 @@ await Promise.all(Array.from({ length: 8 }, async () => {
     const j = jobs[next++];
     const file = path.join(app, 'assets', j.dir, j.f);
     const buf = await run('ffmpeg', ['-v', 'error', '-i', file, '-vf', 'format=rgba', '-f', 'rawvideo', '-pix_fmt', 'rgba', '-']);
+    let forcedFrames = 0, forcedPixels = 0;
+    const alphaThreshold = CLEAR_ALPHA_BELOW.get(`${j.kind}/${j.f}`);
+    if (alphaThreshold) {
+      const cw = j.W / 4, ch = j.H / 2;
+      for (let i = 0; i < 8; i++) {
+        const cleared = clearBorderConnectedLowAlpha(buf, j.W, (i % 4) * cw, Math.floor(i / 4) * ch, cw, ch, alphaThreshold);
+        if (cleared) forcedFrames++;
+        forcedPixels += cleared;
+      }
+    }
     const res = [];
     if (j.cells === 1) res.push(fixCell(buf, j.W, 0, 0, j.W, j.H));
     else { const cw = j.W / 4, ch = j.H / 2; for (let i = 0; i < 8; i++) res.push(fixCell(buf, j.W, (i % 4) * cw, Math.floor(i / 4) * ch, cw, ch)); }
-    const changed = res.filter((r) => r?.changed).length;
+    const changed = res.filter((r) => r?.changed).length + forcedFrames;
     const widths = res.map((r) => (r ? +r.width.toFixed(1) : 0));
-    const needs = res.some((r) => r && (r.changed || (r.mid ?? 0) >= MIN_MID)); // にじみがあるコマを含む
+    const needs = forcedFrames > 0 || res.some((r) => r && (r.changed || (r.mid ?? 0) >= MIN_MID)); // にじみがあるコマを含む
     const unfixed = res.some((r) => r && !r.changed && (r.mid ?? 0) >= MIN_MID); // にじみがあるのに、直せなかったコマ
     const lost = Math.max(0, ...res.map((r) => r?.lost ?? 0));
     const residual = Math.max(0, ...res.map((r) => r?.residual ?? 0));
     const status = !needs ? 'clean' : unfixed || lost > MAX_LOST ? 'regen' : 'fixed';
-    report.push({ kind: j.kind, name: j.f, status, changedFrames: changed, lost: +lost.toFixed(3), residual: +residual.toFixed(3), widths });
+    report.push({ kind: j.kind, name: j.f, status, changedFrames: changed, forcedPixels, lost: +lost.toFixed(3), residual: +residual.toFixed(3), widths });
     if (status === 'fixed') {
       const dest = path.join(outDir, j.kind, j.f);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
