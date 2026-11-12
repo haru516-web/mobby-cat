@@ -31,7 +31,7 @@ test('days are deterministic, eligible only, and empty when no conditions match'
  assert.deepEqual(empty.candidates,[]);
 });
 test('old records survive and new fairness metadata round trips',()=>{
- const record={candidates:[normal[0]],reasons:{[normal[0]]:'昔の理由'},baseCount:3,matatabiUsed:0,extraPicks:[]};
+ const record={candidates:[normal[0]],reasons:{[normal[0]]:'昔の理由'},baseCount:3,extraPicks:[]};
  assert.deepEqual(checkSaved({owned:{},days:{day:record}}).saved.days.day,record);
  const saved=checkSaved({owned:{},days:{day:{...record,eligible:[normal[0],rare[0]]}},encounterMisses:{[normal[0]]:4}});
  assert.equal(saved.repaired,false);assert.equal(saved.saved.encounterMisses[normal[0]],4);assert.deepEqual(saved.saved.days.day.eligible,[normal[0],rare[0]]);

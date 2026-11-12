@@ -130,8 +130,6 @@ export const UI: Record<string, UIAsset | undefined> = {
   'icon/laurel-left': { src: require('../../assets/ui/icon/laurel-left.png'), w: 150, h: 240 },
   'icon/laurel-right': { src: require('../../assets/ui/icon/laurel-right.png'), w: 150, h: 240 },
   'icon/maple': { src: require('../../assets/ui/icon/maple.png'), w: 120, h: 120 },
-  'icon/matatabi-bag': { src: require('../../assets/ui/icon/matatabi-bag.png'), w: 360, h: 360 },
-  'icon/matatabi-leaf': { src: require('../../assets/ui/icon/matatabi-leaf.png'), w: 150, h: 150 },
   'icon/megaphone': { src: require('../../assets/ui/icon/megaphone.png'), w: 150, h: 150 },
   'icon/nav-deai': { src: require('../../assets/ui/icon/nav-deai.png'), w: 100, h: 100 },
   'icon/nav-home': { src: require('../../assets/ui/icon/nav-home.png'), w: 100, h: 100 },

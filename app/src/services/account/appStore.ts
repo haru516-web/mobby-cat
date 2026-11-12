@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import { ALL_SKUS, PRODUCTS, isKnownSku, type Product } from './products';
+import { ALL_SKUS, isKnownSku, type Product } from './products';
 
 // App Store（StoreKit 2）を expo-iap 経由で使う。Web や、ネイティブ部分が入っていない開発ビルドでは null（買えない）。
 export type PurchasedItem = { sku: string; jws: string; finish: () => Promise<void> };
@@ -37,7 +37,7 @@ export function createAppStore(): PurchaseStore | null {
     sku: purchase.productId,
     jws: purchase.purchaseToken ?? '',
     finish: async () => {
-      await iap.finishTransaction({ purchase, isConsumable: PRODUCTS.pass.sku !== purchase.productId });
+      await iap.finishTransaction({ purchase, isConsumable: true });
     },
   });
 
@@ -52,8 +52,6 @@ export function createAppStore(): PurchaseStore | null {
           .filter((purchase) => purchase.productId === product.sku)
           .map((purchase) => purchase.id),
       );
-      // 加入中のパスは買い直せない。Apple の画面を出しても、同じ取引が返るだけ
-      if (product.kind === 'subs' && leftOver.size > 0) throw new Error('already_subscribed');
       return new Promise<PurchasedItem | 'cancelled'>((resolve, reject) => {
         const startedAt = Date.now();
         // 支払いの途中でパスワードを入れていることもあるが、2分間なにも返ってこなければ止まっている
@@ -76,7 +74,7 @@ export function createAppStore(): PurchaseStore | null {
     },
     async unfinished() {
       await connect();
-      // 支払い済みで、まだ終えていない取引（お迎え券・またたびの消耗型を含む）は getPendingTransactionsIOS でしか取れない。
+      // 支払い済みで、まだ終えていない取引（お迎え券の消耗型を含む）は getPendingTransactionsIOS でしか取れない。
       // いま有効なサブスクは getAvailablePurchases から取る。同じ取引が両方に出たときは1つにまとめる
       let pendingFailed = false;
       const [pending, available] = await Promise.all([
@@ -101,13 +99,10 @@ export function createAppStore(): PurchaseStore | null {
       try {
         await connect();
         const result: Record<string, string> = {};
-        for (const kind of ['in-app', 'subs'] as const) {
-          const skus = ALL_SKUS.filter((sku) => Object.values(PRODUCTS).find((p) => p.sku === sku)?.kind === kind);
-          const found = await withTimeout(iap.fetchProducts({ skus, type: kind }), 10000, `fetchProducts(${kind})`);
-          for (const product of found ?? []) {
-            const label = (product as { displayPrice?: string }).displayPrice;
-            if (typeof label === 'string' && label) result[product.id] = label;
-          }
+        const found = await withTimeout(iap.fetchProducts({ skus: ALL_SKUS, type: 'in-app' }), 10000, 'fetchProducts(in-app)');
+        for (const product of found ?? []) {
+          const label = (product as { displayPrice?: string }).displayPrice;
+          if (typeof label === 'string' && label) result[product.id] = label;
         }
         return result;
       } catch {

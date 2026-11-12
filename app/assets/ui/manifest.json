@@ -2,7 +2,7 @@
   "version": 1,
   "scale": 3,
   "coordinateSpace": "Final PNG pixels, top-left origin; rectangles x,y,w,h. Regions are conservative safe insertion bounds; photo/content are transparent. Render photos below frame, text above frame.",
-  "assetCount": 202,
+  "assetCount": 200,
   "counts": {
     "badge": 16,
     "bg": 16,
@@ -13,7 +13,7 @@
     "deai": 7,
     "gauge": 3,
     "home": 2,
-    "icon": 35,
+    "icon": 33,
     "illust": 11,
     "login": 10,
     "navbtn": 9,
@@ -1791,28 +1791,6 @@
       "slice": null,
       "sha256": "3ffbf9a20a5490c8147a65cc7089f49477cead89c849806d1ca6917cea766b17",
       "bytes": 19212,
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/matatabi-bag.png",
-      "width": 360,
-      "height": 360,
-      "prompt": "Create ONE isolated production UI graphic: Burlap sack with paw print and green catnip leaves, cozy realistic illustration. Final target 360x360 aspect360:360. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "540bcfb39de91f3e579d81b3feadec34e418988cfa9297118ce744ffb15211af",
-      "bytes": 250640,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
-      "alphaMode": "transparent"
-    },
-    {
-      "path": "icon/matatabi-leaf.png",
-      "width": 150,
-      "height": 150,
-      "prompt": "Create ONE isolated production UI graphic: Green catnip leaf. Final target 150x150 aspect150:150. Clean rounded puffy paper-cut style, warm cream dark brown orange green sky blue lavender gold palette per meaning. Upper-left illumination, subtle ivory edge highlight, low contrast downward shadow. Simple readable shape. NO decorative flowers NO extra leaves NO surrounding icons NO extra objects. No actual cat character unless explicitly requested generic silhouette. NO TEXT LABELS LETTERS NUMERALS except requested question symbol. Absolutely transparent background clean alpha edges. Single asset only not a UI layout. Minimal clearance all parts fit. If elongated progress or dotted route, full-width composition.",
-      "sha256": "5455b59c541f6239042a01fd253867c9e11a433764e82b767ca4706ce8c907a9",
-      "bytes": 38403,
-      "method": "built-in image_gen",
-      "processing": "Trim alpha margin and proportionally fit exact canvas without stretching",
       "alphaMode": "transparent"
     },
     {

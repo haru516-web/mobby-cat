@@ -15,7 +15,7 @@ test('save shape repairs corrupt fields while preserving unknown owned cats', ()
   assert.equal(checkSaved({ owned: { cat: { count: 0 } } }), null);
 });
 test('save shape preserves a pending operation snapshot and applied marker', () => {
-  const record = { candidates: ['british-shorthair'], reasons: {}, baseCount: 3, matatabiUsed: 0, extraPicks: [], opened: [] };
+  const record = { candidates: ['british-shorthair'], reasons: {}, baseCount: 3, extraPicks: [], opened: [] };
   const p = { kind: 'extra', day: '2026-10-30', ids: ['british-shorthair'], id: 'unique', currency: 'tickets', fromPaid: 1, fromFree: 0, record, applied: true };
   assert.deepEqual(checkSaved({ owned: {}, pendingSpend: p }).saved.pendingSpend, p);
 });
@@ -43,7 +43,7 @@ test('candidate generation uses the supplied day and signals, with no purchase o
   const day = buildDay('2026-10-30', signals, ctx);
   assert.ok(day.candidates.length > 0);
   assert.equal(new Set(day.candidates).size, day.candidates.length);
-  assert.deepEqual(buildDay('2026-10-30', { ...signals }, { ...ctx, paid: { matatabi: 100 } }), day);
+  assert.deepEqual(buildDay('2026-10-30', { ...signals }, { ...ctx, paid: { tickets: 100 } }), day);
   const original = Math.random;
   try { Math.random = () => { throw Error('random at purchase'); }; assert.deepEqual(buildDay('2026-10-30', signals, ctx), day); }
   finally { Math.random = original; }

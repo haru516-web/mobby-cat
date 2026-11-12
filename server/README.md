@@ -9,12 +9,10 @@
 | 匿名アカウント作成 | `POST /auth/register` → `{ userId, secret }`。以降は `Authorization: Bearer <userId>.<secret>`。secret は SHA-256 のハッシュだけを保存 |
 | Apple サインイン | `POST /account/apple/link`（今の端末のアカウントに結ぶ）、`POST /auth/apple`（新しい端末で引き継ぐ。旧端末の secret は無効になる） |
 | クラウドセーブ | `GET/POST /save`（Apple 連携済みのアカウントだけ。`baseVersion` が古いと 409） |
-| 購入の検証 | `POST /purchases/verify`（StoreKit 2 の JWS。`appAccountToken`、移動済みのパスは `plan_owners` の持ち主が、アカウントの `userId` と一致することが必須） |
+| 購入の検証 | `POST /purchases/verify`（StoreKit 2 の JWS。`appAccountToken`が、アカウントの `userId` と一致することが必須） |
 | App Store Server Notifications V2 | `POST /apple/notifications`（更新・返金・取り消し・返金の取り消し） |
-| またたびパスの移動 | `POST /purchases/move-plan`（期限内のサブスクの署名つき取引。パスの権利だけを呼び出したアカウントへ移す。残高と鍵は動かない。前の持ち主が Apple 連携済みなら 409。移した期間のお迎え券は再付与しない。以後の更新と返金は `plan_owners` の持ち主に届く） |
 | 匿名購入の引継ぎ | `POST /auth/recover-with-code`（前の端末で発行した引継ぎコードだけが証明。購入履歴は要らない。Apple未連携のみ。コードは使い捨て・30日有効・送信元ごとの制限つき） |
-| 残高 | `GET /wallet`（お迎え券 `tickets`・またたび `matatabi`）、`POST /wallet/consume`（`requestId` ごとに1回だけ消費） |
-| またたびパス | `GET /plan` |
+| 残高 | `GET /wallet`（お迎え券 `tickets`）、`POST /wallet/consume`（`requestId` ごとに1回だけ消費） |
 | 年齢区分と購入上限 | `POST /profile/age-group`（下げるのは可、上げるのは不可）、`GET /limits` |
 | アカウント削除 | `POST /account/delete`（`confirm: "delete"`。Apple 連携済みは先に Apple のトークンを取り消し、できなければ削除しない） |
 | 公開ページ | `GET /privacy` `/support` `/legal`（文面は `src/privacyPolicy.ts` ほか。運営者名・連絡先は `src/operator.ts`） |
@@ -23,7 +21,7 @@
 
 ## 商品の設定
 
-`wrangler.toml` の `PRODUCT_CATALOG_JSON` です。1つの商品は「お迎え券だけ」「またたびだけ」「プラン（月ごとのお迎え券つき）」のどれか1つで、混ぜるとサーバーが 500 を返します（返金のときに、どの分を取り消すか決められないため）。商品 ID と価格は仮です。App Store Connect の登録と合わせてください。
+`wrangler.toml` の `PRODUCT_CATALOG_JSON` です。1つの商品はお迎え券（`tickets`）と価格（`priceYen`）だけです。負の数があるとサーバーが 500 を返します。商品 ID と価格は仮です。App Store Connect の登録と合わせてください。
 
 ## 設定名（値はここに書かない）
 
@@ -61,10 +59,11 @@ npm run dev        # ローカルで起動（先に npm run db:apply）
 | `migrations/0002_purchase_price.sql` | 購入した日時と、Apple が請求した金額（円）を記録する（月の購入上限の計算に使う） | 適用済み |
 | `migrations/0003_purchase_recovery_date.sql` | 旧回復方式の列（0005 で消す） | 適用済み |
 | `migrations/0004_account_transfer_codes.sql` | 独立した期限付き引継ぎコードと使用先の鍵のハッシュ | 適用済み |
-| `migrations/0005_plan_owners.sql` | パスの持ち主の表を足し、0003 の列を消す | 適用済み |
+| `migrations/0005_plan_owners.sql`（削除済み） | パスの持ち主の表を足し、0003 の列を消した | 適用済み |
+| `migrations/0006_remove_matatabi.sql` | またたび・パスの列と表（`entitlements`、`plan_owners`）を消す | 適用済み（2026-11-12） |
 
 ```bash
-npx wrangler d1 execute nyakomobby --remote --file=./migrations/0005_plan_owners.sql
+npx wrangler d1 execute nyakomobby --remote --file=./migrations/0006_remove_matatabi.sql
 npx wrangler deploy
 ```
 

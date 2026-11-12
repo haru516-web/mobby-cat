@@ -6,8 +6,7 @@ export const BUNDLE_ID = "com.mobbycat.app";
 
 export const PRODUCTS = {
   "com.mobbycat.app.ticket.3": { tickets: 3, priceYen: 320 },
-  "com.mobbycat.app.matatabi.5": { matatabi: 5, priceYen: 400 },
-  "com.mobbycat.app.matatabipass.monthly": { plan: "matatabi_pass", monthlyTickets: 2, priceYen: 480 }
+  "com.mobbycat.app.ticket.6": { tickets: 6, priceYen: 640 }
 };
 
 export const baseEnv = {

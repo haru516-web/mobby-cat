@@ -5,7 +5,7 @@ import { REVEAL_HOUR, prevDayKey, encounterComposition, hasRarePresence } from '
 import { HASHTAG, saveView, shareView, ViewRef } from '../../services/share';
 import { DiscoveryCard } from './DiscoveryCard';
 import { WelcomeFx } from './WelcomeFx';
-import { homeSlotsOf, matatabiOf, openLeft, openLimit, openedOf, ticketsOf, useGame } from '../../core/game';
+import { homeSlotsOf, openLeft, openedOf, ticketsOf, useGame } from '../../core/game';
 import { notice } from '../../services/dialog';
 import { Bobbing, C, CAT_BY_ID, CatImage, T, catNo } from '../../ui/base';
 import { Card, Header, ImgButton, RarityBadge, useTabPad, Tap } from '../../ui/kit';
@@ -142,8 +142,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
   const hasFree = !!rec.freePick;
   const rest = visible.filter((id) => !isPicked(id));
   const left = openLeft(rec); // あと何匹、無料でひらけるか
-  // またたびで、ひらける数を増やせるか（無料のお迎えの前で、ひらける数を使い切っていて、まだひらいていない子がいる）
-  const canMatatabi = !hasFree && left === 0 && openLimit(rec) < rec.candidates.length;
   // まとめてひらく数：ひらける数（または、まだひらいていない子の数）。この数ぴったりを選んでから、いっしょにひらく
   const unopened = rec.candidates.filter((id) => !visible.includes(id));
   const need = Math.min(left, unopened.length);
@@ -164,7 +162,7 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     ...(!permOk ? [{ icon: 'icon/record-wood-sparkles', text: '歩数と位置情報をオンにしてね' }] : []),
   ];
 
-  // お迎え・またたびは取り消せないので、かならず確認してから行う
+  // お迎えは取り消せないので、かならず確認してから行う
   const askPick = () => {
     if (!sel) return;
     const name = CAT_BY_ID[sel].name;
@@ -202,29 +200,8 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
     );
   };
   // ひらける数を使い切ったあとに、まだひらいていない子を押したとき
-  const askExtra = (id: string) => {
-    if (!canMatatabi) {
-      notice('もうひらけません', hasFree ? '無料のお迎えのあとは、新しくひらけません。あしたの出会いを待ってね。' : '今日ひらける数を使い切りました。');
-    } else if (matatabiOf(state) >= 1) {
-      confirm(
-        'またたびでひらきますか？',
-        `またたびを1個使って、この子をひらきます（${matatabiOf(state)}個 → ${matatabiOf(state) - 1}個）。無料で迎えられるのは1匹のままです。`,
-        'またたびでひらく',
-        async () => {
-          if (await g.useMatatabi(day, id)) { playSfx('sfx_matatabi'); startReveal([id]); }
-          else notice('またたびを使えませんでした', '通信できなかったか、またたびが足りません。電波のよいところで、もう一度お試しください。');
-        },
-        { pic: MYSTERY, skin: 'primary-green' },
-      );
-    } else {
-      confirm(
-        'またたびがありません',
-        'またたびがあると、ひらける子を1匹増やせます。またたびパスなら、毎日6匹までひらけます。',
-        'ショップを見る',
-        openShop,
-        { pic: MYSTERY, skin: 'primary-green', cancelLabel: 'もどる' },
-      );
-    }
+  const askExtra = () => {
+    notice('もうひらけません', hasFree ? '無料のお迎えのあとは、新しくひらけません。あしたの出会いを待ってね。' : '今日ひらける数を使い切りました。');
   };
   const pickSelected = async () => {
     if (!sel) return;
@@ -300,13 +277,13 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
         {rec.candidates.map((id, i) => {
           if (!isOpened(id)) {
             const mine = picking && chosen.includes(id); // いま、ひらく子として選んでいる
-            const openable = picking || canMatatabi;
+            const openable = picking;
             return (
               <Tap
                 key={id}
                 style={{ width: colW, opacity: openable ? 1 : 0.55 }}
-                onPress={() => (picking ? toggleOpen(id) : askExtra(id))}
-                accessibilityLabel={picking ? (mine ? 'ひらく子に選んでいる。タップで外す' : 'まだひらいていない子。タップでひらく子に選ぶ') : 'またたびでひらける子'}
+                onPress={() => (picking ? toggleOpen(id) : askExtra())}
+                accessibilityLabel={picking ? (mine ? 'ひらく子に選んでいる。タップで外す' : 'まだひらいていない子。タップでひらく子に選ぶ') : 'まだひらけない子'}
                 accessibilityState={{ selected: mine }}
               >
                 <View style={{ alignItems: 'center', height: colW * 0.95, justifyContent: 'flex-end', zIndex: 2 }}>
@@ -315,11 +292,11 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
                     <Pic name={mine ? 'deai/fukuro-picked' : MYSTERY} width={colW * 0.82} />
                   </Bobbing>
                 </View>
-                <View style={s.badgeRow}>{!picking && canMatatabi ? <Pic name="icon/matatabi-leaf" height={24} /> : <View style={{ height: 24 }} />}</View>
+                <View style={s.badgeRow}><View style={{ height: 24 }} /></View>
                 <Card skin={mine ? 'selected' : 'white'} style={s.candCard}>
                   <T w="x" size={13}>？？？</T>
                   <Slice name="badge/owned-count" style={s.cost}>
-                    <T w="x" size={11} color={openable ? C.accent : C.sub}>{picking ? (mine ? 'ひらく！' : 'えらぶ') : canMatatabi ? 'またたび1個' : 'ひらけません'}</T>
+                    <T w="x" size={11} color={openable ? C.accent : C.sub}>{picking ? (mine ? 'ひらく！' : 'えらぶ') : 'ひらけません'}</T>
                   </Slice>
                 </Card>
               </Tap>
@@ -408,13 +385,6 @@ export default function DeaiScreen({ openShop, openSettings, openNotice, width }
           </View>
         )}
 
-        {/* またたびパスの契約中表示。持っていない人には何も出さない（ショップへの入口は、上の所持品の表示） */}
-        {state.pass.active && (
-          <Card style={s.pass}>
-            <Pic name="icon/matatabi-bag" height={32} />
-            <T w="x" size={13} style={{ flex: 1 }} numberOfLines={1}>またたびパス契約中</T>
-          </Card>
-        )}
       </View>
     )}
 
@@ -511,7 +481,6 @@ const s = StyleSheet.create({
   cost: { alignSelf: 'center', marginTop: 4, height: 22, minWidth: 74, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center' },
   selInfo: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   selInfoCompact: { paddingVertical: 3 },
-  pass: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 6, paddingHorizontal: 12 },
   shopRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   bar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 16, gap: 8 },
   dayTabs: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 10 },

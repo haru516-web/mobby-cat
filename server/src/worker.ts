@@ -9,7 +9,7 @@ import type { AgeGroup, Currency, Env, ExecutionContext, ProductDefinition, Stor
 const MONTHLY_CAP_YEN: Record<AgeGroup, number | null> = { under16: 5000, "16to19": 10000, adult: null };
 const AGE_RANK: Record<AgeGroup, number> = { under16: 0, "16to19": 1, adult: 2 };
 const isAgeGroup = (value: unknown): value is AgeGroup => value === "under16" || value === "16to19" || value === "adult";
-const isCurrency = (value: unknown): value is Currency => value === "tickets" || value === "matatabi";
+const isCurrency = (value: unknown): value is Currency => value === "tickets";
 
 /** The current calendar month in Tokyo, as UTC instants [from, to). */
 function tokyoMonthRange(now: Date): { from: string; to: string } {
@@ -114,40 +114,9 @@ function configuredProducts(env: Env): Record<string, ProductDefinition> {
   }
   const validAmount = (amount: number | undefined): boolean => amount === undefined || (Number.isSafeInteger(amount) && amount >= 0);
   for (const [id, product] of Object.entries(products)) {
-    const oneTime = (product?.tickets ?? 0) > 0 || (product?.matatabi ?? 0) > 0;
-    if (!id || !product || (product.plan !== undefined && typeof product.plan !== "string") ||
-        !validAmount(product.tickets) || !validAmount(product.matatabi) || !validAmount(product.monthlyTickets) || !validAmount(product.priceYen) ||
-        // One currency per one-time product, and never together with a plan: a refund could not tell which part to take back.
-        ((product.tickets ?? 0) > 0 && (product.matatabi ?? 0) > 0) ||
-        (oneTime && (product.plan !== undefined || (product.monthlyTickets ?? 0) > 0))) {
-      throw new HttpError(500, "invalid_product_configuration");
-    }
+    if (!id || !product || !validAmount(product.tickets) || !validAmount(product.priceYen)) throw new HttpError(500, "invalid_product_configuration");
   }
   return products;
-}
-
-/** The plan period a transaction opened, so a refund can end it. */
-function planOf(product: ProductDefinition | undefined, transaction: VerifiedTransaction): { name: string; periodStart: string } | undefined {
-  return product?.plan && transaction.expiresDate ? { name: product.plan, periodStart: new Date(transaction.purchaseDate).toISOString() } : undefined;
-}
-
-/** A plan's billing period: remembered, and its monthly 券 credited once (an expired period grants nothing). */
-async function recordPlanPeriod(store: Store, userId: string, transaction: VerifiedTransaction, product: ProductDefinition, now: Date): Promise<void> {
-  if (!product.plan || !transaction.expiresDate || transaction.revocationDate) return;
-  // A refund can reach the server before the purchase does: its 券 are not credited afterwards.
-  if (await store.isRevoked(transaction.transactionId)) return;
-  const expired = transaction.expiresDate <= now.getTime();
-  // The period a plan moved in was already paid out to the account it came from; moving must not pay it again.
-  const moved = (await ownerOfPlan(store, transaction))?.movedTransactionId === transaction.transactionId;
-  await store.recordPlanPeriod(userId, product.plan, new Date(transaction.purchaseDate).toISOString(), new Date(transaction.expiresDate).toISOString(), expired || moved ? 0 : product.monthlyTickets ?? 0, transaction.transactionId);
-}
-
-const ownerOfPlan = async (store: Store, transaction: VerifiedTransaction) =>
-  transaction.originalTransactionId ? store.planOwner(transaction.originalTransactionId) : null;
-
-/** The account a transaction belongs to: its appAccountToken, unless a plan has moved to another account since. */
-async function holderOf(store: Store, transaction: VerifiedTransaction, product: ProductDefinition | undefined): Promise<string | undefined> {
-  return (product?.plan ? (await ownerOfPlan(store, transaction))?.userId : undefined) ?? transaction.appAccountToken;
 }
 
 /** An Apple identity token is good for one sign-in: one that was seen before is refused, so a leaked token cannot be replayed. */
@@ -220,7 +189,7 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
   }
 
   // The transfer code is itself the proof: an independent 256-bit one-time secret issued on the old device.
-  // Consumable-only buyers (tickets, matatabi) have no purchase Apple would hand back, so this path needs no receipt.
+  // Consumable-only buyers (tickets) have no purchase Apple would hand back, so this path needs no receipt.
   if (method === "POST" && path === "/auth/recover-with-code") {
     const perMinute = await store.hitRateLimit(`recovercode:minute:${ip}`, Math.floor(now.getTime() / 60_000), 60_000);
     const perDay = await store.hitRateLimit(`recovercode:day:${ip}`, Math.floor(now.getTime() / 86_400_000), 86_400_000);
@@ -252,17 +221,13 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
         transaction = await verifySignedTransaction(data.signedTransactionInfo, env);
       } catch { throw new HttpError(400, "invalid_notification_transaction"); }
       const product = configuredProducts(env)[transaction.productId];
-      const holder = await holderOf(store, transaction, product);
+      const holder = transaction.appAccountToken;
       if (notification.notificationType === "REFUND_REVERSED") {
-        const plan = planOf(product, transaction);
-        await store.reverseRefund(transaction.transactionId, plan && transaction.expiresDate ? { ...plan, periodEnd: new Date(transaction.expiresDate).toISOString() } : undefined);
+        await store.reverseRefund(transaction.transactionId);
       } else if (transaction.revocationDate || notification.notificationType === "REFUND" || notification.notificationType === "REVOKE") {
-        await store.revokePurchase(transaction.transactionId, product, planOf(product, transaction));
+        await store.revokePurchase(transaction.transactionId, product);
       } else if (holder && environmentAccepted(env, transaction)) {
-        if (product && await store.userExists(holder)) {
-          await store.recordPurchase(holder, transaction, product);
-          await recordPlanPeriod(store, holder, transaction, product, now);
-        }
+        if (product && await store.userExists(holder)) await store.recordPurchase(holder, transaction, product);
       }
     }
     return new Response(null, { status: 204 });
@@ -361,42 +326,15 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     if (!product) throw new HttpError(400, "unknown_product");
     if (!environmentAccepted(env, transaction)) throw new HttpError(403, "environment_not_accepted");
     if (!transaction.appAccountToken) throw new HttpError(400, "missing_app_account_token");
-    if ((await holderOf(store, transaction, product)) !== userId) throw new HttpError(403, "app_account_token_mismatch");
+    if (transaction.appAccountToken !== userId) throw new HttpError(403, "app_account_token_mismatch");
     if (transaction.revocationDate) {
-      await store.revokePurchase(transaction.transactionId, product, planOf(product, transaction));
+      await store.revokePurchase(transaction.transactionId, product);
       return json({ status: "revoked" });
     }
     // A refund that arrived first is remembered: the older, still validly signed purchase credits nothing.
     if (await store.isRevoked(transaction.transactionId)) return json({ status: "revoked" });
     const granted = await store.recordPurchase(userId, transaction, product);
-    await recordPlanPeriod(store, userId, transaction, product, now);
     return json({ status: granted ? "verified" : "already_processed" });
-  }
-
-  // A running subscription is proof enough for the subscription itself, and for nothing else: a leaked proof can move the
-  // pass, never a balance or a key. This is how a subscriber who lost the old device keeps what Apple is still billing for.
-  if (method === "POST" && path === "/purchases/move-plan") {
-    await limit(store, "move-plan", userId, 3_600_000, 10, now);
-    const input = await body(request, BODY_BYTES.signed);
-    const signedTransaction = requireString(input.signedTransactionInfo, "missing_signed_transaction", 200_000);
-    let transaction: VerifiedTransaction;
-    try { transaction = await verifySignedTransaction(signedTransaction, env); }
-    catch { throw new HttpError(400, "invalid_storekit_transaction"); }
-    const product = configuredProducts(env)[transaction.productId];
-    if (!product?.plan || !transaction.originalTransactionId) throw new HttpError(400, "not_a_plan");
-    if (!environmentAccepted(env, transaction)) throw new HttpError(403, "environment_not_accepted");
-    if (transaction.revocationDate || (await store.isRevoked(transaction.transactionId))) throw new HttpError(403, "revoked");
-    if (typeof transaction.expiresDate !== "number" || transaction.expiresDate <= now.getTime()) throw new HttpError(403, "purchase_not_active");
-    // A family member sees the buyer's transaction too: only the buyer's own may take the pass over.
-    if (transaction.ownershipType === "FAMILY_SHARED") throw new HttpError(403, "family_shared");
-    const holder = await holderOf(store, transaction, product);
-    if (!holder) throw new HttpError(400, "missing_app_account_token");
-    if (holder === userId) return json({ status: "already_yours" });
-    // An account tied to an Apple ID comes back by signing in, with everything it owns.
-    if (await store.appleLinked(holder)) throw new HttpError(409, "apple_linked");
-    await store.movePlan(userId, transaction, product.plan);
-    await store.recordPurchase(userId, transaction, product);
-    return json({ status: "moved" });
   }
 
   if (method === "GET" && path === "/wallet") return json(await store.wallet(userId));
@@ -411,12 +349,6 @@ async function handle(request: Request, env: Env, store: Store, now = new Date()
     const result = await store.consume(userId, input.currency, amount, ref);
     if (result === "short") throw new HttpError(409, "insufficient_balance");
     return json({ consumed: amount, duplicate: result === "duplicate", remaining: await store.wallet(userId) });
-  }
-
-  if (method === "GET" && path === "/plan") {
-    // until: when the current period ends, so the app stops the pass on time even while it cannot reach the server.
-    const active = await store.activePlan(userId, now.toISOString());
-    return json(active ? { plan: active.plan, until: active.until } : { plan: "none" });
   }
 
   if (method === "POST" && path === "/profile/age-group") {

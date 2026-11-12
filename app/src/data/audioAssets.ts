@@ -5,7 +5,7 @@
 export type BgmId = 'bgm_home' | 'bgm_deai' | 'bgm_welcome';
 export type SfxId =
   | 'sfx_tap' | 'sfx_error'
-  | 'sfx_pet' | 'sfx_welcome' | 'sfx_bell' | 'sfx_matatabi'
+  | 'sfx_pet' | 'sfx_welcome' | 'sfx_bell'
   | 'sfx_pick_free' | 'sfx_pick_extra' | 'sfx_pick_special'
   | 'sfx_gift' | 'sfx_shutter' | 'sfx_saved';
 export type AudioId = BgmId | SfxId;
@@ -19,7 +19,6 @@ export const AUDIO: Partial<Record<AudioId, number>> = {
   sfx_pet: require('../../assets/audio/sfx/sfx_pet.m4a'),
   sfx_welcome: require('../../assets/audio/sfx/sfx_welcome.m4a'),
   sfx_bell: require('../../assets/audio/sfx/sfx_bell.m4a'),
-  sfx_matatabi: require('../../assets/audio/sfx/sfx_matatabi.m4a'),
   sfx_pick_free: require('../../assets/audio/sfx/sfx_pick_free.m4a'),
   sfx_pick_extra: require('../../assets/audio/sfx/sfx_pick_extra.m4a'),
   sfx_pick_special: require('../../assets/audio/sfx/sfx_pick_special.m4a'),

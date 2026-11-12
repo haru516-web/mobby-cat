@@ -3,7 +3,7 @@ import { shownRarity } from '../core/recipes';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CatDef } from '../data/catalog';
-import { matatabiOf, ticketsOf, useGame } from '../core/game';
+import { ticketsOf, useGame } from '../core/game';
 import { SfxId } from '../data/audioAssets';
 import { playSfx } from '../services/audio';
 import { hapticTap } from '../services/haptics';
@@ -97,8 +97,6 @@ export function Header({ onShop, onBell, onSettings }: { onShop: () => void; onB
           <Slice name="panel/pill-currency" style={k.currency}>
             <Icon name="icon/ticket-paw" size={20} />
             <T w="x" size={14} style={{ marginLeft: 3, marginRight: 8 }}>{ticketsOf(state)}</T>
-            <Icon name="icon/matatabi-leaf" size={20} />
-            <T w="x" size={14} style={{ marginLeft: 3 }}>{matatabiOf(state)}</T>
             {/* 押すとショップが開くことを伝える */}
             <Icon name="icon/plus-round" size={22} style={{ marginLeft: 8 }} />
           </Slice>

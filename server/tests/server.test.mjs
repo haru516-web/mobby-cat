@@ -9,8 +9,7 @@ import { hashSecret } from "../src/crypto.ts";
 import { appleFixture, appleIdToken, baseEnv, BUNDLE_ID, PRODUCTS, selfSignedTestRoot, signedTransaction, signJws } from "./helpers.mjs";
 
 const TICKET3 = "com.mobbycat.app.ticket.3";
-const MATATABI5 = "com.mobbycat.app.matatabi.5";
-const PASS = "com.mobbycat.app.matatabipass.monthly";
+const TICKET6 = "com.mobbycat.app.ticket.6";
 
 class SQLiteStatement {
   constructor(database, query, values = []) { this.database = database; this.query = query; this.values = values; }
@@ -102,7 +101,7 @@ test("anonymous registration stores only the secret's SHA-256 hash and gives an 
   const [stored] = rows(context, "SELECT secret_hash FROM users WHERE id = ?", user);
   assert.equal(stored.secret_hash, await hashSecret(secret));
   assert.notEqual(stored.secret_hash, secret);
-  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 0, matatabi: 0 });
+  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 0 });
   assert.equal((await context.call("GET", "/wallet")).status, 401);
 });
 
@@ -119,18 +118,18 @@ test("a purchase credits its tickets once; replaying it, or a tampered or unknow
   const user = await context.register();
   assert.equal((await purchase(context, root, user, TICKET3, "tx-1")).data.status, "verified");
   assert.equal((await purchase(context, root, user, TICKET3, "tx-1")).data.status, "already_processed");
-  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 3, matatabi: 0 });
+  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 3 });
 
-  assert.equal((await purchase(context, root, user, MATATABI5, "tx-2")).data.status, "verified");
-  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 3, matatabi: 5 });
+  assert.equal((await purchase(context, root, user, TICKET6, "tx-2")).data.status, "verified");
+  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 9 });
 
   assert.equal((await purchase(context, root, user, "com.mobbycat.app.unknown", "tx-3")).status, 400);
   const jws = await signedTransaction(root, { productId: TICKET3, transactionId: "tx-4", appAccountToken: user });
   const [header, payload, signature] = jws.split(".");
-  const forged = Buffer.from(JSON.stringify({ ...JSON.parse(Buffer.from(payload, "base64url")), productId: MATATABI5 })).toString("base64url");
+  const forged = Buffer.from(JSON.stringify({ ...JSON.parse(Buffer.from(payload, "base64url")), productId: TICKET6 })).toString("base64url");
   const reply = await context.call("POST", "/purchases/verify", { user, body: { signedTransactionInfo: `${header}.${forged}.${signature}` }, envOverride: withRoot(root) });
   assert.equal(reply.status, 400);
-  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 3, matatabi: 5 });
+  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 9 });
 });
 
 test("a purchase must carry the signed-in account's own appAccountToken", async () => {
@@ -140,7 +139,7 @@ test("a purchase must carry the signed-in account's own appAccountToken", async 
   const bob = await context.register();
   assert.equal((await purchase(context, root, alice, TICKET3, "tx-a", { appAccountToken: bob })).status, 403);
   assert.equal((await purchase(context, root, alice, TICKET3, "tx-b", { appAccountToken: undefined })).status, 400);
-  assert.deepEqual((await context.call("GET", "/wallet", { user: bob })).data, { tickets: 0, matatabi: 0 });
+  assert.deepEqual((await context.call("GET", "/wallet", { user: bob })).data, { tickets: 0 });
 });
 
 test("purchases are credited by environment: Production only unless Sandbox is switched on", async () => {
@@ -151,7 +150,7 @@ test("purchases are credited by environment: Production only unless Sandbox is s
   assert.equal((await purchase(context, root, user, TICKET3, "pr-1", { environment: "Production" })).data.status, "verified");
   assert.equal((await purchase(context, root, user, TICKET3, "sb-2", { environment: "Sandbox" }, { PURCHASE_ENVIRONMENTS: "Production,Sandbox" })).data.status, "verified");
   assert.equal(rows(context, "SELECT environment FROM purchases WHERE apple_transaction_id = 'sb-2'")[0].environment, "Sandbox");
-  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 6, matatabi: 0 });
+  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 6 });
 });
 
 test("two spends with one request id that cross count as a duplicate, not a short balance", async () => {
@@ -177,35 +176,13 @@ test("spending takes from the balance once per request id, and never below zero"
   const again = await spend({ currency: "tickets", amount: 2, requestId: "r1" });
   assert.deepEqual([again.status, again.data.duplicate, again.data.remaining.tickets], [200, true, 1], "the same request id is answered again but not spent twice");
   assert.equal((await spend({ currency: "tickets", amount: 2, requestId: "r2" })).status, 409, "more than the balance");
-  assert.equal((await spend({ currency: "matatabi", amount: 1, requestId: "r3" })).status, 409, "the other currency is separate");
   assert.equal((await spend({ currency: "coins", amount: 1, requestId: "r4" })).status, 400);
   assert.equal((await spend({ currency: "tickets", amount: 0, requestId: "r5" })).status, 400);
   assert.equal((await spend({ currency: "tickets", amount: 1, requestId: "r6" })).data.remaining.tickets, 0);
-  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 0, matatabi: 0 });
+  assert.deepEqual((await context.call("GET", "/wallet", { user })).data, { tickets: 0 });
 });
 
-test("the plan credits its monthly tickets once per period, /plan reports it, and an expired period grants nothing", async () => {
-  const context = createContext();
-  const root = await selfSignedTestRoot();
-  const user = await context.register();
-  assert.equal((await context.call("GET", "/plan", { user })).data.plan, "none");
-  assert.equal((await purchase(context, root, user, PASS, "pass-1")).data.status, "verified");
-  assert.equal((await purchase(context, root, user, PASS, "pass-1")).data.status, "already_processed");
-  assert.equal((await context.call("GET", "/plan", { user })).data.plan, "matatabi_pass");
-  assert.equal((await context.call("GET", "/wallet", { user })).data.tickets, 2);
-
-  // The renewal is a new transaction: another period, another two tickets.
-  await purchase(context, root, user, PASS, "pass-2", { purchaseDate: Date.now() + 1000 });
-  assert.equal((await context.call("GET", "/wallet", { user })).data.tickets, 4);
-
-  const lapsed = await context.register();
-  const day = 86_400_000;
-  await purchase(context, root, lapsed, PASS, "old-1", { purchaseDate: Date.now() - 40 * day, expiresDate: Date.now() - 10 * day });
-  assert.equal((await context.call("GET", "/wallet", { user: lapsed })).data.tickets, 0);
-  assert.equal((await context.call("GET", "/plan", { user: lapsed })).data.plan, "none");
-});
-
-test("a refund takes back only what is unspent, ends a refunded plan period, and what was spent is only counted", async () => {
+test("a refund takes back only what is unspent, and what was spent is only counted", async () => {
   const context = createContext();
   const root = await selfSignedTestRoot();
   const user = await context.register();
@@ -218,15 +195,6 @@ test("a refund takes back only what is unspent, ends a refunded plan period, and
   // The same refund again changes nothing.
   await notify(context, root, "REFUND", { transactionId: "t1", productId: TICKET3, appAccountToken: user, purchaseDate: Date.now(), revocationDate: Date.now() });
   assert.equal(rows(context, "SELECT * FROM wallet_ledger WHERE reason = 'refund'").length, 1);
-
-  // Apple's refund names the same period (purchaseDate) the purchase opened.
-  const period = { purchaseDate: Date.now() - 1000, expiresDate: Date.now() + 30 * 86_400_000 };
-  await purchase(context, root, user, PASS, "p1", period);
-  assert.equal((await context.call("GET", "/plan", { user })).data.plan, "matatabi_pass");
-  assert.equal((await context.call("GET", "/wallet", { user })).data.tickets, 2);
-  await notify(context, root, "REFUND", { transactionId: "p1", productId: PASS, appAccountToken: user, ...period, revocationDate: Date.now() });
-  assert.equal((await context.call("GET", "/plan", { user })).data.plan, "none");
-  assert.equal((await context.call("GET", "/wallet", { user })).data.tickets, 0);
 });
 
 test("a refund that arrives before its purchase leaves the later purchase uncredited", async () => {
@@ -348,18 +316,17 @@ test("deleting an account needs the confirmation word, removes everything of the
   const user = await context.register();
   const other = await context.register();
   await purchase(context, root, user, TICKET3, "d1");
-  await purchase(context, root, user, PASS, "d2");
   await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "adult" } });
   await purchase(context, root, other, TICKET3, "o1");
   assert.equal((await context.call("POST", "/account/delete", { user, body: {} })).status, 400);
   assert.equal((await context.call("POST", "/account/delete", { user, body: { confirm: "yes" } })).status, 400);
   assert.equal((await context.call("POST", "/account/delete", { user, body: { confirm: "delete" } })).data.status, "deleted");
   assert.equal((await context.call("GET", "/wallet", { user })).status, 401);
-  for (const table of ["users", "wallet", "wallet_ledger", "purchases", "entitlements", "user_limits", "apple_links", "cloud_saves"]) {
+  for (const table of ["users", "wallet", "wallet_ledger", "purchases", "user_limits", "apple_links", "cloud_saves"]) {
     const column = table === "users" ? "id" : "user_id";
     assert.equal(rows(context, `SELECT 1 FROM ${table} WHERE ${column} = ?`, user).length, 0, table);
   }
-  assert.deepEqual((await context.call("GET", "/wallet", { user: other })).data, { tickets: 3, matatabi: 0 }, "other accounts are untouched");
+  assert.deepEqual((await context.call("GET", "/wallet", { user: other })).data, { tickets: 3 }, "other accounts are untouched");
 });
 
 test("deleting an Apple-linked account tells Apple first, and keeps the account when that cannot be done", async () => {
@@ -415,8 +382,8 @@ test("deleting an Apple-linked account tells Apple first, and keeps the account 
   }
 });
 
-test("a product catalog that mixes tickets with a plan, or two currencies, is a configuration error", async () => {
-  for (const bad of [{ x: { tickets: 1, plan: "p" } }, { x: { tickets: 1, matatabi: 1 } }, { x: { matatabi: 2, monthlyTickets: 1 } }, { x: { tickets: -1 } }]) {
+test("a product catalog with a negative amount is a configuration error", async () => {
+  for (const bad of [{ x: { tickets: -1 } }, { x: { priceYen: -5 } }]) {
     const context = createContext({ ...baseEnv, PRODUCT_CATALOG_JSON: JSON.stringify(bad) });
     const user = await context.register();
     assert.equal((await context.call("GET", "/limits", { user })).status, 500, JSON.stringify(bad));
@@ -433,16 +400,11 @@ test("the hourly clean-up removes expired rate-limit counters and keeps live one
   assert.equal(outcome.expiredLeft, 0);
 });
 
-test("/time gives the server clock, and /plan says when the current period ends", async () => {
+test("/time gives the server clock", async () => {
   const context = createContext();
   const root = await selfSignedTestRoot();
   const at = new Date("2026-10-29T12:00:00.000Z");
   assert.deepEqual((await context.call("GET", "/time", { now: at })).data, { now: at.getTime() });
-
-  const user = await context.register();
-  const ends = Date.now() + 30 * 86_400_000;
-  await purchase(context, root, user, PASS, "pass-until", { purchaseDate: Date.now() - 1000, expiresDate: ends });
-  assert.deepEqual((await context.call("GET", "/plan", { user })).data, { plan: "matatabi_pass", until: new Date(ends).toISOString() });
 });
 
 test("the monthly cap counts what Apple charged, in the month the purchase was made", async () => {
@@ -479,84 +441,7 @@ test("calls are limited per source address before any work, and per account for 
   assert.equal((await context.call("POST", "/profile/age-group", { user, body: { ageGroup: "under16" } })).status, 429);
 });
 
-test("a running pass moves to a new account with Apple's signed proof, and only the pass moves", async () => {
-  const context = createContext();
-  const root = await selfSignedTestRoot();
-  const env = withRoot(root);
-  const alice = await context.register();
-  const bob = await context.register();
-  assert.equal((await purchase(context, root, alice, TICKET3, "tx-keep")).status, 200);
-  assert.equal((await purchase(context, root, alice, PASS, "tx-pass-1")).status, 200);
-  const proof = (id, extra = {}) => signedTransaction(root, { productId: PASS, transactionId: id, originalTransactionId: "tx-pass-1", appAccountToken: alice, ...extra });
-  const move = async (user, jws) => context.call("POST", "/purchases/move-plan", { user, body: { signedTransactionInfo: jws }, envOverride: env });
-  const ticketsOf = async user => (await context.call("GET", "/wallet", { user })).data.tickets;
-  const planOf = async user => (await context.call("GET", "/plan", { user })).data.plan;
-  const aliceTickets = await ticketsOf(alice);
-
-  // nothing but a running, unrefunded, genuinely signed subscription moves
-  assert.equal((await move(bob, await proof("tx-pass-1", { expiresDate: Date.now() - 1000 }))).status, 403);
-  assert.equal((await move(bob, await proof("tx-pass-1", { revocationDate: Date.now() }))).status, 403);
-  assert.equal((await move(bob, (await proof("tx-pass-1")).slice(0, -4) + "AAAA")).status, 400);
-  assert.equal((await move(bob, await signedTransaction(root, { productId: TICKET3, transactionId: "tx-keep", originalTransactionId: "tx-keep", appAccountToken: alice }))).status, 400);
-  assert.equal(await planOf(bob), "none");
-
-  const jws = await proof("tx-pass-1");
-  assert.equal((await move(bob, jws)).data.status, "moved");
-  assert.equal(await planOf(bob), "matatabi_pass");
-  assert.equal(await planOf(alice), "none");
-  assert.equal(await ticketsOf(alice), aliceTickets, "the old account keeps its balance");
-  assert.equal((await context.call("GET", "/wallet", { user: alice })).status, 200, "and its key");
-  assert.equal(await ticketsOf(bob), 0, "the period that moved does not pay its 券 twice");
-  assert.equal((await move(bob, jws)).data.status, "already_yours");
-
-  // the new holder verifies it, and later renewals go to the new holder although they carry the old token
-  const verify = async (user, token) => context.call("POST", "/purchases/verify", { user, body: { signedTransactionInfo: token }, envOverride: env });
-  assert.equal((await verify(bob, jws)).status, 200);
-  assert.equal(await ticketsOf(bob), 0, "verifying the moved transaction pays nothing");
-  assert.equal((await verify(alice, jws)).status, 403);
-  await notify(context, root, "DID_RENEW", { productId: PASS, transactionId: "tx-pass-2", originalTransactionId: "tx-pass-1", appAccountToken: alice, purchaseDate: Date.now(), expiresDate: Date.now() + 30 * 86400000 });
-  assert.equal(await ticketsOf(bob), PRODUCTS[PASS].monthlyTickets);
-  assert.equal(await ticketsOf(alice), aliceTickets);
-
-  // a refund of the renewal reaches the new holder
-  await notify(context, root, "REFUND", { productId: PASS, transactionId: "tx-pass-2", originalTransactionId: "tx-pass-1", appAccountToken: alice, purchaseDate: Date.now(), expiresDate: Date.now() + 30 * 86400000, revocationDate: Date.now() });
-  assert.equal(await ticketsOf(bob), 0);
-});
-test("a family member's view of the pass cannot move it away from the buyer", async () => {
-  const context = createContext();
-  const root = await selfSignedTestRoot();
-  const env = withRoot(root);
-  const buyer = await context.register();
-  const relative = await context.register();
-  assert.equal((await purchase(context, root, buyer, PASS, "tx-fam")).status, 200);
-  const view = (inAppOwnershipType) => signedTransaction(root, { productId: PASS, transactionId: "tx-fam", originalTransactionId: "tx-fam", appAccountToken: buyer, inAppOwnershipType });
-  const move = async (user, jws) => context.call("POST", "/purchases/move-plan", { user, body: { signedTransactionInfo: jws }, envOverride: env });
-  const shared = await move(relative, await view("FAMILY_SHARED"));
-  assert.equal(shared.status, 403);
-  assert.equal(shared.data.error, "family_shared");
-  assert.equal((await context.call("GET", "/plan", { user: buyer })).data.plan, "matatabi_pass", "the buyer keeps the pass");
-  assert.equal((await context.call("GET", "/plan", { user: relative })).data.plan, "none");
-  assert.equal((await move(relative, await view("PURCHASED"))).data.status, "moved", "the buyer's own transaction still moves");
-});
-test("a pass moves from a deleted account without paying its period again, and never out of an Apple-linked account", async () => {
-  const context = createContext();
-  const root = await selfSignedTestRoot();
-  const env = withRoot(root);
-  const alice = await context.register();
-  const bob = await context.register();
-  const carol = await context.register();
-  assert.equal((await purchase(context, root, alice, PASS, "tx-del")).status, 200);
-  const jws = await signedTransaction(root, { productId: PASS, transactionId: "tx-del", originalTransactionId: "tx-del", appAccountToken: alice });
-  assert.equal((await context.call("POST", "/account/delete", { user: alice, body: { confirm: "delete" } })).status, 200);
-  assert.equal((await context.call("POST", "/purchases/move-plan", { user: bob, body: { signedTransactionInfo: jws }, envOverride: env })).data.status, "moved");
-  assert.equal((await context.call("POST", "/purchases/verify", { user: bob, body: { signedTransactionInfo: jws }, envOverride: env })).status, 200);
-  assert.equal((await context.call("GET", "/wallet", { user: bob })).data.tickets, 0);
-
-  context.database.prepare("INSERT INTO apple_links (user_id, apple_sub, linked_at) VALUES (?, ?, ?)").run(bob, "apple-sub-1", new Date().toISOString());
-  assert.equal((await context.call("POST", "/purchases/move-plan", { user: carol, body: { signedTransactionInfo: jws }, envOverride: env })).status, 409);
-  assert.equal(rows(context, "SELECT user_id FROM plan_owners")[0].user_id, bob);
-});
-test("Apple taking a refund back restores what the refund took, the purchase and a plan's period", async () => {
+test("Apple taking a refund back restores what the refund took and the purchase", async () => {
   const context = createContext();
   const root = await selfSignedTestRoot();
   const alice = await context.register();
@@ -569,15 +454,6 @@ test("Apple taking a refund back restores what the refund took, the purchase and
   assert.equal((await context.call("GET", "/wallet", { user: alice })).data.tickets, 3, "given back once");
   assert.equal(rows(context, "SELECT revoked_at FROM purchases WHERE apple_transaction_id = 'tx-r'")[0].revoked_at, null);
   assert.equal(await context.store.isRevoked("tx-r"), false);
-
-  const end = Date.now() + 30 * 86400000;
-  const start = Date.now() - 1000;
-  assert.equal((await purchase(context, root, alice, PASS, "tx-rp", { purchaseDate: start, expiresDate: end })).status, 200);
-  const pass = { productId: PASS, transactionId: "tx-rp", originalTransactionId: "tx-rp", appAccountToken: alice, purchaseDate: start, expiresDate: end };
-  await notify(context, root, "REFUND", { ...pass, revocationDate: Date.now() });
-  assert.equal((await context.call("GET", "/plan", { user: alice })).data.plan, "none");
-  await notify(context, root, "REFUND_REVERSED", pass);
-  assert.equal((await context.call("GET", "/plan", { user: alice })).data.plan, "matatabi_pass");
 });
 test("an Apple identity token signs in once; the same token again is refused", async () => {
   const context = createContext();
@@ -587,14 +463,6 @@ test("an Apple identity token signs in once; the same token again is refused", a
   assert.equal((await context.call("POST", "/account/apple/link", { user, body: { identityToken: once }, envOverride: appleEnv })).status, 200);
   assert.equal((await context.call("POST", "/auth/apple", { body: { identityToken: once }, envOverride: appleEnv })).status, 401);
   assert.equal((await context.call("POST", "/auth/apple", { body: { identityToken: await token() }, envOverride: appleEnv })).status, 200);
-});
-test("the plan owners migration runs on the live shape and drops the old column", async () => {
-  const database = new DatabaseSync(":memory:");
-  database.exec("CREATE TABLE users (id TEXT PRIMARY KEY, secret_hash TEXT NOT NULL, purchase_recovery_date INTEGER, created_at TEXT NOT NULL);");
-  database.exec(readFileSync(new URL("../migrations/0005_plan_owners.sql", import.meta.url), "utf8"));
-  assert.deepEqual(database.prepare("SELECT name FROM pragma_table_info('users')").all().map(row => row.name), ["id", "secret_hash", "created_at"]);
-  assert.equal(database.prepare("SELECT COUNT(*) AS n FROM plan_owners").get().n, 0);
-  database.close();
 });
 test("transfer code migration, expiry, replacement, retries and rollback protect account keys", async () => {
   const database = new DatabaseSync(":memory:");

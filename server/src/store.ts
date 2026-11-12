@@ -5,8 +5,8 @@ const nowIso = (): string => new Date().toISOString();
 const PURGE_BATCH_ROWS = 500;
 const PURGE_BATCHES = 20;
 const ledgerId = (): string => crypto.randomUUID();
-/** The wallet column of each currency. Only these two names are ever put into SQL text. */
-const COLUMN: Record<Currency, string> = { tickets: "tickets", matatabi: "matatabi" };
+/** The wallet column of each currency. Only this name is ever put into SQL text. */
+const COLUMN: Record<Currency, string> = { tickets: "tickets" };
 
 export class D1Store implements Store {
   private readonly db: D1Database;
@@ -96,28 +96,6 @@ export class D1Store implements Store {
     return row?.user_id ?? null;
   }
 
-  async planOwner(originalTransactionId: string): Promise<{ userId: string; movedTransactionId: string } | null> {
-    const row = await this.db.prepare("SELECT user_id, moved_transaction_id FROM plan_owners WHERE original_transaction_id = ?").bind(originalTransactionId).first<{ user_id: string; moved_transaction_id: string }>();
-    return row ? { userId: row.user_id, movedTransactionId: row.moved_transaction_id } : null;
-  }
-
-  async movePlan(userId: string, transaction: VerifiedTransaction, plan: string): Promise<void> {
-    const original = transaction.originalTransactionId ?? transaction.transactionId;
-    const now = nowIso();
-    const periodStart = new Date(transaction.purchaseDate).toISOString();
-    const periodEnd = new Date(transaction.expiresDate as number).toISOString();
-    await this.db.batch([
-      this.db.prepare("INSERT INTO plan_owners (original_transaction_id, user_id, moved_transaction_id, moved_at) VALUES (?, ?, ?, ?) ON CONFLICT (original_transaction_id) DO UPDATE SET user_id = excluded.user_id, moved_transaction_id = excluded.moved_transaction_id, moved_at = excluded.moved_at")
-        .bind(original, userId, transaction.transactionId, now),
-      // Whoever held the running period no longer does. Past periods stay as history.
-      this.db.prepare("DELETE FROM entitlements WHERE user_id IN (SELECT user_id FROM purchases WHERE original_transaction_id = ? AND user_id <> ?) AND plan = ? AND period_end > ?")
-        .bind(original, userId, plan, now),
-      this.db.prepare("UPDATE purchases SET user_id = ? WHERE original_transaction_id = ?").bind(userId, original),
-      this.db.prepare("INSERT OR IGNORE INTO entitlements (user_id, plan, period_start, period_end, tickets_granted_period) VALUES (?, ?, ?, ?, 0)")
-        .bind(userId, plan, periodStart, periodEnd)
-    ]);
-  }
-
   async appleLinked(userId: string): Promise<boolean> {
     return !!(await this.db.prepare("SELECT 1 AS found FROM apple_links WHERE user_id = ?").bind(userId).first());
   }
@@ -147,8 +125,8 @@ export class D1Store implements Store {
   }
 
   async wallet(userId: string): Promise<Wallet> {
-    const row = await this.db.prepare("SELECT tickets, matatabi FROM wallet WHERE user_id = ?").bind(userId).first<{ tickets: number; matatabi: number }>();
-    return { tickets: row?.tickets ?? 0, matatabi: row?.matatabi ?? 0 };
+    const row = await this.db.prepare("SELECT tickets FROM wallet WHERE user_id = ?").bind(userId).first<{ tickets: number }>();
+    return { tickets: row?.tickets ?? 0 };
   }
 
   private async hasSpent(userId: string, currency: Currency, ref: string): Promise<boolean> {
@@ -186,30 +164,11 @@ export class D1Store implements Store {
         .bind(`purchase:${transaction.transactionId}`, userId, currency, amount, transaction.transactionId, now));
     };
     credit("tickets", product.tickets);
-    credit("matatabi", product.matatabi);
     const results = await this.db.batch(statements);
     return (results[0]?.meta?.changes ?? 0) > 0;
   }
 
-  async recordPlanPeriod(userId: string, plan: string, periodStart: string, periodEnd: string, tickets: number, transactionId: string): Promise<void> {
-    // The refund check is part of each statement, so a refund that lands between the caller's check and this write still wins.
-    const notRefunded = "WHERE NOT EXISTS (SELECT 1 FROM revoked_transactions WHERE transaction_id = ?)";
-    const statements = [
-      this.db.prepare(`INSERT OR IGNORE INTO entitlements (user_id, plan, period_start, period_end, tickets_granted_period) SELECT ?, ?, ?, ?, ? ${notRefunded}`)
-        .bind(userId, plan, periodStart, periodEnd, tickets, transactionId),
-      ...(tickets > 0 ? [this.db.prepare(`INSERT OR IGNORE INTO wallet_ledger (id, user_id, currency, delta, reason, ref, created_at) SELECT ?, ?, 'tickets', ?, 'plan_monthly', ?, ? ${notRefunded}`)
-        .bind(`plan:${transactionId}`, userId, tickets, transactionId, nowIso(), transactionId)] : [])
-    ];
-    await this.db.batch(statements);
-  }
-
-  async activePlan(userId: string, at: string): Promise<{ plan: string; until: string } | null> {
-    const row = await this.db.prepare("SELECT plan, period_end FROM entitlements WHERE user_id = ? AND period_start <= ? AND period_end > ? ORDER BY period_end DESC LIMIT 1")
-      .bind(userId, at, at).first<{ plan: string; period_end: string }>();
-    return row ? { plan: row.plan, until: row.period_end } : null;
-  }
-
-  async revokePurchase(transactionId: string, product: ProductDefinition = {}, plan?: { name: string; periodStart: string }): Promise<void> {
+  async revokePurchase(transactionId: string, product: ProductDefinition = {}): Promise<void> {
     const now = nowIso();
     const statements = [
       // Remembered even when the purchase has not been seen yet, so a purchase that arrives later is not credited.
@@ -226,26 +185,13 @@ export class D1Store implements Store {
         .bind(currency, amount, amount, amount, amount, now, transactionId));
     };
     if ((product.tickets ?? 0) > 0) takeBack("tickets", product.tickets as number);
-    else if ((product.matatabi ?? 0) > 0) takeBack("matatabi", product.matatabi as number);
-    else if (plan) {
-      // A refunded plan period ends now, and its monthly 券 are taken back if they are still unspent.
-      statements.push(this.db.prepare("UPDATE entitlements SET period_end = ? WHERE plan = ? AND period_start = ? AND period_end > ? AND user_id = (SELECT user_id FROM purchases WHERE apple_transaction_id = ?)")
-        .bind(now, plan.name, plan.periodStart, now, transactionId));
-      // The 券 stay with whoever received them, even when the plan has moved to another account since.
-      statements.push(this.db.prepare(`INSERT OR IGNORE INTO refund_events (transaction_id, user_id, currency, amount, taken, shortfall, created_at)
-        SELECT p.apple_transaction_id, l.user_id, 'tickets', l.delta, MIN(l.delta, w.tickets), l.delta - MIN(l.delta, w.tickets), ?
-        FROM purchases p JOIN wallet_ledger l ON l.id = 'plan:' || p.apple_transaction_id AND l.delta > 0
-        JOIN wallet w ON w.user_id = l.user_id
-        WHERE p.apple_transaction_id = ?`)
-        .bind(now, transactionId));
-    }
     statements.push(this.db.prepare(`INSERT OR IGNORE INTO wallet_ledger (id, user_id, currency, delta, reason, ref, created_at)
       SELECT 'refund:' || transaction_id, user_id, currency, -taken, 'refund', transaction_id, ? FROM refund_events WHERE transaction_id = ? AND taken > 0`)
       .bind(now, transactionId));
     await this.db.batch(statements);
   }
 
-  async reverseRefund(transactionId: string, plan?: { name: string; periodStart: string; periodEnd: string }): Promise<void> {
+  async reverseRefund(transactionId: string): Promise<void> {
     const now = nowIso();
     const statements = [
       this.db.prepare(`INSERT OR IGNORE INTO wallet_ledger (id, user_id, currency, delta, reason, ref, created_at)
@@ -255,10 +201,6 @@ export class D1Store implements Store {
       this.db.prepare("DELETE FROM revoked_transactions WHERE transaction_id = ?").bind(transactionId),
       this.db.prepare("UPDATE purchases SET revoked_at = NULL WHERE apple_transaction_id = ?").bind(transactionId)
     ];
-    if (plan) {
-      statements.push(this.db.prepare("UPDATE entitlements SET period_end = ? WHERE plan = ? AND period_start = ? AND user_id = (SELECT user_id FROM purchases WHERE apple_transaction_id = ?)")
-        .bind(plan.periodEnd, plan.name, plan.periodStart, transactionId));
-    }
     await this.db.batch(statements);
   }
 

@@ -1,9 +1,9 @@
 import type { PurchasedItem, PurchaseStore } from './appStore';
-import { PASS_PLAN, PRODUCTS, isKnownSku, type ProductKey } from './products';
+import { PRODUCTS, isKnownSku, type ProductKey } from './products';
 import { ok, type Client, type Reply } from './serverClient';
 
 /*
- * お迎え券・またたび・またたびパスの購入。順番を守って、支払いが失われないようにする。
+ * お迎え券の購入。順番を守って、支払いが失われないようにする。
  *   1. アカウントを確かめる（匿名のアカウントのままで買える。Apple 連携は、機種変更で引き継ぐための任意のもの。ガイドライン 5.1.1）
  *   2. 年齢の区分と、今月の購入上限を確かめる
  *   3. App Store で購入（アカウントの番号を appAccountToken に付ける）
@@ -15,28 +15,18 @@ import { ok, type Client, type Reply } from './serverClient';
 export type AgeGroup = 'under16' | '16to19' | 'adult';
 export const AGE_RANK: Record<AgeGroup, number> = { under16: 0, '16to19': 1, adult: 2 };
 export type Limits = { ageGroup: AgeGroup | null; capYen: number | null; remainingYen: number | null; restricted: boolean };
-export type Wallet = { tickets: number; matatabi: number };
-export type Plan = 'none' | typeof PASS_PLAN;
+export type Wallet = { tickets: number };
 
 export type BuyOutcome =
   | { ok: true }
-  | { ok: false; reason: 'cancelled' | 'offline' | 'unavailable' | 'verify_failed' | 'age_needed' | 'restricted' | 'already_subscribed'; detail?: string }
+  | { ok: false; reason: 'cancelled' | 'offline' | 'unavailable' | 'verify_failed' | 'age_needed' | 'restricted'; detail?: string }
   | { ok: false; reason: 'limit'; capYen: number; remainingYen: number };
 
 export async function fetchWallet(api: Pick<Client, 'authed'>): Promise<Wallet | null> {
   const reply = await api.authed('/wallet', { method: 'GET' });
   const tickets = reply?.data?.tickets;
-  const matatabi = reply?.data?.matatabi;
-  if (!ok(reply) || typeof tickets !== 'number' || typeof matatabi !== 'number') return null;
-  return { tickets: Math.max(0, tickets), matatabi: Math.max(0, matatabi) };
-}
-
-/** いまのプランと、その期間が終わる時刻（ms。サーバーの時計。分からなければ undefined）。つながらなければ null。 */
-export async function fetchPlan(api: Pick<Client, 'authed'>): Promise<{ plan: Plan; until?: number } | null> {
-  const reply = await api.authed('/plan', { method: 'GET' });
-  if (!ok(reply)) return null;
-  const until = typeof reply?.data?.until === 'string' ? Date.parse(reply.data.until) : NaN;
-  return reply?.data?.plan === PASS_PLAN ? { plan: PASS_PLAN, ...(Number.isFinite(until) ? { until } : {}) } : { plan: 'none' };
+  if (!ok(reply) || typeof tickets !== 'number') return null;
+  return { tickets: Math.max(0, tickets) };
 }
 
 export async function fetchLimits(api: Pick<Client, 'authed'>): Promise<Limits | null> {
@@ -96,41 +86,37 @@ async function buyOnce(key: ProductKey, store: PurchaseStore, api: Pick<Client, 
     bought = await store.purchase(product, account.userId);
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error);
-    return { ok: false, reason: detail === 'already_subscribed' ? 'already_subscribed' : 'unavailable', detail };
+    return { ok: false, reason: 'unavailable', detail };
   }
   if (bought === 'cancelled') return { ok: false, reason: 'cancelled' };
   const reply = await api.authed('/purchases/verify', { body: { signedTransactionInfo: bought.jws } });
-  // Apple は加入中のパスの取引を返すことがある。前のアカウントのものなら、買い直しではなく「購入を復元」で移す
-  if (isOtherAccount(reply)) return { ok: false, reason: 'already_subscribed' };
   if (!ok(reply)) return { ok: false, reason: 'verify_failed' };
   await bought.finish().catch(() => undefined);
   return { ok: true };
 }
 
 /**
- * 前回、途中で止まった購入と、いま有効なサブスクを、サーバーに確かめてもらう。起動のたびに呼んでよい。
+ * 前回、途中で止まった購入を、サーバーに確かめてもらう。起動のたびに呼んでよい。
  * 別のアカウントの購入（appAccountToken が違う）は、数えずに数だけ返す。
- * ユーザーが「購入を復元」を押したときだけ、次の2つを行う。
- *  - 引継ぎコードがあれば、そのアカウントごと、この端末へ移す（お迎え券・またたびも戻る）
- *  - コードがなくても、Apple が返した加入中のパスは、パスの権利だけをこの端末のアカウントへ移す（残高と鍵は動かない）
+ * ユーザーが「購入を復元」を押して引継ぎコードを入れたときだけ、そのアカウントごと、この端末へ移す（お迎え券も戻る）。
  */
 export type SettleOutcome =
   | { kind: 'offline' }
   | { kind: 'store_error' }
-  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean; planMoved: boolean; localBlocked: boolean; familyShared: boolean };
+  | { kind: 'done'; credited: number; otherAccount: number; failed: number; recovered: boolean; incomplete: boolean; proofUsed: boolean; localBlocked: boolean };
 
 type SettleApi = Pick<Client, 'authed' | 'authedIfAny' | 'existing' | 'raw' | 'adopt' | 'account'>;
 // recover: 別のアカウントのものを、この端末へ移してよいか。ユーザーが「購入を復元」を押したときだけ true（起動時の自動の確認では、何も移さない）
 export type SettleOptions = { recover?: boolean; transferCode?: string };
 
-// この端末のアカウントが空か（何も買っておらず、パスもない）。空でないアカウントを、よそのアカウントで置き換えて見失わないため
+// この端末のアカウントが空か（何も買っていない）。空でないアカウントを、よそのアカウントで置き換えて見失わないため
 // Apple でサインイン済み（クラウドに記録がありうる）のアカウントは、空とみなさない。Apple でサインインして引き継ぐ
 async function isEmptyAccount(api: Pick<Client, 'authed'>): Promise<boolean> {
-  const [wallet, plan, profile] = await Promise.all([fetchWallet(api), fetchPlan(api), fetchProfile(api)]);
-  return !!wallet && !!plan && !!profile && !profile.appleLinked && wallet.tickets === 0 && wallet.matatabi === 0 && plan.plan === 'none';
+  const [wallet, profile] = await Promise.all([fetchWallet(api), fetchProfile(api)]);
+  return !!wallet && !!profile && !profile.appleLinked && wallet.tickets === 0;
 }
 
-// 前の端末で発行した引継ぎコードを証明にして、そのアカウントの鍵を、この端末へ移す（購入履歴は要らない。またたび・お迎え券だけの人も戻せる）
+// 前の端末で発行した引継ぎコードを証明にして、そのアカウントの鍵を、この端末へ移す（購入履歴は要らない。お迎え券だけの人も戻せる）
 async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, transferCode: string): Promise<'ok' | 'offline' | 'no' | 'used'> {
   // account() saves the replacement secret before any key rotation. A lost response can retry the same secret.
   const replacement = await api.account().catch(() => null);
@@ -146,16 +132,15 @@ async function recoverAccount(api: Pick<Client, 'raw' | 'adopt' | 'account'>, tr
 }
 
 /** この端末の匿名アカウントに、購入したものが残っているか。別のアカウントへ切り替える前に確かめる。無ければ null。 */
-export async function paidHere(api: Pick<Client, 'authedIfAny' | 'existing'>): Promise<{ tickets: number; matatabi: number; pass: boolean } | null | 'offline'> {
+export async function paidHere(api: Pick<Client, 'authedIfAny' | 'existing'>): Promise<{ tickets: number } | null | 'offline'> {
   if (!(await api.existing())) return null;
   const profile = await api.authedIfAny('/profile', { method: 'GET' });
   if (profile === null) return 'offline';
   if (profile.status === 401 || !ok(profile) || profile.data?.appleLinked === true) return null; // 鍵が失効している・Apple で戻せるアカウントは失われない
   const quiet = { authed: api.authedIfAny };
-  const [wallet, plan] = await Promise.all([fetchWallet(quiet), fetchPlan(quiet)]);
-  if (!wallet || !plan) return 'offline';
-  const pass = plan.plan !== 'none';
-  return wallet.tickets > 0 || wallet.matatabi > 0 || pass ? { ...wallet, pass } : null;
+  const wallet = await fetchWallet(quiet);
+  if (!wallet) return 'offline';
+  return wallet.tickets > 0 ? wallet : null;
 }
 
 export async function settle(store: PurchaseStore | null, api: SettleApi, options: SettleOptions = {}): Promise<SettleOutcome> {
@@ -169,8 +154,6 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
   let failedCount = 0;
   let recovered = false;
   let proofUsed = false;
-  let planMoved = false;
-  let familyShared = false;
   let localBlocked = false;
   const code = options.transferCode?.trim();
   let hasAccount = !!(await api.existing());
@@ -186,29 +169,18 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
       }
     } else localBlocked = true;
   }
-  // コードを入れたときは、まずコードの結果を確かめてもらう（入れ間違いのまま、パスだけ移さない）
-  const movePass = async (item: PurchasedItem): Promise<boolean> => {
-    if (!options.recover || code || item.sku !== PRODUCTS.pass.sku) return false;
-    const moved = await api.authed('/purchases/move-plan', { body: { signedTransactionInfo: item.jws } });
-    if (moved?.status === 403 && moved.data?.error === 'family_shared') familyShared = true;
-    if (!ok(moved)) return false;
-    planMoved = true;
-    hasAccount = true;
-    await item.finish().catch(() => undefined);
-    return true;
-  };
   for (const item of items.filter((candidate) => isKnownSku(candidate.sku))) {
     const reply: Reply = hasAccount ? await api.authedIfAny('/purchases/verify', { body: { signedTransactionInfo: item.jws } }) : null;
     if (reply === null) {
       if (hasAccount) return { kind: 'offline' };
-      if (!(await movePass(item))) otherAccount += 1; // この端末にはアカウントが無く、移せる購入でもない
+      otherAccount += 1; // この端末にはアカウントが無い
       continue;
     }
     if (ok(reply)) { credited += 1; await item.finish().catch(() => undefined); }
-    else if (isOtherAccount(reply)) { if (!(await movePass(item))) otherAccount += 1; }
+    else if (isOtherAccount(reply)) otherAccount += 1;
     else failedCount += 1;
   }
-  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found?.incomplete ?? false, proofUsed, planMoved, localBlocked, familyShared };
+  return { kind: 'done', credited, otherAccount, failed: failedCount, recovered, incomplete: found?.incomplete ?? false, proofUsed, localBlocked };
 }
 
 /**
@@ -216,12 +188,12 @@ export async function settle(store: PurchaseStore | null, api: SettleApi, option
  * 使えたときは、サーバーの残高を返す。
  */
 export type SpendOutcome = { kind: 'ok'; wallet: Wallet | null } | { kind: 'short' } | { kind: 'offline' } | { kind: 'signed_out' };
-export async function spendPaid(api: Pick<Client, 'authed'>, currency: 'tickets' | 'matatabi', amount: number, requestId: string): Promise<SpendOutcome> {
+export async function spendPaid(api: Pick<Client, 'authed'>, currency: 'tickets', amount: number, requestId: string): Promise<SpendOutcome> {
   const reply = await api.authed('/wallet/consume', { body: { currency, amount, requestId } });
   if (reply === null) return { kind: 'offline' };
   if (ok(reply)) {
     const remaining = reply?.data?.remaining as Partial<Wallet> | undefined;
-    const wallet = remaining && typeof remaining.tickets === 'number' && typeof remaining.matatabi === 'number' ? { tickets: remaining.tickets, matatabi: remaining.matatabi } : null;
+    const wallet = remaining && typeof remaining.tickets === 'number' ? { tickets: remaining.tickets } : null;
     return { kind: 'ok', wallet };
   }
   if (reply?.status === 401) return { kind: 'signed_out' }; // この端末の鍵が失効した。引かれたかは、アカウントを戻してから確かめる

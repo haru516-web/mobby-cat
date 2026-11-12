@@ -7,17 +7,16 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TEXT NOT NULL
 );
 
--- What the player has bought and not yet spent. お迎え券 (tickets) and またたび (matatabi); the ledger below is the record of every change.
+-- What the player has bought and not yet spent. お迎え券 (tickets); the ledger below is the record of every change.
 CREATE TABLE IF NOT EXISTS wallet (
   user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-  tickets INTEGER NOT NULL DEFAULT 0 CHECK (tickets >= 0),
-  matatabi INTEGER NOT NULL DEFAULT 0 CHECK (matatabi >= 0)
+  tickets INTEGER NOT NULL DEFAULT 0 CHECK (tickets >= 0)
 );
 
 CREATE TABLE IF NOT EXISTS wallet_ledger (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  currency TEXT NOT NULL CHECK (currency IN ('tickets', 'matatabi')),
+  currency TEXT NOT NULL CHECK (currency IN ('tickets')),
   delta INTEGER NOT NULL CHECK (delta <> 0),
   reason TEXT NOT NULL,
   ref TEXT NOT NULL,
@@ -29,8 +28,7 @@ CREATE TRIGGER IF NOT EXISTS wallet_apply_ledger
 AFTER INSERT ON wallet_ledger
 BEGIN
   UPDATE wallet SET
-    tickets = tickets + CASE WHEN NEW.currency = 'tickets' THEN NEW.delta ELSE 0 END,
-    matatabi = matatabi + CASE WHEN NEW.currency = 'matatabi' THEN NEW.delta ELSE 0 END
+    tickets = tickets + CASE WHEN NEW.currency = 'tickets' THEN NEW.delta ELSE 0 END
   WHERE user_id = NEW.user_id;
 END;
 
@@ -50,16 +48,6 @@ CREATE TABLE IF NOT EXISTS purchases (
 );
 CREATE INDEX IF NOT EXISTS purchases_user ON purchases(user_id, granted_at);
 
--- One billing period of a subscription (またたびパス). The period that covers "now" is the active plan.
-CREATE TABLE IF NOT EXISTS entitlements (
-  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  plan TEXT NOT NULL,
-  period_start TEXT NOT NULL,
-  period_end TEXT NOT NULL,
-  tickets_granted_period INTEGER NOT NULL DEFAULT 0 CHECK (tickets_granted_period >= 0),
-  PRIMARY KEY (user_id, plan, period_start)
-);
-
 -- Refunds are remembered even when the purchase was never seen, so a purchase that arrives after its refund credits nothing.
 CREATE TABLE IF NOT EXISTS revoked_transactions (
   transaction_id TEXT PRIMARY KEY,
@@ -71,7 +59,7 @@ CREATE TABLE IF NOT EXISTS revoked_transactions (
 CREATE TABLE IF NOT EXISTS refund_events (
   transaction_id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  currency TEXT NOT NULL CHECK (currency IN ('tickets', 'matatabi')),
+  currency TEXT NOT NULL CHECK (currency IN ('tickets')),
   amount INTEGER NOT NULL,
   taken INTEGER NOT NULL,
   shortfall INTEGER NOT NULL,
@@ -110,15 +98,6 @@ CREATE TABLE IF NOT EXISTS rate_limits (
   PRIMARY KEY (key, window)
 );
 CREATE INDEX IF NOT EXISTS rate_limits_expiry ON rate_limits(expires_at);
-
--- Who holds a subscription now, when it moved away from the account in its appAccountToken.
-CREATE TABLE IF NOT EXISTS plan_owners (
-  original_transaction_id TEXT PRIMARY KEY,
-  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  -- The transaction the move was made with: its billing period's 券 are not credited again.
-  moved_transaction_id TEXT NOT NULL,
-  moved_at TEXT NOT NULL
-);
 
 -- A transfer code is independent from the account credential and may only choose one new key.
 CREATE TABLE IF NOT EXISTS account_transfer_codes (

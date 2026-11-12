@@ -7,7 +7,7 @@ const ids = ['british-shorthair', 'siamese-seal-point', 'ragdoll', 'genkai', 'ki
 const state = {
   owned: { [ids[0]]: { count: 1, firstDay: day, firstReason: '相棒' } },
   starterChosen: true, tutorialDone: true, installDay: '2026-01-01', installLock: false,
-  days: { [day]: { candidates: ids, reasons: {}, baseCount: 3, matatabiUsed: 0, extraPicks: [], opened: ids.slice(0, 3), eligible: ids } },
+  days: { [day]: { candidates: ids, reasons: {}, baseCount: 3, extraPicks: [], opened: ids.slice(0, 3), eligible: ids } },
 };
 const credentials = { userId: 'local-fixture', secret: 'local-test-secret-not-a-real-account-00000000' };
 const script = `<script>if(!localStorage.getItem('encounter-fixture-v1')){localStorage.setItem('mobby-cat/state/v1',${JSON.stringify(JSON.stringify(state))});localStorage.setItem('nyakomobby.account',${JSON.stringify(JSON.stringify(credentials))});localStorage.setItem('encounter-fixture-v1','1');}</script>`;
@@ -19,7 +19,7 @@ const api = createServer((request, response) => {
   if (request.method === 'OPTIONS') { response.end(); return; }
   const data = request.url === '/time' ? { now: Date.now() }
     : request.url === '/profile' ? { appleLinked: false, ageGroup: 'adult' }
-    : request.url === '/wallet' ? { tickets: 0, matatabi: 0 }
+    : request.url === '/wallet' ? { tickets: 0 }
     : request.url === '/plan' ? { plan: 'none' }
     : request.url === '/account/transfer-code' ? { code: 'LOCAL-UI-FIXTURE-NOT-A-REAL-TRANSFER-CODE', expiresAt: Date.now() + 30 * 86400000 }
     : {};

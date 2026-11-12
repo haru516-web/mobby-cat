@@ -9,7 +9,7 @@
 | 初回の相棒選び | `features/onboarding/OnboardingScreen.tsx` | `core/game.tsx`（`drawStarters`、`rerollStarter`、`chooseStarter`） |
 | 初回のチュートリアル（相棒選びのあと。設定から見返せる） | `features/tutorial/TutorialTour.tsx` | 手順 `features/tutorial/steps.ts`、指す場所の目印 `ui/TourAnchor.tsx`、見終えたか `core/game.tsx`（`tutorialDone`） |
 | ホーム（猫部屋・なでる） | `features/home/HomeScreen.tsx` | `core/game.tsx`（`pet`） |
-| 毎日の出会い（候補・無料1匹・お迎え券・またたび） | `features/deai/DeaiScreen.tsx` | 抽選 `core/encounter.ts`、条件 `core/conditions.ts`、状態 `core/game.tsx` |
+| 毎日の出会い（候補・無料1匹・お迎え券） | `features/deai/DeaiScreen.tsx` | 抽選 `core/encounter.ts`、条件 `core/conditions.ts`、状態 `core/game.tsx` |
 | 発見カード（共有・保存） | `features/deai/DiscoveryCard.tsx` | `services/share.ts` |
 | 図鑑 | `features/zukan/ZukanScreen.tsx` | 猫の一覧 `data/catalog.ts`、ヒント `core/conditions.ts`（`HINTS`） |
 | 世界・旅猫（今はサンプル表示） | `features/world/WorldScreen.tsx` | — （サーバー接続後に実装） |

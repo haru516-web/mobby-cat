@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 const { toRecord, fromRecord } = await import('../src/services/account/cloudSave.ts');
 const cat = 'british-shorthair';
-const rec = { candidates: [cat], reasons: { [cat]: '誕生日' }, baseCount: 3, matatabiUsed: 0, extraPicks: [], opened: [] };
+const rec = { candidates: [cat], reasons: { [cat]: '誕生日' }, baseCount: 3, extraPicks: [], opened: [] };
 const state = { owned: { [cat]: { count: 1, firstDay: '2026-10-28', firstReason: '誕生日' } }, days: Object.fromEntries(['2020-01-01', '2026-10-27', '2026-10-28', '2026-10-29', '2026-10-30', '2026-10-31'].map(k => [k, rec])), birthday: { m: 10, d: 28 }, totalSteps: 20000, obs: {}, inbox: [{ day: '2026-10-30', text: 'private' }], inboxRead: 1, pendingSpend: { id: 'private' }, clockSkewMs: 0 };
 test('cloud excludes sensitive text, birthday month/day, device signals and journal', () => {
   const text = toRecord(state, new Date(2026, 9, 30, 20));

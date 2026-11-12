@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Linking, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useAccount } from '../../core/account';
-import { matatabiOf, ticketsOf, useGame } from '../../core/game';
+import { ticketsOf, useGame } from '../../core/game';
 import { EULA_URL, PRIVACY_URL } from '../../data/appInfo';
 import { notice } from '../../services/dialog';
 import type { AgeGroup, BuyOutcome } from '../../services/account/purchase';
@@ -14,14 +14,11 @@ import { Pic } from '../../ui/Slice';
 import { AgePopup } from './AgePopup';
 
 // 売る商品。価格は設計書（docs/game-design.md 4.3）のとおり。実際に請求される金額は、App Store が表示する価格。
-// またたびは5個セットだけを売る。
+// 売るのは、お迎え券だけ。
 const ITEMS: { key: ProductKey; icon: string; name: string; yen: string; desc: string }[] = [
   { key: 'ticket1', icon: 'icon/ticket-paw', name: 'お迎え券 1枚', yen: '¥200', desc: '今日の候補から好きな猫を1匹、確実に追加で迎えます' },
   { key: 'ticket6', icon: 'icon/ticket-paw', name: 'お迎え券 6枚', yen: '¥1,000', desc: 'まとめ買い（5枚＋おまけ1枚）' },
-  { key: 'matatabi5', icon: 'icon/matatabi-leaf', name: 'またたび 5個セット', yen: '¥300', desc: '1個で、今日の候補をもう1匹ひらけます（条件がそろった子が4匹以上いる日。候補の数まで）' },
 ];
-
-const PASS_BONUS_LABEL = 3;
 
 const openLink = (url: string) => Linking.openURL(url).catch(() => notice('ページを開けませんでした', url));
 
@@ -34,8 +31,6 @@ function failureText(outcome: Extract<BuyOutcome, { ok: false }>): string | null
       return 'サーバーにつながりませんでした。電波のよいところで、もう一度お試しください。購入はされていません。';
     case 'verify_failed':
       return '購入の確認ができませんでした。Appleでの支払いが完了している場合もあります。アプリを開き直すと、自動でやり直します。';
-    case 'already_subscribed':
-      return 'このApple IDは、すでにまたたびパスに加入しています。新しく請求はされません。ショップの「購入を復元」を押すと、この端末で使えるようになります。';
     case 'restricted':
       return '返金が続いたため、このアカウントでは、いまは購入をお受けできません。心当たりがない場合は、サポートまでご連絡ください。';
     case 'limit':
@@ -77,11 +72,11 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       setBusy(false);
     }
     if (outcome.ok) {
-      const thanks = key === 'pass' ? 'またたびパスに加入しました。' : 'ありがとうございます。';
+      const thanks = 'ありがとうございます。';
       if (acc.linked === true) return notice('購入しました', thanks);
       confirm(
         '購入しました',
-        `${thanks}機種変更やアプリの削除に備えて、Appleでサインインしておくと安心です（任意です）。迎えた猫と遊んだ記録も、購入したものも、新しいiPhoneで戻せます。名前やメールアドレスは受け取りません。サインインしない場合、迎えた猫と記録は端末の中だけにあるので、機種変更やアプリの削除で消えます。購入したお迎え券・またたびは、設定の「アカウント」で発行する引継ぎコードで戻せますが、引き継げるのは課金したアイテムだけで、所持しているにゃこモビーは引き継がれません。`,
+        `${thanks}機種変更やアプリの削除に備えて、Appleでサインインしておくと安心です（任意です）。迎えた猫と遊んだ記録も、購入したものも、新しいiPhoneで戻せます。名前やメールアドレスは受け取りません。サインインしない場合、迎えた猫と記録は端末の中だけにあるので、機種変更やアプリの削除で消えます。購入したお迎え券は、設定の「アカウント」で発行する引継ぎコードで戻せますが、引き継げるのは課金したアイテムだけで、所持しているにゃこモビーは引き継がれません。`,
         'Appleでサインイン',
         async () => {
           const result = await acc.linkApple();
@@ -121,8 +116,6 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
       const result = await acc.restorePurchases(transferCode.trim());
       if (result.kind === 'offline') notice('購入の復元', 'つながりませんでした。電波のよいところで、もう一度お試しください。');
       else if (result.kind === 'store_error') notice('購入の復元', 'App Storeにつながりませんでした。しばらくしてから、もう一度お試しください。');
-      else if (result.familyShared) notice('購入の復元', 'このパスは、ファミリー共有で見えているものです。パスを購入した方のApple IDで、その方のiPhoneから、復元してください。');
-      else if (result.planMoved) notice('購入の復元', 'またたびパスを、この端末で使えるようにしました。次の更新からも、この端末に届きます。お迎え券・またたびの残高を戻すには、前の端末で発行した引継ぎコードが必要です。');
       else if (result.localBlocked) notice('購入の復元', 'この端末のアカウントに購入したものがあるため、引継ぎコードは使いませんでした。コードは、まだ使えます。アカウントをまとめたい場合は、サポートまでご連絡ください。');
       else if (result.recovered && result.credited === 0) notice('購入の復元', 'アカウントを、この端末に引き継ぎました。前の端末では、使えなくなります。持っているものは、この画面の表示で確かめてください。');
       else if (result.incomplete) notice('購入の復元', `一部の購入を、App Storeから読み取れませんでした（確認できた購入: ${result.credited}件）。しばらくしてから、もう一度お試しください。`);
@@ -136,8 +129,6 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
     }
   };
 
-  const passPrice = priceOf('pass', '¥1,500');
-
   return (
     <View style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.wrap} automaticallyAdjustKeyboardInsets keyboardShouldPersistTaps="handled">
@@ -148,7 +139,7 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             <Pic name="button/close-round" height={40} />
           </Tap>
         </View>
-        <T w="b" size={13} color={C.sub} style={{ marginTop: 4, marginBottom: 12 }}>お迎え券 {ticketsOf(state)}枚 ／ またたび {matatabiOf(state)}個</T>
+        <T w="b" size={13} color={C.sub} style={{ marginTop: 4, marginBottom: 12 }}>お迎え券 {ticketsOf(state)}枚</T>
 
         {ITEMS.map((it) => (
           <Card key={it.key} style={s.item}>
@@ -166,40 +157,13 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
             />
           </Card>
         ))}
-        <Card style={[s.item, { alignItems: 'flex-start' }]}>
-          <Icon name="icon/matatabi-bag" size={44} />
-          <View style={{ flex: 1 }}>
-            <T w="x" size={14}>またたびパス（月額 {passPrice}）</T>
-            <T w="m" size={11} color={C.sub} style={{ marginTop: 2 }}>
-              加入中は、毎日{3 + PASS_BONUS_LABEL}匹までひらけて（ふだんは3匹）、毎月お迎え券が8枚届きます。1か月ごとに自動で更新され、いつでも解約できます。解約後も迎えた猫はそのまま残ります
-            </T>
-          </View>
-          <ImgButton
-            skin={state.pass.active ? 'ghost-outline' : 'primary-green'}
-            label={state.pass.active ? '加入中' : passPrice}
-            height={40}
-            disabled={busy || state.pass.active}
-            onPress={() => confirm(
-              'またたびパスに加入しますか？',
-              `月額 ${passPrice}です。毎日${3 + PASS_BONUS_LABEL}匹までひらけて、毎月お迎え券が8枚届きます。ひらける数は、その日にそろった子の数までです。期間が終わる24時間前までに解約しない限り、1か月ごとに自動で更新され、Apple Accountに請求されます。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から、いつでもできます。`,
-              '加入する',
-              () => void purchase('pass'),
-              { skin: 'primary-green' },
-            )}
-            style={{ width: 100 }}
-          />
-        </Card>
-        {state.pass.active && (
-          <T w="m" size={11} color={C.sub} style={{ marginBottom: 8 }}>解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から行えます。</T>
-        )}
-
         <View style={{ flexDirection: 'row', gap: 8 }}>
           <ImgButton skin="ghost-outline" label="出会いの仕組み" height={40} fontSize={13} onPress={() => setOdds(true)} style={{ flex: 1 }} />
-          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', '加入中のまたたびパスは、そのまま復元できます。お迎え券・またたびを別の端末から引き継ぐには、引継ぎコードが必要で、前の端末ではそのアカウントを使えなくなります。所持しているにゃこモビーと遊んだ記録は、コードでは引き継がれません。引き継ぐには、Appleでサインインします。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
+          <ImgButton skin="ghost-outline" label="購入を復元" height={40} fontSize={13} disabled={busy} onPress={() => confirm('購入を復元しますか？', 'お迎え券を別の端末から引き継ぐには、引継ぎコードが必要で、前の端末ではそのアカウントを使えなくなります。所持しているにゃこモビーと遊んだ記録は、コードでは引き継がれません。引き継ぐには、Appleでサインインします。', '復元する', () => { void restore(); }, { cancelLabel: 'やめておく' })} style={{ flex: 1 }} />
         </View>
         <Card skin="white" style={{ gap: 6, marginTop: 8 }}>
           <T w="b" size={12}>別の端末の購入を引き継ぐ場合</T>
-          <T w="m" size={11} color={C.sub}>またたびパスは、コードなしで「購入を復元」を押すと戻せます。お迎え券・またたびは、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。コードで引き継げるのは、課金したアイテム（お迎え券・またたび）だけです。所持しているにゃこモビーと遊んだ記録は、引き継がれません。猫も引き継ぐには、設定からAppleでサインインします。</T>
+          <T w="m" size={11} color={C.sub}>お迎え券は、前の端末の「設定 → アカウント」で発行した引継ぎコードを入力して、「購入を復元」を押してください。コードで引き継げるのは、課金したアイテム（お迎え券）だけです。所持しているにゃこモビーと遊んだ記録は、引き継がれません。猫も引き継ぐには、設定からAppleでサインインします。</T>
           <TextInput value={transferCode} onChangeText={setTransferCode} accessibilityLabel="引継ぎコード" placeholder="引継ぎコード" autoCapitalize="none" autoCorrect={false} autoComplete="off" maxLength={160} style={{ color: C.ink, borderWidth: 1, borderColor: C.sub, borderRadius: 8, padding: 12, minHeight: 44 }} />
         </Card>
         {/* 自動更新のサブスクがあるので、購入の画面に利用規約とプライバシーポリシーを置く */}
@@ -210,14 +174,13 @@ export default function ShopScreen({ onClose }: { onClose: () => void }) {
         {/* 購入を復元の確認と同じく、ポップで見せる（ポップは OverlayHost に出るので、ここに置いてよい） */}
         <Popup visible={odds} onClose={() => setOdds(false)} maxWidth={340} heightRatio={0.7}>
           <View style={{ flex: 1, padding: 18, gap: 8 }}>
-            <T w="x" size={16} style={{ textAlign: 'center', marginTop: 4 }}>またたびで増える候補について</T>
+            <T w="x" size={16} style={{ textAlign: 'center', marginTop: 4 }}>出会いの仕組み</T>
             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
               <T w="m" size={12} color={C.sub} style={{ lineHeight: 18 }}>
-              毎晩20時に、その日の出会いの条件がすべてそろった猫の中から、候補が決まります。{'\n'}
-              ・条件がそろったレア・でんせつ・世界の猫は候補に残ります。レア以上だけで6匹を超える日は、候補の枠を広げます。{'\n'}
-              ・ふだんは6匹まで。残りはノーマルから選び、1枠はまだ迎えていない子を優先します。条件がそろっても候補から外れた子は、次に条件がそろった日に少し出やすくなります（外れた回数ごとに重み+0.5、最大11倍。候補に入ると元に戻ります）。{'\n'}
-              候補は、届いた時点で決まっていて、購入では変わりません。候補は、ひらくまで中身が見えません。ひらいた候補と非表示の子のレア度ごとの数を表示します。珍しい猫がまだひらかれていない日は、気配を知らせます。ひらく候補は自分で選べます。ひらいた猫は、その日の候補の別々の猫で、はずれはありません。{'\n'}
-              またたびは、ひらける数を1匹ずつ増やします（候補の数まで）。出る猫の確率は変わりません。お迎え券は、ひらいた猫の中から、迎える猫を選べる券です。条件を飛ばして猫を迎えることはできません。
+              毎晩20時に、その日の出会いの条件がすべてそろった猫が、候補になります。{'\n'}
+              ・条件がそろった猫は、全員が候補に出ます。抽選や、数の絞り込みはありません。{'\n'}
+              ・候補は、届いた時点で決まっていて、購入では変わりません。{'\n'}
+              ・お迎え券は、候補の中から、無料の1匹のほかに迎える猫を選べる券です。条件を飛ばして猫を迎えることはできません。
               </T>
             </ScrollView>
             <ImgButton skin="ghost-outline" label="閉じる" height={48} fontSize={13} onPress={() => setOdds(false)} />

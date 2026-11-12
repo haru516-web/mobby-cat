@@ -7,7 +7,7 @@ import { createAppStore } from '../services/account/appStore';
 import { emptyCloudMeta, fingerprint, fromRecord, isEmptyRecord, normalizeCloudMeta, toRecord, uploadWaitMs, type CloudMeta } from '../services/account/cloudSave';
 import { server } from '../services/account/credentials';
 import type { ProductKey } from '../services/account/products';
-import { buy as buyProduct, fetchPlan, fetchWallet, paidHere, setAgeGroup, settle, spendPaid, type AgeGroup, type BuyOutcome, type Plan, type SettleOutcome } from '../services/account/purchase';
+import { buy as buyProduct, fetchWallet, paidHere, setAgeGroup, settle, spendPaid, type AgeGroup, type BuyOutcome, type SettleOutcome } from '../services/account/purchase';
 import { ok } from '../services/account/serverClient';
 import { useGame } from './game';
 
@@ -15,12 +15,12 @@ import { useGame } from './game';
  * アカウント・購入・クラウドセーブを、画面とゲームの記録につなぐ。
  *  - 遊ぶだけなら、アカウントは作らない（端末の中だけ）。Apple 連携か購入のときに、はじめて作る。
  *  - 購入は匿名のアカウントのままでできる。Apple 連携は任意で、連携すると、記録をクラウドに預け、機種変更でも戻せる。
- *  - 買った分のお迎え券・またたびと、またたびパスの有無は、サーバーが正しい値を持つ。ここは写しを持つだけ。
+ *  - 買った分のお迎え券は、サーバーが正しい値を持つ。ここは写しを持つだけ。
  */
 
 const META_KEY = 'mobby-cat/cloud/v1';
 const REFRESH_GAP_MS = 60_000;
-// アプリを開いたままでも、ときどきサーバーを確かめる（またたびパスの更新・終了を反映するため。B-01）
+// アプリを開いたままでも、ときどきサーバーを確かめる（B-01）
 const REFRESH_EVERY_MS = 30 * 60_000;
 // 預けられなかったときに、預け直すまでの時間
 const RETRY_MS = 2 * 60_000;
@@ -42,7 +42,6 @@ type Ctx = {
   linked: boolean | null;
   /** この端末の鍵が、サーバーに受け付けられない（別の端末が引き継いだ、またはアカウントが無い） */
   signedOut: boolean;
-  plan: Plan;
   cloud: CloudStatus;
   /** 最後にクラウドに預けた（受け取った）時刻（ms）。まだなら null */
   cloudSavedAt: number | null;
@@ -81,7 +80,6 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [linked, setLinkedState] = useState<boolean | null>(null);
   const [signedOut, setSignedOut] = useState(false);
-  const [plan, setPlan] = useState<Plan>('none');
   const [cloud, setCloud] = useState<CloudStatus>('off');
   const [pending, setPendingState] = useState<Pending | null>(null);
   const [prices, setPrices] = useState<Record<string, string>>({});
@@ -173,12 +171,12 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   // eslint-disable-next-line react-hooks/refs, react-hooks/immutability -- タイマーから最新の関数を呼ぶための写し
   syncRef.current = syncCloud;
 
-  // サーバーの答えを写す：Apple 連携、買った分の残高、またたびパス
+  // サーバーの答えを写す：Apple 連携、買った分の残高
   const refresh = useCallback(async () => {
     lastRefresh.current = Date.now();
     const creds = await server.existing();
-    // 鍵が無い（バックアップから戻した端末など）。残高とパスの写しは、もう確かめられないので残さない
-    if (!creds) { setLinked(false); gRef.current.setPaid({ tickets: 0, matatabi: 0 }); gRef.current.setPass(false); return; }
+    // 鍵が無い（バックアップから戻した端末など）。残高の写しは、もう確かめられないので残さない
+    if (!creds) { setLinked(false); gRef.current.setPaid({ tickets: 0 }); return; }
     const profile = await server.raw('/profile', { method: 'GET', auth: creds });
     if (profile === null) return; // つながらない：前回の写しのまま
     if (profile.status === 401) { setSignedOut(true); return; }
@@ -192,8 +190,6 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     const quiet = { authed: server.authedIfAny };
     const wallet = await fetchWallet(quiet);
     if (wallet) gRef.current.setPaid(wallet);
-    const current = await fetchPlan(quiet);
-    if (current) { setPlan(current.plan); gRef.current.setPass(current.plan !== 'none', current.until); }
     if (profile.data.appleLinked) {
       // 預けたことがあれば「預けた」。まだなら、下の「少し待ってから預ける」が預ける
       if (meta.current.hash) setCloud((value) => (value === 'off' ? 'synced' : value));
@@ -230,15 +226,12 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
     });
     return () => sub.remove();
   }, [refresh, syncCloud]);
-  // アプリを開いたままでも、ときどきサーバーを確かめる。またたびパスの期間の終わりにも確かめる（更新されていれば、続けて使える）
-  const passUntil = g.state.pass.until;
+  // アプリを開いたままでも、ときどきサーバーを確かめる
   useEffect(() => {
     if (!ready) return;
     const every = setInterval(() => { if (AppState.currentState === 'active') void refresh(); }, REFRESH_EVERY_MS);
-    const left = passUntil ? passUntil - (Date.now() + (gRef.current.state.clockSkewMs ?? 0)) : -1;
-    const atEnd = left > 0 && left < REFRESH_EVERY_MS ? setTimeout(() => void refresh(), left + 5000) : null;
-    return () => { clearInterval(every); if (atEnd) clearTimeout(atEnd); };
-  }, [ready, refresh, passUntil]);
+    return () => clearInterval(every);
+  }, [ready, refresh]);
 
   // 買った分は、サーバーの残高から使う
   useEffect(() => {
@@ -349,7 +342,6 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
         saveMeta(emptyCloudMeta());
         setLinked(false);
         setSignedOut(false);
-        setPlan('none');
         setCloud('off');
         setPending(null);
         setAgeGroupState(null);
@@ -379,12 +371,10 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
       saveMeta(emptyCloudMeta());
       setSignedOut(false);
       setLinked(false);
-      setPlan('none');
       setCloud('off');
       setAgeGroupState(null);
       stopRetry();
-      gRef.current.setPaid({ tickets: 0, matatabi: 0 });
-      gRef.current.setPass(false);
+      gRef.current.setPaid({ tickets: 0 });
     }, undefined);
   }, []);
 
@@ -393,7 +383,7 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
   }, [store]);
 
   const value: Ctx = {
-    ready, linked, signedOut, plan, cloud, cloudSavedAt, retryCloud, ageGroup, pendingCloud: pending ? { updatedAt: pending.updatedAt } : null,
+    ready, linked, signedOut, cloud, cloudSavedAt, retryCloud, ageGroup, pendingCloud: pending ? { updatedAt: pending.updatedAt } : null,
     storeAvailable: !!store, prices, loadPrices, refresh, linkApple, restoreWithApple, resolveCloud, buy, restorePurchases, createTransferCode, setAge, deleteAccount, startOver,
   };
   return <AccountCtx.Provider value={value}>{children}</AccountCtx.Provider>;

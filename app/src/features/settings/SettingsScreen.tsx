@@ -66,7 +66,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
   });
   const doRestore = (force = false) => run(async () => {
     const r = await acc.restoreWithApple(force);
-    if (r === 'local_paid') confirm('この端末の購入が失われます', `この端末の匿名アカウントに、購入したもの（お迎え券${state.paid.tickets}枚、またたび${state.paid.matatabi}個${state.pass.active ? '、またたびパス' : ''}）が残っています。Appleの記録へ切り替えると、この分はこの端末から戻せません。またたびパスは、切り替えのあとに「購入を復元」で戻せます。先に使い切ることもできます。`, '切り替える', () => void doRestore(true), { cancelLabel: 'やめる' });
+    if (r === 'local_paid') confirm('この端末の購入が失われます', `この端末の匿名アカウントに、購入したもの（お迎え券${state.paid.tickets}枚）が残っています。Appleの記録へ切り替えると、この分はこの端末から戻せません。先に使い切ることもできます。`, '切り替える', () => void doRestore(true), { cancelLabel: 'やめる' });
     else if (r === 'restored') notice('引き継ぎました', '預けてあった記録と、購入したものを戻しました。');
     else if (r === 'choose') notice('記録が食い違っています', 'この端末の記録と、クラウドの記録の、どちらを使うか選んでください。');
     else if (r === 'nothing') notice('記録が見つかりません', 'このApple IDで預けた記録はありません。');
@@ -377,7 +377,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
                 <Card skin="white" style={{ gap: 4 }}>
                   <T w="x" size={13}>Appleでサインイン済み</T>
                   <T w="m" size={11} color={acc.cloud === 'failed' ? C.accent : C.sub}>{cloudText}</T>
-                  <T w="m" size={11} color={C.sub}>機種変更のときは、新しいiPhoneで「別のiPhoneの記録を引き継ぐ」から戻せます。購入したお迎え券・またたび・またたびパスも、同じApple IDで引き継げます。</T>
+                  <T w="m" size={11} color={C.sub}>機種変更のときは、新しいiPhoneで「別のiPhoneの記録を引き継ぐ」から戻せます。購入したお迎え券も、同じApple IDで引き継げます。</T>
                   {(acc.cloud === 'failed' || !savedAt) && acc.cloud !== 'saving' && (
                     <ImgButton skin="ghost-outline" label="いま預ける" height={38} fontSize={12} disabled={busy} onPress={doRetry} style={{ marginTop: 4 }} />
                   )}
@@ -392,7 +392,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
 
               {!acc.signedOut && acc.linked === false && <Card skin="white" style={{ gap: 6 }}>
                 <T w="b" size={13}>購入の引継ぎコード</T>
-                <T w="m" size={11} color={C.sub}>引継ぎコードで引き継げるのは、課金したアイテム（お迎え券・またたび）だけです。所持しているにゃこモビーと遊んだ記録は、引き継がれません。猫も引き継ぎたい場合は、上の「Appleでサインイン」を使ってください。Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。有効期限は30日です。再発行すると前のコードは使えません。コードと端末を両方失うと、お迎え券・またたびは引き継げません（加入中のまたたびパスは、「購入を復元」で戻せます）。</T>
+                <T w="m" size={11} color={C.sub}>引継ぎコードで引き継げるのは、課金したアイテム（お迎え券）だけです。所持しているにゃこモビーと遊んだ記録は、引き継がれません。猫も引き継ぎたい場合は、上の「Appleでサインイン」を使ってください。Appleでサインインせずに購入した方は、機種変更前にコードを発行して保管してください。有効期限は30日です。再発行すると前のコードは使えません。コードと端末を両方失うと、お迎え券は引き継げません。</T>
                 <ImgButton skin="ghost-outline" label="引継ぎコードを発行" height={44} disabled={busy} onPress={() => confirm('引継ぎコードを発行しますか？', 'コードで引き継げるのは、課金したアイテムだけです。所持しているにゃこモビーは、引き継がれません。新しいコードを発行すると、前のコードは使えなくなります。コードは他の人に教えず、安全な場所に保管してください。', '発行する', () => { void run(async () => { const result = await acc.createTransferCode(); setTransfer(result); if (!result) notice('発行できませんでした', '購入したアカウントでつながっているかを確認し、もう一度お試しください。'); }); })} />
                 {transfer && <>
                   <T w="m" size={11} selectable>{transfer.code}</T>
@@ -427,7 +427,7 @@ export default function SettingsScreen({ onClose, onTutorial }: { onClose: () =>
               {/* Apple に連携していない（匿名の）アカウントも、ここから削除できる。サーバーにアカウントが無ければ、端末の記録だけを消す */}
               <Card skin="white" style={{ gap: 4 }}>
                   <T w="x" size={13}>アカウントの削除</T>
-                  <T w="m" size={11} color={C.sub}>アカウントと、サーバーに預けた記録・購入の記録を、すべて削除します。残っているお迎え券とまたたびは、失われます。またたびパスは、自動では解約されません。解約は、iPhoneの「設定」→ 上部の名前 →「サブスクリプション」から行ってください。</T>
+                  <T w="m" size={11} color={C.sub}>アカウントと、サーバーに預けた記録・購入の記録を、すべて削除します。残っているお迎え券は、失われます。</T>
                   <ImgButton skin="ghost-outline" label="アカウントを削除する" height={42} fontSize={13} disabled={busy} onPress={() => confirm('アカウントを削除しますか？', 'サーバーの記録と購入の記録を削除し、この端末の記録も消します。元に戻せません。', '削除する', () => void doDelete(), { cancelLabel: 'やめる' })} style={{ marginTop: 4 }} />
                 </Card>
             </View>

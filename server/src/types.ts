@@ -38,18 +38,12 @@ export interface RateLimiter {
   limit(options: { key: string }): Promise<{ success: boolean }>;
 }
 
-/** The two things a player buys and spends. */
-export type Currency = "tickets" | "matatabi";
+/** The one thing a player buys and spends. */
+export type Currency = "tickets";
 
 export interface ProductDefinition {
   /** お迎え券 credited by a one-time purchase. */
   tickets?: number;
-  /** またたび credited by a one-time purchase. */
-  matatabi?: number;
-  /** A subscription: its name (またたびパス). A product is either a one-time purchase or a plan, never both. */
-  plan?: string;
-  /** お迎え券 a plan hands over for each billing period; they carry over like bought ones. */
-  monthlyTickets?: number;
   /** Price in yen, used for the monthly spending cap of younger players. */
   priceYen?: number;
 }
@@ -84,7 +78,6 @@ export interface CloudSave {
 
 export interface Wallet {
   tickets: number;
-  matatabi: number;
 }
 
 /** What an hourly clean-up did: a growing `expiredLeft` (or the limit reached) means it is behind. */
@@ -115,10 +108,6 @@ export interface Store {
   putCloudSave(userId: string, data: string, baseVersion: number): Promise<number | null>;
   linkApple(userId: string, appleSub: string): Promise<AppleLinkResult>;
   userByApple(appleSub: string): Promise<string | null>;
-  /** Who holds this subscription when it has moved away from its appAccountToken, and the transaction it moved with; null when it never moved. */
-  planOwner(originalTransactionId: string): Promise<{ userId: string; movedTransactionId: string } | null>;
-  /** Give an active subscription to `userId`: the plan, its purchases and its later renewals. Balances and keys are not touched. */
-  movePlan(userId: string, transaction: VerifiedTransaction, plan: string): Promise<void>;
   appleLinked(userId: string): Promise<boolean>;
   /** The Apple ID (its stable `sub`) this account is linked to, or null. */
   appleSubOf(userId: string): Promise<string | null>;
@@ -136,14 +125,10 @@ export interface Store {
   consume(userId: string, currency: Currency, amount: number, ref: string): Promise<"ok" | "duplicate" | "short">;
   /** Record a purchase and credit a one-time product. False when this transaction was already recorded (or already refunded). Safe to repeat. */
   recordPurchase(userId: string, transaction: VerifiedTransaction, product: ProductDefinition): Promise<boolean>;
-  /** One billing period of a plan: remember it and credit that period's お迎え券 once. Safe to repeat. */
-  recordPlanPeriod(userId: string, plan: string, periodStart: string, periodEnd: string, tickets: number, transactionId: string): Promise<void>;
-  /** The plan whose billing period covers `at` and when that period ends, or null. */
-  activePlan(userId: string, at: string): Promise<{ plan: string; until: string } | null>;
   /** Apple refunded this purchase: take back what is unspent of it. Safe to repeat. */
-  revokePurchase(transactionId: string, product?: ProductDefinition, plan?: { name: string; periodStart: string }): Promise<void>;
+  revokePurchase(transactionId: string, product?: ProductDefinition): Promise<void>;
   /** Apple took a refund back: give back what the refund took and end nothing. A second refund of the same purchase takes nothing more. */
-  reverseRefund(transactionId: string, plan?: { name: string; periodStart: string; periodEnd: string }): Promise<void>;
+  reverseRefund(transactionId: string): Promise<void>;
   /** Whether a refund or revocation of this transaction is on record (it may have arrived before the purchase did). */
   isRevoked(transactionId: string): Promise<boolean>;
   /** How many refunds since `since` came after some of what they bought was already spent. */

@@ -9,14 +9,14 @@ import { encounterDayKey, prevDayKey } from '../../core/dates';
  *
  * 預けないもの：
  *  - 開発用の日付のずれ（debugOffsetDays）と、この端末の時計のずれ（clockSkewMs）
- *  - 買った分の残高のコピー（paid）と、またたびパスの状態（pass）。正しい値はサーバーが持つ（古い写しで上書きしないため）
+ *  - 買った分の残高のコピー（paid）。正しい値はサーバーが持つ（古い写しで上書きしないため）
  *  - 端末の中だけで使うと説明している情報：誕生日（birthday）、歩数の合計（totalSteps）、電池・起動時刻の観測（obs）
  *    （プライバシーポリシーと App Privacy の回答に合わせる。機種変更のあとは、新しい端末で入れ直す）
  */
 const KEEP_DAYS = 3; // 出会いの記録（どの猫が候補に出たか）は、直近の3日分だけ預ける（きのうの分を戻せれば足りる。歩数などを推し量れる材料を、サーバーに残さないため）
 
 export function toRecord(state: GameState, now = new Date(Date.now() + (state.clockSkewMs ?? 0))): string {
-  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, pass: _pass, birthday: _birthday, totalSteps: _steps, obs: _obs, pendingSpend: _pending, encounterMisses: _misses, ...rest } = state;
+  const { debugOffsetDays: _debug, clockSkewMs: _skew, paid: _paid, birthday: _birthday, totalSteps: _steps, obs: _obs, pendingSpend: _pending, encounterMisses: _misses, ...rest } = state;
   // 出会えた条件の文（「1日1万歩」「誕生日」など、歩数・誕生日から分かるもの）と、お知らせの本文は預けない。
   // 誕生日の猫を迎えた日も、月日から誕生日が分かるので、年だけ残す（戻したあと、迎えた日は年始として出る）
   const owned = Object.fromEntries(

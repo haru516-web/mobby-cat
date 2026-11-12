@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { accountChangeBlocked, applySpend, runSpend, serializedWriter, spendBlocked, exclusiveAccountChange, withPaid } from '../src/core/spending.ts';
 
-const record = { candidates: ['a', 'b', 'c', 'd'], reasons: { b: '雨' }, baseCount: 3, matatabiUsed: 0, freePick: 'a', extraPicks: [], opened: ['a', 'b', 'c'] };
-const pending = (kind = 'extra') => ({ kind, day: '2026-10-30', ids: [kind === 'extra' ? 'b' : 'd'], id: 'unique-1', currency: kind === 'extra' ? 'tickets' : 'matatabi', fromPaid: 1, fromFree: 0, record: structuredClone(record) });
-const state = () => ({ owned: {}, tickets: 0, matatabi: 0, days: {}, paid: { tickets: 1, matatabi: 1 } });
+const record = { candidates: ['a', 'b', 'c', 'd'], reasons: { b: '雨' }, baseCount: 3, freePick: 'a', extraPicks: [], opened: ['a', 'b', 'c'] };
+const pending = () => ({ kind: 'extra', day: '2026-10-30', ids: ['b'], id: 'unique-1', currency: 'tickets', fromPaid: 1, fromFree: 0, record: structuredClone(record) });
+const state = () => ({ owned: {}, tickets: 0, days: {}, paid: { tickets: 1 } });
 function harness(s = state()) {
   let current = s, disk = structuredClone(s), calls = 0, failAt = 0, writes = 0, offline = false;
   const debited = new Set();
@@ -16,15 +16,12 @@ function harness(s = state()) {
   };
 }
 
-test('a missing day is restored from the journal for both currencies', async () => {
-  for (const kind of ['extra', 'matatabi']) {
-    const h = harness(), p = pending(kind);
-    assert.equal(await runSpend(p, h), true);
-    assert.equal(h.get().pendingSpend, undefined);
-    if (kind === 'extra') assert.equal(h.get().owned.b.count, 1);
-    else { assert.equal(h.get().days[p.day].matatabiUsed, 1); assert.ok(h.get().days[p.day].opened.includes('d')); }
-    assert.equal(h.debited.size, 1);
-  }
+test('a missing day is restored from the journal', async () => {
+  const h = harness(), p = pending();
+  assert.equal(await runSpend(p, h), true);
+  assert.equal(h.get().pendingSpend, undefined);
+  assert.equal(h.get().owned.b.count, 1);
+  assert.equal(h.debited.size, 1);
 });
 test('failed journal persistence never calls the server and blocks replacement/reset/next spend', async () => {
   const h = harness(); h.fail(1);
@@ -71,12 +68,12 @@ test('a definitive insufficient balance clears the journal without granting or c
   assert.deepEqual(h.get().owned, {});
   assert.equal(h.get().pendingSpend, undefined);
 });
-test('an applied matatabi journal survives restart without another opening or debit', async () => {
-  const p = pending('matatabi');
+test('an applied journal survives restart without another opening or debit', async () => {
+  const p = pending();
   const applied = applySpend(state(), p);
   const h = harness({ ...applied, pendingSpend: { ...p, applied: true } });
   assert.equal(await runSpend(h.get().pendingSpend, h), true);
-  assert.equal(h.get().days[p.day].matatabiUsed, 1);
+  assert.equal(h.get().owned.b.count, 1);
   assert.equal(h.calls(), 0);
 });
 test('serialized writes preserve order after a slow write and a failure', async () => {
@@ -114,8 +111,8 @@ test('a lost key keeps the journal and lets the account change go ahead, so the 
 test('the balance the server returned survives the spend that returned it', async () => {
   const h = harness();
   const real = h.spend;
-  h.spend = async (...args) => { const result = await real(...args); h.put(withPaid(h.get(), { tickets: 0, matatabi: 1 })); return result; };
+  h.spend = async (...args) => { const result = await real(...args); h.put(withPaid(h.get(), { tickets: 0 })); return result; };
   assert.equal(await runSpend(pending(), h), true);
-  assert.deepEqual(h.get().paid, { tickets: 0, matatabi: 1 });
-  assert.equal(withPaid(h.get(), { tickets: 0, matatabi: 1 }), h.get(), 'an unchanged balance keeps the same object');
+  assert.deepEqual(h.get().paid, { tickets: 0 });
+  assert.equal(withPaid(h.get(), { tickets: 0 }), h.get(), 'an unchanged balance keeps the same object');
 });
